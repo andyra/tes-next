@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import AppContext from "./AppContext";
 
-const Player = () => {
+export default function Player () {
   const value = useContext(AppContext);
-  const state = value.state;
 
   function togglePlay() {
-    state.playing ? value.setPlaying(false) : value.setPlaying(true)
+    value.state.playing ? value.setPlaying(false) : value.setPlaying(true)
   }
 
   const CurrentlyPlaying = () => {
@@ -25,9 +24,9 @@ const Player = () => {
     return (
       <div>
         <button onClick={togglePlay} className="border px-12 py-8">
-          {state.playing ? "PAUSE" : "PLAY"}
+          {value.state.playing ? "PAUSE" : "PLAY"}
         </button>
-        Playing: {`${state.playing}`}
+        Playing: {`${value.state.playing}`}
       </div>
     )
   }
@@ -39,5 +38,3 @@ const Player = () => {
     </aside>
   )
 }
-
-export default Player;
