@@ -10,18 +10,18 @@ const defaultTrack = {
 }
 
 function App({ Component, pageProps }) {
-  const [current, setCurrent] = useState(defaultTrack);
+  const [currentTrack, setCurrentTrack] = useState(defaultTrack);
   const [playing, setPlaying] = useState(false);
   const [queue, setQueue] = useState([]);
 
   return (
     <AppContext.Provider value={{
       state: {
-        current: current,
+        currentTrack: currentTrack,
         playing: playing,
         queue: queue,
       },
-      setCurrent: setCurrent,
+      setCurrentTrack: setCurrentTrack,
       setPlaying: setPlaying,
       setQueue: setQueue,
     }}>

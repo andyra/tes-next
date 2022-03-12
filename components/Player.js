@@ -13,7 +13,7 @@ export default function Player () {
       <div className="flex items-center gap-8">
         <figure className="h-48 w-48 bg-red-500 rounded" />
         <div>
-          <div className="text-sm font-medium">{value.state.current.title}</div>
+          <div className="text-sm font-medium">{value.state.currentTrack.title}</div>
           <div className="text-xs text-gray-500">Artist</div>
         </div>
       </div>

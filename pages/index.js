@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import AppContext from "../components/AppContext";
 
-const DATA = [
+const TRACKS = [
   {
     title: "Gabriel's Friendship Gang",
     url: "https://example.com/1",
@@ -26,6 +26,11 @@ export default function Home() {
     value.state.playing ? value.setPlaying(false) : value.setPlaying(true)
   }
 
+  function handleTrackSelect(track) {
+    value.state.playing ? value.setPlaying(false) : value.setPlaying(true);
+    value.setCurrentTrack(track);
+  }
+
   return (
     <>
       <section className="bg-yellow-100 p-24 rounded mb-24">
@@ -38,13 +43,13 @@ export default function Home() {
       </section>
 
       <ul className="border-t">
-        {DATA.map((item, i) =>
-          <li className="border-b py-8 flex justify-between">
+        {TRACKS.map((track, i) =>
+          <li className="border-b py-8 flex justify-between" key={i}>
             <div className="flex items-center gap-8">
-              <button onClick={togglePlay} className="border rounded-full flex items-center justify-center h-32 px-12">
+              <button onClick={() => {handleTrackSelect(track)}} className="border rounded-full flex items-center justify-center h-32 px-12">
                 {value.state.playing ? "Pause" : "Play"}
               </button>
-              {item.title}
+              {track.title}
             </div>
             <button className="border rounded-full flex items-center justify-center h-32 px-12">
               Add
