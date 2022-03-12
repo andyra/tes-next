@@ -14,17 +14,6 @@ const Tasks = () => (
   </section>
 );
 
-const QueueList = () => {
-  return (
-    <section className="bg-blue-50 p-24 mb-24">
-      <h2 className="font-medium mb-8">Queue List</h2>
-      <ul className="list-decimal pl-24">
-        <li>sdfg</li>
-      </ul>
-    </section>
-  )
-}
-
 const Layout = ({ children, ...props }) => {
   const maxWidth = props.maxWidth ? props.maxWidth : "max-w-screen-md";
   const padding = props.padding ? props.padding : "p-16";
@@ -38,7 +27,6 @@ const Layout = ({ children, ...props }) => {
       <main className={`flex-1 overflow-y-auto`}>
         <div className={`mx-auto ${maxWidth} ${padding}`}>
           <Tasks />
-          <QueueList />
           {children}
         </div>
       </main>
