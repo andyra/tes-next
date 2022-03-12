@@ -36,7 +36,7 @@ export default function Player () {
   const ExtraControls = () => {
     return (
       <div className="flex items-center justify-end gap-8 w-1/4">
-        <Dialog.Root defaultOpen>
+        <Dialog.Root defaultOpen={false}>
           <Dialog.Trigger className="flex items-center px-12 h-32 border rounded-full">
             Queue
           </Dialog.Trigger>
