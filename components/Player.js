@@ -64,8 +64,6 @@ export default function Player () {
     )
   }
 
-  console.log(value.state.queue);
-
   return (
     <aside className="absolute z-50 bottom-0 left-0 w-full border-t p-8 flex items-center justify-between bg-white">
       <CurrentlyPlaying />

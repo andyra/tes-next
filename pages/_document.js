@@ -9,9 +9,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        </Head>
+        <Head />
         <body className="font-sans antialiased min-h-screen">
           <Main />
           <NextScript />

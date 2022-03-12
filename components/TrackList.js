@@ -9,6 +9,7 @@ export default function Tracklist({tracks}) {
   }
 
   function handleTrackSelect(track) {
+    console.log("handleTrackSelect");
     if (value.state.currentTrack.id === track.id) {
       togglePlay()
     } else {
@@ -17,16 +18,43 @@ export default function Tracklist({tracks}) {
     }
   }
 
+  // function handleAddToQueue(track) {
+  //   console.log(track);
+  // }
+
   const TrackSelectButton = ({track}) => {
     const isPlaying = value.state.currentTrack.id === track.id && value.state.playing;
 
     return (
-      <button onClick={() => {handleTrackSelect(track)}} className={`border rounded-full flex items-center justify-center h-32 px-12 ${isPlaying ? "bg-green-200" : ""}`}>
+      <button
+        onClick={() => {handleTrackSelect(track)}}
+        className={`border rounded-full flex items-center justify-center h-32 px-12 ${isPlaying ? "bg-green-200" : ""}`}
+        >
         {value.state.currentTrack.id === track.id ? (
           value.state.playing ? "Pause" : "Play"
         ) : (
           "Play"
         )}
+      </button>
+    )
+  }
+
+  const AddToQueueButton = ({track}) => {
+    function handleSubmit(track) {
+      const prevQueue = value.state.queue;
+      const newQueue = prevQueue.concat(track);
+      console.log(track.title);
+      console.log(prevQueue);
+      console.log(newQueue);
+      value.setQueue(newQueue);
+    }
+
+    return (
+      <button
+        className="border rounded-full flex items-center justify-center h-32 px-12"
+        onClick={() => {handleSubmit(track)}}
+      >
+        Add
       </button>
     )
   }
@@ -39,9 +67,7 @@ export default function Tracklist({tracks}) {
             <TrackSelectButton track={track} />
             {track.title}
           </div>
-          <button className="border rounded-full flex items-center justify-center h-32 px-12">
-            Add
-          </button>
+          <AddToQueueButton track={track} />
         </li>
       )}
     </ul>
