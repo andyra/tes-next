@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Player from "./Player";
 
 const Layout = ({ children, ...props }) => {
   const maxWidth = props.maxWidth ? props.maxWidth : "max-w-screen-md";
@@ -14,6 +15,7 @@ const Layout = ({ children, ...props }) => {
           {children}
         </div>
       </main>
+      <Player />
     </>
   )
 }

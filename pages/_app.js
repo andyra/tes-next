@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
-import LanguageContext from "../components/LanguageContext";
+import AppContext from "../components/AppContext";
 import "../styles/globals.css";
 
 function App({ Component, pageProps }) {
-  const [language, setLanguage] = useState("en");
-  const value = { language, setLanguage };
+  const [playing, setPlaying] = useState(false);
+  const [queue, setQueue] = useState([]);
 
   return (
-    <LanguageContext.Provider value={value}>
+    <AppContext.Provider value={{
+      state: {
+        playing: playing,
+        queue: queue,
+      },
+      setPlaying: setPlaying,
+      setQueue: setQueue,
+    }}>
       <Layout {...pageProps}>
         <Component {...pageProps} />
       </Layout>
-    </LanguageContext.Provider>
+    </AppContext.Provider>
   )
 }
 
