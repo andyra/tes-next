@@ -28,10 +28,15 @@ export default function Home() {
 
   return (
     <>
-      <h1>Home</h1>
-      <p>
-        Playing is {`${value.state.playing}`}
-      </p>
+      <section className="bg-yellow-100 p-24 rounded mb-24">
+        <h2 className="font-medium">Tasks</h2>
+        <ul className="list list-decimal pl-24">
+          <li>Pass selected song to context</li>
+          <li>Only show "Playing" for actively playing song</li>
+          <li>Add Items to queue</li>
+        </ul>
+      </section>
+
       <ul className="border-t">
         {DATA.map((item, i) =>
           <li className="border-b py-8 flex justify-between">
