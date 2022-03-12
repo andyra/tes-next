@@ -4,9 +4,10 @@ import AppContext from "../components/AppContext";
 import "../styles/globals.css";
 
 const defaultTrack = {
+  id: 0,
   title: "Default Title",
   url: "https://example.com/url",
-  album: 0
+  album: "Album A"
 }
 
 function App({ Component, pageProps }) {

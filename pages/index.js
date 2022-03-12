@@ -3,16 +3,19 @@ import AppContext from "../components/AppContext";
 
 const TRACKS = [
   {
+    id: 1,
     title: "Gabriel's Friendship Gang",
     url: "https://example.com/1",
     album: 1
   },
   {
+    id: 2,
     title: "Matt Slime",
     url: "https://example.com/2",
     album: 2
   },
   {
+    id: 3,
     title: "Capestrano",
     url: "https://example.com/3",
     album: 3
@@ -27,8 +30,12 @@ export default function Home() {
   }
 
   function handleTrackSelect(track) {
-    value.state.playing ? value.setPlaying(false) : value.setPlaying(true);
-    value.setCurrentTrack(track);
+    if (value.state.currentTrack.id === track.id) {
+      togglePlay()
+    } else {
+      value.setCurrentTrack(track);
+      value.setPlaying(true);
+    }
   }
 
   return (
@@ -36,9 +43,9 @@ export default function Home() {
       <section className="bg-yellow-100 p-24 rounded mb-24">
         <h2 className="font-medium">Tasks</h2>
         <ul className="list list-decimal pl-24">
-          <li>Pass selected song to context</li>
-          <li>Only show "Playing" for actively playing song</li>
-          <li>Add Items to queue</li>
+          <li className="line-through">Pass selected song to context</li>
+          <li className="">Only show "Playing" for actively playing song</li>
+          <li className="">Add Items to queue</li>
         </ul>
       </section>
 
