@@ -10,7 +10,7 @@ export default function Player () {
 
   const CurrentlyPlaying = () => {
     return (
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-8 w-1/4">
         <figure className="h-48 w-48 bg-blue-200 rounded flex items-center justify-center text-2xl">
           {value.state.currentTrack.id}
         </figure>
@@ -24,7 +24,7 @@ export default function Player () {
 
   const PlayerControls = () => {
     return (
-      <div>
+      <div className="flex-1 flex items-center justify-center gap-8">
         <button onClick={togglePlay} className={`border px-12 py-8 ${value.state.playing ? "bg-green-200" : ""}`}>
           {value.state.playing ? "PAUSE" : "PLAY"}
         </button>
@@ -34,7 +34,7 @@ export default function Player () {
 
   const ExtraControls = () => {
     return (
-      <div>
+      <div className="flex items-center justify-end gap-8 w-1/4">
         Queue
       </div>
     )
