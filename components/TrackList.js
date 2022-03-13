@@ -4,19 +4,20 @@ import AppContext from "../components/AppContext";
 export default function Tracklist({tracks}) {
   const value = useContext(AppContext);
 
-  function playPause(track) {
+  function selectTrack(track, i) {
     if (value.state.currentTrack.id === track.id) {
       value.state.playing ? value.setPlaying(false) : value.setPlaying(true);
     } else {
       value.setCurrentTrack(track);
       value.setPlaying(true);
+      updateNextFrom(i);
     }
   }
 
-  function updateNextFrom(track, tracklist) {
-    const nextFrom = value.state.nextFrom;
-    // TODO: not entire tracklist, but everything _after_ the selected track
-    value.setNextFrom(tracklist);
+  function updateNextFrom(i) {
+    const newNextFrom = [...tracks];
+    newNextFrom.splice(0, i);
+    value.setNextFrom(newNextFrom);
   }
 
   function addToQueue(track) {
@@ -24,12 +25,11 @@ export default function Tracklist({tracks}) {
     value.setQueue(queue.concat(track));
   }
 
-  const PlayPauseButton = ({track}) => {
+  const PlayPauseButton = ({track, i}) => {
     const isPlaying = value.state.currentTrack.id === track.id && value.state.playing;
-
     return (
       <button
-        onClick={() => {playPause(track)}}
+        onClick={() => {selectTrack(track, i)}}
         className={`border rounded-full flex items-center justify-center h-32 px-12 ${isPlaying ? "bg-green-200" : ""}`}
         >
         {value.state.currentTrack.id === track.id ? (
@@ -57,7 +57,7 @@ export default function Tracklist({tracks}) {
       {tracks.map((track, i) =>
         <li className="border-b py-8 flex justify-between" key={i}>
           <div className="flex items-center gap-8">
-            <PlayPauseButton track={track} />
+            <PlayPauseButton track={track} i={i} />
             {track.title}
           </div>
           <AddToQueueButton track={track} />

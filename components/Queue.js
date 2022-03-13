@@ -55,17 +55,17 @@ export default function Queue() {
 
   const NextFrom = () => (
     <div>
-      <h2 className="font-medium mb-8">NextFrom</h2>
+      <h2 className="font-medium mb-8">NextFrom ({value.state.nextFrom.length})</h2>
       {value.state.nextFrom.length ? (
         <ul className="border-t">
-          value.state.nextFrom.map((track, i) =>
+          {value.state.nextFrom.map((track, i) =>
             <li className="border-b py-8 flex items-center justify-between" key={i}>
               <div className="flex-1 flex items-center gap-16">
                 <span className="text-gray-500">{i+1}</span>
                 {track.title}
               </div>
             </li>
-          )
+          )}
         </ul>
       ) : (
         <div className="text-gray-500">Empty</div>

@@ -11,7 +11,7 @@ const Tasks = () => (
       <li className="line-through">Persist between pages</li>
       <li className="line-through">Add Items to queue</li>
       <li className="line-through">Remove Items from queue</li>
-      <li className="line-throughX">Add tracklist to NextFrom</li>
+      <li className="line-through">Add tracklist to NextFrom</li>
     </ul>
   </section>
 );
