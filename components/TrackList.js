@@ -4,17 +4,25 @@ import AppContext from "../components/AppContext";
 export default function Tracklist({tracks}) {
   const value = useContext(AppContext);
 
-  function togglePlay() {
-    value.state.playing ? value.setPlaying(false) : value.setPlaying(true)
-  }
-
-  function handleTrackSelect(track) {
+  function playPause(track) {
     if (value.state.currentTrack.id === track.id) {
-      togglePlay()
+      value.state.playing ? value.setPlaying(false) : value.setPlaying(true);
     } else {
       value.setCurrentTrack(track);
       value.setPlaying(true);
     }
+  }
+
+  function updateNextFrom(track, tracklist) {
+    const nextFrom = value.state.nextFrom;
+    // TODO: not entire tracklist, but everything _after_ the selected track
+    value.setNextFrom(tracklist);
+  }
+
+  function addToQueue(track) {
+    console.log(track);
+    const queue = value.state.queue;
+    value.setQueue(queue.concat(track));
   }
 
   const PlayPauseButton = ({track}) => {
@@ -22,7 +30,7 @@ export default function Tracklist({tracks}) {
 
     return (
       <button
-        onClick={() => {handleTrackSelect(track)}}
+        onClick={() => {playPause(track)}}
         className={`border rounded-full flex items-center justify-center h-32 px-12 ${isPlaying ? "bg-green-200" : ""}`}
         >
         {value.state.currentTrack.id === track.id ? (
@@ -34,16 +42,11 @@ export default function Tracklist({tracks}) {
     )
   }
 
-  const QueueButton = ({track}) => {
-    function handleAddTrack(track) {
-      const queue = value.state.queue;
-      value.setQueue(queue.concat(track));
-    }
-
+  const AddToQueueButton = ({track}) => {
     return (
       <button
         className="border rounded-full flex items-center justify-center h-32 px-12"
-        onClick={() => {handleAddTrack(track)}}
+        onClick={() => {addToQueue(track)}}
       >
         Add
       </button>
@@ -58,7 +61,7 @@ export default function Tracklist({tracks}) {
             <PlayPauseButton track={track} />
             {track.title}
           </div>
-          <QueueButton track={track} />
+          <AddToQueueButton track={track} />
         </li>
       )}
     </ul>

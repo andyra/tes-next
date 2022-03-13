@@ -42,11 +42,11 @@ export default function Home() {
           <h2 className="font-medium mb-8">Queue</h2>
           {value.state.queue.length ? (
             <ul className="list-decimal ml-24">
-              value.state.queue.map((track, i) =>
+              {value.state.queue.map((track, i) =>
                 <li key={i}>
                   {track.title}
                 </li>
-              )
+              )}
             </ul>
           ) : (
             <div className="text-gray-500">Empty</div>
