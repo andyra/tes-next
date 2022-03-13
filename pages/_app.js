@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import AppContext from "../components/AppContext";
 import "../styles/globals.css";
-
-const defaultTrack = {
-  id: 0,
-  title: "Default Title",
-  url: "https://example.com/url",
-  album: "Album A"
-}
 
 function App({ Component, pageProps }) {
   const [currentTrack, setCurrentTrack] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [queue, setQueue] = useState([]);
   const [nextFrom, setNextFrom] = useState([]);
+
+  useEffect(() => {
+    // document.getElementById("__next").style = "font-feature-settings: 'cv02','cv03','cv04','cv11'";
+    document.getElementById("__next").classList.add("h-full", "flex", "flex-col");
+  }, []);
 
   return (
     <AppContext.Provider value={{
