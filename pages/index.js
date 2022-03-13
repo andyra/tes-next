@@ -29,15 +29,43 @@ export default function Home() {
   return (
     <>
       <Tracklist tracks={TRACKS} />
-      <section className="mt-24 border p-24">
-        <h2 className="font-medium mb-16">Queue</h2>
-        <ul className="list-decimal ml-24">
-          {value.state.queue.map((track, i) =>
-            <li key={i}>
-              {track.title}
-            </li>
+      <section className="mt-24 border p-24 rounded space-y-24">
+        <div>
+          <h2 className="font-medium mb-8">NowPlaying</h2>
+          {value.state.currentTrack ? (
+            value.state.currentTrack.title
+          ) : (
+            <div className="text-gray-500">Empty</div>
           )}
-        </ul>
+        </div>
+        <div>
+          <h2 className="font-medium mb-8">Queue</h2>
+          {value.state.queue.length ? (
+            <ul className="list-decimal ml-24">
+              value.state.queue.map((track, i) =>
+                <li key={i}>
+                  {track.title}
+                </li>
+              )
+            </ul>
+          ) : (
+            <div className="text-gray-500">Empty</div>
+          )}
+        </div>
+        <div>
+          <h2 className="font-medium mb-8">NextFrom</h2>
+          {value.state.nextFrom.length ? (
+            <ul className="list-decimal ml-24">
+              value.state.nextFrom.map((track, i) =>
+                <li key={i}>
+                  {track.title}
+                </li>
+              )
+            </ul>
+          ) : (
+            <div className="text-gray-500">Empty</div>
+          )}
+        </div>
       </section>
     </>
   )

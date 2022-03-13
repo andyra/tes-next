@@ -9,7 +9,6 @@ export default function Tracklist({tracks}) {
   }
 
   function handleTrackSelect(track) {
-    console.log("handleTrackSelect");
     if (value.state.currentTrack.id === track.id) {
       togglePlay()
     } else {
@@ -18,11 +17,7 @@ export default function Tracklist({tracks}) {
     }
   }
 
-  // function handleAddToQueue(track) {
-  //   console.log(track);
-  // }
-
-  const TrackSelectButton = ({track}) => {
+  const PlayPauseButton = ({track}) => {
     const isPlaying = value.state.currentTrack.id === track.id && value.state.playing;
 
     return (
@@ -39,20 +34,16 @@ export default function Tracklist({tracks}) {
     )
   }
 
-  const AddToQueueButton = ({track}) => {
-    function handleSubmit(track) {
-      const prevQueue = value.state.queue;
-      const newQueue = prevQueue.concat(track);
-      console.log(track.title);
-      console.log(prevQueue);
-      console.log(newQueue);
-      value.setQueue(newQueue);
+  const QueueButton = ({track}) => {
+    function handleAddTrack(track) {
+      const queue = value.state.queue;
+      value.setQueue(queue.concat(track));
     }
 
     return (
       <button
         className="border rounded-full flex items-center justify-center h-32 px-12"
-        onClick={() => {handleSubmit(track)}}
+        onClick={() => {handleAddTrack(track)}}
       >
         Add
       </button>
@@ -64,10 +55,10 @@ export default function Tracklist({tracks}) {
       {tracks.map((track, i) =>
         <li className="border-b py-8 flex justify-between" key={i}>
           <div className="flex items-center gap-8">
-            <TrackSelectButton track={track} />
+            <PlayPauseButton track={track} />
             {track.title}
           </div>
-          <AddToQueueButton track={track} />
+          <QueueButton track={track} />
         </li>
       )}
     </ul>
