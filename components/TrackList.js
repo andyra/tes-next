@@ -20,7 +20,6 @@ export default function Tracklist({tracks}) {
   }
 
   function addToQueue(track) {
-    console.log(track);
     const queue = value.state.queue;
     value.setQueue(queue.concat(track));
   }

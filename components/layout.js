@@ -10,8 +10,9 @@ const Tasks = () => (
       <li className="line-through">Only show "Playing" for actively playing song</li>
       <li className="line-through">Persist between pages</li>
       <li className="line-through">Add Items to queue</li>
-      <li className="">What's up with server expected HTML to be…</li>
-      <li className="">Figure out hoq queues work with order, etc.</li>
+      <li className="line-through">Remove Items from queue</li>
+      <li className="line-throughX">What's up with server expected HTML to be…</li>
+      <li className="line-throughX">Figure out hoq queues work with order, etc.</li>
     </ul>
   </section>
 );

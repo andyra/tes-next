@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import AppContext from "../components/AppContext";
+import Queue from "../components/Queue";
 import Tracklist from "../components/Tracklist";
 
 const TRACKS = [
@@ -24,49 +23,10 @@ const TRACKS = [
 ];
 
 export default function Home() {
-  const value = useContext(AppContext);
-
   return (
     <>
       <Tracklist tracks={TRACKS} />
-      <section className="mt-24 border p-24 rounded space-y-24">
-        <div>
-          <h2 className="font-medium mb-8">NowPlaying</h2>
-          {value.state.currentTrack ? (
-            value.state.currentTrack.title
-          ) : (
-            <div className="text-gray-500">Empty</div>
-          )}
-        </div>
-        <div>
-          <h2 className="font-medium mb-8">Queue</h2>
-          {value.state.queue.length ? (
-            <ul className="list-decimal ml-24">
-              {value.state.queue.map((track, i) =>
-                <li key={i}>
-                  {track.title}
-                </li>
-              )}
-            </ul>
-          ) : (
-            <div className="text-gray-500">Empty</div>
-          )}
-        </div>
-        <div>
-          <h2 className="font-medium mb-8">NextFrom</h2>
-          {value.state.nextFrom.length ? (
-            <ul className="list-decimal ml-24">
-              value.state.nextFrom.map((track, i) =>
-                <li key={i}>
-                  {track.title}
-                </li>
-              )
-            </ul>
-          ) : (
-            <div className="text-gray-500">Empty</div>
-          )}
-        </div>
-      </section>
+      <Queue />
     </>
   )
 }
