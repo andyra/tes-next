@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import * as Dialog from '@radix-ui/react-dialog';
 import AppContext from "./AppContext";
+import Queue from "./Queue";
 
 export default function Player () {
   const value = useContext(AppContext);
@@ -49,13 +50,7 @@ export default function Player () {
                 <Dialog.Title className="font-medium">
                   Queue
                 </Dialog.Title>
-                <ul className="list-decimal">
-                  {value.state.queue.map((track, i) =>
-                    <li key={i}>
-                      {track.title}
-                    </li>
-                  )}
-                </ul>
+                <Queue />
               </Dialog.Content>
             </Dialog.Overlay>
           </Dialog.Portal>
