@@ -10,6 +10,21 @@ export default function Player () {
     value.state.playing ? value.setPlaying(false) : value.setPlaying(true)
   }
 
+  function skipNext() {
+    const newQueue = [...value.state.queue];
+    const newNextFrom = [...value.state.nextFrom];
+    if (newQueue.length) {
+      const newCurrentTrack = newQueue.shift();
+      value.setCurrentTrack(newCurrentTrack);
+      value.setQueue(newQueue);
+    } else if (newNextFrom.length) {
+      const newCurrentTrack = newNextFrom.shift();
+      value.setCurrentTrack(newCurrentTrack);
+      value.setNextFrom(newNextFrom);
+    } else {
+    }
+  }
+
   const CurrentlyPlaying = () => {
     return (
       <div className="flex items-center gap-8 w-1/4">
@@ -27,8 +42,17 @@ export default function Player () {
   const PlayerControls = () => {
     return (
       <div className="flex-1 flex items-center justify-center gap-8">
-        <button onClick={togglePlay} className={`border px-12 py-8 ${value.state.playing ? "bg-green-200" : ""}`}>
-          {value.state.playing ? "PAUSE" : "PLAY"}
+        <button className="h-32 w-32 flex items-center justify-center border rounded-full">
+          ⏪
+        </button>
+        <button onClick={togglePlay} className={`h-48 w-48 text-xl flex items-center justify-center border rounded-full ${value.state.playing ? "bg-green-200" : ""}`}>
+          {value.state.playing ? "⏸" : "▶️"}
+        </button>
+        <button
+          className="h-32 w-32 flex items-center justify-center border rounded-full"
+          onClick={() => {skipNext()}}
+        >
+          ⏩
         </button>
       </div>
     )

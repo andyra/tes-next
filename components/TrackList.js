@@ -37,7 +37,7 @@ export default function Tracklist({tracks}) {
 
     return (
       <div className="flex items-center justify-center relative h-32 w-32">
-        <span className="text-gray-500 group-hover:opacity-0">{i}</span>
+        <span className="text-gray-500 group-hover:opacity-0">{i+1}</span>
         <button
           onClick={() => {selectTrack(track, i)}}
           className={buttonClasses}
@@ -55,7 +55,7 @@ export default function Tracklist({tracks}) {
   const AddToQueueButton = ({track}) => {
     return (
       <button
-        className="border rounded-full flex items-center justify-center h-32 px-12"
+        className="border rounded-full flex items-center justify-center h-32 px-12 opacity-0 group-hover:opacity-100 transition duration-100"
         onClick={() => {addToQueue(track)}}
       >
         Add
@@ -69,7 +69,9 @@ export default function Tracklist({tracks}) {
         <li className="border-b py-8 flex justify-between group" key={i}>
           <div className="flex items-center gap-8">
             <PlayPauseButton track={track} i={i} />
-            {track.title}
+            <span className={value.state.currentTrack.id === track.id ? "text-cyan-500" : ""}>
+              {track.title}
+            </span>
           </div>
           <AddToQueueButton track={track} />
         </li>
