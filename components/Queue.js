@@ -1,7 +1,8 @@
 import { useContext } from "react";
+import cn from "classnames";
 import AppContext from "../components/AppContext";
 
-export default function Queue() {
+export default function Queue({open}) {
   const value = useContext(AppContext);
 
   function removeFromQueue(track, i) {
@@ -21,6 +22,19 @@ export default function Queue() {
     )
   }
 
+  const ClearQueueButton = () => {
+    const visible = value.state.queue.length;
+
+    return (
+      <button
+        className={`flex items-center px-12 border rounded${visible ? "" : " hidden"}`}
+        onClick={() => {value.setQueue([])}}
+      >
+        Clear Queue
+      </button>
+    )
+  }
+
   const NowPlaying = () => (
     <div>
       <h2 className="font-medium mb-8">NowPlaying</h2>
@@ -34,7 +48,10 @@ export default function Queue() {
 
   const QueueList = () => (
     <div>
-      <h2 className="font-medium mb-8">Queue ({value.state.queue.length})</h2>
+      <header className="flex items-center justify-between">
+        <h2 className="font-medium mb-8">Queue ({value.state.queue.length})</h2>
+        <ClearQueueButton />
+      </header>
       {value.state.queue.length ? (
         <ul className="border-t">
           {value.state.queue.map((track, i) =>
@@ -73,8 +90,18 @@ export default function Queue() {
     </div>
   );
 
+  const queueClasses = cn({
+    "absolute z-50 top-0 left-0 right-0 bottom-64 space-y-24 bg-gray-200 p-24": true,
+    "hidden": !open,
+  });
+
   return (
-    <section className="mt-24 border bg-gray-50 p-24 rounded space-y-24">
+    <section
+      className={queueClasses}
+      id="queue"
+      tabIndex="-1"
+      role="region"
+    >
       <NowPlaying />
       <QueueList />
       <NextFrom />

@@ -1,9 +1,11 @@
-import { useContext } from "react";
-import * as Dialog from '@radix-ui/react-dialog';
+import { useContext, useState } from "react";
+// import * as Dialog from '@radix-ui/react-dialog';
+import * as Collapsible from '@radix-ui/react-collapsible';
 import AppContext from "./AppContext";
 import Queue from "./Queue";
 
 export default function Player () {
+  const [queueOpen, setQueueOpen] = useState(false);
   const value = useContext(AppContext);
 
   function togglePlay() {
@@ -37,33 +39,35 @@ export default function Player () {
   const ExtraControls = () => {
     return (
       <div className="flex items-center justify-end gap-8 w-1/4">
-        <Dialog.Root defaultOpen={false}>
-          <Dialog.Trigger className="flex items-center px-12 h-32 border rounded-full">
+        <button
+          className="flex items-center px-12 h-32 border rounded-full"
+          onClick={() => {setQueueOpen(queueOpen ? false : true)}}
+          aria-controls="queue"
+          aria-expanded={queueOpen ? false : true}
+          aria-label="Show Queue"
+        >
+          Queue
+        </button>
+        {/*<Collapsible.Root>
+          <Collapsible.Trigger className="flex items-center px-12 h-32 border rounded-full">
             Queue
-          </Dialog.Trigger>
-          <Dialog.Portal>
-            <Dialog.Overlay className="bg-black absolute top-0 left-0 h-screen w-screen z-40">
-              <Dialog.Content className="bg-gray-200 h-full p-24 relative">
-                <Dialog.Close className="absolute top-16 right-16 p-8">
-                  Close
-                </Dialog.Close>
-                <Dialog.Title className="font-medium">
-                  Queue
-                </Dialog.Title>
-                <Queue />
-              </Dialog.Content>
-            </Dialog.Overlay>
-          </Dialog.Portal>
-        </Dialog.Root>
+          </Collapsible.Trigger>
+          <Collapsible.Content className="absolute top-0 left-0 bottom-64 w-full bg-gray-200 p-24">
+            <Queue />
+          </Collapsible.Content>
+        </Collapsible.Root>*/}
       </div>
     )
   }
 
   return (
-    <aside className="border-t p-8 flex items-center justify-between bg-white">
-      <CurrentlyPlaying />
-      <PlayerControls />
-      <ExtraControls />
-    </aside>
+    <>
+      <aside className="border-t p-8 flex items-center justify-between bg-white">
+        <CurrentlyPlaying />
+        <PlayerControls />
+        <ExtraControls />
+      </aside>
+      <Queue open={queueOpen} />
+    </>
   )
 }
