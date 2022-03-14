@@ -12,7 +12,9 @@ const Tasks = () => (
       <li className="line-through">Add Items to queue</li>
       <li className="line-through">Remove Items from queue</li>
       <li className="line-through">Add tracklist to NextFrom</li>
-      <li>Move items between Queue/NextFrom into NowPlaying</li>
+      <li className="line-through">SkipNext</li>
+      <li className="line-throughX">SkipPrev</li>
+      <li className="line-throughX">Add Play buttons to QueueList</li>
     </ul>
   </section>
 );

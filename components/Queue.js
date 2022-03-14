@@ -5,13 +5,13 @@ import AppContext from "../components/AppContext";
 export default function Queue({open}) {
   const value = useContext(AppContext);
 
-  function removeFromQueue(track, i) {
-    let newQueue = [...value.state.queue];
-    newQueue.splice(i, 1);
-    value.setQueue(newQueue);
-  }
-
   const RemoveFromQueueButton = ({track, i}) => {
+    function removeFromQueue(track, i) {
+      let newQueue = [...value.state.queue];
+      newQueue.splice(i, 1);
+      value.setQueue(newQueue);
+    }
+
     return (
       <button
         className="border px-12 h-32 flex items-center rounded-full"

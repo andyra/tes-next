@@ -22,6 +22,7 @@ export default function Player () {
       value.setCurrentTrack(newCurrentTrack);
       value.setNextFrom(newNextFrom);
     } else {
+      console.log("Nothing to skip to");
     }
   }
 

@@ -8,9 +8,9 @@ function App({ Component, pageProps }) {
   const [playing, setPlaying] = useState(false);
   const [queue, setQueue] = useState([]);
   const [nextFrom, setNextFrom] = useState([]);
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    // document.getElementById("__next").style = "font-feature-settings: 'cv02','cv03','cv04','cv11'";
     document.getElementById("__next").classList.add("h-full", "flex", "flex-col");
   }, []);
 
