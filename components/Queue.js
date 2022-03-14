@@ -2,7 +2,10 @@ import { useContext } from "react";
 import cn from "classnames";
 import AppContext from "../components/AppContext";
 
-export default function Queue({open}) {
+export default function Queue({
+  modal = true,
+  open
+}) {
   const value = useContext(AppContext);
 
   const RemoveFromQueueButton = ({track, i}) => {
@@ -36,18 +39,18 @@ export default function Queue({open}) {
   }
 
   const NowPlaying = () => (
-    <div>
+    <section>
       <h2 className="font-medium mb-8">NowPlaying</h2>
       {value.state.currentTrack ? (
         value.state.currentTrack.title
       ) : (
         <div className="text-gray-500">Empty</div>
       )}
-    </div>
+    </section>
   );
 
   const QueueList = () => (
-    <div>
+    <section>
       <header className="flex items-center justify-between">
         <h2 className="font-medium mb-8">Queue ({value.state.queue.length})</h2>
         <ClearQueueButton />
@@ -67,11 +70,11 @@ export default function Queue({open}) {
       ) : (
         <div className="text-gray-500">Empty</div>
       )}
-    </div>
+    </section>
   );
 
   const NextFrom = () => (
-    <div>
+    <section>
       <h2 className="font-medium mb-8">NextFrom ({value.state.nextFrom.length})</h2>
       {value.state.nextFrom.length ? (
         <ul className="border-t">
@@ -87,7 +90,27 @@ export default function Queue({open}) {
       ) : (
         <div className="text-gray-500">Empty</div>
       )}
-    </div>
+    </section>
+  );
+
+  const History = () => (
+    <section>
+      <h2 className="font-medium mb-8">History ({value.state.history.length})</h2>
+      {value.state.history.length ? (
+        <ul className="border-t">
+          {value.state.history.map((track, i) =>
+            <li className="border-b py-8 flex items-center justify-between" key={i}>
+              <div className="flex-1 flex items-center gap-16">
+                <span className="text-gray-500">{i+1}</span>
+                {track.title}
+              </div>
+            </li>
+          )}
+        </ul>
+      ) : (
+        <div className="text-gray-500">Empty</div>
+      )}
+    </section>
   );
 
   const queueClasses = cn({
@@ -96,15 +119,25 @@ export default function Queue({open}) {
   });
 
   return (
-    <section
-      className={queueClasses}
-      id="queue"
-      tabIndex="-1"
-      role="region"
-    >
-      <NowPlaying />
-      <QueueList />
-      <NextFrom />
-    </section>
+    modal ? (
+      <div
+        className={queueClasses}
+        id="queue"
+        tabIndex="-1"
+        role="region"
+      >
+        <NowPlaying />
+        <QueueList />
+        <NextFrom />
+        <History />
+      </div>
+    ) : (
+      <div className="p-24 border space-y-24">
+        <NowPlaying />
+        <QueueList />
+        <NextFrom />
+        <History />
+      </div>
+    )
   );
 }

@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       <Tracklist tracks={TRACKS} />
-      <Queue />
+      <Queue modal={false} />
     </>
   )
 }

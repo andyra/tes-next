@@ -21,11 +21,13 @@ function App({ Component, pageProps }) {
         nextFrom: nextFrom,
         playing: playing,
         queue: queue,
+        history: history,
       },
       setCurrentTrack: setCurrentTrack,
       setNextFrom: setNextFrom,
       setPlaying: setPlaying,
       setQueue: setQueue,
+      setHistory: setHistory,
     }}>
       <Layout {...pageProps}>
         <Component {...pageProps} />
