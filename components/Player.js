@@ -13,6 +13,11 @@ export default function Player () {
   function skipNext() {
     const newQueue = [...value.state.queue];
     const newNextFrom = [...value.state.nextFrom];
+
+    if (value.state.currentTrack) {
+      addToHistory(value.state.currentTrack);
+    }
+
     if (newQueue.length) {
       const newCurrentTrack = newQueue.shift();
       value.setCurrentTrack(newCurrentTrack);
@@ -24,6 +29,12 @@ export default function Player () {
     } else {
       console.log("Nothing to skip to");
     }
+  }
+
+  function addToHistory(track, listType) {
+    const history = [...value.state.history];
+    const newHistory = history.concat(track);
+    value.setHistory(newHistory);
   }
 
   const CurrentlyPlaying = () => {
