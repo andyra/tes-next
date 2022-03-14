@@ -1,6 +1,4 @@
 import { useContext, useState } from "react";
-// import * as Dialog from '@radix-ui/react-dialog';
-import * as Collapsible from '@radix-ui/react-collapsible';
 import AppContext from "./AppContext";
 import Queue from "./Queue";
 
@@ -40,7 +38,7 @@ export default function Player () {
     return (
       <div className="flex items-center justify-end gap-8 w-1/4">
         <button
-          className="flex items-center px-12 h-32 border rounded-full"
+          className={`flex items-center px-12 h-32 border rounded-full${queueOpen ? " bg-green-200" : ""}`}
           onClick={() => {setQueueOpen(queueOpen ? false : true)}}
           aria-controls="queue"
           aria-expanded={queueOpen ? false : true}
@@ -48,14 +46,6 @@ export default function Player () {
         >
           Queue
         </button>
-        {/*<Collapsible.Root>
-          <Collapsible.Trigger className="flex items-center px-12 h-32 border rounded-full">
-            Queue
-          </Collapsible.Trigger>
-          <Collapsible.Content className="absolute top-0 left-0 bottom-64 w-full bg-gray-200 p-24">
-            <Queue />
-          </Collapsible.Content>
-        </Collapsible.Root>*/}
       </div>
     )
   }
