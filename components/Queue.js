@@ -41,8 +41,8 @@ export default function Queue({
   const NowPlaying = () => (
     <section>
       <h2 className="font-medium mb-8 text-gray-900">NowPlaying</h2>
-      {context.state.currentTrack ? (
-        <div className="text-cyan-500">{context.state.currentTrack.title}</div>
+      {context.state.current ? (
+        <div className="text-cyan-500">{context.state.current.track.title}</div>
       ) : (
         <div className="text-gray-500">Empty</div>
       )}

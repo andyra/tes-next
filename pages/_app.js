@@ -4,14 +4,18 @@ import AppContext from "../components/AppContext";
 import "../styles/globals.css";
 
 const testTrack = {
-  id: 99,
-  title: "Test Title",
-  url: "https://example/com/track/99",
-  album: 9
+  track: {
+    id: 99,
+    title: "Test Title",
+    url: "https://example/com/track/99",
+    album: 9
+  },
+  list: "queue"
 }
 
 function App({ Component, pageProps }) {
   const [currentTrack, setCurrentTrack] = useState(false);
+  const [current, setCurrent] = useState(testTrack);
   const [playing, setPlaying] = useState(false);
   const [queue, setQueue] = useState([]);
   const [nextFrom, setNextFrom] = useState([]);
@@ -37,12 +41,14 @@ function App({ Component, pageProps }) {
     <AppContext.Provider value={{
       state: {
         currentTrack: currentTrack,
+        current: current,
         nextFrom: nextFrom,
         playing: playing,
         queue: queue,
         history: history,
       },
       setCurrentTrack: setCurrentTrack,
+      setCurrent: setCurrent,
       setNextFrom: setNextFrom,
       setPlaying: setPlaying,
       setQueue: setQueue,
