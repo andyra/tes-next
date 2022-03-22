@@ -11,30 +11,49 @@ export default function Player () {
   }
 
   function skipNext() {
-    const newQueue = [...value.state.queue];
-    const newNextFrom = [...value.state.nextFrom];
+    const queue = [...value.state.queue];
+    const nextFrom = [...value.state.nextFrom];
+    let listType;
 
-    if (value.state.currentTrack) {
-      addToHistory(value.state.currentTrack);
-    }
-
-    if (newQueue.length) {
-      const newCurrentTrack = newQueue.shift();
+    if (queue.length) {
+      const newCurrentTrack = queue.shift();
+      listType = "queue";
       value.setCurrentTrack(newCurrentTrack);
-      value.setQueue(newQueue);
-    } else if (newNextFrom.length) {
-      const newCurrentTrack = newNextFrom.shift();
+      value.setQueue(queue);
+    } else if (nextFrom.length) {
+      const newCurrentTrack = nextFrom.shift();
+      listType = "nextFrom";
       value.setCurrentTrack(newCurrentTrack);
-      value.setNextFrom(newNextFrom);
+      value.setNextFrom(nextFrom);
     } else {
       console.log("Nothing to skip to");
+    }
+
+    if (value.state.currentTrack) {
+      addToHistory(value.state.currentTrack, listType);
     }
   }
 
   function addToHistory(track, listType) {
-    const history = [...value.state.history];
-    const newHistory = history.concat(track);
-    value.setHistory(newHistory);
+    console.log(`Add ${listType} track to History`);
+    console.log(track);
+    let history = Object.assign({}, value.state.history);
+    let queueHistory = [...value.state.history.queue];
+    let nextFromHistory = [...value.state.history.nextFrom];
+    // console.log(history);
+    // console.log(queueHistory);
+    // console.log(nextFromHistory);
+
+    if (listType === "queue") {
+      queueHistory.concat(track)
+    } else {
+      nextFromHistory.concat(track)
+    }
+      nextFromHistory.concat(2, "3")
+
+    console.log(queueHistory);
+    console.log(nextFromHistory);
+    // value.setHistory(newHistory);
   }
 
   const CurrentlyPlaying = () => {
@@ -88,7 +107,7 @@ export default function Player () {
 
   return (
     <>
-      <aside className="border-t p-8 flex items-center justify-between bg-white">
+      <aside className="bg-white dark:bg-gray-800 p-8 rounded-lg flex items-center justify-between">
         <CurrentlyPlaying />
         <PlayerControls />
         <ExtraControls />

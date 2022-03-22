@@ -5,6 +5,29 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: [
+          "Apercu",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Roboto",
+          "'Helvetica Neue'",
+          "Arial",
+          "sans-serif",
+        ],
+        mono: [
+          "Apercu Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "'Liberation Mono'",
+          "'Courier New'",
+          "monospace",
+        ],
+      },
       spacing: {
         px: '1px',
         0: '0px',
@@ -32,18 +55,6 @@ module.exports = {
         288: '288px',
         320: '320px',
         em: '1em',
-      },
-      fontFamily: {
-        sans: [
-          '-apple-system',
-          'system-ui',
-          'BlinkMacSystemFont',
-          'sans-serif',
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
-        ],
       },
     },
   },

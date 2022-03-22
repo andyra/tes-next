@@ -3,15 +3,34 @@ import Layout from "../components/Layout";
 import AppContext from "../components/AppContext";
 import "../styles/globals.css";
 
+const testTrack = {
+  id: 99,
+  title: "Test Title",
+  url: "https://example/com/track/99",
+  album: 9
+}
+
 function App({ Component, pageProps }) {
   const [currentTrack, setCurrentTrack] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [queue, setQueue] = useState([]);
   const [nextFrom, setNextFrom] = useState([]);
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState({queue: [], nextFrom: []});
+
+  const nextClasses = [
+    "flex",
+    "flex-col",
+    "h-full",
+    "p-4",
+    "gap-4",
+    "bg-gray-100",
+    "text-blue-800",
+    "dark:bg-black",
+    "dark:text-gray-100",
+  ];
 
   useEffect(() => {
-    document.getElementById("__next").classList.add("h-full", "flex", "flex-col");
+    document.getElementById("__next").classList.add(...nextClasses);
   }, []);
 
   return (

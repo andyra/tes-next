@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-display: swap;
+  font-family: "Apercu";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/apercu-light-subset.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Apercu";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/apercu-subset.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Apercu";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/apercu-medium-subset.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Apercu";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/apercu-bold-subset.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Apercu Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/apercu-mono-subset.woff2");
+}
+
+

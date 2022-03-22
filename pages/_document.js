@@ -9,8 +9,13 @@ class MyDocument extends Document {
   render() {
     return (
       <Html className="h-full">
-        <Head />
-        <body className="font-sans antialiased h-full">
+        <Head>
+          <link rel="preload" href="/fonts/apercu-subset.woff2" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/apercu-medium-subset.woff2" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/apercu-bold-subset.woff2" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/apercu-mono-subset.woff2" as="font" crossOrigin="" />
+        </Head>
+        <body className="h-full font-sans antialiased">
           <Main />
           <NextScript />
         </body>

@@ -96,20 +96,38 @@ export default function Queue({
   const History = () => (
     <section>
       <h2 className="font-medium mb-8">History ({value.state.history.length})</h2>
-      {value.state.history.length ? (
-        <ul className="border-t">
-          {value.state.history.map((track, i) =>
-            <li className="border-b py-8 flex items-center justify-between" key={i}>
-              <div className="flex-1 flex items-center gap-16">
-                <span className="text-gray-500">{i+1}</span>
-                {track.title}
-              </div>
-            </li>
-          )}
-        </ul>
-      ) : (
-        <div className="text-gray-500">Empty</div>
-      )}
+      {/*<div className="ml-16">
+        <h3 className="text-gray-500">Queue</h3>
+        {value.state.history.queue.length ? (
+          <ul className="border-t">
+            {value.state.history.queue.map((track, i) =>
+              <li className="border-b py-8 flex items-center justify-between" key={i}>
+                <div className="flex-1 flex items-center gap-16">
+                  <span className="text-gray-500">{i+1}</span>
+                  {track.title}
+                </div>
+              </li>
+            )}
+          </ul>
+        ) : (
+          <div className="text-gray-500 text-sm">Empty</div>
+        )}
+        <h3 className="text-gray-500 mt-16">NextFrom</h3>
+        {value.state.history.nextFrom.length ? (
+          <ul className="border-t">
+            {value.state.history.nextFrom.map((track, i) =>
+              <li className="border-b py-8 flex items-center justify-between" key={i}>
+                <div className="flex-1 flex items-center gap-16">
+                  <span className="text-gray-500">{i+1}</span>
+                  {track.title}
+                </div>
+              </li>
+            )}
+          </ul>
+        ) : (
+          <div className="text-gray-500 text-sm">Empty</div>
+        )}
+      </div>*/}
     </section>
   );
 

@@ -11,12 +11,14 @@ const Layout = ({ children, ...props }) => {
       <Head>
         <title>{props.pageTitle ? `${props.pageTitle} • TES` : "This Evening's Show"}</title>
       </Head>
-      <Navigation />
-      <main className={`flex-1 overflow-y-auto`}>
-        <div className={`mx-auto ${maxWidth} ${padding}`}>
-          {children}
-        </div>
-      </main>
+      <div className="flex items-stretch gap-4 flex-1">
+        <Navigation />
+        <main className="bg-white dark:bg-gray-800 rounded-lg flex-1 overflow-y-auto">
+          <div className={`mx-auto ${maxWidth} ${padding}`}>
+            {children}
+          </div>
+        </main>
+      </div>
       <Player />
     </>
   )
