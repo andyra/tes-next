@@ -3,14 +3,14 @@ import cn from "classnames";
 import AppContext from "../components/AppContext";
 
 export default function Tracklist({tracks}) {
-  const value = useContext(AppContext);
+  const context = useContext(AppContext);
 
   function selectTrack(track, i) {
-    if (value.state.currentTrack.id === track.id) {
-      value.state.playing ? value.setPlaying(false) : value.setPlaying(true);
+    if (context.state.currentTrack.id === track.id) {
+      context.state.playing ? context.setPlaying(false) : context.setPlaying(true);
     } else {
-      value.setCurrentTrack(track);
-      value.setPlaying(true);
+      context.setCurrentTrack(track);
+      context.setPlaying(true);
       updateNextFrom(i);
     }
   }
@@ -18,16 +18,16 @@ export default function Tracklist({tracks}) {
   function updateNextFrom(i) {
     const newNextFrom = [...tracks];
     newNextFrom.splice(0, i);
-    value.setNextFrom(newNextFrom);
+    context.setNextFrom(newNextFrom);
   }
 
   function addToQueue(track) {
-    const queue = [...value.state.queue];
-    value.setQueue(queue.concat(track));
+    const queue = [...context.state.queue];
+    context.setQueue(queue.concat(track));
   }
 
   const PlayPauseButton = ({track, i}) => {
-    const isPlaying = value.state.currentTrack.id === track.id && value.state.playing;
+    const isPlaying = context.state.currentTrack.id === track.id && context.state.playing;
     const buttonClasses = cn({
       "absolute top-0 left-0 transition duration-100": true,
       "border rounded-full flex items-center justify-center h-32 w-32": true,
@@ -42,8 +42,8 @@ export default function Tracklist({tracks}) {
           onClick={() => {selectTrack(track, i)}}
           className={buttonClasses}
         >
-          {value.state.currentTrack.id === track.id ? (
-            value.state.playing ? "⏸" : "▶️"
+          {context.state.currentTrack.id === track.id ? (
+            context.state.playing ? "⏸" : "▶️"
           ) : (
             "▶️"
           )}
@@ -69,7 +69,7 @@ export default function Tracklist({tracks}) {
         <li className="border-b py-8 flex justify-between group" key={i}>
           <div className="flex items-center gap-8">
             <PlayPauseButton track={track} i={i} />
-            <span className={value.state.currentTrack.id === track.id ? "text-cyan-500" : ""}>
+            <span className={context.state.currentTrack.id === track.id ? "text-cyan-500" : ""}>
               {track.title}
             </span>
           </div>

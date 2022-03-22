@@ -6,13 +6,13 @@ export default function Queue({
   modal = true,
   open
 }) {
-  const value = useContext(AppContext);
+  const context = useContext(AppContext);
 
   const RemoveFromQueueButton = ({track, i}) => {
     function removeFromQueue(track, i) {
-      let newQueue = [...value.state.queue];
+      let newQueue = [...context.state.queue];
       newQueue.splice(i, 1);
-      value.setQueue(newQueue);
+      context.setQueue(newQueue);
     }
 
     return (
@@ -26,12 +26,12 @@ export default function Queue({
   }
 
   const ClearQueueButton = () => {
-    const visible = value.state.queue.length;
+    const visible = context.state.queue.length;
 
     return (
       <button
         className={`flex items-center px-12 border rounded${visible ? "" : " hidden"}`}
-        onClick={() => {value.setQueue([])}}
+        onClick={() => {context.setQueue([])}}
       >
         Clear Queue
       </button>
@@ -40,9 +40,9 @@ export default function Queue({
 
   const NowPlaying = () => (
     <section>
-      <h2 className="font-medium mb-8">NowPlaying</h2>
-      {value.state.currentTrack ? (
-        value.state.currentTrack.title
+      <h2 className="font-medium mb-8 text-gray-900">NowPlaying</h2>
+      {context.state.currentTrack ? (
+        <div className="text-cyan-500">{context.state.currentTrack.title}</div>
       ) : (
         <div className="text-gray-500">Empty</div>
       )}
@@ -52,13 +52,13 @@ export default function Queue({
   const QueueList = () => (
     <section>
       <header className="flex items-center justify-between">
-        <h2 className="font-medium mb-8">Queue ({value.state.queue.length})</h2>
+        <h2 className="font-medium mb-8 text-gray-900">Queue ({context.state.queue.length})</h2>
         <ClearQueueButton />
       </header>
-      {value.state.queue.length ? (
-        <ul className="border-t">
-          {value.state.queue.map((track, i) =>
-            <li className="border-b py-8 flex items-center justify-between" key={i}>
+      {context.state.queue.length ? (
+        <ul className="list-decimal">
+          {context.state.queue.map((track, i) =>
+            <li className="py-8 flex items-center justify-between" key={i}>
               <div className="flex-1 flex items-center gap-16">
                 <span className="text-gray-500">{i+1}</span>
                 {track.title}
@@ -75,11 +75,11 @@ export default function Queue({
 
   const NextFrom = () => (
     <section>
-      <h2 className="font-medium mb-8">NextFrom ({value.state.nextFrom.length})</h2>
-      {value.state.nextFrom.length ? (
-        <ul className="border-t">
-          {value.state.nextFrom.map((track, i) =>
-            <li className="border-b py-8 flex items-center justify-between" key={i}>
+      <h2 className="font-medium mb-8 text-gray-900">NextFrom ({context.state.nextFrom.length})</h2>
+      {context.state.nextFrom.length ? (
+        <ul className="list-decimal">
+          {context.state.nextFrom.map((track, i) =>
+            <li className="py-8 flex items-center justify-between" key={i}>
               <div className="flex-1 flex items-center gap-16">
                 <span className="text-gray-500">{i+1}</span>
                 {track.title}
@@ -95,13 +95,13 @@ export default function Queue({
 
   const History = () => (
     <section>
-      <h2 className="font-medium mb-8">History ({value.state.history.length})</h2>
+      <h2 className="font-medium mb-8 text-gray-900">History ({context.state.history.length})</h2>
       {/*<div className="ml-16">
         <h3 className="text-gray-500">Queue</h3>
-        {value.state.history.queue.length ? (
-          <ul className="border-t">
-            {value.state.history.queue.map((track, i) =>
-              <li className="border-b py-8 flex items-center justify-between" key={i}>
+        {context.state.history.queue.length ? (
+          <ul className="list-decimal">
+            {context.state.history.queue.map((track, i) =>
+              <li className="py-8 flex items-center justify-between" key={i}>
                 <div className="flex-1 flex items-center gap-16">
                   <span className="text-gray-500">{i+1}</span>
                   {track.title}
@@ -113,10 +113,10 @@ export default function Queue({
           <div className="text-gray-500 text-sm">Empty</div>
         )}
         <h3 className="text-gray-500 mt-16">NextFrom</h3>
-        {value.state.history.nextFrom.length ? (
-          <ul className="border-t">
-            {value.state.history.nextFrom.map((track, i) =>
-              <li className="border-b py-8 flex items-center justify-between" key={i}>
+        {context.state.history.nextFrom.length ? (
+          <ul className="list-decimal">
+            {context.state.history.nextFrom.map((track, i) =>
+              <li className="py-8 flex items-center justify-between" key={i}>
                 <div className="flex-1 flex items-center gap-16">
                   <span className="text-gray-500">{i+1}</span>
                   {track.title}

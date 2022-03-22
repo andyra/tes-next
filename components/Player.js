@@ -4,42 +4,42 @@ import Queue from "./Queue";
 
 export default function Player () {
   const [queueOpen, setQueueOpen] = useState(false);
-  const value = useContext(AppContext);
+  const context = useContext(AppContext);
 
   function togglePlay() {
-    value.state.playing ? value.setPlaying(false) : value.setPlaying(true)
+    context.state.playing ? context.setPlaying(false) : context.setPlaying(true)
   }
 
   function skipNext() {
-    const queue = [...value.state.queue];
-    const nextFrom = [...value.state.nextFrom];
+    const queue = [...context.state.queue];
+    const nextFrom = [...context.state.nextFrom];
     let listType;
 
     if (queue.length) {
       const newCurrentTrack = queue.shift();
       listType = "queue";
-      value.setCurrentTrack(newCurrentTrack);
-      value.setQueue(queue);
+      context.setCurrentTrack(newCurrentTrack);
+      context.setQueue(queue);
     } else if (nextFrom.length) {
       const newCurrentTrack = nextFrom.shift();
       listType = "nextFrom";
-      value.setCurrentTrack(newCurrentTrack);
-      value.setNextFrom(nextFrom);
+      context.setCurrentTrack(newCurrentTrack);
+      context.setNextFrom(nextFrom);
     } else {
       console.log("Nothing to skip to");
     }
 
-    if (value.state.currentTrack) {
-      addToHistory(value.state.currentTrack, listType);
+    if (context.state.currentTrack) {
+      addToHistory(context.state.currentTrack, listType);
     }
   }
 
   function addToHistory(track, listType) {
     console.log(`Add ${listType} track to History`);
     console.log(track);
-    let history = Object.assign({}, value.state.history);
-    let queueHistory = [...value.state.history.queue];
-    let nextFromHistory = [...value.state.history.nextFrom];
+    let history = Object.assign({}, context.state.history);
+    let queueHistory = [...context.state.history.queue];
+    let nextFromHistory = [...context.state.history.nextFrom];
     // console.log(history);
     // console.log(queueHistory);
     // console.log(nextFromHistory);
@@ -53,17 +53,17 @@ export default function Player () {
 
     console.log(queueHistory);
     console.log(nextFromHistory);
-    // value.setHistory(newHistory);
+    // context.setHistory(newHistory);
   }
 
   const CurrentlyPlaying = () => {
     return (
       <div className="flex items-center gap-8 w-1/4">
         <figure className="h-48 w-48 bg-blue-200 rounded flex items-center justify-center text-2xl">
-          {value.state.currentTrack.id}
+          {context.state.currentTrack.id}
         </figure>
         <div>
-          <div className="text-sm font-medium">{value.state.currentTrack.title}</div>
+          <div className="text-sm font-medium">{context.state.currentTrack.title}</div>
           <div className="text-xs text-gray-500">Artist</div>
         </div>
       </div>
@@ -76,8 +76,8 @@ export default function Player () {
         <button className="h-32 w-32 flex items-center justify-center border rounded-full">
           ⏪
         </button>
-        <button onClick={togglePlay} className={`h-48 w-48 text-xl flex items-center justify-center border rounded-full ${value.state.playing ? "bg-green-200" : ""}`}>
-          {value.state.playing ? "⏸" : "▶️"}
+        <button onClick={togglePlay} className={`h-48 w-48 text-xl flex items-center justify-center border rounded-full ${context.state.playing ? "bg-green-200" : ""}`}>
+          {context.state.playing ? "⏸" : "▶️"}
         </button>
         <button
           className="h-32 w-32 flex items-center justify-center border rounded-full"
