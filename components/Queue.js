@@ -1,29 +1,13 @@
 import { useContext } from "react";
 import cn from "classnames";
 import AppContext from "../components/AppContext";
+import Tracklist from "../components/Tracklist";
 
 export default function Queue({
   modal = true,
   open
 }) {
   const context = useContext(AppContext);
-
-  const RemoveFromQueueButton = ({track, i}) => {
-    function removeFromQueue(track, i) {
-      let newQueue = [...context.state.queue];
-      newQueue.splice(i, 1);
-      context.setQueue(newQueue);
-    }
-
-    return (
-      <button
-        className="border px-12 h-32 flex items-center rounded-full"
-        onClick={() => {removeFromQueue(track, i)}}
-      >
-        Remove
-      </button>
-    )
-  }
 
   const ClearQueueButton = () => {
     const visible = context.state.queue.length;
@@ -41,11 +25,7 @@ export default function Queue({
   const NowPlaying = () => (
     <section>
       <h2 className="font-medium mb-8 text-gray-900">NowPlaying</h2>
-      {context.state.current ? (
-        <div className="text-cyan-500">{context.state.current.track.title}</div>
-      ) : (
-        <div className="text-gray-500">Empty</div>
-      )}
+      <div className="text-cyan-500">{context.state.current.track.title} (from {context.state.current.list})</div>
     </section>
   );
 
@@ -55,41 +35,14 @@ export default function Queue({
         <h2 className="font-medium mb-8 text-gray-900">Queue ({context.state.queue.length})</h2>
         <ClearQueueButton />
       </header>
-      {context.state.queue.length ? (
-        <ul className="list-decimal">
-          {context.state.queue.map((track, i) =>
-            <li className="py-8 flex items-center justify-between" key={i}>
-              <div className="flex-1 flex items-center gap-16">
-                <span className="text-gray-500">{i+1}</span>
-                {track.title}
-              </div>
-              <RemoveFromQueueButton track={track} i={i} />
-            </li>
-          )}
-        </ul>
-      ) : (
-        <div className="text-gray-500">Empty</div>
-      )}
+      <Tracklist tracks={context.state.queue} listType="queue" />
     </section>
   );
 
   const NextFrom = () => (
     <section>
       <h2 className="font-medium mb-8 text-gray-900">NextFrom ({context.state.nextFrom.length})</h2>
-      {context.state.nextFrom.length ? (
-        <ul className="list-decimal">
-          {context.state.nextFrom.map((track, i) =>
-            <li className="py-8 flex items-center justify-between" key={i}>
-              <div className="flex-1 flex items-center gap-16">
-                <span className="text-gray-500">{i+1}</span>
-                {track.title}
-              </div>
-            </li>
-          )}
-        </ul>
-      ) : (
-        <div className="text-gray-500">Empty</div>
-      )}
+      <Tracklist tracks={context.state.nextFrom} listType="nextFrom" />
     </section>
   );
 
@@ -138,23 +91,18 @@ export default function Queue({
 
   return (
     modal ? (
-      <div
-        className={queueClasses}
-        id="queue"
-        tabIndex="-1"
-        role="region"
-      >
-        <NowPlaying />
-        <QueueList />
-        <NextFrom />
-        <History />
+      <div className={queueClasses} id="queue" tabIndex="-1" role="region">
+        {context.state.current ? <NowPlaying /> : ""}
+        {context.state.queue.length ? <QueueList /> : ""}
+        {context.state.nextFrom.length ? <NextFrom /> : ""}
+        {context.state.history.length ? <History /> : ""}
       </div>
     ) : (
       <div className="p-24 border space-y-24">
-        <NowPlaying />
-        <QueueList />
-        <NextFrom />
-        <History />
+        {context.state.current ? <NowPlaying /> : ""}
+        {context.state.queue.length ? <QueueList /> : ""}
+        {context.state.nextFrom.length ? <NextFrom /> : ""}
+        {context.state.history.length ? <History /> : ""}
       </div>
     )
   );

@@ -2,7 +2,10 @@ import { useContext } from "react";
 import cn from "classnames";
 import AppContext from "../components/AppContext";
 
-export default function Tracklist({tracks}) {
+export default function Tracklist({
+  listType = "tracklist",
+  tracks
+}) {
   const context = useContext(AppContext);
 
   function selectTrack(track, i) {
@@ -66,6 +69,23 @@ export default function Tracklist({tracks}) {
     )
   }
 
+  const RemoveFromQueueButton = ({track, i}) => {
+    function removeFromQueue(track, i) {
+      let newQueue = [...context.state.queue];
+      newQueue.splice(i, 1);
+      context.setQueue(newQueue);
+    }
+
+    return (
+      <button
+        className="border px-12 h-32 flex items-center rounded-full"
+        onClick={() => {removeFromQueue(track, i)}}
+      >
+        Remove
+      </button>
+    )
+  }
+
   return (
     <ul className="border-t">
       {tracks.map((track, i) =>
@@ -76,7 +96,8 @@ export default function Tracklist({tracks}) {
               {track.title}
             </span>
           </div>
-          <AddToQueueButton track={track} />
+          {listType === "tracklist" && <AddToQueueButton track={track} /> }
+          {listType === "queue" && <RemoveFromQueueButton track={track} i={i} /> }
         </li>
       )}
     </ul>

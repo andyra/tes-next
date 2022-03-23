@@ -1,3 +1,4 @@
+import Queue from "../components/Queue";
 import Tracklist from "../components/Tracklist";
 
 const TRACKS = [
@@ -25,6 +26,7 @@ export default function Home() {
   return (
     <>
       <Tracklist tracks={TRACKS} />
+      <Queue modal={false} />
     </>
   )
 }

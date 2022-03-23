@@ -21,10 +21,10 @@ const Navigation = () => (
   <nav className="bg-white dark:bg-gray-800 rounded-lg p-16 w-224 flex flex-col gap-24">
     <NavLink title="T.E.S." url="/" />
     <ul>
-      <li><NavLink title="Search" url="/" icon="✦"/></li>
+      {/*<li><NavLink title="Search" url="/" icon="✦"/></li>
       <li><NavLink title="Episodes" url="/" icon="✦"/></li>
-      <li><NavLink title="Music" url="/" icon="✦"/></li>
-      <li><NavLink title="About" url="/" icon="✦"/></li>
+      <li><NavLink title="Music" url="/" icon="✦"/></li>*/}
+      <li><NavLink title="About" url="/about" icon="✦"/></li>
     </ul>
     <ul className="border-t pt-24">
       <li><NavLink title="Add Playlist" url="/" icon="+" /></li>
