@@ -38,9 +38,13 @@ export default function Tracklist({
     context.setQueue(queue.concat(track));
   }
 
+  function highlightTrack(track) {
+    return context.state.currentTrack && context.state.currentTrack.track.id === track.id && listType === "tracklist" && listType === context.state.currentTrack.listType;
+  }
+
   const PlayPauseButton = ({i, track}) => {
-    const isCurrentTrack = context.state.currentTrack && context.state.currentTrack.track.id === track.id;
-    const active = isCurrentTrack && context.state.playing && listType === "tracklist" && listType === context.state.currentTrack.listType;
+    // const highlightTrack = context.state.currentTrack && context.state.currentTrack.track.id === track.id && listType === "tracklist" && listType === context.state.currentTrack.listType;
+    const active = highlightTrack(track) && context.state.playing;
     const buttonClasses = cn({
       "absolute top-0 left-0 transition duration-100": true,
       "border rounded-full flex items-center justify-center h-32 w-32": true,
@@ -55,11 +59,7 @@ export default function Tracklist({
           onClick={() => {selectTrack(track, i)}}
           className={buttonClasses}
         >
-          {context.state.currentTrack && context.state.currentTrack.track.id === track.id ? (
-            context.state.playing ? "⏸" : "▶️"
-          ) : (
-            "▶️"
-          )}
+          {highlightTrack(track) ? context.state.playing ? "⏸" : "▶️" : "▶️"}
         </button>
       </div>
     )
@@ -99,7 +99,7 @@ export default function Tracklist({
         <li className="border-b py-8 flex justify-between group" key={i}>
           <div className="flex items-center gap-8">
             <PlayPauseButton track={track} i={i} />
-            <span className={context.state.currentTrack && context.state.currentTrack.track.id === track.id && listType === "tracklist" ? "text-cyan-500" : ""}>
+            <span className={highlightTrack(track) ? "text-cyan-500" : ""}>
               {track.title} ({listType})
             </span>
           </div>
