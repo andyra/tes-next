@@ -14,7 +14,7 @@ const testTrack = {
 }
 
 function App({ Component, pageProps }) {
-  const [currentTrack, setCurrentTrack] = useState(testTrack);
+  const [currentTrack, setCurrentTrack] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [queue, setQueue] = useState([]);
   const [nextFrom, setNextFrom] = useState([]);

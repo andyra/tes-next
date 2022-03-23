@@ -8,9 +8,15 @@ export default function Tracklist({
 }) {
   const context = useContext(AppContext);
 
-  function selectTrack(i, track) {
-    if (context.state.currentTrack && context.state.currentTrack.track.id === track.id) {
-      context.state.playing ? context.setPlaying(false) : context.setPlaying(true);
+  function togglePlay() {
+    context.state.playing ? context.setPlaying(false) : context.setPlaying(true);
+  }
+
+  function selectTrack(track, i) {
+    const selectedTrackIsCurrent = context.state.currentTrack && context.state.currentTrack.track.id === track.id;
+
+    if (selectedTrackIsCurrent) {
+      togglePlay()
     } else {
       context.setCurrentTrack({
         track: track,
@@ -46,7 +52,7 @@ export default function Tracklist({
       <div className="flex items-center justify-center relative h-32 w-32">
         <span className="text-gray-500 group-hover:opacity-0">{i+1}</span>
         <button
-          onClick={() => {selectTrack(i, track)}}
+          onClick={() => {selectTrack(track, i)}}
           className={buttonClasses}
         >
           {context.state.currentTrack && context.state.currentTrack.track.id === track.id ? (
@@ -93,7 +99,7 @@ export default function Tracklist({
         <li className="border-b py-8 flex justify-between group" key={i}>
           <div className="flex items-center gap-8">
             <PlayPauseButton track={track} i={i} />
-            <span className={context.state.currentTrack && context.state.currentTrack.track.id === track.id ? "text-cyan-500" : ""}>
+            <span className={context.state.currentTrack && context.state.currentTrack.track.id === track.id && listType === "tracklist" ? "text-cyan-500" : ""}>
               {track.title} ({listType})
             </span>
           </div>
