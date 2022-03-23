@@ -10,12 +10,11 @@ const testTrack = {
     url: "https://example/com/track/99",
     album: 9
   },
-  list: "queue"
+  listType: "queue"
 }
 
 function App({ Component, pageProps }) {
-  const [currentTrack, setCurrentTrack] = useState(false);
-  const [current, setCurrent] = useState(testTrack);
+  const [currentTrack, setCurrentTrack] = useState(testTrack);
   const [playing, setPlaying] = useState(false);
   const [queue, setQueue] = useState([]);
   const [nextFrom, setNextFrom] = useState([]);
@@ -41,14 +40,12 @@ function App({ Component, pageProps }) {
     <AppContext.Provider value={{
       state: {
         currentTrack: currentTrack,
-        current: current,
         nextFrom: nextFrom,
         playing: playing,
         queue: queue,
         history: history,
       },
       setCurrentTrack: setCurrentTrack,
-      setCurrent: setCurrent,
       setNextFrom: setNextFrom,
       setPlaying: setPlaying,
       setQueue: setQueue,

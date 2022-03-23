@@ -18,20 +18,20 @@ export default function Player () {
     if (queue.length) {
       const newCurrentTrack = queue.shift();
       listType = "queue";
-      context.setCurrent({track: newCurrentTrack, list: "queue"});
+      context.setCurrentTrack({track: newCurrentTrack, list: "queue"});
       context.setQueue(queue);
     } else if (nextFrom.length) {
       const newCurrentTrack = nextFrom.shift();
       listType = "nextFrom";
-      context.setCurrent({track: newCurrentTrack, list: "tracklist"});
+      context.setCurrentTrack({track: newCurrentTrack, list: "tracklist"});
       context.setNextFrom(nextFrom);
     } else {
-      context.setCurrent(null);
+      context.setCurrentTrack(null);
       console.log("Nothing to skip to");
     }
 
-    // if (context.state.current) {
-    //   addToHistory(context.state.current);
+    // if (context.state.currentTrack) {
+    //   addToHistory(context.state.currentTrack);
     // }
   }
 
@@ -61,10 +61,10 @@ export default function Player () {
     return (
       <div className="flex items-center gap-8 w-1/4">
         <figure className="h-48 w-48 bg-blue-200 rounded flex items-center justify-center text-2xl">
-          {context.state.current ? context.state.current.track.id : ""}
+          {context.state.currentTrack ? context.state.currentTrack.track.id : ""}
         </figure>
         <div>
-          <div className="text-sm font-medium">{context.state.current ? context.state.current.track.title : "Nada"}</div>
+          <div className="text-sm font-medium">{context.state.currentTrack ? context.state.currentTrack.track.title : "Nada"}</div>
           <div className="text-xs text-gray-500">Artist</div>
         </div>
       </div>

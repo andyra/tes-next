@@ -25,7 +25,7 @@ export default function Queue({
   const NowPlaying = () => (
     <section>
       <h2 className="font-medium mb-8 text-gray-900">NowPlaying</h2>
-      <div className="text-cyan-500">{context.state.current.track.title} (from {context.state.current.list})</div>
+      <div className="text-cyan-500">{context.state.currentTrack.track.title} (from {context.state.currentTrack.listType})</div>
     </section>
   );
 
@@ -92,14 +92,14 @@ export default function Queue({
   return (
     modal ? (
       <div className={queueClasses} id="queue" tabIndex="-1" role="region">
-        {context.state.current ? <NowPlaying /> : ""}
+        {context.state.currentTrack ? <NowPlaying /> : ""}
         {context.state.queue.length ? <QueueList /> : ""}
         {context.state.nextFrom.length ? <NextFrom /> : ""}
         {context.state.history.length ? <History /> : ""}
       </div>
     ) : (
       <div className="p-24 border space-y-24">
-        {context.state.current ? <NowPlaying /> : ""}
+        {context.state.currentTrack ? <NowPlaying /> : ""}
         {context.state.queue.length ? <QueueList /> : ""}
         {context.state.nextFrom.length ? <NextFrom /> : ""}
         {context.state.history.length ? <History /> : ""}
