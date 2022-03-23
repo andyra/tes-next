@@ -13,7 +13,7 @@ export default function Tracklist({
   }
 
   function selectTrack(track, i) {
-    const selectedTrackIsCurrent = context.state.currentTrack && context.state.currentTrack.track.id === track.id;
+    const selectedTrackIsCurrent = context.state.currentTrack && context.state.currentTrack.track.id === track.id && context.state.currentTrack.listType === listType;
 
     if (selectedTrackIsCurrent) {
       togglePlay()
@@ -23,14 +23,21 @@ export default function Tracklist({
         listType: listType,
       });
       context.setPlaying(true);
-      updateNextFrom(i);
+      updateList(i);
     }
   }
 
-  function updateNextFrom(i) {
-    const newNextFrom = [...tracks];
-    newNextFrom.splice(0, i+1);
-    context.setNextFrom(newNextFrom);
+  function updateList(i) {
+    console.log(`Tracks in ${listType}: ${tracks.length}`);
+    console.log(`Remove everything in ${listType} before ${i}`);
+    const newList = [...tracks];
+    newList.splice(0, i+1);
+    if (listType === "queue") {
+      context.setQueue(newList);
+    }
+    if (listType === "nextFrom") {
+      context.setNextFrom(newList);
+    }
   }
 
   function addToQueue(track) {
@@ -85,7 +92,7 @@ export default function Tracklist({
 
     return (
       <button
-        className="border px-12 h-32 flex items-center rounded-full"
+        className="border px-12 h-32 flex items-center rounded-full opacity-0 group-hover:opacity-100 transition duration-100"
         onClick={() => {removeFromQueue(track, i)}}
       >
         Remove
