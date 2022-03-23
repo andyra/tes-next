@@ -10,6 +10,10 @@ export default function Player () {
     context.state.playing ? context.setPlaying(false) : context.setPlaying(true)
   }
 
+  function isPlaying() {
+    return context.state.currentTrack && context.state.playing;
+  }
+
   function skipNext() {
     const queue = [...context.state.queue];
     const nextFrom = [...context.state.nextFrom];
@@ -81,8 +85,8 @@ export default function Player () {
         <button className="h-32 w-32 flex items-center justify-center border rounded-full">
           ⏪
         </button>
-        <button onClick={togglePlay} className={`h-48 w-48 text-xl flex items-center justify-center border rounded-full ${context.state.playing ? "bg-green-200" : ""}`}>
-          {context.state.playing ? "⏸" : "▶️"}
+        <button onClick={togglePlay} className={`h-48 w-48 text-xl flex items-center justify-center border rounded-full ${isPlaying() ? "bg-green-200" : ""}`}>
+          {isPlaying() ? "⏸" : "▶️"}
         </button>
         <button
           className="h-32 w-32 flex items-center justify-center border rounded-full"
