@@ -13,7 +13,9 @@ export default function Tracklist({
   }
 
   function selectTrack(track, i) {
-    const selectedTrackIsCurrent = context.state.currentTrack && context.state.currentTrack.track.id === track.id && context.state.currentTrack.listType === listType;
+    console.log(context.state.currentTrack.listType);
+    console.log(listType);
+    const selectedTrackIsCurrent = context.state.currentTrack && context.state.currentTrack.track.id === track.id && listType != "queue";
 
     if (selectedTrackIsCurrent) {
       togglePlay()
@@ -27,6 +29,12 @@ export default function Tracklist({
     }
   }
 
+  function updateNextFrom(i) {
+    const newNextFrom = [...tracks];
+    newNextFrom.splice(0, i+1);
+    context.setNextFrom(newNextFrom);
+  }
+
   function updateList(i) {
     console.log(`Tracks in ${listType}: ${tracks.length}`);
     console.log(`Remove everything in ${listType} before ${i}`);
@@ -34,8 +42,7 @@ export default function Tracklist({
     newList.splice(0, i+1);
     if (listType === "queue") {
       context.setQueue(newList);
-    }
-    if (listType === "nextFrom") {
+    } else {
       context.setNextFrom(newList);
     }
   }

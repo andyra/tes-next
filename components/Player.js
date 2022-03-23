@@ -17,13 +17,17 @@ export default function Player () {
 
     if (queue.length) {
       const newCurrentTrack = queue.shift();
-      listType = "queue";
-      context.setCurrentTrack({track: newCurrentTrack, list: "queue"});
+      context.setCurrentTrack({
+        track: newCurrentTrack,
+        listType: "queue"
+      });
       context.setQueue(queue);
     } else if (nextFrom.length) {
       const newCurrentTrack = nextFrom.shift();
-      listType = "nextFrom";
-      context.setCurrentTrack({track: newCurrentTrack, list: "tracklist"});
+      context.setCurrentTrack({
+        track: newCurrentTrack,
+        listType: "tracklist"
+      });
       context.setNextFrom(nextFrom);
     } else {
       context.setCurrentTrack(null);

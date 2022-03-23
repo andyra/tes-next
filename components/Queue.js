@@ -24,7 +24,7 @@ export default function Queue({
 
   const NowPlaying = () => (
     <section>
-      <h2 className="font-medium mb-8 text-gray-900">NowPlaying</h2>
+      <h2 className="font-medium mb-8 text-gray-900 dark:text-stone-300">NowPlaying</h2>
       <div className="text-cyan-500">{context.state.currentTrack.track.title} (from {context.state.currentTrack.listType})</div>
     </section>
   );
@@ -32,7 +32,7 @@ export default function Queue({
   const QueueList = () => (
     <section>
       <header className="flex items-center justify-between">
-        <h2 className="font-medium mb-8 text-gray-900">Queue ({context.state.queue.length})</h2>
+        <h2 className="font-medium mb-8 text-gray-900 dark:text-stone-300">Queue ({context.state.queue.length})</h2>
         <ClearQueueButton />
       </header>
       <Tracklist tracks={context.state.queue} listType="queue" />
@@ -41,14 +41,14 @@ export default function Queue({
 
   const NextFrom = () => (
     <section>
-      <h2 className="font-medium mb-8 text-gray-900">NextFrom ({context.state.nextFrom.length})</h2>
+      <h2 className="font-medium mb-8 text-gray-900 dark:text-stone-300">NextFrom ({context.state.nextFrom.length})</h2>
       <Tracklist tracks={context.state.nextFrom} listType="nextFrom" />
     </section>
   );
 
   const History = () => (
     <section>
-      <h2 className="font-medium mb-8 text-gray-900">History ({context.state.history.length})</h2>
+      <h2 className="font-medium mb-8 text-gray-900 dark:text-stone-300">History ({context.state.history.length})</h2>
       {/*<div className="ml-16">
         <h3 className="text-gray-500">Queue</h3>
         {context.state.history.queue.length ? (
