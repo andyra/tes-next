@@ -13,8 +13,9 @@ export default function Tracklist({
   }
 
   function selectTrack(track, i) {
-    console.log(context.state.currentTrack.listType);
-    console.log(listType);
+    console.log("=====");
+    console.log(`Selected item from ${listType}`);
+    // console.log(`Selected item from ${context.state.currentTrack.listType}`);
     const selectedTrackIsCurrent = context.state.currentTrack && context.state.currentTrack.track.id === track.id && listType != "queue";
 
     if (selectedTrackIsCurrent) {
@@ -36,8 +37,6 @@ export default function Tracklist({
   }
 
   function updateList(i) {
-    console.log(`Tracks in ${listType}: ${tracks.length}`);
-    console.log(`Remove everything in ${listType} before ${i}`);
     const newList = [...tracks];
     newList.splice(0, i+1);
     if (listType === "queue") {
@@ -53,11 +52,12 @@ export default function Tracklist({
   }
 
   function highlightTrack(track) {
-    return context.state.currentTrack && context.state.currentTrack.track.id === track.id && listType === "tracklist" && listType === context.state.currentTrack.listType;
+    return context.state.currentTrack && context.state.currentTrack.track.id === track.id
+        && listType === "tracklist"
+        && context.state.currentTrack.listType != "queue";
   }
 
   const PlayPauseButton = ({i, track}) => {
-    // const highlightTrack = context.state.currentTrack && context.state.currentTrack.track.id === track.id && listType === "tracklist" && listType === context.state.currentTrack.listType;
     const active = highlightTrack(track) && context.state.playing;
     const buttonClasses = cn({
       "absolute top-0 left-0 transition duration-100": true,
