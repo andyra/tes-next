@@ -14,11 +14,11 @@ const testTrack = {
 }
 
 function App({ Component, pageProps }) {
-  const [currentTrack, setCurrentTrack] = useState(false);
+  const [onDeck, setOnDeck] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [queue, setQueue] = useState([]);
   const [nextFrom, setNextFrom] = useState([]);
-  const [history, setHistory] = useState({queue: [], nextFrom: []});
+  const [history, setHistory] = useState([]);
 
   const nextClasses = [
     "flex",
@@ -39,13 +39,13 @@ function App({ Component, pageProps }) {
   return (
     <AppContext.Provider value={{
       state: {
-        currentTrack: currentTrack,
+        onDeck: onDeck,
         nextFrom: nextFrom,
         playing: playing,
         queue: queue,
         history: history,
       },
-      setCurrentTrack: setCurrentTrack,
+      setOnDeck: setOnDeck,
       setNextFrom: setNextFrom,
       setPlaying: setPlaying,
       setQueue: setQueue,

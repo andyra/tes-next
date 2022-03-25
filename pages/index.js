@@ -1,31 +1,63 @@
 import Queue from "../components/Queue";
 import Tracklist from "../components/Tracklist";
 
-const TRACKS = [
+const ITEMS = [
   {
-    id: 1,
-    title: "Gabriel's Friendship Gang",
-    url: "https://example.com/1",
-    album: 1
+    track: {
+      id: 1,
+      title: "Gabriel's Friendship Gang",
+      url: "https://example.com/1",
+      album: 1
+    },
+    position: 1,
+    listType: "tracklist"
   },
   {
-    id: 2,
-    title: "Matt Slime",
-    url: "https://example.com/2",
-    album: 2
+    track: {
+      id: 2,
+      title: "Matt Slime",
+      url: "https://example.com/2",
+      album: 2
+    },
+    position: 2,
+    listType: "tracklist"
   },
   {
-    id: 3,
-    title: "Capestrano",
-    url: "https://example.com/3",
-    album: 3
+    track: {
+      id: 3,
+      title: "Capestrano",
+      url: "https://example.com/3",
+      album: 3
+    },
+    position: 3,
+    listType: "tracklist"
+  },
+  {
+    track: {
+      id: 4,
+      title: "Napoleon",
+      url: "https://example.com/4",
+      album: 4
+    },
+    position: 4,
+    listType: "tracklist"
+  },
+  {
+    track: {
+      id: 5,
+      title: "Linda I Miss You",
+      url: "https://example.com/5",
+      album: 5
+    },
+    position: 5,
+    listType: "tracklist"
   }
 ];
 
 export default function Home() {
   return (
     <>
-      <Tracklist tracks={TRACKS} />
+      <Tracklist items={ITEMS} />
       <Queue modal={false} />
     </>
   )
