@@ -2,7 +2,11 @@ import { useContext, useState } from "react";
 import AppContext from "./AppContext";
 import Queue from "./Queue";
 
-// TODO: add to history not just when hitting next, but for each SelectTrack
+// TODO: rename `item` to trackItem?
+// TODO: add to prevFrom not just when hitting next, but for each SelectTrack
+// TODO: If there's nothing OnDeck and you hit play, get the first thing on the page and go for it
+// TODO you may not have anything in prevFrom, but there are still tracklist items
+// TODO: May not need to high level listType const since those are on the item level now
 
 export default function Player () {
   const [queueOpen, setQueueOpen] = useState(false);
@@ -19,7 +23,7 @@ export default function Player () {
   function next() {
     const queue = [...context.state.queue];
     const nextFrom = [...context.state.nextFrom];
-    const history = [...context.state.history];
+    const prevFrom = [...context.state.prevFrom];
     let listType;
 
     if (queue.length) {
@@ -35,34 +39,33 @@ export default function Player () {
       console.log("Nothing to skip forward to");
     }
 
-    if (context.state.onDeck) {
-      addToHistory(context.state.onDeck);
+    if (context.state.onDeck && context.state.onDeck.listType === "tracklist") {
+      addToPrevFrom(context.state.onDeck);
     }
   }
 
-  function addToHistory(item) {
-    const history = [...context.state.history];
-    history.push(item);
-    context.setHistory(history);
+  function addToPrevFrom(item) {
+    const prevFrom = [...context.state.prevFrom];
+    prevFrom.push(item);
+    context.setPrevFrom(prevFrom);
   }
 
   function back() {
-    const history = [...context.state.history];
+    const newPrevFrom = [...context.state.prevFrom];
 
-    if (history.length) {
-      const item = history.pop();
-      context.setHistory(history);
-      context.setOnDeck(item);
+    if (newPrevFrom.length) {
+      const newOnDeck = newPrevFrom.pop();
+      context.setPrevFrom(newPrevFrom);
+      context.setOnDeck(newOnDeck);
 
-      if (item.listType === "tracklist") {
-        const nextFrom = [...context.state.nextFrom];
-        nextFrom.unshift(context.state.onDeck.track);
-        context.setNextFrom(nextFrom);
-      }
-    } else if (true) {
-      // you may not have anything in history, but there are still tracklist items
+      const newNextFrom = [...context.state.nextFrom];
+      newNextFrom.unshift(context.state.onDeck);
+      context.setNextFrom(newNextFrom);
     } else {
-      console.log("Nothing to skip back to");
+      console.log("No prevFrom length");
+      // if there's not a prevFrom, find the item in the tracklist and go back from there
+      // console.log(context.state.onDeck.position);
+      // console.log("Nothing to skip back to");
     }
   }
 

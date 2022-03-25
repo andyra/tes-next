@@ -49,7 +49,7 @@ export default function Queue({
     </section>
   );
 
-  const History = () => {
+  const PrevFrom = () => {
     const liClasses = cn({
       "flex justify-between p-8 -mx-8 rounded-lg cursor-default transition group": true,
       "hover:bg-gray-50 focus:bg-gray-100 dark:hover:bg-white/10 dark:focus:bg-white/20": true
@@ -57,9 +57,9 @@ export default function Queue({
 
     return (
       <section>
-        <h2 className="font-medium mb-8 text-gray-900 dark:text-stone-300">History</h2>
+        <h2 className="font-medium mb-8 text-gray-900 dark:text-stone-300">PrevFrom</h2>
         <ul>
-          {context.state.history.map((item, i) =>
+          {context.state.prevFrom.map((item, i) =>
             <li className={liClasses} key={i}>
               <div className="flex items-center gap-8">
                 {item.track.title}
@@ -80,14 +80,14 @@ export default function Queue({
   return (
     modal ? (
       <div className={queueClasses} id="queue" tabIndex="-1" role="region">
-        {context.state.history.length ? <History /> : ""}
+        {context.state.prevFrom.length ? <PrevFrom /> : ""}
         {context.state.onDeck ? <NowPlaying /> : ""}
         {context.state.queue.length ? <QueueList /> : ""}
         {context.state.nextFrom.length ? <NextFrom /> : ""}
       </div>
     ) : (
       <div className="p-24 border space-y-24">
-        {context.state.history.length ? <History /> : ""}
+        {context.state.prevFrom.length ? <PrevFrom /> : ""}
         {context.state.onDeck ? <NowPlaying /> : ""}
         {context.state.queue.length ? <QueueList /> : ""}
         {context.state.nextFrom.length ? <NextFrom /> : ""}

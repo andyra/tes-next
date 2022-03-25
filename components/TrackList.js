@@ -28,17 +28,13 @@ export default function Tracklist({
 
   // Shorten or add to queue listTypes
   function updateList(position) {
-    // TODO here we have the correct position
-    // in this context, `tracks` contains the items in whatever listType you're choosing
-    // const newTracks = [...tracks];
     const newItems = [...items];
     newItems.splice(0, position);
-    console.log(newItems);
-
     listType === "queue" ? context.setQueue(newItems) : context.setNextFrom(newItems);
   }
 
   function addToQueue(item) {
+    item.listType = "queue";
     const queue = [...context.state.queue];
     context.setQueue(queue.concat(item));
   }

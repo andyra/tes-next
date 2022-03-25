@@ -18,7 +18,7 @@ function App({ Component, pageProps }) {
   const [playing, setPlaying] = useState(false);
   const [queue, setQueue] = useState([]);
   const [nextFrom, setNextFrom] = useState([]);
-  const [history, setHistory] = useState([]);
+  const [prevFrom, setPrevFrom] = useState([]);
 
   const nextClasses = [
     "flex",
@@ -43,13 +43,13 @@ function App({ Component, pageProps }) {
         nextFrom: nextFrom,
         playing: playing,
         queue: queue,
-        history: history,
+        prevFrom: prevFrom,
       },
       setOnDeck: setOnDeck,
       setNextFrom: setNextFrom,
       setPlaying: setPlaying,
       setQueue: setQueue,
-      setHistory: setHistory,
+      setPrevFrom: setPrevFrom,
     }}>
       <Layout {...pageProps}>
         <Component {...pageProps} />
