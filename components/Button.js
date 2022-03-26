@@ -1,18 +1,33 @@
 import Link from "next/link";
 import cn from "classnames";
 
+const SIZES = {
+  base: {
+    h: "h-32",
+    w: "w-32",
+    p: "px-12"
+  },
+  lg: {
+    h: "h-48",
+    w: "w-48",
+    p: "px-24"
+  }
+}
+
 export default function Button({
   children,
   circle,
   className,
   onClick,
+  size = "base",
   url
 }) {
   const buttonClasses = cn({
-    "flex items-center justify-center h-32 transition": true,
+    "flex items-center justify-center transition": true,
     "border rounded-full hover:bg-gray-100 dark:hover:bg-white/10": true,
-    "w-32": circle,
-    "px-12": !circle,
+    [SIZES[size].h]: true,
+    [SIZES[size].p]: !circle,
+    [SIZES[size].w]: circle,
     [className]: className
   });
 

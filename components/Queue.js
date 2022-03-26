@@ -24,7 +24,7 @@ export default function Queue({
 
   const NowPlaying = () => (
     <section>
-      <h2 className="font-medium mb-8 text-gray-900 dark:text-stone-300">OnDeck</h2>
+      <h2 className="font-medium mb-8 text-gray-900 dark:text-stone-300">Now Playing</h2>
       <div className="flex items-center gap-8 text-cyan-500">
         {context.state.onDeck.track.title}
         <span className="opacity-50">({context.state.onDeck.listType} • {context.state.onDeck.position})</span>
@@ -71,10 +71,12 @@ export default function Queue({
   return (
     modal ? (
       <div className={queueClasses} id="queue" tabIndex="-1" role="region">
-        {context.state.prevFrom.length ? <PrevFrom /> : ""}
-        {context.state.onDeck ? <NowPlaying /> : ""}
-        {context.state.queue.length ? <QueueList /> : ""}
-        {context.state.nextFrom.length ? <NextFrom /> : ""}
+        <div className="max-w-screen-sm mx-auto">
+          {context.state.prevFrom.length ? <PrevFrom /> : ""}
+          {context.state.onDeck ? <NowPlaying /> : ""}
+          {context.state.queue.length ? <QueueList /> : ""}
+          {context.state.nextFrom.length ? <NextFrom /> : ""}
+        </div>
       </div>
     ) : (
       <div className="p-24 border space-y-24">
