@@ -13,8 +13,7 @@ export default function Tracklist({
     context.state.playing ? context.setPlaying(false) : context.setPlaying(true);
   }
 
-  function selectItem(item) {
-    // TODO here we have the correct position
+  function selectItem(item, i) {
     const selectedTrackIsCurrent = context.state.onDeck && context.state.onDeck.track.id === item.track.id && listType != "queue";
 
     if (selectedTrackIsCurrent) {
@@ -22,15 +21,34 @@ export default function Tracklist({
     } else {
       context.setOnDeck(item);
       context.setPlaying(true);
-      updateList(item.position);
+      updateList(item, i);
     }
   }
 
   // Shorten or add to queue listTypes
-  function updateList(position) {
-    const newItems = [...items];
-    newItems.splice(0, position);
-    listType === "queue" ? context.setQueue(newItems) : context.setNextFrom(newItems);
+  function updateList(selectedItem, i) {
+    const itemsBefore = [...items].splice(0, i);
+    const itemsAfter = [...items].splice(i + 1);
+
+    if (listType === "queue") {
+      context.setQueue(itemsAfter);
+    } else {
+      if (listType === "tracklist") {
+        context.setPrevFrom(itemsBefore);
+        context.setNextFrom(itemsAfter);
+      }
+
+      if (listType === "nextFrom") {
+        const newPrevFrom = [...context.state.prevFrom];
+        newPrevFrom.push(context.state.onDeck);
+        newPrevFrom.push(...itemsBefore);
+        context.setPrevFrom(newPrevFrom);
+
+        const newNextFrom = [...context.state.nextFrom];
+        newNextFrom.splice(0, i + 1);
+        context.setNextFrom(newNextFrom);
+      }
+    }
   }
 
   function addToQueue(item) {
@@ -45,7 +63,7 @@ export default function Tracklist({
         && context.state.onDeck.listType != "queue";
   }
 
-  const PlayPauseButton = ({item, position}) => {
+  const PlayPauseButton = ({item, position, i}) => {
     const active = highlightTrack(item) && context.state.playing;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
@@ -58,7 +76,7 @@ export default function Tracklist({
         <span className="text-gray-500 group-hover:opacity-0">{position}</span>
         <Button
           className={buttonClasses}
-          onClick={() => {selectItem(item)}}
+          onClick={() => {selectItem(item, i)}}
         >
           {highlightTrack(item) ? context.state.playing ? "⏸" : "▶️" : "▶️"}
         </Button>
@@ -104,7 +122,7 @@ export default function Tracklist({
       {items.map((item, i) =>
         <li className={liClasses} tabIndex={0} key={i}>
           <div className="flex items-center gap-8">
-            <PlayPauseButton item={item} position={item.position} />
+            <PlayPauseButton item={item} position={item.position} i={i} />
             <div className={`flex items-center gap-8 ${highlightTrack(item) ? "text-cyan-500" : ""}`}>
               {item.track.title}
               <span className="opacity-50">({item.listType} • {item.position})</span>

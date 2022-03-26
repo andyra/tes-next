@@ -58,16 +58,7 @@ export default function Queue({
     return (
       <section>
         <h2 className="font-medium mb-8 text-gray-900 dark:text-stone-300">PrevFrom</h2>
-        <ul>
-          {context.state.prevFrom.map((item, i) =>
-            <li className={liClasses} key={i}>
-              <div className="flex items-center gap-8">
-                {item.track.title}
-                <span className="opacity-50">({item.listType} • {item.position})</span>
-              </div>
-            </li>
-          )}
-        </ul>
+        <Tracklist items={context.state.prevFrom} listType="prevFrom" />
       </section>
     )
   }

@@ -7,6 +7,7 @@ import Queue from "./Queue";
 // TODO: If there's nothing OnDeck and you hit play, get the first thing on the page and go for it
 // TODO you may not have anything in prevFrom, but there are still tracklist items
 // TODO: May not need to high level listType const since those are on the item level now
+// TODO: If skipping all the way back through a tracklist, clear the prevFrom and nextFrom lists
 
 export default function Player () {
   const [queueOpen, setQueueOpen] = useState(false);
