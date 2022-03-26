@@ -51,16 +51,22 @@ export default function Tracklist({
     }
   }
 
+  function highlightTrack(item) {
+    return context.state.onDeck && context.state.onDeck.track.id === item.track.id
+        && listType === "tracklist"
+        && context.state.onDeck.listType != "queue";
+  }
+
   function addToQueue(item) {
     item.listType = "queue";
     const queue = [...context.state.queue];
     context.setQueue(queue.concat(item));
   }
 
-  function highlightTrack(item) {
-    return context.state.onDeck && context.state.onDeck.track.id === item.track.id
-        && listType === "tracklist"
-        && context.state.onDeck.listType != "queue";
+  function removeFromQueue(item, i) {
+    let newQueue = [...context.state.queue];
+    newQueue.splice(i, 1);
+    context.setQueue(newQueue);
   }
 
   const PlayPauseButton = ({item, position, i}) => {
@@ -76,39 +82,12 @@ export default function Tracklist({
         <span className="text-gray-500 group-hover:opacity-0">{position}</span>
         <Button
           className={buttonClasses}
+          circle
           onClick={() => {selectItem(item, i)}}
         >
           {highlightTrack(item) ? context.state.playing ? "⏸" : "▶️" : "▶️"}
         </Button>
       </div>
-    )
-  }
-
-  const AddToQueueButton = ({item}) => {
-    return (
-      <button
-        className="border rounded-full flex items-center justify-center h-32 px-12 opacity-0 group-hover:opacity-100 transition duration-100"
-        onClick={() => {addToQueue(item)}}
-      >
-        Add
-      </button>
-    )
-  }
-
-  const RemoveFromQueueButton = ({item, i}) => {
-    function removeFromQueue(item, i) {
-      let newQueue = [...context.state.queue];
-      newQueue.splice(i, 1);
-      context.setQueue(newQueue);
-    }
-
-    return (
-      <button
-        className="border px-12 h-32 flex items-center rounded-full opacity-0 group-hover:opacity-100 transition duration-100"
-        onClick={() => {removeFromQueue(item, i)}}
-      >
-        Remove
-      </button>
     )
   }
 
@@ -128,8 +107,16 @@ export default function Tracklist({
               <span className="opacity-50">({item.listType} • {item.position})</span>
             </div>
           </div>
-          {listType === "tracklist" && <AddToQueueButton item={item} /> }
-          {listType === "queue" && <RemoveFromQueueButton item={item} i={i} /> }
+          {listType === "tracklist" &&
+            <Button onClick={() => {addToQueue(item)}}>
+              Add
+            </Button>
+          }
+          {listType === "queue" &&
+            <button onClick={() => {removeFromQueue(item, i)}}>
+              Remove
+            </button>
+          }
         </li>
       )}
     </ul>

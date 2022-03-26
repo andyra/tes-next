@@ -7,7 +7,6 @@ import Queue from "./Queue";
 // TODO: If there's nothing OnDeck and you hit play, get the first thing on the page and go for it
 // TODO you may not have anything in prevFrom, but there are still tracklist items
 // TODO: May not need to high level listType const since those are on the item level now
-// TODO: If skipping all the way back through a tracklist, clear the prevFrom and nextFrom lists
 
 export default function Player () {
   const [queueOpen, setQueueOpen] = useState(false);
@@ -25,7 +24,10 @@ export default function Player () {
     const queue = [...context.state.queue];
     const nextFrom = [...context.state.nextFrom];
     const prevFrom = [...context.state.prevFrom];
-    let listType;
+
+    if (context.state.onDeck && context.state.onDeck.listType === "tracklist") {
+      addToPrevFrom(context.state.onDeck);
+    }
 
     if (queue.length) {
       const newOnDeck = queue.shift();
@@ -37,11 +39,7 @@ export default function Player () {
       context.setNextFrom(nextFrom);
     } else {
       context.setOnDeck(null);
-      console.log("Nothing to skip forward to");
-    }
-
-    if (context.state.onDeck && context.state.onDeck.listType === "tracklist") {
-      addToPrevFrom(context.state.onDeck);
+      context.setPrevFrom([]);
     }
   }
 
@@ -63,10 +61,8 @@ export default function Player () {
       newNextFrom.unshift(context.state.onDeck);
       context.setNextFrom(newNextFrom);
     } else {
-      console.log("No prevFrom length");
-      // if there's not a prevFrom, find the item in the tracklist and go back from there
-      // console.log(context.state.onDeck.position);
-      // console.log("Nothing to skip back to");
+      context.setOnDeck(null);
+      context.setNextFrom([]);
     }
   }
 
