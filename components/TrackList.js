@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import cn from "classnames";
-import Button from "../components/Button";
 import AppContext from "../components/AppContext";
+import Button from "../components/Button";
+import Icon from "../components/Icon";
 
 export default function Tracklist({items}) {
   const context = useContext(AppContext);
@@ -57,9 +58,10 @@ export default function Tracklist({items}) {
   }
 
   function addToQueue(item) {
-    item.listType = "queue";
     const queue = [...context.state.queue];
-    context.setQueue(queue.concat(item));
+    const newItem = Object.assign({}, item);
+    newItem.listType = "queue";
+    context.setQueue(queue.concat(newItem));
   }
 
   function removeFromQueue(item, i) {
@@ -72,7 +74,7 @@ export default function Tracklist({items}) {
     const active = highlightTrack(item) && context.state.playing;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
-      "bg-green-200": active,
+      "bg-cyan-100 dark:bg-white/20": active,
       "opacity-0 group-hover:opacity-100": !active,
     });
 
@@ -84,7 +86,9 @@ export default function Tracklist({items}) {
           circle
           onClick={() => {selectItem(item, i)}}
         >
-          {highlightTrack(item) ? context.state.playing ? "⏸" : "▶️" : "▶️"}
+          <Icon name={
+            highlightTrack(item) ? context.state.playing ? "pause" : "play" : "play"
+          } solid />
         </Button>
       </div>
     )
@@ -107,14 +111,22 @@ export default function Tracklist({items}) {
             </div>
           </div>
           {item.listType === "tracklist" &&
-            <Button onClick={() => {addToQueue(item)}}>
-              Add
+            <Button
+              circle
+              className="opacity-0 group-hover:opacity-100"
+              onClick={() => {addToQueue(item)}}
+            >
+              <Icon name="add" solid />
             </Button>
           }
           {item.listType === "queue" &&
-            <button onClick={() => {removeFromQueue(item, i)}}>
-              Remove
-            </button>
+            <Button
+              circle
+              className="opacity-0 group-hover:opacity-100"
+              onClick={() => {removeFromQueue(item, i)}}
+            >
+              <Icon name="close" solid />
+            </Button>
           }
         </li>
       )}

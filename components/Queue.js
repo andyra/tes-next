@@ -4,8 +4,6 @@ import AppContext from "../components/AppContext";
 import Button from "../components/Button";
 import Tracklist from "../components/Tracklist";
 
-// ✅ Refactored
-
 const Section = ({actions, children, title}) => (
   <section>
     <header className="flex items-center justify-between">

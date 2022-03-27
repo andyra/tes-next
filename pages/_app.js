@@ -3,6 +3,9 @@ import Layout from "../components/Layout";
 import AppContext from "../components/AppContext";
 import "../styles/globals.css";
 
+// Icons: Ionic is great, but there's some weird framework thing
+
+
 const testTrack = {
   track: {
     id: 99,

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import cn from "classnames";
+import Icon from "./Icon";
 
 const NavLink = ({
   className,
@@ -16,7 +17,10 @@ const NavLink = ({
   return (
     <Link href={url}>
       <a className={linkClasses}>
-        {icon && <span className="w-16 flex items-center justify-center">{icon}</span>}
+        {icon &&
+          <span className="w-16 flex items-center justify-center">
+            <Icon name={icon} />
+          </span>}
         <span className="flex-1">{title}</span>
       </a>
     </Link>
@@ -27,16 +31,16 @@ const Navigation = () => (
   <nav className="row-span-1 flex flex-col gap-24 bg-white dark:bg-gray-800 rounded-lg p-16">
     <ul>
       <NavLink title="T.E.S." url="/" className="mb-24" />
-      <li><NavLink title="Episodes" url="/episodes" icon="✦"/></li>
-      <li><NavLink title="Music" url="/music" icon="✦"/></li>
-      <li><NavLink title="Wiki" url="/wiki" icon="✦"/></li>
-      <li><NavLink title="About" url="/about" icon="✦"/></li>
+      <li><NavLink title="Episodes" url="/episodes" icon="mic-outline" /></li>
+      <li><NavLink title="Music" url="/music" icon="musical-notes-outline" /></li>
+      <li><NavLink title="Wiki" url="/wiki" icon="book-outline" /></li>
+      <li><NavLink title="About" url="/about" icon="information-outline" /></li>
     </ul>
     <ul>
-      <li><NavLink title="Add Playlist" url="/" icon="+" /></li>
-      <li><NavLink title="Favorites" url="/" icon="♥︎" /></li>
-      <li><NavLink title="Boat Show 9" url="/" icon="✎" /></li>
-      <li><NavLink title="For this weekend" url="/" icon="✎" /></li>
+      <li><NavLink title="Add Playlist" url="/" icon="add-circle-outline"/></li>
+      <li><NavLink title="Favorites" url="/" icon="heart-outline" /></li>
+      <li><NavLink title="Boat Show 9" url="/" icon="musical-notes-outline" /></li>
+      <li><NavLink title="For this weekend" url="/" icon="musical-notes-outline" /></li>
     </ul>
   </nav>
 );

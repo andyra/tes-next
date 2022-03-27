@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import AppContext from "./AppContext";
 import Button from "./Button";
+import Icon from "./Icon";
 import Queue from "./Queue";
 
 const OnDeck = ({onDeck}) => (
@@ -76,13 +77,13 @@ export default function Player () {
   const PlayerControls = () => (
     <div className="flex-1 flex items-center justify-center gap-8">
       <Button circle onClick={() => {back()}}>
-        ⏪
+        <Icon name="play-skip-back" solid />
       </Button>
       <Button circle size="lg" onClick={togglePlay} className={`${isPlaying() ? "bg-green-200 hover:bg-green-300" : ""}`}>
-        {isPlaying() ? "⏸" : "▶️"}
+        <Icon name={isPlaying() ? "pause" : "play"} solid />
       </Button>
       <Button circle onClick={() => {next()}}>
-        ⏩
+      <Icon name="play-skip-forward" solid />
       </Button>
     </div>
   );
@@ -90,13 +91,14 @@ export default function Player () {
   const ExtraControls = () => (
     <div className="flex items-center justify-end gap-8 w-1/4">
       <Button
+        circle
         className={`${queueOpen ? "bg-green-200" : ""}`}
         onClick={() => {setQueueOpen(queueOpen ? false : true)}}
         aria-controls="queue"
         aria-expanded={queueOpen ? false : true}
         aria-label="Show Queue"
       >
-        Queue
+        <Icon name="list-circle" />
       </Button>
     </div>
   );

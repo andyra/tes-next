@@ -4,6 +4,8 @@ import Button from "./Button";
 import Navigation from "./Navigation";
 import Player from "./Player";
 
+import Script from "next/script"
+
 const Main = ({children}) => (
   <main className="bg-white dark:bg-gray-800 rounded-lg overflow-y-auto">
     {children}
@@ -47,6 +49,7 @@ const Layout = ({ children, ...props }) => {
         </Container>
       </Main>
       <Player />
+      <Script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js" strategy="afterInteractive" />
     </>
   )
 }
