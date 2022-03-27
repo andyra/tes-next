@@ -3,10 +3,6 @@ import AppContext from "./AppContext";
 import Button from "./Button";
 import Queue from "./Queue";
 
-// TODO: rename `item` to trackItem?
-// TODO: add to prevFrom not just when hitting next, but for each SelectTrack
-// TODO: If there's nothing OnDeck and you hit play, get the first thing on the page and go for it
-// TODO you may not have anything in prevFrom, but there are still tracklist items
 // TODO: May not need to high level listType const since those are on the item level now
 
 const OnDeck = ({onDeck}) => (
@@ -79,37 +75,33 @@ export default function Player () {
     }
   }
 
-  const PlayerControls = () => {
-    return (
-      <div className="flex-1 flex items-center justify-center gap-8">
-        <Button circle onClick={() => {back()}}>
-          ⏪
-        </Button>
-        <Button circle size="lg" onClick={togglePlay} className={`${isPlaying() ? "bg-green-200 hover:bg-green-300" : ""}`}>
-          {isPlaying() ? "⏸" : "▶️"}
-        </Button>
-        <Button circle onClick={() => {next()}}>
-          ⏩
-        </Button>
-      </div>
-    )
-  }
+  const PlayerControls = () => (
+    <div className="flex-1 flex items-center justify-center gap-8">
+      <Button circle onClick={() => {back()}}>
+        ⏪
+      </Button>
+      <Button circle size="lg" onClick={togglePlay} className={`${isPlaying() ? "bg-green-200 hover:bg-green-300" : ""}`}>
+        {isPlaying() ? "⏸" : "▶️"}
+      </Button>
+      <Button circle onClick={() => {next()}}>
+        ⏩
+      </Button>
+    </div>
+  );
 
-  const ExtraControls = () => {
-    return (
-      <div className="flex items-center justify-end gap-8 w-1/4">
-        <Button
-          className={`${queueOpen ? "bg-green-200" : ""}`}
-          onClick={() => {setQueueOpen(queueOpen ? false : true)}}
-          aria-controls="queue"
-          aria-expanded={queueOpen ? false : true}
-          aria-label="Show Queue"
-        >
-          Queue
-        </Button>
-      </div>
-    )
-  }
+  const ExtraControls = () => (
+    <div className="flex items-center justify-end gap-8 w-1/4">
+      <Button
+        className={`${queueOpen ? "bg-green-200" : ""}`}
+        onClick={() => {setQueueOpen(queueOpen ? false : true)}}
+        aria-controls="queue"
+        aria-expanded={queueOpen ? false : true}
+        aria-label="Show Queue"
+      >
+        Queue
+      </Button>
+    </div>
+  );
 
   return (
     <>
