@@ -15,7 +15,7 @@ class MyDocument extends Document {
           <link rel="preload" href="/fonts/apercu-bold-subset.woff2" as="font" crossOrigin="" />
           <link rel="preload" href="/fonts/apercu-mono-subset.woff2" as="font" crossOrigin="" />
         </Head>
-        <body className="h-full font-sans antialiased">
+        <body className="h-full overflow-hidden font-sans antialiased">
           <Main />
           <NextScript />
         </body>

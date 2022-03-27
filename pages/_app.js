@@ -21,9 +21,9 @@ function App({ Component, pageProps }) {
   const [prevFrom, setPrevFrom] = useState([]);
 
   const nextClasses = [
-    "flex",
-    "flex-col",
+  "grid",
     "h-full",
+    "overflow-hidden",
     "p-4",
     "gap-4",
     "bg-gray-100",
@@ -34,6 +34,7 @@ function App({ Component, pageProps }) {
 
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses);
+    document.getElementById("__next").style = "grid-template-columns: 224px 1fr; grid-template-rows: 1fr 64px;";
   }, []);
 
   return (

@@ -103,7 +103,7 @@ export default function Player () {
 
   return (
     <>
-      <aside className="bg-white dark:bg-gray-800 p-8 rounded-lg flex items-center justify-between">
+      <aside className="col-span-2 bg-white dark:bg-gray-800 p-8 rounded-lg flex items-center justify-between">
         <OnDeck onDeck={context.state.onDeck} />
         <PlayerControls />
         <ExtraControls />

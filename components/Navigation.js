@@ -24,15 +24,15 @@ const NavLink = ({
 }
 
 const Navigation = () => (
-  <nav className="w-224 flex flex-col gap-4">
-    <ul className="bg-white dark:bg-gray-800 rounded-lg p-16">
+  <nav className="row-span-1 flex flex-col gap-24 bg-white dark:bg-gray-800 rounded-lg p-16">
+    <ul>
       <NavLink title="T.E.S." url="/" className="mb-24" />
       <li><NavLink title="Episodes" url="/episodes" icon="✦"/></li>
       <li><NavLink title="Music" url="/music" icon="✦"/></li>
       <li><NavLink title="Wiki" url="/wiki" icon="✦"/></li>
       <li><NavLink title="About" url="/about" icon="✦"/></li>
     </ul>
-    <ul className="flex-1 bg-white dark:bg-gray-800 rounded-lg p-16">
+    <ul>
       <li><NavLink title="Add Playlist" url="/" icon="+" /></li>
       <li><NavLink title="Favorites" url="/" icon="♥︎" /></li>
       <li><NavLink title="Boat Show 9" url="/" icon="✎" /></li>
