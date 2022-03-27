@@ -48,19 +48,19 @@ export default function Queue({
 
   const QueueList = () => (
     <Section title="Queue" actions={<ClearQueueButton />}>
-      <Tracklist items={context.state.queue} listType="queue" />
+      <Tracklist items={context.state.queue} />
     </Section>
   );
 
   const NextFrom = () => (
     <Section title="Next From">
-      <Tracklist items={context.state.nextFrom} listType="nextFrom" />
+      <Tracklist items={context.state.nextFrom} />
     </Section>
   );
 
   const PrevFrom = () => (
     <Section title="Prev From">
-      <Tracklist items={context.state.prevFrom} listType="prevFrom" />
+      <Tracklist items={context.state.prevFrom} />
     </Section>
   );
 

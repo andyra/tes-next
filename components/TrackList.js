@@ -3,10 +3,7 @@ import cn from "classnames";
 import Button from "../components/Button";
 import AppContext from "../components/AppContext";
 
-export default function Tracklist({
-  listType = "tracklist",
-  items
-}) {
+export default function Tracklist({items}) {
   const context = useContext(AppContext);
 
   function togglePlay() {
@@ -14,7 +11,9 @@ export default function Tracklist({
   }
 
   function selectItem(item, i) {
-    const selectedTrackIsCurrent = context.state.onDeck && context.state.onDeck.track.id === item.track.id && listType != "queue";
+    const selectedTrackIsCurrent = context.state.onDeck
+       && context.state.onDeck.track.id === item.track.id
+       && item.listType != "queue";
 
     if (selectedTrackIsCurrent) {
       togglePlay()
@@ -30,15 +29,15 @@ export default function Tracklist({
     const itemsBefore = [...items].splice(0, i);
     const itemsAfter = [...items].splice(i + 1);
 
-    if (listType === "queue") {
+    if (selectedItem.listType === "queue") {
       context.setQueue(itemsAfter);
     } else {
-      if (listType === "tracklist") {
+      if (selectedItem.listType === "tracklist") {
         context.setPrevFrom(itemsBefore);
         context.setNextFrom(itemsAfter);
       }
 
-      if (listType === "nextFrom") {
+      if (selectedItem.listType === "nextFrom") {
         const newPrevFrom = [...context.state.prevFrom];
         newPrevFrom.push(context.state.onDeck);
         newPrevFrom.push(...itemsBefore);
@@ -53,7 +52,7 @@ export default function Tracklist({
 
   function highlightTrack(item) {
     return context.state.onDeck && context.state.onDeck.track.id === item.track.id
-        && listType === "tracklist"
+        && item.listType === "tracklist"
         && context.state.onDeck.listType != "queue";
   }
 
@@ -107,12 +106,12 @@ export default function Tracklist({
               <span className="opacity-50">({item.listType} • {item.position})</span>
             </div>
           </div>
-          {listType === "tracklist" &&
+          {item.listType === "tracklist" &&
             <Button onClick={() => {addToQueue(item)}}>
               Add
             </Button>
           }
-          {listType === "queue" &&
+          {item.listType === "queue" &&
             <button onClick={() => {removeFromQueue(item, i)}}>
               Remove
             </button>

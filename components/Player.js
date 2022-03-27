@@ -3,8 +3,6 @@ import AppContext from "./AppContext";
 import Button from "./Button";
 import Queue from "./Queue";
 
-// TODO: May not need to high level listType const since those are on the item level now
-
 const OnDeck = ({onDeck}) => (
   <div className={`flex items-center gap-8 w-1/4 transition ${onDeck ? "" : "opacity-0 pointer-events-none"}`}>
     <figure className="h-48 w-48 bg-blue-200 rounded flex items-center justify-center text-2xl">
