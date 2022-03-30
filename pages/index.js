@@ -8,10 +8,10 @@ const ITEMS = [
       title: "Gabriel's Friendship Gang",
       url: "https://example.com/1",
       album: 1,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 1,
-    listType: "tracklist"
+    listType: "tracklist",
   },
   {
     track: {
@@ -19,10 +19,10 @@ const ITEMS = [
       title: "Matt Slime",
       url: "https://example.com/2",
       album: 2,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 2,
-    listType: "tracklist"
+    listType: "tracklist",
   },
   {
     track: {
@@ -30,10 +30,10 @@ const ITEMS = [
       title: "Capestrano",
       url: "https://example.com/3",
       album: 3,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 3,
-    listType: "tracklist"
+    listType: "tracklist",
   },
   {
     track: {
@@ -41,10 +41,10 @@ const ITEMS = [
       title: "Napoleon",
       url: "https://example.com/4",
       album: 4,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 4,
-    listType: "tracklist"
+    listType: "tracklist",
   },
   {
     track: {
@@ -52,10 +52,10 @@ const ITEMS = [
       title: "Linda I Miss You",
       url: "https://example.com/5",
       album: 5,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 5,
-    listType: "tracklist"
+    listType: "tracklist",
   },
   {
     track: {
@@ -63,10 +63,10 @@ const ITEMS = [
       title: "Gabriel's Friendship Gang",
       url: "https://example.com/1",
       album: 1,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 1,
-    listType: "tracklist"
+    listType: "tracklist",
   },
   {
     track: {
@@ -74,10 +74,10 @@ const ITEMS = [
       title: "Matt Slime",
       url: "https://example.com/2",
       album: 2,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 2,
-    listType: "tracklist"
+    listType: "tracklist",
   },
   {
     track: {
@@ -85,10 +85,10 @@ const ITEMS = [
       title: "Capestrano",
       url: "https://example.com/3",
       album: 3,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 3,
-    listType: "tracklist"
+    listType: "tracklist",
   },
   {
     track: {
@@ -96,10 +96,10 @@ const ITEMS = [
       title: "Gabriel's Friendship Gang",
       url: "https://example.com/1",
       album: 1,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 1,
-    listType: "tracklist"
+    listType: "tracklist",
   },
   {
     track: {
@@ -107,10 +107,10 @@ const ITEMS = [
       title: "Matt Slime",
       url: "https://example.com/2",
       album: 2,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 2,
-    listType: "tracklist"
+    listType: "tracklist",
   },
   {
     track: {
@@ -118,10 +118,10 @@ const ITEMS = [
       title: "Capestrano",
       url: "https://example.com/3",
       album: 3,
-      artist: "Artist Name"
+      artist: "Artist Name",
     },
     position: 3,
-    listType: "tracklist"
+    listType: "tracklist",
   },
 ];
 
@@ -131,11 +131,11 @@ export default function Home() {
       <Tracklist items={ITEMS} />
       <Queue modal={false} />
     </>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
   return {
     props: {}, // will be passed to the page component as props
-  }
+  };
 }

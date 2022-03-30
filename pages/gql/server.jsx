@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
-import client from "../../apollo-client";
+import countryClient from "../../apollo-client";
 
 export async function getServerSideProps() {
-  const { data } = await client.query({
+  const { data } = await countryClient.query({
     query: gql`
       query Countries {
         countries {

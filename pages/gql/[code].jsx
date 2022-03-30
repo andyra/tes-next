@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import client from "../../apollo-client";
+import countryClient from "../../apollo-client";
 
 const QUERY_COUNTRIES = gql`
   query Countries {
@@ -12,7 +12,7 @@ const QUERY_COUNTRIES = gql`
 `;
 
 export async function getStaticPaths() {
-  const { data } = await client.query({
+  const { data } = await countryClient.query({
     query: QUERY_COUNTRIES,
   });
 
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { params } = context;
-  const { data } = await client.query({
+  const { data } = await countryClient.query({
     query: gql`
       query Country {
         country(code: "${params.code}") {

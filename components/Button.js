@@ -5,14 +5,14 @@ const SIZES = {
   base: {
     h: "h-32",
     w: "w-32",
-    p: "px-12"
+    p: "px-12",
   },
   lg: {
     h: "h-48",
     w: "w-48",
-    p: "px-24"
-  }
-}
+    p: "px-24",
+  },
+};
 
 export default function Button({
   children,
@@ -20,7 +20,7 @@ export default function Button({
   className,
   onClick,
   size = "base",
-  url
+  url,
 }) {
   const buttonClasses = cn({
     "flex items-center justify-center transition": true,
@@ -28,20 +28,16 @@ export default function Button({
     [SIZES[size].h]: true,
     [SIZES[size].p]: !circle,
     [SIZES[size].w]: circle,
-    [className]: className
+    [className]: className,
   });
 
-  return (
-    url ? (
-      <Link href={url}>
-        <a className={buttonClasses}>
-          {children}
-        </a>
-      </Link>
-    ) : (
-      <button className={buttonClasses} onClick={onClick}>
-        {children}
-      </button>
-    )
-  )
+  return url ? (
+    <Link href={url}>
+      <a className={buttonClasses}>{children}</a>
+    </Link>
+  ) : (
+    <button className={buttonClasses} onClick={onClick}>
+      {children}
+    </button>
+  );
 }
