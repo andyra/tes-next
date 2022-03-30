@@ -62,7 +62,7 @@ export const ITEMS_TEST = [
       album: 1,
       artist: "Artist Name",
     },
-    position: 1,
+    position: 6,
     listType: "tracklist",
   },
   {
@@ -73,7 +73,7 @@ export const ITEMS_TEST = [
       album: 2,
       artist: "Artist Name",
     },
-    position: 2,
+    position: 7,
     listType: "tracklist",
   },
   {
@@ -84,7 +84,7 @@ export const ITEMS_TEST = [
       album: 3,
       artist: "Artist Name",
     },
-    position: 3,
+    position: 8,
     listType: "tracklist",
   },
   {
@@ -95,7 +95,7 @@ export const ITEMS_TEST = [
       album: 1,
       artist: "Artist Name",
     },
-    position: 1,
+    position: 9,
     listType: "tracklist",
   },
   {
@@ -106,7 +106,7 @@ export const ITEMS_TEST = [
       album: 2,
       artist: "Artist Name",
     },
-    position: 2,
+    position: 10,
     listType: "tracklist",
   },
   {
@@ -117,7 +117,7 @@ export const ITEMS_TEST = [
       album: 3,
       artist: "Artist Name",
     },
-    position: 3,
+    position: 11,
     listType: "tracklist",
   },
 ];

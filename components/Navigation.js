@@ -1,5 +1,6 @@
 import Link from "next/link";
 import cn from "classnames";
+import Button from "./Button";
 import Icon from "./Icon";
 
 const NavLink = ({ className, count, icon, title, url }) => {
@@ -40,8 +41,11 @@ const Navigation = () => (
       </li>
     </ul>
     <ul>
-      <li>
-        <NavLink title="Add Playlist" url="/" icon="add-circle" />
+      <li className="text-slate-500 text-sm flex items-center justify-between">
+        Playlists
+        <Button circle>
+          <Icon name="add" />
+        </Button>
       </li>
       <li>
         <NavLink title="Favorites" url="/" icon="heart" />
