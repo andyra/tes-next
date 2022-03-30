@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { ApolloProvider } from "@apollo/client";
 import Layout from "../components/Layout";
 import AppContext from "../components/AppContext";
+import client from "../apollo-client";
 import "../styles/globals.css";
 
 // Icons: Ionic is great, but there's some weird framework thing
-
 
 const testTrack = {
   track: {
     id: 99,
     title: "Test Title",
     url: "https://example/com/track/99",
-    album: 9
+    album: 9,
   },
-  listType: "queue"
-}
+  listType: "queue",
+};
 
 function App({ Component, pageProps }) {
   const [onDeck, setOnDeck] = useState(false);
@@ -24,7 +25,7 @@ function App({ Component, pageProps }) {
   const [prevFrom, setPrevFrom] = useState([]);
 
   const nextClasses = [
-  "grid",
+    "grid",
     "h-full",
     "overflow-hidden",
     "p-4",
@@ -37,29 +38,34 @@ function App({ Component, pageProps }) {
 
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses);
-    document.getElementById("__next").style = "grid-template-columns: 224px 1fr; grid-template-rows: 1fr 64px;";
+    document.getElementById("__next").style =
+      "grid-template-columns: 224px 1fr; grid-template-rows: 1fr 64px;";
   }, []);
 
   return (
-    <AppContext.Provider value={{
-      state: {
-        onDeck: onDeck,
-        nextFrom: nextFrom,
-        playing: playing,
-        queue: queue,
-        prevFrom: prevFrom,
-      },
-      setOnDeck: setOnDeck,
-      setNextFrom: setNextFrom,
-      setPlaying: setPlaying,
-      setQueue: setQueue,
-      setPrevFrom: setPrevFrom,
-    }}>
-      <Layout {...pageProps}>
-        <Component {...pageProps} />
-      </Layout>
-    </AppContext.Provider>
-  )
+    <ApolloProvider client={client}>
+      <AppContext.Provider
+        value={{
+          state: {
+            onDeck: onDeck,
+            nextFrom: nextFrom,
+            playing: playing,
+            queue: queue,
+            prevFrom: prevFrom,
+          },
+          setOnDeck: setOnDeck,
+          setNextFrom: setNextFrom,
+          setPlaying: setPlaying,
+          setQueue: setQueue,
+          setPrevFrom: setPrevFrom,
+        }}
+      >
+        <Layout {...pageProps}>
+          <Component {...pageProps} />
+        </Layout>
+      </AppContext.Provider>
+    </ApolloProvider>
+  );
 }
 
-export default App
+export default App;
