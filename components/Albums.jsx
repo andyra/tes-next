@@ -62,7 +62,7 @@ export default function Albums() {
 
   const albums = data.entries;
 
-  return !albums ? (
+  return albums ? (
     <ul>
       {albums.map((album) => (
         <li className="flex items-center gap-8" key={album.title}>
@@ -71,6 +71,6 @@ export default function Albums() {
       ))}
     </ul>
   ) : (
-    <Empty>No albums</Empty>
+    <Empty>Ain't no albums</Empty>
   );
 }
