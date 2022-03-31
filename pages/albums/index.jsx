@@ -1,16 +1,8 @@
-import Albums from "../../components/Albums";
+import { useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
-
-export default function Albums() {
-  return (
-    <>
-      <h1 className="text-6xl font-bold tracking-tighter">Albums</h1>
-      <ClientOnly>
-        <Albums />
-      </ClientOnly>
-    </>
-  );
-}
+import Empty from "../../components/Empty";
+import MusicTabs from "../../components/MusicTabs";
+import { ALBUMS } from "../../queries";
 
 export async function getStaticProps() {
   return {
@@ -18,4 +10,40 @@ export async function getStaticProps() {
       pageTitle: "Albums",
     },
   };
+}
+
+const AlbumList = () => {
+  const { data, loading, error } = useQuery(ALBUMS);
+
+  if (loading) {
+    return <mark>Loading...</mark>;
+  }
+
+  if (error) {
+    console.error(error);
+    return null;
+  }
+
+  return data.entries ? (
+    <ul>
+      {data.entries.map((album) => (
+        <li className="flex items-center gap-8" key={album.title}>
+          {album.title}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <Empty>Ain't no albums</Empty>
+  );
+};
+
+export default function AlbumsPage() {
+  return (
+    <>
+      <MusicTabs page="Albums" />
+      <ClientOnly>
+        <AlbumList />
+      </ClientOnly>
+    </>
+  );
 }

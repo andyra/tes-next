@@ -31,7 +31,7 @@ const Navigation = () => (
         <NavLink title="Episodes" url="/episodes" icon="mic" />
       </li>
       <li>
-        <NavLink title="Music" url="/music" icon="musical-notes" />
+        <NavLink title="Music" url="/albums" icon="musical-notes" />
       </li>
       <li>
         <NavLink title="Wiki" url="/wiki" icon="book" />
