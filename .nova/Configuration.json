@@ -1,4 +1,5 @@
 {
   "editor.default_syntax" : "jsx",
-  "workspace.color" : 6
+  "workspace.color" : 6,
+  "workspace.name" : "TES Next"
 }
