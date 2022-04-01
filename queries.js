@@ -44,6 +44,17 @@ export const PLAYLISTS = gql`
       id
       slug
       title
+      typeId
+    }
+  }
+`;
+
+export const FAVORITES = gql`
+  query Entries {
+    entries(section: "playlists", type: "favorites") {
+      id
+      slug
+      title
     }
   }
 `;

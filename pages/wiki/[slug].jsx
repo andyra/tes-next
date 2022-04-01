@@ -6,13 +6,13 @@ import PageTitle from "../../components/PageTitle";
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Album() {
+export default function Article() {
   const router = useRouter();
   const { slug } = router.query;
 
   return (
     <>
-      <PageTitle>Album: {slug}</PageTitle>
+      <PageTitle>Article: {slug}</PageTitle>
     </>
   );
 }

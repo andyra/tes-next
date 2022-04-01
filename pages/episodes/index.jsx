@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
@@ -19,11 +20,15 @@ const EpisodeList = () => {
     return null;
   }
 
+  console.log(data.entries);
+
   return data.entries ? (
     <ul>
       {data.entries.map(episode => (
-        <li className="flex items-center gap-8" key={episode.title}>
-          {episode.title}
+        <li className="flex items-center gap-8" key={episode.slug}>
+          <Link href={`episodes/${episode.slug}`}>
+            <a>{episode.title}</a>
+          </Link>
         </li>
       ))}
     </ul>
@@ -38,7 +43,7 @@ const EpisodeList = () => {
 export default function Episodes() {
   return (
     <>
-      <h1 className="text-6xl font-bold tracking-tighter">Episodes</h1>
+      <PageTitle>Episodes</PageTitle>
       <ClientOnly>
         <EpisodeList />
       </ClientOnly>

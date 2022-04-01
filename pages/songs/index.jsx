@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
@@ -7,8 +8,8 @@ import { SONGS } from "../../queries";
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: "Songs",
-    },
+      pageTitle: "Songs"
+    }
   };
 }
 
@@ -26,9 +27,11 @@ const SongList = () => {
 
   return data.entries ? (
     <ul>
-      {data.entries.map((song) => (
-        <li className="flex items-center gap-8" key={song.title}>
-          {song.title}
+      {data.entries.map(song => (
+        <li className="flex items-center gap-8" key={song.slug}>
+          <Link href={`songs/${song.slug}`}>
+            <a>{song.title}</a>
+          </Link>
         </li>
       ))}
     </ul>

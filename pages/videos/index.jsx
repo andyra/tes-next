@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
@@ -22,8 +23,10 @@ const SongList = () => {
   return data.entries ? (
     <ul>
       {data.entries.map(video => (
-        <li className="flex items-center gap-8" key={video.title}>
-          {video.title}
+        <li className="flex items-center gap-8" key={video.slug}>
+          <Link href={`videos/${video.slug}`}>
+            <a>{video.title}</a>
+          </Link>
         </li>
       ))}
     </ul>
