@@ -24,7 +24,7 @@ const WikiList = () => {
     <ul>
       {data.entries.map(article => (
         <li className="flex items-center gap-8" key={article.slug}>
-          <Link href={`wiki/${article.slug}`}>
+          <Link href={`wiki/${encodeURIComponent(article.slug)}`}>
             <a>{article.title}</a>
           </Link>
         </li>

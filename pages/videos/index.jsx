@@ -24,7 +24,7 @@ const SongList = () => {
     <ul>
       {data.entries.map(video => (
         <li className="flex items-center gap-8" key={video.slug}>
-          <Link href={`videos/${video.slug}`}>
+          <Link href={`videos/${encodeURIComponent(video.slug)}`}>
             <a>{video.title}</a>
           </Link>
         </li>

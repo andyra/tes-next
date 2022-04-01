@@ -7,7 +7,7 @@ import { EPISODES } from "../../queries";
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Episode() {
+export default function Episode({ episode }) {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -18,7 +18,7 @@ export default function Episode() {
   );
 }
 
-// Page Config
+// Config
 // -----------------------------------------------------------------------------
 
 export async function getStaticPaths() {
@@ -33,5 +33,26 @@ export async function getStaticPaths() {
   return {
     paths,
     fallback: false
+  };
+}
+
+export async function getStaticProps(context) {
+  const { params } = context;
+  const { data } = await client.query({
+    query: gql`
+      query Entry {
+        entry(section: "episodes", slug: "${params.slug}") {
+          id
+          slug
+          title
+        }
+      }
+    `
+  });
+
+  return {
+    props: {
+      episode: data.entry
+    }
   };
 }

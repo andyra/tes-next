@@ -29,7 +29,7 @@ const AlbumList = () => {
     <ul>
       {data.entries.map(album => (
         <li className="flex items-center gap-8" key={album.slug}>
-          <Link href={`albums/${album.slug}`}>
+          <Link href={`albums/${encodeURIComponent(album.slug)}`}>
             <a>{album.title}</a>
           </Link>
         </li>

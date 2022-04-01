@@ -29,7 +29,7 @@ const SongList = () => {
     <ul>
       {data.entries.map(song => (
         <li className="flex items-center gap-8" key={song.slug}>
-          <Link href={`songs/${song.slug}`}>
+          <Link href={`songs/${encodeURIComponent(song.slug)}`}>
             <a>{song.title}</a>
           </Link>
         </li>

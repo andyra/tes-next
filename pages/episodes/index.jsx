@@ -26,7 +26,7 @@ const EpisodeList = () => {
     <ul>
       {data.entries.map(episode => (
         <li className="flex items-center gap-8" key={episode.slug}>
-          <Link href={`episodes/${episode.slug}`}>
+          <Link href={`episodes/${encodeURIComponent(episode.slug)}`}>
             <a>{episode.title}</a>
           </Link>
         </li>

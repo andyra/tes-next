@@ -69,7 +69,7 @@ const PlaylistList = () => {
           count={99}
           icon="musical-notes"
           key={playlist.title}
-          url={`/playlists/${playlist.slug}`}
+          url={`/playlists/${encodeURIComponent(playlist.slug)}`}
           title={playlist.title}
         />
       ))}
