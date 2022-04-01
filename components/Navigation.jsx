@@ -1,12 +1,16 @@
 import Link from "next/link";
+import { useQuery } from "@apollo/client";
 import cn from "classnames";
+import ClientOnly from "./ClientOnly";
 import Button from "./Button";
+import Empty from "./Empty";
 import Icon from "./Icon";
+import { PLAYLISTS } from "../queries";
 
 const NavLink = ({ className, count, icon, title, url }) => {
   const linkClasses = cn({
     "flex items-center gap-8 h-32 px-12 -mx-12 py-16 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5": true,
-    [className]: className,
+    [className]: className
   });
 
   return (
@@ -20,6 +24,37 @@ const NavLink = ({ className, count, icon, title, url }) => {
         <span className="flex-1">{title}</span>
       </a>
     </Link>
+  );
+};
+
+const PlaylistList = () => {
+  const { data, loading, error } = useQuery(PLAYLISTS);
+
+  if (loading) {
+    return <mark>Loading...</mark>;
+  }
+
+  if (error) {
+    console.error(error);
+    return null;
+  }
+
+  console.log(data.entries);
+
+  return data.entries.length ? (
+    <ul>
+      {data.entries.map(playlist => (
+        <NavLink
+          count={99}
+          icon="musical-notes"
+          key={playlist.title}
+          url="/"
+          title={playlist.title}
+        />
+      ))}
+    </ul>
+  ) : (
+    <Empty>Ain't no Favorites</Empty>
   );
 };
 
@@ -37,6 +72,9 @@ const Navigation = () => (
         <NavLink title="Wiki" url="/wiki" icon="book" />
       </li>
       <li>
+        <NavLink title="Videos" url="/videos" icon="videocam" />
+      </li>
+      <li>
         <NavLink title="About" url="/about" icon="information" />
       </li>
     </ul>
@@ -47,15 +85,7 @@ const Navigation = () => (
           <Icon name="add" />
         </Button>
       </li>
-      <li>
-        <NavLink title="Favorites" url="/" icon="heart" />
-      </li>
-      <li>
-        <NavLink title="Boat Show 9" url="/" icon="musical-notes" />
-      </li>
-      <li>
-        <NavLink title="For this weekend" url="/" icon="musical-notes" />
-      </li>
+      <PlaylistList />
     </ul>
   </nav>
 );

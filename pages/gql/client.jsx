@@ -1,12 +1,11 @@
 import ClientOnly from "../../components/ClientOnly";
+import PageTitle from "../../components/PageTitle";
 import Countries from "./components/Countries";
 
 export default function ClientSide() {
   return (
     <>
-      <h1 className="text-6xl font-bold tracking-tighter">
-        GraphQL Client-Side
-      </h1>
+      <PageTitle>GraphQL Client-Side</PageTitle>
       <ClientOnly>
         <Countries />
       </ClientOnly>

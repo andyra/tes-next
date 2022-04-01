@@ -1,15 +1,11 @@
 import { useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
+import PageTitle from "../../components/PageTitle";
 import { EPISODES } from "../../queries";
 
-export async function getStaticProps() {
-  return {
-    props: {
-      pageTitle: "Episodes",
-    },
-  };
-}
+// Components
+// ----------------------------------------------------------------------------
 
 const EpisodeList = () => {
   const { data, loading, error } = useQuery(EPISODES);
@@ -25,7 +21,7 @@ const EpisodeList = () => {
 
   return data.entries ? (
     <ul>
-      {data.entries.map((episode) => (
+      {data.entries.map(episode => (
         <li className="flex items-center gap-8" key={episode.title}>
           {episode.title}
         </li>
@@ -36,7 +32,10 @@ const EpisodeList = () => {
   );
 };
 
-export default function EpisodesPage() {
+// Default
+// ----------------------------------------------------------------------------
+
+export default function Episodes() {
   return (
     <>
       <h1 className="text-6xl font-bold tracking-tighter">Episodes</h1>
@@ -45,4 +44,15 @@ export default function EpisodesPage() {
       </ClientOnly>
     </>
   );
+}
+
+// Config
+// ----------------------------------------------------------------------------
+
+export async function getStaticProps() {
+  return {
+    props: {
+      pageTitle: "Episodes"
+    }
+  };
 }

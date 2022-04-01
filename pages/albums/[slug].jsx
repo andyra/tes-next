@@ -1,10 +1,14 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import PageTitle from "../../components/PageTitle";
 
-export default function AlbumPage() {
+// Default
+// ----------------------------------------------------------------------------
+
+export default function Album() {
   return (
     <>
-      <h1 className="text-6xl font-bold tracking-tighter">Album Single</h1>
+      <PageTitle>Album Single</PageTitle>
     </>
   );
 }
@@ -20,15 +24,15 @@ export async function getStaticPaths() {
           slug
         }
       }
-    `,
+    `
   });
 
-  const paths = data.entries.map((entry) => ({
-    params: { slug: entry.slug },
+  const paths = data.entries.map(entry => ({
+    params: { slug: entry.slug }
   }));
 
   return {
     paths,
-    fallback: false,
+    fallback: false
   };
 }

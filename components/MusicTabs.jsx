@@ -14,7 +14,7 @@ const TabItem = ({ title, url, page }) => (
 
 export default function MusicTabs({ page }) {
   return (
-    <nav className="flex items-center gap-24">
+    <nav className="flex items-center gap-24 mb-64">
       <TabItem title="Albums" url="/albums" page={page} />
       <TabItem title="Songs" url="/songs" page={page} />
     </nav>

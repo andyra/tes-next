@@ -2,13 +2,13 @@ import { useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
 import PageTitle from "../../components/PageTitle";
-import { WIKIS } from "../../queries";
+import { VIDEOS } from "../../queries";
 
 // Components
 // ----------------------------------------------------------------------------
 
-const WikiList = () => {
-  const { data, loading, error } = useQuery(WIKIS);
+const SongList = () => {
+  const { data, loading, error } = useQuery(VIDEOS);
 
   if (loading) {
     return <mark>Loading...</mark>;
@@ -21,26 +21,26 @@ const WikiList = () => {
 
   return data.entries ? (
     <ul>
-      {data.entries.map(wiki => (
-        <li className="flex items-center gap-8" key={wiki.title}>
-          {wiki.title}
+      {data.entries.map(video => (
+        <li className="flex items-center gap-8" key={video.title}>
+          {video.title}
         </li>
       ))}
     </ul>
   ) : (
-    <Empty>Ain't no wikis</Empty>
+    <Empty>Ain't no videos</Empty>
   );
 };
 
 // Default
 // ----------------------------------------------------------------------------
 
-export default function WikisPage() {
+export default function VideosPage() {
   return (
     <>
-      <PageTitle>Wiki</PageTitle>
+      <PageTitle>Videos</PageTitle>
       <ClientOnly>
-        <WikiList />
+        <SongList />
       </ClientOnly>
     </>
   );
@@ -52,7 +52,7 @@ export default function WikisPage() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: "Wiki"
+      pageTitle: "Videos"
     }
   };
 }
