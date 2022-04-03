@@ -104,7 +104,7 @@ export default function Navigation() {
         </li>
       </ul>
       <ul>
-        <li className="text-slate-500 text-sm flex items-center justify-between">
+        <li className="text-gray-500 text-sm flex items-center justify-between">
           Playlists
           <Button circle>
             <Icon name="add" />

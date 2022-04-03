@@ -5,30 +5,32 @@ const SIZES = {
   base: {
     h: "h-32",
     w: "w-32",
-    p: "px-12",
+    p: "px-12"
   },
   lg: {
     h: "h-48",
     w: "w-48",
-    p: "px-24",
-  },
+    p: "px-24"
+  }
 };
 
 export default function Button({
   children,
   circle,
   className,
+  disabled,
   onClick,
   size = "base",
-  url,
+  url
 }) {
   const buttonClasses = cn({
     "flex items-center justify-center transition": true,
     "border dark:border-white/20 rounded-full hover:bg-gray-100 dark:hover:bg-white/10": true,
+    "opacity-50 pointer-events-none": disabled,
     [SIZES[size].h]: true,
     [SIZES[size].p]: !circle,
     [SIZES[size].w]: circle,
-    [className]: className,
+    [className]: className
   });
 
   return url ? (
@@ -36,7 +38,7 @@ export default function Button({
       <a className={buttonClasses}>{children}</a>
     </Link>
   ) : (
-    <button className={buttonClasses} onClick={onClick}>
+    <button className={buttonClasses} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   );

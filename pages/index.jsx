@@ -6,13 +6,12 @@ export default function Home() {
   return (
     <>
       <Tracklist items={ITEMS_TEST} />
-      <Queue modal={false} />
     </>
   );
 }
 
 export async function getServerSideProps(context) {
   return {
-    props: {}, // will be passed to the page component as props
+    props: {} // will be passed to the page component as props
   };
 }

@@ -12,9 +12,9 @@ const testTrack = {
     id: 99,
     title: "Test Title",
     url: "https://example/com/track/99",
-    album: 9,
+    album: 9
   },
-  listType: "queue",
+  listType: "queue"
 };
 
 function App({ Component, pageProps }) {
@@ -33,13 +33,13 @@ function App({ Component, pageProps }) {
     "bg-gray-100",
     "text-blue-800",
     "dark:bg-black",
-    "dark:text-gray-100",
+    "dark:text-gray-100"
   ];
 
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses);
     document.getElementById("__next").style =
-      "grid-template-columns: 224px 1fr; grid-template-rows: 1fr 64px;";
+      "grid-template-columns: 224px 1fr; grid-template-rows: 1fr 72px;";
   }, []);
 
   return (
@@ -51,13 +51,13 @@ function App({ Component, pageProps }) {
             nextFrom: nextFrom,
             playing: playing,
             queue: queue,
-            prevFrom: prevFrom,
+            prevFrom: prevFrom
           },
           setOnDeck: setOnDeck,
           setNextFrom: setNextFrom,
           setPlaying: setPlaying,
           setQueue: setQueue,
-          setPrevFrom: setPrevFrom,
+          setPrevFrom: setPrevFrom
         }}
       >
         <Layout {...pageProps}>

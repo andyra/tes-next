@@ -9,11 +9,11 @@ import Queue from "./Queue";
 
 const OnDeck = ({ onDeck }) => (
   <div
-    className={`flex items-center gap-8 w-1/4 transition ${
+    className={`flex-1 flex items-center gap-8 transition ${
       onDeck ? "" : "opacity-0 pointer-events-none"
     }`}
   >
-    <figure className="h-48 w-48 bg-blue-200 rounded flex items-center justify-center text-2xl">
+    <figure className="h-56 w-56 bg-blue-200 rounded flex items-center justify-center text-2xl flex-shrink-0">
       {onDeck ? onDeck.track.id : ""}
     </figure>
     <div>
@@ -27,27 +27,34 @@ const OnDeck = ({ onDeck }) => (
   </div>
 );
 
-const PlayerControls = ({ back, isPlaying, next, togglePlay }) => (
-  <div className="flex-1 flex items-center justify-center gap-8">
-    <Button circle onClick={back}>
-      <Icon name="play-skip-back" solid />
-    </Button>
-    <Button
-      circle
-      size="lg"
-      onClick={togglePlay}
-      className={`${isPlaying ? "bg-green-200 hover:bg-green-300" : ""}`}
-    >
-      <Icon name={isPlaying ? "pause" : "play"} solid />
-    </Button>
-    <Button circle onClick={next}>
-      <Icon name="play-skip-forward" solid />
-    </Button>
+const PlayerControls = ({ back, isPlaying, onDeck, next, togglePlay }) => (
+  <div className="w-320 flex flex-col gap-4">
+    <div className="flex items-center justify-center gap-8">
+      <Button circle onClick={back} disabled={!onDeck}>
+        <Icon name="play-skip-back" solid />
+      </Button>
+      <Button
+        circle
+        disabled={!onDeck}
+        onClick={togglePlay}
+        className={`${isPlaying ? "bg-green-200 hover:bg-green-300" : ""}`}
+      >
+        <Icon name={isPlaying ? "pause" : "play"} solid />
+      </Button>
+      <Button circle onClick={next} disabled={!onDeck}>
+        <Icon name="play-skip-forward" solid />
+      </Button>
+    </div>
+    <div className="flex items-center gap-8">
+      <time className="w-48 text-xs text-gray-500 text-right">0:00</time>
+      <div className="flex-1 h-4 bg-gray-400 rounded-full" />
+      <time className="w-48 text-xs text-gray-500">0:00</time>
+    </div>
   </div>
 );
 
 const ExtraControls = ({ queueOpen, setQueueOpen }) => (
-  <div className="flex items-center justify-end gap-8 w-1/4">
+  <div className="flex-1 flex items-center justify-end gap-8">
     <Button
       circle
       className={`${queueOpen ? "bg-green-200" : ""}`}
@@ -128,12 +135,13 @@ export default function Player() {
 
   return (
     <>
-      <aside className="col-span-2 bg-white dark:bg-gray-800 p-8 rounded-lg flex items-center justify-between">
+      <aside className="col-span-2 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-between p-8 gap-8">
         <OnDeck onDeck={context.state.onDeck} />
         <PlayerControls
           back={back}
           isPlaying={isPlaying()}
           next={next}
+          onDeck={context.state.onDeck}
           togglePlay={togglePlay}
         />
         <ExtraControls queueOpen={queueOpen} setQueueOpen={setQueueOpen} />
