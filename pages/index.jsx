@@ -2,16 +2,40 @@ import Queue from "../components/Queue";
 import Tracklist from "../components/Tracklist";
 import { ITEMS_TEST } from "../constants.js";
 
-export default function Home() {
+import { useState } from "react";
+import { Transition } from "@headlessui/react";
+
+function MyComponent() {
+  const [isShowing, setIsShowing] = useState(false);
+
   return (
     <>
-      <Tracklist items={ITEMS_TEST} />
+      <button onClick={() => setIsShowing(isShowing => !isShowing)}>
+        Toggle
+      </button>
+      <Transition
+        show={isShowing}
+        enter="transition-opacity duration-500"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-150"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        I will fade in and out
+      </Transition>
     </>
   );
 }
 
-export async function getServerSideProps(context) {
-  return {
-    props: {} // will be passed to the page component as props
-  };
+// Default
+// ----------------------------------------------------------------------------
+
+export default function Home() {
+  return (
+    <>
+      <MyComponent />
+      <Tracklist items={ITEMS_TEST} />
+    </>
+  );
 }

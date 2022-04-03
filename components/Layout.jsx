@@ -15,7 +15,7 @@ const Main = ({ children }) => (
 );
 
 const Toolbar = () => (
-  <section className="p-16 flex items-center justify-between gap-8 bg-white dark:bg-gray-800 rounded-lg sticky top-0 z-10">
+  <section className="sticky top-0 z-10 p-16 flex items-center justify-between gap-8 bg-white dark:bg-gray-800 rounded-lg">
     <input
       placeholder="What are you looking for?"
       className="flex-1 bg-gray-100 h-32 rounded-full mx-auto w-full max-w-screen-sm px-16"
