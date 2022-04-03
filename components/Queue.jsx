@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import cn from "classnames";
 import AppContext from "../components/AppContext";
 import Button from "../components/Button";
@@ -65,14 +65,24 @@ export default function Queue({ open }) {
     );
   };
 
+  useEffect(() => {
+    console.log("Open changed");
+  }, [open]);
+
   const queueClasses = cn({
-    "absolute z-50 top-0 left-0 right-0 bottom-64 space-y-24 bg-gray-200 p-24": true,
+    "absolute z-50 top-0 left-0 right-0 bottom-72": true,
+    "flex items-stretch justify-end p-4": true,
+    "bg-black/25 backdrop-blur-sm": true,
     hidden: !open
+  });
+
+  const sectionClasses = cn({
+    "w-full max-w-screen-xs bg-white rounded-lg p-24 space-y-24": true
   });
 
   return (
     <div className={queueClasses} id="queue" tabIndex="-1" role="region">
-      <section className="max-w-screen-sm mx-auto space-y-24">
+      <section className={sectionClasses}>
         <QueueList title="PrevFrom" items={context.state.prevFrom} />
         <NowPlaying onDeck={context.state.onDeck} />
         <QueueList

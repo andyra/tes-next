@@ -3,8 +3,8 @@ module.exports = {
   theme: {
     extend: {
       transitionDuration: {
-        DEFAULT: "100ms",
-      },
+        DEFAULT: "100ms"
+      }
     },
     fontFamily: {
       sans: [
@@ -15,7 +15,7 @@ module.exports = {
         "Roboto",
         "'Helvetica Neue'",
         "Arial",
-        "sans-serif",
+        "sans-serif"
       ],
       mono: [
         "Apercu Mono",
@@ -26,8 +26,27 @@ module.exports = {
         "Consolas",
         "'Liberation Mono'",
         "'Courier New'",
-        "monospace",
-      ],
+        "monospace"
+      ]
+    },
+    maxWidth: ({ theme, breakpoints }) => ({
+      none: "none",
+      0: "0",
+      ...theme("spacing"),
+      full: "100%",
+      min: "min-content",
+      max: "max-content",
+      fit: "fit-content",
+      prose: "65ch",
+      ...breakpoints(theme("screens"))
+    }),
+    screens: {
+      xs: "480px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px"
     },
     spacing: {
       0: "0",
@@ -54,8 +73,8 @@ module.exports = {
       256: "256px",
       288: "288px",
       320: "320px",
-      em: "1em",
-    },
+      em: "1em"
+    }
   },
-  plugins: [],
+  plugins: []
 };
