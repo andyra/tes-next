@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
 import PageTitle from "../../components/PageTitle";
-import { EPISODES } from "../../queries";
+import { EPISODES } from "../../constants";
 
 // Components
 // ----------------------------------------------------------------------------

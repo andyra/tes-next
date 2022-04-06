@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import AppContext from "./AppContext";
+import AudioContext from "../context/AudioContext";
 import Button from "./Button";
 import Icon from "./Icon";
 import Queue from "./Queue";
@@ -37,7 +37,7 @@ const PlayerControls = ({ back, isPlaying, onDeck, next, togglePlay }) => (
         circle
         disabled={!onDeck}
         onClick={togglePlay}
-        className={`${isPlaying ? "bg-green-200 hover:bg-green-300" : ""}`}
+        className={`${isPlaying ? "bg-accent hover:bg-accent" : ""}`}
       >
         <Icon name={isPlaying ? "pause" : "play"} solid />
       </Button>
@@ -57,7 +57,7 @@ const ExtraControls = ({ queueOpen, setQueueOpen }) => (
   <div className="flex-1 flex items-center justify-end gap-8">
     <Button
       circle
-      className={`${queueOpen ? "bg-green-200" : ""}`}
+      className={`${queueOpen ? "bg-accent" : ""}`}
       onClick={() => {
         setQueueOpen(queueOpen ? false : true);
       }}
@@ -75,7 +75,7 @@ const ExtraControls = ({ queueOpen, setQueueOpen }) => (
 
 export default function Player() {
   const [queueOpen, setQueueOpen] = useState(false);
-  const context = useContext(AppContext);
+  const context = useContext(AudioContext);
 
   function togglePlay() {
     context.state.playing
@@ -135,7 +135,7 @@ export default function Player() {
 
   return (
     <>
-      <aside className="col-span-2 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-between p-8 gap-8">
+      <aside className="col-span-2 bg-primary rounded-lg flex items-center justify-between p-8 gap-8">
         <OnDeck onDeck={context.state.onDeck} />
         <PlayerControls
           back={back}

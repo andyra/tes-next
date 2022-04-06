@@ -2,6 +2,17 @@ module.exports = {
   content: ["./pages/**/*.{js,jsx}", "./components/**/*.{js,jsx}"],
   theme: {
     extend: {
+      backgroundColor: {
+        primary: "var(--bg-primary)",
+        secondary: "var(--bg-secondary)",
+        accent: "var(--bg-accent)",
+        hover: "var(--bg-hover)"
+      },
+      textColor: {
+        primary: "var(--text-primary)",
+        secondary: "var(--text-secondary)",
+        accent: "var(--text-accent)"
+      },
       transitionDuration: {
         DEFAULT: "100ms"
       }

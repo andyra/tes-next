@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
 import MusicTabs from "../../components/MusicTabs";
-import { SONGS } from "../../queries";
+import { SONGS } from "../../constants";
 
 export async function getStaticProps() {
   return {

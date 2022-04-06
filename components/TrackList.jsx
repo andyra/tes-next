@@ -1,23 +1,26 @@
 import { useContext } from "react";
 import cn from "classnames";
-import AppContext from "../components/AppContext";
+import AudioContext from "../context/AudioContext";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
 
-export default function Tracklist({items}) {
-  const context = useContext(AppContext);
+export default function Tracklist({ items }) {
+  const context = useContext(AudioContext);
 
   function togglePlay() {
-    context.state.playing ? context.setPlaying(false) : context.setPlaying(true);
+    context.state.playing
+      ? context.setPlaying(false)
+      : context.setPlaying(true);
   }
 
   function selectItem(item, i) {
-    const selectedTrackIsCurrent = context.state.onDeck
-       && context.state.onDeck.track.id === item.track.id
-       && item.listType != "queue";
+    const selectedTrackIsCurrent =
+      context.state.onDeck &&
+      context.state.onDeck.track.id === item.track.id &&
+      item.listType != "queue";
 
     if (selectedTrackIsCurrent) {
-      togglePlay()
+      togglePlay();
     } else {
       context.setOnDeck(item);
       context.setPlaying(true);
@@ -52,9 +55,12 @@ export default function Tracklist({items}) {
   }
 
   function highlightTrack(item) {
-    return context.state.onDeck && context.state.onDeck.track.id === item.track.id
-        && item.listType === "tracklist"
-        && context.state.onDeck.listType != "queue";
+    return (
+      context.state.onDeck &&
+      context.state.onDeck.track.id === item.track.id &&
+      item.listType === "tracklist" &&
+      context.state.onDeck.listType != "queue"
+    );
   }
 
   function addToQueue(item) {
@@ -70,12 +76,12 @@ export default function Tracklist({items}) {
     context.setQueue(newQueue);
   }
 
-  const PlayPauseButton = ({item, position, i}) => {
+  const PlayPauseButton = ({ item, position, i }) => {
     const active = highlightTrack(item) && context.state.playing;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
-      "bg-cyan-100 dark:bg-white/20": active,
-      "opacity-0 group-hover:opacity-100": !active,
+      "bg-accent dark:bg-white/20": active,
+      "opacity-0 group-hover:opacity-100": !active
     });
 
     return (
@@ -84,52 +90,71 @@ export default function Tracklist({items}) {
         <Button
           className={buttonClasses}
           circle
-          onClick={() => {selectItem(item, i)}}
+          onClick={() => {
+            selectItem(item, i);
+          }}
         >
-          <Icon name={
-            highlightTrack(item) ? context.state.playing ? "pause" : "play" : "play"
-          } solid />
+          <Icon
+            name={
+              highlightTrack(item)
+                ? context.state.playing
+                  ? "pause"
+                  : "play"
+                : "play"
+            }
+            solid
+          />
         </Button>
       </div>
-    )
-  }
+    );
+  };
 
   const liClasses = cn({
     "flex justify-between p-8 -mx-8 rounded-lg cursor-default transition group": true,
-    "hover:bg-gray-50 focus:bg-gray-100 dark:hover:bg-white/10 dark:focus:bg-white/20": true
+    "hover:bg-hover focus:bg-gray-100 dark:focus:bg-white/20": true
   });
 
   return (
     <ul>
-      {items.map((item, i) =>
+      {items.map((item, i) => (
         <li className={liClasses} tabIndex={0} key={i}>
           <div className="flex items-center gap-8">
             <PlayPauseButton item={item} position={item.position} i={i} />
-            <div className={`flex items-center gap-8 ${highlightTrack(item) ? "text-cyan-500" : ""}`}>
+            <div
+              className={`flex items-center gap-8 ${
+                highlightTrack(item) ? "text-accent" : ""
+              }`}
+            >
               {item.track.title}
-              <span className="opacity-50">({item.listType} • {item.position})</span>
+              <span className="opacity-50">
+                ({item.listType} • {item.position})
+              </span>
             </div>
           </div>
-          {item.listType === "tracklist" &&
+          {item.listType === "tracklist" && (
             <Button
               circle
               className="opacity-0 group-hover:opacity-100"
-              onClick={() => {addToQueue(item)}}
+              onClick={() => {
+                addToQueue(item);
+              }}
             >
               <Icon name="add" solid />
             </Button>
-          }
-          {item.listType === "queue" &&
+          )}
+          {item.listType === "queue" && (
             <Button
               circle
               className="opacity-0 group-hover:opacity-100"
-              onClick={() => {removeFromQueue(item, i)}}
+              onClick={() => {
+                removeFromQueue(item, i);
+              }}
             >
               <Icon name="close" solid />
             </Button>
-          }
+          )}
         </li>
-      )}
+      ))}
     </ul>
-  )
+  );
 }

@@ -3,24 +3,26 @@ import cn from "classnames";
 import Button from "./Button";
 import Navigation from "./Navigation";
 import Player from "./Player";
+import ThemeToggle from "./ThemeToggle";
 import Script from "next/script";
 
 // Components
 // ----------------------------------------------------------------------------
 
 const Main = ({ children }) => (
-  <main className="bg-white dark:bg-gray-800 rounded-lg overflow-y-auto">
-    {children}
-  </main>
+  <main className="bg-primary rounded-lg overflow-y-auto">{children}</main>
 );
 
 const Toolbar = () => (
-  <section className="sticky top-0 z-10 p-16 flex items-center justify-between gap-8 bg-white dark:bg-gray-800 rounded-lg">
+  <section className="sticky top-0 z-10 p-16 flex items-center justify-between gap-8 bg-primary rounded-lg">
     <input
       placeholder="What are you looking for?"
       className="flex-1 bg-gray-100 h-32 rounded-full mx-auto w-full max-w-screen-sm px-16"
     />
-    <Button>Enter</Button>
+    <div className="flex items-center gap-8">
+      <ThemeToggle />
+      <Button>Enter</Button>
+    </div>
   </section>
 );
 

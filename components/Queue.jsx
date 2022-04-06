@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import cn from "classnames";
-import AppContext from "../components/AppContext";
+import AudioContext from "../context/AudioContext";
 import Button from "../components/Button";
 import Tracklist from "../components/Tracklist";
 
@@ -36,7 +36,7 @@ const QueueList = ({ actions, items, title }) => {
 const NowPlaying = ({ onDeck }) => {
   return onDeck ? (
     <Section title="Now Playing">
-      <div className="text-cyan-500">
+      <div className="text-accent">
         {onDeck.track.title}{" "}
         <span className="opacity-50">
           ({onDeck.listType} • {onDeck.position})
@@ -52,7 +52,7 @@ const NowPlaying = ({ onDeck }) => {
 // ----------------------------------------------------------------------------
 
 export default function Queue({ open }) {
-  const context = useContext(AppContext);
+  const context = useContext(AudioContext);
 
   const ClearQueueButton = () => {
     const visible = context.state.queue.length;
