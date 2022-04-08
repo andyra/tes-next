@@ -5,7 +5,7 @@ import ClientOnly from "./ClientOnly";
 import Button from "./Button";
 import Empty from "./Empty";
 import Icon from "./Icon";
-import { PLAYLISTS } from "../queries";
+import { PLAYLISTS } from "../constants";
 
 // Components
 // ----------------------------------------------------------------------------
