@@ -5,21 +5,21 @@
 .dark {
   --bg-primary: #1f2937;
   --bg-secondary: black;
-  --bg-accent: orange;
+  --bg-accent: tomato;
   --bg-hover: rgba(255, 255, 255, 0.1);
   --text-primary: pink;
   --text-secondary: gray;
-  --text-accent: orange;
+  --text-accent: tomato;
 }
 
 .light {
   --bg-primary: white;
   --bg-secondary: gray;
-  --bg-accent: cyan;
-  --bg-hover: rgba(0, 0, 0, 0.1);
+  --bg-accent: tomato;
+  --bg-hover: rgba(0, 0, 0, 0.05);
   --text-primary: black;
   --text-secondary: gray;
-  --text-accent: cyan;
+  --text-accent: tomato;
 }
 
 @tailwind base;

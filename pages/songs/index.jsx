@@ -1,20 +1,23 @@
 import Link from "next/link";
-import { useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
 import MusicTabs from "../../components/MusicTabs";
-import { SONGS } from "../../constants";
 
-export async function getStaticProps() {
-  return {
-    props: {
-      pageTitle: "Songs"
-    }
-  };
-}
+// Components
+// ----------------------------------------------------------------------------
 
 const SongList = () => {
-  const { data, loading, error } = useQuery(SONGS);
+  const { data, loading, error } = useQuery(
+    gql`
+      query Entries {
+        entries(section: "songs") {
+          slug
+          title
+        }
+      }
+    `
+  );
 
   if (loading) {
     return <mark>Loading...</mark>;
@@ -26,11 +29,17 @@ const SongList = () => {
   }
 
   return data.entries ? (
-    <ul>
-      {data.entries.map(song => (
-        <li className="flex items-center gap-8" key={song.slug}>
-          <Link href={`songs/${encodeURIComponent(song.slug)}`}>
-            <a>{song.title}</a>
+    <ul className="md:columns-2 lg:columns-3">
+      {data.entries.map((song, i) => (
+        <li key={song.slug}>
+          {console.log(song)}
+          <Link href={`/songs/${encodeURIComponent(song.slug)}`}>
+            <a className="flex break-inside-avoid-column gap-8 hover:bg-hover p-8 border-t border-black transition group">
+              <span className="opacity-25 group-hover:opacity-50 transition">
+                {i + 1}
+              </span>
+              {song.title}
+            </a>
           </Link>
         </li>
       ))}
@@ -39,6 +48,9 @@ const SongList = () => {
     <Empty>Ain't no songs</Empty>
   );
 };
+
+// Default
+// ----------------------------------------------------------------------------
 
 export default function SongsPage() {
   return (
@@ -49,4 +61,16 @@ export default function SongsPage() {
       </ClientOnly>
     </>
   );
+}
+
+// Config
+// ----------------------------------------------------------------------------
+
+export async function getStaticProps() {
+  return {
+    props: {
+      maxWidth: "max-w-none",
+      pageTitle: "Songs"
+    }
+  };
 }

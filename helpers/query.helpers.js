@@ -10,14 +10,3 @@ export function querySlugs(section) {
     }
   `;
 }
-
-export function queryEntry(section, slug, content) {
-  return gql`
-    query Entry {
-      entry(section: "${section}", slug: "${slug}") {
-        title
-        ${content}
-      }
-    }
-  `;
-}

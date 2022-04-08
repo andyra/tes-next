@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import cn from "classnames";
 import ClientOnly from "./ClientOnly";
@@ -10,9 +11,12 @@ import { PLAYLISTS } from "../constants";
 // Components
 // ----------------------------------------------------------------------------
 
-const NavLink = ({ className, count, icon, title, url }) => {
+const NavLink = ({ className, count, icon, navSection, title, url }) => {
+  const router = useRouter();
+  const active = router.asPath == url || navSection === title;
   const linkClasses = cn({
     "flex items-center gap-8 h-32 px-12 -mx-12 py-16 rounded-lg hover:bg-hover": true,
+    "text-accent": active,
     [className]: className
   });
 
@@ -82,22 +86,42 @@ const PlaylistList = () => {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Navigation() {
+export default function Navigation({ navSection }) {
   return (
     <nav className="row-span-1 flex flex-col gap-24 bg-primary rounded-lg p-16">
       <ul>
         <NavLink title="T.E.S." url="/" className="mb-24" />
         <li>
-          <NavLink title="Episodes" url="/episodes" icon="mic" />
+          <NavLink
+            title="Episodes"
+            url="/episodes"
+            icon="mic"
+            navSection={navSection}
+          />
         </li>
         <li>
-          <NavLink title="Music" url="/albums" icon="musical-notes" />
+          <NavLink
+            title="Music"
+            url="/albums"
+            icon="musical-notes"
+            navSection={navSection}
+          />
         </li>
         <li>
-          <NavLink title="Wiki" url="/wiki" icon="book" />
+          <NavLink
+            title="Wiki"
+            url="/wiki"
+            icon="book"
+            navSection={navSection}
+          />
         </li>
         <li>
-          <NavLink title="Videos" url="/videos" icon="videocam" />
+          <NavLink
+            title="Videos"
+            url="/videos"
+            icon="videocam"
+            navSection={navSection}
+          />
         </li>
         <li>
           <NavLink title="About" url="/about" icon="information" />

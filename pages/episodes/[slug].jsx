@@ -13,16 +13,9 @@ import DataRow from "../../components/DataRow";
 export default function Episode({ episode }) {
   return (
     <>
-      <PageTitle>Episode</PageTitle>
+      <PageTitle>{episode.title}</PageTitle>
       <section className="divide-y">
         <DataRow title="title" value={episode.title} />
-        <DataRow title="description" value={episode.description} />
-        <DataRow title="releaseDate" value={episode.releaseDate} />
-        <DataRow title="episodeAudio" value={episode.episodeAudio[0].url} />
-        <DataRow
-          title="episodeCoverArt"
-          value={episode.episodeCoverArt[0].url}
-        />
         <DataRow title="companionAlbum">
           <DataRow
             child
@@ -36,6 +29,14 @@ export default function Episode({ episode }) {
             value={episode.companionAlbum[0].albumCoverArt[0].url}
           />
         </DataRow>
+        <DataRow title="description" value={episode.description} />
+        <DataRow title="episodeAudio" value={episode.episodeAudio[0].url} />
+        <DataRow
+          title="episodeCoverArt"
+          value={episode.episodeCoverArt[0].url}
+        />
+        <DataRow title="releaseDate" value={episode.releaseDate} />
+        <DataRow title="minutes" value={<mark>TODO</mark>} />
       </section>
     </>
   );
@@ -70,10 +71,6 @@ export async function getStaticProps(context) {
         entry(section: "episodes", slug: "${params.slug}") {
           title
           ... on episodes_default_Entry {
-            description
-            releaseDate
-            episodeAudio { url }
-            episodeCoverArt { url }
             companionAlbum {
               slug
               title
@@ -81,6 +78,10 @@ export async function getStaticProps(context) {
                 albumCoverArt { url }
               }
             }
+            description
+            episodeAudio { url }
+            episodeCoverArt { url }
+            releaseDate
           }
         }
       }
@@ -89,7 +90,9 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      episode: data.entry
+      episode: data.entry,
+      navSection: "Episodes",
+      pageTitle: data.entry.title
     }
   };
 }

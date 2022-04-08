@@ -1,38 +1,5 @@
 import { gql } from "@apollo/client";
 
-// Albums
-// ----------------------------------------------------------------------------
-
-export const ALBUMS = gql`
-  query Entries {
-    entries(section: "albums") {
-      id
-      slug
-      title
-      ... on albums_default_Entry {
-        releaseDate
-        artist {
-          id
-          title
-          slug
-        }
-        albumType
-        albumCoverArt {
-          filename
-        }
-      }
-    }
-  }
-`;
-
-export const ALBUM_SLUGS = gql`
-  query Entries {
-    entries(section: "albums") {
-      slug
-    }
-  }
-`;
-
 // Playlists
 // ----------------------------------------------------------------------------
 
@@ -79,16 +46,6 @@ export const FAVORITE_SLUGS = gql`
 // Songs
 // ----------------------------------------------------------------------------
 
-export const SONGS = gql`
-  query Entries {
-    entries(section: "songs") {
-      id
-      slug
-      title
-    }
-  }
-`;
-
 export const SONG_SLUGS = gql`
   query Entries {
     entries(section: "songs") {
@@ -113,27 +70,6 @@ export const VIDEOS = gql`
 export const VIDEO_SLUGS = gql`
   query Entries {
     entries(section: "videos") {
-      slug
-    }
-  }
-`;
-
-// Wiki
-// ----------------------------------------------------------------------------
-
-export const WIKIS = gql`
-  query Entries {
-    entries(section: "wiki") {
-      id
-      slug
-      title
-    }
-  }
-`;
-
-export const WIKI_SLUGS = gql`
-  query Entries {
-    entries(section: "wikis") {
       slug
     }
   }
@@ -196,72 +132,6 @@ export const ITEMS_TEST = [
       artist: "Artist Name"
     },
     position: 5,
-    listType: "tracklist"
-  },
-  {
-    track: {
-      id: 1,
-      title: "Gabriel's Friendship Gang",
-      url: "https://example.com/1",
-      album: 1,
-      artist: "Artist Name"
-    },
-    position: 6,
-    listType: "tracklist"
-  },
-  {
-    track: {
-      id: 2,
-      title: "Matt Slime",
-      url: "https://example.com/2",
-      album: 2,
-      artist: "Artist Name"
-    },
-    position: 7,
-    listType: "tracklist"
-  },
-  {
-    track: {
-      id: 3,
-      title: "Capestrano",
-      url: "https://example.com/3",
-      album: 3,
-      artist: "Artist Name"
-    },
-    position: 8,
-    listType: "tracklist"
-  },
-  {
-    track: {
-      id: 1,
-      title: "Gabriel's Friendship Gang",
-      url: "https://example.com/1",
-      album: 1,
-      artist: "Artist Name"
-    },
-    position: 9,
-    listType: "tracklist"
-  },
-  {
-    track: {
-      id: 2,
-      title: "Matt Slime",
-      url: "https://example.com/2",
-      album: 2,
-      artist: "Artist Name"
-    },
-    position: 10,
-    listType: "tracklist"
-  },
-  {
-    track: {
-      id: 3,
-      title: "Capestrano",
-      url: "https://example.com/3",
-      album: 3,
-      artist: "Artist Name"
-    },
-    position: 11,
     listType: "tracklist"
   }
 ];

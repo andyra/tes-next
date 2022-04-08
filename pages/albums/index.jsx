@@ -1,20 +1,36 @@
+import Image from "next/image";
 import Link from "next/link";
-import { useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
 import MusicTabs from "../../components/MusicTabs";
-import { ALBUMS } from "../../constants";
+import NiceDate from "../../components/NiceDate";
 
-export async function getStaticProps() {
-  return {
-    props: {
-      pageTitle: "Albums"
-    }
-  };
-}
+// Components
+// ----------------------------------------------------------------------------
 
 const AlbumList = () => {
-  const { data, loading, error } = useQuery(ALBUMS);
+  const { data, loading, error } = useQuery(
+    gql`
+      query Entries {
+        entries(section: "albums") {
+          slug
+          title
+          ... on albums_default_Entry {
+            releaseDate
+            artist {
+              id
+              title
+            }
+            albumType
+            albumCoverArt {
+              url
+            }
+          }
+        }
+      }
+    `
+  );
 
   if (loading) {
     return <mark>Loading...</mark>;
@@ -26,11 +42,22 @@ const AlbumList = () => {
   }
 
   return data.entries ? (
-    <ul>
+    <ul className="grid grid-cols-3 -mx-8">
       {data.entries.map(album => (
-        <li className="flex items-center gap-8" key={album.slug}>
-          <Link href={`albums/${encodeURIComponent(album.slug)}`}>
-            <a>{album.title}</a>
+        <li key={album.slug}>
+          <Link href={`/albums/${encodeURIComponent(album.slug)}`}>
+            <a className="block hover:bg-hover rounded p-8 transition">
+              {album.albumCoverArt[0].url && (
+                <Image
+                  alt={`${album.title} cover art`}
+                  src={album.albumCoverArt[0].url}
+                  width={256}
+                  height={256}
+                />
+              )}
+              <div>{album.title}</div>
+              <NiceDate date={album.releaseDate} className="opacity-50" />
+            </a>
           </Link>
         </li>
       ))}
@@ -39,6 +66,9 @@ const AlbumList = () => {
     <Empty>Ain't no albums</Empty>
   );
 };
+
+// Default
+// ----------------------------------------------------------------------------
 
 export default function AlbumsPage() {
   return (
@@ -49,4 +79,15 @@ export default function AlbumsPage() {
       </ClientOnly>
     </>
   );
+}
+
+// Config
+// ----------------------------------------------------------------------------
+
+export async function getStaticProps() {
+  return {
+    props: {
+      pageTitle: "Albums"
+    }
+  };
 }

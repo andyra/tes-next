@@ -37,11 +37,11 @@ const EpisodeList = () => {
   }
 
   return data.entries ? (
-    <ul className="grid grid-cols-3">
+    <ul className="grid grid-cols-3 -mx-8">
       {data.entries.map(episode => (
         <li key={episode.slug}>
-          <Link href={`episodes/${encodeURIComponent(episode.slug)}`}>
-            <a>
+          <Link href={`/episodes/${encodeURIComponent(episode.slug)}`}>
+            <a className="block hover:bg-hover rounded p-8 transition">
               <Image
                 alt={`${episode.title} cover art`}
                 src={episode.episodeCoverArt[0].url}

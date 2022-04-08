@@ -10,7 +10,9 @@ import Script from "next/script";
 // ----------------------------------------------------------------------------
 
 const Main = ({ children }) => (
-  <main className="bg-primary rounded-lg overflow-y-auto">{children}</main>
+  <main className="h-full bg-primary rounded-lg overflow-y-auto">
+    {children}
+  </main>
 );
 
 const Toolbar = () => (
@@ -47,7 +49,7 @@ export default function Layout({ children, ...props }) {
           {props.pageTitle ? `${props.pageTitle} • TES` : "This Evening's Show"}
         </title>
       </Head>
-      <Navigation />
+      <Navigation navSection={props.navSection} />
       <Main>
         <Toolbar />
         <Container maxWidth={props.maxWidth}>{children}</Container>
