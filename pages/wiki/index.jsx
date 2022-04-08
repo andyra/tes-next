@@ -3,9 +3,6 @@ import Empty from "../../components/Empty";
 import PageTitle from "../../components/PageTitle";
 import CategoryList from "./components/CategoryList";
 
-// Components
-// ----------------------------------------------------------------------------
-
 // Default
 // ----------------------------------------------------------------------------
 
