@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import cn from "classnames";
-import AppContext from "../components/AppContext";
+import AudioContext from "../context/AudioContext";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
 
 export default function Tracklist({ items }) {
-  const context = useContext(AppContext);
+  const context = useContext(AudioContext);
 
   function togglePlay() {
     context.state.playing
@@ -80,7 +80,7 @@ export default function Tracklist({ items }) {
     const active = highlightTrack(item) && context.state.playing;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
-      "bg-cyan-100 dark:bg-white/20": active,
+      "bg-accent dark:bg-white/20": active,
       "opacity-0 group-hover:opacity-100": !active
     });
 
@@ -111,7 +111,7 @@ export default function Tracklist({ items }) {
 
   const liClasses = cn({
     "flex justify-between p-8 -mx-8 rounded-lg cursor-default transition group": true,
-    "hover:bg-gray-50 focus:bg-gray-100 dark:hover:bg-white/10 dark:focus:bg-white/20": true
+    "hover:bg-hover focus:bg-gray-100 dark:focus:bg-white/20": true
   });
 
   return (
@@ -122,7 +122,7 @@ export default function Tracklist({ items }) {
             <PlayPauseButton item={item} position={item.position} i={i} />
             <div
               className={`flex items-center gap-8 ${
-                highlightTrack(item) ? "text-cyan-500" : ""
+                highlightTrack(item) ? "text-accent" : ""
               }`}
             >
               {item.track.title}

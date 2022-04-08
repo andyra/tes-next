@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ApolloProvider } from "@apollo/client";
+import AudioContext from "../context/AudioContext";
+import { ThemeProvider } from "../context/ThemeContext";
 import Layout from "../components/Layout";
-import AppContext from "../components/AppContext";
 import client from "../apollo-client";
 import "../styles/globals.css";
 
@@ -30,10 +31,8 @@ function App({ Component, pageProps }) {
     "overflow-hidden",
     "p-4",
     "gap-4",
-    "bg-gray-100",
-    "text-blue-800",
-    "dark:bg-black",
-    "dark:text-gray-100"
+    "bg-secondary",
+    "text-primary"
   ];
 
   useEffect(() => {
@@ -44,7 +43,7 @@ function App({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={client}>
-      <AppContext.Provider
+      <AudioContext.Provider
         value={{
           state: {
             onDeck: onDeck,
@@ -60,10 +59,12 @@ function App({ Component, pageProps }) {
           setPrevFrom: setPrevFrom
         }}
       >
-        <Layout {...pageProps}>
-          <Component {...pageProps} />
-        </Layout>
-      </AppContext.Provider>
+        <ThemeProvider>
+          <Layout {...pageProps}>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </AudioContext.Provider>
     </ApolloProvider>
   );
 }

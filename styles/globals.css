@@ -1,3 +1,27 @@
+:root {
+  @apply light;
+}
+
+.dark {
+  --bg-primary: #1f2937;
+  --bg-secondary: black;
+  --bg-accent: orange;
+  --bg-hover: rgba(255, 255, 255, 0.1);
+  --text-primary: pink;
+  --text-secondary: gray;
+  --text-accent: orange;
+}
+
+.light {
+  --bg-primary: white;
+  --bg-secondary: gray;
+  --bg-accent: cyan;
+  --bg-hover: rgba(0, 0, 0, 0.1);
+  --text-primary: black;
+  --text-secondary: gray;
+  --text-accent: cyan;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -41,5 +65,3 @@
   font-weight: 400;
   src: url("/fonts/apercu-mono-subset.woff2");
 }
-
-
