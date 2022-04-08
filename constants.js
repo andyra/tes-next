@@ -33,25 +33,6 @@ export const ALBUM_SLUGS = gql`
   }
 `;
 
-// Episodes
-// ----------------------------------------------------------------------------
-
-export const EPISODES = gql`
-  query Entries {
-    entries(section: "episodes") {
-      id
-      slug
-      title
-      ... on episodes_default_Entry {
-        releaseDate
-        episodeCoverArt {
-          filename
-        }
-      }
-    }
-  }
-`;
-
 // Playlists
 // ----------------------------------------------------------------------------
 

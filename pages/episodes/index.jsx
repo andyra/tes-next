@@ -1,15 +1,31 @@
+import Image from "next/image";
 import Link from "next/link";
-import { useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
+import NiceDate from "../../components/NiceDate";
 import PageTitle from "../../components/PageTitle";
-import { EPISODES } from "../../constants";
 
 // Components
 // ----------------------------------------------------------------------------
 
 const EpisodeList = () => {
-  const { data, loading, error } = useQuery(EPISODES);
+  const { data, loading, error } = useQuery(
+    gql`
+      query Entries {
+        entries(section: "episodes") {
+          slug
+          title
+          ... on episodes_default_Entry {
+            releaseDate
+            episodeCoverArt {
+              url
+            }
+          }
+        }
+      }
+    `
+  );
 
   if (loading) {
     return <mark>Loading...</mark>;
@@ -20,14 +36,21 @@ const EpisodeList = () => {
     return null;
   }
 
-  console.log(data.entries);
-
   return data.entries ? (
-    <ul>
+    <ul className="grid grid-cols-3">
       {data.entries.map(episode => (
-        <li className="flex items-center gap-8" key={episode.slug}>
+        <li key={episode.slug}>
           <Link href={`episodes/${encodeURIComponent(episode.slug)}`}>
-            <a>{episode.title}</a>
+            <a>
+              <Image
+                alt={`${episode.title} cover art`}
+                src={episode.episodeCoverArt[0].url}
+                width={256}
+                height={256}
+              />
+              <div>{episode.title}</div>
+              <NiceDate date={episode.releaseDate} className="opacity-50" />
+            </a>
           </Link>
         </li>
       ))}
