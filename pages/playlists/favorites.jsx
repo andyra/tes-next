@@ -25,7 +25,12 @@ const NEW_PLAYLIST = gql`
 
 const NewPlaylist = () => {
   let input;
-  const [newPlaylist, { data, loading, error }] = useMutation(NEW_PLAYLIST);
+  const [newPlaylist, { data, loading, error }] = useMutation(NEW_PLAYLIST, {
+    onCompleted(data) {
+      console.log("COMPLETED!");
+      console.log(data);
+    }
+  });
   const [title, setTitle] = useState("");
 
   if (loading) {
