@@ -7,6 +7,13 @@ import PageTitle from "../../components/PageTitle";
 // Components
 // ----------------------------------------------------------------------------
 
+// https://www.apollographql.com/docs/react/v2/data/mutations/
+// https://hasura.io/learn/graphql/nextjs-fullstack-serverless/mutations-variables/2-query-variables/
+
+// TODO
+// - Pass in authorId once we can figure that out
+// - Return success message
+
 const NEW_PLAYLIST = gql`
   mutation newPlaylist($title: String) {
     save_playlists_default_Entry(title: $title, authorId: 1) {
@@ -15,31 +22,33 @@ const NEW_PLAYLIST = gql`
   }
 `;
 
-// https://www.apollographql.com/docs/react/v2/data/mutations/
-// https://hasura.io/learn/graphql/nextjs-fullstack-serverless/mutations-variables/2-query-variables/
-
 const NewPlaylist = () => {
   const [newPlaylist] = useMutation(NEW_PLAYLIST);
+  const [title, setTitle] = useState("");
   let input;
 
-  const [titleInput, setTitleInput] = useState("");
+  function handleSubmit(e) {
+    e.preventDefault();
+    newPlaylist({
+      variables: {
+        title: title
+      }
+    });
+  }
 
   return (
     <form
       className="border p-24 rounded space-y-24"
-      onSubmit={e => {
-        e.preventDefault();
-        newPlaylist({ variables: { title: titleInput } });
-        // input.value = "";
-      }}
+      onSubmit={e => handleSubmit(e)}
     >
       <input
+        id="title"
         className="border rounded block w-full p-8"
         type="text"
         name="title"
-        onChange={e => setTitleInput(e.target.value)}
+        onChange={e => setTitle(e.target.value)}
         ref={n => (input = n)}
-        value={titleInput}
+        value={title}
         placeholder="Playlist Title"
       />
       <Button type="submit">Create Playlist</Button>
