@@ -6,6 +6,7 @@ import ClientOnly from "./ClientOnly";
 import Button from "./Button";
 import Empty from "./Empty";
 import Icon from "./Icon";
+import NewPlaylistButton from "./NewPlaylist";
 import { PLAYLISTS } from "../constants";
 
 // Components
@@ -130,9 +131,7 @@ export default function Navigation({ navSection }) {
       <ul>
         <li className="text-gray-500 text-sm flex items-center justify-between">
           Playlists
-          <Button circle>
-            <Icon name="add" />
-          </Button>
+          <NewPlaylistButton />
         </li>
         <PlaylistList />
       </ul>

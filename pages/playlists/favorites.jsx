@@ -71,38 +71,6 @@ const NewPlaylist = () => {
   );
 };
 
-// Requires author ID
-
-// const NewPlaylistForm = () => {
-//   const [newPlaylist, { loading, data }] = useLazyQuery(NEW_PLAYLIST);
-
-//   if (loading) {
-//     return <mark>Loading...</mark>;
-//   }
-
-//   if (error) {
-//     console.error(error);
-//     return null;
-//   }
-
-//   if (data) {
-//     console.log("I guess it worked?");
-//     console.log(data);
-//   }
-
-//   return (
-//     <form className="p-24 border rounded space-y-16">
-//       <label for="title">Playlist Title</label>
-//       <input
-//         className="border rounded block w-full p-8"
-//         type="text"
-//         name="title"
-//       />
-//       <Button onClick={() => newPlaylist()}>Create Playlist</Button>
-//     </form>
-//   );
-// };
-
 // Default
 // ----------------------------------------------------------------------------
 
