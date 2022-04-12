@@ -65,7 +65,7 @@ const PlaylistList = () => {
           icon="heart"
           key={playlist.title}
           url={`/playlists/favorites`}
-          title={playlist.title}
+          title="Favorites"
         />
       ))}
       {playlists.map(playlist => (

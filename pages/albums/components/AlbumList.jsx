@@ -4,28 +4,28 @@ import { gql, useQuery } from "@apollo/client";
 import Empty from "../../../components/Empty";
 import NiceDate from "../../../components/NiceDate";
 
-export default function AlbumList() {
-  const { data, loading, error } = useQuery(
-    gql`
-      query Entries {
-        entries(section: "albums") {
-          slug
+const GET_ALBUMS = gql`
+  query Entries {
+    entries(section: "albums") {
+      slug
+      title
+      ... on albums_default_Entry {
+        releaseDate
+        artist {
+          id
           title
-          ... on albums_default_Entry {
-            releaseDate
-            artist {
-              id
-              title
-            }
-            albumType
-            albumCoverArt {
-              url
-            }
-          }
+        }
+        albumType
+        albumCoverArt {
+          url
         }
       }
-    `
-  );
+    }
+  }
+`;
+
+export default function AlbumList() {
+  const { data, loading, error } = useQuery(GET_ALBUMS);
 
   if (loading) {
     return <mark>Loading...</mark>;

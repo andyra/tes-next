@@ -21,6 +21,7 @@ export default function Button({
   disabled,
   onClick,
   size = "base",
+  type = "button",
   url
 }) {
   const buttonClasses = cn({
@@ -38,7 +39,12 @@ export default function Button({
       <a className={buttonClasses}>{children}</a>
     </Link>
   ) : (
-    <button className={buttonClasses} onClick={onClick} disabled={disabled}>
+    <button
+      className={buttonClasses}
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+    >
       {children}
     </button>
   );
