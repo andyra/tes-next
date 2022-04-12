@@ -1,7 +1,75 @@
 import { Fragment, useState } from "react";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { Dialog, Transition } from "@headlessui/react";
 import Button from "./Button";
 import Icon from "./Icon";
+
+// Components
+// ----------------------------------------------------------------------------
+
+// https://www.apollographql.com/docs/react/v2/data/mutations/
+// https://hasura.io/learn/graphql/nextjs-fullstack-serverless/mutations-variables/2-query-variables/
+// https://www.apollographql.com/docs/react/data/mutations/
+
+// TODO
+// - Pass in authorId once we can figure that out
+// - Return success message
+
+const NEW_PLAYLIST = gql`
+  mutation newPlaylist($title: String) {
+    save_playlists_default_Entry(title: $title, authorId: 1) {
+      title
+    }
+  }
+`;
+
+const NewPlaylistForm = () => {
+  let input;
+  const [newPlaylist, { data, loading, error }] = useMutation(NEW_PLAYLIST, {
+    onCompleted(data) {
+      console.log("COMPLETED!");
+      console.log(data);
+    }
+  });
+  const [title, setTitle] = useState("");
+
+  if (loading) {
+    return <mark>Loading...</mark>;
+  }
+
+  if (error) {
+    console.error(error);
+    return `Mutation error! ${error.message}`;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    newPlaylist({
+      variables: {
+        title: title
+      }
+    });
+  }
+
+  return (
+    <form className="space-y-24" onSubmit={e => handleSubmit(e)}>
+      <label htmlFor="title" className="sr-only">
+        Playlist Title
+      </label>
+      <input
+        className="border rounded block w-full p-8"
+        id="title"
+        name="title"
+        onChange={e => setTitle(e.target.value)}
+        placeholder="Title"
+        ref={n => (input = n)}
+        type="text"
+        value={title}
+      />
+      <Button type="submit">Create Playlist</Button>
+    </form>
+  );
+};
 
 // Default
 // ----------------------------------------------------------------------------
@@ -60,6 +128,7 @@ export default function NewPlaylistButton() {
             <Dialog.Title className="font-bold text-2xl">
               New Playlist
             </Dialog.Title>
+            <NewPlaylistForm />
           </Transition.Child>
         </Dialog>
       </Transition>
