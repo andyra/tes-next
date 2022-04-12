@@ -28,7 +28,7 @@ export default function EpisodeList() {
 
   if (error) {
     console.error(error);
-    return null;
+    return `Query error! ${error.message}`;
   }
 
   return data.entries ? (

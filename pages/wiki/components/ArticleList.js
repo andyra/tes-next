@@ -19,7 +19,7 @@ export default function ArticleList({ id }) {
 
   if (error) {
     console.error(error);
-    return null;
+    return `Query error! ${error.message}`;
   }
 
   return data.entries ? (

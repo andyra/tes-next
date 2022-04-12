@@ -9,6 +9,7 @@ import PageTitle from "../../components/PageTitle";
 
 // https://www.apollographql.com/docs/react/v2/data/mutations/
 // https://hasura.io/learn/graphql/nextjs-fullstack-serverless/mutations-variables/2-query-variables/
+// https://www.apollographql.com/docs/react/data/mutations/
 
 // TODO
 // - Pass in authorId once we can figure that out
@@ -23,9 +24,18 @@ const NEW_PLAYLIST = gql`
 `;
 
 const NewPlaylist = () => {
-  const [newPlaylist] = useMutation(NEW_PLAYLIST);
-  const [title, setTitle] = useState("");
   let input;
+  const [newPlaylist, { data, loading, error }] = useMutation(NEW_PLAYLIST);
+  const [title, setTitle] = useState("");
+
+  if (loading) {
+    return <mark>Loading...</mark>;
+  }
+
+  if (error) {
+    console.error(error);
+    return `Mutation error! ${error.message}`;
+  }
 
   function handleSubmit(e) {
     e.preventDefault();

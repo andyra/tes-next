@@ -30,7 +30,7 @@ export default function CategoryList({ level = 1, parentId }) {
 
   if (error) {
     console.error(error);
-    return null;
+    return `Query error! ${error.message}`;
   }
 
   return data.categories ? (

@@ -17,7 +17,7 @@ const SongList = () => {
 
   if (error) {
     console.error(error);
-    return null;
+    return `Query error! ${error.message}`;
   }
 
   return data.entries ? (

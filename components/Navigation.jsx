@@ -43,7 +43,7 @@ const PlaylistList = () => {
 
   if (error) {
     console.error(error);
-    return null;
+    return `Query error! ${error.message}`;
   }
 
   const favorites = data.entries.filter(playlist => {
