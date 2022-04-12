@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["tes.fm.sfo3.digitaloceanspaces.com"]
+    domains: ["tesfm.fra1.digitaloceanspaces.com"]
   }
 };
 
