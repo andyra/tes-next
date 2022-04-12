@@ -25,22 +25,15 @@ const NEW_PLAYLIST = gql`
 
 const NewPlaylistForm = () => {
   let input;
+  const [title, setTitle] = useState("");
   const [newPlaylist, { data, loading, error }] = useMutation(NEW_PLAYLIST, {
     onCompleted(data) {
       console.log("COMPLETED!");
       console.log(data);
+      loading = false;
+      // close here
     }
   });
-  const [title, setTitle] = useState("");
-
-  if (loading) {
-    return <mark>Loading...</mark>;
-  }
-
-  if (error) {
-    console.error(error);
-    return `Mutation error! ${error.message}`;
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -66,7 +59,10 @@ const NewPlaylistForm = () => {
         type="text"
         value={title}
       />
-      <Button type="submit">Create Playlist</Button>
+      {error && (
+        <div className="text-red-500">Mutation error! {error.message}</div>
+      )}
+      <Button type="submit">{loading ? "Creating…" : "Create Playlist"}</Button>
     </form>
   );
 };
