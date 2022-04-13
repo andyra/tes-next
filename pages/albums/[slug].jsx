@@ -23,7 +23,15 @@ export default function Album({ album }) {
           <DataRow title="slug" value={album.artist[0].slug} />
         </DataRow>
         <DataRow title="releaseDate" value={album.releaseDate} />
-        <DataRow title="tracklist" value={<mark>TODO</mark>} />
+        <DataRow title="tracklist">
+          <DataRow title="song" value={album.tracklist[0].song[0].slug} />
+          {album.tracklist[0].audioFile.length && (
+            <DataRow
+              title="audioFile"
+              value={album.tracklist[0].audioFile[0].url}
+            />
+          )}
+        </DataRow>
       </section>
     </>
   );
@@ -65,6 +73,15 @@ export async function getStaticProps(context) {
               title
             }
             releaseDate
+            tracklist {
+              ... on tracklist_BlockType {
+                audioFile { url }
+                song {
+                  slug
+                  title
+                }
+              }
+            }
           }
         }
       }

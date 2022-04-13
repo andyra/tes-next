@@ -1,5 +1,8 @@
-export default function PageTitle({ children }) {
+export default function PageTitle({ actions, children }) {
   return (
-    <h1 className="text-6xl font-bold tracking-tighter mb-64">{children}</h1>
+    <header className="flex items-start gap-16 justify-between mb-64">
+      <h1 className="text-6xl font-bold tracking-tighter">{children}</h1>
+      {actions && <div className="flex items-center gap-4">{actions}</div>}
+    </header>
   );
 }

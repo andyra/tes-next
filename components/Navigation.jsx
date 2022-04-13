@@ -89,7 +89,7 @@ const PlaylistList = () => {
 
 export default function Navigation({ navSection }) {
   return (
-    <nav className="row-span-1 flex flex-col gap-24 bg-primary rounded-lg p-16">
+    <nav className="row-span-1 flex flex-col gap-24 bg-primary rounded-lg p-16 overflow-y-auto">
       <ul>
         <NavLink title="T.E.S." url="/" className="mb-24" />
         <li>
