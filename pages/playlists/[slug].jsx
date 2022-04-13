@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { gql, useMutation } from "@apollo/client";
 import client from "../../apollo-client";
+import toast from "react-hot-toast";
 import Button from "../../components/Button";
 import PageTitle from "../../components/PageTitle";
 import { querySlugs } from "../../helpers/query.helpers";
@@ -27,18 +28,16 @@ export default function Playlist({ playlist }) {
     {
       onCompleted(data) {
         console.log("DELETED THAT FOOL PLAYLIST!");
-        location.href = "/";
+        toast.success("Deleted playlist");
+        // Probably should find a NextJS way of doing this to avod a refresh
+        // location.href = "/";
       }
     }
   );
 
-  if (loading) {
-    return <mark>Loading...</mark>;
-  }
-
   if (error) {
     console.error(error);
-    return `Mutation error! ${error.message}`;
+    toast(`Mutation error! ${error.message}`);
   }
 
   function handleDelete(id) {

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import cn from "classnames";
+import { Toaster } from "react-hot-toast";
 import Button from "./Button";
 import Navigation from "./Navigation";
 import Player from "./Player";
@@ -51,6 +52,7 @@ export default function Layout({ children, ...props }) {
       </Head>
       <Navigation navSection={props.navSection} />
       <Main>
+        <Toaster />
         <Toolbar />
         <Container maxWidth={props.maxWidth}>{children}</Container>
       </Main>

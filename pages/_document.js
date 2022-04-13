@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { Toaster } from "react-hot-toast";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -36,6 +37,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body className="h-full overflow-hidden font-sans antialiased">
+          <Toaster />
           <Main />
           <NextScript />
         </body>
