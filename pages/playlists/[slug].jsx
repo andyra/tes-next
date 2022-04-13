@@ -28,6 +28,7 @@ export default function Playlist({ playlist }) {
     {
       onCompleted(data) {
         console.log("DELETED THAT FOOL PLAYLIST!");
+        loading = false;
         toast.success("Deleted playlist");
         // Probably should find a NextJS way of doing this to avod a refresh
         // location.href = "/";

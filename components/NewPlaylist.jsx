@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { Dialog, Transition } from "@headlessui/react";
+import toast from "react-hot-toast";
 import Button from "./Button";
 import Icon from "./Icon";
 
@@ -28,7 +29,7 @@ const NewPlaylistForm = () => {
   const [title, setTitle] = useState("");
   const [newPlaylist, { data, loading, error }] = useMutation(NEW_PLAYLIST, {
     onCompleted(data) {
-      console.log("COMPLETED!");
+      toast.success("Created playlist");
       console.log(data);
       loading = false;
       // close here
