@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import client from "../../apollo-client";
 import Button from "../../components/Button";
 import PageTitle from "../../components/PageTitle";
@@ -12,7 +12,7 @@ import DataRow from "../../components/DataRow";
 
 const DELETE_PLAYLIST = gql`
   mutation deletePlaylist($id: Int!) {
-    delete_Entry(id: $id)
+    deleteEntry(id: $id)
   }
 `;
 
@@ -22,13 +22,46 @@ const DELETE_PLAYLIST = gql`
 export default function Playlist({ playlist }) {
   console.log(playlist);
 
+  const [deletePlaylist, { data, loading, error }] = useMutation(
+    DELETE_PLAYLIST,
+    {
+      onCompleted(data) {
+        console.log("DELETED THAT FOOL PLAYLIST!");
+        location.href = "/";
+      }
+    }
+  );
+
+  if (loading) {
+    return <mark>Loading...</mark>;
+  }
+
+  if (error) {
+    console.error(error);
+    return `Mutation error! ${error.message}`;
+  }
+
+  function handleDelete(id) {
+    deletePlaylist({
+      variables: {
+        id: parseInt(id)
+      }
+    });
+  }
+
   return (
     <>
       <PageTitle
         actions={
           <>
             <Button>Edit</Button>
-            <Button>Delete</Button>
+            <Button
+              onClick={() => {
+                handleDelete(playlist.id);
+              }}
+            >
+              {loading ? "..." : "Delete"}
+            </Button>
           </>
         }
       >
@@ -39,11 +72,13 @@ export default function Playlist({ playlist }) {
         <DataRow title="private" value={`${playlist.private}`} />
         <DataRow title="author" value={playlist.author.username} />
         <DataRow title="length" value={playlist.playlist.length} />
-        <DataRow title="playlist">
-          <DataRow
-            title="└ addedBy"
-            value={playlist.playlist[0].addedBy[0].username}
-          />
+        {/*<DataRow title="playlist">
+          {playlist.playlist[0].addedBy && (
+            <DataRow
+              title="└ addedBy"
+              value={playlist.playlist[0].addedBy[0].username}
+            />
+          )}
           <DataRow
             title="└ album title"
             value={playlist.playlist[0].album[0].title}
@@ -59,7 +94,7 @@ export default function Playlist({ playlist }) {
           <DataRow title="└ dateAdded" value={playlist.playlist[0].dateAdded} />
           <DataRow title="└ filePath" value={playlist.playlist[0].filePath} />
           <DataRow title="└ song" value={playlist.playlist[0].song[0].title} />
-        </DataRow>
+        </DataRow>*/}
       </section>
     </>
   );
@@ -86,22 +121,17 @@ export async function getStaticPaths() {
 // Config
 // ----------------------------------------------------------------------------
 
-// song
-// album
-// addedBy
-// dateAdded
-// filePath
-
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
     query: gql`
       query Entry {
         entry(section: "playlists", slug: "${params.slug}") {
-          title
           author {
             username
           }
+          id
+          title
           ... on playlists_default_Entry {
             private
             playlist {
