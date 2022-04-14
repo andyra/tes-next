@@ -72,7 +72,7 @@ export default function Playlist({ playlist }) {
         <DataRow title="private" value={`${playlist.private}`} />
         <DataRow title="author" value={playlist.author.username} />
         <DataRow title="length" value={playlist.playlist.length} />
-        {/*<DataRow title="playlist">
+        <DataRow title="playlist">
           {playlist.playlist[0].addedBy && (
             <DataRow
               title="└ addedBy"
@@ -94,7 +94,7 @@ export default function Playlist({ playlist }) {
           <DataRow title="└ dateAdded" value={playlist.playlist[0].dateAdded} />
           <DataRow title="└ filePath" value={playlist.playlist[0].filePath} />
           <DataRow title="└ song" value={playlist.playlist[0].song[0].title} />
-        </DataRow>*/}
+        </DataRow>
       </section>
     </>
   );
