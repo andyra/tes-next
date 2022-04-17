@@ -1,5 +1,9 @@
 import React, { createContext, useState } from "react";
 
+// 1. Use Tailwind classes for using system defaults.
+// 2. Use toggle, but TW theme classes don't apply
+// 3.
+
 const getInitialTheme = () => {
   if (typeof window !== "undefined" && window.localStorage) {
     const storedPrefs = window.localStorage.getItem("color-theme");
@@ -22,7 +26,7 @@ const getInitialTheme = () => {
 export const ThemeProvider = ({ initialTheme, children }) => {
   const [theme, setTheme] = useState(getInitialTheme);
 
-  const rawSetTheme = theme => {
+  const updateTheme = theme => {
     const root = window.document.documentElement;
     const isDark = theme === "dark";
     root.classList.remove(isDark ? "light" : "dark");
@@ -31,12 +35,12 @@ export const ThemeProvider = ({ initialTheme, children }) => {
   };
 
   if (initialTheme) {
-    rawSetTheme(initialTheme);
+    updateTheme(initialTheme);
   }
 
   React.useEffect(
     _ => {
-      rawSetTheme(theme);
+      updateTheme(theme);
     },
     [theme]
   );

@@ -13,8 +13,7 @@ import Icon from "./Icon";
 // https://www.apollographql.com/docs/react/data/mutations/
 
 // TODO
-// - Pass in authorId once we can figure that out
-// - Return success message
+// • Pass in authorId (self)
 
 const NEW_PLAYLIST = gql`
   mutation newPlaylist($title: String) {
@@ -30,9 +29,10 @@ const NewPlaylistForm = () => {
   const [newPlaylist, { data, loading, error }] = useMutation(NEW_PLAYLIST, {
     onCompleted(data) {
       toast.success("Created playlist");
-      console.log(data);
       loading = false;
-      // close here
+      // TODO
+      // • Close modal
+      // • Refresh playlist listing in the nav
     }
   });
 

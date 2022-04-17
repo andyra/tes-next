@@ -6,18 +6,6 @@ import Layout from "../components/Layout";
 import client from "../apollo-client";
 import "../styles/globals.css";
 
-// Icons: Ionic is great, but there's some weird framework thing
-
-const testTrack = {
-  track: {
-    id: 99,
-    title: "Test Title",
-    url: "https://example/com/track/99",
-    album: 9
-  },
-  listType: "queue"
-};
-
 function App({ Component, pageProps }) {
   const [onDeck, setOnDeck] = useState(false);
   const [playing, setPlaying] = useState(false);

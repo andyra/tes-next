@@ -21,17 +21,16 @@ const DELETE_PLAYLIST = gql`
 // ----------------------------------------------------------------------------
 
 export default function Playlist({ playlist }) {
-  console.log(playlist);
+  const router = useRouter();
 
   const [deletePlaylist, { data, loading, error }] = useMutation(
     DELETE_PLAYLIST,
     {
       onCompleted(data) {
-        console.log("DELETED THAT FOOL PLAYLIST!");
         loading = false;
         toast.success("Deleted playlist");
-        // Probably should find a NextJS way of doing this to avod a refresh
-        // location.href = "/";
+        router.replace("/"); // redirect to home via Next.js
+        // • Refresh the playlists listing in the nav
       }
     }
   );
