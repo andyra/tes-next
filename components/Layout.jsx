@@ -1,11 +1,11 @@
 import Head from "next/head";
+import Script from "next/script";
 import cn from "classnames";
 import { Toaster } from "react-hot-toast";
 import Button from "./Button";
 import Navigation from "./Navigation";
 import Player from "./Player";
-import ThemeToggle from "./ThemeToggle";
-import Script from "next/script";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -23,7 +23,7 @@ const Toolbar = () => (
       className="flex-1 bg-gray-100 h-32 rounded-full mx-auto w-full max-w-screen-sm px-16"
     />
     <div className="flex items-center gap-8">
-      <ThemeToggle />
+      <ThemeSwitcher />
       <Button>Enter</Button>
     </div>
   </section>

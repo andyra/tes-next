@@ -1,5 +1,14 @@
-export default function Icon({name, solid}) {
+import cn from "classnames";
+
+export default function Icon({ className, name, solid }) {
+  const classes = cn({
+    flex: true,
+    [className]: className
+  });
+
   return (
-    <ion-icon name={solid ? name : `${name}-outline`}></ion-icon>
-  )
+    <span className={classes}>
+      <ion-icon name={solid ? name : `${name}-outline`} />
+    </span>
+  );
 }

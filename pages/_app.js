@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ApolloProvider } from "@apollo/client";
+import { ThemeProvider } from "next-themes";
 import AudioContext from "../context/AudioContext";
-import { ThemeProvider } from "../context/ThemeContext";
 import Layout from "../components/Layout";
 import client from "../apollo-client";
 import "../styles/globals.css";
@@ -47,7 +47,7 @@ function App({ Component, pageProps }) {
           setPrevFrom: setPrevFrom
         }}
       >
-        <ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="system">
           <Layout {...pageProps}>
             <Component {...pageProps} />
           </Layout>
