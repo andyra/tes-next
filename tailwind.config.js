@@ -9,6 +9,10 @@ module.exports = {
         accent: "var(--bg-accent)",
         hover: "var(--bg-hover)"
       },
+      borderColor: {
+        strong: "var(--border-strong)",
+        subtle: "var(--border-subtle)"
+      },
       textColor: {
         primary: "var(--text-primary)",
         secondary: "var(--text-secondary)",

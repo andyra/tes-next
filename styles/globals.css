@@ -7,6 +7,8 @@
   --bg-secondary: black;
   --bg-accent: tomato;
   --bg-hover: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --border-subtle: rgba(255, 255, 255, 0.1);
   --text-primary: pink;
   --text-secondary: gray;
   --text-accent: tomato;
@@ -17,6 +19,8 @@
   --bg-secondary: gray;
   --bg-accent: tomato;
   --bg-hover: rgba(0, 0, 0, 0.05);
+  --border-strong: rgba(0, 0, 0, 0.1);
+  --border-subtle: rgba(0, 0, 0, 0.05);
   --text-primary: black;
   --text-secondary: gray;
   --text-accent: tomato;

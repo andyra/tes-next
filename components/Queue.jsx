@@ -91,7 +91,7 @@ export default function Queue({ open }) {
         leaveTo="opacity-0"
       />
       <Transition.Child
-        className="relative w-full max-w-screen-xs bg-white rounded-lg p-24 space-y-24"
+        className="relative w-full max-w-screen-xs bg-primary rounded-lg p-24 space-y-24"
         enter="transition ease-in-out duration-300 transform"
         enterFrom="opacity-0 translate-x-1/4"
         enterTo="opacity-100 translate-x-0"

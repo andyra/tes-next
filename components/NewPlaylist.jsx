@@ -107,7 +107,7 @@ export default function NewPlaylistButton() {
           </Transition.Child>
           <Transition.Child
             as="section"
-            className="relative bg-white rounded-lg p-48 w-full max-w-screen-sm"
+            className="relative bg-primary rounded-lg p-48 w-full max-w-screen-sm"
             enter="ease-out duration-300"
             enterFrom="opacity-0 scale-95"
             enterTo="opacity-100 scale-100"

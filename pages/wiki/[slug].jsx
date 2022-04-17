@@ -14,7 +14,7 @@ export default function Article({ article }) {
   return (
     <>
       <PageTitle>{article.title}</PageTitle>
-      <section className="divide-y">
+      <section className="divide-y divide-subtle">
         <DataRow title="title" value={article.title} />
         <DataRow title="article" value={article.article} />
         <DataRow title="category">

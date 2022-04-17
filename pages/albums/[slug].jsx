@@ -14,7 +14,7 @@ export default function Album({ album }) {
   return (
     <>
       <PageTitle>{album.title}</PageTitle>
-      <section className="divide-y">
+      <section className="divide-y divide-subtle">
         <DataRow title="title" value={album.title} />
         <DataRow title="albumCoverArt" value={album.albumCoverArt[0].url} />
         <DataRow title="albumType" value={album.albumType} />

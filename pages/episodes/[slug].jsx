@@ -14,7 +14,7 @@ export default function Episode({ episode }) {
   return (
     <>
       <PageTitle>{episode.title}</PageTitle>
-      <section className="divide-y">
+      <section className="divide-y divide-subtle">
         <DataRow title="title" value={episode.title} />
         <DataRow title="companionAlbum">
           <DataRow

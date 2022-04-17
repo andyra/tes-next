@@ -13,7 +13,7 @@ export default function Song({ song }) {
   return (
     <>
       <PageTitle>{song.title}</PageTitle>
-      <section className="divide-y">
+      <section className="divide-y divide-subtle">
         <DataRow title="lyrics" value={song.lyrics} />
         <DataRow title="notation" value={song.notation} />
         <DataRow title="songType" value={song.songType} />

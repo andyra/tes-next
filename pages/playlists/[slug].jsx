@@ -66,7 +66,7 @@ export default function Playlist({ playlist }) {
       >
         {playlist.title}
       </PageTitle>
-      <section className="divide-y">
+      <section className="divide-y divide-subtle">
         <DataRow title="title" value={playlist.title} />
         <DataRow title="private" value={`${playlist.private}`} />
         <DataRow title="author" value={playlist.author.username} />
