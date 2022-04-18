@@ -1,14 +1,13 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { Dialog, Transition } from "@headlessui/react";
 import toast from "react-hot-toast";
 import cn from "classnames";
-import ClientOnly from "./ClientOnly";
 import Button from "./Button";
 import Empty from "./Empty";
 import Icon from "./Icon";
+import Modal from "./Modal";
 import { PLAYLISTS_QUERY } from "../constants";
 
 // TODO
@@ -101,14 +100,14 @@ const NewPlaylistForm = ({ closeModal }) => {
 };
 
 const NewPlaylistButton = () => {
-  let [isOpen, setIsOpen] = useState(false);
+  let [modalIsOpen, setModalIsOpen] = useState(false);
 
   function openModal() {
-    setIsOpen(true);
+    setModalIsOpen(true);
   }
 
   function closeModal() {
-    setIsOpen(false);
+    setModalIsOpen(false);
   }
 
   return (
@@ -116,48 +115,9 @@ const NewPlaylistButton = () => {
       <Button circle onClick={openModal}>
         <Icon name="add" />
       </Button>
-
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog
-          open={isOpen}
-          onClose={closeModal}
-          className="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center"
-        >
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-500/10 backdrop-blur-md" />
-          </Transition.Child>
-          <Transition.Child
-            as="section"
-            className="relative bg-primary rounded-lg p-48 w-full max-w-screen-sm"
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
-          >
-            <Button
-              className="absolute top-16 right-16"
-              circle
-              onClick={closeModal}
-            >
-              <Icon name="close" />
-            </Button>
-            <Dialog.Title className="font-bold text-2xl">
-              New Playlist
-            </Dialog.Title>
-            <NewPlaylistForm closeModal={closeModal} />
-          </Transition.Child>
-        </Dialog>
-      </Transition>
+      <Modal closeModal={closeModal} isOpen={modalIsOpen} title="New Playlist">
+        <NewPlaylistForm closeModal={closeModal} />
+      </Modal>
     </>
   );
 };

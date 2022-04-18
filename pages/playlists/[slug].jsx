@@ -1,28 +1,107 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { gql, useMutation } from "@apollo/client";
 import client from "../../apollo-client";
 import toast from "react-hot-toast";
 import Button from "../../components/Button";
+import Modal from "../../components/Modal";
 import PageTitle from "../../components/PageTitle";
 import { querySlugs } from "../../helpers/query.helpers";
 import { PLAYLISTS_QUERY } from "../../constants";
 
 import DataRow from "../../components/DataRow";
 
-// Queries & Mutations
+// Components
 // ----------------------------------------------------------------------------
 
-const DELETE_PLAYLIST_MUTATION = gql`
-  mutation deletePlaylist($id: Int!) {
-    deleteEntry(id: $id)
+// TODO
+// Working, but the slug needs to be updated (or turned into an ID)
+// Refresh page title
+
+const RenamePlaylistButton = ({ defaultTitle, id }) => {
+  let input;
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [title, setTitle] = useState(defaultTitle);
+
+  const RENAME_PLAYLIST_MUTATION = gql`
+    mutation renamePlaylist($title: String, $id: ID) {
+      save_playlists_default_Entry(title: $title, id: $id) {
+        id
+        title
+      }
+    }
+  `;
+
+  const [renamePlaylist, { data, loading, error }] = useMutation(
+    RENAME_PLAYLIST_MUTATION,
+    {
+      refetchQueries: [{ query: PLAYLISTS_QUERY }],
+      onCompleted(data) {
+        toast.success("Renamed playlist");
+        loading = false;
+        closeModal();
+      }
+    }
+  );
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    renamePlaylist({
+      variables: {
+        id: id,
+        title: title
+      }
+    });
   }
-`;
 
-// Default
-// ----------------------------------------------------------------------------
+  function openModal() {
+    setModalIsOpen(true);
+  }
 
-export default function Playlist({ playlist }) {
+  function closeModal() {
+    setModalIsOpen(false);
+  }
+
+  return (
+    <>
+      <Button onClick={openModal}>Rename</Button>
+      <Modal
+        closeModal={closeModal}
+        isOpen={modalIsOpen}
+        title="Rename Playlist"
+      >
+        <form className="space-y-24" onSubmit={e => handleSubmit(e)}>
+          <label htmlFor="title" className="sr-only">
+            Playlist Title
+          </label>
+          <input
+            className="border rounded block w-full p-8"
+            id="title"
+            name="title"
+            onChange={e => setTitle(e.target.value)}
+            placeholder="Title"
+            ref={n => (input = n)}
+            type="text"
+            value={title}
+          />
+          {error && (
+            <div className="text-red-500">Mutation error! {error.message}</div>
+          )}
+          <Button type="submit">{loading ? "Saving…" : "Save"}</Button>
+        </form>
+      </Modal>
+    </>
+  );
+};
+
+const DeletePlaylistButton = ({ id }) => {
   const router = useRouter();
+
+  const DELETE_PLAYLIST_MUTATION = gql`
+    mutation deletePlaylist($id: Int!) {
+      deleteEntry(id: $id)
+    }
+  `;
 
   const [deletePlaylist, { data, loading, error }] = useMutation(
     DELETE_PLAYLIST_MUTATION,
@@ -37,7 +116,6 @@ export default function Playlist({ playlist }) {
   );
 
   if (error) {
-    console.error(error);
     toast(`Mutation error! ${error.message}`);
   }
 
@@ -50,18 +128,30 @@ export default function Playlist({ playlist }) {
   }
 
   return (
+    <Button
+      onClick={() => {
+        handleDelete(id);
+      }}
+    >
+      {loading ? "..." : "Delete"}
+    </Button>
+  );
+};
+
+// Default
+// ----------------------------------------------------------------------------
+
+export default function Playlist({ playlist }) {
+  return (
     <>
       <PageTitle
         actions={
           <>
-            <Button>Edit</Button>
-            <Button
-              onClick={() => {
-                handleDelete(playlist.id);
-              }}
-            >
-              {loading ? "..." : "Delete"}
-            </Button>
+            <RenamePlaylistButton
+              id={playlist.id}
+              defaultTitle={playlist.title}
+            />
+            <DeletePlaylistButton id={playlist.id} />
           </>
         }
       >
