@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 // Playlists
 // ----------------------------------------------------------------------------
 
-export const PLAYLISTS = gql`
+export const PLAYLISTS_QUERY = gql`
   query Entries {
     entries(section: "playlists") {
       id

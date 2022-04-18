@@ -1,13 +1,30 @@
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
+import { Dialog, Transition } from "@headlessui/react";
+import toast from "react-hot-toast";
 import cn from "classnames";
 import ClientOnly from "./ClientOnly";
 import Button from "./Button";
 import Empty from "./Empty";
 import Icon from "./Icon";
-import NewPlaylistButton from "./NewPlaylist";
-import { PLAYLISTS } from "../constants";
+import { PLAYLISTS_QUERY } from "../constants";
+
+// TODO
+// Only show playlists if you're logged in
+// Filter playlists by author === self or public
+
+// Queries & Mutations
+// ----------------------------------------------------------------------------
+
+const NEW_PLAYLIST_MUTATION = gql`
+  mutation newPlaylist($title: String) {
+    save_playlists_default_Entry(title: $title, authorId: 1) {
+      title
+    }
+  }
+`;
 
 // Components
 // ----------------------------------------------------------------------------
@@ -35,8 +52,118 @@ const NavLink = ({ className, count, icon, navSection, title, url }) => {
   );
 };
 
-const PlaylistList = () => {
-  const { data, loading, error } = useQuery(PLAYLISTS);
+const NewPlaylistForm = ({ closeModal }) => {
+  let input;
+  const [title, setTitle] = useState("");
+
+  const [newPlaylist, { data, loading, error }] = useMutation(
+    NEW_PLAYLIST_MUTATION,
+    {
+      refetchQueries: [{ query: PLAYLISTS_QUERY }],
+      onCompleted(data) {
+        toast.success("Created playlist");
+        loading = false;
+        closeModal();
+      }
+    }
+  );
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    newPlaylist({
+      variables: {
+        title: title
+      }
+    });
+  }
+
+  return (
+    <form className="space-y-24" onSubmit={e => handleSubmit(e)}>
+      <label htmlFor="title" className="sr-only">
+        Playlist Title
+      </label>
+      <input
+        className="border rounded block w-full p-8"
+        id="title"
+        name="title"
+        onChange={e => setTitle(e.target.value)}
+        placeholder="Title"
+        ref={n => (input = n)}
+        type="text"
+        value={title}
+      />
+      {error && (
+        <div className="text-red-500">Mutation error! {error.message}</div>
+      )}
+      <Button type="submit">{loading ? "Creating…" : "Create Playlist"}</Button>
+    </form>
+  );
+};
+
+const NewPlaylistButton = () => {
+  let [isOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  return (
+    <>
+      <Button circle onClick={openModal}>
+        <Icon name="add" />
+      </Button>
+
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog
+          open={isOpen}
+          onClose={closeModal}
+          className="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center"
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <Dialog.Overlay className="fixed inset-0 bg-gray-500/10 backdrop-blur-md" />
+          </Transition.Child>
+          <Transition.Child
+            as="section"
+            className="relative bg-primary rounded-lg p-48 w-full max-w-screen-sm"
+            enter="ease-out duration-300"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <Button
+              className="absolute top-16 right-16"
+              circle
+              onClick={closeModal}
+            >
+              <Icon name="close" />
+            </Button>
+            <Dialog.Title className="font-bold text-2xl">
+              New Playlist
+            </Dialog.Title>
+            <NewPlaylistForm closeModal={closeModal} />
+          </Transition.Child>
+        </Dialog>
+      </Transition>
+    </>
+  );
+};
+
+const ListPlaylists = () => {
+  const { data, loading, error } = useQuery(PLAYLISTS_QUERY);
 
   if (loading) {
     return <mark>Loading...</mark>;
@@ -55,9 +182,6 @@ const PlaylistList = () => {
     return playlist.__typename === "playlists_default_Entry";
   });
 
-  // TODO
-  // Only show playlists if you're logged in
-  // Filter playlists by author === self or public
   return data.entries.length ? (
     <ul>
       {favorites.map(playlist => (
@@ -141,7 +265,7 @@ export default function Navigation({ navSection }) {
           Playlists
           <NewPlaylistButton />
         </li>
-        <PlaylistList />
+        <ListPlaylists />
       </ul>
     </nav>
   );

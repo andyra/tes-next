@@ -5,13 +5,14 @@ import toast from "react-hot-toast";
 import Button from "../../components/Button";
 import PageTitle from "../../components/PageTitle";
 import { querySlugs } from "../../helpers/query.helpers";
+import { PLAYLISTS_QUERY } from "../../constants";
 
 import DataRow from "../../components/DataRow";
 
-// Components
+// Queries & Mutations
 // ----------------------------------------------------------------------------
 
-const DELETE_PLAYLIST = gql`
+const DELETE_PLAYLIST_MUTATION = gql`
   mutation deletePlaylist($id: Int!) {
     deleteEntry(id: $id)
   }
@@ -24,13 +25,13 @@ export default function Playlist({ playlist }) {
   const router = useRouter();
 
   const [deletePlaylist, { data, loading, error }] = useMutation(
-    DELETE_PLAYLIST,
+    DELETE_PLAYLIST_MUTATION,
     {
+      refetchQueries: [{ query: PLAYLISTS_QUERY }],
       onCompleted(data) {
         loading = false;
         toast.success("Deleted playlist");
         router.replace("/"); // redirect to home via Next.js
-        // • Refresh the playlists listing in the nav
       }
     }
   );
@@ -71,7 +72,7 @@ export default function Playlist({ playlist }) {
         <DataRow title="private" value={`${playlist.private}`} />
         <DataRow title="author" value={playlist.author.username} />
         <DataRow title="length" value={playlist.playlist.length} />
-        <DataRow title="playlist">
+        {/*<DataRow title="playlist">
           {playlist.playlist[0].addedBy && (
             <DataRow
               title="└ addedBy"
@@ -93,7 +94,7 @@ export default function Playlist({ playlist }) {
           <DataRow title="└ dateAdded" value={playlist.playlist[0].dateAdded} />
           <DataRow title="└ filePath" value={playlist.playlist[0].filePath} />
           <DataRow title="└ song" value={playlist.playlist[0].song[0].title} />
-        </DataRow>
+        </DataRow>*/}
       </section>
     </>
   );
