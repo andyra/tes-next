@@ -125,6 +125,14 @@ export default function Navigation({ navSection }) {
           />
         </li>
         <li>
+          <NavLink
+            title="Setlist Computor"
+            url="/setlist"
+            icon="musical-note"
+            navSection={navSection}
+          />
+        </li>
+        <li>
           <NavLink title="About" url="/about" icon="information" />
         </li>
       </ul>

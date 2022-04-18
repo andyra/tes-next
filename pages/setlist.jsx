@@ -15,6 +15,10 @@ export default function About() {
         <label for="bleeds">Bleeds</label>
         <input id="bleeds" type="number" initialValue={10} />
       </fieldset>
+      <fieldset>
+        <label for="strategies">Strategies</label>
+        <input id="strategies" type="number" initialValue={10} />
+      </fieldset>
     </>
   );
 }
