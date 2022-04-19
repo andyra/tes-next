@@ -4,6 +4,7 @@ import { gql, useMutation } from "@apollo/client";
 import client from "../../apollo-client";
 import toast from "react-hot-toast";
 import Button from "../../components/Button";
+import Input from "../../components/Input";
 import Modal from "../../components/Modal";
 import PageTitle from "../../components/PageTitle";
 import { PLAYLISTS_QUERY } from "../../constants";
@@ -74,9 +75,7 @@ const RenamePlaylistButton = ({ title, id, setTitle }) => {
           <label htmlFor="title" className="sr-only">
             Playlist Title
           </label>
-          <input
-            className="border rounded block w-full p-8"
-            id="title"
+          <Input
             name="title"
             onChange={e => setTitle(e.target.value)}
             placeholder="Title"
