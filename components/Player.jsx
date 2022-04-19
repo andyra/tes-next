@@ -4,6 +4,10 @@ import Button from "./Button";
 import Icon from "./Icon";
 import Queue from "./Queue";
 
+// TODO
+// • Use destructuring at high levels to reduce repetition
+// • Close the panel if queueCount === 0
+
 // Components
 // ----------------------------------------------------------------------------
 
@@ -53,11 +57,12 @@ const PlayerControls = ({ back, isPlaying, onDeck, next, togglePlay }) => (
   </div>
 );
 
-const ExtraControls = ({ queueOpen, setQueueOpen }) => (
+const ExtraControls = ({ queueCount, queueOpen, setQueueOpen }) => (
   <div className="flex-1 flex items-center justify-end gap-8">
     <Button
       circle
       className={`${queueOpen ? "bg-accent" : ""}`}
+      disabled={queueCount < 1}
       onClick={() => {
         setQueueOpen(queueOpen ? false : true);
       }}
@@ -76,6 +81,10 @@ const ExtraControls = ({ queueOpen, setQueueOpen }) => (
 export default function Player() {
   const [queueOpen, setQueueOpen] = useState(false);
   const context = useContext(AudioContext);
+  const queueCount =
+    context.state.prevFrom.length +
+    context.state.nextFrom.length +
+    context.state.queue.length;
 
   function togglePlay() {
     context.state.playing
@@ -88,12 +97,13 @@ export default function Player() {
   }
 
   function next() {
-    const queue = [...context.state.queue];
-    const nextFrom = [...context.state.nextFrom];
-    const prevFrom = [...context.state.prevFrom];
+    const { onDeck, nextFrom, prevFrom, queue } = context.state;
+    // const queue = [...context.state.queue];
+    // const nextFrom = [...context.state.nextFrom];
+    // const prevFrom = [...context.state.prevFrom];
 
-    if (context.state.onDeck && context.state.onDeck.listType === "tracklist") {
-      addToPrevFrom(context.state.onDeck);
+    if (onDeck && onDeck.listType === "tracklist") {
+      addToPrevFrom(onDeck);
     }
 
     if (queue.length) {
@@ -144,7 +154,11 @@ export default function Player() {
           onDeck={context.state.onDeck}
           togglePlay={togglePlay}
         />
-        <ExtraControls queueOpen={queueOpen} setQueueOpen={setQueueOpen} />
+        <ExtraControls
+          queueOpen={queueOpen}
+          setQueueOpen={setQueueOpen}
+          queueCount={queueCount}
+        />
       </aside>
       <Queue open={queueOpen} />
     </>
