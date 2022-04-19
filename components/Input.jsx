@@ -27,7 +27,8 @@ export default function Input({
 
   const inputClasses = cn({
     "block w-full h-40 px-12": true,
-    "bg-primary border border-strong rounded": true,
+    "bg-primary border border-strong rounded outline-none": true,
+    "focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50": true,
     [inputClassName]: inputClassName
   });
 

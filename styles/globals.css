@@ -3,6 +3,7 @@
 }
 
 .dark {
+  --accent: tomato;
   --bg-primary: #1f2937;
   --bg-secondary: black;
   --bg-accent: tomato;
@@ -15,15 +16,16 @@
 }
 
 .light {
+  --accent: teal;
   --bg-primary: white;
-  --bg-secondary: gray;
-  --bg-accent: tomato;
+  --bg-secondary: whitesmoke;
+  --bg-accent: teal;
   --bg-hover: rgba(0, 0, 0, 0.05);
   --border-strong: rgba(0, 0, 0, 0.1);
   --border-subtle: rgba(0, 0, 0, 0.05);
   --text-primary: black;
   --text-secondary: gray;
-  --text-accent: tomato;
+  --text-accent: teal;
 }
 
 @tailwind base;

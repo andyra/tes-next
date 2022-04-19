@@ -10,6 +10,7 @@ module.exports = {
         hover: "var(--bg-hover)"
       },
       borderColor: {
+        accent: "var(--text-accent)",
         strong: "var(--border-strong)",
         subtle: "var(--border-subtle)"
       },
