@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Transition } from "@headlessui/react";
 import cn from "classnames";
 import AudioContext from "../context/AudioContext";
@@ -51,17 +51,20 @@ const NowPlaying = ({ onDeck }) => {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Queue({ open }) {
+export default function Queue({ queueIsOpen, setQueueIsOpen }) {
   const context = useContext(AudioContext);
+  const { nextFrom, onDeck, queue } = context.state;
 
   const ClearQueueButton = () => {
-    const visible = context.state.queue.length;
+    function handleClear() {
+      context.setQueue([]);
+    }
 
     return (
       <Button
-        className={visible ? "" : "hidden"}
+        className={queue.length ? "" : "hidden"}
         onClick={() => {
-          context.setQueue([]);
+          handleClear();
         }}
       >
         Clear Queue
@@ -69,13 +72,9 @@ export default function Queue({ open }) {
     );
   };
 
-  useEffect(() => {
-    console.log("Open changed");
-  }, [open]);
-
   return (
     <Transition
-      show={open}
+      show={queueIsOpen}
       className="absolute z-50 top-0 right-0 bottom-[76px] left-0 flex items-stretch justify-end p-4"
       id="queue"
       tabIndex="-1"
@@ -99,13 +98,9 @@ export default function Queue({ open }) {
         leaveFrom="opacity-100 translate-x-0"
         leaveTo="opacity-0 translate-x-1/4"
       >
-        <NowPlaying onDeck={context.state.onDeck} />
-        <QueueList
-          title="Queue"
-          items={context.state.queue}
-          actions={<ClearQueueButton />}
-        />
-        <QueueList title="Next From" items={context.state.nextFrom} />
+        <NowPlaying onDeck={onDeck} />
+        <QueueList title="Queue" items={queue} actions={<ClearQueueButton />} />
+        <QueueList title="Next From" items={nextFrom} />
       </Transition.Child>
     </Transition>
   );

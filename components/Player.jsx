@@ -1,11 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AudioContext from "../context/AudioContext";
 import Button from "./Button";
 import Icon from "./Icon";
 import Queue from "./Queue";
-
-// TODO
-// • Close the panel if queueCount === 0
 
 // Components
 // ----------------------------------------------------------------------------
@@ -56,17 +53,17 @@ const PlayerControls = ({ back, isPlaying, onDeck, next, togglePlay }) => (
   </div>
 );
 
-const ExtraControls = ({ queueCount, queueOpen, setQueueOpen }) => (
+const ExtraControls = ({ queueCount, queueIsOpen, setQueueIsOpen }) => (
   <div className="flex-1 flex items-center justify-end gap-8">
     <Button
       circle
-      className={`${queueOpen ? "bg-accent" : ""}`}
+      className={`${queueIsOpen ? "bg-accent" : ""}`}
       disabled={queueCount < 1}
       onClick={() => {
-        setQueueOpen(queueOpen ? false : true);
+        setQueueIsOpen(queueIsOpen ? false : true);
       }}
       aria-controls="queue"
-      aria-expanded={queueOpen ? false : true}
+      aria-expanded={queueIsOpen ? false : true}
       aria-label="Show Queue"
     >
       <Icon name="list-circle" />
@@ -78,11 +75,17 @@ const ExtraControls = ({ queueCount, queueOpen, setQueueOpen }) => (
 // ----------------------------------------------------------------------------
 
 export default function Player() {
-  const [queueOpen, setQueueOpen] = useState(false);
+  const [queueIsOpen, setQueueIsOpen] = useState(false);
   const context = useContext(AudioContext);
   const { nextFrom, onDeck, playing, prevFrom, queue } = context.state;
   const { setNextFrom, setOnDeck, setPlaying, setPrevFrom, setQueue } = context;
   const queueCount = prevFrom.length + nextFrom.length + queue.length;
+
+  useEffect(() => {
+    if (queueCount === 0) {
+      setQueueIsOpen(false);
+    }
+  }, [queueCount]);
 
   function togglePlay() {
     setPlaying(!playing);
@@ -146,12 +149,12 @@ export default function Player() {
           togglePlay={togglePlay}
         />
         <ExtraControls
-          queueOpen={queueOpen}
-          setQueueOpen={setQueueOpen}
+          queueIsOpen={queueIsOpen}
+          setQueueIsOpen={setQueueIsOpen}
           queueCount={queueCount}
         />
       </aside>
-      <Queue open={queueOpen} />
+      <Queue queueIsOpen={queueIsOpen} setQueueIsOpen={setQueueIsOpen} />
     </>
   );
 }
