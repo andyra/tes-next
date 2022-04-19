@@ -10,3 +10,13 @@ export function querySlugs(section) {
     }
   `;
 }
+
+export function queryIds(section) {
+  return gql`
+    query Entries {
+      entries(section: "${section}") {
+        id
+      }
+    }
+  `;
+}

@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import PageTitle from "../../components/PageTitle";
-import { querySlugs } from "../../helpers/query.helpers";
 import { PLAYLISTS_QUERY } from "../../constants";
 
 import DataRow from "../../components/DataRow";
@@ -18,10 +17,10 @@ import DataRow from "../../components/DataRow";
 // Working, but the slug needs to be updated (or turned into an ID)
 // Refresh page title
 
-const RenamePlaylistButton = ({ defaultTitle, id }) => {
+const RenamePlaylistButton = ({ currentTitle, id }) => {
   let input;
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [title, setTitle] = useState(defaultTitle);
+  const [title, setTitle] = useState("");
 
   const RENAME_PLAYLIST_MUTATION = gql`
     mutation renamePlaylist($title: String, $id: ID) {
@@ -56,6 +55,7 @@ const RenamePlaylistButton = ({ defaultTitle, id }) => {
 
   function openModal() {
     setModalIsOpen(true);
+    setTitle(currentTitle);
   }
 
   function closeModal() {
@@ -149,7 +149,7 @@ export default function Playlist({ playlist }) {
           <>
             <RenamePlaylistButton
               id={playlist.id}
-              defaultTitle={playlist.title}
+              currentTitle={playlist.title}
             />
             <DeletePlaylistButton id={playlist.id} />
           </>
@@ -195,11 +195,17 @@ export default function Playlist({ playlist }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("playlists")
+    query: gql`
+      query Entries {
+        entries(section: "playlists") {
+          id
+        }
+      }
+    `
   });
 
   const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+    params: { id: entry.id }
   }));
 
   return {
@@ -216,7 +222,7 @@ export async function getStaticProps(context) {
   const { data } = await client.query({
     query: gql`
       query Entry {
-        entry(section: "playlists", slug: "${params.slug}") {
+        entry(section: "playlists", id: "${params.id}") {
           author {
             username
           }
