@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { gql, useMutation } from "@apollo/client";
 import client from "../../apollo-client";
@@ -10,17 +10,17 @@ import { PLAYLISTS_QUERY } from "../../constants";
 
 import DataRow from "../../components/DataRow";
 
+// TODO When renaming, we somehow need to refetch the query or invalidate the
+// query cache. Right now the default component's state starts off with the
+// query title, is updated correctly when the mutation finishes, but when
+// navigating around and returning, the page still uses the cached version
+
 // Components
 // ----------------------------------------------------------------------------
 
-// TODO
-// Working, but the slug needs to be updated (or turned into an ID)
-// Refresh page title
-
-const RenamePlaylistButton = ({ currentTitle, id }) => {
+const RenamePlaylistButton = ({ title, id, setTitle }) => {
   let input;
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [title, setTitle] = useState("");
 
   const RENAME_PLAYLIST_MUTATION = gql`
     mutation renamePlaylist($title: String, $id: ID) {
@@ -36,9 +36,10 @@ const RenamePlaylistButton = ({ currentTitle, id }) => {
     {
       refetchQueries: [{ query: PLAYLISTS_QUERY }],
       onCompleted(data) {
-        toast.success("Renamed playlist");
+        setTitle(data.save_playlists_default_Entry.title);
         loading = false;
         closeModal();
+        toast.success("Renamed playlist");
       }
     }
   );
@@ -55,7 +56,6 @@ const RenamePlaylistButton = ({ currentTitle, id }) => {
 
   function openModal() {
     setModalIsOpen(true);
-    setTitle(currentTitle);
   }
 
   function closeModal() {
@@ -142,6 +142,13 @@ const DeletePlaylistButton = ({ id }) => {
 // ----------------------------------------------------------------------------
 
 export default function Playlist({ playlist }) {
+  const [title, setTitle] = useState(playlist.title);
+
+  // When playlist.title changes, update the state
+  useEffect(() => {
+    setTitle(playlist.title);
+  }, [playlist.title]);
+
   return (
     <>
       <PageTitle
@@ -149,13 +156,14 @@ export default function Playlist({ playlist }) {
           <>
             <RenamePlaylistButton
               id={playlist.id}
-              currentTitle={playlist.title}
+              title={title}
+              setTitle={setTitle}
             />
             <DeletePlaylistButton id={playlist.id} />
           </>
         }
       >
-        {playlist.title}
+        {title}
       </PageTitle>
       <section className="divide-y divide-subtle">
         <DataRow title="title" value={playlist.title} />
