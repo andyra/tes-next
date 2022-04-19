@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import toast from "react-hot-toast";
 import cn from "classnames";
 import AudioContext from "../context/AudioContext";
 import Button from "../components/Button";
@@ -6,24 +7,19 @@ import Icon from "../components/Icon";
 
 export default function Tracklist({ items }) {
   const context = useContext(AudioContext);
+  const { nextFrom, onDeck, playing, prevFrom, queue } = context.state;
+  const { setNextFrom, setOnDeck, setPlaying, setPrevFrom, setQueue } = context;
 
   function togglePlay() {
-    context.state.playing
-      ? context.setPlaying(false)
-      : context.setPlaying(true);
+    setPlaying(!playing);
   }
 
   function selectItem(item, i) {
-    const selectedTrackIsCurrent =
-      context.state.onDeck &&
-      context.state.onDeck.track.id === item.track.id &&
-      item.listType != "queue";
-
-    if (selectedTrackIsCurrent) {
+    if (selectedTrackIsOnDeck(item)) {
       togglePlay();
     } else {
-      context.setOnDeck(item);
-      context.setPlaying(true);
+      setOnDeck(item);
+      setPlaying(true);
       updateList(item, i);
     }
   }
@@ -34,50 +30,56 @@ export default function Tracklist({ items }) {
     const itemsAfter = [...items].splice(i + 1);
 
     if (selectedItem.listType === "queue") {
-      context.setQueue(itemsAfter);
+      setQueue(itemsAfter);
     } else {
       if (selectedItem.listType === "tracklist") {
-        context.setPrevFrom(itemsBefore);
-        context.setNextFrom(itemsAfter);
+        setPrevFrom(itemsBefore);
+        setNextFrom(itemsAfter);
       }
 
       if (selectedItem.listType === "nextFrom") {
-        const newPrevFrom = [...context.state.prevFrom];
-        newPrevFrom.push(context.state.onDeck);
+        const newPrevFrom = [...PrevFrom];
+        const newNextFrom = [...nextFrom];
+        newPrevFrom.push(onDeck);
         newPrevFrom.push(...itemsBefore);
-        context.setPrevFrom(newPrevFrom);
-
-        const newNextFrom = [...context.state.nextFrom];
         newNextFrom.splice(0, i + 1);
-        context.setNextFrom(newNextFrom);
+        setPrevFrom(newPrevFrom);
+        setNextFrom(newNextFrom);
       }
     }
   }
 
   function highlightTrack(item) {
     return (
-      context.state.onDeck &&
-      context.state.onDeck.track.id === item.track.id &&
+      onDeck &&
+      onDeck.track.id === item.track.id &&
       item.listType === "tracklist" &&
-      context.state.onDeck.listType != "queue"
+      onDeck.listType != "queue"
+    );
+  }
+
+  function selectedTrackIsOnDeck(item) {
+    return (
+      onDeck && onDeck.track.id === item.track.id && item.listType != "queue"
     );
   }
 
   function addToQueue(item) {
-    const queue = [...context.state.queue];
+    const newQueue = [...queue];
     const newItem = Object.assign({}, item);
     newItem.listType = "queue";
-    context.setQueue(queue.concat(newItem));
+    setQueue(newQueue.concat(newItem));
+    toast.success("Added to queue");
   }
 
   function removeFromQueue(item, i) {
-    let newQueue = [...context.state.queue];
+    let newQueue = [...queue];
     newQueue.splice(i, 1);
-    context.setQueue(newQueue);
+    setQueue(newQueue);
   }
 
   const PlayPauseButton = ({ item, position, i }) => {
-    const active = highlightTrack(item) && context.state.playing;
+    const active = highlightTrack(item) && playing;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
       "bg-accent dark:bg-white/20": active,
@@ -95,13 +97,7 @@ export default function Tracklist({ items }) {
           }}
         >
           <Icon
-            name={
-              highlightTrack(item)
-                ? context.state.playing
-                  ? "pause"
-                  : "play"
-                : "play"
-            }
+            name={highlightTrack(item) ? (playing ? "pause" : "play") : "play"}
             solid
           />
         </Button>
