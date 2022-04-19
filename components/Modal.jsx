@@ -32,6 +32,8 @@ export default function Modal({ children, isOpen, closeModal, title }) {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
+          <Dialog.Title className="font-bold text-2xl">{title}</Dialog.Title>
+          {children}
           <Button
             className="absolute top-16 right-16"
             circle
@@ -39,8 +41,6 @@ export default function Modal({ children, isOpen, closeModal, title }) {
           >
             <Icon name="close" />
           </Button>
-          <Dialog.Title className="font-bold text-2xl">{title}</Dialog.Title>
-          {children}
         </Transition.Child>
       </Dialog>
     </Transition>
