@@ -5,7 +5,6 @@ import Icon from "./Icon";
 import Queue from "./Queue";
 
 // TODO
-// • Use destructuring at high levels to reduce repetition
 // • Close the panel if queueCount === 0
 
 // Components
@@ -81,77 +80,69 @@ const ExtraControls = ({ queueCount, queueOpen, setQueueOpen }) => (
 export default function Player() {
   const [queueOpen, setQueueOpen] = useState(false);
   const context = useContext(AudioContext);
-  const queueCount =
-    context.state.prevFrom.length +
-    context.state.nextFrom.length +
-    context.state.queue.length;
+  const { nextFrom, onDeck, playing, prevFrom, queue } = context.state;
+  const { setNextFrom, setOnDeck, setPlaying, setPrevFrom, setQueue } = context;
+  const queueCount = prevFrom.length + nextFrom.length + queue.length;
 
   function togglePlay() {
-    context.state.playing
-      ? context.setPlaying(false)
-      : context.setPlaying(true);
+    setPlaying(!playing);
   }
 
   function isPlaying() {
-    return context.state.onDeck && context.state.playing;
+    return onDeck && playing;
   }
 
   function next() {
-    const { onDeck, nextFrom, prevFrom, queue } = context.state;
-    // const queue = [...context.state.queue];
-    // const nextFrom = [...context.state.nextFrom];
-    // const prevFrom = [...context.state.prevFrom];
-
     if (onDeck && onDeck.listType === "tracklist") {
       addToPrevFrom(onDeck);
     }
 
     if (queue.length) {
       const newOnDeck = queue.shift();
-      context.setOnDeck(newOnDeck);
-      context.setQueue(queue);
+      setOnDeck(newOnDeck);
+      setQueue(queue);
     } else if (nextFrom.length) {
       const newOnDeck = nextFrom.shift();
-      context.setOnDeck(newOnDeck);
-      context.setNextFrom(nextFrom);
+      setOnDeck(newOnDeck);
+      setNextFrom(nextFrom);
     } else {
-      context.setOnDeck(null);
-      context.setPrevFrom([]);
+      setOnDeck(null);
+      setPrevFrom([]);
     }
   }
 
   function addToPrevFrom(item) {
-    const prevFrom = [...context.state.prevFrom];
-    prevFrom.push(item);
-    context.setPrevFrom(prevFrom);
+    const newPrevFrom = [...prevFrom];
+    newPrevFrom.push(item);
+    setPrevFrom(newPrevFrom);
   }
 
   function back() {
-    const newPrevFrom = [...context.state.prevFrom];
+    const newPrevFrom = [...prevFrom];
 
     if (newPrevFrom.length) {
       const newOnDeck = newPrevFrom.pop();
-      context.setPrevFrom(newPrevFrom);
-      context.setOnDeck(newOnDeck);
+      setPrevFrom(newPrevFrom);
+      setOnDeck(newOnDeck);
 
-      const newNextFrom = [...context.state.nextFrom];
-      newNextFrom.unshift(context.state.onDeck);
-      context.setNextFrom(newNextFrom);
+      const newNextFrom = [...nextFrom];
+      newNextFrom.unshift(onDeck);
+      setNextFrom(newNextFrom);
     } else {
-      context.setOnDeck(null);
-      context.setNextFrom([]);
+      setOnDeck(null);
+      setNextFrom([]);
     }
   }
 
   return (
     <>
       <aside className="col-span-2 bg-primary rounded-lg flex items-center justify-between p-8 gap-8">
-        <OnDeck onDeck={context.state.onDeck} />
+        <OnDeck onDeck={onDeck} />
         <PlayerControls
           back={back}
           isPlaying={isPlaying()}
           next={next}
-          onDeck={context.state.onDeck}
+          onDeck={onDeck}
           togglePlay={togglePlay}
         />
         <ExtraControls
