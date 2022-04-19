@@ -1,3 +1,4 @@
+import Input from "../components/Input";
 import PageTitle from "../components/PageTitle";
 
 // Default
@@ -7,18 +8,9 @@ export default function About() {
   return (
     <>
       <PageTitle>Setlist Computor</PageTitle>
-      <fieldset>
-        <label for="length">Songs</label>
-        <input id="length" type="number" initialValue={10} />
-      </fieldset>
-      <fieldset>
-        <label for="bleeds">Bleeds</label>
-        <input id="bleeds" type="number" initialValue={10} />
-      </fieldset>
-      <fieldset>
-        <label for="strategies">Strategies</label>
-        <input id="strategies" type="number" initialValue={10} />
-      </fieldset>
+      <Input label="Length" name="length" type="number" value={10} />
+      <Input label="Bleeds" name="bleeds" type="number" value={10} />
+      <Input label="Strategies" name="strategies" type="number" value={10} />
     </>
   );
 }

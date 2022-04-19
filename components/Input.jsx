@@ -26,15 +26,17 @@ export default function Input({
   });
 
   const inputClasses = cn({
-    "block w-full h-40 px-12": true,
-    "bg-primary border border-strong rounded outline-none": true,
-    "focus:border-accent focus:ring focus:ring-accent focus:ring-opacity-50": true,
+    "block w-full h-40": true,
+    "bg-base border border-default-25 rounded outline-none": true,
+    "focus:border-primary focus:ring focus:ring-primary-25": true,
+    "px-12": !icon,
+    "pl-32 pr-12": icon,
     [inputClassName]: inputClassName
   });
 
   return (
     <div className={wrapperClasses}>
-      <label className={labelClasses} for={name}>
+      <label className={labelClasses} htmlFor={name}>
         {label}
       </label>
       <div className="relative">
@@ -52,7 +54,7 @@ export default function Input({
         {icon && (
           <Icon
             name={icon}
-            className="absolute top-1/2 left-8 transform -translate-y-1/2"
+            className="absolute top-1/2 left-8 transform -translate-y-1/2 opacity-50"
           />
         )}
       </div>

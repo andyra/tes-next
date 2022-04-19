@@ -32,8 +32,8 @@ const NavLink = ({ className, count, icon, navSection, title, url }) => {
   const router = useRouter();
   const active = router.asPath == url || navSection === title;
   const linkClasses = cn({
-    "flex items-center gap-8 h-32 px-12 -mx-12 py-16 rounded-lg hover:bg-hover": true,
-    "text-accent": active,
+    "flex items-center gap-8 h-32 px-12 -mx-12 py-16 rounded-lg hover:bg-default-5": true,
+    "text-primary": active,
     [className]: className
   });
 
@@ -173,7 +173,7 @@ const ListPlaylists = () => {
 
 export default function Navigation({ navSection }) {
   return (
-    <nav className="row-span-1 flex flex-col gap-24 bg-primary rounded-lg p-16 overflow-y-auto">
+    <nav className="row-span-1 flex flex-col gap-24 bg-base rounded-lg p-16 overflow-y-auto">
       <ul>
         <NavLink title="T.E.S." url="/" className="mb-24" />
         <li>

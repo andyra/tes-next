@@ -36,7 +36,7 @@ const QueueList = ({ actions, items, title }) => {
 const NowPlaying = ({ onDeck }) => {
   return onDeck ? (
     <Section title="Now Playing">
-      <div className="text-accent">
+      <div className="text-default">
         {onDeck.track.title}{" "}
         <span className="opacity-50">
           ({onDeck.listType} • {onDeck.position})
@@ -90,7 +90,7 @@ export default function Queue({ queueIsOpen, setQueueIsOpen }) {
         leaveTo="opacity-0"
       />
       <Transition.Child
-        className="relative w-full max-w-screen-xs bg-primary rounded-lg p-24 space-y-24"
+        className="relative w-full max-w-screen-xs bg-base rounded-lg p-24 space-y-24"
         enter="transition ease-in-out duration-300 transform"
         enterFrom="opacity-0 translate-x-1/4"
         enterTo="opacity-100 translate-x-0"

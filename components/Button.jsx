@@ -26,7 +26,7 @@ export default function Button({
 }) {
   const buttonClasses = cn({
     "flex items-center justify-center transition": true,
-    "border border-strong rounded-full hover:bg-hover": true,
+    "border border-default-25 rounded-full hover:bg-default-10": true,
     "opacity-50 pointer-events-none": disabled,
     [SIZES[size].h]: true,
     [SIZES[size].p]: !circle,

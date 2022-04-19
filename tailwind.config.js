@@ -3,22 +3,41 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      backgroundColor: {
-        primary: "var(--bg-primary)",
-        secondary: "var(--bg-secondary)",
-        accent: "var(--bg-accent)",
-        hover: "var(--bg-hover)"
+      colors: {
+        "base-dark": "var(--base-dark)",
+        base: "var(--base)",
+        "base-75": "var(--base-75)",
+        "base-50": "var(--base-50)",
+        "base-25": "var(--base-25)",
+        "base-10": "var(--base-10)",
+        "base-5": "var(--base-5)",
+        default: "var(--default)",
+        "default-75": "var(--default-75)",
+        "default-50": "var(--default-50)",
+        "default-25": "var(--default-25)",
+        "default-10": "var(--default-10)",
+        "default-5": "var(--default-5)",
+        primary: "var(--primary)",
+        "primary-75": "var(--primary-75)",
+        "primary-50": "var(--primary-50)",
+        "primary-25": "var(--primary-25)",
+        "primary-10": "var(--primary-10)",
+        "primary-5": "var(--primary-5)",
+        secondary: "var(--secondary)",
+        "secondary-75": "var(--secondary-75)",
+        "secondary-50": "var(--secondary-50)",
+        "secondary-25": "var(--secondary-25)",
+        "secondary-10": "var(--secondary-10)",
+        "secondary-5": "var(--secondary-5)"
       },
-      borderColor: {
-        accent: "var(--text-accent)",
-        strong: "var(--border-strong)",
-        subtle: "var(--border-subtle)"
-      },
-      textColor: {
-        primary: "var(--text-primary)",
-        secondary: "var(--text-secondary)",
-        accent: "var(--text-accent)"
-      },
+      // ringColors: {
+      //   primary: "var(--primary)",
+      //   "primary-75": "var(--primary-75)",
+      //   "primary-50": "var(--primary-50)",
+      //   "primary-25": "var(--primary-25)",
+      //   "primary-10": "var(--primary-10)",
+      //   "primary-5": "var(--primary-5)"
+      // },
       transitionDuration: {
         DEFAULT: "100ms"
       }

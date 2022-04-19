@@ -37,7 +37,7 @@ const PlayerControls = ({ back, isPlaying, onDeck, next, togglePlay }) => (
         circle
         disabled={!onDeck}
         onClick={togglePlay}
-        className={`${isPlaying ? "bg-accent hover:bg-accent" : ""}`}
+        className={`${isPlaying ? "bg-primary hover:bg-primary-75" : ""}`}
       >
         <Icon name={isPlaying ? "pause" : "play"} solid />
       </Button>
@@ -57,7 +57,7 @@ const ExtraControls = ({ queueCount, queueIsOpen, setQueueIsOpen }) => (
   <div className="flex-1 flex items-center justify-end gap-8">
     <Button
       circle
-      className={`${queueIsOpen ? "bg-accent" : ""}`}
+      className={`${queueIsOpen ? "bg-base" : ""}`}
       disabled={queueCount < 1}
       onClick={() => {
         setQueueIsOpen(queueIsOpen ? false : true);
@@ -139,7 +139,7 @@ export default function Player() {
 
   return (
     <>
-      <aside className="col-span-2 bg-primary rounded-lg flex items-center justify-between p-8 gap-8">
+      <aside className="col-span-2 bg-base rounded-lg flex items-center justify-between p-8 gap-8">
         <OnDeck onDeck={onDeck} />
         <PlayerControls
           back={back}

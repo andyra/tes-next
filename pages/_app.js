@@ -19,8 +19,8 @@ function App({ Component, pageProps }) {
     "overflow-hidden",
     "p-4",
     "gap-4",
-    "bg-secondary",
-    "text-primary"
+    "bg-base-dark",
+    "text-default"
   ];
 
   useEffect(() => {

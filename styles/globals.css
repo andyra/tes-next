@@ -3,29 +3,59 @@
 }
 
 .dark {
-  --accent: tomato;
-  --bg-primary: #1f2937;
-  --bg-secondary: black;
-  --bg-accent: tomato;
-  --bg-hover: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.2);
-  --border-subtle: rgba(255, 255, 255, 0.1);
-  --text-primary: pink;
-  --text-secondary: gray;
-  --text-accent: tomato;
+  --base-dark: hsla(222, 45%, 11%);
+  --base: hsla(215, 28%, 17%, 1);
+  --base-75: hsla(215, 28%, 17%, 0.75);
+  --base-50: hsla(215, 28%, 17%, 0.5);
+  --base-25: hsla(215, 28%, 17%, 0.25);
+  --base-10: hsla(215, 28%, 17%, 0.1);
+  --base-5: hsla(215, 28%, 17%, 0.05);
+  --default: hsla(28, 24%, 98%, 1);
+  --default-75: hsla(28, 24%, 98%, 0.75);
+  --default-50: hsla(28, 24%, 98%, 0.5);
+  --default-25: hsla(28, 24%, 98%, 0.25);
+  --default-10: hsla(28, 24%, 98%, 0.1);
+  --default-5: hsla(28, 24%, 98%, 0.05);
+  --primary: hsla(15, 82%, 66%, 1);
+  --primary-75: hsla(15, 82%, 66%, 0.75);
+  --primary-50: hsla(15, 82%, 66%, 0.5);
+  --primary-25: hsla(15, 82%, 66%, 0.25);
+  --primary-10: hsla(15, 82%, 66%, 0.1);
+  --primary-5: hsla(15, 82%, 66%, 0.05);
+  --secondary: hsla(199, 41%, 61%, 1);
+  --secondary-75: hsla(199, 41%, 61%, 0.75);
+  --secondary-50: hsla(199, 41%, 61%, 0.5);
+  --secondary-25: hsla(199, 41%, 61%, 0.25);
+  --secondary-10: hsla(199, 41%, 61%, 0.1);
+  --secondary-5: hsla(199, 41%, 61%, 0.05);
 }
 
 .light {
-  --accent: teal;
-  --bg-primary: white;
-  --bg-secondary: whitesmoke;
-  --bg-accent: teal;
-  --bg-hover: rgba(0, 0, 0, 0.05);
-  --border-strong: rgba(0, 0, 0, 0.1);
-  --border-subtle: rgba(0, 0, 0, 0.05);
-  --text-primary: black;
-  --text-secondary: gray;
-  --text-accent: teal;
+  --base-dark: hsla(32, 20%, 92%, 1);
+  --base: hsla(28, 24%, 98%, 1);
+  --base-75: hsla(28, 24%, 98%, 0.75);
+  --base-50: hsla(28, 24%, 98%, 0.5);
+  --base-25: hsla(28, 24%, 98%, 0.25);
+  --base-10: hsla(28, 24%, 98%, 0.1);
+  --base-5: hsla(28, 24%, 98%, 0.05);
+  --default: hsla(215, 28%, 17%, 1);
+  --default-75: hsla(215, 28%, 17%, 0.75);
+  --default-50: hsla(215, 28%, 17%, 0.5);
+  --default-25: hsla(215, 28%, 17%, 0.25);
+  --default-10: hsla(215, 28%, 17%, 0.1);
+  --default-5: hsla(215, 28%, 17%, 0.05);
+  --primary: hsla(180, 99%, 25%, 1);
+  --primary-75: hsla(180, 99%, 25%, 0.75);
+  --primary-50: hsla(180, 99%, 25%, 0.5);
+  --primary-25: hsla(180, 99%, 25%, 0.25);
+  --primary-10: hsla(180, 99%, 25%, 0.1);
+  --primary-5: hsla(180, 99%, 25%, 0.05);
+  --secondary: hsla(29, 82%, 66%, 1);
+  --secondary-75: hsla(29, 82%, 66%, 0.75);
+  --secondary-50: hsla(29, 82%, 66%, 0.5);
+  --secondary-25: hsla(29, 82%, 66%, 0.25);
+  --secondary-10: hsla(29, 82%, 66%, 0.1);
+  --secondary-5: hsla(29, 82%, 66%, 0.05);
 }
 
 @tailwind base;

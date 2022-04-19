@@ -36,7 +36,7 @@ export default function EpisodeList() {
       {data.entries.map(episode => (
         <li key={episode.slug}>
           <Link href={`/episodes/${encodeURIComponent(episode.slug)}`}>
-            <a className="block hover:bg-hover rounded p-8 transition">
+            <a className="block hover:bg-default-10 rounded p-8 transition">
               <Image
                 alt={`${episode.title} cover art`}
                 src={episode.episodeCoverArt[0].url}

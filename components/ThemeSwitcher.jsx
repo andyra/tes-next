@@ -15,7 +15,7 @@ export default function ThemeSwitcher() {
     <Menu.Item>
       {({ active }) => (
         <button
-          className="flex items-center gap-8 h-32 px-12 w-full rounded-lg hover:bg-hover"
+          className="flex items-center gap-8 h-32 px-12 w-full rounded-lg hover:bg-default-10"
           onClick={() => setTheme(theme.toLowerCase())}
         >
           <Icon name={icon} className="opacity-50" />
@@ -27,7 +27,7 @@ export default function ThemeSwitcher() {
 
   return (
     <Menu>
-      <Menu.Button className="flex items-center justify-center h-32 w-32 rounded-full border border-strong hover:bg-hover">
+      <Menu.Button className="flex items-center justify-center h-32 w-32 rounded-full border border-default-25 hover:bg-default-10">
         <Icon
           name={
             theme === "system" ? "cog" : theme === "dark" ? "moon" : "sunny"
@@ -43,7 +43,7 @@ export default function ThemeSwitcher() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="bg-primary absolute right-0 top-48 w-128 p-8 origin-top-right overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="bg-base absolute right-0 top-48 w-128 p-8 origin-top-right overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <MenuItem icon="cog" theme="System" />
           <MenuItem icon="sunny" theme="Light" />
           <MenuItem icon="moon" theme="Dark" />

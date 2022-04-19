@@ -82,7 +82,7 @@ export default function Tracklist({ items }) {
     const active = highlightTrack(item) && playing;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
-      "bg-accent dark:bg-white/20": active,
+      "bg-primary": active,
       "opacity-0 group-hover:opacity-100": !active
     });
 
@@ -107,7 +107,7 @@ export default function Tracklist({ items }) {
 
   const liClasses = cn({
     "flex justify-between p-8 -mx-8 rounded-lg cursor-default transition group": true,
-    "hover:bg-hover focus:bg-gray-100 dark:focus:bg-white/20": true
+    "hover:bg-default-10 focus:bg-default-25": true
   });
 
   return (
@@ -118,7 +118,7 @@ export default function Tracklist({ items }) {
             <PlayPauseButton item={item} position={item.position} i={i} />
             <div
               className={`flex items-center gap-8 ${
-                highlightTrack(item) ? "text-accent" : ""
+                highlightTrack(item) ? "text-primary" : ""
               }`}
             >
               {item.track.title}
