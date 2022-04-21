@@ -16,13 +16,13 @@ const Main = ({ children }) => (
 );
 
 const Toolbar = () => (
-  <section className="sticky top-0 z-10 p-16 flex items-center justify-between gap-8 bg-base rounded-lg">
+  <section className="sticky top-0 z-10 p-16 grid grid-cols-[128px_1fr_128px] gap-8 bg-base rounded-lg">
     <Input
-      className="flex-1 mx-auto max-w-screen-sm"
+      className="mx-auto max-w-screen-sm col-start-2"
       icon="search"
       placeholder="What are you looking for?"
     />
-    <div className="flex items-center gap-8">
+    <div className="flex items-center justify-end gap-8">
       <ThemeSwitcher />
       <Button>Enter</Button>
     </div>

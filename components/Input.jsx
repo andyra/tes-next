@@ -5,6 +5,7 @@ export default function Input({
   className,
   hideLabel,
   icon,
+  defaultValue,
   inputClassName,
   label,
   labelClassName,
@@ -13,14 +14,15 @@ export default function Input({
   placeholder,
   ref,
   required,
-  type = "text",
-  value
+  type = "text"
 }) {
   const wrapperClasses = cn({
+    "w-full relative": true,
     [className]: className
   });
 
   const labelClasses = cn({
+    block: true,
     "sr-only": hideLabel,
     [labelClassName]: labelClassName
   });
@@ -43,13 +45,13 @@ export default function Input({
         <input
           className={inputClasses}
           id={name}
+          defaultValue={defaultValue}
           name={name}
           onChange={onChange}
           placeholder={placeholder}
           ref={ref}
           required={required}
           type={type}
-          value={value}
         />
         {icon && (
           <Icon
