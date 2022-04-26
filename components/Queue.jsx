@@ -72,10 +72,10 @@ export default function Queue({ queueIsOpen, setQueueIsOpen }) {
     >
       <Transition.Child
         className="relative w-full bg-base"
-        enter="transition ease-in-out duration-300 transform"
+        enter="transition ease-in-out duration-200 transform"
         enterFrom="opacity-0"
         enterTo="opacity-100"
-        leave="transition ease-in-out duration-300 transform"
+        leave="transition ease-in-out duration-200 transform"
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >

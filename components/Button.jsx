@@ -8,8 +8,8 @@ const SIZES = {
     p: "px-12"
   },
   lg: {
-    h: "h-48 text-xl",
-    w: "w-48",
+    h: "h-40 text-xl",
+    w: "w-40",
     p: "px-24"
   }
 };

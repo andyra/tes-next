@@ -120,7 +120,7 @@ export default function Tracklist({ items }) {
           <div className="flex-1 flex items-center gap-8">
             <PlayPauseButton item={item} position={item.position} i={i} />
             <div
-              className={`flex items-center gap-8 text-xl ${
+              className={`flex items-center gap-8 text-2xl ${
                 highlightTrack(item) ? "text-secondary" : ""
               }`}
             >
