@@ -24,20 +24,24 @@ const OnDeck = ({ onDeck }) => (
         {onDeck ? onDeck.track.artist : ""}
       </div>
     </div>
+    <Button circle ghost className="ml-16">
+      <Icon name="heart" />
+    </Button>
   </div>
 );
 
 const PlayerControls = ({ back, isPlaying, onDeck, next, togglePlay }) => (
-  <div className="w-320 flex flex-col gap-4">
+  <div className="w-full max-w-screen-sm flex flex-col gap-4">
     <div className="flex items-center justify-center gap-8">
       <Button circle onClick={back} disabled={!onDeck}>
         <Icon name="play-skip-back" solid />
       </Button>
       <Button
         circle
+        size="lg"
         disabled={!onDeck}
         onClick={togglePlay}
-        className={`${isPlaying ? "bg-primary hover:bg-primary-75" : ""}`}
+        className={`${isPlaying ? "bg-accent hover:bg-accent-75" : ""}`}
       >
         <Icon name={isPlaying ? "pause" : "play"} solid />
       </Button>
@@ -46,15 +50,20 @@ const PlayerControls = ({ back, isPlaying, onDeck, next, togglePlay }) => (
       </Button>
     </div>
     <div className="flex items-center gap-8">
-      <time className="w-48 text-xs text-gray-500 text-right">0:00</time>
-      <div className="flex-1 h-4 bg-gray-400 rounded-full" />
-      <time className="w-48 text-xs text-gray-500">0:00</time>
+      <time className="w-48 font-mono text-xs text-primary-50 text-right">
+        0:00
+      </time>
+      <div className="flex-1 h-4 bg-primary-25 rounded-full" />
+      <time className="w-48 font-mono text-xs text-primary-50">0:00</time>
     </div>
   </div>
 );
 
 const ExtraControls = ({ queueCount, queueIsOpen, setQueueIsOpen }) => (
   <div className="flex-1 flex items-center justify-end gap-8">
+    <Button circle>
+      <Icon name="chevron-up" solid />
+    </Button>
     <Button
       circle
       className={`${queueIsOpen ? "bg-base" : ""}`}
@@ -66,7 +75,7 @@ const ExtraControls = ({ queueCount, queueIsOpen, setQueueIsOpen }) => (
       aria-expanded={queueIsOpen ? false : true}
       aria-label="Show Queue"
     >
-      <Icon name="list-circle" />
+      Q
     </Button>
   </div>
 );
@@ -139,7 +148,7 @@ export default function Player() {
 
   return (
     <>
-      <aside className="col-span-2 bg-base rounded-lg flex items-center justify-between p-8 gap-8">
+      <aside className="col-span-2 flex items-center justify-between p-8 gap-8 border-t border-primary-10">
         <OnDeck onDeck={onDeck} />
         <PlayerControls
           back={back}

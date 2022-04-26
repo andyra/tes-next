@@ -29,8 +29,8 @@ export default function Input({
 
   const inputClasses = cn({
     "block w-full h-40": true,
-    "bg-base border border-default-25 rounded outline-none": true,
-    "focus:border-primary focus:ring focus:ring-primary-25": true,
+    "bg-base border border-primary-25 rounded outline-none": true,
+    "focus:border-accent focus:ring focus:ring-accent-25": true,
     "px-12": !icon,
     "pl-32 pr-12": icon,
     [inputClassName]: inputClassName

@@ -8,10 +8,10 @@ import PageTitle from "../components/PageTitle";
 
 const Computor = () => {
   const LABEL_CLASSES =
-    "inline-block px-8 text-default-50 bg-base absolute z-10 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-sm";
+    "inline-block px-8 text-primary-50 bg-base absolute z-10 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-sm";
 
   return (
-    <section className="p-16 rounded-lg border-2 border-base-dark text-center">
+    <section className="p-16 rounded-lg border-2 border-accent text-center">
       <h1 className="text-xl font-medium mb-16">Setlist Computor</h1>
       <form className="flex items-center gap-16">
         <Input
@@ -49,7 +49,7 @@ const SetlistItem = ({ title, bleed, strategy }) => (
     <div className="text-3xl font-medium">{title}</div>
     {strategy && <div className="opacity-50">{strategy}</div>}
     {bleed && (
-      <span className="h-24 px-8 border border-primary-25 text-primary text-sm rounded-full inline-flex gap-4 items-center justify-center transform translate-y-1/3">
+      <span className="h-24 px-8 border border-accent-25 text-accent text-sm rounded-full inline-flex gap-4 items-center justify-center transform translate-y-1/3">
         <Icon name="arrow-down" solid />
         Bleed
       </span>

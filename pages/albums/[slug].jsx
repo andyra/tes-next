@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import CollectionHeader from "../../components/CollectionHeader";
 import PageTitle from "../../components/PageTitle";
 import { querySlugs } from "../../helpers/query.helpers";
 
@@ -13,7 +14,7 @@ export default function Album({ album }) {
   console.log(album);
   return (
     <>
-      <PageTitle>{album.title}</PageTitle>
+      <Header title={album.title} />
       <section className="divide-y divide-subtle">
         <DataRow title="title" value={album.title} />
         <DataRow title="albumCoverArt" value={album.albumCoverArt[0].url} />

@@ -17,16 +17,15 @@ function App({ Component, pageProps }) {
     "grid",
     "h-full",
     "overflow-hidden",
-    "p-4",
-    "gap-4",
-    "bg-base-dark",
-    "text-default"
+    "bg-base",
+    "text-primary",
+    "grid",
+    "grid-cols-[224px_1fr]",
+    "grid-rows-[1fr_88px]"
   ];
 
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses);
-    document.getElementById("__next").style =
-      "grid-template-columns: 224px 1fr; grid-template-rows: 1fr 72px;";
   }, []);
 
   return (

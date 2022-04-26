@@ -3,59 +3,63 @@
 }
 
 .dark {
-  --base-dark: hsla(222, 45%, 11%);
-  --base: hsla(215, 28%, 17%, 1);
+  --base: hsla(215, 28%, 0%, 1);
   --base-75: hsla(215, 28%, 17%, 0.75);
   --base-50: hsla(215, 28%, 17%, 0.5);
   --base-25: hsla(215, 28%, 17%, 0.25);
   --base-10: hsla(215, 28%, 17%, 0.1);
   --base-5: hsla(215, 28%, 17%, 0.05);
-  --default: hsla(28, 24%, 98%, 1);
-  --default-75: hsla(28, 24%, 98%, 0.75);
-  --default-50: hsla(28, 24%, 98%, 0.5);
-  --default-25: hsla(28, 24%, 98%, 0.25);
-  --default-10: hsla(28, 24%, 98%, 0.1);
-  --default-5: hsla(28, 24%, 98%, 0.05);
-  --primary: hsla(15, 82%, 66%, 1);
-  --primary-75: hsla(15, 82%, 66%, 0.75);
-  --primary-50: hsla(15, 82%, 66%, 0.5);
-  --primary-25: hsla(15, 82%, 66%, 0.25);
-  --primary-10: hsla(15, 82%, 66%, 0.1);
-  --primary-5: hsla(15, 82%, 66%, 0.05);
-  --secondary: hsla(199, 41%, 61%, 1);
-  --secondary-75: hsla(199, 41%, 61%, 0.75);
-  --secondary-50: hsla(199, 41%, 61%, 0.5);
-  --secondary-25: hsla(199, 41%, 61%, 0.25);
-  --secondary-10: hsla(199, 41%, 61%, 0.1);
-  --secondary-5: hsla(199, 41%, 61%, 0.05);
+  --primary: hsl(53, 16%, 77%, 1);
+  --primary-75: hsla(53, 16%, 77%, 0.75);
+  --primary-50: hsla(53, 16%, 77%, 0.5);
+  --primary-25: hsla(53, 16%, 77%, 0.25);
+  --primary-10: hsla(53, 16%, 77%, 0.1);
+  --primary-5: hsla(53, 16%, 77%, 0.05);
+  --secondary: hsl(191, 61%, 81%, 1);
+  --secondary-75: hsla(191, 61%, 81%, 0.75);
+  --secondary-50: hsla(191, 61%, 81%, 0.5);
+  --secondary-25: hsla(191, 61%, 81%, 0.25);
+  --secondary-10: hsla(191, 61%, 81%, 0.1);
+  --secondary-5: hsla(191, 61%, 81%, 0.05);
+  --tertiary: hsl(234, 88%, 81%, 1);
+  --tertiary-75: hsl(234, 88%, 81%, 0.75);
+  --tertiary-50: hsl(234, 88%, 81%, 0.5);
+  --tertiary-25: hsl(234, 88%, 81%, 0.25);
+  --tertiary-10: hsl(234, 88%, 81%, 0.1);
+  --tertiary-5: hsl(234, 88%, 81%, 0.05);
+  --accent: hsla(15, 82%, 66%, 1);
+  --accent-75: hsla(15, 82%, 66%, 0.75);
+  --accent-50: hsla(15, 82%, 66%, 0.5);
+  --accent-25: hsla(15, 82%, 66%, 0.25);
+  --accent-10: hsla(15, 82%, 66%, 0.1);
+  --accent-5: hsla(15, 82%, 66%, 0.05);
 }
 
 .light {
-  --base-dark: hsla(32, 20%, 92%, 1);
   --base: hsla(28, 24%, 98%, 1);
   --base-75: hsla(28, 24%, 98%, 0.75);
   --base-50: hsla(28, 24%, 98%, 0.5);
   --base-25: hsla(28, 24%, 98%, 0.25);
   --base-10: hsla(28, 24%, 98%, 0.1);
   --base-5: hsla(28, 24%, 98%, 0.05);
-  --default: hsla(215, 28%, 17%, 1);
-  --default-75: hsla(215, 28%, 17%, 0.75);
-  --default-50: hsla(215, 28%, 17%, 0.5);
-  --default-25: hsla(215, 28%, 17%, 0.25);
-  --default-10: hsla(215, 28%, 17%, 0.1);
-  --default-5: hsla(215, 28%, 17%, 0.05);
-  --primary: hsla(180, 99%, 25%, 1);
-  --primary-75: hsla(180, 99%, 25%, 0.75);
-  --primary-50: hsla(180, 99%, 25%, 0.5);
-  --primary-25: hsla(180, 99%, 25%, 0.25);
-  --primary-10: hsla(180, 99%, 25%, 0.1);
-  --primary-5: hsla(180, 99%, 25%, 0.05);
+  --primary: hsla(215, 28%, 17%, 1);
+  --primary-75: hsla(215, 28%, 17%, 0.75);
+  --primary-50: hsla(215, 28%, 17%, 0.5);
+  --primary-25: hsla(215, 28%, 17%, 0.25);
+  --primary-10: hsla(215, 28%, 17%, 0.1);
+  --primary-5: hsla(215, 28%, 17%, 0.05);
   --secondary: hsla(29, 82%, 66%, 1);
   --secondary-75: hsla(29, 82%, 66%, 0.75);
   --secondary-50: hsla(29, 82%, 66%, 0.5);
   --secondary-25: hsla(29, 82%, 66%, 0.25);
   --secondary-10: hsla(29, 82%, 66%, 0.1);
   --secondary-5: hsla(29, 82%, 66%, 0.05);
+  --accent: hsla(180, 99%, 25%, 1);
+  --accent-75: hsla(180, 99%, 25%, 0.75);
+  --accent-50: hsla(180, 99%, 25%, 0.5);
+  --accent-25: hsla(180, 99%, 25%, 0.25);
+  --accent-10: hsla(180, 99%, 25%, 0.1);
+  --accent-5: hsla(180, 99%, 25%, 0.05);
 }
 
 @tailwind base;

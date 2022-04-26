@@ -38,7 +38,7 @@ export default function CategoryList({ level = 1, parentId }) {
       {data.categories.map(category => (
         <li key={category.slug}>
           <Link href={`/wiki/category/${encodeURIComponent(category.slug)}`}>
-            <a className="block p-24 bg-primary-5">{category.title}</a>
+            <a className="block p-24 bg-accent-5">{category.title}</a>
           </Link>
         </li>
       ))}

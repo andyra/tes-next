@@ -41,7 +41,7 @@ export default function AlbumList() {
       {data.entries.map(album => (
         <li key={album.slug}>
           <Link href={`/albums/${encodeURIComponent(album.slug)}`}>
-            <a className="block hover:bg-default-10 rounded p-8 transition">
+            <a className="block hover:bg-primary-10 rounded p-8 transition">
               {album.albumCoverArt[0].url && (
                 <Image
                   alt={`${album.title} cover art`}
