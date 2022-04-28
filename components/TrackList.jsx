@@ -128,7 +128,7 @@ export default function Tracklist({ tracks }) {
               {track.title}
             </div>
           </div>
-          {track.listType === "playlist" && (
+          <div id="actions" className="flex items-center gap-2">
             <Button
               circle
               className="opacity-0 group-hover:opacity-100"
@@ -139,8 +139,30 @@ export default function Tracklist({ tracks }) {
             >
               <Icon name="heart" />
             </Button>
-          )}
-          {track.listType === "queue" && (
+            {track.listType === "playlist" && (
+              <Button
+                circle
+                className="opacity-0 group-hover:opacity-100"
+                ghost
+                onClick={() => {
+                  addToQueue(track);
+                }}
+              >
+                <Icon name="add" solid />
+              </Button>
+            )}
+            {track.listType === "queue" && (
+              <Button
+                circle
+                className="opacity-0 group-hover:opacity-100"
+                ghost
+                onClick={() => {
+                  removeFromQueue(track, i);
+                }}
+              >
+                <Icon name="close" solid />
+              </Button>
+            )}
             <Button
               circle
               className="opacity-0 group-hover:opacity-100"
@@ -151,7 +173,7 @@ export default function Tracklist({ tracks }) {
             >
               <Icon name="ellipsis-horizontal" solid />
             </Button>
-          )}
+          </div>
         </li>
       ))}
     </ul>

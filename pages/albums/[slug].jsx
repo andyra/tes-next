@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import CollectionHeader from "../../components/CollectionHeader";
+import NiceDate from "../../components/NiceDate";
 import PageTitle from "../../components/PageTitle";
 import Tracklist from "../../components/Tracklist";
 import { querySlugs } from "../../helpers/query.helpers";
@@ -43,11 +43,20 @@ function normalizeAlbumTracks(album) {
 // ----------------------------------------------------------------------------
 
 export default function Album({ album }) {
-  const { title, albumCoverArt, artist, tracklist } = album;
+  const { title, albumCoverArt, artist, releaseDate, tracklist } = album;
 
   return (
     <>
-      <CollectionHeader title={album.title} />
+      <header className="flex items-end gap-24 mb-48">
+        <figure className="bg-accent w-224 h-224 rounded-lg" />
+        <hgroup className="flex flex-col gap-12">
+          <h1 className="text-6xl font-bold">{title}</h1>
+          <div>
+            {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
+            {tracklist.length} Tracks • Duration
+          </div>
+        </hgroup>
+      </header>
       <Tracklist tracks={normalizeAlbumTracks(album)} />
     </>
   );
