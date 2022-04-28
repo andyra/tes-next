@@ -20,13 +20,13 @@ function App({ Component, pageProps }) {
     "p-4",
     "gap-4",
     "bg-base-dark",
-    "text-default"
+    "text-default",
+    "grid-cols-[224px,1fr]",
+    "grid-rows-[1fr,88px]"
   ];
 
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses);
-    document.getElementById("__next").style =
-      "grid-template-columns: 224px 1fr; grid-template-rows: 1fr 72px;";
   }, []);
 
   return (
