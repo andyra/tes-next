@@ -20,12 +20,9 @@ const Section = ({ actions, children, title }) => (
 
 const QueueList = ({ actions, tracks, title }) => {
   return tracks.length ? (
-    <>
-      <hr />
-      <Section title={title} actions={actions}>
-        <Tracklist tracks={tracks} />
-      </Section>
-    </>
+    <Section title={title} actions={actions}>
+      <Tracklist tracks={tracks} />
+    </Section>
   ) : (
     ""
   );
@@ -33,7 +30,7 @@ const QueueList = ({ actions, tracks, title }) => {
 
 const NowPlaying = ({ onDeck }) => {
   return onDeck ? (
-    <Section title="Now Playing">
+    <Section title="On Deck">
       <div className="text-default">{onDeck.title}</div>
     </Section>
   ) : (
@@ -82,7 +79,7 @@ export default function Queue({ queueIsOpen, setQueueIsOpen }) {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="w-full max-w-screen-lg mx-auto space-y-24 mt-48">
+        <div className="w-full max-w-screen-md mx-auto space-y-24 mt-48">
           <h2 className="text-secondary font-bold text-3xl">Queue</h2>
           <NowPlaying onDeck={onDeck} />
           <QueueList
@@ -90,7 +87,7 @@ export default function Queue({ queueIsOpen, setQueueIsOpen }) {
             tracks={queue}
             actions={<ClearQueueButton />}
           />
-          <QueueList title="Next From" tracks={nextFrom} />
+          <QueueList title="Next From [collection name]" tracks={nextFrom} />
         </div>
       </Transition.Child>
     </Transition>
