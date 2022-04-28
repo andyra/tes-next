@@ -2,37 +2,52 @@ import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import PageTitle from "../../components/PageTitle";
+import TracklistNew from "../../components/TracklistNew";
 import { querySlugs } from "../../helpers/query.helpers";
 
-import DataRow from "../../components/DataRow";
+// Functions
+// ----------------------------------------------------------------------------
+
+function normalizeAlbumTracks(album) {
+  const newTracks = [];
+  let i = 1;
+
+  for (let track of album.tracklist) {
+    newTracks.push({
+      addedBy: null,
+      audioFile: track.audioFile[0].url,
+      collection: {
+        artist: {
+          slug: album.artist[0].slug,
+          title: album.artist[0].title
+        },
+        coverArtUrl: album.albumCoverArt[0].url,
+        slug: album.slug,
+        title: album.title,
+        entryType: "album"
+      },
+      dateAdded: null,
+      listType: "playlist",
+      id: `album-${album.id}-0`,
+      position: i,
+      slug: track.song[0].slug,
+      title: track.song[0].title
+    });
+    i++;
+  }
+  return newTracks;
+}
 
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Album({ album }) {
-  console.log(album);
+  const { title, albumCoverArt, artist, tracklist } = album;
+
   return (
     <>
-      <PageTitle>{album.title}</PageTitle>
-      <section className="divide-y divide-subtle">
-        <DataRow title="title" value={album.title} />
-        <DataRow title="albumCoverArt" value={album.albumCoverArt[0].url} />
-        <DataRow title="albumType" value={album.albumType} />
-        <DataRow title="artist">
-          <DataRow title="title" value={album.artist[0].title} />
-          <DataRow title="slug" value={album.artist[0].slug} />
-        </DataRow>
-        <DataRow title="releaseDate" value={album.releaseDate} />
-        <DataRow title="tracklist">
-          <DataRow title="song" value={album.tracklist[0].song[0].slug} />
-          {album.tracklist[0].audioFile.length && (
-            <DataRow
-              title="audioFile"
-              value={album.tracklist[0].audioFile[0].url}
-            />
-          )}
-        </DataRow>
-      </section>
+      <PageTitle>{title}</PageTitle>
+      <TracklistNew tracks={normalizeAlbumTracks(album)} />
     </>
   );
 }
@@ -64,6 +79,8 @@ export async function getStaticProps(context) {
     query: gql`
       query Entry {
         entry(section: "albums", slug: "${params.slug}") {
+          id
+          slug
           title
           ... on albums_default_Entry {
             albumCoverArt { url }

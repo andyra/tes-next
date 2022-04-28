@@ -42,13 +42,15 @@ export default function AlbumList() {
         <li key={album.slug}>
           <Link href={`/albums/${encodeURIComponent(album.slug)}`}>
             <a className="block hover:bg-default-10 rounded p-8 transition">
-              {album.albumCoverArt[0].url && (
+              {album.albumCoverArt.length && album.albumCoverArt[0].url ? (
                 <Image
                   alt={`${album.title} cover art`}
                   src={album.albumCoverArt[0].url}
                   width={256}
                   height={256}
                 />
+              ) : (
+                ""
               )}
               <div>{album.title}</div>
               <NiceDate date={album.releaseDate} className="opacity-50" />
