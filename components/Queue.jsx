@@ -4,6 +4,7 @@ import cn from "classnames";
 import AudioContext from "../context/AudioContext";
 import Button from "../components/Button";
 import Tracklist from "../components/Tracklist";
+import TracklistNew from "../components/TracklistNew";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -20,12 +21,12 @@ const Section = ({ actions, children, title }) => (
   </section>
 );
 
-const QueueList = ({ actions, items, title }) => {
-  return items.length ? (
+const QueueList = ({ actions, tracks, title }) => {
+  return tracks.length ? (
     <>
       <hr />
       <Section title={title} actions={actions}>
-        <Tracklist items={items} />
+        <TracklistNew tracks={tracks} />
       </Section>
     </>
   ) : (
@@ -99,8 +100,12 @@ export default function Queue({ queueIsOpen, setQueueIsOpen }) {
         leaveTo="opacity-0 translate-x-1/4"
       >
         <NowPlaying onDeck={onDeck} />
-        <QueueList title="Queue" items={queue} actions={<ClearQueueButton />} />
-        <QueueList title="Next From" items={nextFrom} />
+        <QueueList
+          title="Queue"
+          tracks={queue}
+          actions={<ClearQueueButton />}
+        />
+        <QueueList title="Next From" tracks={nextFrom} />
       </Transition.Child>
     </Transition>
   );

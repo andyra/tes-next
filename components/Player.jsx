@@ -14,14 +14,12 @@ const OnDeck = ({ onDeck }) => (
     }`}
   >
     <figure className="h-56 w-56 bg-blue-200 rounded flex items-center justify-center text-2xl flex-shrink-0">
-      {onDeck ? onDeck.track.id : ""}
+      {onDeck ? onDeck.id : ""}
     </figure>
     <div>
-      <div className="text-sm font-medium">
-        {onDeck ? onDeck.track.title : ""}
-      </div>
+      <div className="text-sm font-medium">{onDeck ? onDeck.title : ""}</div>
       <div className="text-xs text-gray-500">
-        {onDeck ? onDeck.track.artist : ""}
+        {onDeck ? onDeck.artist.title : ""}
       </div>
     </div>
   </div>

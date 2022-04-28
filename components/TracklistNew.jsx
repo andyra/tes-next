@@ -122,9 +122,9 @@ export default function TracklistNew({ tracks }) {
                 highlightTrack(track) ? "text-secondary" : ""
               }`}
             >
-              {track.title}
+              <div className="text-xl">{track.title}</div>
               <span className="opacity-50">
-                ({track.listType} • {track.position})
+                (Position {track.position} • Count {i})
               </span>
             </div>
           </div>

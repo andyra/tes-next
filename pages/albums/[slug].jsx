@@ -15,12 +15,12 @@ function normalizeAlbumTracks(album) {
   for (let track of album.tracklist) {
     newTracks.push({
       addedBy: null,
+      artist: {
+        slug: album.artist[0].slug,
+        title: album.artist[0].title
+      },
       audioFile: track.audioFile[0].url,
       collection: {
-        artist: {
-          slug: album.artist[0].slug,
-          title: album.artist[0].title
-        },
         coverArtUrl: album.albumCoverArt[0].url,
         slug: album.slug,
         title: album.title,
