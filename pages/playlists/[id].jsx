@@ -253,6 +253,10 @@ export async function getStaticProps(context) {
                     }
                   }
                 }
+                audioFile {
+                  id
+                  url
+                }
                 dateAdded
                 filePath
                 song {

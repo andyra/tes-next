@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import CollectionHeader from "../../components/CollectionHeader";
 import PageTitle from "../../components/PageTitle";
 import Tracklist from "../../components/Tracklist";
 import { querySlugs } from "../../helpers/query.helpers";
@@ -46,7 +47,7 @@ export default function Album({ album }) {
 
   return (
     <>
-      <PageTitle>{title}</PageTitle>
+      <CollectionHeader title={album.title} />
       <Tracklist tracks={normalizeAlbumTracks(album)} />
     </>
   );

@@ -3,13 +3,13 @@ import cn from "classnames";
 
 const SIZES = {
   base: {
-    h: "h-32",
+    h: "h-32 text-lg",
     w: "w-32",
     p: "px-12"
   },
   lg: {
-    h: "h-48",
-    w: "w-48",
+    h: "h-40 text-xl",
+    w: "w-40",
     p: "px-24"
   }
 };
@@ -19,6 +19,7 @@ export default function Button({
   circle,
   className,
   disabled,
+  ghost,
   onClick,
   size = "base",
   type = "button",
@@ -26,7 +27,8 @@ export default function Button({
 }) {
   const buttonClasses = cn({
     "flex items-center justify-center transition": true,
-    "border border-default-25 rounded-full hover:bg-default-10": true,
+    "rounded-full hover:bg-primary-10": true,
+    "border border-primary-25": !ghost,
     "opacity-50 pointer-events-none": disabled,
     [SIZES[size].h]: true,
     [SIZES[size].p]: !circle,

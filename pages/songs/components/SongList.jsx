@@ -29,7 +29,7 @@ export default function SongList() {
         <li key={song.slug}>
           {console.log(song)}
           <Link href={`/songs/${encodeURIComponent(song.slug)}`}>
-            <a className="flex break-inside-avoid-column gap-8 hover:bg-default-10 p-8 border-t border-black transition group">
+            <a className="flex break-inside-avoid-column gap-8 hover:bg-primary-10 p-8 border-t border-black transition group">
               <span className="opacity-25 group-hover:opacity-50 transition">
                 {i + 1}
               </span>

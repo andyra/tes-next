@@ -12,11 +12,11 @@ import ThemeSwitcher from "./ThemeSwitcher";
 // ----------------------------------------------------------------------------
 
 const Main = ({ children }) => (
-  <main className="h-full bg-base rounded-lg overflow-y-auto">{children}</main>
+  <main className="h-full overflow-y-auto">{children}</main>
 );
 
 const Toolbar = () => (
-  <section className="sticky top-0 z-10 p-16 grid grid-cols-[128px_1fr_128px] gap-8 bg-base rounded-lg">
+  <section className="sticky top-0 z-10 p-16 grid grid-cols-[128px_1fr_128px] gap-8">
     <Input
       className="mx-auto max-w-screen-sm col-start-2"
       icon="search"
@@ -33,7 +33,7 @@ const Container = ({ children, maxWidth }) => {
   const containerClasses = cn({
     "mx-auto p-64": true,
     [maxWidth]: maxWidth,
-    "max-w-screen-md": !maxWidth
+    "max-w-screen-lg": !maxWidth
   });
 
   return <div className={containerClasses}>{children}</div>;

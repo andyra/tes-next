@@ -4,19 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "base-dark": "var(--base-dark)",
         base: "var(--base)",
         "base-75": "var(--base-75)",
         "base-50": "var(--base-50)",
         "base-25": "var(--base-25)",
         "base-10": "var(--base-10)",
         "base-5": "var(--base-5)",
-        default: "var(--default)",
-        "default-75": "var(--default-75)",
-        "default-50": "var(--default-50)",
-        "default-25": "var(--default-25)",
-        "default-10": "var(--default-10)",
-        "default-5": "var(--default-5)",
         primary: "var(--primary)",
         "primary-75": "var(--primary-75)",
         "primary-50": "var(--primary-50)",
@@ -28,16 +21,20 @@ module.exports = {
         "secondary-50": "var(--secondary-50)",
         "secondary-25": "var(--secondary-25)",
         "secondary-10": "var(--secondary-10)",
-        "secondary-5": "var(--secondary-5)"
+        "secondary-5": "var(--secondary-5)",
+        tertiary: "var(--tertiary)",
+        "tertiary-75": "var(--tertiary-75)",
+        "tertiary-50": "var(--tertiary-50)",
+        "tertiary-25": "var(--tertiary-25)",
+        "tertiary-10": "var(--tertiary-10)",
+        "tertiary-5": "var(--tertiary-5)",
+        accent: "var(--accent)",
+        "accent-75": "var(--accent-75)",
+        "accent-50": "var(--accent-50)",
+        "accent-25": "var(--accent-25)",
+        "accent-10": "var(--accent-10)",
+        "accent-5": "var(--accent-5)"
       },
-      // ringColors: {
-      //   primary: "var(--primary)",
-      //   "primary-75": "var(--primary-75)",
-      //   "primary-50": "var(--primary-50)",
-      //   "primary-25": "var(--primary-25)",
-      //   "primary-10": "var(--primary-10)",
-      //   "primary-5": "var(--primary-5)"
-      // },
       transitionDuration: {
         DEFAULT: "100ms"
       }

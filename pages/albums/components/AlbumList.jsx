@@ -24,6 +24,36 @@ const GET_ALBUMS = gql`
   }
 `;
 
+export const AlbumItem = ({ album }) => {
+  const { slug, title, albumCoverArt, releaseDate } = album;
+
+  return (
+    <li key={slug}>
+      <Link href={`/albums/${encodeURIComponent(slug)}`}>
+        <a className="block hover:bg-primary-10 rounded p-8 transition">
+          <figure className="rounded-lg overflow-hidden mb-16">
+            {albumCoverArt.length ? (
+              <Image
+                alt={`${title} cover art`}
+                src={albumCoverArt[0].url}
+                width={320}
+                height={320}
+                layout="responsive"
+              />
+            ) : (
+              <div className="w-full aspect-square bg-primary-10 flex items-center justify-center text-primary-50">
+                n/a
+              </div>
+            )}
+          </figure>
+          <div className="text-lg font-medium">{title}</div>
+          <NiceDate date={releaseDate} className="opacity-50" />
+        </a>
+      </Link>
+    </li>
+  );
+};
+
 export default function AlbumList() {
   const { data, loading, error } = useQuery(GET_ALBUMS);
 
@@ -39,24 +69,7 @@ export default function AlbumList() {
   return data.entries ? (
     <ul className="grid grid-cols-3 -mx-8">
       {data.entries.map(album => (
-        <li key={album.slug}>
-          <Link href={`/albums/${encodeURIComponent(album.slug)}`}>
-            <a className="block hover:bg-default-10 rounded p-8 transition">
-              {album.albumCoverArt.length && album.albumCoverArt[0].url ? (
-                <Image
-                  alt={`${album.title} cover art`}
-                  src={album.albumCoverArt[0].url}
-                  width={256}
-                  height={256}
-                />
-              ) : (
-                ""
-              )}
-              <div>{album.title}</div>
-              <NiceDate date={album.releaseDate} className="opacity-50" />
-            </a>
-          </Link>
-        </li>
+        <AlbumItem album={album} key={album.slug} />
       ))}
     </ul>
   ) : (

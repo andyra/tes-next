@@ -32,17 +32,20 @@ const NavLink = ({ className, count, icon, navSection, title, url }) => {
   const router = useRouter();
   const active = router.asPath == url || navSection === title;
   const linkClasses = cn({
-    "flex items-center gap-8 h-32 px-12 -mx-12 py-16 rounded-lg hover:bg-default-5": true,
-    "text-primary": active,
+    "flex items-center gap-8 h-32 px-12 -ml-12 py-16 rounded-lg hover:bg-secondary-10 relative": true,
+    "text-accent": active,
     [className]: className
   });
 
   return (
     <Link href={url}>
       <a className={linkClasses}>
+        {active && (
+          <span className="h-4 w-4 rounded-full bg-accent absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/2" />
+        )}
         {icon && (
           <span className="w-16 flex items-center justify-center">
-            <Icon name={icon} />
+            <Icon name={icon} solid />
           </span>
         )}
         <span className="flex-1">{title}</span>
@@ -173,14 +176,23 @@ const ListPlaylists = () => {
 
 export default function Navigation({ navSection }) {
   return (
-    <nav className="row-span-1 flex flex-col gap-24 bg-base rounded-lg p-16 overflow-y-auto">
+    <nav className="row-span-1 flex flex-col gap-24 pl-24 pr-12 border-r border-primary-10 overflow-y-auto text-secondary">
+      <Link href="/">
+        <a className="text-3xl my-24 leading-tight">
+          This
+          <br />
+          Evening's
+          <br />
+          Show
+          <br />
+        </a>
+      </Link>
       <ul>
-        <NavLink title="T.E.S." url="/" className="mb-24" />
         <li>
           <NavLink
             title="Episodes"
             url="/episodes"
-            icon="mic"
+            // icon="mic"
             navSection={navSection}
           />
         </li>
@@ -188,7 +200,7 @@ export default function Navigation({ navSection }) {
           <NavLink
             title="Music"
             url="/albums"
-            icon="musical-notes"
+            // icon="musical-notes"
             navSection={navSection}
           />
         </li>
@@ -196,7 +208,7 @@ export default function Navigation({ navSection }) {
           <NavLink
             title="Wiki"
             url="/wiki"
-            icon="book"
+            // icon="book"
             navSection={navSection}
           />
         </li>
@@ -204,7 +216,7 @@ export default function Navigation({ navSection }) {
           <NavLink
             title="Videos"
             url="/videos"
-            icon="videocam"
+            // icon="videocam"
             navSection={navSection}
           />
         </li>
@@ -212,12 +224,16 @@ export default function Navigation({ navSection }) {
           <NavLink
             title="Setlist Computor"
             url="/setlist"
-            icon="musical-note"
+            // icon="musical-note"
             navSection={navSection}
           />
         </li>
         <li>
-          <NavLink title="About" url="/about" icon="information" />
+          <NavLink
+            title="About"
+            url="/about"
+            // icon="information"
+          />
         </li>
       </ul>
       <ul>
