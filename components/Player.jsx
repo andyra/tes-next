@@ -36,8 +36,8 @@ const OnDeck = ({ fullScreen, onDeck }) => {
     <div className={onDeckClasses}>
       <figure className={coverArtClasses}>{onDeck ? onDeck.id : ""}</figure>
       <div>
-        <div className={titleClasses}>{onDeck ? onDeck.track.title : ""}</div>
-        <div className={artistClasses}>{onDeck ? onDeck.track.artist : ""}</div>
+        <div className={titleClasses}>{onDeck ? onDeck.title : ""}</div>
+        <div className={artistClasses}>{onDeck ? onDeck.artist.title : ""}</div>
       </div>
       <Button circle ghost className="ml-16">
         <Icon name="heart" />
@@ -91,11 +91,12 @@ const PlayerControls = ({
 };
 
 const ExtraControls = ({
+  fullScreen,
+  onDeck,
   queueCount,
   queueIsOpen,
-  setQueueIsOpen,
-  fullScreen,
-  setFullScreen
+  setFullScreen,
+  setQueueIsOpen
 }) => {
   const containerClasses = cn({
     "flex-1 flex items-center justify-end gap-8": true,
@@ -111,6 +112,7 @@ const ExtraControls = ({
     <div className={containerClasses}>
       <Button
         circle
+        disabled={!onDeck && queueCount === 0}
         onClick={() => {
           setQueueIsOpen(false);
           setFullScreen(!fullScreen);
@@ -124,7 +126,7 @@ const ExtraControls = ({
       <Button
         circle
         className={queueButtonClasses}
-        disabled={queueCount < 1}
+        disabled={!onDeck && queueCount === 0}
         onClick={() => {
           setFullScreen(false);
           setQueueIsOpen(!queueIsOpen);
@@ -153,6 +155,7 @@ export default function Player() {
   useEffect(() => {
     if (!onDeck && queueCount === 0) {
       setQueueIsOpen(false);
+      setFullScreen(false);
     }
   }, [onDeck, queueCount]);
 
