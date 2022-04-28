@@ -4,7 +4,6 @@ import cn from "classnames";
 import AudioContext from "../context/AudioContext";
 import Button from "../components/Button";
 import Tracklist from "../components/Tracklist";
-import TracklistNew from "../components/TracklistNew";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -26,7 +25,7 @@ const QueueList = ({ actions, tracks, title }) => {
     <>
       <hr />
       <Section title={title} actions={actions}>
-        <TracklistNew tracks={tracks} />
+        <Tracklist tracks={tracks} />
       </Section>
     </>
   ) : (
@@ -38,7 +37,7 @@ const NowPlaying = ({ onDeck }) => {
   return onDeck ? (
     <Section title="Now Playing">
       <div className="text-default">
-        {onDeck.track.title}{" "}
+        {onDeck.title}{" "}
         <span className="opacity-50">
           ({onDeck.listType} • {onDeck.position})
         </span>

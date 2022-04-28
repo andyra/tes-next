@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import PageTitle from "../../components/PageTitle";
-import TracklistNew from "../../components/TracklistNew";
+import Tracklist from "../../components/Tracklist";
 import { querySlugs } from "../../helpers/query.helpers";
 
 // Functions
@@ -28,7 +28,7 @@ function normalizeAlbumTracks(album) {
       },
       dateAdded: null,
       listType: "playlist",
-      id: `album-${album.id}-0`,
+      id: `album-${album.id}-${i}`,
       position: i,
       slug: track.song[0].slug,
       title: track.song[0].title
@@ -47,7 +47,7 @@ export default function Album({ album }) {
   return (
     <>
       <PageTitle>{title}</PageTitle>
-      <TracklistNew tracks={normalizeAlbumTracks(album)} />
+      <Tracklist tracks={normalizeAlbumTracks(album)} />
     </>
   );
 }

@@ -51,12 +51,12 @@ const PlayerControls = ({ back, isPlaying, onDeck, next, togglePlay }) => (
   </div>
 );
 
-const ExtraControls = ({ queueCount, queueIsOpen, setQueueIsOpen }) => (
+const ExtraControls = ({ queueCount, queueIsOpen, onDeck, setQueueIsOpen }) => (
   <div className="flex-1 flex items-center justify-end gap-8">
     <Button
       circle
       className={`${queueIsOpen ? "bg-base" : ""}`}
-      disabled={queueCount < 1}
+      disabled={!onDeck && queueCount === 0}
       onClick={() => {
         setQueueIsOpen(queueIsOpen ? false : true);
       }}
@@ -80,10 +80,10 @@ export default function Player() {
   const queueCount = prevFrom.length + nextFrom.length + queue.length;
 
   useEffect(() => {
-    if (queueCount === 0) {
+    if (!onDeck && queueCount === 0) {
       setQueueIsOpen(false);
     }
-  }, [queueCount]);
+  }, [onDeck, queueCount]);
 
   function togglePlay() {
     setPlaying(!playing);
@@ -94,7 +94,7 @@ export default function Player() {
   }
 
   function next() {
-    if (onDeck && onDeck.listType === "tracklist") {
+    if (onDeck && onDeck.listType === "playlist") {
       addToPrevFrom(onDeck);
     }
 
@@ -147,9 +147,10 @@ export default function Player() {
           togglePlay={togglePlay}
         />
         <ExtraControls
+          onDeck={onDeck}
+          queueCount={queueCount}
           queueIsOpen={queueIsOpen}
           setQueueIsOpen={setQueueIsOpen}
-          queueCount={queueCount}
         />
       </aside>
       <Queue queueIsOpen={queueIsOpen} setQueueIsOpen={setQueueIsOpen} />
