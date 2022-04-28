@@ -14,7 +14,7 @@ export default function Album({ album }) {
   console.log(album);
   return (
     <>
-      <Header title={album.title} />
+      <CollectionHeader title={album.title} />
       <section className="divide-y divide-subtle">
         <DataRow title="title" value={album.title} />
         <DataRow title="albumCoverArt" value={album.albumCoverArt[0].url} />
