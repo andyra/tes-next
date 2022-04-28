@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import Image from "next/image";
 import cn from "classnames";
 import AudioContext from "../context/AudioContext";
 import Button from "./Button";
@@ -17,8 +18,8 @@ const OnDeck = ({ fullScreen, onDeck }) => {
   });
 
   const coverArtClasses = cn({
-    "bg-blue-200 rounded flex items-center justify-center text-2xl flex-shrink-0": true,
-    "h-56 w-56": !fullScreen,
+    "bg-blue-200 rounded flex items-center justify-center text-2xl flex-shrink-0 overflow-hidden": true,
+    "h-64 w-64": !fullScreen,
     "h-256 w-256": fullScreen
   });
 
@@ -34,7 +35,16 @@ const OnDeck = ({ fullScreen, onDeck }) => {
 
   return (
     <div className={onDeckClasses}>
-      <figure className={coverArtClasses}>{onDeck ? onDeck.id : ""}</figure>
+      <figure className={coverArtClasses}>
+        {onDeck && (
+          <Image
+            alt={`${onDeck.collection.title} cover art`}
+            src={onDeck.collection.coverArtUrl}
+            width={fullScreen ? 256 : 64}
+            height={fullScreen ? 256 : 64}
+          />
+        )}
+      </figure>
       <div>
         <div className={titleClasses}>{onDeck ? onDeck.title : ""}</div>
         <div className={artistClasses}>{onDeck ? onDeck.artist.title : ""}</div>

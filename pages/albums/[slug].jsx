@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
@@ -48,7 +49,15 @@ export default function Album({ album }) {
   return (
     <>
       <header className="flex items-end gap-24 mb-48">
-        <figure className="bg-accent w-224 h-224 rounded-lg" />
+        <figure className="w-256 h-256 rounded-lg overflow-hidden">
+          <Image
+            alt={`${title} cover art`}
+            src={albumCoverArt[0].url}
+            width={256}
+            height={256}
+            layout="responsive"
+          />
+        </figure>
         <hgroup className="flex flex-col gap-12">
           <h1 className="text-6xl font-bold">{title}</h1>
           <div>
