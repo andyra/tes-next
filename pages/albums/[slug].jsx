@@ -14,7 +14,7 @@ function normalizeAlbumTracks(album) {
   const newTracks = [];
   let i = 1;
 
-  for (let track of album.tracklist) {
+  for (let track of album.albumTracklist) {
     newTracks.push({
       addedBy: null,
       artist: {
@@ -44,7 +44,7 @@ function normalizeAlbumTracks(album) {
 // ----------------------------------------------------------------------------
 
 export default function Album({ album }) {
-  const { title, albumCoverArt, artist, releaseDate, tracklist } = album;
+  const { albumCoverArt, albumTracklist, artist, releaseDate, title } = album;
 
   return (
     <>
@@ -62,7 +62,7 @@ export default function Album({ album }) {
           <h1 className="text-6xl font-bold">{title}</h1>
           <div>
             {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
-            {tracklist.length} Tracks • Duration
+            {albumTracklist.length} Tracks • Duration
           </div>
         </hgroup>
       </header>
@@ -109,8 +109,8 @@ export async function getStaticProps(context) {
               title
             }
             releaseDate
-            tracklist {
-              ... on tracklist_BlockType {
+            albumTracklist {
+              ... on albumTracklist_BlockType {
                 audioFile { url }
                 song {
                   slug

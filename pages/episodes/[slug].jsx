@@ -2,19 +2,62 @@ import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import PageTitle from "../../components/PageTitle";
+import Tracklist from "../../components/Tracklist";
 import { EPISODE } from "../../constants";
 import { querySlugs } from "../../helpers/query.helpers";
 
 import DataRow from "../../components/DataRow";
 
+// Functions
+// ----------------------------------------------------------------------------
+
+function normalizeEpisodeTracks(episode) {
+  const newTracks = [];
+  let i = 1;
+
+  for (let track of episode.episodeTracklist) {
+    const title = track.song.length ? track.song[0].title : track.segment;
+    const slug = track.song.length ? track.song[0].slug : null;
+    const audioFile = track.audioFile.length ? track.audioFile[0].url : null;
+
+    newTracks.push({
+      addedBy: null,
+      artist: {
+        slug: "/episodes",
+        title: "This Evening's Show"
+      },
+      audioFile: audioFile,
+      collection: {
+        coverArtUrl: episode.episodeCoverArt[0].url,
+        slug: episode.slug,
+        title: episode.title,
+        entryType: "episode"
+      },
+      dateAdded: null,
+      listType: "playlist",
+      id: `episode-${episode.id}-${i}`,
+      position: i,
+      slug: slug,
+      title: title
+    });
+    i++;
+  }
+  return newTracks;
+}
+
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Episode({ episode }) {
+  console.log(episode);
+  const { title } = episode;
+
   return (
     <>
-      <PageTitle>{episode.title}</PageTitle>
-      <section className="divide-y divide-subtle">
+      <PageTitle>{title}</PageTitle>
+      <Tracklist tracks={normalizeEpisodeTracks(episode)} />
+
+      {/*<section className="divide-y divide-subtle">
         <DataRow title="title" value={episode.title} />
         <DataRow title="companionAlbum">
           <DataRow
@@ -37,7 +80,7 @@ export default function Episode({ episode }) {
         />
         <DataRow title="releaseDate" value={episode.releaseDate} />
         <DataRow title="minutes" value={<mark>TODO</mark>} />
-      </section>
+      </section>*/}
     </>
   );
 }
@@ -81,6 +124,16 @@ export async function getStaticProps(context) {
             description
             episodeAudio { url }
             episodeCoverArt { url }
+            episodeTracklist {
+              ... on episodeTracklist_BlockType {
+                audioFile { url }
+                segment
+                song {
+                  slug
+                  title
+                }
+              }
+            }
             releaseDate
           }
         }

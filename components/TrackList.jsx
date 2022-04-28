@@ -79,7 +79,7 @@ export default function Tracklist({ tracks }) {
     setQueue(newQueue);
   }
 
-  const PlayPauseButton = ({ track, position, i }) => {
+  const PlayPauseButton = ({ track, i }) => {
     const active = highlightTrack(track) && playing;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
@@ -89,22 +89,29 @@ export default function Tracklist({ tracks }) {
 
     return (
       <div className="flex items-center justify-center relative h-32 w-32">
-        <span className="text-primary-50 group-hover:opacity-0">
-          {position}
-        </span>
-        <Button
-          className={buttonClasses}
-          circle
-          ghost
-          onClick={() => {
-            selectTrack(track, i);
-          }}
+        <span
+          className={`text-primary-50 ${track.audioFile &&
+            "group-hover:opacity-0"}`}
         >
-          <Icon
-            name={highlightTrack(track) ? (playing ? "pause" : "play") : "play"}
-            solid
-          />
-        </Button>
+          {track.position}
+        </span>
+        {track.audioFile && (
+          <Button
+            className={buttonClasses}
+            circle
+            ghost
+            onClick={() => {
+              selectTrack(track, i);
+            }}
+          >
+            <Icon
+              name={
+                highlightTrack(track) ? (playing ? "pause" : "play") : "play"
+              }
+              solid
+            />
+          </Button>
+        )}
       </div>
     );
   };
@@ -119,7 +126,7 @@ export default function Tracklist({ tracks }) {
       {tracks.map((track, i) => (
         <li className={liClasses} tabIndex={0} key={i}>
           <div className="flex-1 flex items-center gap-8">
-            <PlayPauseButton track={track} position={track.position} i={i} />
+            <PlayPauseButton track={track} i={i} />
             <div
               className={`text-xl flex items-center gap-8 ${
                 highlightTrack(track) ? "text-secondary" : ""
@@ -129,39 +136,43 @@ export default function Tracklist({ tracks }) {
             </div>
           </div>
           <div id="actions" className="flex items-center gap-2">
-            <Button
-              circle
-              className="opacity-0 group-hover:opacity-100"
-              ghost
-              onClick={() => {
-                addToQueue(track);
-              }}
-            >
-              <Icon name="heart" />
-            </Button>
-            {track.listType === "playlist" && (
-              <Button
-                circle
-                className="opacity-0 group-hover:opacity-100"
-                ghost
-                onClick={() => {
-                  addToQueue(track);
-                }}
-              >
-                <Icon name="add" solid />
-              </Button>
-            )}
-            {track.listType === "queue" && (
-              <Button
-                circle
-                className="opacity-0 group-hover:opacity-100"
-                ghost
-                onClick={() => {
-                  removeFromQueue(track, i);
-                }}
-              >
-                <Icon name="close" solid />
-              </Button>
+            {track.audioFile && (
+              <>
+                <Button
+                  circle
+                  className="opacity-0 group-hover:opacity-100"
+                  ghost
+                  onClick={() => {
+                    addToQueue(track);
+                  }}
+                >
+                  <Icon name="heart" />
+                </Button>
+                {track.listType === "playlist" && (
+                  <Button
+                    circle
+                    className="opacity-0 group-hover:opacity-100"
+                    ghost
+                    onClick={() => {
+                      addToQueue(track);
+                    }}
+                  >
+                    <Icon name="add" solid />
+                  </Button>
+                )}
+                {track.listType === "queue" && (
+                  <Button
+                    circle
+                    className="opacity-0 group-hover:opacity-100"
+                    ghost
+                    onClick={() => {
+                      removeFromQueue(track, i);
+                    }}
+                  >
+                    <Icon name="close" solid />
+                  </Button>
+                )}
+              </>
             )}
             <Button
               circle
