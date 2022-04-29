@@ -71,7 +71,7 @@ export default function Queue({ queueIsOpen, setQueueIsOpen }) {
       role="region"
     >
       <Transition.Child
-        className="relative w-full bg-base"
+        className="relative w-full bg-ground"
         enter="transition ease-in-out duration-200 transform"
         enterFrom="opacity-0"
         enterTo="opacity-100"

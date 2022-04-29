@@ -2,7 +2,7 @@ import cn from "classnames";
 
 export default function Icon({ className, name, solid }) {
   const classes = cn({
-    flex: true,
+    "text-current flex": true,
     [className]: className
   });
 

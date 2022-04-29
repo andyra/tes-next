@@ -24,7 +24,7 @@ export default function Modal({ children, isOpen, closeModal, title }) {
         </Transition.Child>
         <Transition.Child
           as="section"
-          className="relative bg-base rounded-lg p-48 w-full max-w-screen-sm"
+          className="relative bg-ground rounded-lg p-48 w-full max-w-screen-sm"
           enter="ease-out duration-300"
           enterFrom="opacity-0 scale-95"
           enterTo="opacity-100 scale-100"

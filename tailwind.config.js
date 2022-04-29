@@ -4,12 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        base: "var(--base)",
-        "base-75": "var(--base-75)",
-        "base-50": "var(--base-50)",
-        "base-25": "var(--base-25)",
-        "base-10": "var(--base-10)",
-        "base-5": "var(--base-5)",
+        ground: "var(--ground)",
+        "ground-75": "var(--ground-75)",
+        "ground-50": "var(--ground-50)",
+        "ground-25": "var(--ground-25)",
+        "ground-10": "var(--ground-10)",
+        "ground-5": "var(--ground-5)",
         primary: "var(--primary)",
         "primary-75": "var(--primary-75)",
         "primary-50": "var(--primary-50)",

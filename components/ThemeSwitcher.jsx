@@ -43,7 +43,7 @@ export default function ThemeSwitcher() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="bg-base absolute right-0 top-48 w-128 p-8 origin-top-right overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="bg-ground absolute right-0 top-48 w-128 p-8 origin-top-right overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <MenuItem icon="cog" theme="System" />
           <MenuItem icon="sunny" theme="Light" />
           <MenuItem icon="moon" theme="Dark" />

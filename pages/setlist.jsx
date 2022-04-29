@@ -8,7 +8,7 @@ import PageTitle from "../components/PageTitle";
 
 const Computor = () => {
   const LABEL_CLASSES =
-    "inline-block px-8 text-primary-50 bg-base absolute z-10 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-sm";
+    "inline-block px-8 text-primary-50 bg-ground absolute z-10 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-sm";
 
   return (
     <section className="p-16 rounded-lg border-2 border-accent text-center">

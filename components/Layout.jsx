@@ -18,7 +18,7 @@ const Main = ({ children }) => (
 const Toolbar = () => (
   <section className="sticky top-0 z-10 p-16 grid grid-cols-[128px_1fr_128px] gap-8">
     <Input
-      className="mx-auto max-w-screen-sm col-start-2"
+      className="mx-auto max-w-screen-sm col-span-2 lg:col-start-2 lg:col-span-1"
       icon="search"
       placeholder="What are you looking for?"
     />
@@ -31,7 +31,7 @@ const Toolbar = () => (
 
 const Container = ({ children, maxWidth }) => {
   const containerClasses = cn({
-    "mx-auto p-64": true,
+    "mx-auto p-24": true,
     [maxWidth]: maxWidth,
     "max-w-screen-lg": !maxWidth
   });

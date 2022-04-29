@@ -221,7 +221,7 @@ export default function Player() {
 
   const playerClasses = cn({
     "col-span-2 flex items-center justify-between p-8 gap-8 border-t border-primary-10": !fullScreen,
-    "absolute z-50 top-0 left-0 w-full h-full bg-base pt-96 px-96": fullScreen,
+    "absolute z-50 top-0 left-0 w-full h-full bg-ground pt-96 px-96": fullScreen,
     "flex flex-col justify-end": fullScreen
   });
 
