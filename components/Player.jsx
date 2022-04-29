@@ -13,15 +13,15 @@ import Queue from "./Queue";
 
 const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
   const onDeckClasses = cn({
-    "flex items-center relative bg-red-200": true,
-    "gap-8 w-full md:w-1/3": !isFullscreen,
-    "w-full gap-48 mb-48": isFullscreen
+    "flex relative": true,
+    "items-center gap-8 w-full md:w-1/3": !isFullscreen,
+    "flex-1 flex-col justify-end md:justify-start md:flex-row md:items-end w-full gap-16 md:gap-48 md:mb-48": isFullscreen
   });
 
   const coverArtClasses = cn({
-    "bg-primary-10 rounded flex items-center justify-center text-2xl flex-shrink-0 overflow-hidden": true,
-    "h-40 w-40 md:h-64 md:w-64": !isFullscreen,
-    "h-256 w-256": isFullscreen
+    "aspect-square bg-primary-10 rounded flex items-center justify-center text-2xl flex-shrink-0 overflow-hidden": true,
+    "w-40 h-40 md:w-64 md:h-64": !isFullscreen,
+    "w-full max-w-screen-xs mx-auto h-auto mt-auto md:my-0 md:w-256 md:h-256": isFullscreen
   });
 
   const actionClasses = cn({
@@ -29,16 +29,20 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
     "opacity-0": !onDeck
   });
 
+  const trackInfoClasses = cn({
+    "flex gap-8 transition duration-300": true,
+    "my-auto md:my-0 md:flex-1": isFullscreen,
+    "opacity-0": !onDeck
+  });
+
   const titleClasses = cn({
-    "opacity-0": !onDeck,
-    "text-sm font-medium transition duration-300": !isFullscreen,
-    "text-7xl font-bold mb-16": isFullscreen
+    "text-sm font-medium": !isFullscreen,
+    "text-3xl md:text-5xl lg:text-7xl font-bold md:mb-16": isFullscreen
   });
 
   const artistClasses = cn({
-    "opacity-0": !onDeck,
-    "text-xs text-primary-50 transition duration-300": !isFullscreen,
-    "text-3xl font-medium": isFullscreen
+    "text-xs text-primary-50": !isFullscreen,
+    "text-xl md:text-3xl font-medium": isFullscreen
   });
 
   return (
@@ -53,21 +57,25 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
           />
         )}
       </figure>
-      <div id="track-info">
-        <div className={titleClasses}>{onDeck ? onDeck.title : ""}</div>
-        <div className={artistClasses}>{onDeck ? onDeck.artist.title : ""}</div>
-      </div>
-      {(isFullscreen || !isMobile) && (
-        <div id="actions" className={actionClasses}>
-          <Button circle ghost>
-            <Icon name="heart" />
-          </Button>
-          <Button circle ghost>
-            <Icon name="ellipsis-horizontal" solid />
-          </Button>
+      <div className={trackInfoClasses}>
+        <div className="flex-1">
+          <div className={titleClasses}>{onDeck ? onDeck.title : ""}</div>
+          <div className={artistClasses}>
+            {onDeck ? onDeck.artist.title : ""}
+          </div>
         </div>
-      )}
-      {isMobile && !isFullscreen && (
+        {(isFullscreen || !isMobile) && (
+          <div id="actions" className={actionClasses}>
+            <Button circle ghost>
+              <Icon name="heart" />
+            </Button>
+            <Button circle ghost>
+              <Icon name="ellipsis-horizontal" solid />
+            </Button>
+          </div>
+        )}
+      </div>
+      {isMobile && onDeck && !isFullscreen && (
         <button
           className="absolute -top-8 right-0 -bottom-16 -left-8"
           onClick={() => {
@@ -88,9 +96,13 @@ const PlayerControls = ({
   togglePlay
 }) => {
   const PlayerControlClasses = cn({
-    "flex flex-col gap-4 bg-cyan-200": true,
+    "flex flex-col gap-4": true,
     "md:w-1/3": !isFullscreen,
     "w-full transition duration-300": isFullscreen
+  });
+
+  const skipClasses = cn({
+    "hidden md:flex": !isFullscreen
   });
 
   return (
@@ -100,7 +112,7 @@ const PlayerControls = ({
           circle
           onClick={back}
           disabled={!onDeck}
-          className="hidden md:flex"
+          className={skipClasses}
         >
           <Icon name="play-skip-back" solid />
         </Button>
@@ -117,7 +129,7 @@ const PlayerControls = ({
           circle
           onClick={next}
           disabled={!onDeck}
-          className="hidden md:flex"
+          className={skipClasses}
         >
           <Icon name="play-skip-forward" solid />
         </Button>
@@ -131,14 +143,14 @@ const PlayerControls = ({
 
 const PlaybackBar = ({ isFullscreen, onDeck }) => {
   const containerClasses = cn({
-    "grid gap-8 items-center col-span-2 transition bg-orange-200": true,
+    "grid gap-8 items-center col-span-2 transition": true,
     "opacity-0 md:opacity-100": !onDeck,
     "grid-cols-[1fr] grid-rows-[4px] md:grid-cols-[40px,1fr,40px] md:grid-rows-[8px,1fr] absolute left-0 bottom-0 right-0 w-auto md:static": !isFullscreen,
     "w-full": isFullscreen
   });
 
   const timeClasses = cn({
-    "min-w-40 text-xs text-primary-50 bg-purple-200": true,
+    "min-w-40 text-xs text-primary-50": true,
     "hidden md:block row-span-2": !isFullscreen
   });
 
@@ -179,79 +191,43 @@ const ExtraControls = ({
   setQueueIsOpen
 }) => {
   const containerClasses = cn({
-    "flex-1 flex items-center justify-end gap-8 bg-yellow-200": true,
-    "absolute top-96 right-96": isFullscreen,
-    "hidden md:flex md:w-1/3": !isFullscreen
+    "flex items-center gap-8": true,
+    "hidden md:flex flex-1 justify-end": !isFullscreen,
+    "justify-between w-full": isFullscreen
   });
 
   return (
     <div className={containerClasses}>
-      <FullscreenButton
-        isFullscreen={isFullscreen}
-        onDeck={onDeck}
-        queueCount={queueCount}
-        queueIsOpen={queueIsOpen}
-        setIsFullscreen={setIsFullscreen}
-        setQueueIsOpen={setQueueIsOpen}
-      />
-      <QueueButton
-        isFullscreen={isFullscreen}
-        onDeck={onDeck}
-        queueCount={queueCount}
-        queueIsOpen={queueIsOpen}
-        setIsFullscreen={setIsFullscreen}
-        setQueueIsOpen={setQueueIsOpen}
-      />
+      <Button
+        circle
+        className={queueIsOpen ? "bg-accent" : ""}
+        disabled={!onDeck && queueCount === 0}
+        onClick={() => {
+          setIsFullscreen(false);
+          setQueueIsOpen(!queueIsOpen);
+        }}
+        aria-controls="queue"
+        aria-expanded={!queueIsOpen}
+        aria-label="Show Queue"
+      >
+        <Icon name={queueIsOpen ? "close" : "list"} solid />
+      </Button>
+      <Button
+        circle
+        disabled={!onDeck && queueCount === 0}
+        onClick={() => {
+          setQueueIsOpen(false);
+          setIsFullscreen(!isFullscreen);
+        }}
+        aria-controls="full-screen"
+        aria-expanded={!isFullscreen}
+        aria-label="Full Screen"
+      >
+        <Icon name={isFullscreen ? "chevron-down" : "chevron-up"} solid />
+      </Button>
     </div>
   );
 };
-
-const FullscreenButton = ({
-  isFullscreen,
-  onDeck,
-  queueCount,
-  queueIsOpen,
-  setIsFullscreen,
-  setQueueIsOpen
-}) => (
-  <Button
-    circle
-    disabled={!onDeck && queueCount === 0}
-    onClick={() => {
-      setQueueIsOpen(false);
-      setIsFullscreen(!isFullscreen);
-    }}
-    aria-controls="full-screen"
-    aria-expanded={!isFullscreen}
-    aria-label="Full Screen"
-  >
-    <Icon name={isFullscreen ? "close" : "chevron-up"} solid />
-  </Button>
-);
-
-const QueueButton = ({
-  isFullscreen,
-  onDeck,
-  queueCount,
-  queueIsOpen,
-  setIsFullscreen,
-  setQueueIsOpen
-}) => (
-  <Button
-    circle
-    className={queueIsOpen ? "bg-accent" : ""}
-    disabled={!onDeck && queueCount === 0}
-    onClick={() => {
-      setIsFullscreen(false);
-      setQueueIsOpen(!queueIsOpen);
-    }}
-    aria-controls="queue"
-    aria-expanded={!queueIsOpen}
-    aria-label="Show Queue"
-  >
-    <Icon name={queueIsOpen ? "close" : "list"} solid />
-  </Button>
-);
 
 // Default
 // ----------------------------------------------------------------------------
@@ -324,16 +300,9 @@ export default function Player() {
   }
 
   const playerClasses = cn({
-    "flex items-center gap-8 px-8": true,
-    "rounded-lg border shadow mx-8": true,
-    "md:col-span-2 md:border-none md:border-t md:shadow-none md:mx-0": true,
-
-    relative: !isFullscreen,
-    "absolute z-50 top-0 left-0 w-full h-full flex-col justify-end bg-ground px-96": isFullscreen
-
-    // "grid grid-cols-[1fr,48px] grid-rows-[1fr,8px]": true
-    // "md:flex md:items-center md:justify-between": true,
-    // "col-span-2 p-8 gap-4 md:gap-8 border mx-4 mb-4 rounded-lg border-primary-10 md:border-t md:m-0 md:rounded-none": !isFullscreen,
+    "flex items-center gap-8 px-8 md:col-span-2 md:shadow-none md:mx-0": true,
+    "rounded-lg border shadow mx-8 mb-8 relative md:border-t md:mb-0": !isFullscreen,
+    "absolute z-50 top-0 left-0 w-full h-full flex-col justify-end bg-ground p-24 md:p-48 lg:p-96": isFullscreen
   });
 
   return (
@@ -356,16 +325,14 @@ export default function Player() {
           onDeck={onDeck}
           togglePlay={togglePlay}
         />
-        {!isFullscreen && (
-          <ExtraControls
-            isFullscreen={isFullscreen}
-            onDeck={onDeck}
-            queueCount={queueCount}
-            queueIsOpen={queueIsOpen}
-            setIsFullscreen={setIsFullscreen}
-            setQueueIsOpen={setQueueIsOpen}
-          />
-        )}
+        <ExtraControls
+          isFullscreen={isFullscreen}
+          onDeck={onDeck}
+          queueCount={queueCount}
+          queueIsOpen={queueIsOpen}
+          setIsFullscreen={setIsFullscreen}
+          setQueueIsOpen={setQueueIsOpen}
+        />
       </aside>
       <Queue queueIsOpen={queueIsOpen} setQueueIsOpen={setQueueIsOpen} />
     </>
