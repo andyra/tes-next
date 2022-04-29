@@ -13,8 +13,8 @@ import Queue from "./Queue";
 
 const OnDeck = ({ isFullScreen, isMobile, onDeck, setIsFullScreen }) => {
   const onDeckClasses = cn({
-    "flex items-center transition relative": true,
-    "flex-1 gap-8": !isFullScreen,
+    "flex items-center relative bg-red-200": true,
+    "gap-8 w-full md:w-1/3": !isFullScreen,
     "gap-48 mb-48": isFullScreen
   });
 
@@ -24,19 +24,26 @@ const OnDeck = ({ isFullScreen, isMobile, onDeck, setIsFullScreen }) => {
     "h-256 w-256": isFullScreen
   });
 
+  const actionClasses = cn({
+    "flex items-center gap-2 pl-16 transition duration-300": true,
+    "opacity-0": !onDeck
+  });
+
   const titleClasses = cn({
-    "text-sm font-medium": !isFullScreen,
+    "opacity-0": !onDeck,
+    "text-sm font-medium transition duration-300": !isFullScreen,
     "text-7xl font-bold mb-16": isFullScreen
   });
 
   const artistClasses = cn({
-    "text-xs text-primary-50": !isFullScreen,
+    "opacity-0": !onDeck,
+    "text-xs text-primary-50 transition duration-300": !isFullScreen,
     "text-3xl font-medium": isFullScreen
   });
 
   return (
     <div className={onDeckClasses}>
-      <figure className={coverArtClasses}>
+      <figure id="cover-art" className={coverArtClasses}>
         {onDeck && (
           <Image
             alt={`${onDeck.collection.title} cover art`}
@@ -46,16 +53,20 @@ const OnDeck = ({ isFullScreen, isMobile, onDeck, setIsFullScreen }) => {
           />
         )}
       </figure>
-      <div>
+      <div id="track-info">
         <div className={titleClasses}>{onDeck ? onDeck.title : ""}</div>
         <div className={artistClasses}>{onDeck ? onDeck.artist.title : ""}</div>
       </div>
-      {!isMobile ||
-        (isFullScreen && (
-          <Button circle ghost className="ml-16">
+      {(isFullScreen || !isMobile) && (
+        <div id="actions" className={actionClasses}>
+          <Button circle ghost>
             <Icon name="heart" />
           </Button>
-        ))}
+          <Button circle ghost>
+            <Icon name="ellipsis-horizontal" solid />
+          </Button>
+        </div>
+      )}
       {isMobile && !isFullScreen && (
         <button
           className="absolute -top-8 right-0 -bottom-16 -left-8"
@@ -78,10 +89,9 @@ const PlayerControls = ({
   togglePlay
 }) => {
   const PlayerControlClasses = cn({
-    "flex flex-col gap-4": true,
-    "w-full": !isMobile,
-    "max-w-screen-sm": !isFullScreen,
-    "py-96 opacity-0 hover:opacity-100 transition duration-300": isFullScreen
+    "flex flex-col gap-4 bg-cyan-200": true,
+    "md:w-1/3": !isFullScreen,
+    "py-96 transition duration-300": isFullScreen
   });
 
   return (
@@ -113,21 +123,22 @@ const PlayerControls = ({
           <Icon name="play-skip-forward" solid />
         </Button>
       </div>
-      {!isMobile && <Progress />}
+      <PlaybackBar isFullScreen={isFullScreen} onDeck={onDeck} />
     </div>
   );
 };
 
-const Progress = ({ isFullScreen, isMobile, onDeck }) => {
+const PlaybackBar = ({ isFullScreen, onDeck }) => {
   const containerClasses = cn({
-    "flex items-center gap-8 col-span-2 transition": true,
-    "-mx-8 w-auto md:-mx-0": true,
+    "flex items-center gap-8 col-span-2 transition bg-orange-200": true,
+    "absolute left-0 bottom-0 right-0 md:static": true,
+    "w-auto": true,
     "opacity-0 md:opacity-100": !onDeck
   });
 
   const timeClasses = cn({
-    "w-48 font-mono text-xs text-primary-50": true,
-    hidden: isMobile && !isFullScreen
+    "min-w-40 text-xs text-primary-50 bg-purple-200": true,
+    "hidden md:block": !isFullScreen
   });
 
   return (
@@ -149,9 +160,9 @@ const ExtraControls = ({
   setQueueIsOpen
 }) => {
   const containerClasses = cn({
-    "flex-1 flex items-center justify-end gap-8": true,
+    "flex-1 flex items-center justify-end gap-8 bg-yellow-200": true,
     "absolute top-96 right-96": isFullScreen,
-    "hidden md:flex": !isFullScreen
+    "hidden md:flex md:w-1/3": !isFullScreen
   });
 
   const queueButtonClasses = cn({
@@ -186,7 +197,7 @@ const ExtraControls = ({
         aria-expanded={!queueIsOpen}
         aria-label="Show Queue"
       >
-        Q
+        <Icon name={queueIsOpen ? "close" : "list"} solid />
       </Button>
     </div>
   );
@@ -263,10 +274,14 @@ export default function Player() {
   }
 
   const playerClasses = cn({
-    "grid grid-cols-[1fr,48px] grid-rows-[1fr,8px]": true,
-    "md:flex md:items-center md:justify-between": true,
-    "col-span-2 p-8 gap-4 md:gap-8 border mx-4 mb-4 rounded-lg border-primary-10 md:border-t md:m-0 md:rounded-none": !isFullScreen,
-    "flex flex-col justify-end absolute z-50 top-0 left-0 w-full h-full bg-ground pt-96 px-96": isFullScreen
+    "flex items-center gap-8 px-8 relative": true,
+    "rounded-lg border shadow mx-8": true,
+    "md:col-span-2 md:border-none md:border-t md:shadow-none md:mx-0": true
+
+    // "grid grid-cols-[1fr,48px] grid-rows-[1fr,8px]": true
+    // "md:flex md:items-center md:justify-between": true,
+    // "col-span-2 p-8 gap-4 md:gap-8 border mx-4 mb-4 rounded-lg border-primary-10 md:border-t md:m-0 md:rounded-none": !isFullScreen,
+    // "flex flex-col justify-end absolute z-50 top-0 left-0 w-full h-full bg-ground pt-96 px-96": isFullScreen
   });
 
   return (
@@ -296,13 +311,6 @@ export default function Player() {
           setIsFullScreen={setIsFullScreen}
           setQueueIsOpen={setQueueIsOpen}
         />
-        {isMobile && (
-          <Progress
-            isFullScreen={isFullScreen}
-            isMobile={isMobile}
-            onDeck={onDeck}
-          />
-        )}
       </aside>
       <Queue queueIsOpen={queueIsOpen} setQueueIsOpen={setQueueIsOpen} />
     </>
