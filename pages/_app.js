@@ -21,9 +21,9 @@ function App({ Component, pageProps }) {
     "text-primary",
     "grid",
     "grid-cols-1",
-    "grid-rows-[1fr,88px,48px]",
+    "grid-rows-[1fr,64px,48px]",
     "md:grid-cols-[224px,1fr]",
-    "md:grid-rows-[1fr,88px]"
+    "md:grid-rows-[1fr,80px]"
   ];
 
   useEffect(() => {

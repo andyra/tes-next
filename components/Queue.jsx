@@ -73,11 +73,11 @@ export default function Queue({ queueIsOpen, setQueueIsOpen }) {
       <Transition.Child
         className="relative w-full bg-ground"
         enter="transition ease-in-out duration-200 transform"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
+        enterFrom="opacity-0 translate-y-24"
+        enterTo="opacity-100 translate-y-0"
         leave="transition ease-in-out duration-200 transform"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
+        leaveFrom="opacity-100 translate-y-0"
+        leaveTo="opacity-0 translate-y-24"
       >
         <div className="w-full max-w-screen-md mx-auto space-y-24 mt-48">
           <h2 className="text-secondary font-bold text-3xl">Queue</h2>
