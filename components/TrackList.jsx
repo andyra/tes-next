@@ -129,7 +129,7 @@ export default function Tracklist({ tracks }) {
             <PlayPauseButton track={track} i={i} />
             <div
               className={`text-xl flex items-center gap-8 ${
-                highlightTrack(track) ? "text-secondary" : ""
+                highlightTrack(track) ? "text-accent" : ""
               }`}
             >
               {track.title}

@@ -31,7 +31,7 @@ export default function Button({
     "rounded-full hover:bg-primary-10": true,
     "border border-primary-25": !ghost,
     "opacity-50 pointer-events-none": disabled,
-    "bg-accent hover:bg-accent-75": active,
+    "bg-primary hover:bg-primary-75 text-ground": active,
     [SIZES[size].h]: true,
     [SIZES[size].p]: !circle,
     [SIZES[size].w]: circle,
