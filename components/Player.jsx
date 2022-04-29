@@ -117,11 +117,11 @@ const PlayerControls = ({
           <Icon name="play-skip-back" solid />
         </Button>
         <Button
+          active={isPlaying}
           circle
           size="lg"
           disabled={!onDeck}
           onClick={togglePlay}
-          className={`${isPlaying ? "bg-accent hover:bg-accent-75" : ""}`}
         >
           <Icon name={isPlaying ? "pause" : "play"} solid />
         </Button>
@@ -199,8 +199,8 @@ const ExtraControls = ({
   return (
     <div className={containerClasses}>
       <Button
+        active={queueIsOpen}
         circle
-        className={queueIsOpen ? "bg-accent" : ""}
         disabled={!onDeck && queueCount === 0}
         onClick={() => {
           setIsFullscreen(false);
@@ -210,7 +210,7 @@ const ExtraControls = ({
         aria-expanded={!queueIsOpen}
         aria-label="Show Queue"
       >
-        <Icon name={queueIsOpen ? "close" : "list"} solid />
+        <Icon name="list" solid />
       </Button>
       <Button
         circle

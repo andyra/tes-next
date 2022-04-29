@@ -83,7 +83,6 @@ export default function Tracklist({ tracks }) {
     const active = highlightTrack(track) && playing;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
-      "bg-accent hover:bg-accent-75": active,
       "opacity-0 group-hover:opacity-100": !active
     });
 
@@ -97,6 +96,7 @@ export default function Tracklist({ tracks }) {
         </span>
         {track.audioFile && (
           <Button
+            active={active}
             className={buttonClasses}
             circle
             ghost

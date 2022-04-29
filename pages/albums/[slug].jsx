@@ -48,8 +48,8 @@ export default function Album({ album }) {
 
   return (
     <>
-      <header className="flex items-end gap-24 mb-48">
-        <figure className="w-256 h-256 rounded-lg overflow-hidden">
+      <header className="flex flex-col lg:flex-row lg:items-end gap-24 mb-48">
+        <figure className="mx-auto md:mx-0 w-256 h-256 rounded-lg overflow-hidden">
           <Image
             alt={`${title} cover art`}
             src={albumCoverArt[0].url}
@@ -59,7 +59,7 @@ export default function Album({ album }) {
           />
         </figure>
         <hgroup className="flex flex-col gap-12">
-          <h1 className="text-6xl font-bold">{title}</h1>
+          <h1 className="text-3xl md:text-6xl font-bold">{title}</h1>
           <div>
             {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
             {albumTracklist.length} Tracks • Duration
