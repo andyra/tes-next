@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Popover, Transition } from "@headlessui/react";
 import cn from "classnames";
 import Icon from "./Icon";
 import MediaQuery from "./MediaQuery";
@@ -41,6 +42,12 @@ export const NavLink = ({ className, count, icon, navSection, title, url }) => {
   );
 };
 
+const NavLinkPopover = ({ href, title }) => (
+  <Link href={href}>
+    <a className="flex p-8 rounded-lg hover:bg-primary-5">{title}</a>
+  </Link>
+);
+
 export const MobileNav = ({ navSection }) => (
   <MediaQuery mobile>
     <nav className="row-start-3 flex items-stretch border-t border-primary-10">
@@ -63,12 +70,27 @@ export const MobileNav = ({ navSection }) => (
         icon="musical-note"
         navSection={navSection}
       />
-      <NavLink
-        title="More"
-        url="/"
-        icon="ellipsis-horizontal"
-        navSection={navSection}
-      />
+      <Popover className="flex-1 relative">
+        <Popover.Button className="flex w-full h-full flex-col items-center justify-center relative">
+          <Icon name="ellipsis-horizontal" solid />
+          <span className="text-xs opacity-50">More</span>
+        </Popover.Button>
+        <Transition
+          enter="transition duration-100 ease-out"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition duration-100 ease-out"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <Popover.Panel className="absolute z-20 right-0 top-0 transform -translate-y-full bg-ground p-8 border border-primary-10 rounded-lg shadow-lg w-192">
+            <NavLinkPopover title="Wiki" href="wiki" />
+            <NavLinkPopover title="Videos" href="videos" />
+            <NavLinkPopover title="Setlist Computor" href="setlist" />
+            <NavLinkPopover title="About" href="about" />
+          </Popover.Panel>
+        </Transition>
+      </Popover>
     </nav>
   </MediaQuery>
 );
