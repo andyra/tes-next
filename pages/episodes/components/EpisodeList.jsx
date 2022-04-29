@@ -32,7 +32,7 @@ export default function EpisodeList() {
   }
 
   return data.entries ? (
-    <ul className="grid grid-cols-3 -mx-8">
+    <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 -mx-8">
       {data.entries.map(episode => (
         <li key={episode.slug}>
           <Link href={`/episodes/${encodeURIComponent(episode.slug)}`}>

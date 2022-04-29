@@ -67,7 +67,7 @@ export default function AlbumList() {
   }
 
   return data.entries ? (
-    <ul className="grid grid-cols-3 -mx-8">
+    <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 -mx-8">
       {data.entries.map(album => (
         <AlbumItem album={album} key={album.slug} />
       ))}
