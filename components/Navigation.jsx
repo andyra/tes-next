@@ -4,7 +4,6 @@ import { Popover, Transition } from "@headlessui/react";
 import cn from "classnames";
 import Icon from "./Icon";
 import MediaQuery from "./MediaQuery";
-import { ListPlaylists, NewPlaylistButton } from "./Playlists";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -65,9 +64,9 @@ export const MobileNav = ({ navSection }) => (
         navSection={navSection}
       />
       <NavLink
-        title="Playlists"
-        url="/playlists"
-        icon="musical-note"
+        title="Wiki"
+        url="/wiki"
+        icon="musical-notes"
         navSection={navSection}
       />
       <Popover className="flex-1 relative">
@@ -84,7 +83,6 @@ export const MobileNav = ({ navSection }) => (
           leaveTo="opacity-0"
         >
           <Popover.Panel className="absolute z-20 right-0 top-0 transform -translate-y-full bg-ground p-8 border border-primary-10 rounded-lg shadow-lg w-192">
-            <NavLinkPopover title="Wiki" href="wiki" />
             <NavLinkPopover title="Videos" href="videos" />
             <NavLinkPopover title="Setlist Computor" href="setlist" />
             <NavLinkPopover title="About" href="about" />
@@ -156,13 +154,6 @@ export const DesktopNav = ({ navSection }) => (
             // icon="information"
           />
         </li>
-      </ul>
-      <ul>
-        <li className="text-gray-500 text-sm flex items-center justify-between">
-          Playlists
-          <NewPlaylistButton />
-        </li>
-        <ListPlaylists />
       </ul>
     </nav>
   </MediaQuery>

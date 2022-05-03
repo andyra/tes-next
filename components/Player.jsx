@@ -64,7 +64,7 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
             {onDeck ? onDeck.artist.title : ""}
           </div>
         </div>
-        {(isFullscreen || !isMobile) && (
+        {/*{(isFullscreen || !isMobile) && (
           <div id="actions" className={actionClasses}>
             <Button circle ghost>
               <Icon name="heart" />
@@ -73,7 +73,7 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
               <Icon name="ellipsis-horizontal" solid />
             </Button>
           </div>
-        )}
+        )}*/}
       </div>
       {isMobile && onDeck && !isFullscreen && (
         <button

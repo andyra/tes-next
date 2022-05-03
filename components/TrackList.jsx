@@ -138,16 +138,6 @@ export default function Tracklist({ tracks }) {
           <div id="actions" className="flex items-center gap-2">
             {track.audioFile && (
               <>
-                <Button
-                  circle
-                  className="opacity-0 group-hover:opacity-100"
-                  ghost
-                  onClick={() => {
-                    addToQueue(track);
-                  }}
-                >
-                  <Icon name="heart" />
-                </Button>
                 {track.listType === "playlist" && (
                   <Button
                     circle
@@ -174,16 +164,6 @@ export default function Tracklist({ tracks }) {
                 )}
               </>
             )}
-            <Button
-              circle
-              className="opacity-0 group-hover:opacity-100"
-              ghost
-              onClick={() => {
-                removeFromQueue(track, i);
-              }}
-            >
-              <Icon name="ellipsis-horizontal" solid />
-            </Button>
           </div>
         </li>
       ))}

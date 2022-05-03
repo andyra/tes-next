@@ -9,6 +9,10 @@ export default function SongsPage() {
   return (
     <>
       <MusicTabs page="Songs" />
+      <section className="border border-primary-25 p-24">
+        Filter by:
+        <div>Type (Original/Cover)</div>
+      </section>
       <ClientOnly>
         <SongList />
       </ClientOnly>
