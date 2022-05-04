@@ -8,7 +8,7 @@ import "../styles/globals.css";
 
 function App({ Component, pageProps }) {
   const [onDeck, setOnDeck] = useState(false);
-  const [playing, setPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [queue, setQueue] = useState([]);
   const [nextFrom, setNextFrom] = useState([]);
   const [prevFrom, setPrevFrom] = useState([]);
@@ -37,13 +37,13 @@ function App({ Component, pageProps }) {
           state: {
             onDeck: onDeck,
             nextFrom: nextFrom,
-            playing: playing,
+            isPlaying: isPlaying,
             queue: queue,
             prevFrom: prevFrom
           },
           setOnDeck: setOnDeck,
           setNextFrom: setNextFrom,
-          setPlaying: setPlaying,
+          setIsPlaying: setIsPlaying,
           setQueue: setQueue,
           setPrevFrom: setPrevFrom
         }}

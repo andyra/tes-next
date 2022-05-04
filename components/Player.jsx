@@ -215,8 +215,14 @@ export default function Player() {
   const [queueIsOpen, setQueueIsOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const context = useContext(AudioContext);
-  const { nextFrom, onDeck, playing, prevFrom, queue } = context.state;
-  const { setNextFrom, setOnDeck, setPlaying, setPrevFrom, setQueue } = context;
+  const { nextFrom, onDeck, isPlaying, prevFrom, queue } = context.state;
+  const {
+    setNextFrom,
+    setOnDeck,
+    setIsPlaying,
+    setPrevFrom,
+    setQueue
+  } = context;
   const playerIsEmpty =
     !onDeck && prevFrom.length + nextFrom.length + queue.length === 0;
   const isDesktop = useMediaQuery(BREAKPOINTS.desktop);
@@ -225,16 +231,12 @@ export default function Player() {
   useEffect(() => {
     if (playerIsEmpty) {
       setQueueIsOpen(false);
-      // setIsFullscreen(false);
+      setIsFullscreen(false);
     }
   }, [playerIsEmpty]);
 
   function togglePlay() {
-    setPlaying(!playing);
-  }
-
-  function isPlaying() {
-    return onDeck && playing;
+    setIsPlaying(!isPlaying);
   }
 
   function next() {
@@ -310,7 +312,7 @@ export default function Player() {
         <PlayerControls
           back={back}
           isFullscreen={isFullscreen}
-          isPlaying={isPlaying()}
+          isPlaying={isPlaying}
           next={next}
           togglePlay={togglePlay}
         />

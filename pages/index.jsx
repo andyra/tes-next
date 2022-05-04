@@ -7,7 +7,7 @@ import Icon from "../components/Icon";
 
 export default function Home() {
   return (
-    <>
+    <div className="space-y-64">
       <section className="flex items-center gap-48">
         <figure className="w-1/4 aspect-square bg-primary-5" />
         <h1 className="flex-1 text-xl">
@@ -40,6 +40,6 @@ export default function Home() {
           ))}
         </ul>
       </section>
-    </>
+    </div>
   );
 }

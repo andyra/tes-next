@@ -11,11 +11,17 @@ import Tooltip from "../components/Tooltip";
 
 export default function Tracklist({ tracks }) {
   const context = useContext(AudioContext);
-  const { nextFrom, onDeck, playing, prevFrom, queue } = context.state;
-  const { setNextFrom, setOnDeck, setPlaying, setPrevFrom, setQueue } = context;
+  const { nextFrom, onDeck, isPlaying, prevFrom, queue } = context.state;
+  const {
+    setNextFrom,
+    setOnDeck,
+    setIsPlaying,
+    setPrevFrom,
+    setQueue
+  } = context;
 
   function togglePlay() {
-    setPlaying(!playing);
+    setIsPlaying(!isPlaying);
   }
 
   function selectTrack(track, i) {
@@ -23,7 +29,7 @@ export default function Tracklist({ tracks }) {
       togglePlay();
     } else {
       setOnDeck(track);
-      setPlaying(true);
+      setIsPlaying(true);
       updateList(track, i);
     }
   }
@@ -81,7 +87,7 @@ export default function Tracklist({ tracks }) {
   }
 
   const PlayPauseButton = ({ track, i }) => {
-    const active = highlightTrack(track) && playing;
+    const active = highlightTrack(track) && isPlaying;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
       "opacity-0 group-hover:opacity-100": !active
@@ -107,7 +113,7 @@ export default function Tracklist({ tracks }) {
           >
             <Icon
               name={
-                highlightTrack(track) ? (playing ? "pause" : "play") : "play"
+                highlightTrack(track) ? (isPlaying ? "pause" : "play") : "play"
               }
               solid
             />
