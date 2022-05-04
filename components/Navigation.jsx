@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Popover, Transition } from "@headlessui/react";
+import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Icon from "./Icon";
 import MediaQuery from "./MediaQuery";
@@ -69,26 +69,20 @@ export const MobileNav = ({ navSection }) => (
         icon="musical-notes"
         navSection={navSection}
       />
-      <Popover className="flex-1 relative">
-        <Popover.Button className="flex w-full h-full flex-col items-center justify-center relative">
+      <Popover.Root>
+        <Popover.Trigger className="flex-1 flex flex-col items-center justify-center">
           <Icon name="ellipsis-horizontal" solid />
           <span className="text-xs opacity-50">More</span>
-        </Popover.Button>
-        <Transition
-          enter="transition duration-100 ease-out"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="transition duration-100 ease-out"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
+        </Popover.Trigger>
+        <Popover.Content
+          className="bg-ground p-8 border border-primary-10 rounded-lg shadow-lg w-192"
+          side="top"
         >
-          <Popover.Panel className="absolute z-20 right-0 top-0 transform -translate-y-full bg-ground p-8 border border-primary-10 rounded-lg shadow-lg w-192">
-            <NavLinkPopover title="Videos" href="videos" />
-            <NavLinkPopover title="Setlist Computor" href="setlist" />
-            <NavLinkPopover title="About" href="about" />
-          </Popover.Panel>
-        </Transition>
-      </Popover>
+          <NavLinkPopover title="Videos" href="videos" />
+          <NavLinkPopover title="Setlist Computor" href="setlist" />
+          <NavLinkPopover title="About" href="about" />
+        </Popover.Content>
+      </Popover.Root>
     </nav>
   </MediaQuery>
 );
