@@ -53,12 +53,15 @@ export default function AlbumsPage({ filterGroups }) {
 
   return (
     <>
-      <MusicTabs page="Albums" />
-      <Filters
-        filterGroups={albumFilters}
-        filters={filters}
-        setFilters={setFilters}
-      />
+      <header className="relative mb-64">
+        <MusicTabs page="Albums" />
+        <Filters
+          className="absolute top-1/2 right-0 transform -translate-y-1/2"
+          filterGroups={albumFilters}
+          filters={filters}
+          setFilters={setFilters}
+        />
+      </header>
       <ClientOnly>
         <AlbumList filters={filters} />
       </ClientOnly>
