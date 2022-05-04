@@ -26,15 +26,9 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
     "w-full max-w-screen-xs mx-auto h-auto mt-auto md:my-0 md:w-256 md:h-256": isFullscreen
   });
 
-  const actionClasses = cn({
-    "flex items-center gap-2 pl-16 transition duration-300": true,
-    "opacity-0": !onDeck
-  });
-
   const trackInfoClasses = cn({
     "flex gap-8 transition duration-300": true,
-    "my-auto md:my-0 md:flex-1": isFullscreen,
-    "opacity-0": !onDeck
+    "my-auto md:my-0 md:flex-1": isFullscreen
   });
 
   const titleClasses = cn({
@@ -67,7 +61,7 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
           </div>
         </div>
         {/*{(isFullscreen || !isMobile) && (
-          <div id="actions" className={actionClasses}>
+          <div id="actions" className="flex items-center gap-2 pl-16 transition duration-300">
             <Button circle variant="ghost">
               <Icon name="heart" />
             </Button>
@@ -94,7 +88,6 @@ const PlayerControls = ({
   isFullscreen,
   isPlaying,
   next,
-  onDeck,
   togglePlay
 }) => {
   const PlayerControlClasses = cn({
@@ -110,43 +103,24 @@ const PlayerControls = ({
   return (
     <div className={PlayerControlClasses}>
       <div className="flex items-center justify-center gap-8">
-        <Button
-          circle
-          onClick={back}
-          disabled={!onDeck}
-          className={skipClasses}
-        >
+        <Button circle onClick={back} className={skipClasses}>
           <Icon name="play-skip-back" solid />
         </Button>
-        <Button
-          active={isPlaying}
-          circle
-          size="lg"
-          disabled={!onDeck}
-          onClick={togglePlay}
-        >
+        <Button active={isPlaying} circle size="lg" onClick={togglePlay}>
           <Icon name={isPlaying ? "pause" : "play"} solid />
         </Button>
-        <Button
-          circle
-          onClick={next}
-          disabled={!onDeck}
-          className={skipClasses}
-        >
+        <Button circle onClick={next} className={skipClasses}>
           <Icon name="play-skip-forward" solid />
         </Button>
       </div>
-      {!isFullscreen && (
-        <PlaybackBar isFullscreen={isFullscreen} onDeck={onDeck} />
-      )}
+      {!isFullscreen && <PlaybackBar isFullscreen={isFullscreen} />}
     </div>
   );
 };
 
-const PlaybackBar = ({ isFullscreen, onDeck }) => {
+const PlaybackBar = ({ isFullscreen }) => {
   const containerClasses = cn({
     "grid gap-8 items-center col-span-2 transition": true,
-    "opacity-0 md:opacity-100": !onDeck,
     "grid-cols-[1fr] grid-rows-[4px] md:grid-cols-[40px,1fr,40px] md:grid-rows-[8px,1fr] absolute left-0 bottom-0 right-0 w-auto md:static": !isFullscreen,
     "w-full": isFullscreen
   });
@@ -186,7 +160,6 @@ const PlaybackBar = ({ isFullscreen, onDeck }) => {
 
 const ExtraControls = ({
   isFullscreen,
-  onDeck,
   queueIsOpen,
   playerIsEmpty,
   setIsFullscreen,
@@ -318,10 +291,10 @@ export default function Player() {
         as="aside"
         show={!playerIsEmpty}
         className={playerClasses}
-        enter="transition ease-in-out duration-200 transform"
+        enter="transition ease-in-out duration-300 transform"
         enterFrom="opacity-0 translate-y-full"
         enterTo="opacity-100 translate-y-0"
-        leave="transition ease-in-out duration-200 transform"
+        leave="transition ease-in-out duration-300 transform"
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-full"
       >
@@ -339,12 +312,10 @@ export default function Player() {
           isFullscreen={isFullscreen}
           isPlaying={isPlaying()}
           next={next}
-          onDeck={onDeck}
           togglePlay={togglePlay}
         />
         <ExtraControls
           isFullscreen={isFullscreen}
-          onDeck={onDeck}
           playerIsEmpty={playerIsEmpty}
           queueIsOpen={queueIsOpen}
           setIsFullscreen={setIsFullscreen}

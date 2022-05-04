@@ -4,6 +4,7 @@ import cn from "classnames";
 import AudioContext from "../context/AudioContext";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
+import Tooltip from "../components/Tooltip";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -139,28 +140,32 @@ export default function Tracklist({ tracks }) {
             {track.audioFile && (
               <>
                 {track.listType === "playlist" && (
-                  <Button
-                    circle
-                    className="opacity-0 group-hover:opacity-100"
-                    variant="ghost"
-                    onClick={() => {
-                      addToQueue(track);
-                    }}
-                  >
-                    <Icon name="add" solid />
-                  </Button>
+                  <Tooltip content="Add to Queue">
+                    <Button
+                      circle
+                      className="opacity-0 group-hover:opacity-100"
+                      variant="ghost"
+                      onClick={() => {
+                        addToQueue(track);
+                      }}
+                    >
+                      <Icon name="add" solid />
+                    </Button>
+                  </Tooltip>
                 )}
                 {track.listType === "queue" && (
-                  <Button
-                    circle
-                    className="opacity-0 group-hover:opacity-100"
-                    variant="ghost"
-                    onClick={() => {
-                      removeFromQueue(track, i);
-                    }}
-                  >
-                    <Icon name="close" solid />
-                  </Button>
+                  <Tooltip content="Remove from Queue">
+                    <Button
+                      circle
+                      className="opacity-0 group-hover:opacity-100"
+                      variant="ghost"
+                      onClick={() => {
+                        removeFromQueue(track, i);
+                      }}
+                    >
+                      <Icon name="close" solid />
+                    </Button>
+                  </Tooltip>
                 )}
               </>
             )}

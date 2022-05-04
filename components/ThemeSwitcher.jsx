@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Menu, Transition } from "@headlessui/react";
 import Icon from "./Icon";
+import Tooltip from "./Tooltip";
 
 export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -27,13 +28,15 @@ export default function ThemeSwitcher() {
 
   return (
     <Menu>
-      <Menu.Button className="flex items-center justify-center h-32 w-32 rounded-full bg-primary-5 hover:bg-primary-10">
-        <Icon
-          name={
-            theme === "system" ? "cog" : theme === "dark" ? "moon" : "sunny"
-          }
-        />
-      </Menu.Button>
+      <Tooltip content="Change theme">
+        <Menu.Button className="flex items-center justify-center h-32 w-32 rounded-full bg-primary-5 hover:bg-primary-10">
+          <Icon
+            name={
+              theme === "system" ? "cog" : theme === "dark" ? "moon" : "sunny"
+            }
+          />
+        </Menu.Button>
+      </Tooltip>
       <Transition
         as={Fragment}
         enter="transition ease-out duration-100"

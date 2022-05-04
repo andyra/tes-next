@@ -3,7 +3,8 @@ import * as Tooltip from "@radix-ui/react-tooltip";
 export default function TooltipComponent({
   children,
   content,
-  delayDuration = 700
+  delayDuration = 700,
+  side = "top"
 }) {
   return (
     <Tooltip.Provider delayDuration={delayDuration}>
@@ -12,6 +13,7 @@ export default function TooltipComponent({
         <Tooltip.Content
           className="bg-primary text-ground rounded px-8 py-4 text-sm"
           sideOffset={4}
+          side={side}
         >
           <Tooltip.Arrow className="fill-primary" offset={12} />
           {content}
