@@ -56,7 +56,7 @@ export default function SongList({ filters }) {
   }
 
   return data.entries ? (
-    <ul className="columns-2 lg:columns-3 xl:columns-4 2xl:columns-5">
+    <ul className="sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5">
       {data.entries.map((song, i) => (
         <SongItem song={song} filters={filters} i={i} key={song.slug} />
       ))}

@@ -27,7 +27,7 @@ export default function ThemeSwitcher() {
 
   return (
     <Menu>
-      <Menu.Button className="flex items-center justify-center h-32 w-32 rounded-full border border-primary-25 hover:bg-primary-10">
+      <Menu.Button className="flex items-center justify-center h-32 w-32 rounded-full bg-primary-5 hover:bg-primary-10">
         <Icon
           name={
             theme === "system" ? "cog" : theme === "dark" ? "moon" : "sunny"

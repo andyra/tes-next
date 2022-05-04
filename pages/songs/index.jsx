@@ -9,14 +9,6 @@ import SongList from "./components/SongList";
 // Functions
 // ----------------------------------------------------------------------------
 
-// {
-//   __typename: 'songs_default_Entry',
-//   title: 'Test Song Segment',
-//   lyrics: null,
-//   notation: null,
-//   songType: 'segment'
-// }
-
 function normalizeSongFilters(filterGroups) {
   let songTypeOptions = [];
 
@@ -47,7 +39,7 @@ export default function SongsPage({ filterGroups }) {
 
   return (
     <>
-      <header className="relative mb-64">
+      <header className="relative mb-32 md:mb-64">
         <MusicTabs page="Songs" />
         <Filters
           className="absolute top-1/2 right-0 transform -translate-y-1/2"

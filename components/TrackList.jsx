@@ -99,7 +99,7 @@ export default function Tracklist({ tracks }) {
             active={active}
             className={buttonClasses}
             circle
-            ghost
+            variant="ghost"
             onClick={() => {
               selectTrack(track, i);
             }}
@@ -142,7 +142,7 @@ export default function Tracklist({ tracks }) {
                   <Button
                     circle
                     className="opacity-0 group-hover:opacity-100"
-                    ghost
+                    variant="ghost"
                     onClick={() => {
                       addToQueue(track);
                     }}
@@ -154,7 +154,7 @@ export default function Tracklist({ tracks }) {
                   <Button
                     circle
                     className="opacity-0 group-hover:opacity-100"
-                    ghost
+                    variant="ghost"
                     onClick={() => {
                       removeFromQueue(track, i);
                     }}

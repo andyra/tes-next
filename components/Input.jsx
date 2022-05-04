@@ -6,6 +6,7 @@ export default function Input({
   hideLabel,
   icon,
   defaultValue,
+  glass,
   inputClassName,
   label,
   labelClassName,
@@ -29,8 +30,10 @@ export default function Input({
 
   const inputClasses = cn({
     "block w-full h-40": true,
-    "bg-ground border border-primary-25 rounded outline-none": true,
+    "bg-ground rounded outline-none": true,
     "focus:border-accent focus:ring focus:ring-accent-25": true,
+    "border border-primary-25": !glass,
+    "bg-primary-5 focus:bg-primary-5": glass,
     "px-12": !icon,
     "pl-32 pr-12": icon,
     [inputClassName]: inputClassName

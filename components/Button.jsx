@@ -20,15 +20,16 @@ export default function Button({
   circle,
   className,
   disabled,
-  ghost,
   onClick,
   size = "base",
   type = "button",
+  variant = "border",
   url
 }) {
   const buttonClasses = cn({
     "flex items-center justify-center gap-4 rounded-full hover:bg-primary-10 transition": true,
-    "border border-primary-10": !ghost,
+    "border border-primary-10": variant === "border",
+    "bg-primary-5 hover:bg-primary-10 focus:bg-primary-10": variant === "glass",
     "opacity-50 pointer-events-none": disabled,
     "bg-primary hover:bg-primary-75 text-ground": active,
     [SIZES[size].h]: true,

@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
+import { Transition } from "@headlessui/react";
 import { useMediaQuery } from "react-responsive";
 import cn from "classnames";
 import AudioContext from "../context/AudioContext";
@@ -7,6 +8,7 @@ import Button from "./Button";
 import Icon from "./Icon";
 import MediaQuery, { BREAKPOINTS } from "./MediaQuery";
 import Queue from "./Queue";
+import Tooltip from "./Tooltip";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -66,10 +68,10 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
         </div>
         {/*{(isFullscreen || !isMobile) && (
           <div id="actions" className={actionClasses}>
-            <Button circle ghost>
+            <Button circle variant="ghost">
               <Icon name="heart" />
             </Button>
-            <Button circle ghost>
+            <Button circle variant="ghost">
               <Icon name="ellipsis-horizontal" solid />
             </Button>
           </div>
@@ -185,8 +187,8 @@ const PlaybackBar = ({ isFullscreen, onDeck }) => {
 const ExtraControls = ({
   isFullscreen,
   onDeck,
-  queueCount,
   queueIsOpen,
+  playerIsEmpty,
   setIsFullscreen,
   setQueueIsOpen
 }) => {
@@ -198,33 +200,37 @@ const ExtraControls = ({
 
   return (
     <div className={containerClasses}>
-      <Button
-        active={queueIsOpen}
-        circle
-        disabled={!onDeck && queueCount === 0}
-        onClick={() => {
-          setIsFullscreen(false);
-          setQueueIsOpen(!queueIsOpen);
-        }}
-        aria-controls="queue"
-        aria-expanded={!queueIsOpen}
-        aria-label="Show Queue"
-      >
-        <Icon name="list" solid />
-      </Button>
-      <Button
-        circle
-        disabled={!onDeck && queueCount === 0}
-        onClick={() => {
-          setQueueIsOpen(false);
-          setIsFullscreen(!isFullscreen);
-        }}
-        aria-controls="full-screen"
-        aria-expanded={!isFullscreen}
-        aria-label="Full Screen"
-      >
-        <Icon name={isFullscreen ? "chevron-down" : "chevron-up"} solid />
-      </Button>
+      <Tooltip content={`${queueIsOpen ? "Close" : "Open"} Queue`}>
+        <Button
+          active={queueIsOpen}
+          circle
+          disabled={playerIsEmpty}
+          onClick={() => {
+            setIsFullscreen(false);
+            setQueueIsOpen(!queueIsOpen);
+          }}
+          aria-controls="queue"
+          aria-expanded={!queueIsOpen}
+          aria-label="Show Queue"
+        >
+          <Icon name="list" solid />
+        </Button>
+      </Tooltip>
+      <Tooltip content={`${isFullscreen ? "Close" : "Open"} Fullscreen`}>
+        <Button
+          circle
+          disabled={playerIsEmpty}
+          onClick={() => {
+            setQueueIsOpen(false);
+            setIsFullscreen(!isFullscreen);
+          }}
+          aria-controls="full-screen"
+          aria-expanded={!isFullscreen}
+          aria-label="Full Screen"
+        >
+          <Icon name={isFullscreen ? "chevron-down" : "chevron-up"} solid />
+        </Button>
+      </Tooltip>
     </div>
   );
 };
@@ -238,16 +244,17 @@ export default function Player() {
   const context = useContext(AudioContext);
   const { nextFrom, onDeck, playing, prevFrom, queue } = context.state;
   const { setNextFrom, setOnDeck, setPlaying, setPrevFrom, setQueue } = context;
-  const queueCount = prevFrom.length + nextFrom.length + queue.length;
+  const playerIsEmpty =
+    !onDeck && prevFrom.length + nextFrom.length + queue.length === 0;
   const isDesktop = useMediaQuery(BREAKPOINTS.desktop);
   const isMobile = useMediaQuery(BREAKPOINTS.mobile);
 
   useEffect(() => {
-    if (!onDeck && queueCount === 0) {
+    if (playerIsEmpty) {
       setQueueIsOpen(false);
       // setIsFullscreen(false);
     }
-  }, [onDeck, queueCount]);
+  }, [playerIsEmpty]);
 
   function togglePlay() {
     setPlaying(!playing);
@@ -307,7 +314,17 @@ export default function Player() {
 
   return (
     <>
-      <aside className={playerClasses}>
+      <Transition
+        as="aside"
+        show={!playerIsEmpty}
+        className={playerClasses}
+        enter="transition ease-in-out duration-200 transform"
+        enterFrom="opacity-0 translate-y-full"
+        enterTo="opacity-100 translate-y-0"
+        leave="transition ease-in-out duration-200 transform"
+        leaveFrom="opacity-100 translate-y-0"
+        leaveTo="opacity-0 translate-y-full"
+      >
         <OnDeck
           onDeck={onDeck}
           isFullscreen={isFullscreen}
@@ -328,12 +345,12 @@ export default function Player() {
         <ExtraControls
           isFullscreen={isFullscreen}
           onDeck={onDeck}
-          queueCount={queueCount}
+          playerIsEmpty={playerIsEmpty}
           queueIsOpen={queueIsOpen}
           setIsFullscreen={setIsFullscreen}
           setQueueIsOpen={setQueueIsOpen}
         />
-      </aside>
+      </Transition>
       <Queue queueIsOpen={queueIsOpen} setQueueIsOpen={setQueueIsOpen} />
     </>
   );
