@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "../components/Button";
+import Icon from "../components/Icon";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -17,7 +18,14 @@ export default function Home() {
           original music.
         </h1>
       </section>
-      <Button>Play TES Radio</Button>
+
+      <section>
+        <button className="w-full h-256 flex items-center justify-center gap-8 text-lg bg-primary-5 hover:bg-primary-10">
+          <Icon name="play" />
+          Play TES Radio
+        </button>
+      </section>
+
       <section>
         <h2>Recent Additions</h2>
         <ul className="grid grid-cols-3 gap-16">
