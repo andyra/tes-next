@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
+import ReactHowler from "react-howler";
 import { Transition } from "@headlessui/react";
 import { useMediaQuery } from "react-responsive";
 import cn from "classnames";
@@ -289,17 +290,11 @@ export default function Player() {
 
   return (
     <>
-      <Transition
-        as="aside"
-        show={!playerIsEmpty}
-        className={playerClasses}
-        enter="transition ease-in-out duration-300 transform"
-        enterFrom="opacity-0 translate-y-full"
-        enterTo="opacity-100 translate-y-0"
-        leave="transition ease-in-out duration-300 transform"
-        leaveFrom="opacity-100 translate-y-0"
-        leaveTo="opacity-0 translate-y-full"
-      >
+      <aside className={playerClasses}>
+        <ReactHowler
+          src={["http://goldfirestudios.com/proj/howlerjs/sound.ogg"]}
+          playing={isPlaying}
+        />
         <OnDeck
           onDeck={onDeck}
           isFullscreen={isFullscreen}
@@ -323,7 +318,7 @@ export default function Player() {
           setIsFullscreen={setIsFullscreen}
           setQueueIsOpen={setQueueIsOpen}
         />
-      </Transition>
+      </aside>
       <Queue queueIsOpen={queueIsOpen} setQueueIsOpen={setQueueIsOpen} />
     </>
   );
