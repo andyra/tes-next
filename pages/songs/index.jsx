@@ -1,20 +1,63 @@
+import { useState } from "react";
+import { gql } from "@apollo/client";
+import client from "../../apollo-client";
 import ClientOnly from "../../components/ClientOnly";
+import Filters, { getDefaultFilters } from "../../components/Filters";
 import MusicTabs from "../../components/MusicTabs";
 import SongList from "./components/SongList";
+
+// Functions
+// ----------------------------------------------------------------------------
+
+// {
+//   __typename: 'songs_default_Entry',
+//   title: 'Test Song Segment',
+//   lyrics: null,
+//   notation: null,
+//   songType: 'segment'
+// }
+
+function normalizeSongFilters(filterGroups) {
+  let songTypeOptions = [];
+
+  for (let song of filterGroups) {
+    if (!songTypeOptions.some(option => option.value === song.songType)) {
+      songTypeOptions.push({
+        value: song.songType,
+        label: song.songType
+      });
+    }
+  }
+
+  return [
+    {
+      label: "Song Type",
+      value: "songType",
+      options: songTypeOptions
+    }
+  ];
+}
 
 // Default
 // ----------------------------------------------------------------------------
 
-export default function SongsPage() {
+export default function SongsPage({ filterGroups }) {
+  const songFilters = normalizeSongFilters(filterGroups);
+  const [filters, setFilters] = useState(getDefaultFilters(songFilters));
+
   return (
     <>
-      <MusicTabs page="Songs" />
-      <section className="border border-primary-25 p-24">
-        Filter by:
-        <div>Type (Original/Cover)</div>
-      </section>
+      <header className="relative mb-64">
+        <MusicTabs page="Songs" />
+        <Filters
+          className="absolute top-1/2 right-0 transform -translate-y-1/2"
+          filterGroups={songFilters}
+          filters={filters}
+          setFilters={setFilters}
+        />
+      </header>
       <ClientOnly>
-        <SongList />
+        <SongList filters={filters} />
       </ClientOnly>
     </>
   );
@@ -24,8 +67,21 @@ export default function SongsPage() {
 // ----------------------------------------------------------------------------
 
 export async function getStaticProps() {
+  const { data } = await client.query({
+    query: gql`
+      query Entries {
+        entries(section: "songs") {
+          ... on songs_default_Entry {
+            songType
+          }
+        }
+      }
+    `
+  });
+
   return {
     props: {
+      filterGroups: data.entries,
       maxWidth: "max-w-none",
       pageTitle: "Songs"
     }

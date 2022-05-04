@@ -4,7 +4,10 @@ import { gql, useQuery } from "@apollo/client";
 import Empty from "../../../components/Empty";
 import NiceDate from "../../../components/NiceDate";
 
-const GET_ALBUMS = gql`
+// Queries
+// ----------------------------------------------------------------------------
+
+const QUERY_ALBUMS = gql`
   query Entries {
     entries(section: "albums") {
       slug
@@ -23,6 +26,9 @@ const GET_ALBUMS = gql`
     }
   }
 `;
+
+// Components
+// ----------------------------------------------------------------------------
 
 export const AlbumItem = ({ album, filters }) => {
   const { albumType, artist, slug, title, albumCoverArt, releaseDate } = album;
@@ -63,8 +69,11 @@ export const AlbumItem = ({ album, filters }) => {
   );
 };
 
+// Default
+// ----------------------------------------------------------------------------
+
 export default function AlbumList({ filters }) {
-  const { data, loading, error } = useQuery(GET_ALBUMS);
+  const { data, loading, error } = useQuery(QUERY_ALBUMS);
 
   if (loading) {
     return <mark>Loading...</mark>;

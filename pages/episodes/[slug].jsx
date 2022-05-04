@@ -49,7 +49,6 @@ function normalizeEpisodeTracks(episode) {
 // ----------------------------------------------------------------------------
 
 export default function Episode({ episode }) {
-  console.log(episode);
   const { title } = episode;
 
   return (
