@@ -77,9 +77,13 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
 const PlayerControls = ({
   handleSkipBack,
   isFullscreen,
+  isLooped,
   isPlaying,
-  handleSkipNext,
-  handleTogglePlay
+  isRandom,
+  handleLoopToggle,
+  handlePlayToggle,
+  handleRandomToggle,
+  handleSkipNext
 }) => {
   const playerControlClasses = cn({
     "flex flex-col gap-4": true,
@@ -87,8 +91,18 @@ const PlayerControls = ({
     "w-full transition duration-300": isFullscreen
   });
 
-  const skipClasses = cn({
+  const extraButtonClasses = cn({
     "hidden md:flex": !isFullscreen
+  });
+
+  const randomClasses = cn({
+    [extraButtonClasses]: true,
+    "text-accent": isRandom
+  });
+
+  const loopClasses = cn({
+    [extraButtonClasses]: true,
+    "text-accent": isLooped
   });
 
   const playbackBarClasses = cn({
@@ -122,14 +136,40 @@ const PlayerControls = ({
   return (
     <div className={playerControlClasses}>
       <div className="flex items-center justify-center gap-8">
-        <Button circle onClick={handleSkipBack} className={skipClasses}>
+        <Button
+          circle
+          className={randomClasses}
+          onClick={handleRandomToggle}
+          variant="ghost"
+        >
+          <Icon name="shuffle" solid />
+        </Button>
+        <Button
+          circle
+          className={extraButtonClasses}
+          onClick={handleSkipBack}
+          variant="ghost"
+        >
           <Icon name="play-skip-back" solid />
         </Button>
-        <Button active={isPlaying} circle size="lg" onClick={handleTogglePlay}>
+        <Button active={isPlaying} circle size="lg" onClick={handlePlayToggle}>
           <Icon name={isPlaying ? "pause" : "play"} solid />
         </Button>
-        <Button circle onClick={handleSkipNext} className={skipClasses}>
+        <Button
+          circle
+          className={extraButtonClasses}
+          onClick={handleSkipNext}
+          variant="ghost"
+        >
           <Icon name="play-skip-forward" solid />
+        </Button>
+        <Button
+          circle
+          className={loopClasses}
+          onClick={handleLoopToggle}
+          variant="ghost"
+        >
+          <Icon name="infinite" solid />
         </Button>
       </div>
       <div className={playbackBarClasses}>
@@ -202,6 +242,8 @@ export default function Player() {
   const [queueIsOpen, setQueueIsOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isLooped, setIsLooped] = useState(false);
+  const [isRandom, setIsRandom] = useState(false);
 
   const context = useContext(AudioContext);
   const { nextFrom, onDeck, isPlaying, prevFrom, queue } = context.state;
@@ -225,7 +267,7 @@ export default function Player() {
     }
   }, [playerIsEmpty]);
 
-  function handleTogglePlay() {
+  function handlePlayToggle() {
     setIsPlaying(!isPlaying);
   }
 
@@ -269,6 +311,36 @@ export default function Player() {
     }
   }
 
+  function handleOnLoad() {
+    console.log("Loaded!");
+    setIsLoaded(true);
+    // setDuration(player.duration());
+  }
+
+  function handleOnPlay() {
+    setIsPlaying(true);
+    // this.renderSeekPos();
+  }
+
+  function handleOnEnd() {
+    setIsPlaying(false);
+    // this.clearRAF();
+  }
+
+  function handleStop() {
+    player.stop();
+    setIsPlaying(false);
+    // this.renderSeekPos();
+  }
+
+  function handleLoopToggle() {
+    setIsLooped(!isLooped);
+  }
+
+  function handleRandomToggle() {
+    setIsRandom(!isRandom);
+  }
+
   const playerClasses = cn({
     "flex items-center gap-8 md:col-span-2 md:shadow-none md:mx-0": true,
     "p-8 rounded-lg md:rounded-none border border-primary-10 shadow mx-8 mb-8 relative md:border-t md:mb-0": !isFullscreen,
@@ -280,6 +352,11 @@ export default function Player() {
       <ReactHowler
         src={["http://goldfirestudios.com/proj/howlerjs/sound.ogg"]}
         playing={isPlaying}
+        onLoad={handleOnLoad}
+        onPlay={handleOnPlay}
+        onEnd={handleOnEnd}
+        loop={isLooped}
+        // ref={ref => (this.player = ref)}
       />
       <aside className={playerClasses}>
         <OnDeck
@@ -289,11 +366,15 @@ export default function Player() {
           setIsFullscreen={setIsFullscreen}
         />
         <PlayerControls
+          handleLoopToggle={handleLoopToggle}
+          handlePlayToggle={handlePlayToggle}
+          handleRandomToggle={handleRandomToggle}
           handleSkipBack={handleSkipBack}
-          isFullscreen={isFullscreen}
-          isPlaying={isPlaying}
           handleSkipNext={handleSkipNext}
-          handleTogglePlay={handleTogglePlay}
+          isFullscreen={isFullscreen}
+          isLooped={isLooped}
+          isPlaying={isPlaying}
+          isRandom={isRandom}
         />
         <ExtraControls
           isFullscreen={isFullscreen}

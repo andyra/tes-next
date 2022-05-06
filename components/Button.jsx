@@ -30,6 +30,7 @@ export default function Button({
     "flex items-center justify-center gap-4 rounded-full hover:bg-primary-10 transition": true,
     "border border-primary-10": variant === "border",
     "bg-primary-5 hover:bg-primary-10 focus:bg-primary-10": variant === "glass",
+    "hover:bg-primary-5 focus:bg-primary-5": variant === "ghost",
     "opacity-50 pointer-events-none": disabled,
     "bg-primary hover:bg-primary-75 text-ground": active,
     [SIZES[size].h]: true,
