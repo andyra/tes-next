@@ -18,12 +18,14 @@ function normalizeAlbumTracks(album) {
     newTracks.push({
       addedBy: null,
       artist: {
-        slug: album.artist[0].slug,
-        title: album.artist[0].title
+        slug: album.artist.length ? album.artist[0].slug : null,
+        title: album.artist.length ? album.artist[0].title : null
       },
-      audioFile: track.audioFile[0].url,
+      audioFile: track.audioFile.length ? track.audioFile[0].url : null,
       collection: {
-        coverArtUrl: album.albumCoverArt[0].url,
+        coverArtUrl: album.albumCoverArt.length
+          ? album.albumCoverArt[0].url
+          : null,
         slug: album.slug,
         title: album.title,
         entryType: "album"
@@ -32,8 +34,13 @@ function normalizeAlbumTracks(album) {
       listType: "playlist",
       id: `album-${album.id}-${i}`,
       position: i,
-      slug: track.song[0].slug,
-      title: track.song[0].title
+      slug: track.song && track.song.length ? track.song[0].slug : null,
+      title:
+        track.song && track.song.length
+          ? track.song[0].title
+          : track.description && track.description.length
+          ? track.description
+          : null
     });
     i++;
   }
@@ -110,12 +117,16 @@ export async function getStaticProps(context) {
             }
             releaseDate
             albumTracklist {
-              ... on albumTracklist_BlockType {
-                audioFile { url }
+              ... on albumTracklist_song_BlockType {
                 song {
                   slug
                   title
                 }
+                audioFile { url }
+              }
+              ... on albumTracklist_segment_BlockType {
+                description
+                audioFile { url }
               }
             }
           }

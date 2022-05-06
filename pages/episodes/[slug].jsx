@@ -16,17 +16,13 @@ function normalizeEpisodeTracks(episode) {
   let i = 1;
 
   for (let track of episode.episodeTracklist) {
-    const title = track.song.length ? track.song[0].title : track.segment;
-    const slug = track.song.length ? track.song[0].slug : null;
-    const audioFile = track.audioFile.length ? track.audioFile[0].url : null;
-
     newTracks.push({
       addedBy: null,
       artist: {
         slug: "/episodes",
         title: "This Evening's Show"
       },
-      audioFile: audioFile,
+      audioFile: track.audioFile.length ? track.audioFile[0].url : null,
       collection: {
         coverArtUrl: episode.episodeCoverArt[0].url,
         slug: episode.slug,
@@ -37,8 +33,13 @@ function normalizeEpisodeTracks(episode) {
       listType: "playlist",
       id: `episode-${episode.id}-${i}`,
       position: i,
-      slug: slug,
-      title: title
+      slug: track.song && track.song.length ? track.song[0].slug : null,
+      title:
+        track.song && track.song.length
+          ? track.song[0].title
+          : track.description && track.description.length
+          ? track.description
+          : null
     });
     i++;
   }
@@ -49,6 +50,7 @@ function normalizeEpisodeTracks(episode) {
 // ----------------------------------------------------------------------------
 
 export default function Episode({ episode }) {
+  console.log(episode.episodeTracklist);
   const { title } = episode;
 
   return (
@@ -124,16 +126,18 @@ export async function getStaticProps(context) {
             episodeAudio { url }
             episodeCoverArt { url }
             episodeTracklist {
-              ... on episodeTracklist_BlockType {
-                audioFile { url }
-                segment
+              ... on episodeTracklist_song_BlockType {
                 song {
                   slug
                   title
                 }
+                audioFile { url }
+              }
+              ... on episodeTracklist_segment_BlockType {
+                description
+                audioFile { url }
               }
             }
-            releaseDate
           }
         }
       }
