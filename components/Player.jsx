@@ -174,37 +174,40 @@ const ExtraControls = ({
 
   return (
     <div className={containerClasses}>
-      <Tooltip content={`${queueIsOpen ? "Close" : "Open"} Queue`}>
-        <Button
-          active={queueIsOpen}
-          circle
-          disabled={playerIsEmpty}
-          onClick={() => {
-            setIsFullscreen(false);
-            setQueueIsOpen(!queueIsOpen);
-          }}
-          aria-controls="queue"
-          aria-expanded={!queueIsOpen}
-          aria-label="Show Queue"
-        >
-          <Icon name="list" solid />
-        </Button>
-      </Tooltip>
-      <Tooltip content={`${isFullscreen ? "Close" : "Open"} Fullscreen`}>
-        <Button
-          circle
-          disabled={playerIsEmpty}
-          onClick={() => {
-            setQueueIsOpen(false);
-            setIsFullscreen(!isFullscreen);
-          }}
-          aria-controls="full-screen"
-          aria-expanded={!isFullscreen}
-          aria-label="Full Screen"
-        >
-          <Icon name={isFullscreen ? "chevron-down" : "chevron-up"} solid />
-        </Button>
-      </Tooltip>
+      {/*<Tooltip asChild content={`${queueIsOpen ? "Close" : "Open"} Queue`}>*/}
+      <Button
+        active={queueIsOpen}
+        circle
+        disabled={playerIsEmpty}
+        onClick={() => {
+          setIsFullscreen(false);
+          setQueueIsOpen(!queueIsOpen);
+        }}
+        aria-controls="queue"
+        aria-expanded={!queueIsOpen}
+        aria-label="Show Queue"
+      >
+        <Icon name="list" solid />
+      </Button>
+      {/*</Tooltip>*/}
+      {/*      <Tooltip
+        asChild
+        content={`${isFullscreen ? "Close" : "Open"} Fullscreen`}
+      >*/}
+      <Button
+        circle
+        disabled={playerIsEmpty}
+        onClick={() => {
+          setQueueIsOpen(false);
+          setIsFullscreen(!isFullscreen);
+        }}
+        aria-controls="full-screen"
+        aria-expanded={!isFullscreen}
+        aria-label="Full Screen"
+      >
+        <Icon name={isFullscreen ? "chevron-down" : "chevron-up"} solid />
+      </Button>
+      {/*</Tooltip>*/}
     </div>
   );
 };

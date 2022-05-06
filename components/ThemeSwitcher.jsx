@@ -28,7 +28,7 @@ export default function ThemeSwitcher() {
 
   return (
     <Menu>
-      <Tooltip content="Change theme">
+      <Tooltip asChild content="Change theme">
         <Menu.Button className="flex items-center justify-center h-32 w-32 rounded-full bg-primary-5 hover:bg-primary-10">
           <Icon
             name={

@@ -146,32 +146,28 @@ export default function Tracklist({ tracks }) {
             {track.audioFile && (
               <>
                 {track.listType === "playlist" && (
-                  <Tooltip content="Add to Queue">
-                    <Button
-                      circle
-                      className="opacity-0 group-hover:opacity-100"
-                      variant="ghost"
-                      onClick={() => {
-                        addToQueue(track);
-                      }}
-                    >
-                      <Icon name="add" solid />
-                    </Button>
-                  </Tooltip>
+                  <Button
+                    circle
+                    className="opacity-0 group-hover:opacity-100"
+                    variant="ghost"
+                    onClick={() => {
+                      addToQueue(track);
+                    }}
+                  >
+                    <Icon name="add" solid />
+                  </Button>
                 )}
                 {track.listType === "queue" && (
-                  <Tooltip content="Remove from Queue">
-                    <Button
-                      circle
-                      className="opacity-0 group-hover:opacity-100"
-                      variant="ghost"
-                      onClick={() => {
-                        removeFromQueue(track, i);
-                      }}
-                    >
-                      <Icon name="close" solid />
-                    </Button>
-                  </Tooltip>
+                  <Button
+                    circle
+                    className="opacity-0 group-hover:opacity-100"
+                    variant="ghost"
+                    onClick={() => {
+                      removeFromQueue(track, i);
+                    }}
+                  >
+                    <Icon name="close" solid />
+                  </Button>
                 )}
               </>
             )}

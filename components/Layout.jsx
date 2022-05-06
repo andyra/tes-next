@@ -16,7 +16,7 @@ const Main = ({ children }) => (
 );
 
 const Toolbar = () => (
-  <section className="sticky top-0 z-10 p-16 grid grid-cols-[128px_1fr_128px] gap-8">
+  <section className="sticky top-0 z-10 p-16 grid grid-cols-[40px_1fr_40px] gap-8">
     <Input
       glass
       className="mx-auto max-w-screen-sm col-span-2 lg:col-start-2 lg:col-span-1"
