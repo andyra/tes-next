@@ -36,8 +36,13 @@ export default function Tracklist({ tracks }) {
 
   // Shorten or add to queue listTypes
   function updateList(selectedTrack, i) {
-    const tracksBefore = [...tracks].splice(0, i);
-    const tracksAfter = [...tracks].splice(i + 1);
+    // Filter out tracks with no audioFile
+    const tracksBefore = [...tracks].splice(0, i).filter(track => {
+      return track.audioFile;
+    });
+    const tracksAfter = [...tracks].splice(i + 1).filter(track => {
+      return track.audioFile;
+    });
 
     if (selectedTrack.listType === "queue") {
       setQueue(tracksAfter);

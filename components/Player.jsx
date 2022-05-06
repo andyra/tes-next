@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import ReactHowler from "react-howler";
 import { Transition } from "@headlessui/react";
 import { useMediaQuery } from "react-responsive";
 import cn from "classnames";
@@ -75,15 +74,15 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
 };
 
 const PlayerControls = ({
-  handleSkipBack,
+  skipBack,
   isFullscreen,
   isLooped,
   isPlaying,
   isRandom,
-  handleLoopToggle,
-  handlePlayToggle,
-  handleRandomToggle,
-  handleSkipNext
+  toggleLoop,
+  togglePlay,
+  toggleRandom,
+  skipNext
 }) => {
   const playerControlClasses = cn({
     "flex flex-col gap-4": true,
@@ -139,7 +138,7 @@ const PlayerControls = ({
         <Button
           circle
           className={randomClasses}
-          onClick={handleRandomToggle}
+          onClick={toggleRandom}
           variant="ghost"
         >
           <Icon name="shuffle" solid />
@@ -147,18 +146,18 @@ const PlayerControls = ({
         <Button
           circle
           className={extraButtonClasses}
-          onClick={handleSkipBack}
+          onClick={skipBack}
           variant="ghost"
         >
           <Icon name="play-skip-back" solid />
         </Button>
-        <Button active={isPlaying} circle size="lg" onClick={handlePlayToggle}>
+        <Button active={isPlaying} circle size="lg" onClick={togglePlay}>
           <Icon name={isPlaying ? "pause" : "play"} solid />
         </Button>
         <Button
           circle
           className={extraButtonClasses}
-          onClick={handleSkipNext}
+          onClick={skipNext}
           variant="ghost"
         >
           <Icon name="play-skip-forward" solid />
@@ -166,7 +165,7 @@ const PlayerControls = ({
         <Button
           circle
           className={loopClasses}
-          onClick={handleLoopToggle}
+          onClick={toggleLoop}
           variant="ghost"
         >
           <Icon name="infinite" solid />
@@ -232,19 +231,7 @@ const ExtraControls = ({
 // Default
 // ----------------------------------------------------------------------------
 
-// Global state only needs to handle stuff to pass down across child components,
-// like Playing from a Tracklist, adding and removing queue items, etc.
-
-// This component can handle:
-// Duration, SeekPosition, loaded, etc.
-
 export default function Player() {
-  const [queueIsOpen, setQueueIsOpen] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isLooped, setIsLooped] = useState(false);
-  const [isRandom, setIsRandom] = useState(false);
-
   const context = useContext(AudioContext);
   const { nextFrom, onDeck, isPlaying, prevFrom, queue } = context.state;
   const {
@@ -255,6 +242,11 @@ export default function Player() {
     setQueue
   } = context;
 
+  const [queueIsOpen, setQueueIsOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isLooped, setIsLooped] = useState(false);
+  const [isRandom, setIsRandom] = useState(false);
+
   const playerIsEmpty =
     !onDeck && prevFrom.length + nextFrom.length + queue.length === 0;
   const isDesktop = useMediaQuery(BREAKPOINTS.desktop);
@@ -262,12 +254,13 @@ export default function Player() {
 
   useEffect(() => {
     if (playerIsEmpty) {
+      setIsPlaying(false);
       setQueueIsOpen(false);
       setIsFullscreen(false);
     }
   }, [playerIsEmpty]);
 
-  function handlePlayToggle() {
+  function togglePlay() {
     setIsPlaying(!isPlaying);
   }
 
@@ -277,7 +270,9 @@ export default function Player() {
     setPrevFrom(newPrevFrom);
   }
 
-  function handleSkipNext() {
+  // TODO: Don't skip to tracks that have no audio file
+  function skipNext() {
+    // console.log(nextFrom);
     if (onDeck && onDeck.listType === "playlist") {
       addToPrevFrom(onDeck);
     }
@@ -295,7 +290,7 @@ export default function Player() {
     }
   }
 
-  function handleSkipBack() {
+  function skipBack() {
     const newPrevFrom = [...prevFrom];
     if (newPrevFrom.length) {
       const newOnDeck = newPrevFrom.pop();
@@ -311,33 +306,11 @@ export default function Player() {
     }
   }
 
-  function handleOnLoad() {
-    console.log("Loaded!");
-    setIsLoaded(true);
-    // setDuration(player.duration());
-  }
-
-  function handleOnPlay() {
-    setIsPlaying(true);
-    // this.renderSeekPos();
-  }
-
-  function handleOnEnd() {
-    setIsPlaying(false);
-    // this.clearRAF();
-  }
-
-  function handleStop() {
-    player.stop();
-    setIsPlaying(false);
-    // this.renderSeekPos();
-  }
-
-  function handleLoopToggle() {
+  function toggleLoop() {
     setIsLooped(!isLooped);
   }
 
-  function handleRandomToggle() {
+  function toggleRandom() {
     setIsRandom(!isRandom);
   }
 
@@ -349,15 +322,6 @@ export default function Player() {
 
   return (
     <>
-      <ReactHowler
-        src={["http://goldfirestudios.com/proj/howlerjs/sound.ogg"]}
-        playing={isPlaying}
-        onLoad={handleOnLoad}
-        onPlay={handleOnPlay}
-        onEnd={handleOnEnd}
-        loop={isLooped}
-        // ref={ref => (this.player = ref)}
-      />
       <aside className={playerClasses}>
         <OnDeck
           onDeck={onDeck}
@@ -366,11 +330,11 @@ export default function Player() {
           setIsFullscreen={setIsFullscreen}
         />
         <PlayerControls
-          handleLoopToggle={handleLoopToggle}
-          handlePlayToggle={handlePlayToggle}
-          handleRandomToggle={handleRandomToggle}
-          handleSkipBack={handleSkipBack}
-          handleSkipNext={handleSkipNext}
+          toggleLoop={toggleLoop}
+          togglePlay={togglePlay}
+          toggleRandom={toggleRandom}
+          skipBack={skipBack}
+          skipNext={skipNext}
           isFullscreen={isFullscreen}
           isLooped={isLooped}
           isPlaying={isPlaying}
