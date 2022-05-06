@@ -61,16 +61,6 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
             {onDeck ? onDeck.artist.title : ""}
           </div>
         </div>
-        {/*{(isFullscreen || !isMobile) && (
-          <div id="actions" className="flex items-center gap-2 pl-16 transition duration-300">
-            <Button circle variant="ghost">
-              <Icon name="heart" />
-            </Button>
-            <Button circle variant="ghost">
-              <Icon name="ellipsis-horizontal" solid />
-            </Button>
-          </div>
-        )}*/}
       </div>
       {isMobile && onDeck && !isFullscreen && (
         <button
@@ -91,7 +81,7 @@ const PlayerControls = ({
   next,
   togglePlay
 }) => {
-  const PlayerControlClasses = cn({
+  const playerControlClasses = cn({
     "flex flex-col gap-4": true,
     "md:w-1/3": !isFullscreen,
     "w-full transition duration-300": isFullscreen
@@ -101,29 +91,10 @@ const PlayerControls = ({
     "hidden md:flex": !isFullscreen
   });
 
-  return (
-    <div className={PlayerControlClasses}>
-      <div className="flex items-center justify-center gap-8">
-        <Button circle onClick={back} className={skipClasses}>
-          <Icon name="play-skip-back" solid />
-        </Button>
-        <Button active={isPlaying} circle size="lg" onClick={togglePlay}>
-          <Icon name={isPlaying ? "pause" : "play"} solid />
-        </Button>
-        <Button circle onClick={next} className={skipClasses}>
-          <Icon name="play-skip-forward" solid />
-        </Button>
-      </div>
-      {!isFullscreen && <PlaybackBar isFullscreen={isFullscreen} />}
-    </div>
-  );
-};
-
-const PlaybackBar = ({ isFullscreen }) => {
-  const containerClasses = cn({
+  const playbackBarClasses = cn({
     "grid gap-8 items-center col-span-2 transition": true,
     "grid-cols-[1fr] grid-rows-[4px] md:grid-cols-[40px,1fr,40px] md:grid-rows-[8px,1fr] absolute left-0 bottom-0 right-0 w-auto md:static": !isFullscreen,
-    "w-full": isFullscreen
+    "w-full order-first": isFullscreen
   });
 
   const timeClasses = cn({
@@ -149,12 +120,25 @@ const PlaybackBar = ({ isFullscreen }) => {
   });
 
   return (
-    <div className={containerClasses}>
-      <time className={`${elapsedClasses}`}>0:00</time>
-      <div className={barClasses}>
-        <span className="bg-accent absolute left-0 top-0 bottom-0 right-1/2 rounded-full" />
+    <div className={playerControlClasses}>
+      <div className="flex items-center justify-center gap-8">
+        <Button circle onClick={back} className={skipClasses}>
+          <Icon name="play-skip-back" solid />
+        </Button>
+        <Button active={isPlaying} circle size="lg" onClick={togglePlay}>
+          <Icon name={isPlaying ? "pause" : "play"} solid />
+        </Button>
+        <Button circle onClick={next} className={skipClasses}>
+          <Icon name="play-skip-forward" solid />
+        </Button>
       </div>
-      <time className={durationClasses}>0:00</time>
+      <div className={playbackBarClasses}>
+        <time className={`${elapsedClasses}`}>0:00</time>
+        <div className={barClasses}>
+          <span className="bg-accent absolute left-0 top-0 bottom-0 right-1/2 rounded-full" />
+        </div>
+        <time className={durationClasses}>0:00</time>
+      </div>
     </div>
   );
 };
@@ -174,7 +158,6 @@ const ExtraControls = ({
 
   return (
     <div className={containerClasses}>
-      {/*<Tooltip asChild content={`${queueIsOpen ? "Close" : "Open"} Queue`}>*/}
       <Button
         active={queueIsOpen}
         circle
@@ -189,11 +172,6 @@ const ExtraControls = ({
       >
         <Icon name="list" solid />
       </Button>
-      {/*</Tooltip>*/}
-      {/*      <Tooltip
-        asChild
-        content={`${isFullscreen ? "Close" : "Open"} Fullscreen`}
-      >*/}
       <Button
         circle
         disabled={playerIsEmpty}
@@ -207,7 +185,6 @@ const ExtraControls = ({
       >
         <Icon name={isFullscreen ? "chevron-down" : "chevron-up"} solid />
       </Button>
-      {/*</Tooltip>*/}
     </div>
   );
 };
@@ -286,27 +263,24 @@ export default function Player() {
   }
 
   const playerClasses = cn({
-    "flex items-center gap-8 px-8 md:col-span-2 md:shadow-none md:mx-0": true,
-    "rounded-lg border border-primary-10 shadow mx-8 mb-8 relative md:border-t md:mb-0": !isFullscreen,
+    "flex items-center gap-8 md:col-span-2 md:shadow-none md:mx-0": true,
+    "p-8 rounded-lg md:rounded-none border border-primary-10 shadow mx-8 mb-8 relative md:border-t md:mb-0": !isFullscreen,
     "absolute z-50 top-0 left-0 w-full h-full flex-col justify-end bg-ground px-24 py-24 md:p-48 lg:p-96": isFullscreen
   });
 
   return (
     <>
+      <ReactHowler
+        src={["http://goldfirestudios.com/proj/howlerjs/sound.ogg"]}
+        playing={isPlaying}
+      />
       <aside className={playerClasses}>
-        <ReactHowler
-          src={["http://goldfirestudios.com/proj/howlerjs/sound.ogg"]}
-          playing={isPlaying}
-        />
         <OnDeck
           onDeck={onDeck}
           isFullscreen={isFullscreen}
           isMobile={isMobile}
           setIsFullscreen={setIsFullscreen}
         />
-        {isFullscreen && (
-          <PlaybackBar isFullscreen={isFullscreen} onDeck={onDeck} />
-        )}
         <PlayerControls
           back={back}
           isFullscreen={isFullscreen}
