@@ -75,11 +75,11 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
 };
 
 const PlayerControls = ({
-  back,
+  handleSkipBack,
   isFullscreen,
   isPlaying,
-  next,
-  togglePlay
+  handleSkipNext,
+  handleTogglePlay
 }) => {
   const playerControlClasses = cn({
     "flex flex-col gap-4": true,
@@ -122,13 +122,13 @@ const PlayerControls = ({
   return (
     <div className={playerControlClasses}>
       <div className="flex items-center justify-center gap-8">
-        <Button circle onClick={back} className={skipClasses}>
+        <Button circle onClick={handleSkipBack} className={skipClasses}>
           <Icon name="play-skip-back" solid />
         </Button>
-        <Button active={isPlaying} circle size="lg" onClick={togglePlay}>
+        <Button active={isPlaying} circle size="lg" onClick={handleTogglePlay}>
           <Icon name={isPlaying ? "pause" : "play"} solid />
         </Button>
-        <Button circle onClick={next} className={skipClasses}>
+        <Button circle onClick={handleSkipNext} className={skipClasses}>
           <Icon name="play-skip-forward" solid />
         </Button>
       </div>
@@ -192,9 +192,17 @@ const ExtraControls = ({
 // Default
 // ----------------------------------------------------------------------------
 
+// Global state only needs to handle stuff to pass down across child components,
+// like Playing from a Tracklist, adding and removing queue items, etc.
+
+// This component can handle:
+// Duration, SeekPosition, loaded, etc.
+
 export default function Player() {
   const [queueIsOpen, setQueueIsOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const context = useContext(AudioContext);
   const { nextFrom, onDeck, isPlaying, prevFrom, queue } = context.state;
   const {
@@ -204,6 +212,7 @@ export default function Player() {
     setPrevFrom,
     setQueue
   } = context;
+
   const playerIsEmpty =
     !onDeck && prevFrom.length + nextFrom.length + queue.length === 0;
   const isDesktop = useMediaQuery(BREAKPOINTS.desktop);
@@ -216,15 +225,20 @@ export default function Player() {
     }
   }, [playerIsEmpty]);
 
-  function togglePlay() {
+  function handleTogglePlay() {
     setIsPlaying(!isPlaying);
   }
 
-  function next() {
+  function addToPrevFrom(item) {
+    const newPrevFrom = [...prevFrom];
+    newPrevFrom.push(item);
+    setPrevFrom(newPrevFrom);
+  }
+
+  function handleSkipNext() {
     if (onDeck && onDeck.listType === "playlist") {
       addToPrevFrom(onDeck);
     }
-
     if (queue.length) {
       const newOnDeck = queue.shift();
       setOnDeck(newOnDeck);
@@ -239,15 +253,8 @@ export default function Player() {
     }
   }
 
-  function addToPrevFrom(item) {
+  function handleSkipBack() {
     const newPrevFrom = [...prevFrom];
-    newPrevFrom.push(item);
-    setPrevFrom(newPrevFrom);
-  }
-
-  function back() {
-    const newPrevFrom = [...prevFrom];
-
     if (newPrevFrom.length) {
       const newOnDeck = newPrevFrom.pop();
       setPrevFrom(newPrevFrom);
@@ -282,11 +289,11 @@ export default function Player() {
           setIsFullscreen={setIsFullscreen}
         />
         <PlayerControls
-          back={back}
+          handleSkipBack={handleSkipBack}
           isFullscreen={isFullscreen}
           isPlaying={isPlaying}
-          next={next}
-          togglePlay={togglePlay}
+          handleSkipNext={handleSkipNext}
+          handleTogglePlay={handleTogglePlay}
         />
         <ExtraControls
           isFullscreen={isFullscreen}
