@@ -7,11 +7,11 @@ import client from "../apollo-client";
 import "../styles/globals.css";
 
 function App({ Component, pageProps }) {
-  const [onDeck, setOnDeck] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [queueList, setQueueList] = useState([]);
   const [nextList, setNextList] = useState([]);
   const [prevList, setPrevList] = useState([]);
+  const [queueList, setQueueList] = useState([]);
 
   const nextClasses = [
     "grid",
@@ -35,15 +35,15 @@ function App({ Component, pageProps }) {
       <AudioContext.Provider
         value={{
           state: {
+            currentTrack: currentTrack,
             isPlaying: isPlaying,
             nextList: nextList,
-            onDeck: onDeck,
             prevList: prevList,
             queueList: queueList
           },
+          setCurrentTrack: setCurrentTrack,
           setIsPlaying: setIsPlaying,
           setNextList: setNextList,
-          setOnDeck: setOnDeck,
           setPrevList: setPrevList,
           setQueueList: setQueueList
         }}

@@ -11,10 +11,16 @@ import Tooltip from "../components/Tooltip";
 
 export default function Tracklist({ tracks }) {
   const context = useContext(AudioContext);
-  const { isPlaying, nextList, onDeck, prevList, queueList } = context.state;
   const {
+    currentTrack,
+    isPlaying,
+    nextList,
+    prevList,
+    queueList
+  } = context.state;
+  const {
+    setCurrentTrack,
     setNextList,
-    setOnDeck,
     setIsPlaying,
     setPrevList,
     setQueueList
@@ -25,10 +31,13 @@ export default function Tracklist({ tracks }) {
   }
 
   function selectTrack(track, i) {
-    if (selectedTrackIsOnDeck(track)) {
+    const selectedTrackIsCurrent =
+      currentTrack && currentTrack.id === track.id && track.listType != "queue";
+
+    if (selectedTrackIsCurrent) {
       togglePlay();
     } else {
-      setOnDeck(track);
+      setCurrentTrack(track);
       setIsPlaying(true);
       updateList(track, i);
     }
@@ -55,7 +64,7 @@ export default function Tracklist({ tracks }) {
       if (selectedTrack.listType === "nextList") {
         const newprevList = [...prevList];
         const newnextList = [...nextList];
-        newprevList.push(onDeck);
+        newprevList.push(currentTrack);
         newprevList.push(...tracksBefore);
         newnextList.splice(0, i + 1);
         setPrevList(newprevList);
@@ -66,15 +75,11 @@ export default function Tracklist({ tracks }) {
 
   function highlightTrack(track) {
     return (
-      onDeck &&
-      onDeck.id === track.id &&
+      currentTrack &&
+      currentTrack.id === track.id &&
       track.listType === "playlist" &&
-      onDeck.listType != "queue"
+      currentTrack.listType != "queue"
     );
-  }
-
-  function selectedTrackIsOnDeck(track) {
-    return onDeck && onDeck.id === track.id && track.listType != "queue";
   }
 
   function addToQueue(track) {

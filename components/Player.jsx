@@ -13,8 +13,8 @@ import Tooltip from "./Tooltip";
 // Components
 // ----------------------------------------------------------------------------
 
-const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
-  const onDeckClasses = cn({
+const OnDeck = ({ isFullscreen, isMobile, currentTrack, setIsFullscreen }) => {
+  const currentTrackClasses = cn({
     "flex relative": true,
     "items-center gap-8 w-full md:w-1/3": !isFullscreen,
     "flex-1 flex-col justify-end md:justify-start md:flex-row md:items-end w-full gap-16 md:gap-48 md:mb-48": isFullscreen
@@ -42,12 +42,12 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
   });
 
   return (
-    <div className={onDeckClasses}>
+    <div className={currentTrackClasses}>
       <figure id="cover-art" className={coverArtClasses}>
-        {onDeck && (
+        {currentTrack && (
           <Image
-            alt={`${onDeck.collection.title} cover art`}
-            src={onDeck.collection.coverArtUrl}
+            alt={`${currentTrack.collection.title} cover art`}
+            src={currentTrack.collection.coverArtUrl}
             width={isFullscreen ? 256 : isMobile ? 40 : 64}
             height={isFullscreen ? 256 : isMobile ? 40 : 64}
           />
@@ -55,13 +55,15 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
       </figure>
       <div className={trackInfoClasses}>
         <div className="flex-1">
-          <div className={titleClasses}>{onDeck ? onDeck.title : ""}</div>
+          <div className={titleClasses}>
+            {currentTrack ? currentTrack.title : ""}
+          </div>
           <div className={artistClasses}>
-            {onDeck ? onDeck.artist.title : ""}
+            {currentTrack ? currentTrack.artist.title : ""}
           </div>
         </div>
       </div>
-      {isMobile && onDeck && !isFullscreen && (
+      {isMobile && currentTrack && !isFullscreen && (
         <button
           className="absolute -top-8 right-0 -bottom-16 -left-8"
           onClick={() => {
@@ -244,11 +246,17 @@ const ExtraControls = ({
 
 export default function Player() {
   const context = useContext(AudioContext);
-  const { nextList, onDeck, isPlaying, prevList, queueList } = context.state;
   const {
+    nextList,
+    currentTrack,
+    isPlaying,
+    prevList,
+    queueList
+  } = context.state;
+  const {
+    setCurrentTrack,
     setIsPlaying,
     setNextList,
-    setOnDeck,
     setPrevList,
     setQueueList
   } = context;
@@ -259,7 +267,7 @@ export default function Player() {
   const [isRandom, setIsRandom] = useState(false);
 
   const playerIsEmpty =
-    !onDeck && prevList.length + nextList.length + queueList.length === 0;
+    !currentTrack && prevList.length + nextList.length + queueList.length === 0;
   const isDesktop = useMediaQuery(BREAKPOINTS.desktop);
   const isMobile = useMediaQuery(BREAKPOINTS.mobile);
 
@@ -282,19 +290,19 @@ export default function Player() {
   }
 
   function skipNext() {
-    if (onDeck && onDeck.listType === "playlist") {
-      addToprevList(onDeck);
+    if (currentTrack && currentTrack.listType === "playlist") {
+      addToprevList(currentTrack);
     }
     if (queueList.length) {
       const newOnDeck = queueList.shift();
-      setOnDeck(newOnDeck);
+      setCurrentTrack(newOnDeck);
       setQueueList(queueList);
     } else if (nextList.length) {
       const newOnDeck = nextList.shift();
-      setOnDeck(newOnDeck);
+      setCurrentTrack(newOnDeck);
       setNextList(nextList);
     } else {
-      setOnDeck(null);
+      setCurrentTrack(null);
       setPrevList([]);
     }
   }
@@ -304,13 +312,13 @@ export default function Player() {
     if (newprevList.length) {
       const newOnDeck = newprevList.pop();
       setPrevList(newprevList);
-      setOnDeck(newOnDeck);
+      setCurrentTrack(newOnDeck);
 
       const newnextList = [...nextList];
-      newnextList.unshift(onDeck);
+      newnextList.unshift(currentTrack);
       setNextList(newnextList);
     } else {
-      setOnDeck(null);
+      setCurrentTrack(null);
       setNextList([]);
     }
   }
@@ -335,7 +343,7 @@ export default function Player() {
         <OnDeck
           isFullscreen={isFullscreen}
           isMobile={isMobile}
-          onDeck={onDeck}
+          currentTrack={currentTrack}
           setIsFullscreen={setIsFullscreen}
         />
         <PlayerControls

@@ -28,10 +28,10 @@ const QueueList = ({ actions, tracks, title }) => {
   );
 };
 
-const NowPlaying = ({ onDeck }) => {
-  return onDeck ? (
+const CurrentTrack = ({ currentTrack }) => {
+  return currentTrack ? (
     <Section title="On Deck">
-      <div className="text-default">{onDeck.title}</div>
+      <div className="text-default">{currentTrack.title}</div>
     </Section>
   ) : (
     ""
@@ -43,7 +43,7 @@ const NowPlaying = ({ onDeck }) => {
 
 export default function Queue({ queueIsOpen, setQueueIsOpen }) {
   const context = useContext(AudioContext);
-  const { nextList, onDeck, queueList } = context.state;
+  const { currentTrack, nextList, queueList } = context.state;
 
   const ClearQueueButton = () => {
     function handleClear() {
@@ -81,7 +81,7 @@ export default function Queue({ queueIsOpen, setQueueIsOpen }) {
       >
         <div className="w-full max-w-screen-md mx-auto space-y-24 mt-48">
           <h2 className="text-secondary font-bold text-3xl">Queue</h2>
-          <NowPlaying onDeck={onDeck} />
+          <CurrentTrack currentTrack={currentTrack} />
           <QueueList
             title="Queue"
             tracks={queueList}
