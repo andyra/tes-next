@@ -4,14 +4,11 @@ import { Transition } from "@headlessui/react";
 import { useMediaQuery } from "react-responsive";
 import cn from "classnames";
 import AudioContext from "../../context/AudioContext";
-import Button from "../Button";
 import CurrentTrack from "./CurrentTrack";
 import ExtraControls from "./ExtraControls";
-import Icon from "../Icon";
 import MediaQuery, { BREAKPOINTS } from "../MediaQuery";
 import PlayerControls from "./PlayerControls";
 import Queue from "../Queue";
-import Tooltip from "../Tooltip";
 
 // Default
 // -----------------------------------------------------------------------------
