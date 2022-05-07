@@ -9,9 +9,9 @@ import "../styles/globals.css";
 function App({ Component, pageProps }) {
   const [onDeck, setOnDeck] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [queue, setQueue] = useState([]);
-  const [nextFrom, setNextFrom] = useState([]);
-  const [prevFrom, setPrevFrom] = useState([]);
+  const [queueList, setQueueList] = useState([]);
+  const [nextList, setNextList] = useState([]);
+  const [prevList, setPrevList] = useState([]);
 
   const nextClasses = [
     "grid",
@@ -35,17 +35,17 @@ function App({ Component, pageProps }) {
       <AudioContext.Provider
         value={{
           state: {
-            onDeck: onDeck,
-            nextFrom: nextFrom,
             isPlaying: isPlaying,
-            queue: queue,
-            prevFrom: prevFrom
+            nextList: nextList,
+            onDeck: onDeck,
+            prevList: prevList,
+            queueList: queueList
           },
-          setOnDeck: setOnDeck,
-          setNextFrom: setNextFrom,
           setIsPlaying: setIsPlaying,
-          setQueue: setQueue,
-          setPrevFrom: setPrevFrom
+          setNextList: setNextList,
+          setOnDeck: setOnDeck,
+          setPrevList: setPrevList,
+          setQueueList: setQueueList
         }}
       >
         <ThemeProvider attribute="class" defaultTheme="system">

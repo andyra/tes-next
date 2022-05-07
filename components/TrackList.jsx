@@ -11,13 +11,13 @@ import Tooltip from "../components/Tooltip";
 
 export default function Tracklist({ tracks }) {
   const context = useContext(AudioContext);
-  const { nextFrom, onDeck, isPlaying, prevFrom, queue } = context.state;
+  const { isPlaying, nextList, onDeck, prevList, queueList } = context.state;
   const {
-    setNextFrom,
+    setNextList,
     setOnDeck,
     setIsPlaying,
-    setPrevFrom,
-    setQueue
+    setPrevList,
+    setQueueList
   } = context;
 
   function togglePlay() {
@@ -45,21 +45,21 @@ export default function Tracklist({ tracks }) {
     });
 
     if (selectedTrack.listType === "queue") {
-      setQueue(tracksAfter);
+      setQueueList(tracksAfter);
     } else {
       if (selectedTrack.listType === "playlist") {
-        setPrevFrom(tracksBefore);
-        setNextFrom(tracksAfter);
+        setPrevList(tracksBefore);
+        setNextList(tracksAfter);
       }
 
-      if (selectedTrack.listType === "nextFrom") {
-        const newPrevFrom = [...PrevFrom];
-        const newNextFrom = [...nextFrom];
-        newPrevFrom.push(onDeck);
-        newPrevFrom.push(...tracksBefore);
-        newNextFrom.splice(0, i + 1);
-        setPrevFrom(newPrevFrom);
-        setNextFrom(newNextFrom);
+      if (selectedTrack.listType === "nextList") {
+        const newprevList = [...prevList];
+        const newnextList = [...nextList];
+        newprevList.push(onDeck);
+        newprevList.push(...tracksBefore);
+        newnextList.splice(0, i + 1);
+        setPrevList(newprevList);
+        setNextList(newnextList);
       }
     }
   }
@@ -78,17 +78,17 @@ export default function Tracklist({ tracks }) {
   }
 
   function addToQueue(track) {
-    const newQueue = [...queue];
+    const newQueueList = [...queueList];
     const newTrack = Object.assign({}, track);
     newTrack.listType = "queue";
-    setQueue(newQueue.concat(newTrack));
+    setQueueList(newQueueList.concat(newTrack));
     toast.success("Added to queue");
   }
 
   function removeFromQueue(track, i) {
-    let newQueue = [...queue];
-    newQueue.splice(i, 1);
-    setQueue(newQueue);
+    let newQueueList = [...queueList];
+    newQueueList.splice(i, 1);
+    setQueueList(newQueueList);
   }
 
   const PlayPauseButton = ({ track, i }) => {
@@ -128,56 +128,62 @@ export default function Tracklist({ tracks }) {
     );
   };
 
-  const liClasses = cn({
-    "flex gap-8 p-8 -mx-8 rounded-lg cursor-default transition group": true,
-    "hover:bg-primary-10 focus:bg-primary-25": true
-  });
+  const TrackItem = ({ track, i }) => {
+    const liClasses = cn({
+      "flex gap-8 p-8 -mx-8 rounded-lg cursor-default transition group": true,
+      "hover:bg-primary-5 focus:bg-primary-10": track.audioFile
+    });
+
+    return (
+      <li className={liClasses} tabIndex={0} key={i}>
+        <div className="flex-1 flex items-center gap-8">
+          <PlayPauseButton track={track} i={i} />
+          <div
+            className={`text-xl flex items-center gap-8 ${
+              highlightTrack(track) ? "text-accent" : ""
+            }`}
+          >
+            {track.title}
+          </div>
+        </div>
+        <div id="actions" className="flex items-center gap-2">
+          {track.audioFile && (
+            <>
+              {track.listType === "playlist" && (
+                <Button
+                  circle
+                  className="opacity-0 group-hover:opacity-100"
+                  variant="ghost"
+                  onClick={() => {
+                    addToQueue(track);
+                  }}
+                >
+                  <Icon name="add" solid />
+                </Button>
+              )}
+              {track.listType === "queue" && (
+                <Button
+                  circle
+                  className="opacity-0 group-hover:opacity-100"
+                  variant="ghost"
+                  onClick={() => {
+                    removeFromQueue(track, i);
+                  }}
+                >
+                  <Icon name="close" solid />
+                </Button>
+              )}
+            </>
+          )}
+        </div>
+      </li>
+    );
+  };
 
   return (
     <ul>
       {tracks.map((track, i) => (
-        <li className={liClasses} tabIndex={0} key={i}>
-          <div className="flex-1 flex items-center gap-8">
-            <PlayPauseButton track={track} i={i} />
-            <div
-              className={`text-xl flex items-center gap-8 ${
-                highlightTrack(track) ? "text-accent" : ""
-              }`}
-            >
-              {track.title}
-            </div>
-          </div>
-          <div id="actions" className="flex items-center gap-2">
-            {track.audioFile && (
-              <>
-                {track.listType === "playlist" && (
-                  <Button
-                    circle
-                    className="opacity-0 group-hover:opacity-100"
-                    variant="ghost"
-                    onClick={() => {
-                      addToQueue(track);
-                    }}
-                  >
-                    <Icon name="add" solid />
-                  </Button>
-                )}
-                {track.listType === "queue" && (
-                  <Button
-                    circle
-                    className="opacity-0 group-hover:opacity-100"
-                    variant="ghost"
-                    onClick={() => {
-                      removeFromQueue(track, i);
-                    }}
-                  >
-                    <Icon name="close" solid />
-                  </Button>
-                )}
-              </>
-            )}
-          </div>
-        </li>
+        <TrackItem track={track} i={i} key={track.id} />
       ))}
     </ul>
   );

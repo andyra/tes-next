@@ -43,16 +43,16 @@ const NowPlaying = ({ onDeck }) => {
 
 export default function Queue({ queueIsOpen, setQueueIsOpen }) {
   const context = useContext(AudioContext);
-  const { nextFrom, onDeck, queue } = context.state;
+  const { nextList, onDeck, queueList } = context.state;
 
   const ClearQueueButton = () => {
     function handleClear() {
-      context.setQueue([]);
+      context.setQueueList([]);
     }
 
     return (
       <Button
-        className={queue.length ? "" : "hidden"}
+        className={queueList.length ? "" : "hidden"}
         onClick={() => {
           handleClear();
         }}
@@ -84,10 +84,10 @@ export default function Queue({ queueIsOpen, setQueueIsOpen }) {
           <NowPlaying onDeck={onDeck} />
           <QueueList
             title="Queue"
-            tracks={queue}
+            tracks={queueList}
             actions={<ClearQueueButton />}
           />
-          <QueueList title="Next From [collection name]" tracks={nextFrom} />
+          <QueueList title="Next From [collection name]" tracks={nextList} />
         </div>
       </Transition.Child>
     </Transition>

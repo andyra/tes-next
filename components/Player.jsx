@@ -74,15 +74,16 @@ const OnDeck = ({ isFullscreen, isMobile, onDeck, setIsFullscreen }) => {
 };
 
 const PlayerControls = ({
-  skipBack,
   isFullscreen,
   isLooped,
   isPlaying,
   isRandom,
+  playerIsEmpty,
+  skipBack,
+  skipNext,
   toggleLoop,
   togglePlay,
-  toggleRandom,
-  skipNext
+  toggleRandom
 }) => {
   const playerControlClasses = cn({
     "flex flex-col gap-4": true,
@@ -138,6 +139,7 @@ const PlayerControls = ({
         <Button
           circle
           className={randomClasses}
+          disabled={playerIsEmpty}
           onClick={toggleRandom}
           variant="ghost"
         >
@@ -146,17 +148,25 @@ const PlayerControls = ({
         <Button
           circle
           className={extraButtonClasses}
+          disabled={playerIsEmpty}
           onClick={skipBack}
           variant="ghost"
         >
           <Icon name="play-skip-back" solid />
         </Button>
-        <Button active={isPlaying} circle size="lg" onClick={togglePlay}>
+        <Button
+          active={isPlaying}
+          circle
+          disabled={playerIsEmpty}
+          onClick={togglePlay}
+          size="lg"
+        >
           <Icon name={isPlaying ? "pause" : "play"} solid />
         </Button>
         <Button
           circle
           className={extraButtonClasses}
+          disabled={playerIsEmpty}
           onClick={skipNext}
           variant="ghost"
         >
@@ -165,6 +175,7 @@ const PlayerControls = ({
         <Button
           circle
           className={loopClasses}
+          disabled={playerIsEmpty}
           onClick={toggleLoop}
           variant="ghost"
         >
@@ -233,13 +244,13 @@ const ExtraControls = ({
 
 export default function Player() {
   const context = useContext(AudioContext);
-  const { nextFrom, onDeck, isPlaying, prevFrom, queue } = context.state;
+  const { nextList, onDeck, isPlaying, prevList, queueList } = context.state;
   const {
-    setNextFrom,
-    setOnDeck,
     setIsPlaying,
-    setPrevFrom,
-    setQueue
+    setNextList,
+    setOnDeck,
+    setPrevList,
+    setQueueList
   } = context;
 
   const [queueIsOpen, setQueueIsOpen] = useState(false);
@@ -248,7 +259,7 @@ export default function Player() {
   const [isRandom, setIsRandom] = useState(false);
 
   const playerIsEmpty =
-    !onDeck && prevFrom.length + nextFrom.length + queue.length === 0;
+    !onDeck && prevList.length + nextList.length + queueList.length === 0;
   const isDesktop = useMediaQuery(BREAKPOINTS.desktop);
   const isMobile = useMediaQuery(BREAKPOINTS.mobile);
 
@@ -264,45 +275,43 @@ export default function Player() {
     setIsPlaying(!isPlaying);
   }
 
-  function addToPrevFrom(item) {
-    const newPrevFrom = [...prevFrom];
-    newPrevFrom.push(item);
-    setPrevFrom(newPrevFrom);
+  function addToprevList(item) {
+    const newprevList = [...prevList];
+    newprevList.push(item);
+    setPrevList(newprevList);
   }
 
-  // TODO: Don't skip to tracks that have no audio file
   function skipNext() {
-    // console.log(nextFrom);
     if (onDeck && onDeck.listType === "playlist") {
-      addToPrevFrom(onDeck);
+      addToprevList(onDeck);
     }
-    if (queue.length) {
-      const newOnDeck = queue.shift();
+    if (queueList.length) {
+      const newOnDeck = queueList.shift();
       setOnDeck(newOnDeck);
-      setQueue(queue);
-    } else if (nextFrom.length) {
-      const newOnDeck = nextFrom.shift();
+      setQueueList(queueList);
+    } else if (nextList.length) {
+      const newOnDeck = nextList.shift();
       setOnDeck(newOnDeck);
-      setNextFrom(nextFrom);
+      setNextList(nextList);
     } else {
       setOnDeck(null);
-      setPrevFrom([]);
+      setPrevList([]);
     }
   }
 
   function skipBack() {
-    const newPrevFrom = [...prevFrom];
-    if (newPrevFrom.length) {
-      const newOnDeck = newPrevFrom.pop();
-      setPrevFrom(newPrevFrom);
+    const newprevList = [...prevList];
+    if (newprevList.length) {
+      const newOnDeck = newprevList.pop();
+      setPrevList(newprevList);
       setOnDeck(newOnDeck);
 
-      const newNextFrom = [...nextFrom];
-      newNextFrom.unshift(onDeck);
-      setNextFrom(newNextFrom);
+      const newnextList = [...nextList];
+      newnextList.unshift(onDeck);
+      setNextList(newnextList);
     } else {
       setOnDeck(null);
-      setNextFrom([]);
+      setNextList([]);
     }
   }
 
@@ -324,21 +333,22 @@ export default function Player() {
     <>
       <aside className={playerClasses}>
         <OnDeck
-          onDeck={onDeck}
           isFullscreen={isFullscreen}
           isMobile={isMobile}
+          onDeck={onDeck}
           setIsFullscreen={setIsFullscreen}
         />
         <PlayerControls
-          toggleLoop={toggleLoop}
-          togglePlay={togglePlay}
-          toggleRandom={toggleRandom}
-          skipBack={skipBack}
-          skipNext={skipNext}
           isFullscreen={isFullscreen}
           isLooped={isLooped}
           isPlaying={isPlaying}
           isRandom={isRandom}
+          playerIsEmpty={playerIsEmpty}
+          skipBack={skipBack}
+          skipNext={skipNext}
+          toggleLoop={toggleLoop}
+          togglePlay={togglePlay}
+          toggleRandom={toggleRandom}
         />
         <ExtraControls
           isFullscreen={isFullscreen}
