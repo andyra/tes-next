@@ -69,7 +69,7 @@ export default function Player() {
     setIsPlaying(!isPlaying);
   }
 
-  function addToprevList(item) {
+  function addToPrevList(item) {
     const newprevList = [...prevList];
     newprevList.push(item);
     setPrevList(newprevList);
@@ -77,7 +77,7 @@ export default function Player() {
 
   function skipNext() {
     if (currentTrack && currentTrack.listType === "playlist") {
-      addToprevList(currentTrack);
+      addToPrevList(currentTrack);
     }
     if (queueList.length) {
       const newCurrentTrack = queueList.shift();
