@@ -10,21 +10,19 @@ import Tooltip from "../components/Tooltip";
 // ----------------------------------------------------------------------------
 
 export default function Tracklist({ tracks }) {
-  const context = useContext(PlayerContext);
+  const playerContext = useContext(PlayerContext);
   const {
     currentTrack,
     isPlaying,
     nextList,
     prevList,
-    queueList
-  } = context.state;
-  const {
+    queueList,
     setCurrentTrack,
-    setNextList,
     setIsPlaying,
+    setNextList,
     setPrevList,
     setQueueList
-  } = context;
+  } = playerContext;
 
   function togglePlay() {
     setIsPlaying(!isPlaying);

@@ -15,13 +15,11 @@ export const PlayerContextProvider = ({ children }) => {
     // The Provider gives access to the context to its children
     <PlayerContext.Provider
       value={{
-        state: {
-          currentTrack: currentTrack,
-          isPlaying: isPlaying,
-          nextList: nextList,
-          prevList: prevList,
-          queueList: queueList
-        },
+        currentTrack: currentTrack,
+        isPlaying: isPlaying,
+        nextList: nextList,
+        prevList: prevList,
+        queueList: queueList,
         setCurrentTrack: setCurrentTrack,
         setIsPlaying: setIsPlaying,
         setNextList: setNextList,

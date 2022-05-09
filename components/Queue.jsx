@@ -42,8 +42,8 @@ const CurrentTrack = ({ currentTrack }) => {
 // ----------------------------------------------------------------------------
 
 export default function Queue({ queueIsOpen, setQueueIsOpen }) {
-  const context = useContext(PlayerContext);
-  const { currentTrack, nextList, queueList } = context.state;
+  const playerContext = useContext(PlayerContext);
+  const { currentTrack, nextList, queueList } = playerContext;
 
   const ClearQueueButton = () => {
     function handleClear() {

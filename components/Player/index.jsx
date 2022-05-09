@@ -15,21 +15,19 @@ import Queue from "../Queue";
 
 export default function Player() {
   // Context
-  const context = useContext(PlayerContext);
+  const playerContext = useContext(PlayerContext);
   const {
-    nextList,
     currentTrack,
     isPlaying,
+    nextList,
     prevList,
-    queueList
-  } = context.state;
-  const {
+    queueList,
     setCurrentTrack,
     setIsPlaying,
     setNextList,
     setPrevList,
     setQueueList
-  } = context;
+  } = playerContext;
 
   // State
   const [queueIsOpen, setQueueIsOpen] = useState(false);
