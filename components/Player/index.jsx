@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Transition } from "@headlessui/react";
 import { useMediaQuery } from "react-responsive";
 import cn from "classnames";
-import { PlayerContext } from "../../context/PlayerContext";
+import { usePlayerContext } from "../../context/PlayerContext";
 import CurrentTrack from "./CurrentTrack";
 import ExtraControls from "./ExtraControls";
 import MediaQuery, { BREAKPOINTS } from "../MediaQuery";
@@ -14,8 +14,6 @@ import Queue from "../Queue";
 // -----------------------------------------------------------------------------
 
 export default function Player() {
-  // Context
-  const playerContext = useContext(PlayerContext);
   const {
     currentTrack,
     isPlaying,
@@ -27,7 +25,7 @@ export default function Player() {
     setNextList,
     setPrevList,
     setQueueList
-  } = playerContext;
+  } = usePlayerContext();
 
   // State
   const [queueIsOpen, setQueueIsOpen] = useState(false);

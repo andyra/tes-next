@@ -1,10 +1,9 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
-// create context
 export const PlayerContext = createContext();
+export const usePlayerContext = () => useContext(PlayerContext);
 
 export const PlayerContextProvider = ({ children }) => {
-  // The values that will be given to the context
   const [currentTrack, setCurrentTrack] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [nextList, setNextList] = useState([]);
@@ -12,7 +11,6 @@ export const PlayerContextProvider = ({ children }) => {
   const [queueList, setQueueList] = useState([]);
 
   return (
-    // The Provider gives access to the context to its children
     <PlayerContext.Provider
       value={{
         currentTrack: currentTrack,

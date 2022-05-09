@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import toast from "react-hot-toast";
 import cn from "classnames";
-import { PlayerContext } from "../context/PlayerContext";
+import { usePlayerContext } from "../context/PlayerContext";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Tooltip from "../components/Tooltip";
@@ -10,7 +9,6 @@ import Tooltip from "../components/Tooltip";
 // ----------------------------------------------------------------------------
 
 export default function Tracklist({ tracks }) {
-  const playerContext = useContext(PlayerContext);
   const {
     currentTrack,
     isPlaying,
@@ -22,7 +20,7 @@ export default function Tracklist({ tracks }) {
     setNextList,
     setPrevList,
     setQueueList
-  } = playerContext;
+  } = usePlayerContext();
 
   function togglePlay() {
     setIsPlaying(!isPlaying);

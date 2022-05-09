@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import { Transition } from "@headlessui/react";
 import cn from "classnames";
-import { PlayerContext } from "../context/PlayerContext";
+import { usePlayerContext } from "../context/PlayerContext";
 import Button from "../components/Button";
 import Tracklist from "../components/Tracklist";
 
@@ -42,8 +41,7 @@ const CurrentTrack = ({ currentTrack }) => {
 // ----------------------------------------------------------------------------
 
 export default function Queue({ queueIsOpen, setQueueIsOpen }) {
-  const playerContext = useContext(PlayerContext);
-  const { currentTrack, nextList, queueList } = playerContext;
+  const { currentTrack, nextList, queueList } = usePlayerContext();
 
   const ClearQueueButton = () => {
     function handleClear() {
