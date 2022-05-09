@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Transition } from "@headlessui/react";
 import { useMediaQuery } from "react-responsive";
 import cn from "classnames";
-import AudioContext from "../../context/AudioContext";
+import { PlayerContext } from "../../context/PlayerContext";
 import CurrentTrack from "./CurrentTrack";
 import ExtraControls from "./ExtraControls";
 import MediaQuery, { BREAKPOINTS } from "../MediaQuery";
@@ -15,7 +15,7 @@ import Queue from "../Queue";
 
 export default function Player() {
   // Context
-  const context = useContext(AudioContext);
+  const context = useContext(PlayerContext);
   const {
     nextList,
     currentTrack,

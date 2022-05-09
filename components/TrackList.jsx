@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import cn from "classnames";
-import AudioContext from "../context/AudioContext";
+import { PlayerContext } from "../context/PlayerContext";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Tooltip from "../components/Tooltip";
@@ -10,7 +10,7 @@ import Tooltip from "../components/Tooltip";
 // ----------------------------------------------------------------------------
 
 export default function Tracklist({ tracks }) {
-  const context = useContext(AudioContext);
+  const context = useContext(PlayerContext);
   const {
     currentTrack,
     isPlaying,

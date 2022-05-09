@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Link from "next/link";
 import Button from "../components/Button";
 import Icon from "../components/Icon";

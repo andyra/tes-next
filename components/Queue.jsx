@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Transition } from "@headlessui/react";
 import cn from "classnames";
-import AudioContext from "../context/AudioContext";
+import { PlayerContext } from "../context/PlayerContext";
 import Button from "../components/Button";
 import Tracklist from "../components/Tracklist";
 
@@ -42,7 +42,7 @@ const CurrentTrack = ({ currentTrack }) => {
 // ----------------------------------------------------------------------------
 
 export default function Queue({ queueIsOpen, setQueueIsOpen }) {
-  const context = useContext(AudioContext);
+  const context = useContext(PlayerContext);
   const { currentTrack, nextList, queueList } = context.state;
 
   const ClearQueueButton = () => {
