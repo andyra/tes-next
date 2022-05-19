@@ -1,15 +1,47 @@
 import cn from "classnames";
+import Moment from "moment";
 import Button from "../Button";
 import Icon from "../Icon";
+
+// Functions
+// ----------------------------------------------------------------------------
+
+function formatDuration(duration) {
+  const d = Moment.duration(duration, "seconds");
+  const { hours, minutes, seconds } = d._data;
+  const h = hours > 0 ? `${hours}:` : "";
+  const m = `${minutes > 0 ? minutes : "0"}:`;
+  const s = seconds > 9 ? seconds : `0${seconds}`;
+  return `${h}${m}${s}`;
+}
+
+function formatElapsed(elapsed, duration) {
+  const e = Moment.duration(elapsed, "seconds");
+  const d = Moment.duration(duration, "seconds");
+  const { hours, minutes, seconds } = e._data;
+
+  const hoursPlaceholder =
+    d._data.hours > 9 ? "00:" : d._data.hours > 0 ? "0:" : "";
+  const minutesPlaceholder = d._data.minutes > 9 ? "00:" : "0:";
+
+  const h = hours > 0 ? `${hours}:` : hoursPlaceholder;
+  const m = minutes > 0 ? minutes : minutesPlaceholder;
+  const s = seconds > 9 ? seconds : `0${seconds}`;
+  return `${h}${m}${s}`;
+}
 
 // Default
 // ----------------------------------------------------------------------------
 
 export default function PlayerControls({
+  duration,
+  elapsed,
   isFullscreen,
   isLooped,
   isPlaying,
   isRandom,
+  onScrub,
+  onScrubEnd,
   playerIsEmpty,
   skipBack,
   skipNext,
@@ -44,7 +76,7 @@ export default function PlayerControls({
   });
 
   const timeClasses = cn({
-    "min-w-40 text-xs text-primary-50": true,
+    "font-mono min-w-40 text-xs text-primary-50": true,
     "hidden md:block row-span-2": !isFullscreen
   });
 
@@ -115,11 +147,23 @@ export default function PlayerControls({
         </Button>
       </div>
       <div className={playbackBarClasses}>
-        <time className={`${elapsedClasses}`}>0:00</time>
-        <div className={barClasses}>
+        <time className={`${elapsedClasses}`}>{formatElapsed(elapsed)}</time>
+        <input
+          className="h-8 w-320 bg-accent cursor-pointer appearance-none"
+          type="range"
+          value={elapsed}
+          step="1"
+          min="0"
+          max={duration ? duration : `${duration}`}
+          className="progress"
+          onChange={e => onScrub(e.target.value)}
+          onMouseUp={onScrubEnd}
+          onKeyUp={onScrubEnd}
+        />
+        {/*<div className={barClasses}>
           <span className="bg-accent absolute left-0 top-0 bottom-0 right-1/2 rounded-full" />
-        </div>
-        <time className={durationClasses}>0:00</time>
+        </div>*/}
+        <time className={durationClasses}>{formatDuration(duration)}</time>
       </div>
     </div>
   );
