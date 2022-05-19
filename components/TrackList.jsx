@@ -1,9 +1,29 @@
+import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import cn from "classnames";
 import { usePlayerContext } from "../context/PlayerContext";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Tooltip from "../components/Tooltip";
+import { formatTime } from "../helpers/time.helpers";
+
+// Components
+// ----------------------------------------------------------------------------
+
+// UGH. Can't seem to get the duration. I can SEE the duration in the log
+// inside audioRef.current, but I can't output it separately.
+const TrackDuration = ({ audioFile }) => {
+  // const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
+  // const { duration } = audioRef.current;
+
+  // useEffect(() => {
+  //   audioRef.current = new Audio(audioFile);
+  //   console.log(audioRef);
+  //   console.log(audioRef.current.duration);
+  // }, [duration]);
+
+  return <time className="text-sm text-primary-50 mr-8">0:00</time>;
+};
 
 // Default
 // ----------------------------------------------------------------------------
@@ -150,6 +170,7 @@ export default function Tracklist({ tracks }) {
         <div id="actions" className="flex items-center gap-2">
           {track.audioFile && (
             <>
+              <TrackDuration audioFile={track.audioFile} />
               {track.listType === "playlist" && (
                 <Button
                   circle

@@ -48,18 +48,14 @@ export default function Player() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLooped, setIsLooped] = useState(false);
   const [isRandom, setIsRandom] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
 
   // Refs
   // https://letsbuildui.dev/articles/building-an-audio-player-with-react-hooks
-  // TODO • duration
-  // TODO • elapsed
-  // TODO • rate
-  // TODO • loading?
   const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
   const intervalRef = useRef();
   const isReady = useRef(false);
   const { duration } = audioRef.current;
-  const [elapsed, setElapsed] = useState(0);
 
   // Config
   const playerIsEmpty =
@@ -187,24 +183,19 @@ export default function Player() {
     }, [1000]);
   }
 
-  function onScrub(value) {
+  function handleScrub(value) {
     // Clear any timers already running
     clearInterval(intervalRef.current);
-    audioRef.current.currentTime = value;
+    audioRef.current.currentTime = value[0];
     setElapsed(audioRef.current.currentTime);
   }
 
-  function onScrubEnd() {
+  function handleScrubEnd() {
     if (!isPlaying) {
       setIsPlaying(true);
     }
     startTimer();
   }
-
-  const currentPercentage = duration ? `${(elapsed / duration) * 100}%` : "0%";
-  const trackStyling = `
-    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
-  `;
 
   // Render
   // ---------------------------------------------------------------------------
@@ -225,8 +216,8 @@ export default function Player() {
           isLooped={isLooped}
           isPlaying={isPlaying}
           isRandom={isRandom}
-          onScrub={onScrub}
-          onScrubEnd={onScrubEnd}
+          handleScrub={handleScrub}
+          handleScrubEnd={handleScrubEnd}
           playerIsEmpty={playerIsEmpty}
           skipBack={skipBack}
           skipNext={skipNext}
