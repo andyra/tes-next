@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Icon from "./Icon";
+import { Menu } from "./Menu";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -97,20 +97,19 @@ export default function Navigation({ navSection }) {
             icon="book"
             navSection={navSection}
           />
-          <Popover.Root>
-            <Popover.Trigger className="flex-1 flex flex-col items-center justify-center md:hidden">
-              <Icon name="ellipsis-horizontal" solid />
-              <span className="text-xs opacity-50">More</span>
-            </Popover.Trigger>
-            <Popover.Content
-              className="bg-ground p-8 border border-primary-10 rounded-lg shadow-lg w-192"
-              side="top"
-            >
-              <NavLinkPopover title="Videos" href="videos" />
-              <NavLinkPopover title="Setlist Computor" href="setlist" />
-              <NavLinkPopover title="About" href="about" />
-            </Popover.Content>
-          </Popover.Root>
+          <Menu
+            side="top"
+            trigger={
+              <button className="flex-1 flex flex-col items-center justify-center md:hidden">
+                <Icon name="ellipsis-horizontal" solid />
+                <span className="text-xs opacity-50">More</span>
+              </button>
+            }
+          >
+            <NavLinkPopover title="Videos" href="videos" />
+            <NavLinkPopover title="Setlist Computor" href="setlist" />
+            <NavLinkPopover title="About" href="about" />
+          </Menu>
           <NavLink
             className="hidden"
             title="Videos"

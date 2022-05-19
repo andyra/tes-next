@@ -2,7 +2,7 @@ import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Button from "./Button";
 import Icon from "./Icon";
-import Menu from "./Menu";
+import { Menu, MenuItem, MenuHeading } from "./Menu";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -31,10 +31,6 @@ function isFiltering(filters) {
 
 const FilterOption = ({ group, label, value, filters, setFilters }) => {
   const active = filters[group] === value;
-  const optionClasses = cn({
-    "flex items-center w-full justify-between gap-8 h-32 px-8 rounded hover:bg-primary-5 whitespace-nowrap": true,
-    "text-accent": active
-  });
 
   function handleClick(value) {
     const newFilters = Object.assign({}, filters);
@@ -43,17 +39,15 @@ const FilterOption = ({ group, label, value, filters, setFilters }) => {
   }
 
   return (
-    <li>
-      <button
-        className={optionClasses}
-        onClick={() => {
-          handleClick(value);
-        }}
-      >
-        {label}
-        <Icon name="checkmark" solid className={active ? "" : "opacity-0"} />
-      </button>
-    </li>
+    <MenuItem
+      className={active ? "text-accent" : ""}
+      onClick={() => {
+        handleClick(value);
+      }}
+    >
+      {label}
+      <Icon name="checkmark" solid className={active ? "" : "opacity-0"} />
+    </MenuItem>
   );
 };
 
@@ -88,31 +82,27 @@ export default function Filters({
         }
       >
         {filterGroups.map(filterGroup => (
-          <div className="p-8 -my-8" key={filterGroup.value}>
-            <header className="flex items-center h-32 text-sm text-primary-50">
-              {filterGroup.label}
-            </header>
-            <ul className="-mx-8">
+          <>
+            <MenuHeading>{filterGroup.label}</MenuHeading>
+            <FilterOption
+              group={filterGroup.value}
+              label="All"
+              value="all"
+              key="all"
+              filters={filters}
+              setFilters={setFilters}
+            />
+            {filterGroup.options.map(option => (
               <FilterOption
-                group={filterGroup.value}
-                label="All"
-                value="all"
-                key="all"
                 filters={filters}
+                group={filterGroup.value}
+                key={option.value}
+                label={option.label}
                 setFilters={setFilters}
+                value={option.value}
               />
-              {filterGroup.options.map(option => (
-                <FilterOption
-                  filters={filters}
-                  group={filterGroup.value}
-                  key={option.value}
-                  label={option.label}
-                  setFilters={setFilters}
-                  value={option.value}
-                />
-              ))}
-            </ul>
-          </div>
+            ))}
+          </>
         ))}
       </Menu>
     </section>
