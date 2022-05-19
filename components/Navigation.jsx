@@ -7,7 +7,15 @@ import Icon from "./Icon";
 // Components
 // ----------------------------------------------------------------------------
 
-export const NavLink = ({ className, count, icon, navSection, title, url }) => {
+export const NavLink = ({
+  className,
+  count,
+  hide,
+  icon,
+  navSection,
+  title,
+  url
+}) => {
   const router = useRouter();
   const active = router.asPath == url || navSection === title;
   const linkClasses = cn({
@@ -17,6 +25,7 @@ export const NavLink = ({ className, count, icon, navSection, title, url }) => {
     "text-accent": active,
     "h-48 gap-16 border-t border-primary-10 md:border-none":
       navSection === "playlists",
+    "md:hidden": hide === "desktop",
     [className]: className
   });
 
@@ -69,7 +78,7 @@ export default function Navigation({ navSection }) {
           </a>
         </Link>
         <div className="flex w-full md:block">
-          <NavLink title="Home" url="/" icon="home" />
+          <NavLink title="Home" url="/" icon="home" hide="desktop" />
           <NavLink
             title="Episodes"
             url="/episodes"
@@ -103,21 +112,21 @@ export default function Navigation({ navSection }) {
             </Popover.Content>
           </Popover.Root>
           <NavLink
-            className="hidden md:flex"
+            className="hidden"
             title="Videos"
             url="/videos"
             icon="videocam"
             navSection={navSection}
           />
           <NavLink
-            className="hidden md:flex"
+            className="hidden"
             title="Setlist Computor"
             url="/setlist"
             icon="musical-note"
             navSection={navSection}
           />
           <NavLink
-            className="hidden md:flex"
+            className="hidden"
             title="About"
             url="/about"
             icon="information"
