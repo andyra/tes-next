@@ -1,6 +1,8 @@
 import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
+import Button from "./Button";
 import Icon from "./Icon";
+import Menu from "./Menu";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -77,41 +79,42 @@ export default function Filters({
 
   return (
     <section className={containerClasses}>
-      <Popover.Root>
-        <Popover.Trigger className={triggerClasses}>
-          Filter
-          <Icon name="chevron-down" />
-        </Popover.Trigger>
-        <Popover.Content className="bg-ground border border-primary-10 rounded-lg p-8 shadow-lg divide-y">
-          {filterGroups.map(filterGroup => (
-            <div className="p-8" key={filterGroup.value}>
-              <header className="text-sm font-medium text-primary-50">
-                {filterGroup.label}
-              </header>
-              <ul className="-mx-8">
+      <Menu
+        trigger={
+          <Button>
+            Filters
+            <Icon name="chevron-down" />
+          </Button>
+        }
+      >
+        {filterGroups.map(filterGroup => (
+          <div className="p-8 -my-8" key={filterGroup.value}>
+            <header className="flex items-center h-32 text-sm text-primary-50">
+              {filterGroup.label}
+            </header>
+            <ul className="-mx-8">
+              <FilterOption
+                group={filterGroup.value}
+                label="All"
+                value="all"
+                key="all"
+                filters={filters}
+                setFilters={setFilters}
+              />
+              {filterGroup.options.map(option => (
                 <FilterOption
-                  group={filterGroup.value}
-                  label="All"
-                  value="all"
-                  key="all"
                   filters={filters}
+                  group={filterGroup.value}
+                  key={option.value}
+                  label={option.label}
                   setFilters={setFilters}
+                  value={option.value}
                 />
-                {filterGroup.options.map(option => (
-                  <FilterOption
-                    filters={filters}
-                    group={filterGroup.value}
-                    key={option.value}
-                    label={option.label}
-                    setFilters={setFilters}
-                    value={option.value}
-                  />
-                ))}
-              </ul>
-            </div>
-          ))}
-        </Popover.Content>
-      </Popover.Root>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </Menu>
     </section>
   );
 }

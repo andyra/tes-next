@@ -20,11 +20,11 @@ export default function Button({
   circle,
   className,
   disabled,
-  onClick,
   size = "base",
   type = "button",
   variant = "border",
-  url
+  url,
+  ...other
 }) {
   const buttonClasses = cn({
     "flex items-center justify-center gap-4 rounded-full hover:bg-primary-10 transition": true,
@@ -40,15 +40,15 @@ export default function Button({
   });
 
   return url ? (
-    <Link href={url}>
+    <Link className={buttonClasses} href={url} {...other}>
       <a className={buttonClasses}>{children}</a>
     </Link>
   ) : (
     <button
       className={buttonClasses}
-      onClick={onClick}
       disabled={disabled}
       type={type}
+      {...other}
     >
       {children}
     </button>
