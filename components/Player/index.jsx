@@ -219,6 +219,20 @@ export default function Player() {
     return `${h}${m}${s}`;
   }
 
+  function formatElapsed(current, duration) {
+    const c = Moment.duration(current, "seconds");
+    const d = Moment.duration(duration, "seconds");
+    const { hours, minutes, seconds } = c._data;
+
+    const hoursPlaceholder = d._data.hours > 9 ? "00:" : d._data.hours > 0 ? "0:" : "";
+    const minutesPlaceholder = d._data.minutes > 9 ? "00:" : "0:";
+
+    const h = hours > 0 ? `${hours}:` : hoursPlaceholder;
+    const m = minutes > 0 : minutesPlaceholder;
+    const s = seconds > 9 ? seconds : `0${seconds}`;
+    return `${h}${m}${s}`;
+  }
+
   // Render
   // ---------------------------------------------------------------------------
 
