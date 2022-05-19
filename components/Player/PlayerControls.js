@@ -1,3 +1,4 @@
+import * as Slider from "@radix-ui/react-slider";
 import cn from "classnames";
 import Moment from "moment";
 import Button from "../Button";
@@ -148,13 +149,24 @@ export default function PlayerControls({
       </div>
       <div className={playbackBarClasses}>
         <time className={`${elapsedClasses}`}>{formatElapsed(elapsed)}</time>
+
+        <Slider.Root
+          defaultValue={[25, 75]}
+          className="flex items-center w-full h-16 relative group"
+        >
+          <Slider.Track className="flex-1 bg-primary-25 h-4 rounded-full">
+            <Slider.Range className="bg-primary absolute rounded-full h-4 left-0" />
+          </Slider.Track>
+          <Slider.Thumb className="block h-16 w-16 rounded-full bg-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+        </Slider.Root>
+
         <input
-          className="h-8 w-320 bg-accent cursor-pointer appearance-none"
+          className="h-8 w-320 bg-accent cursor-pointer appearance-none hidden"
           type="range"
           value={elapsed}
           step="1"
           min="0"
-          max={duration ? duration : `${duration}`}
+          max={duration}
           className="progress"
           onChange={e => onScrub(e.target.value)}
           onMouseUp={onScrubEnd}
