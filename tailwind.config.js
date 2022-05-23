@@ -3,6 +3,10 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      animation: {
+        shimmer: "bg-shimmer 1s infinite",
+        wiggle: "wiggle 1s ease-in-out infinite"
+      },
       colors: {
         ground: "var(--ground)",
         "ground-75": "var(--ground-75)",
@@ -63,6 +67,15 @@ module.exports = {
       ]
     },
     keyframes: {
+      "bg-shimmer": {
+        "0%": { opacity: "0.05" },
+        "50%": { opacity: "0.10" },
+        "100%": { opacity: "0.05" }
+      },
+      wiggle: {
+        "0%, 100%": { transform: "rotate(-3deg)" },
+        "50%": { transform: "rotate(3deg)" }
+      },
       // Dropdown menu
       "scale-in": {
         "0%": { opacity: 0, transform: "scale(0)" },

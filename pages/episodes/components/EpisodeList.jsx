@@ -1,29 +1,57 @@
 import Image from "next/image";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
+import {
+  CollectionItem,
+  CollectionList,
+  CollectionListSkeleton
+} from "../../../components/CollectionList";
 import Empty from "../../../components/Empty";
 import NiceDate from "../../../components/NiceDate";
 
-export default function EpisodeList() {
-  const { data, loading, error } = useQuery(
-    gql`
-      query Entries {
-        entries(section: "episodes") {
-          slug
-          title
-          ... on episodes_default_Entry {
-            releaseDate
-            episodeCoverArt {
-              url
-            }
-          }
+// Queries
+// ----------------------------------------------------------------------------
+
+const QUERY_EPISODES = gql`
+  query Entries {
+    entries(section: "episodes") {
+      slug
+      title
+      ... on episodes_default_Entry {
+        releaseDate
+        episodeCoverArt {
+          url
         }
       }
-    `
+    }
+  }
+`;
+
+// Components
+// ----------------------------------------------------------------------------
+
+const EpisodeItem = ({ episode }) => {
+  const { episodeCoverArt, releaseDate, slug, title } = episode;
+
+  return (
+    <CollectionItem
+      coverArt={episodeCoverArt}
+      href={`/episodes/${encodeURIComponent(slug)}`}
+      key={slug}
+      releaseDate={releaseDate}
+      title={title}
+    />
   );
+};
+
+// Default
+// ----------------------------------------------------------------------------
+
+export default function EpisodeList() {
+  const { data, loading, error } = useQuery(QUERY_EPISODES);
 
   if (loading) {
-    return <mark>Loading...</mark>;
+    return <CollectionListSkeleton />;
   }
 
   if (error) {
@@ -32,24 +60,11 @@ export default function EpisodeList() {
   }
 
   return data.entries ? (
-    <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 -mx-8">
+    <CollectionList>
       {data.entries.map(episode => (
-        <li key={episode.slug}>
-          <Link href={`/episodes/${encodeURIComponent(episode.slug)}`}>
-            <a className="block hover:bg-primary-10 rounded p-8 transition">
-              <Image
-                alt={`${episode.title} cover art`}
-                src={episode.episodeCoverArt[0].url}
-                width={256}
-                height={256}
-              />
-              <div>{episode.title}</div>
-              <NiceDate date={episode.releaseDate} className="opacity-50" />
-            </a>
-          </Link>
-        </li>
+        <EpisodeItem episode={episode} key={episode.slug} />
       ))}
-    </ul>
+    </CollectionList>
   ) : (
     <Empty>Ain't no episodes</Empty>
   );
