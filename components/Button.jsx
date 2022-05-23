@@ -32,7 +32,7 @@ export default function Button({
     "bg-primary-5 hover:bg-primary-10 focus:bg-primary-10": variant === "glass",
     "hover:bg-primary-5 focus:bg-primary-5": variant === "ghost",
     "opacity-50 pointer-events-none": disabled,
-    "bg-primary hover:bg-primary-75 text-ground": active,
+    "bg-primary hover:bg-primary-75 focus:bg-primary-75 text-ground": active,
     [SIZES[size].h]: true,
     [SIZES[size].p]: !circle,
     [SIZES[size].w]: circle,

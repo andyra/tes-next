@@ -93,8 +93,10 @@ export default function Player() {
   // Handle setup when changing tracks
   useEffect(() => {
     audioRef.current.pause();
-    audioRef.current = new Audio(currentTrack.audioFile);
-    setElapsed(audioRef.current.currentTime);
+    if (currentTrack) {
+      audioRef.current = new Audio(currentTrack.audioFile);
+      setElapsed(audioRef.current.currentTime);
+    }
 
     if (isReady.current) {
       audioRef.current.play();

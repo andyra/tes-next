@@ -56,7 +56,8 @@ export default function PlayerControls({
   });
 
   const timeClasses = cn({
-    "font-mono min-w-40 text-xs text-primary-75": true,
+    "font-mono min-w-40 text-xs text-primary-75 transition": true,
+    "opacity-0": playerIsEmpty,
     "hidden md:block row-span-2": !isFullscreen
   });
 
@@ -73,7 +74,7 @@ export default function PlayerControls({
 
   return (
     <div className={playerControlClasses}>
-      <div className="flex items-center justify-center gap-8">
+      <div className="flex items-center justify-center gap-2">
         <Button
           circle
           className={randomClasses}
@@ -98,6 +99,7 @@ export default function PlayerControls({
           disabled={playerIsEmpty}
           onClick={togglePlay}
           size="lg"
+          variant="ghost"
         >
           <Icon name={isPlaying ? "pause" : "play"} solid />
         </Button>
