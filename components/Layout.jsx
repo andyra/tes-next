@@ -13,31 +13,26 @@ import ThemeSwitcher from "./ThemeSwitcher";
 // Components
 // ----------------------------------------------------------------------------
 
-const Main = ({ children }) => (
-  <main className="h-full overflow-y-auto bg-ground rounded-lg">
-    {children}
-  </main>
-);
-
 const Toolbar = () => (
-  <section className="sticky top-0 z-10 p-16 grid grid-cols-[40px_1fr_40px] gap-8">
-    <Input
-      glass
-      className="mx-auto max-w-screen-sm col-span-2 lg:col-start-2 lg:col-span-1"
-      icon="search"
-      placeholder="What are you looking for?"
-    />
+  <section className="sticky top-0 z-10 p-16 bg-ground">
     <div className="flex items-center justify-end">
       <ThemeSwitcher />
     </div>
   </section>
 );
 
-const Container = ({ children, maxWidth }) => {
+const Main = ({ children }) => (
+  <main className="h-full overflow-y-auto bg-ground rounded-lg">
+    {children}
+  </main>
+);
+
+const Container = ({ children, maxWidth, spacing }) => {
   const containerClasses = cn({
     "mx-auto p-24": true,
     [maxWidth]: maxWidth,
-    "max-w-screen-lg": !maxWidth
+    "max-w-screen-lg": !maxWidth,
+    [spacing]: spacing
   });
 
   return <div className={containerClasses}>{children}</div>;
@@ -58,7 +53,9 @@ export default function Layout({ children, ...props }) {
       <Main>
         <Toaster />
         <Toolbar />
-        <Container maxWidth={props.maxWidth}>{children}</Container>
+        <Container maxWidth={props.maxWidth} spacing={props.spacing}>
+          {children}
+        </Container>
       </Main>
       <Player />
       <Script

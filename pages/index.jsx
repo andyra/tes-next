@@ -1,7 +1,26 @@
 import { useContext } from "react";
 import Link from "next/link";
+import styled from "styled-components";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
+
+const AnimatedLetter = ({ children, src }) => {
+  const Letter = styled.span.attrs({
+    className: "font-bold text-white"
+  })`
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: cover;
+    background-position: center center;
+    background-image: url(${src});
+    font-size: 25vh;
+    line-height: 1;
+    text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+  `;
+
+  return <Letter>{children}</Letter>;
+};
 
 // Default
 // ----------------------------------------------------------------------------
@@ -9,23 +28,16 @@ import Icon from "../components/Icon";
 export default function Home() {
   return (
     <div className="space-y-64">
-      <section className="flex items-center gap-48">
-        <figure className="w-1/4 aspect-square bg-primary-5" />
-        <h1 className="flex-1 text-xl">
+      <h1 className="text-center">
+        <AnimatedLetter src="/vhs-02.webp">TES</AnimatedLetter>
+        <p className="font-mono text-sm text-center max-w-screen-sm mx-auto">
           <strong>This Evening's Show</strong> is a radio broadcast transmitting
           from an abandoned monorail station outside Adobe Skyscraper. Tune in
           as your hosts guide you through a cavalcade of bizarre characters,
           historic factoids, surreal comedy, improvised news, interviews, and
           original music.
-        </h1>
-      </section>
-
-      <section>
-        <button className="w-full h-256 flex items-center justify-center gap-8 text-lg bg-primary-5 hover:bg-primary-10">
-          <Icon name="play" />
-          Play TES Radio
-        </button>
-      </section>
+        </p>
+      </h1>
 
       <section>
         <h2>Recent Additions</h2>

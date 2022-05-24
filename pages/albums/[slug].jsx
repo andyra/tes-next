@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import CoverArt from "../../components/CoverArt";
 import NiceDate from "../../components/NiceDate";
 import PageTitle from "../../components/PageTitle";
 import Tracklist from "../../components/Tracklist";
@@ -56,15 +57,13 @@ export default function Album({ album }) {
   return (
     <>
       <header className="flex flex-col lg:flex-row lg:items-end gap-24 mb-48">
-        <figure className="mx-auto md:mx-0 w-256 h-256 rounded-lg overflow-hidden">
-          <Image
-            alt={`${title} cover art`}
-            src={albumCoverArt[0].url}
-            width={256}
-            height={256}
-            layout="responsive"
-          />
-        </figure>
+        <CoverArt
+          src={albumCoverArt}
+          className="mx-auto md:mx-0 w-256 h-256"
+          title={title}
+          width={256}
+          height={256}
+        />
         <hgroup className="flex flex-col gap-12">
           <h1 className="font-serif font-medium text-3xl md:text-6xl">
             {title}

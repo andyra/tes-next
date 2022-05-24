@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import cn from "classnames";
+import Button from "./Button";
 import Icon from "./Icon";
 import { Menu } from "./Menu";
 
@@ -40,8 +41,8 @@ export const NavLink = ({
     <Link href={url}>
       <a className={linkClasses}>
         {icon && (
-          <span className="w-16 flex items-center justify-center text-xl md:text-base md:hidden">
-            <Icon name={icon} solid />
+          <span className="w-16 flex items-center justify-center text-xl md:text-base">
+            <Icon name={icon} />
           </span>
         )}
         <span className={titleClasses}>{title}</span>
@@ -81,6 +82,12 @@ export default function Navigation({ navSection }) {
         <div className="grid grid-cols-5 w-full md:block">
           <NavLink title="Home" url="/" icon="home" hide="desktop" />
           <NavLink
+            title="Search"
+            url="/"
+            icon="search"
+            navSection={navSection}
+          />
+          <NavLink
             title="Episodes"
             url="/episodes"
             icon="mic"
@@ -93,9 +100,9 @@ export default function Navigation({ navSection }) {
             navSection={navSection}
           />
           <NavLink
-            title="Wiki"
+            title="Library"
             url="/wiki"
-            icon="book"
+            icon="school"
             navSection={navSection}
           />
           <Menu
@@ -125,12 +132,7 @@ export default function Navigation({ navSection }) {
             icon="musical-note"
             navSection={navSection}
           />
-          <NavLink
-            title="Contact"
-            url="/contact"
-            icon="information"
-            hide="mobile"
-          />
+          <NavLink title="Contact" url="/contact" icon="call" hide="mobile" />
         </div>
       </nav>
     </>

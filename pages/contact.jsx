@@ -61,6 +61,12 @@ export default function Contact() {
       <div className="text-center">
         <Image className="rounded-xl" src="/mhm.jpg" width={320} height={244} />
       </div>
+      <p className="text-xs text-center mt-64">
+        Thank you for choosing the Fertile Crescent Telephone Co. to be your
+        neighborhood land-line provider. We have been dedicated to providing{" "}
+        <em>good-quality</em> service to Adobega County, Monorail City, and
+        surrounding area for over 40 years. ➪ CKNWR RADIO HITS
+      </p>
     </>
   );
 }

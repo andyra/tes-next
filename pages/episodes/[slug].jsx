@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import CoverArt from "../../components/CoverArt";
+import NiceDate from "../../components/NiceDate";
 import PageTitle from "../../components/PageTitle";
 import Tracklist from "../../components/Tracklist";
 import { EPISODE } from "../../constants";
@@ -51,11 +53,27 @@ function normalizeEpisodeTracks(episode) {
 
 export default function Episode({ episode }) {
   console.log(episode.episodeTracklist);
-  const { title } = episode;
+  const { episodeCoverArt, releaseDate, title } = episode;
 
   return (
     <>
-      <PageTitle>{title}</PageTitle>
+      <header className="flex flex-col lg:flex-row lg:items-end gap-24 mb-48">
+        <CoverArt
+          src={episodeCoverArt}
+          className="mx-auto md:mx-0 w-256 h-256"
+          title={title}
+          width={256}
+          height={256}
+        />
+        <hgroup className="flex flex-col gap-12">
+          <h1 className="font-serif font-medium text-3xl md:text-6xl">
+            {title}
+          </h1>
+          <div>
+            <NiceDate date={releaseDate} format="year" /> • Duration
+          </div>
+        </hgroup>
+      </header>
       <Tracklist tracks={normalizeEpisodeTracks(episode)} />
 
       {/*<section className="divide-y divide-subtle">

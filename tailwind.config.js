@@ -3,10 +3,6 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      animation: {
-        shimmer: "bg-shimmer 1s infinite",
-        wiggle: "wiggle 1s ease-in-out infinite"
-      },
       colors: {
         "ground-dark": "var(--ground-dark)",
         ground: "var(--ground)",
@@ -79,14 +75,10 @@ module.exports = {
       ]
     },
     keyframes: {
-      "bg-shimmer": {
+      "bg-pulse": {
         "0%": { opacity: "0.05" },
         "50%": { opacity: "0.10" },
         "100%": { opacity: "0.05" }
-      },
-      wiggle: {
-        "0%, 100%": { transform: "rotate(-3deg)" },
-        "50%": { transform: "rotate(3deg)" }
       },
       // Dropdown menu
       "scale-in": {
@@ -150,28 +142,10 @@ module.exports = {
       "fade-out": {
         "0%": { opacity: 1 },
         "100%": { opacity: 0 }
-      },
-      // Toast
-      "toast-hide": {
-        "0%": { opacity: 1 },
-        "100%": { opacity: 0 }
-      },
-      "toast-slide-in-right": {
-        "0%": { transform: `translateX(calc(100% + 1rem))` },
-        "100%": { transform: "translateX(0)" }
-      },
-      "toast-slide-in-bottom": {
-        "0%": { transform: `translateY(calc(100% + 1rem))` },
-        "100%": { transform: "translateY(0)" }
-      },
-      "toast-swipe-out": {
-        "0%": { transform: "translateX(var(--radix-toast-swipe-end-x))" },
-        "100%": {
-          transform: `translateX(calc(100% + 1rem))`
-        }
       }
     },
     animation: {
+      loading: "bg-pulse 1s infinite",
       // Dropdown menu
       "scale-in": "scale-in 0.2s ease-in-out",
       "slide-down": "slide-down 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
@@ -189,14 +163,7 @@ module.exports = {
       "scale-in-content": "scale-in-content 0.2s ease",
       "scale-out-content": "scale-out-content 0.2s ease",
       "fade-in": "fade-in 0.2s ease",
-      "fade-out": "fade-out 0.2s ease",
-      // Toast
-      "toast-hide": "toast-hide 100ms ease-in forwards",
-      "toast-slide-in-right":
-        "toast-slide-in-right 150ms cubic-bezier(0.16, 1, 0.3, 1)",
-      "toast-slide-in-bottom":
-        "toast-slide-in-bottom 150ms cubic-bezier(0.16, 1, 0.3, 1)",
-      "toast-swipe-out": "toast-swipe-out 100ms ease-out forwards"
+      "fade-out": "fade-out 0.2s ease"
     },
     maxWidth: ({ theme, breakpoints }) => ({
       none: "none",
