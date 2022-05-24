@@ -3,12 +3,13 @@
 }
 
 .dark {
-  --ground: hsla(215, 28%, 0%, 1);
-  --ground-75: hsla(215, 28%, 17%, 0.75);
-  --ground-50: hsla(215, 28%, 17%, 0.5);
-  --ground-25: hsla(215, 28%, 17%, 0.25);
-  --ground-10: hsla(215, 28%, 17%, 0.1);
-  --ground-5: hsla(215, 28%, 17%, 0.05);
+  --ground-dark: hsla(219, 42%, 5%, 1);
+  --ground: hsla(219, 42%, 11%, 1);
+  --ground-75: hsla(219, 42%, 11%, 0.75);
+  --ground-50: hsla(219, 42%, 11%, 0.5);
+  --ground-25: hsla(219, 42%, 11%, 0.25);
+  --ground-10: hsla(219, 42%, 11%, 0.1);
+  --ground-5: hsla(219, 42%, 11%, 0.05);
   --primary: hsl(53, 16%, 77%, 1);
   --primary-75: hsla(53, 16%, 77%, 0.75);
   --primary-50: hsla(53, 16%, 77%, 0.5);
@@ -36,18 +37,19 @@
 }
 
 .light {
+  --ground-dark: hsla(219, 42%, 11%, 0.1);
   --ground: hsl(20, 23%, 97%, 1);
   --ground-75: hsla(20, 23%, 97%, 0.75);
   --ground-50: hsla(20, 23%, 97%, 0.5);
   --ground-25: hsla(20, 23%, 97%, 0.25);
   --ground-10: hsla(20, 23%, 97%, 0.1);
   --ground-5: hsla(20, 23%, 97%, 0.05);
-  --primary: hsl(215, 28%, 17%, 1);
-  --primary-75: hsla(215, 28%, 17%, 0.75);
-  --primary-50: hsla(215, 28%, 17%, 0.5);
-  --primary-25: hsla(215, 28%, 17%, 0.25);
-  --primary-10: hsla(215, 28%, 17%, 0.1);
-  --primary-5: hsla(215, 28%, 17%, 0.05);
+  --primary: hsl(219, 42%, 11%, 1);
+  --primary-75: hsla(219, 42%, 11%, 0.75);
+  --primary-50: hsla(219, 42%, 11%, 0.5);
+  --primary-25: hsla(219, 42%, 11%, 0.25);
+  --primary-10: hsla(219, 42%, 11%, 0.1);
+  --primary-5: hsla(219, 42%, 11%, 0.05);
   --secondary: hsl(247, 59%, 41%, 1);
   --secondary-75: hsla(247, 59%, 41%, 0.75);
   --secondary-50: hsla(247, 59%, 41%, 0.5);
@@ -65,6 +67,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-display: swap;
+  font-family: "Cooper";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/cooper-light-subset.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Cooper";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/cooper-medium-subset.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Cooper";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/cooper-bold-subset.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Cooper";
+  font-style: normal;
+  font-weight: 800;
+  src: url("/fonts/cooper-black-subset.woff2");
+}
 
 @font-face {
   font-display: swap;

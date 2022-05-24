@@ -80,7 +80,7 @@ const Setlist = () => {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function About() {
+export default function Setlist() {
   return (
     <>
       <Computor />

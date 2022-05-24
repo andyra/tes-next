@@ -14,7 +14,9 @@ import ThemeSwitcher from "./ThemeSwitcher";
 // ----------------------------------------------------------------------------
 
 const Main = ({ children }) => (
-  <main className="h-full overflow-y-auto">{children}</main>
+  <main className="h-full overflow-y-auto bg-ground rounded-lg">
+    {children}
+  </main>
 );
 
 const Toolbar = () => (
@@ -25,7 +27,7 @@ const Toolbar = () => (
       icon="search"
       placeholder="What are you looking for?"
     />
-    <div className="flex items-center justify-end gap-8">
+    <div className="flex items-center justify-end">
       <ThemeSwitcher />
     </div>
   </section>

@@ -26,6 +26,7 @@ export const NavLink = ({
     "h-48 gap-16 border-t border-primary-10 md:border-none":
       navSection === "playlists",
     "md:hidden": hide === "desktop",
+    "hidden md:flex": hide === "mobile",
     [className]: className
   });
 
@@ -60,15 +61,15 @@ const NavLinkPopover = ({ href, title }) => (
 
 export default function Navigation({ navSection }) {
   const navClasses = cn({
-    "row-start-3 flex items-stretch border-t border-primary-10": true,
-    "md:row-span-1 md:flex-col md:gap-24 md:pl-24 md:pr-12 md:border-r md:border-primary-10 md:overflow-y-auto md:text-secondary": true
+    "row-start-3 flex items-stretch": true,
+    "bg-ground rounded-lg md:row-span-1 md:flex-col md:gap-24 md:pl-24 md:pr-12 md:overflow-y-auto md:text-secondary": true
   });
 
   return (
     <>
       <nav className={navClasses}>
         <Link href="/">
-          <a className="text-3xl my-24 leading-tight hidden md:block">
+          <a className="font-serif font-medium text-3xl my-24 leading-tighter hidden md:block">
             This
             <br />
             Evening's
@@ -77,7 +78,7 @@ export default function Navigation({ navSection }) {
             <br />
           </a>
         </Link>
-        <div className="flex w-full md:block">
+        <div className="grid grid-cols-5 w-full md:block">
           <NavLink title="Home" url="/" icon="home" hide="desktop" />
           <NavLink
             title="Episodes"
@@ -100,7 +101,7 @@ export default function Navigation({ navSection }) {
           <Menu
             side="top"
             trigger={
-              <button className="flex-1 flex flex-col items-center justify-center md:hidden">
+              <button className="w-full h-full flex flex-col items-center justify-center md:hidden">
                 <Icon name="ellipsis-horizontal" solid />
                 <span className="text-xs opacity-50">More</span>
               </button>
@@ -108,7 +109,7 @@ export default function Navigation({ navSection }) {
           >
             <NavLinkPopover title="Videos" href="videos" />
             <NavLinkPopover title="Setlist Computor" href="setlist" />
-            <NavLinkPopover title="About" href="about" />
+            <NavLinkPopover title="Contact" href="contact" />
           </Menu>
           <NavLink
             className="hidden"
@@ -125,10 +126,10 @@ export default function Navigation({ navSection }) {
             navSection={navSection}
           />
           <NavLink
-            className="hidden"
-            title="About"
-            url="/about"
+            title="Contact"
+            url="/contact"
             icon="information"
+            hide="mobile"
           />
         </div>
       </nav>

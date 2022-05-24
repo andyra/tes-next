@@ -8,6 +8,7 @@ module.exports = {
         wiggle: "wiggle 1s ease-in-out infinite"
       },
       colors: {
+        "ground-dark": "var(--ground-dark)",
         ground: "var(--ground)",
         "ground-75": "var(--ground-75)",
         "ground-50": "var(--ground-50)",
@@ -45,6 +46,17 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        "Apercu",
+        "system-ui",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Roboto",
+        "'Helvetica Neue'",
+        "Arial",
+        "sans-serif"
+      ],
+      serif: [
+        "Cooper",
         "Apercu",
         "system-ui",
         "-apple-system",

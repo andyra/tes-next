@@ -16,7 +16,7 @@ export default function ThemeSwitcher() {
   return (
     <Menu
       trigger={
-        <Button circle>
+        <Button circle size="lg">
           <Icon name="cog" />
         </Button>
       }

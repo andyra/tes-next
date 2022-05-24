@@ -11,13 +11,15 @@ function App({ Component, pageProps }) {
     "grid",
     "h-full",
     "overflow-hidden",
-    "bg-ground",
     "text-primary",
     "grid",
     "grid-cols-1",
     "grid-rows-[1fr,64px,48px]",
     "md:grid-cols-[224px,1fr]",
-    "md:grid-rows-[1fr,80px]"
+    "md:grid-rows-[1fr,80px]",
+    "gap-4",
+    "p-4",
+    "bg-ground-dark"
   ];
 
   useEffect(() => {

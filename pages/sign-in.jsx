@@ -64,7 +64,7 @@ const SignInForm = ({ title, id, setTitle }) => {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function About() {
+export default function SignIn() {
   return (
     <>
       <PageTitle>Sign In</PageTitle>
@@ -79,7 +79,7 @@ export default function About() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: "Setlist Computor"
+      pageTitle: "Sign In"
     }
   };
 }

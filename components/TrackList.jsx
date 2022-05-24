@@ -22,7 +22,9 @@ const TrackDuration = ({ audioFile }) => {
   //   console.log(audioRef.current.duration);
   // }, [duration]);
 
-  return <time className="text-sm text-primary-50 mr-8">0:00</time>;
+  return (
+    <time className="text-sm text-primary-50 mr-8 hidden md:block">0:00</time>
+  );
 };
 
 // Default

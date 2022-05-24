@@ -63,9 +63,9 @@ export default function Player() {
   const isDesktop = useMediaQuery(BREAKPOINTS.desktop);
   const isMobile = useMediaQuery(BREAKPOINTS.mobile);
   const playerClasses = cn({
-    "flex items-center gap-8 md:col-span-2 md:shadow-none md:mx-0": true,
-    "p-8 rounded-lg md:rounded-none border border-primary-10 shadow mx-8 mb-8 relative md:border-t md:mb-0": !isFullscreen,
-    "absolute z-50 top-0 left-0 w-full h-full flex-col justify-end bg-ground px-24 py-24 md:p-48 lg:p-96": isFullscreen
+    "flex items-center gap-8 bg-ground rounded-lg md:col-span-2 md:mx-0": true,
+    "p-8 rounded-lg mx-8 mb-8 relative md:mb-0": !isFullscreen,
+    "absolute z-50 top-0 left-0 w-full h-full flex-col justify-end px-24 py-24 md:p-48 lg:p-96": isFullscreen
   });
 
   // Hooks
