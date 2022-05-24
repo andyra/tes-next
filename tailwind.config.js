@@ -51,9 +51,8 @@ module.exports = {
         "Arial",
         "sans-serif"
       ],
-      serif: [
+      funky: [
         "Ozik",
-        "Cooper",
         "Apercu",
         "system-ui",
         "-apple-system",
@@ -183,7 +182,7 @@ module.exports = {
       md: "768px",
       lg: "1024px",
       xl: "1280px",
-      "2xl": "1600px"
+      "2xl": "1920px"
     },
     spacing: {
       0: "0",
@@ -193,6 +192,7 @@ module.exports = {
       8: "8px",
       12: "12px",
       16: "16px",
+      20: "20px",
       24: "24px",
       32: "32px",
       40: "40px",

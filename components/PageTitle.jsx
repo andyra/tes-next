@@ -2,7 +2,7 @@ import cn from "classnames";
 
 export const PageTitle = ({ actions, center, children }) => {
   const classes = cn({
-    "flex-1 font-serif font-medium text-8xl tracking-tight": true,
+    "flex-1 font-funky text-8xl tracking-tight": true,
     "text-center": center
   });
 
@@ -16,7 +16,7 @@ export const PageTitle = ({ actions, center, children }) => {
 
 export const H1 = ({ children, className }) => {
   const classes = cn({
-    "flex-1 font-serif font-medium text-8xl tracking-tight": true,
+    "flex-1 font-funky text-8xl tracking-tight": true,
     [className]: className
   });
 

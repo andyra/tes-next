@@ -35,31 +35,6 @@ class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
-
-          <link
-            rel="preload"
-            href="/fonts/cooper-black-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/cooper-bold-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/cooper-medium-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/cooper-light-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
           <link
             rel="preload"
             href="/fonts/apercu-subset.woff2"

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import CoverArt from "../../components/CoverArt";
+import { CollectionHeader } from "../../components/CollectionList";
 import NiceDate from "../../components/NiceDate";
 import PageTitle, { H1 } from "../../components/PageTitle";
 import Tracklist from "../../components/Tracklist";
@@ -56,24 +56,12 @@ export default function Album({ album }) {
 
   return (
     <>
-      <header className="flex flex-col lg:flex-row lg:items-end gap-24 mb-48">
-        <CoverArt
-          src={albumCoverArt}
-          className="mx-auto md:mx-0 w-256 h-256"
-          title={title}
-          width={256}
-          height={256}
-        />
-        <hgroup className="flex flex-col gap-12">
-          <H1 className="font-serif font-medium text-3xl md:text-6xl">
-            {title}
-          </H1>
-          <div>
-            {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
-            {albumTracklist.length} Tracks • Duration
-          </div>
-        </hgroup>
-      </header>
+      <CollectionHeader title={title} coverArt={albumCoverArt}>
+        <div>
+          {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
+          {albumTracklist.length} Tracks • Duration
+        </div>
+      </CollectionHeader>
       <Tracklist tracks={normalizeAlbumTracks(album)} />
     </>
   );

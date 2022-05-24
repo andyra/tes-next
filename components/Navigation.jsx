@@ -23,7 +23,7 @@ export const NavLink = ({
   const linkClasses = cn({
     "flex items-center relative": true,
     "flex-1 flex-col justify-center": navSection !== "playlists",
-    "md:flex-row md:justify-start md:h-32 md:gap-8 md:px-12 md:-ml-12 md:py-16 md:rounded-lg md:hover:bg-secondary-10": true,
+    "md:flex-row md:justify-start md:gap-8 md:px-12 md:-ml-12 md:hover:underline": true,
     "text-accent": active,
     "h-48 gap-16 border-t border-primary-10 md:border-none":
       navSection === "playlists",
@@ -33,7 +33,7 @@ export const NavLink = ({
   });
 
   const titleClasses = cn({
-    "text-xs opacity-50 md:text-base md:opacity-100":
+    "text-xs opacity-50 md:font-funky md:text-5xl md:opacity-100":
       navSection !== "playlists",
     "text-lg md:text-base": navSection === "playlists"
   });
@@ -42,7 +42,7 @@ export const NavLink = ({
     <Link href={url}>
       <a className={linkClasses}>
         {icon && (
-          <span className="w-16 flex items-center justify-center text-xl md:text-base">
+          <span className="w-16 flex items-center justify-center text-xl md:text-base md:hidden">
             <Icon name={icon} />
           </span>
         )}
@@ -58,42 +58,37 @@ const NavLinkPopover = ({ href, title }) => (
   </Link>
 );
 
+const Copyright = () => {
+  const max = 2022;
+  const min = 1930;
+  const randomYear = Math.floor(Math.random() * (max - min + 1) + min);
+
+  return <>&copy; {randomYear} T.E.S.</>;
+};
+
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Navigation({ navSection }) {
   const navClasses = cn({
     "row-start-3 flex items-stretch": true,
-    "bg-ground rounded-lg md:row-span-1 md:flex-col md:gap-24 md:px-24 md:overflow-y-auto md:text-secondary": true
+    "bg-ground rounded-lg md:row-span-1 md:flex-col md:gap-24 md:p-24 md:overflow-y-auto md:text-secondary": true
   });
 
   return (
     <>
       <nav className={navClasses}>
         <Link href="/">
-          <a className="hidden md:block">
-            <AnimatedLetter size="8rem" src="/vhs-02.webp">
-              TES
-            </AnimatedLetter>
-            <div className="font-serif text-xl uppercase text-center tracking-wider">
-              This Evening's Show
-            </div>
+          <a className="font-funky text-5xl text-primary hidden md:block">
+            This
+            <br />
+            Evening's
+            <br />
+            Show
           </a>
         </Link>
         <div className="grid grid-cols-5 w-full md:block">
           <NavLink title="Home" url="/" icon="home" hide="desktop" />
-          <NavLink
-            title="Search"
-            url="/"
-            icon="search"
-            navSection={navSection}
-          />
-          <NavLink
-            title="Episodes"
-            url="/episodes"
-            icon="mic"
-            navSection={navSection}
-          />
           <NavLink
             title="Music"
             url="/albums"
@@ -101,8 +96,14 @@ export default function Navigation({ navSection }) {
             navSection={navSection}
           />
           <NavLink
+            title="Podcast"
+            url="/episodes"
+            icon="mic"
+            navSection={navSection}
+          />
+          <NavLink
             title="Library"
-            url="/wiki"
+            url="/library"
             icon="school"
             navSection={navSection}
             hide="mobile"
@@ -116,7 +117,7 @@ export default function Navigation({ navSection }) {
               </button>
             }
           >
-            <NavLinkPopover title="Library" href="/wiki" />
+            <NavLinkPopover title="Library" href="/library" />
             <NavLinkPopover title="Videos" href="/videos" />
             <NavLinkPopover title="Setlist Computor" href="/setlist" />
             <NavLinkPopover title="Contact" href="contact" />
@@ -137,6 +138,9 @@ export default function Navigation({ navSection }) {
           />
           <NavLink title="Contact" url="/contact" icon="call" hide="mobile" />
         </div>
+        <footer className="mt-auto text-xs tracking-wide opacity-50">
+          <Copyright />
+        </footer>
       </nav>
     </>
   );

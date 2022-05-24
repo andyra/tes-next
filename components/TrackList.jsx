@@ -153,7 +153,7 @@ export default function Tracklist({ tracks }) {
 
   const TrackItem = ({ track, i }) => {
     const liClasses = cn({
-      "flex gap-8 p-8 -mx-8 rounded-lg cursor-default transition group": true,
+      "text-secondary flex gap-8 p-8 -mx-8 rounded-lg cursor-default transition group": true,
       "hover:bg-primary-5 focus:bg-primary-10": track.audioFile
     });
 
@@ -162,7 +162,7 @@ export default function Tracklist({ tracks }) {
         <div className="flex-1 flex items-center gap-8">
           <PlayPauseButton track={track} i={i} />
           <div
-            className={`text-xl flex items-center gap-8 ${
+            className={`text-2xl flex items-center gap-8 ${
               highlightTrack(track) ? "text-accent" : ""
             }`}
           >

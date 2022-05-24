@@ -26,7 +26,7 @@ export default function ArticleList({ id }) {
     <ul>
       {data.entries.map(article => (
         <li className="flex items-center gap-8" key={article.slug}>
-          <Link href={`/wiki/${encodeURIComponent(article.slug)}`}>
+          <Link href={`/library/${encodeURIComponent(article.slug)}`}>
             <a>{article.title}</a>
           </Link>
         </li>

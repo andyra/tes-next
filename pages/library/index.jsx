@@ -9,7 +9,11 @@ import CategoryList from "./components/CategoryList";
 export default function WikisPage() {
   return (
     <>
-      <PageTitle>Wiki</PageTitle>
+      <PageTitle center>Library</PageTitle>
+      <p className="text-4xl text-center max-w-screen-lg mx-auto">
+        The Grand Library of all things Akabius. Learn about, for instance,
+        Multiple Mountain, Poor Ohr, and Zaso Jacquzi.
+      </p>
       <ClientOnly>
         <CategoryList />
       </ClientOnly>
@@ -23,7 +27,9 @@ export default function WikisPage() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: "Wiki"
+      maxWidth: "max-w-full",
+      pageTitle: "Library",
+      spacing: "space-y-64"
     }
   };
 }

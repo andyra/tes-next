@@ -3,13 +3,13 @@
 }
 
 .dark {
-  --ground-dark: hsla(219, 42%, 5%, 1);
-  --ground: hsla(219, 42%, 11%, 1);
-  --ground-75: hsla(219, 42%, 11%, 0.75);
-  --ground-50: hsla(219, 42%, 11%, 0.5);
-  --ground-25: hsla(219, 42%, 11%, 0.25);
-  --ground-10: hsla(219, 42%, 11%, 0.1);
-  --ground-5: hsla(219, 42%, 11%, 0.05);
+  --ground-dark: hsla(0, 0%, 0%, 1);
+  --ground: hsla(0, 0%, 8%, 1);
+  --ground-75: hsla(0, 0%, 8%, 0.75);
+  --ground-50: hsla(0, 0%, 8%, 0.5);
+  --ground-25: hsla(0, 0%, 8%, 0.25);
+  --ground-10: hsla(0, 0%, 8%, 0.1);
+  --ground-5: hsla(0, 0%, 8%, 0.05);
   --primary: hsl(53, 16%, 77%, 1);
   --primary-75: hsla(53, 16%, 77%, 0.75);
   --primary-50: hsla(53, 16%, 77%, 0.5);
@@ -28,12 +28,12 @@
   --tertiary-25: hsl(234, 88%, 81%, 0.25);
   --tertiary-10: hsl(234, 88%, 81%, 0.1);
   --tertiary-5: hsl(234, 88%, 81%, 0.05);
-  --accent: hsla(15, 82%, 66%, 1);
-  --accent-75: hsla(15, 82%, 66%, 0.75);
-  --accent-50: hsla(15, 82%, 66%, 0.5);
-  --accent-25: hsla(15, 82%, 66%, 0.25);
-  --accent-10: hsla(15, 82%, 66%, 0.1);
-  --accent-5: hsla(15, 82%, 66%, 0.05);
+  --accent: hsla(120, 100%, 50%, 1);
+  --accent-75: hsla(120, 100%, 50%, 0.75);
+  --accent-50: hsla(120, 100%, 50%, 0.5);
+  --accent-25: hsla(120, 100%, 50%, 0.25);
+  --accent-10: hsla(120, 100%, 50%, 0.1);
+  --accent-5: hsla(120, 100%, 50%, 0.05);
 }
 
 .light {
@@ -56,12 +56,12 @@
   --secondary-25: hsla(247, 59%, 41%, 0.25);
   --secondary-10: hsla(247, 59%, 41%, 0.1);
   --secondary-5: hsla(247, 59%, 41%, 0.05);
-  --accent: hsla(15, 82%, 66%, 1);
-  --accent-75: hsla(15, 82%, 66%, 0.75);
-  --accent-50: hsla(15, 82%, 66%, 0.5);
-  --accent-25: hsla(15, 82%, 66%, 0.25);
-  --accent-10: hsla(15, 82%, 66%, 0.1);
-  --accent-5: hsla(15, 82%, 66%, 0.05);
+  --accent: hsla(22, 86%, 43%, 1);
+  --accent-75: hsla(22, 86%, 43%, 0.75);
+  --accent-50: hsla(22, 86%, 43%, 0.5);
+  --accent-25: hsla(22, 86%, 43%, 0.25);
+  --accent-10: hsla(22, 86%, 43%, 0.1);
+  --accent-5: hsla(22, 86%, 43%, 0.05);
 }
 
 @tailwind base;
@@ -95,35 +95,6 @@
   font-style: normal;
   font-weight: 900;
   src: url("/fonts/ozik-black-subset.woff2");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Cooper";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/cooper-light-subset.woff2");
-}
-@font-face {
-  font-display: swap;
-  font-family: "Cooper";
-  font-style: normal;
-  font-weight: 500;
-  src: url("/fonts/cooper-medium-subset.woff2");
-}
-@font-face {
-  font-display: swap;
-  font-family: "Cooper";
-  font-style: normal;
-  font-weight: 700;
-  src: url("/fonts/cooper-bold-subset.woff2");
-}
-@font-face {
-  font-display: swap;
-  font-family: "Cooper";
-  font-style: normal;
-  font-weight: 800;
-  src: url("/fonts/cooper-black-subset.woff2");
 }
 
 @font-face {

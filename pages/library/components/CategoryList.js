@@ -34,11 +34,13 @@ export default function CategoryList({ level = 1, parentId }) {
   }
 
   return data.categories ? (
-    <ul className="grid grid-cols-3 gap-8">
+    <ul className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
       {data.categories.map(category => (
         <li key={category.slug}>
-          <Link href={`/wiki/category/${encodeURIComponent(category.slug)}`}>
-            <a className="block p-24 bg-accent-5">{category.title}</a>
+          <Link href={`/library/category/${encodeURIComponent(category.slug)}`}>
+            <a className="text-2xl text-secondary block p-24 border border-secondary-10 hover:border-accent hover:text-accent">
+              {category.title}
+            </a>
           </Link>
         </li>
       ))}
