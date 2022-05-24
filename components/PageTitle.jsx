@@ -1,8 +1,8 @@
 import cn from "classnames";
 
-export default function PageTitle({ actions, center, children }) {
+export const PageTitle = ({ actions, center, children }) => {
   const classes = cn({
-    "flex-1 font-serif font-medium text-6xl tracking-tight": true,
+    "flex-1 font-serif font-medium text-8xl tracking-tight": true,
     "text-center": center
   });
 
@@ -12,4 +12,15 @@ export default function PageTitle({ actions, center, children }) {
       {actions && <div className="flex items-center gap-4">{actions}</div>}
     </header>
   );
-}
+};
+
+export const H1 = ({ children, className }) => {
+  const classes = cn({
+    "flex-1 font-serif font-medium text-8xl tracking-tight": true,
+    [className]: className
+  });
+
+  return <h1 className={classes}>{children}</h1>;
+};
+
+export default PageTitle;

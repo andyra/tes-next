@@ -1,26 +1,10 @@
 import { useContext } from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import AnimatedLetter from "../components/AnimatedLetter";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
-
-const AnimatedLetter = ({ children, src }) => {
-  const Letter = styled.span.attrs({
-    className: "font-bold text-white"
-  })`
-    background-clip: text;
-    -webkit-background-clip: text;
-    background-size: cover;
-    background-position: center center;
-    background-image: url(${src});
-    font-size: 25vh;
-    line-height: 1;
-    text-fill-color: transparent;
-    -webkit-text-fill-color: transparent;
-  `;
-
-  return <Letter>{children}</Letter>;
-};
+import { H1 } from "../components/PageTitle";
 
 // Default
 // ----------------------------------------------------------------------------

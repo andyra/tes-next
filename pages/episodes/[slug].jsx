@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import CoverArt from "../../components/CoverArt";
 import NiceDate from "../../components/NiceDate";
-import PageTitle from "../../components/PageTitle";
+import PageTitle, { H1 } from "../../components/PageTitle";
 import Tracklist from "../../components/Tracklist";
 import { EPISODE } from "../../constants";
 import { querySlugs } from "../../helpers/query.helpers";
@@ -66,9 +66,7 @@ export default function Episode({ episode }) {
           height={256}
         />
         <hgroup className="flex flex-col gap-12">
-          <h1 className="font-serif font-medium text-3xl md:text-6xl">
-            {title}
-          </h1>
+          <H1>{title}</H1>
           <div>
             <NiceDate date={releaseDate} format="year" /> • Duration
           </div>

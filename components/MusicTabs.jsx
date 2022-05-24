@@ -3,7 +3,7 @@ import cn from "classnames";
 
 const TabItem = ({ title, url, page }) => {
   const classes = cn({
-    "font-serif font-medium text-4xl md:text-6xl tracking-tight": true,
+    "font-serif text-4xl md:text-8xl tracking-tight hover:text-accent": true,
     underline: page === title
   });
 

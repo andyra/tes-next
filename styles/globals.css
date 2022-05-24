@@ -70,12 +70,40 @@
 
 @font-face {
   font-display: swap;
+  font-family: "Ozik";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/ozik-regular-subset.woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Ozik";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/ozik-medium-subset.woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Ozik";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/ozik-bold-subset.woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Ozik";
+  font-style: normal;
+  font-weight: 900;
+  src: url("/fonts/ozik-black-subset.woff2");
+}
+
+@font-face {
+  font-display: swap;
   font-family: "Cooper";
   font-style: normal;
   font-weight: 400;
   src: url("/fonts/cooper-light-subset.woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "Cooper";
@@ -83,7 +111,6 @@
   font-weight: 500;
   src: url("/fonts/cooper-medium-subset.woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "Cooper";
@@ -91,7 +118,6 @@
   font-weight: 700;
   src: url("/fonts/cooper-bold-subset.woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "Cooper";
@@ -107,7 +133,6 @@
   font-weight: 300;
   src: url("/fonts/apercu-light-subset.woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "Apercu";
@@ -115,7 +140,6 @@
   font-weight: 400;
   src: url("/fonts/apercu-subset.woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "Apercu";
@@ -123,7 +147,6 @@
   font-weight: 500;
   src: url("/fonts/apercu-medium-subset.woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "Apercu";
@@ -131,7 +154,6 @@
   font-weight: 700;
   src: url("/fonts/apercu-bold-subset.woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "Apercu Mono";

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import cn from "classnames";
+import AnimatedLetter from "./AnimatedLetter";
 import Button from "./Button";
 import Icon from "./Icon";
 import { Menu } from "./Menu";
@@ -63,20 +64,20 @@ const NavLinkPopover = ({ href, title }) => (
 export default function Navigation({ navSection }) {
   const navClasses = cn({
     "row-start-3 flex items-stretch": true,
-    "bg-ground rounded-lg md:row-span-1 md:flex-col md:gap-24 md:pl-24 md:pr-12 md:overflow-y-auto md:text-secondary": true
+    "bg-ground rounded-lg md:row-span-1 md:flex-col md:gap-24 md:px-24 md:overflow-y-auto md:text-secondary": true
   });
 
   return (
     <>
       <nav className={navClasses}>
         <Link href="/">
-          <a className="font-serif font-medium text-3xl my-24 leading-tighter hidden md:block">
-            This
-            <br />
-            Evening's
-            <br />
-            Show
-            <br />
+          <a className="hidden md:block">
+            <AnimatedLetter size="8rem" src="/vhs-02.webp">
+              TES
+            </AnimatedLetter>
+            <div className="font-serif text-xl uppercase text-center tracking-wider">
+              This Evening's Show
+            </div>
           </a>
         </Link>
         <div className="grid grid-cols-5 w-full md:block">
@@ -104,6 +105,7 @@ export default function Navigation({ navSection }) {
             url="/wiki"
             icon="school"
             navSection={navSection}
+            hide="mobile"
           />
           <Menu
             side="top"
@@ -114,8 +116,9 @@ export default function Navigation({ navSection }) {
               </button>
             }
           >
-            <NavLinkPopover title="Videos" href="videos" />
-            <NavLinkPopover title="Setlist Computor" href="setlist" />
+            <NavLinkPopover title="Library" href="/wiki" />
+            <NavLinkPopover title="Videos" href="/videos" />
+            <NavLinkPopover title="Setlist Computor" href="/setlist" />
             <NavLinkPopover title="Contact" href="contact" />
           </Menu>
           <NavLink

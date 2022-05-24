@@ -13,6 +13,31 @@ class MyDocument extends Document {
         <Head>
           <link
             rel="preload"
+            href="/fonts/ozik-regular-subset.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/ozik-medium-subset.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/ozik-bold-subset.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/ozik-black-subset.woff2"
+            as="font"
+            crossOrigin=""
+          />
+
+          <link
+            rel="preload"
             href="/fonts/cooper-black-subset.woff2"
             as="font"
             crossOrigin=""

@@ -1,7 +1,7 @@
 import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Input from "../components/Input";
-import PageTitle from "../components/PageTitle";
+import PageTitle, { H1 } from "../components/PageTitle";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -12,7 +12,7 @@ const Computor = () => {
 
   return (
     <section className="p-16 rounded-lg border-2 border-primary-10 text-center">
-      <h1 className="text-xl font-medium mb-16">Setlist Computor</h1>
+      <H1 className="text-xl font-medium mb-16">Setlist Computor</H1>
       <form className="flex items-center gap-16">
         <Input
           label="Songs"

@@ -52,6 +52,7 @@ module.exports = {
         "sans-serif"
       ],
       serif: [
+        "Ozik",
         "Cooper",
         "Apercu",
         "system-ui",
