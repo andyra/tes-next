@@ -4,7 +4,6 @@ import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import { Toaster } from "react-hot-toast";
 import Button from "./Button";
-import Icon from "./Icon";
 import Input from "./Input";
 import Navigation from "./Navigation";
 import Player from "./Player";
@@ -58,10 +57,6 @@ export default function Layout({ children, ...props }) {
         </Container>
       </Main>
       <Player />
-      <Script
-        src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"
-        strategy="afterInteractive"
-      />
     </>
   );
 }

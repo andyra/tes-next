@@ -100,7 +100,7 @@ export default function Home({ albums, episodes }) {
               <a className="flex items-center justify-center gap-8 aspect-square border-2 border-primary-10 hover:border-accent hover:text-accent rounded-lg transition group">
                 View All
                 <Icon
-                  name="arrow-forward"
+                  name="ArrowRight"
                   className="transition-transform duration-300 group-hover:transform group-hover:translate-x-4"
                 />
               </a>

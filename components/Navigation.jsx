@@ -86,24 +86,24 @@ export const Navigation = ({ navSection }) => {
           </a>
         </Link>
         <div className="grid grid-cols-5 w-full md:block">
-          <NavLink title="Home" url="/" icon="home" hide="desktop" />
-          <NavLink title="Search" url="/" icon="search" hide="desktop" />
+          <NavLink title="Home" url="/" icon="Home" hide="desktop" />
+          <NavLink title="Search" url="/" icon="Search" hide="desktop" />
           <NavLink
             title="Music"
             url="/albums"
-            icon="musical-notes"
+            icon="Music"
             navSection={navSection}
           />
           <NavLink
             title="Podcast"
             url="/episodes"
-            icon="mic"
+            icon="Mic"
             navSection={navSection}
           />
           <NavLink
             title="Library"
             url="/library"
-            icon="school"
+            icon="Book"
             navSection={navSection}
             hide="mobile"
           />
@@ -111,7 +111,7 @@ export const Navigation = ({ navSection }) => {
             side="top"
             trigger={
               <button className="w-full h-full flex flex-col items-center justify-center md:hidden">
-                <Icon name="ellipsis-horizontal" solid />
+                <Icon name="Overflow" />
                 <span className="text-xs opacity-50">More</span>
               </button>
             }
@@ -125,17 +125,17 @@ export const Navigation = ({ navSection }) => {
             className="hidden"
             title="Videos"
             url="/videos"
-            icon="videocam"
+            icon="Video"
             navSection={navSection}
           />
           <NavLink
             className="hidden"
             title="Setlist Computor"
             url="/setlist"
-            icon="musical-note"
+            icon="Music"
             navSection={navSection}
           />
-          <NavLink title="Contact" url="/contact" icon="call" hide="mobile" />
+          <NavLink title="Contact" url="/contact" icon="Phone" hide="mobile" />
         </div>
         <Footer />
       </nav>

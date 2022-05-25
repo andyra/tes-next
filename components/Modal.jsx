@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Button from "./Button";
-import Icon from "./Icon";
 
 export const Modal = ({ children, isOpen, closeModal, title }) => (
   <Transition appear show={isOpen} as={Fragment}>
@@ -36,10 +35,9 @@ export const Modal = ({ children, isOpen, closeModal, title }) => (
         <Button
           className="absolute top-16 right-16"
           circle
+          iconLeft="X"
           onClick={closeModal}
-        >
-          <Icon name="close" />
-        </Button>
+        />
       </Transition.Child>
     </Dialog>
   </Transition>

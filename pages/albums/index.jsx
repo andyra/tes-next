@@ -4,7 +4,6 @@ import client from "../../apollo-client";
 import cn from "classnames";
 import AlbumList from "./components/AlbumList";
 import ClientOnly from "../../components/ClientOnly";
-import Icon from "../../components/Icon";
 import Filters, { getDefaultFilters } from "../../components/Filters";
 import MusicTabs from "../../components/MusicTabs";
 

@@ -46,7 +46,7 @@ const FilterOption = ({ group, label, value, filters, setFilters }) => {
       }}
     >
       {label}
-      <Icon name="checkmark" solid className={active ? "" : "opacity-0"} />
+      <Icon name="check" className={active ? "" : "opacity-0"} />
     </MenuItem>
   );
 };
@@ -65,14 +65,7 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
 
   return (
     <section className={containerClasses}>
-      <Menu
-        trigger={
-          <Button>
-            Filters
-            <Icon name="chevron-down" />
-          </Button>
-        }
-      >
+      <Menu trigger={<Button iconRight="ChevronDown">Filters</Button>}>
         {filterGroups.map(filterGroup => (
           <>
             <MenuHeading>{filterGroup.label}</MenuHeading>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import cn from "classnames";
+import Icon from "./Icon";
 
 const SIZES = {
   base: {
@@ -20,6 +21,8 @@ export default function Button({
   circle,
   className,
   disabled,
+  iconLeft,
+  iconRight,
   size = "base",
   type = "button",
   variant = "border",
@@ -41,7 +44,11 @@ export default function Button({
 
   return url ? (
     <Link className={buttonClasses} href={url} {...other}>
-      <a className={buttonClasses}>{children}</a>
+      <a className={buttonClasses}>
+        {iconLeft && <Icon name={iconLeft} />}
+        {children}
+        {iconRight && <Icon name={iconRight} />}
+      </a>
     </Link>
   ) : (
     <button
@@ -50,7 +57,9 @@ export default function Button({
       type={type}
       {...other}
     >
+      {iconLeft && <Icon name={iconLeft} />}
       {children}
+      {iconRight && <Icon name={iconRight} />}
     </button>
   );
 }

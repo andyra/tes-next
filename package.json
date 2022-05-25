@@ -12,7 +12,6 @@
     "@apollo/client": "^3.5.10",
     "@headlessui/react": "^1.5.0",
     "@radix-ui/react-popover": "^0.1.6",
-    "@radix-ui/react-radio-group": "^0.1.5",
     "@radix-ui/react-slider": "^0.1.4",
     "@radix-ui/react-toast": "^0.1.1",
     "@radix-ui/react-tooltip": "^0.1.7",
@@ -25,13 +24,12 @@
     "react-audio-player": "^0.17.0",
     "react-dom": "17.0.2",
     "react-hot-toast": "^2.2.0",
-    "react-ionicons": "^4.2.0",
     "react-responsive": "^9.0.0-beta.6",
-    "react-transition-group": "^4.4.2",
     "styled-components": "^5.3.5",
     "tailwindcss-radix": "^2.2.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^6.2.1",
     "autoprefixer": "^10.4.2",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",

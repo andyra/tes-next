@@ -79,7 +79,7 @@ export const PlayerControls = ({
           onClick={toggleRandom}
           variant="ghost"
         >
-          <Icon name="shuffle" solid />
+          <Icon name="Shuffle" />
         </Button>
         <Button
           circle
@@ -88,7 +88,7 @@ export const PlayerControls = ({
           onClick={skipBack}
           variant="ghost"
         >
-          <Icon name="play-skip-back" solid />
+          <Icon name="SkipPrev" />
         </Button>
         <Button
           active={isPlaying}
@@ -98,7 +98,7 @@ export const PlayerControls = ({
           size="lg"
           variant="ghost"
         >
-          <Icon name={isPlaying ? "pause" : "play"} solid />
+          <Icon name={isPlaying ? "Pause" : "Play"} />
         </Button>
         <Button
           circle
@@ -107,7 +107,7 @@ export const PlayerControls = ({
           onClick={skipNext}
           variant="ghost"
         >
-          <Icon name="play-skip-forward" solid />
+          <Icon name="SkipNext" />
         </Button>
         <Button
           circle
@@ -116,7 +116,7 @@ export const PlayerControls = ({
           onClick={toggleLoop}
           variant="ghost"
         >
-          <Icon name="infinite" solid />
+          <Icon name="Loop" />
         </Button>
       </div>
       <div className={playbackBarClasses}>

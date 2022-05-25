@@ -32,7 +32,7 @@ export const ExtraControls = ({
         aria-expanded={!queueIsOpen}
         aria-label="Show Queue"
       >
-        <Icon name="list" solid />
+        <Icon name="Queue" />
       </Button>
       <Button
         circle
@@ -45,7 +45,7 @@ export const ExtraControls = ({
         aria-expanded={!isFullscreen}
         aria-label="Full Screen"
       >
-        <Icon name={isFullscreen ? "chevron-down" : "chevron-up"} solid />
+        <Icon name={isFullscreen ? "ChevronDown" : "ChevronUp"} solid />
       </Button>
     </div>
   );

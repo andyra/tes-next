@@ -50,7 +50,7 @@ const SetlistItem = ({ title, bleed, strategy }) => (
     {strategy && <div className="opacity-50">{strategy}</div>}
     {bleed && (
       <span className="h-24 px-8 border border-accent-25 text-accent text-sm rounded-full inline-flex gap-4 items-center justify-center transform translate-y-1/3">
-        <Icon name="arrow-down" solid />
+        <Icon name="ArrowDown" />
         Bleed
       </span>
     )}

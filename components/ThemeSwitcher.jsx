@@ -17,18 +17,18 @@ export const ThemeSwitcher = () => {
     <Menu
       trigger={
         <Button circle size="lg">
-          <Icon name="cog" />
+          <Icon name="Gear" />
         </Button>
       }
     >
       <MenuHeading>Theme</MenuHeading>
-      <MenuItem iconLeft="cog" onClick={() => setTheme("system")}>
+      <MenuItem iconLeft="Gear" onClick={() => setTheme("system")}>
         System
       </MenuItem>
-      <MenuItem iconLeft="sunny" onClick={() => setTheme("light")}>
+      <MenuItem iconLeft="Sun" onClick={() => setTheme("light")}>
         Light
       </MenuItem>
-      <MenuItem iconLeft="moon" onClick={() => setTheme("dark")}>
+      <MenuItem iconLeft="Moon" onClick={() => setTheme("dark")}>
         Dark
       </MenuItem>
       <MenuDivider />

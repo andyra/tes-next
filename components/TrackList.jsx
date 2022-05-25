@@ -135,9 +135,8 @@ export const Tracklist = ({ tracks }) => {
           >
             <Icon
               name={
-                highlightTrack(track) ? (isPlaying ? "pause" : "play") : "play"
+                highlightTrack(track) ? (isPlaying ? "Pause" : "Play") : "Play"
               }
-              solid
             />
           </Button>
         )}
