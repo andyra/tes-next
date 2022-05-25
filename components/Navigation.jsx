@@ -55,12 +55,16 @@ const NavLinkPopover = ({ href, title }) => (
   </Link>
 );
 
-const Copyright = () => {
+const Footer = () => {
   const max = 2022;
   const min = 1930;
   const randomYear = Math.floor(Math.random() * (max - min + 1) + min);
 
-  return <>&copy; {randomYear} T.E.S.</>;
+  return (
+    <footer className="mt-auto text-xs tracking-wide opacity-50 hidden md:block">
+      &copy; {randomYear} T.E.S.
+    </footer>
+  );
 };
 
 export const Navigation = ({ navSection }) => {
@@ -83,6 +87,7 @@ export const Navigation = ({ navSection }) => {
         </Link>
         <div className="grid grid-cols-5 w-full md:block">
           <NavLink title="Home" url="/" icon="home" hide="desktop" />
+          <NavLink title="Search" url="/" icon="search" hide="desktop" />
           <NavLink
             title="Music"
             url="/albums"
@@ -132,9 +137,7 @@ export const Navigation = ({ navSection }) => {
           />
           <NavLink title="Contact" url="/contact" icon="call" hide="mobile" />
         </div>
-        <footer className="mt-auto text-xs tracking-wide opacity-50">
-          <Copyright />
-        </footer>
+        <Footer />
       </nav>
     </>
   );
