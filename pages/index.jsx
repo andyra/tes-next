@@ -125,7 +125,6 @@ export async function getStaticProps(context) {
     props: {
       albums: data.albums,
       episodes: data.episodes,
-      navSection: "Music",
       spacing: "space-y-64"
     }
   };
