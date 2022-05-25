@@ -175,7 +175,7 @@ export const Tracklist = ({ tracks }) => {
                     addToQueue(track);
                   }}
                 >
-                  <Icon name="add" solid />
+                  <Icon name="Plus" />
                 </Button>
               )}
               {track.listType === "queue" && (
@@ -187,7 +187,7 @@ export const Tracklist = ({ tracks }) => {
                     removeFromQueue(track, i);
                   }}
                 >
-                  <Icon name="close" solid />
+                  <Icon name="X" />
                 </Button>
               )}
             </>

@@ -45,7 +45,7 @@ export const ExtraControls = ({
         aria-expanded={!isFullscreen}
         aria-label="Full Screen"
       >
-        <Icon name={isFullscreen ? "ChevronDown" : "ChevronUp"} solid />
+        <Icon name={isFullscreen ? "ChevronDown" : "ChevronUp"} />
       </Button>
     </div>
   );

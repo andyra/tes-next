@@ -46,7 +46,7 @@ const FilterOption = ({ group, label, value, filters, setFilters }) => {
       }}
     >
       {label}
-      <Icon name="check" className={active ? "" : "opacity-0"} />
+      <Icon name="Check" className={active ? "" : "opacity-0"} />
     </MenuItem>
   );
 };
