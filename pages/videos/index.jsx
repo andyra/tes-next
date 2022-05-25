@@ -3,13 +3,25 @@ import { useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
 import PageTitle from "../../components/PageTitle";
-import { VIDEOS } from "../../constants";
+
+// Queries
+// ----------------------------------------------------------------------------
+
+const VIDEOS_QUERY = gql`
+  query Entries {
+    entries(section: "videos") {
+      id
+      slug
+      title
+    }
+  }
+`;
 
 // Components
 // ----------------------------------------------------------------------------
 
 const SongList = () => {
-  const { data, loading, error } = useQuery(VIDEOS);
+  const { data, loading, error } = useQuery(VIDEOS_QUERY);
 
   if (loading) {
     return <mark>Loading...</mark>;
