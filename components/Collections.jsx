@@ -21,7 +21,7 @@ export const CollectionHeader = ({ coverArt, title, children }) => (
 );
 
 export const CollectionList = ({ children }) => (
-  <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 -mx-8 relative -gap-1">
+  <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 -mx-8 relative">
     {children}
   </ul>
 );
@@ -40,14 +40,15 @@ export const CollectionListSkeleton = () => (
 
 export const CollectionItem = ({
   children,
-  href,
   coverArt,
   releaseDate,
-  title
+  slug,
+  title,
+  type
 }) => (
-  <li>
-    <Link href={href}>
-      <a className="block hover:bg-accent hover:text-ground rounded p-8 transition">
+  <li className="h-full">
+    <Link href={`/${type}/${encodeURIComponent(slug)}`}>
+      <a className="block hover:bg-accent hover:text-ground rounded p-8 h-full transition">
         <CoverArt title={title} src={coverArt} width={256} height={256} />
         <div className="text-lg font-medium leading-snug mt-8">{title}</div>
         {releaseDate && <NiceDate date={releaseDate} className="opacity-50" />}

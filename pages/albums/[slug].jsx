@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import { CollectionHeader } from "../../components/CollectionList";
+import { CollectionHeader } from "../../components/Collections";
 import NiceDate from "../../components/NiceDate";
 import PageTitle, { H1 } from "../../components/PageTitle";
 import Tracklist from "../../components/Tracklist";

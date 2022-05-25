@@ -5,7 +5,7 @@ import {
   CollectionItem,
   CollectionList,
   CollectionListSkeleton
-} from "../../../components/CollectionList";
+} from "../../../components/Collections";
 import Empty from "../../../components/Empty";
 import NiceDate from "../../../components/NiceDate";
 
@@ -48,9 +48,10 @@ export const AlbumItem = ({ album, filters }) => {
       <CollectionItem
         coverArt={albumCoverArt}
         key={slug}
-        href={`/albums/${encodeURIComponent(slug)}`}
         releaseDate={releaseDate}
+        slug={slug}
         title={title}
+        type="albums"
       />
     )
   );

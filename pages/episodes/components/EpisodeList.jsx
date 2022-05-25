@@ -5,7 +5,7 @@ import {
   CollectionItem,
   CollectionList,
   CollectionListSkeleton
-} from "../../../components/CollectionList";
+} from "../../../components/Collections";
 import Empty from "../../../components/Empty";
 import NiceDate from "../../../components/NiceDate";
 
@@ -36,10 +36,11 @@ const EpisodeItem = ({ episode }) => {
   return (
     <CollectionItem
       coverArt={episodeCoverArt}
-      href={`/episodes/${encodeURIComponent(slug)}`}
       key={slug}
       releaseDate={releaseDate}
+      slug={slug}
       title={title}
+      type="episodes"
     />
   );
 };
