@@ -8,6 +8,8 @@ import Button from "../components/Button";
 import Icon from "../components/Icon";
 import { H1 } from "../components/PageTitle";
 import { CollectionItem } from "../components/Collections";
+import { generateFeed } from "../helpers/feed.helpers";
+const fs = require("fs");
 
 // Queries
 // ----------------------------------------------------------------------------
@@ -37,6 +39,10 @@ const QUERY_LATEST_COLLECTIONS = gql`
       title
       slug
       ... on episodes_default_Entry {
+        description
+        episodeAudio {
+          url
+        }
         episodeCoverArt {
           url
         }
@@ -120,6 +126,9 @@ export async function getStaticProps(context) {
   const { data } = await client.query({
     query: QUERY_LATEST_COLLECTIONS
   });
+
+  const feed = await generateFeed(data.episodes);
+  fs.writeFileSync("./public/feed.xml", feed);
 
   return {
     props: {
