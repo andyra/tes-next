@@ -7,9 +7,6 @@ import Icon from "../components/Icon";
 import Tooltip from "../components/Tooltip";
 import { formatTime } from "../helpers/time.helpers";
 
-// Components
-// ----------------------------------------------------------------------------
-
 // UGH. Can't seem to get the duration. I can SEE the duration in the log
 // inside audioRef.current, but I can't output it separately.
 const TrackDuration = ({ audioFile }) => {
@@ -27,10 +24,7 @@ const TrackDuration = ({ audioFile }) => {
   );
 };
 
-// Default
-// ----------------------------------------------------------------------------
-
-export default function Tracklist({ tracks }) {
+export const Tracklist = ({ tracks }) => {
   const {
     currentTrack,
     isPlaying,
@@ -211,4 +205,6 @@ export default function Tracklist({ tracks }) {
       ))}
     </ul>
   );
-}
+};
+
+export default Tracklist;

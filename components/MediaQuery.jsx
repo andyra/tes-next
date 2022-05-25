@@ -6,7 +6,7 @@ export const BREAKPOINTS = {
   mobile: { query: "(max-width: 767px)" }
 };
 
-export default function MediaQuery({ children, desktop, mobile }) {
+export const MediaQuery = ({ children, desktop, mobile }) => {
   const isDesktop = useMediaQuery(BREAKPOINTS.desktop);
   const isMobile = useMediaQuery(BREAKPOINTS.mobile);
 
@@ -16,4 +16,6 @@ export default function MediaQuery({ children, desktop, mobile }) {
       {mobile && isMobile && <>{children}</>}
     </>
   );
-}
+};
+
+export default MediaQuery;

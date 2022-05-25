@@ -47,7 +47,7 @@ function normalizeAlbumFilters(filterGroups) {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function AlbumsPage({ filterGroups }) {
+export default function Albums({ filterGroups }) {
   const albumFilters = normalizeAlbumFilters(filterGroups);
   const [filters, setFilters] = useState(getDefaultFilters(albumFilters));
 

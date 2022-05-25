@@ -6,9 +6,6 @@ import Button from "./Button";
 import Icon from "./Icon";
 import { Menu } from "./Menu";
 
-// Components
-// ----------------------------------------------------------------------------
-
 export const NavLink = ({
   className,
   count,
@@ -66,10 +63,7 @@ const Copyright = () => {
   return <>&copy; {randomYear} T.E.S.</>;
 };
 
-// Default
-// ----------------------------------------------------------------------------
-
-export default function Navigation({ navSection }) {
+export const Navigation = ({ navSection }) => {
   const navClasses = cn({
     "row-start-3 flex items-stretch": true,
     "bg-ground rounded-lg md:row-span-1 md:flex-col md:gap-24 md:p-24 md:overflow-y-auto md:text-secondary": true
@@ -144,4 +138,6 @@ export default function Navigation({ navSection }) {
       </nav>
     </>
   );
-}
+};
+
+export default Navigation;

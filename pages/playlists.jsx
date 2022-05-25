@@ -4,7 +4,7 @@ import { ListPlaylists, NewPlaylistButton } from "../components/Playlists";
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Playlistss() {
+export default function Playlists() {
   return (
     <>
       <PageTitle actions={<NewPlaylistButton fullSize />}>Playlists</PageTitle>

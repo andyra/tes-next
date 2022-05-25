@@ -5,7 +5,7 @@ import Icon from "./Icon";
 import { Menu, MenuDivider, MenuHeading, MenuItem } from "./Menu";
 import Tooltip from "./Tooltip";
 
-export default function ThemeSwitcher() {
+export const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -36,4 +36,6 @@ export default function ThemeSwitcher() {
       <MenuItem href="/setlist">Setlist Computor</MenuItem>
     </Menu>
   );
-}
+};
+
+export default ThemeSwitcher;

@@ -8,8 +8,6 @@ import Tracklist from "../../components/Tracklist";
 import { EPISODE } from "../../constants";
 import { querySlugs } from "../../helpers/query.helpers";
 
-import DataRow from "../../components/DataRow";
-
 // Functions
 // ----------------------------------------------------------------------------
 
@@ -52,7 +50,6 @@ function normalizeEpisodeTracks(episode) {
 // ----------------------------------------------------------------------------
 
 export default function Episode({ episode }) {
-  console.log(episode.episodeTracklist);
   const { episodeCoverArt, releaseDate, title } = episode;
 
   return (
@@ -73,31 +70,6 @@ export default function Episode({ episode }) {
         </hgroup>
       </header>
       <Tracklist tracks={normalizeEpisodeTracks(episode)} />
-
-      {/*<section className="divide-y divide-subtle">
-        <DataRow title="title" value={episode.title} />
-        <DataRow title="companionAlbum">
-          <DataRow
-            child
-            title="title"
-            value={episode.companionAlbum[0].title}
-          />
-          <DataRow child title="slug" value={episode.companionAlbum[0].slug} />
-          <DataRow
-            child
-            title="albumCoverArt"
-            value={episode.companionAlbum[0].albumCoverArt[0].url}
-          />
-        </DataRow>
-        <DataRow title="description" value={episode.description} />
-        <DataRow title="episodeAudio" value={episode.episodeAudio[0].url} />
-        <DataRow
-          title="episodeCoverArt"
-          value={episode.episodeCoverArt[0].url}
-        />
-        <DataRow title="releaseDate" value={episode.releaseDate} />
-        <DataRow title="minutes" value={<mark>TODO</mark>} />
-      </section>*/}
     </>
   );
 }

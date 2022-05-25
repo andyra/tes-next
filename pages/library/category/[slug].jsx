@@ -7,25 +7,24 @@ import PageTitle from "../../../components/PageTitle";
 import ArticleList from "../components/ArticleList";
 import CategoryList from "../components/CategoryList";
 
-// Components
-// ----------------------------------------------------------------------------
-
 // Default
 // ----------------------------------------------------------------------------
 
-export default function WikiCategoryPage({ category }) {
+export default function Category({ category }) {
+  const { children, id, title } = category;
+
   return (
     <>
-      <PageTitle>{category.title}</PageTitle>
-      {category.children.length ? (
+      <PageTitle>{title}</PageTitle>
+      {children.length ? (
         <ClientOnly>
-          <CategoryList parentId={category.id} />
+          <CategoryList parentId={id} />
         </ClientOnly>
       ) : (
         ""
       )}
       <ClientOnly>
-        <ArticleList id={category.id} />
+        <ArticleList id={id} />
       </ClientOnly>
     </>
   );

@@ -4,21 +4,15 @@ import client from "../../apollo-client";
 import PageTitle from "../../components/PageTitle";
 import { querySlugs } from "../../helpers/query.helpers";
 
-import DataRow from "../../components/DataRow";
-
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Song({ song }) {
+  const { lyrics, notation, songType, title } = song;
+
   return (
     <>
-      <PageTitle>{song.title}</PageTitle>
-      <section className="divide-y divide-subtle">
-        <DataRow title="lyrics" value={song.lyrics} />
-        <DataRow title="notation" value={song.notation} />
-        <DataRow title="songType" value={song.songType} />
-        <DataRow title="title" value={song.title} />
-      </section>
+      <PageTitle>{title}</PageTitle>
     </>
   );
 }

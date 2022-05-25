@@ -1,7 +1,7 @@
 import cn from "classnames";
 import Icon from "./Icon";
 
-export default function Input({
+export const Input = ({
   className,
   hideLabel,
   icon,
@@ -16,7 +16,7 @@ export default function Input({
   ref,
   required,
   type = "text"
-}) {
+}) => {
   const wrapperClasses = cn({
     "w-full relative": true,
     [className]: className
@@ -65,4 +65,6 @@ export default function Input({
       </div>
     </div>
   );
-}
+};
+
+export default Input;

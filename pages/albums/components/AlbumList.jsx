@@ -57,10 +57,7 @@ export const AlbumItem = ({ album, filters }) => {
   );
 };
 
-// Default
-// ----------------------------------------------------------------------------
-
-export default function AlbumList({ filters }) {
+export const AlbumList = ({ filters }) => {
   const { data, loading, error } = useQuery(QUERY_ALBUMS);
 
   if (loading) {
@@ -81,4 +78,6 @@ export default function AlbumList({ filters }) {
   ) : (
     <Empty>Ain't no albums</Empty>
   );
-}
+};
+
+export default AlbumList;

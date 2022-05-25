@@ -51,15 +51,7 @@ const FilterOption = ({ group, label, value, filters, setFilters }) => {
   );
 };
 
-// Default
-// ----------------------------------------------------------------------------
-
-export default function Filters({
-  className,
-  filterGroups,
-  filters,
-  setFilters
-}) {
+export const Filters = ({ className, filterGroups, filters, setFilters }) => {
   const containerClasses = cn({
     [className]: className
   });
@@ -107,4 +99,6 @@ export default function Filters({
       </Menu>
     </section>
   );
-}
+};
+
+export default Filters;

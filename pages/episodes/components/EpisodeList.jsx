@@ -45,10 +45,7 @@ const EpisodeItem = ({ episode }) => {
   );
 };
 
-// Default
-// ----------------------------------------------------------------------------
-
-export default function EpisodeList() {
+export const EpisodeList = () => {
   const { data, loading, error } = useQuery(QUERY_EPISODES);
 
   if (loading) {
@@ -69,4 +66,6 @@ export default function EpisodeList() {
   ) : (
     <Empty>Ain't no episodes</Empty>
   );
-}
+};
+
+export default EpisodeList;

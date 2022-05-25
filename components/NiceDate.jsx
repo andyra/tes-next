@@ -1,6 +1,6 @@
 import Moment from "moment";
 
-export default function NiceDate({ className, date, format = "full" }) {
+export const NiceDate = ({ className, date, format = "full" }) => {
   if (!date) {
     console.error("Invalid date for NiceDate");
     return false;
@@ -14,4 +14,6 @@ export default function NiceDate({ className, date, format = "full" }) {
   return (
     <time className={className}>{Moment(date).format(FORMATS[format])}</time>
   );
-}
+};
+
+export default NiceDate;

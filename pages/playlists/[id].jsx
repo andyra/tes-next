@@ -9,8 +9,6 @@ import Modal from "../../components/Modal";
 import PageTitle from "../../components/PageTitle";
 import { PLAYLISTS_QUERY } from "../../constants";
 
-import DataRow from "../../components/DataRow";
-
 // TODO When renaming, we somehow need to refetch the query or invalidate the
 // query cache. Right now the default component's state starts off with the
 // query title, is updated correctly when the mutation finishes, but when
@@ -164,35 +162,6 @@ export default function Playlist({ playlist }) {
       >
         {title}
       </PageTitle>
-      <section className="divide-y divide-subtle">
-        <DataRow title="title" value={playlist.title} />
-        <DataRow title="private" value={`${playlist.private}`} />
-        <DataRow title="author" value={playlist.author.username} />
-        <DataRow title="length" value={playlist.playlist.length} />
-        {/*<DataRow title="playlist">
-          {playlist.playlist[0].addedBy && (
-            <DataRow
-              title="└ addedBy"
-              value={playlist.playlist[0].addedBy[0].username}
-            />
-          )}
-          <DataRow
-            title="└ album title"
-            value={playlist.playlist[0].album[0].title}
-          />
-          <DataRow
-            title="└ albumCoverArt"
-            value={playlist.playlist[0].album[0].albumCoverArt[0].url}
-          />
-          <DataRow
-            title="└ album artist"
-            value={playlist.playlist[0].album[0].artist[0].title}
-          />
-          <DataRow title="└ dateAdded" value={playlist.playlist[0].dateAdded} />
-          <DataRow title="└ filePath" value={playlist.playlist[0].filePath} />
-          <DataRow title="└ song" value={playlist.playlist[0].song[0].title} />
-        </DataRow>*/}
-      </section>
     </>
   );
 }

@@ -1,7 +1,22 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 
-export default function CategoryList({ level = 1, parentId }) {
+// Components
+// ----------------------------------------------------------------------------
+
+const CategoryItem = ({ children, slug }) => {
+  return (
+    <li>
+      <Link href={`/library/category/${encodeURIComponent(slug)}`}>
+        <a className="text-2xl text-secondary block p-24 border border-secondary-10 hover:border-accent hover:text-accent">
+          {children}
+        </a>
+      </Link>
+    </li>
+  );
+};
+
+export const CategoryList = ({ level = 1, parentId }) => {
   const PARENT_QUERY = gql`
     query Categories {
       categories(group: "wiki", level: 1) {
@@ -36,16 +51,14 @@ export default function CategoryList({ level = 1, parentId }) {
   return data.categories ? (
     <ul className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
       {data.categories.map(category => (
-        <li key={category.slug}>
-          <Link href={`/library/category/${encodeURIComponent(category.slug)}`}>
-            <a className="text-2xl text-secondary block p-24 border border-secondary-10 hover:border-accent hover:text-accent">
-              {category.title}
-            </a>
-          </Link>
-        </li>
+        <CategoryItem key={category.slug} slug={category.slug}>
+          {category.title}
+        </CategoryItem>
       ))}
     </ul>
   ) : (
     <Empty>Ain't no wiki categories</Empty>
   );
-}
+};
+
+export default CategoryList;

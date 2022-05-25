@@ -6,7 +6,7 @@ import CategoryList from "./components/CategoryList";
 // Default
 // ----------------------------------------------------------------------------
 
-export default function WikisPage() {
+export default function Library() {
   return (
     <>
       <PageTitle center>Library</PageTitle>

@@ -4,30 +4,14 @@ import client from "../../apollo-client";
 import PageTitle from "../../components/PageTitle";
 import { querySlugs } from "../../helpers/query.helpers";
 
-import DataRow from "../../components/DataRow";
-
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Article({ article }) {
-  console.log(article);
+  const { article, category, featuredImage, title } = article;
   return (
     <>
-      <PageTitle>{article.title}</PageTitle>
-      <section className="divide-y divide-subtle">
-        <DataRow title="title" value={article.title} />
-        <DataRow title="article" value={article.article} />
-        <DataRow title="category">
-          <DataRow title="slug" value={article.category[0].slug} />
-          <DataRow title="title" value={article.category[0].title} />
-        </DataRow>
-        <DataRow
-          title="featuredImage"
-          value={
-            article.featuredImage.length ? article.featuredImage[0].url : "n/a"
-          }
-        />
-      </section>
+      <PageTitle>{title}</PageTitle>
     </>
   );
 }

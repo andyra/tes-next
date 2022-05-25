@@ -1,17 +1,23 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 
-export default function ArticleList({ id }) {
-  const { data, loading, error } = useQuery(
-    gql`
-      query Entries {
-        entries(section: "wiki", relatedToCategories: [{ id: "${id}" }]) {
-          slug
-          title
-        }
-      }
-    `
-  );
+// Queries
+// ----------------------------------------------------------------------------
+
+const QUERY_ARTICLES = gql`
+  query Entries {
+    entries(section: "wiki", relatedToCategories: [{ id: "${id}" }]) {
+      slug
+      title
+    }
+  }
+`;
+
+// Components
+// ----------------------------------------------------------------------------
+
+export const ArticleList = ({ id }) => {
+  const { data, loading, error } = useQuery(QUERY_ARTICLES);
 
   if (loading) {
     return <mark>Loading...</mark>;
@@ -35,4 +41,6 @@ export default function ArticleList({ id }) {
   ) : (
     <Empty>Ain't no articles</Empty>
   );
-}
+};
+
+export default ArticleList;

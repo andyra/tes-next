@@ -4,12 +4,12 @@ import cn from "classnames";
 // Default
 // ----------------------------------------------------------------------------
 
-export default function CurrentTrack({
+export const CurrentTrack = ({
   currentTrack,
   isFullscreen,
   isMobile,
   setIsFullscreen
-}) {
+}) => {
   const currentTrackClasses = cn({
     "flex relative": true,
     "items-center gap-8 w-full md:w-1/3": !isFullscreen,
@@ -69,4 +69,6 @@ export default function CurrentTrack({
       )}
     </div>
   );
-}
+};
+
+export default CurrentTrack;

@@ -4,9 +4,6 @@ import { usePlayerContext } from "../context/PlayerContext";
 import Button from "../components/Button";
 import Tracklist from "../components/Tracklist";
 
-// Components
-// ----------------------------------------------------------------------------
-
 const Section = ({ actions, children, title }) => (
   <section>
     <header className="flex items-center justify-between">
@@ -37,10 +34,7 @@ const CurrentTrack = ({ currentTrack }) => {
   );
 };
 
-// Default
-// ----------------------------------------------------------------------------
-
-export default function Queue({ queueIsOpen, setQueueIsOpen }) {
+export const Queue = ({ queueIsOpen, setQueueIsOpen }) => {
   const { currentTrack, nextList, queueList } = usePlayerContext();
 
   const ClearQueueButton = () => {
@@ -90,4 +84,6 @@ export default function Queue({ queueIsOpen, setQueueIsOpen }) {
       </Transition.Child>
     </Transition>
   );
-}
+};
+
+export default Queue;

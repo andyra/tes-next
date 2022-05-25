@@ -33,7 +33,7 @@ function normalizeSongFilters(filterGroups) {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function SongsPage({ filterGroups }) {
+export default function Songs({ filterGroups }) {
   const songFilters = normalizeSongFilters(filterGroups);
   const [filters, setFilters] = useState(getDefaultFilters(songFilters));
 

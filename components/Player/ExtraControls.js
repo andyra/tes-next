@@ -5,13 +5,13 @@ import Icon from "../Icon";
 // Default
 // ----------------------------------------------------------------------------
 
-export default function ExtraControls({
+export const ExtraControls = ({
   isFullscreen,
   queueIsOpen,
   playerIsEmpty,
   setIsFullscreen,
   setQueueIsOpen
-}) {
+}) => {
   const containerClasses = cn({
     "flex items-center gap-8": true,
     "hidden md:flex flex-1 justify-end": !isFullscreen,
@@ -49,4 +49,6 @@ export default function ExtraControls({
       </Button>
     </div>
   );
-}
+};
+
+export default ExtraControls;

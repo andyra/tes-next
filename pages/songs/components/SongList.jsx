@@ -38,10 +38,7 @@ const SongItem = ({ filters, i, song }) => {
   );
 };
 
-// Default
-// ----------------------------------------------------------------------------
-
-export default function SongList({ filters }) {
+export const SongList = ({ filters }) => {
   const { data, loading, error } = useQuery(QUERY_SONGS);
 
   if (loading) {
@@ -62,4 +59,6 @@ export default function SongList({ filters }) {
   ) : (
     <Empty>Ain't no songs</Empty>
   );
-}
+};
+
+export default SongList;

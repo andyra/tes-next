@@ -4,10 +4,7 @@ import Button from "../Button";
 import Icon from "../Icon";
 import { formatTime } from "../../helpers/time.helpers";
 
-// Default
-// ----------------------------------------------------------------------------
-
-export default function PlayerControls({
+export const PlayerControls = ({
   duration,
   elapsed,
   isFullscreen,
@@ -22,7 +19,7 @@ export default function PlayerControls({
   toggleLoop,
   togglePlay,
   toggleRandom
-}) {
+}) => {
   const playerControlClasses = cn({
     "flex flex-col gap-4": true,
     "md:w-1/3": !isFullscreen,
@@ -141,4 +138,6 @@ export default function PlayerControls({
       </div>
     </div>
   );
-}
+};
+
+export default PlayerControls;

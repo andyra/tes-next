@@ -38,7 +38,7 @@ const SongList = () => {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function VideosPage() {
+export default function Videos() {
   return (
     <>
       <PageTitle>Videos</PageTitle>

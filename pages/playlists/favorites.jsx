@@ -5,9 +5,6 @@ import Button from "../../components/Button";
 import ClientOnly from "../../components/ClientOnly";
 import PageTitle from "../../components/PageTitle";
 
-// Components
-// ----------------------------------------------------------------------------
-
 // Default
 // ----------------------------------------------------------------------------
 

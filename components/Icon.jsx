@@ -1,6 +1,6 @@
 import cn from "classnames";
 
-export default function Icon({ className, name, solid }) {
+export const Icon = ({ className, name, solid }) => {
   const classes = cn({
     "text-current flex": true,
     [className]: className
@@ -11,4 +11,6 @@ export default function Icon({ className, name, solid }) {
       <ion-icon name={solid ? name : `${name}-outline`} />
     </span>
   );
-}
+};
+
+export default Icon;

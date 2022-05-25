@@ -26,10 +26,7 @@ import Queue from "../Queue";
 // seeked: set state isPlaying to true
 // ratechange: set state rate
 
-// Default
-// -----------------------------------------------------------------------------
-
-export default function Player() {
+export const Player = () => {
   const {
     currentTrack,
     isPlaying,
@@ -238,4 +235,6 @@ export default function Player() {
       <Queue queueIsOpen={queueIsOpen} setQueueIsOpen={setQueueIsOpen} />
     </>
   );
-}
+};
+
+export default Player;
