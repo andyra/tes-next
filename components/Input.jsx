@@ -11,14 +11,16 @@ export const Input = ({
   label,
   labelClassName,
   name,
-  onChange,
   placeholder,
   ref,
   required,
-  type = "text"
+  rounded,
+  type = "text",
+  ...props
 }) => {
   const wrapperClasses = cn({
-    "w-full relative": true,
+    relative: true,
+    "rounded-full": rounded,
     [className]: className
   });
 
@@ -30,12 +32,14 @@ export const Input = ({
 
   const inputClasses = cn({
     "block w-full h-40": true,
-    "bg-ground rounded outline-none": true,
+    "bg-ground outline-none": true,
     "focus:border-accent focus:ring focus:ring-accent-25": true,
     "border border-primary-25": !glass,
     "bg-primary-5 focus:bg-primary-5": glass,
     "px-12": !icon,
     "pl-32 pr-12": icon,
+    rounded: !rounded,
+    "rounded-full": rounded,
     [inputClassName]: inputClassName
   });
 
@@ -50,16 +54,16 @@ export const Input = ({
           id={name}
           defaultValue={defaultValue}
           name={name}
-          onChange={onChange}
           placeholder={placeholder}
           ref={ref}
           required={required}
           type={type}
+          {...props}
         />
         {icon && (
           <Icon
             name={icon}
-            className="absolute top-1/2 left-8 transform -translate-y-1/2 opacity-50"
+            className="absolute top-1/2 left-12 transform -translate-y-1/2 opacity-50"
           />
         )}
       </div>

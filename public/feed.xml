@@ -25,9 +25,9 @@
         </itunes:owner>
         <itunes:explicit>no</itunes:explicit>
         <itunes:category text="Comedy" />
-        <itunes:image href="https://thiseveningsshow.s3.amazonaws.com/episodes/this-evenings-show.jpg" />
+        <itunes:image href="https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg" />
         <image>
-          <url>https://thiseveningsshow.s3.amazonaws.com/episodes/this-evenings-show.jpg</url>
+          <url>https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg</url>
           <title>This Evening's Show</title>
           <link>https://tes.fm/</link>
         </image>

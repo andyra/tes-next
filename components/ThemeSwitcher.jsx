@@ -16,8 +16,8 @@ export const ThemeSwitcher = () => {
   return (
     <Menu
       trigger={
-        <Button circle size="lg">
-          <Icon name="Gear" />
+        <Button circle size="lg" variant="glass">
+          <Icon name="Overflow" />
         </Button>
       }
     >
@@ -32,8 +32,12 @@ export const ThemeSwitcher = () => {
         Dark
       </MenuItem>
       <MenuDivider />
-      <MenuItem href="/videos">Videos</MenuItem>
-      <MenuItem href="/setlist">Setlist Computor</MenuItem>
+      <MenuItem iconLeft="Video" href="/videos">
+        Videos
+      </MenuItem>
+      <MenuItem iconLeft="Music" href="/setlist">
+        Setlist Computor
+      </MenuItem>
     </Menu>
   );
 };

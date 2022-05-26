@@ -7,18 +7,10 @@ import Button from "./Button";
 import Input from "./Input";
 import Navigation from "./Navigation";
 import Player from "./Player";
-import ThemeSwitcher from "./ThemeSwitcher";
+import Toolbar from "./Toolbar";
 
 // Components
 // ----------------------------------------------------------------------------
-
-const Toolbar = () => (
-  <section className="sticky top-0 z-10 p-16 bg-ground">
-    <div className="flex items-center justify-end">
-      <ThemeSwitcher />
-    </div>
-  </section>
-);
 
 const Main = ({ children }) => (
   <main className="h-full overflow-y-auto bg-ground rounded-lg">

@@ -7,7 +7,7 @@ export const CoverArt = ({
   src,
   title,
   width,
-  ...other
+  ...props
 }) => {
   const coverArtClasses = cn({
     "rounded-lg overflow-hidden": true,

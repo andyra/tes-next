@@ -91,14 +91,14 @@ const icons = {
   X: X
 };
 
-export const Icon = ({ className, name, size, ...other }) => {
+export const Icon = ({ className, name, size, ...props }) => {
   let IconComponent = icons[name];
   const classes = cn({
     "w-em h-em": !size,
     [className]: className
   });
 
-  return <IconComponent className={classes} {...other} />;
+  return <IconComponent className={classes} {...props} />;
 };
 
 export default Icon;

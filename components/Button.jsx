@@ -27,7 +27,7 @@ export default function Button({
   type = "button",
   variant = "border",
   url,
-  ...other
+  ...props
 }) {
   const buttonClasses = cn({
     "flex items-center justify-center gap-4 rounded-full hover:bg-primary-10 transition": true,
@@ -43,7 +43,7 @@ export default function Button({
   });
 
   return url ? (
-    <Link className={buttonClasses} href={url} {...other}>
+    <Link className={buttonClasses} href={url} {...props}>
       <a className={buttonClasses}>
         {iconLeft && <Icon name={iconLeft} />}
         {children}
@@ -55,7 +55,7 @@ export default function Button({
       className={buttonClasses}
       disabled={disabled}
       type={type}
-      {...other}
+      {...props}
     >
       {iconLeft && <Icon name={iconLeft} />}
       {children}
