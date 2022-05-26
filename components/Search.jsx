@@ -1,41 +1,51 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Combobox } from "@headlessui/react";
 import Input from "./Input";
 
-const people = [
-  { id: 1, name: "Durward Reynolds", unavailable: false },
-  { id: 2, name: "Kenton Towne", unavailable: false },
-  { id: 3, name: "Therese Wunsch", unavailable: false },
-  { id: 4, name: "Benedict Kessler", unavailable: true },
-  { id: 5, name: "Katelyn Rohan", unavailable: false }
+const results = [
+  {
+    itemType: "episode",
+    title: "Urban Legends of Adobega County",
+    href: "/episodes/foo"
+  },
+  { itemType: "album", title: "Live at the Golden Owl", href: "/albums/foo" },
+  { itemType: "song", title: "Bunnies are Enjoyable", href: "/songs/foo" },
+  { itemType: "article", title: "Dr. Xing", href: "/library/foo" },
+  { itemType: "video", title: "Pope's Brand Coffee", href: "/videos/foo" }
 ];
 
 export const Search = () => {
-  const [selectedPerson, setSelectedPerson] = useState(people[0]);
+  const [selectedItem, setSelectedItem] = useState("");
   const [query, setQuery] = useState("");
 
-  const filteredPeople =
+  const filteredResults =
     query === ""
-      ? people
-      : people.filter(person => {
-          return person.name.toLowerCase().includes(query.toLowerCase());
+      ? results
+      : results.filter(item => {
+          return item.title.toLowerCase().includes(query.toLowerCase());
         });
+
+  function handleSelect(selectedItem) {
+    console.log("Go to the thing!");
+    console.log(selectedItem);
+  }
 
   return (
     <>
-      <Combobox value={selectedPerson} onChange={setSelectedPerson}>
+      <Combobox value={selectedItem} onChange={setSelectedItem}>
         <Combobox.Input
-          onChange={event => setQuery(event.target.value)}
+          onChange={e => setQuery(e.target.value)}
           displayValue={person => person.name}
         />
         <Combobox.Options>
-          {filteredPeople.map(person => (
-            <Combobox.Option
-              key={person.id}
-              value={person}
-              disabled={person.unavailable}
-            >
-              {person.name}
+          {filteredResults.map(item => (
+            <Combobox.Option key={item.title} value={item}>
+              <Link href={item.href}>
+                <a>
+                  {item.itemType}: {item.title}
+                </a>
+              </Link>
             </Combobox.Option>
           ))}
         </Combobox.Options>

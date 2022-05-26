@@ -7,7 +7,7 @@ import { querySlugs } from "../../helpers/query.helpers";
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Article({ article }) {
+export default function Article({ articleItem }) {
   const { article, category, featuredImage, title } = article;
   return (
     <>
@@ -59,7 +59,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      article: data.entry,
+      articleItem: data.entry,
       navSection: "Wiki",
       pageTitle: data.entry.title
     }
