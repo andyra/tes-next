@@ -3,30 +3,53 @@ import { gql, useLazyQuery } from "@apollo/client";
 import Link from "next/link";
 import cn from "classnames";
 import ClientOnly from "./ClientOnly";
+import Empty from "./Empty";
 import Input from "./Input";
 import { useDebounce } from "../helpers/hooks";
+
+// TODO: Sort results by sectionHandle
+// TODO: Highlight term
 
 // Queries
 // ----------------------------------------------------------------------------
 
 const QUERY_SEARCH = gql`
   query Entries($searchTerm: String) {
-    entries(section: "albums", search: $searchTerm) {
+    entries(search: $searchTerm) {
       title
-    }
-  }
-`;
-
-const QUERY_ALBUMS = gql`
-  query Entries {
-    entries(section: "albums", search: "golden") {
-      title
+      slug
+      uri
+      sectionHandle
     }
   }
 `;
 
 // Components
 // ----------------------------------------------------------------------------
+
+const ResultsList = ({ debouncedSearchTerm, results }) => {
+  return (
+    <section className="p-16 rounded-lg border-2 border-primary-25">
+      <p className="text-primary-50 text-center">
+        {results.length} results for "<strong>{debouncedSearchTerm}</strong>":
+      </p>
+      <ul className="-mx-8 -mb-8">
+        {results.map(result => (
+          <li key={result.title}>
+            <Link href={`/${result.uri}/`}>
+              <a className="flex items-center justify-between gap-8 h-40 px-8 rounded-lg hover:bg-primary-10 transition">
+                {result.title}
+                <span className="flex items-center rounded-full border border-primary-25 px-8 h-24">
+                  {result.sectionHandle}
+                </span>
+              </a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+};
 
 const Search2 = () => {
   // State
@@ -69,14 +92,14 @@ const Search2 = () => {
       />
       {isSearching && <div>Searching ...</div>}
       {results.length ? (
-        <ul>
-          {results.map(result => (
-            <li key={result.title}>
-              <h4>{result.title}</h4>
-            </li>
-          ))}
-        </ul>
-      ) : null}
+        <ResultsList
+          debouncedSearchTerm={debouncedSearchTerm}
+          results={results}
+        />
+      ) : (
+        debouncedSearchTerm.length > 0 &&
+        !isSearching && <Empty>No results for {debouncedSearchTerm}</Empty>
+      )}
     </>
   );
 };
