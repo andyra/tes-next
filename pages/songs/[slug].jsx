@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import PageTitle from "../../components/PageTitle";
-import { querySlugs } from "../../helpers/query.helpers";
+import { querySlugs } from "../../helpers";
 
 // Default
 // ----------------------------------------------------------------------------

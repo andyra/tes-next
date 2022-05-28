@@ -137,7 +137,7 @@ export const Navigation = ({ navSection }) => {
           />
           <NavLink title="Contact" url="/contact" icon="Phone" hide="mobile" />
         </div>
-        <Footer />
+        {/*<Footer />*/}
       </nav>
     </>
   );

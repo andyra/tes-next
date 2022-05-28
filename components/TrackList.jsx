@@ -5,7 +5,7 @@ import { usePlayerContext } from "../context/PlayerContext";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Tooltip from "../components/Tooltip";
-import { formatTime } from "../helpers/time.helpers";
+import { formatTime } from "../helpers";
 
 // UGH. Can't seem to get the duration. I can SEE the duration in the log
 // inside audioRef.current, but I can't output it separately.

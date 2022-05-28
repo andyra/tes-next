@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Button from "./Button";
@@ -67,7 +68,7 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
     <section className={containerClasses}>
       <Menu trigger={<Button iconRight="ChevronDown">Filters</Button>}>
         {filterGroups.map(filterGroup => (
-          <>
+          <Fragment key={filterGroup.label}>
             <MenuHeading>{filterGroup.label}</MenuHeading>
             <FilterOption
               group={filterGroup.value}
@@ -87,7 +88,7 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
                 value={option.value}
               />
             ))}
-          </>
+          </Fragment>
         ))}
       </Menu>
     </section>

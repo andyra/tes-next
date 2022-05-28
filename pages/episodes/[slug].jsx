@@ -6,7 +6,7 @@ import NiceDate from "../../components/NiceDate";
 import PageTitle, { H1 } from "../../components/PageTitle";
 import Tracklist from "../../components/Tracklist";
 import { EPISODE } from "../../constants";
-import { querySlugs } from "../../helpers/query.helpers";
+import { querySlugs } from "../../helpers";
 
 // Functions
 // ----------------------------------------------------------------------------
