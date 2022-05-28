@@ -1,56 +1,56 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import cn from "classnames";
 import Link from "next/link";
-import { Combobox } from "@headlessui/react";
 import Input from "./Input";
 
-const results = [
-  {
-    itemType: "episode",
-    title: "Urban Legends of Adobega County",
-    href: "/episodes/foo"
-  },
-  { itemType: "album", title: "Live at the Golden Owl", href: "/albums/foo" },
-  { itemType: "song", title: "Bunnies are Enjoyable", href: "/songs/foo" },
-  { itemType: "article", title: "Dr. Xing", href: "/library/foo" },
-  { itemType: "video", title: "Pope's Brand Coffee", href: "/videos/foo" }
-];
+// Functions
+// ----------------------------------------------------------------------------
 
-export const Search = () => {
-  const [selectedItem, setSelectedItem] = useState("");
-  const [query, setQuery] = useState("");
+function debounce(callback, wait) {
+  let timeoutId = null;
+  return (...args) => {
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => {
+      callback.apply(null, args);
+    }, wait);
+  };
+}
 
-  const filteredResults =
-    query === ""
-      ? results
-      : results.filter(item => {
-          return item.title.toLowerCase().includes(query.toLowerCase());
-        });
+// Components
+// ----------------------------------------------------------------------------
 
-  function handleSelect(selectedItem) {
-    console.log("Go to the thing!");
-    console.log(selectedItem);
-  }
+const Popover = ({ isOpen, isLoading }) => {
+  const classes = cn({
+    "bg-ground border border-primary-25 rounded-lg p-24 absolute top-64 right-8": true,
+    hidden: !isOpen
+  });
+
+  return <section className={classes}>Loading: {`${isLoading}`}</section>;
+};
+
+const Search = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const doSearch = useCallback(
+    debounce(searchTerm => {
+      console.log(searchTerm);
+    }, 500),
+    []
+  );
+
+  useEffect(() => {
+    if (searchTerm.length > 0) {
+      setIsLoading(true);
+      doSearch(searchTerm);
+    } else {
+      setIsLoading(false);
+    }
+  }, [searchTerm]);
 
   return (
     <>
-      <Combobox value={selectedItem} onChange={setSelectedItem}>
-        <Combobox.Input
-          onChange={e => setQuery(e.target.value)}
-          displayValue={person => person.name}
-        />
-        <Combobox.Options>
-          {filteredResults.map(item => (
-            <Combobox.Option key={item.title} value={item}>
-              <Link href={item.href}>
-                <a>
-                  {item.itemType}: {item.title}
-                </a>
-              </Link>
-            </Combobox.Option>
-          ))}
-        </Combobox.Options>
-      </Combobox>
-      {/*      <Input
+      <Input
         className="w-full md:w-256 bg-ground"
         hideLabel
         icon="Search"
@@ -60,9 +60,10 @@ export const Search = () => {
         type="search"
         glass
         onChange={e => {
-          handleChange(e);
+          setSearchTerm(e.target.value);
         }}
-      />*/}
+      />
+      <Popover isOpen={searchTerm.length > 0} isLoading={isLoading} />
     </>
   );
 };
