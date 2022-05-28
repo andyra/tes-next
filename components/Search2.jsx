@@ -9,33 +9,21 @@ import { useDebounce } from "../helpers/hooks";
 // Queries
 // ----------------------------------------------------------------------------
 
-const QUERY_ALBUMS = gql`
-  query Entries {
-    entries(section: "albums") {
+const QUERY_SEARCH = gql`
+  query Entries($searchTerm: String) {
+    entries(section: "albums", search: $searchTerm) {
       title
     }
   }
 `;
 
-// Functions
-// ----------------------------------------------------------------------------
-
-// API search function
-function searchCharacters(search) {
-  const apiKey = "f9dfb1e8d466d36c27850bedd2047687";
-  return fetch(
-    `https://gateway.marvel.com/v1/public/comics?apikey=${apiKey}&titleStartsWith=${search}`,
-    {
-      method: "GET"
+const QUERY_ALBUMS = gql`
+  query Entries {
+    entries(section: "albums", search: "golden") {
+      title
     }
-  )
-    .then(r => r.json())
-    .then(r => r.data.results)
-    .catch(error => {
-      console.error(error);
-      return [];
-    });
-}
+  }
+`;
 
 // Components
 // ----------------------------------------------------------------------------
@@ -46,25 +34,23 @@ const Search2 = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [results, setResults] = useState([]);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
-  const [executeQuery, { loading, data }] = useLazyQuery(QUERY_ALBUMS);
+  const [executeQuery, { loading, data }] = useLazyQuery(QUERY_SEARCH);
 
   // Effect for API call
-  useEffect(
-    () => {
-      if (debouncedSearchTerm) {
-        setIsSearching(true);
-        // executeQuery();
-        executeQuery().then(stuff => {
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+      executeQuery({ variables: { searchTerm: debouncedSearchTerm } }).then(
+        stuff => {
           setIsSearching(false);
           setResults(stuff.data.entries);
-        });
-      } else {
-        setResults([]);
-        setIsSearching(false);
-      }
-    },
-    [debouncedSearchTerm] // Only call effect if debounced search term changes
-  );
+        }
+      );
+    } else {
+      setResults([]);
+      setIsSearching(false);
+    }
+  }, [debouncedSearchTerm]);
 
   return (
     <>
@@ -73,7 +59,7 @@ const Search2 = () => {
         hideLabel
         icon="Search"
         label="Search"
-        placeholder="What are you looking for?"
+        placeholder="Search for…"
         rounded
         type="search"
         glass
@@ -82,7 +68,6 @@ const Search2 = () => {
         }}
       />
       {isSearching && <div>Searching ...</div>}
-      {console.log(results)}
       {results.length ? (
         <ul>
           {results.map(result => (
