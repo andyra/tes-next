@@ -116,7 +116,7 @@ export const Tracklist = ({ tracks }) => {
     });
 
     return (
-      <div className="flex items-center justify-center relative h-32 w-32">
+      <div className="flex items-center justify-center relative h-32 w-32 flex-shrink-0">
         <span
           className={`text-primary-50 ${track.audioFile &&
             "group-hover:opacity-0"}`}
@@ -155,7 +155,7 @@ export const Tracklist = ({ tracks }) => {
         <div className="flex-1 flex items-center gap-8">
           <PlayPauseButton track={track} i={i} />
           <div
-            className={`text-2xl flex items-center gap-8 ${
+            className={`text-xl md:text-2xl flex items-center gap-8 ${
               highlightTrack(track) ? "text-accent" : ""
             }`}
           >

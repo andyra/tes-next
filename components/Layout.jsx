@@ -23,7 +23,7 @@ const Container = ({ children, maxWidth, spacing }) => {
     "mx-auto p-24": true,
     [maxWidth]: maxWidth,
     "max-w-screen-lg": !maxWidth,
-    [spacing]: spacing
+    "space-y-24 md:space-y-64": spacing
   });
 
   return <div className={containerClasses}>{children}</div>;

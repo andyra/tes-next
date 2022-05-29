@@ -58,7 +58,7 @@ export async function getStaticProps() {
   return {
     props: {
       pageTitle: "Episodes",
-      spacing: "space-y-64"
+      spacing: true
     }
   };
 }

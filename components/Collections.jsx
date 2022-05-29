@@ -5,7 +5,7 @@ import NiceDate from "./NiceDate";
 import { H1 } from "./PageTitle";
 
 export const CollectionHeader = ({ coverArt, title, children }) => (
-  <header className="flex flex-col lg:flex-row lg:items-end gap-24 mb-48">
+  <header className="flex flex-col lg:flex-row lg:items-end gap-24 mb-16 mb:mb-48">
     <CoverArt
       src={coverArt}
       className="mx-auto md:mx-0 w-256 h-256"

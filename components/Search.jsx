@@ -7,10 +7,16 @@ import ClientOnly from "./ClientOnly";
 import Empty from "./Empty";
 import Input from "./Input";
 import Loader from "./Loader";
-import { useDebounce } from "../helpers/hooks";
+import { useDebounce, useKeypress } from "../helpers/hooks";
 
 // TODO: Highlight term
 // TODO: Hotkey arrow down focus on results
+// TODO: Don't show noresults until results come back
+// TODO: On esacpe
+//       • Close popover
+//       • Clear input value
+//       • Blur focus on input
+// TODO: Accessibility for popover
 
 // Queries
 // ----------------------------------------------------------------------------
@@ -47,15 +53,15 @@ function sortResults(results) {
 // Components
 // ----------------------------------------------------------------------------
 
-const ResultsPopover = ({ isOpen, results, setIsOpen }) => {
+const ResultsPopover = ({ isPopoverOpen, results, setIsPopoverOpen }) => {
   const ref = useRef();
 
   useEffect(() => {
     const checkIfClickedOutside = e => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
-      if (isOpen && ref.current && !ref.current.contains(e.target)) {
-        setIsOpen(false);
+      if (isPopoverOpen && ref.current && !ref.current.contains(e.target)) {
+        setIsPopoverOpen(false);
       }
     };
 
@@ -65,13 +71,13 @@ const ResultsPopover = ({ isOpen, results, setIsOpen }) => {
       // Cleanup the event listener
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
-  }, [isOpen]);
+  }, [isPopoverOpen]);
 
   return (
     <Transition
       as="section"
       className="bg-ground p-16 rounded-lg border-2 border-primary-25 w-320 absolute right-8 top-56 z-10"
-      show={isOpen}
+      show={isPopoverOpen}
       enter="transition-opacity duration-100"
       enterFrom="opacity-0"
       enterTo="opacity-100"
@@ -106,7 +112,7 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [results, setResults] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   // Constants
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -117,10 +123,10 @@ const Search = () => {
   useEffect(() => {
     if (debouncedSearchTerm) {
       setIsSearching(true);
-      setIsOpen(true);
+      setIsPopoverOpen(true);
       executeQuery({ variables: { searchTerm: debouncedSearchTerm } }).then(
-        data => {
-          const sortedResults = sortResults(data.data.entries);
+        results => {
+          const sortedResults = sortResults(results.data.entries);
           setIsSearching(false);
           setResults(sortedResults);
         }
@@ -128,9 +134,13 @@ const Search = () => {
     } else {
       setResults([]);
       setIsSearching(false);
-      setIsOpen(false);
+      setIsPopoverOpen(false);
     }
   }, [debouncedSearchTerm]);
+
+  useKeypress("Escape", () => {
+    setIsPopoverOpen(false);
+  });
 
   return (
     <>
@@ -147,7 +157,11 @@ const Search = () => {
           setSearchTerm(e.target.value);
         }}
       />
-      <ResultsPopover isOpen={isOpen} results={results} setIsOpen={setIsOpen} />
+      <ResultsPopover
+        isPopoverOpen={isPopoverOpen}
+        results={results}
+        setIsPopoverOpen={setIsPopoverOpen}
+      />
     </>
   );
 };

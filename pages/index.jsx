@@ -134,7 +134,7 @@ export async function getStaticProps(context) {
     props: {
       albums: data.albums,
       episodes: data.episodes,
-      spacing: "space-y-64"
+      spacing: true
     }
   };
 }

@@ -84,7 +84,7 @@ export async function getStaticProps() {
     props: {
       // maxWidth: "max-w-screen-lg",
       pageTitle: "Contact",
-      spacing: "space-y-64"
+      spacing: true
     }
   };
 }

@@ -10,7 +10,7 @@ export default function Library() {
   return (
     <>
       <PageTitle center>Library</PageTitle>
-      <p className="text-4xl text-center max-w-screen-lg mx-auto">
+      <p className="text-2xl md:text-4xl md:text-center max-w-screen-lg mx-auto">
         The Grand Library of all things Akabius. Learn about, for instance,
         Multiple Mountain, Poor Ohr, and Zaso Jacquzi.
       </p>
@@ -29,7 +29,7 @@ export async function getStaticProps() {
     props: {
       maxWidth: "max-w-full",
       pageTitle: "Library",
-      spacing: "space-y-64"
+      spacing: true
     }
   };
 }
