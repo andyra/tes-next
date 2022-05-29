@@ -122,9 +122,9 @@ export const Player = () => {
   }
 
   function addToPrevList(item) {
-    const newprevList = [...prevList];
-    newprevList.push(item);
-    setPrevList(newprevList);
+    const newPrevList = [...prevList];
+    newPrevList.push(item);
+    setPrevList(newPrevList);
   }
 
   function skipNext() {
@@ -146,10 +146,10 @@ export const Player = () => {
   }
 
   function skipBack() {
-    const newprevList = [...prevList];
-    if (newprevList.length) {
-      const newCurrentTrack = newprevList.pop();
-      setPrevList(newprevList);
+    const newPrevList = [...prevList];
+    if (newPrevList.length) {
+      const newCurrentTrack = newPrevList.pop();
+      setPrevList(newPrevList);
       setCurrentTrack(newCurrentTrack);
 
       const newnextList = [...nextList];

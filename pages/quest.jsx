@@ -1,5 +1,5 @@
-import Search2 from "../components/Search2";
+import Search from "../components/Search";
 
 export default function Quest() {
-  return <Search2 />;
+  return <Search />;
 }

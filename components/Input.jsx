@@ -1,5 +1,7 @@
+import { Transition } from "@headlessui/react";
 import cn from "classnames";
 import Icon from "./Icon";
+import Loader from "./Loader";
 
 export const Input = ({
   className,
@@ -8,6 +10,7 @@ export const Input = ({
   defaultValue,
   glass,
   inputClassName,
+  isLoading = false,
   label,
   labelClassName,
   name,
@@ -65,6 +68,11 @@ export const Input = ({
             name={icon}
             className="absolute top-1/2 left-12 transform -translate-y-1/2 opacity-50"
           />
+        )}
+        {isLoading && (
+          <div className="absolute top-1/2 right-8 transform -translate-y-1/2 flex items-center">
+            <Loader className="h-20 w-20 opacity-50" />
+          </div>
         )}
       </div>
     </div>

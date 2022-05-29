@@ -1,91 +1,136 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { gql, useLazyQuery } from "@apollo/client";
 import Link from "next/link";
+import { Transition } from "@headlessui/react";
 import cn from "classnames";
 import ClientOnly from "./ClientOnly";
+import Empty from "./Empty";
 import Input from "./Input";
-import { debounce } from "../helpers";
+import Loader from "./Loader";
+import { useDebounce } from "../helpers/hooks";
 
-/*
-
-onInputChange, the searchTerm is updated and the popover opens. it also triggers a debounce
-
-*/
+// TODO: Highlight term
+// TODO: Hotkey arrow down focus on results
 
 // Queries
 // ----------------------------------------------------------------------------
 
-// https://stackoverflow.com/questions/58380195/how-to-execute-uselazyquery-programmatically
 const QUERY_SEARCH = gql`
-  query Entries {
-    entries(section: "albums", search: $searchTerm) {
+  query Entries($searchTerm: String) {
+    entries(search: $searchTerm) {
       title
+      slug
+      uri
+      sectionHandle
     }
   }
 `;
 
-const QUERY_ALBUMS = gql`
-  query Entries {
-    entries(section: "albums") {
-      title
-    }
+// Functions
+// ----------------------------------------------------------------------------
+
+function compareSectionHandles(a, b) {
+  if (a.sectionHandle < b.sectionHandle) {
+    return -1;
   }
-`;
+  if (a.sectionHandle > b.sectionHandle) {
+    return 1;
+  }
+  return 0;
+}
+
+function sortResults(results) {
+  const sortedResults = [...results];
+  return sortedResults.sort(compareSectionHandles);
+}
 
 // Components
 // ----------------------------------------------------------------------------
 
-const Popover = ({ isOpen, isLoading, data }) => {
-  const classes = cn({
-    "bg-ground border border-primary-25 rounded-lg p-24 absolute top-64 right-8": true,
-    hidden: !isOpen
-  });
+const ResultsPopover = ({ isOpen, results, setIsOpen }) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    const checkIfClickedOutside = e => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (isOpen && ref.current && !ref.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [isOpen]);
 
   return (
-    <section className={classes}>
-      {isLoading && <div className="bg-primary-10">Loading…</div>}
-      {data && <div className="bg-accent">DATA HERE</div>}
-    </section>
+    <Transition
+      as="section"
+      className="bg-ground p-16 rounded-lg border-2 border-primary-25 w-320 absolute right-8 top-56 z-10"
+      show={isOpen}
+      enter="transition-opacity duration-100"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+      leave="transition-opacity duration-100"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+    >
+      {results.length ? (
+        <ul className="-mx-8 -mb-8" ref={ref}>
+          {results.map(result => (
+            <li key={result.title}>
+              <Link href={`/${result.uri}/`}>
+                <a className="flex items-center justify-between gap-8 h-40 px-8 rounded-lg hover:bg-primary-10 transition">
+                  {result.title}
+                  <span className="flex items-center rounded-full border border-primary-25 px-8 h-24">
+                    {result.sectionHandle}
+                  </span>
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <Empty>No results</Empty>
+      )}
+    </Transition>
   );
 };
 
 const Search = () => {
   // State
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState(null);
+  const [isSearching, setIsSearching] = useState(false);
+  const [results, setResults] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
-  // GQL Query
-  // const [executeQuery, { loading, data }] = useLazyQuery(QUERY_SEARCH);
-  const [executeQuery, { loading, data }] = useLazyQuery(QUERY_ALBUMS);
+  // Constants
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const [executeQuery, { loading, data }] = useLazyQuery(QUERY_SEARCH);
+  const noResults = debouncedSearchTerm.length > 0 && results.length === 0;
 
-  const handleSearch = useCallback(
-    debounce(searchTerm => {
-      console.log(`Search for "${searchTerm}"`);
-      // executeQuery({ variables: { searchTerm: searchTerm } });
-      executeQuery();
-    }, 500),
-    []
-  );
-
-  if (data) {
-    console.log(data);
-  }
-
-  if (loading) {
-    console.log("Loading");
-  }
-
+  // Effect for API call
   useEffect(() => {
-    if (searchTerm.length > 0) {
-      handleSearch(searchTerm);
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+      setIsOpen(true);
+      executeQuery({ variables: { searchTerm: debouncedSearchTerm } }).then(
+        data => {
+          const sortedResults = sortResults(data.data.entries);
+          setIsSearching(false);
+          setResults(sortedResults);
+        }
+      );
+    } else {
+      setResults([]);
+      setIsSearching(false);
+      setIsOpen(false);
     }
-  }, [searchTerm]);
-
-  function handleChange(e) {
-    const value = e.target.value;
-    // Open Popover
-  }
+  }, [debouncedSearchTerm]);
 
   return (
     <>
@@ -93,20 +138,16 @@ const Search = () => {
         className="w-full md:w-256 bg-ground"
         hideLabel
         icon="Search"
+        isLoading={isSearching}
         label="Search"
-        placeholder="What are you looking for?"
+        placeholder="Search for…"
         rounded
-        type="search"
         glass
         onChange={e => {
-          handleChange(e);
+          setSearchTerm(e.target.value);
         }}
       />
-      {/*<Popover
-        isOpen={searchTerm.length > 0}
-        isLoading={isLoading}
-        data={data}
-      />*/}
+      <ResultsPopover isOpen={isOpen} results={results} setIsOpen={setIsOpen} />
     </>
   );
 };
