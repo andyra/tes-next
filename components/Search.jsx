@@ -86,7 +86,7 @@ const ResultsPopover = ({ isPopoverOpen, results, setIsPopoverOpen }) => {
       leaveTo="opacity-0"
     >
       {results.length ? (
-        <ul className="-mx-8 -mb-8" ref={ref}>
+        <ul className="-mx-8 -my-8" ref={ref}>
           {results.map(result => (
             <li key={result.title}>
               <Link href={`/${result.uri}/`}>

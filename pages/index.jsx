@@ -55,8 +55,12 @@ const QUERY_LATEST_COLLECTIONS = gql`
 // Components
 // ----------------------------------------------------------------------------
 
-const PlayerButton = ({ children }) => (
-  <button className="text-3xl flex items-center justify-center border-2 border-primary-10 hover:border-accent hover:text-accent rounded-xl p-48 w-full transition">
+const PlayerButton = ({ children, title }) => (
+  <button className="text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2 border-primary-10 hover:border-accent hover:text-accent w-full transition">
+    <div className="flex items-center justify-center gap-12">
+      <Icon name="Play" />
+      {title}
+    </div>
     {children}
   </button>
 );
@@ -83,13 +87,22 @@ export default function Home({ albums, episodes }) {
         </p>
       </header>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-24">
-        <PlayerButton>Play Latest Episode</PlayerButton>
-        <PlayerButton>Listen to the Radio</PlayerButton>
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-24">
+        <PlayerButton title="Play Latest Episode">
+          <div className="flex items-center justify-center gap-8 text-sm mt-12">
+            <figure className="h-40 w-40 rounded bg-primary-10" />
+            <div>
+              Episode Title
+              <br />
+              Release Date
+            </div>
+          </div>
+        </PlayerButton>
+        <PlayerButton title="Listen to the Radio" />
       </section>
 
       <section>
-        <h2 className="text-2xl text-center mb-16">What's New</h2>
+        <h2 className="text-2xl text-center mb-16">Latest Releases</h2>
         <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 -mx-8 relative">
           {albums.map(album => (
             <CollectionItem
