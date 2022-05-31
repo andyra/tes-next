@@ -34,8 +34,7 @@ export const Input = ({
   });
 
   const inputClasses = cn({
-    "block w-full h-40": true,
-    "bg-ground outline-none": true,
+    "block w-full h-40 bg-ground outline-none text-primary placeholder-primary-50": true,
     "focus:border-accent focus:ring focus:ring-accent-25": true,
     "border border-primary-25": !glass,
     "bg-primary-5 focus:bg-primary-5": glass,
@@ -66,7 +65,7 @@ export const Input = ({
         {icon && (
           <Icon
             name={icon}
-            className="absolute top-1/2 left-12 transform -translate-y-1/2 opacity-50"
+            className="absolute top-1/2 left-12 transform -translate-y-1/2 text-primary-50"
           />
         )}
         {isLoading && (

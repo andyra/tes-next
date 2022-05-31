@@ -1,7 +1,12 @@
-export const Empty = ({ children }) => (
-  <div className="p-16 bg-gray-100 dark:bg-white/10 rounded-lg text-slate-500 dark:text-white/50 text-center">
-    {children}
-  </div>
-);
+import cn from "classnames";
+
+export const Empty = ({ children, className }) => {
+  const classes = cn({
+    "p-16 bg-primary-5 rounded-lg text-primary-50 text-center": true,
+    [className]: className
+  });
+
+  return <div className={classes}>{children}</div>;
+};
 
 export default Empty;

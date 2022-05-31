@@ -18,7 +18,7 @@ export const Modal = ({ children, isOpen, closeModal, title }) => (
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Dialog.Overlay className="fixed inset-0 bg-gray-500/10 backdrop-blur-md" />
+        <Dialog.Overlay className="fixed inset-0 bg-primary/10 backdrop-blur-md" />
       </Transition.Child>
       <Transition.Child
         as="section"
