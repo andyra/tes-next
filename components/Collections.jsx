@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CoverArt from "./CoverArt";
 import NiceDate from "./NiceDate";
-import { H1 } from "./PageTitle";
+import { PageTitle } from "./PageHeader";
 
 export const CollectionHeader = ({ coverArt, title, children }) => (
   <header className="flex flex-col lg:flex-row lg:items-end gap-24 mb-16 mb:mb-48">
@@ -14,7 +14,7 @@ export const CollectionHeader = ({ coverArt, title, children }) => (
       height={256}
     />
     <hgroup className="flex flex-col gap-12">
-      <H1>{title}</H1>
+      <PageTitle>{title}</PageTitle>
       {children}
     </hgroup>
   </header>

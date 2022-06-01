@@ -1,7 +1,7 @@
 import ClientOnly from "../../components/ClientOnly";
 import Button from "../../components/Button";
 import Icon from "../../components/Icon";
-import PageTitle from "../../components/PageTitle";
+import PageHeader from "../../components/PageHeader";
 import EpisodeList from "./components/EpisodeList";
 
 // Default
@@ -10,7 +10,7 @@ import EpisodeList from "./components/EpisodeList";
 export default function Episodes() {
   return (
     <>
-      <PageTitle center>This Evening's Show Podcast</PageTitle>
+      <PageHeader title="This Evening's Show Podcast" center>
       <section className="flex items-center gap-48">
         <figure className="w-1/4 aspect-square bg-primary-5" />
         <div className="flex-1 text-xl">
@@ -57,7 +57,7 @@ export default function Episodes() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: "Episodes",
+      PageTitle: "Episodes",
       spacing: true
     }
   };

@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import { CollectionHeader } from "../../components/Collections";
 import NiceDate from "../../components/NiceDate";
-import PageTitle, { H1 } from "../../components/PageTitle";
+import PageHeader, { H1 } from "../../components/PageHeader";
 import Tracklist from "../../components/Tracklist";
 import { querySlugs } from "../../helpers";
 
@@ -128,7 +128,7 @@ export async function getStaticProps(context) {
     props: {
       album: data.entry,
       navSection: "Music",
-      pageTitle: data.entry.title
+      PageTitle: data.entry.title
     }
   };
 }

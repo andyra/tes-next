@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import CoverArt from "../../components/CoverArt";
 import NiceDate from "../../components/NiceDate";
-import PageTitle, { H1 } from "../../components/PageTitle";
+import PageHeader, { H1 } from "../../components/PageHeader";
 import Tracklist from "../../components/Tracklist";
 import { EPISODE } from "../../constants";
 import { querySlugs } from "../../helpers";
@@ -136,7 +136,7 @@ export async function getStaticProps(context) {
     props: {
       episode: data.entry,
       navSection: "Episodes",
-      pageTitle: data.entry.title
+      PageTitle: data.entry.title
     }
   };
 }

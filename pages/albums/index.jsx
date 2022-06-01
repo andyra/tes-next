@@ -92,7 +92,7 @@ export async function getStaticProps() {
     props: {
       filterGroups: data.entries,
       maxWidth: "max-w-full",
-      pageTitle: "Albums"
+      PageTitle: "Albums"
     }
   };
 }

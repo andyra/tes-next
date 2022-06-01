@@ -1,4 +1,4 @@
-import PageTitle from "../components/PageTitle";
+import PageHeader from "../components/PageHeader";
 import { ListPlaylists, NewPlaylistButton } from "../components/Playlists";
 
 // Default
@@ -7,7 +7,7 @@ import { ListPlaylists, NewPlaylistButton } from "../components/Playlists";
 export default function Playlists() {
   return (
     <>
-      <PageTitle actions={<NewPlaylistButton fullSize />}>Playlists</PageTitle>
+      <PageHeader title="Playlists" actions={<NewPlaylistButton fullSize />} />
       <ListPlaylists />
     </>
   );
@@ -20,7 +20,7 @@ export async function getStaticProps() {
   return {
     props: {
       maxWidth: "max-w-screen-md",
-      pageTitle: "Playlists"
+      PageTitle: "Playlists"
     }
   };
 }

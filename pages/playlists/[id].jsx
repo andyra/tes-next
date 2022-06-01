@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Modal from "../../components/Modal";
-import PageTitle from "../../components/PageTitle";
+import PageHeader from "../../components/PageHeader";
 import { PLAYLISTS_QUERY } from "../../constants";
 
 // TODO When renaming, we somehow need to refetch the query or invalidate the
@@ -148,7 +148,8 @@ export default function Playlist({ playlist }) {
 
   return (
     <>
-      <PageTitle
+      <PageHeader
+        title={title}
         actions={
           <>
             <RenamePlaylistButton
@@ -159,9 +160,7 @@ export default function Playlist({ playlist }) {
             <DeletePlaylistButton id={playlist.id} />
           </>
         }
-      >
-        {title}
-      </PageTitle>
+      />
     </>
   );
 }
@@ -243,7 +242,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       playlist: data.entry,
-      pageTitle: data.entry.title
+      PageTitle: data.entry.title
     }
   };
 }

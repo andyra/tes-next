@@ -3,7 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import client from "../../../apollo-client";
 import ClientOnly from "../../../components/ClientOnly";
 import Empty from "../../../components/Empty";
-import PageTitle from "../../../components/PageTitle";
+import PageHeader from "../../../components/PageHeader";
 import ArticleList from "../components/ArticleList";
 import CategoryList from "../components/CategoryList";
 
@@ -15,7 +15,7 @@ export default function Category({ category }) {
 
   return (
     <>
-      <PageTitle>{title}</PageTitle>
+      <PageHeader title={title} />
       {children.length ? (
         <ClientOnly>
           <CategoryList parentId={id} />
@@ -74,7 +74,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       category: data.category,
-      pageTitle: data.category.title,
+      PageTitle: data.category.title,
       navSection: "Wiki"
     }
   };

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import PageTitle from "../components/PageTitle";
+import PageHeader from "../components/PageHeader";
 
 // TODO
 // ✓ Use mutation with hard-coded values (working)
@@ -67,7 +67,7 @@ const SignInForm = ({ title, id, setTitle }) => {
 export default function SignIn() {
   return (
     <>
-      <PageTitle>Sign In</PageTitle>
+      <PageHeader title="Sign In" />
       <SignInForm />
     </>
   );
@@ -79,7 +79,7 @@ export default function SignIn() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: "Sign In"
+      PageTitle: "Sign In"
     }
   };
 }

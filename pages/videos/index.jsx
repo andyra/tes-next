@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
-import PageTitle from "../../components/PageTitle";
+import PageHeader from "../../components/PageHeader";
 
 // Queries
 // ----------------------------------------------------------------------------
@@ -53,7 +53,7 @@ const SongList = () => {
 export default function Videos() {
   return (
     <>
-      <PageTitle>Videos</PageTitle>
+      <PageHeader title="Videos" />
       <ClientOnly>
         <SongList />
       </ClientOnly>
@@ -67,7 +67,7 @@ export default function Videos() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: "Videos"
+      PageTitle: "Videos"
     }
   };
 }

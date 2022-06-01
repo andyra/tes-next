@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import PageTitle from "../../components/PageTitle";
+import PageHeader from "../../components/PageHeader";
 import { querySlugs } from "../../helpers";
 
 // Default
@@ -11,7 +11,7 @@ export default function Article({ articleItem }) {
   const { article, category, featuredImage, title } = article;
   return (
     <>
-      <PageTitle>{title}</PageTitle>
+      <PageHeader title={title} />
     </>
   );
 }
@@ -61,7 +61,7 @@ export async function getStaticProps(context) {
     props: {
       articleItem: data.entry,
       navSection: "Wiki",
-      pageTitle: data.entry.title
+      PageTitle: data.entry.title
     }
   };
 }

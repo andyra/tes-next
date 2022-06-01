@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/Link";
-import PageTitle from "../components/PageTitle";
+import PageHeader from "../components/PageHeader";
 import { ADDRESS, EMAIL, PHONE } from "../constants";
 
 // Default
@@ -83,7 +83,7 @@ export async function getStaticProps() {
   return {
     props: {
       // maxWidth: "max-w-screen-lg",
-      pageTitle: "Contact",
+      PageTitle: "Contact",
       spacing: true
     }
   };

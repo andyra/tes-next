@@ -6,7 +6,6 @@ import styled from "styled-components";
 import AnimatedLetter from "../components/AnimatedLetter";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
-import { H1 } from "../components/PageTitle";
 import { CollectionItem } from "../components/Collections";
 import { generateFeed } from "../helpers/feed.helpers";
 const fs = require("fs");

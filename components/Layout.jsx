@@ -37,7 +37,7 @@ export default function Layout({ children, ...props }) {
     <>
       <Head>
         <title>
-          {props.pageTitle ? `${props.pageTitle} • TES` : "This Evening's Show"}
+          {props.PageTitle ? `${props.PageTitle} • TES` : "This Evening's Show"}
         </title>
       </Head>
       <Navigation navSection={props.navSection} />

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import PageTitle from "../../components/PageTitle";
+import PageHeader from "../../components/PageHeader";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -12,7 +12,7 @@ export default function Video() {
 
   return (
     <>
-      <PageTitle>Video: {slug}</PageTitle>
+      <PageHeader title={slug} />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Input from "../components/Input";
-import PageTitle, { H1 } from "../components/PageTitle";
+import PageHeader, { H1 } from "../components/PageHeader";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -95,7 +95,7 @@ export default function Setlist() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: "Setlist Computor"
+      PageTitle: "Setlist Computor"
     }
   };
 }

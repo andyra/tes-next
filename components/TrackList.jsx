@@ -157,7 +157,7 @@ export const Tracklist = ({ tracks }) => {
           <div
             className={`text-xl md:text-2xl flex items-center gap-8 ${
               highlightTrack(track) ? "text-accent" : ""
-            }`}
+            } ${track.audioFile ? "" : "text-primary"}`}
           >
             {track.title}
           </div>

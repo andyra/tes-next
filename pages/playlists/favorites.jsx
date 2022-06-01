@@ -3,7 +3,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import toast from "react-hot-toast";
 import Button from "../../components/Button";
 import ClientOnly from "../../components/ClientOnly";
-import PageTitle from "../../components/PageTitle";
+import PageHeader from "../../components/PageHeader";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -11,7 +11,7 @@ import PageTitle from "../../components/PageTitle";
 export default function Favorites() {
   return (
     <>
-      <PageTitle>Favorites</PageTitle>
+      <PageHeader title="Favorites" />
     </>
   );
 }
@@ -22,7 +22,7 @@ export default function Favorites() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: "Favorites"
+      PageTitle: "Favorites"
     }
   };
 }
