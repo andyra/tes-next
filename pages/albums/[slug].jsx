@@ -24,9 +24,7 @@ function normalizeAlbumTracks(album) {
       },
       audioFile: track.audioFile.length ? track.audioFile[0].url : null,
       collection: {
-        coverArtUrl: album.albumCoverArt.length
-          ? album.albumCoverArt[0].url
-          : null,
+        coverArt: album.albumCoverArt,
         slug: album.slug,
         title: album.title,
         entryType: "album"

@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import CoverArt from "../../components/CoverArt";
 import NiceDate from "../../components/NiceDate";
-import PageHeader, { H1 } from "../../components/PageHeader";
+import PageHeader, { PageTitle } from "../../components/PageHeader";
 import Tracklist from "../../components/Tracklist";
 import { EPISODE } from "../../constants";
 import { querySlugs } from "../../helpers";
@@ -14,7 +14,6 @@ import { querySlugs } from "../../helpers";
 function normalizeEpisodeTracks(episode) {
   const newTracks = [];
   let i = 1;
-
   for (let track of episode.episodeTracklist) {
     newTracks.push({
       addedBy: null,
@@ -24,7 +23,7 @@ function normalizeEpisodeTracks(episode) {
       },
       audioFile: track.audioFile.length ? track.audioFile[0].url : null,
       collection: {
-        coverArtUrl: episode.episodeCoverArt[0].url,
+        coverArt: episode.episodeCoverArt,
         slug: episode.slug,
         title: episode.title,
         entryType: "episode"
@@ -56,14 +55,14 @@ export default function Episode({ episode }) {
     <>
       <header className="flex flex-col lg:flex-row lg:items-end gap-24 mb-48">
         <CoverArt
-          src={episodeCoverArt}
+          url={episodeCoverArt}
           className="mx-auto md:mx-0 w-256 h-256"
           title={title}
           width={256}
           height={256}
         />
         <hgroup className="flex flex-col gap-12">
-          <H1>{title}</H1>
+          <PageTitle>{title}</PageTitle>
           <div>
             <NiceDate date={releaseDate} format="year" /> • Duration
           </div>

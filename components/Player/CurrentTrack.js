@@ -1,4 +1,4 @@
-import Image from "next/image";
+import CoverArt from "../CoverArt";
 import cn from "classnames";
 
 // Default
@@ -17,7 +17,7 @@ export const CurrentTrack = ({
   });
 
   const coverArtClasses = cn({
-    "aspect-square bg-primary-10 rounded flex items-center justify-center text-2xl flex-shrink-0 overflow-hidden": true,
+    "rounded flex-shrink-0 bg-primary-5": true,
     "w-40 h-40 md:w-64 md:h-64": !isFullscreen,
     "w-full max-w-screen-xs mx-auto h-auto mt-auto md:my-0 md:w-256 md:h-256": isFullscreen
   });
@@ -39,16 +39,20 @@ export const CurrentTrack = ({
 
   return (
     <div className={currentTrackClasses}>
-      <figure id="cover-art" className={coverArtClasses}>
-        {currentTrack && (
-          <Image
-            alt={`${currentTrack.collection.title} cover art`}
-            src={currentTrack.collection.coverArtUrl}
-            width={isFullscreen ? 256 : isMobile ? 40 : 64}
-            height={isFullscreen ? 256 : isMobile ? 40 : 64}
-          />
-        )}
-      </figure>
+      {currentTrack ? (
+        <CoverArt
+          className={coverArtClasses}
+          height={isFullscreen ? 256 : isMobile ? 40 : 64}
+          url={currentTrack.collection.coverArt}
+          title={`${currentTrack.collection.title} cover art`}
+          width={isFullscreen ? 256 : isMobile ? 40 : 64}
+        >
+          {console.log("CurrentTrack")}
+          {console.log(currentTrack.collection.coverArt)}
+        </CoverArt>
+      ) : (
+        <figure id="cover-art" className={coverArtClasses} />
+      )}
       <div className={trackInfoClasses}>
         <div className="flex-1">
           <div className={titleClasses}>

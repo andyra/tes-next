@@ -10,7 +10,7 @@ import EpisodeList from "./components/EpisodeList";
 export default function Episodes() {
   return (
     <>
-      <PageHeader title="This Evening's Show Podcast" center>
+      <PageHeader title="This Evening's Show Podcast" center />
       <section className="flex items-center gap-48">
         <figure className="w-1/4 aspect-square bg-primary-5" />
         <div className="flex-1 text-xl">

@@ -4,26 +4,29 @@ import Image from "next/image";
 export const CoverArt = ({
   className,
   height,
-  src,
   title,
+  url,
   width,
   ...props
 }) => {
   const coverArtClasses = cn({
-    "rounded-lg overflow-hidden": true,
+    "overflow-hidden": true,
+    "rounded-lg": !className,
     [className]: className
   });
 
   const placeholderClasses = cn({
-    "aspect-square bg-primary-10 rounded-lg flex items-center justify-center text-primary-50": true,
+    "aspect-square bg-primary-5 rounded-lg flex items-center justify-center text-primary-50": true,
+    "text-sm": width < 128,
+    "text-lg": width > 128,
     [className]: className
   });
 
-  return src.length ? (
+  return url.length > 0 ? (
     <figure className={coverArtClasses}>
       <Image
         alt={`${title} cover art`}
-        src={src[0].url}
+        src={url[0].url}
         width={256}
         height={256}
         layout="responsive"
@@ -32,6 +35,8 @@ export const CoverArt = ({
   ) : (
     <figure className={placeholderClasses}>n/a</figure>
   );
+
+  return <figure className={placeholderClasses}>n/a</figure>;
 };
 
 export default CoverArt;
