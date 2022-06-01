@@ -1,22 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
+import Button from "./Button";
 import CoverArt from "./CoverArt";
 import NiceDate from "./NiceDate";
 import { PageTitle } from "./PageHeader";
 
-export const CollectionHeader = ({ coverArt, title, children }) => (
-  <header className="flex flex-col lg:flex-row lg:items-end gap-24 mb-16 mb:mb-48">
-    <CoverArt
-      className="mx-auto md:mx-0 w-256 h-256"
-      height={256}
-      title={title}
-      url={coverArt}
-      width={256}
-    />
-    <hgroup className="flex flex-col gap-12">
-      <PageTitle>{title}</PageTitle>
-      {children}
-    </hgroup>
+export const CollectionHeader = ({ back, children, coverArt, title }) => (
+  <header className="mb-16 mb:mb-48">
+    {back && (
+      <Button
+        href={back.href}
+        variant="ghost"
+        iconLeft="ChevronLeft"
+        className="-ml-16 mb-12"
+      >
+        {back.title}
+      </Button>
+    )}
+    <div className="flex flex-col lg:flex-row lg:items-end gap-24">
+      <CoverArt
+        className="mx-auto md:mx-0 w-256 h-256"
+        height={256}
+        title={title}
+        url={coverArt}
+        width={256}
+      />
+      <hgroup className="flex flex-col gap-12">
+        <PageTitle>{title}</PageTitle>
+        {children}
+      </hgroup>
+    </div>
   </header>
 );
 

@@ -26,11 +26,11 @@ export default function Button({
   size = "base",
   type = "button",
   variant = "border",
-  url,
+  href,
   ...props
 }) {
   const buttonClasses = cn({
-    "flex items-center justify-center gap-4 rounded-full hover:bg-primary-10 transition": true,
+    "inline-flex items-center justify-center gap-4 rounded-full hover:bg-primary-10 transition": true,
     "border border-primary-10": variant === "border",
     "bg-primary-5 hover:bg-primary-10 focus:bg-primary-10": variant === "glass",
     "hover:bg-primary-5 focus:bg-primary-5": variant === "ghost",
@@ -42,8 +42,8 @@ export default function Button({
     [className]: className
   });
 
-  return url ? (
-    <Link className={buttonClasses} href={url} {...props}>
+  return href ? (
+    <Link className={buttonClasses} href={href} {...props}>
       <a className={buttonClasses}>
         {iconLeft && <Icon name={iconLeft} />}
         {children}

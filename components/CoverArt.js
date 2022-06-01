@@ -16,7 +16,7 @@ export const CoverArt = ({
   });
 
   const placeholderClasses = cn({
-    "aspect-square bg-primary-5 flex items-center justify-center text-primary-50": true,
+    "aspect-square bg-primary-5 flex items-center justify-center text-primary-50 overflow-hidden relative": true,
     "text-sm": width < 128,
     "text-lg": width > 128,
     "rounded-lg": !className,
@@ -34,7 +34,10 @@ export const CoverArt = ({
       />
     </figure>
   ) : (
-    <figure className={placeholderClasses}>n/a</figure>
+    <figure className={placeholderClasses}>
+      <span className="absolute top-1/2 left-1/2 w-full h-1 bg-primary-5 transform rotate-45 -translate-x-1/2 -translate-y-1/2" />
+      <span className="absolute top-1/2 left-1/2 w-full h-1 bg-primary-5 transform -rotate-45 -translate-x-1/2 -translate-y-1/2" />
+    </figure>
   );
 
   return <figure className={placeholderClasses}>n/a</figure>;

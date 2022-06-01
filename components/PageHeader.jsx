@@ -1,28 +1,6 @@
 import { Fragment } from "react";
 import cn from "classnames";
-import Link from "next/link";
-import Icon from "./Icon";
-
-export const Breadcrumbs = ({ items }) => {
-  return (
-    <ul className="inline-flex items-center relative">
-      {items.map((item, i) => (
-        <Fragment key={i}>
-          <li>
-            <Link href={item.href}>
-              <a className="block px-8 hover:underline">{item.title}</a>
-            </Link>
-          </li>
-          {i + 1 < items.length && (
-            <li>
-              <Icon name="ChevronRight" className="text-primary-50" />
-            </li>
-          )}
-        </Fragment>
-      ))}
-    </ul>
-  );
-};
+import Button from "./Button";
 
 export const PageTitle = ({ children, className }) => {
   const classes = cn({
@@ -35,15 +13,25 @@ export const PageTitle = ({ children, className }) => {
 
 export const PageHeader = ({
   actions,
-  breadcrumbs,
+  back,
   center,
   children,
+  subtitle,
   title
 }) => {
   return (
     <header className="flex items-center gap-8 justify-between mb-24 md:mb-64">
       <div className={`flex-1${center ? " text-center" : ""}`}>
-        {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
+        {back && (
+          <Button
+            variant="ghost"
+            iconLeft="ChevronLeft"
+            href={back.href}
+            className="-ml-16"
+          >
+            {back.title}
+          </Button>
+        )}
         <h1 className="font-funky text-6xl md:text-8xl tracking-tight">
           {title}
         </h1>

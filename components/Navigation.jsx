@@ -13,10 +13,10 @@ export const NavLink = ({
   icon,
   navSection,
   title,
-  url
+  href
 }) => {
   const router = useRouter();
-  const active = router.asPath == url || navSection === title;
+  const active = router.asPath == href || navSection === title;
   const linkClasses = cn({
     "flex items-center relative": true,
     "flex-1 flex-col justify-center": navSection !== "playlists",
@@ -36,7 +36,7 @@ export const NavLink = ({
   });
 
   return (
-    <Link href={url}>
+    <Link href={href}>
       <a className={linkClasses}>
         {icon && (
           <span className="w-16 flex items-center justify-center text-xl md:text-base md:hidden">
@@ -86,23 +86,23 @@ export const Navigation = ({ navSection }) => {
           </a>
         </Link>
         <div className="grid grid-cols-5 w-full md:block">
-          <NavLink title="Home" url="/" icon="Home" hide="desktop" />
-          <NavLink title="Search" url="/" icon="Search" hide="desktop" />
+          <NavLink title="Home" href="/" icon="Home" hide="desktop" />
+          <NavLink title="Search" href="/" icon="Search" hide="desktop" />
           <NavLink
             title="Music"
-            url="/albums"
+            href="/albums"
             icon="Music"
             navSection={navSection}
           />
           <NavLink
             title="Podcast"
-            url="/episodes"
+            href="/episodes"
             icon="Mic"
             navSection={navSection}
           />
           <NavLink
             title="Library"
-            url="/library"
+            href="/library"
             icon="Book"
             navSection={navSection}
             hide="mobile"
@@ -124,18 +124,18 @@ export const Navigation = ({ navSection }) => {
           <NavLink
             className="hidden"
             title="Videos"
-            url="/videos"
+            href="/videos"
             icon="Video"
             navSection={navSection}
           />
           <NavLink
             className="hidden"
             title="Setlist Computor"
-            url="/setlist"
+            href="/setlist"
             icon="Music"
             navSection={navSection}
           />
-          <NavLink title="Contact" url="/contact" icon="Phone" hide="mobile" />
+          <NavLink title="Contact" href="/contact" icon="Phone" hide="mobile" />
         </div>
         {/*<Footer />*/}
       </nav>

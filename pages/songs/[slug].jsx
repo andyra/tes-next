@@ -8,17 +8,6 @@ import { querySlugs } from "../../helpers";
 // Functions
 // ----------------------------------------------------------------------------
 
-const BREADCRUMBS = [
-  {
-    title: "Music",
-    href: "/albums"
-  },
-  {
-    title: "Songs",
-    href: "/songs"
-  }
-];
-
 function matchingTrack(track, slug) {
   return track.song && track.song[0].slug === slug;
 }
@@ -83,8 +72,8 @@ function normalizeSongTracks(slug, albums) {
 // Components
 // ----------------------------------------------------------------------------
 
-const ContentSection = ({ title, content }) => (
-  <div>
+const ContentSection = ({ title, className, content }) => (
+  <section className={className}>
     <h2
       className={`font-medium text-3xl mb-16${
         content ? "" : " text-primary-50"
@@ -100,7 +89,7 @@ const ContentSection = ({ title, content }) => (
     ) : (
       <p className="text-lg text-primary-50">Nothing found in the archives.</p>
     )}
-  </div>
+  </section>
 );
 
 // Default
@@ -109,11 +98,15 @@ const ContentSection = ({ title, content }) => (
 export default function Song({ albums, episodes, song }) {
   const { lyrics, notation, slug, songType, title } = song;
   const relatedAlbums = getRelatedAlbums(slug, albums);
-  console.log(normalizeSongTracks(slug, relatedAlbums));
+  const normalizedTracks = normalizeSongTracks(slug, relatedAlbums);
 
   return (
     <>
-      <PageHeader title={title} center breadcrumbs={BREADCRUMBS}>
+      <PageHeader
+        back={{ href: "/songs", title: "Songs" }}
+        subtitle="A song called"
+        title={title}
+      >
         {songType === "cover" && (
           <div className="inline-block px-8 bg-primary-5 rounded-full font-sans font-medium text-sm uppercase tracking-wide mt-24 mx-auto">
             Cover Song
@@ -121,18 +114,19 @@ export default function Song({ albums, episodes, song }) {
         )}
       </PageHeader>
 
-      <section>Appears On…</section>
-
-      <Tracklist
-        tracks={normalizeSongTracks(slug, relatedAlbums)}
-        showCollectionInfo
-      />
+      <section>
+        <h2 className="text-xl mb-12">
+          Appears on {normalizedTracks.length} collections…
+        </h2>
+        <Tracklist tracks={normalizedTracks} showCollectionInfo />
+      </section>
 
       {songType === "original" && (
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-24 pt-64  border-t-2 border-primary-10">
+        <>
+          <hr className="border border-primary-10" />
           <ContentSection title="Lyrics" content={lyrics} />
           <ContentSection title="Notation" content={notation} />
-        </section>
+        </>
       )}
     </>
   );
@@ -213,7 +207,6 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      maxWidth: "max-w-screen-xl",
       navSection: "Music",
       PageTitle: data.entry.title,
       song: data.entry,

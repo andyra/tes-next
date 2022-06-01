@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import { CollectionHeader } from "../../components/Collections";
 import CoverArt from "../../components/CoverArt";
 import NiceDate from "../../components/NiceDate";
 import PageHeader, { PageTitle } from "../../components/PageHeader";
@@ -53,21 +54,15 @@ export default function Episode({ episode }) {
 
   return (
     <>
-      <header className="flex flex-col lg:flex-row lg:items-end gap-24 mb-48">
-        <CoverArt
-          url={episodeCoverArt}
-          className="mx-auto md:mx-0 w-256 h-256"
-          title={title}
-          width={256}
-          height={256}
-        />
-        <hgroup className="flex flex-col gap-12">
-          <PageTitle>{title}</PageTitle>
-          <div>
-            <NiceDate date={releaseDate} format="year" /> • Duration
-          </div>
-        </hgroup>
-      </header>
+      <CollectionHeader
+        title={title}
+        coverArt={albumCoverArt}
+        back={{ href: "/episodes", title: "Episodes" }}
+      >
+        <div>
+          <NiceDate date={releaseDate} format="year" /> • Duration
+        </div>
+      </CollectionHeader>
       <Tracklist tracks={normalizeEpisodeTracks(episode)} />
     </>
   );

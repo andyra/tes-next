@@ -127,7 +127,7 @@ export const ListPlaylists = () => {
           key={playlist.title}
           navSection="playlists"
           title="Favorites"
-          url={`/playlists/favorites`}
+          href={`/playlists/favorites`}
         />
       ))}
       {playlists.map(playlist => (
@@ -137,7 +137,7 @@ export const ListPlaylists = () => {
           key={playlist.title}
           navSection="playlists"
           title={playlist.title}
-          url={`/playlists/${encodeURIComponent(playlist.id)}`}
+          href={`/playlists/${encodeURIComponent(playlist.id)}`}
         />
       ))}
     </ul>
