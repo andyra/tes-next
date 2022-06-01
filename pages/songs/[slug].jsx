@@ -62,7 +62,7 @@ function normalizeSongTracks(slug, albums) {
             entryType: "album"
           },
           dateAdded: null,
-          listType: "playlist",
+          // listType: "playlist",
           id: `album-${album.id}-${i}`,
           position: i,
           slug: track.song && track.song.length ? track.song[0].slug : null,
@@ -123,7 +123,10 @@ export default function Song({ albums, episodes, song }) {
 
       <section>Appears On…</section>
 
-      <Tracklist tracks={normalizeSongTracks(slug, relatedAlbums)} />
+      <Tracklist
+        tracks={normalizeSongTracks(slug, relatedAlbums)}
+        showCollectionInfo
+      />
 
       {songType === "original" && (
         <section className="grid grid-cols-1 md:grid-cols-2 gap-24 pt-64  border-t-2 border-primary-10">

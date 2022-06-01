@@ -29,7 +29,7 @@ function normalizeEpisodeTracks(episode) {
         entryType: "episode"
       },
       dateAdded: null,
-      listType: "playlist",
+      // listType: "playlist",
       id: `episode-${episode.id}-${i}`,
       position: i,
       slug: track.song && track.song.length ? track.song[0].slug : null,

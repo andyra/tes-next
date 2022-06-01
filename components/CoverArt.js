@@ -16,9 +16,10 @@ export const CoverArt = ({
   });
 
   const placeholderClasses = cn({
-    "aspect-square bg-primary-5 rounded-lg flex items-center justify-center text-primary-50": true,
+    "aspect-square bg-primary-5 flex items-center justify-center text-primary-50": true,
     "text-sm": width < 128,
     "text-lg": width > 128,
+    "rounded-lg": !className,
     [className]: className
   });
 
@@ -27,8 +28,8 @@ export const CoverArt = ({
       <Image
         alt={`${title} cover art`}
         src={url[0].url}
-        width={256}
-        height={256}
+        width={width}
+        height={height}
         layout="responsive"
       />
     </figure>

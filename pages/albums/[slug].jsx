@@ -30,7 +30,7 @@ function normalizeAlbumTracks(album) {
         entryType: "album"
       },
       dateAdded: null,
-      listType: "playlist",
+      // listType: "playlist",
       id: `album-${album.id}-${i}`,
       position: i,
       slug: track.song && track.song.length ? track.song[0].slug : null,

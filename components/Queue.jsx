@@ -14,10 +14,20 @@ const Section = ({ actions, children, title }) => (
   </section>
 );
 
-const QueueList = ({ actions, tracks, title }) => {
+const QueueList = ({
+  actions,
+  queueable,
+  showCollectionInfo,
+  tracks,
+  title
+}) => {
   return tracks.length ? (
     <Section title={title} actions={actions}>
-      <Tracklist tracks={tracks} />
+      <Tracklist
+        tracks={tracks}
+        queueable={queueable}
+        showCollectionInfo={showCollectionInfo}
+      />
     </Section>
   ) : (
     ""
@@ -78,8 +88,14 @@ export const Queue = ({ queueIsOpen, setQueueIsOpen }) => {
             title="Queue"
             tracks={queueList}
             actions={<ClearQueueButton />}
+            queueable={false}
+            showCollectionInfo
           />
-          <QueueList title="Next From [collection name]" tracks={nextList} />
+          <QueueList
+            showCollectionInfo
+            title="Next From [collection name]"
+            tracks={nextList}
+          />
         </div>
       </Transition.Child>
     </Transition>

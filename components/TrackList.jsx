@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import cn from "classnames";
 import { usePlayerContext } from "../context/PlayerContext";
 import Button from "../components/Button";
+import CoverArt from "../components/CoverArt";
 import Icon from "../components/Icon";
 import Tooltip from "../components/Tooltip";
 import { formatTime } from "../helpers";
@@ -24,7 +25,33 @@ const TrackDuration = ({ audioFile }) => {
   );
 };
 
-export const Tracklist = ({ tracks }) => {
+const TrackTitle = ({ highlightTrack, showCollectionInfo, track }) => (
+  <div
+    className={`text-xl md:text-2xl flex items-center gap-8 ${
+      highlightTrack ? "text-accent" : ""
+    }`}
+  >
+    {showCollectionInfo ? (
+      <>
+        <CoverArt
+          className="w-48 h-48 flex-shrink-0 rounded"
+          height={48}
+          title={track.collection.title}
+          url={track.collection.coverArt}
+          width={48}
+        />
+        <div>
+          <div>{track.title}</div>
+          <div className="text-sm">{track.collection.title}</div>
+        </div>
+      </>
+    ) : (
+      track.title
+    )}
+  </div>
+);
+
+export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   const {
     currentTrack,
     isPlaying,
@@ -44,7 +71,7 @@ export const Tracklist = ({ tracks }) => {
 
   function selectTrack(track, i) {
     const selectedTrackIsCurrent =
-      currentTrack && currentTrack.id === track.id && track.listType != "queue";
+      currentTrack && currentTrack.id === track.id && !track.addedViaQueue;
 
     if (selectedTrackIsCurrent) {
       togglePlay();
@@ -65,23 +92,11 @@ export const Tracklist = ({ tracks }) => {
       return track.audioFile;
     });
 
-    if (selectedTrack.listType === "queue") {
+    if (selectedTrack.addedViaQueue) {
       setQueueList(tracksAfter);
     } else {
-      if (selectedTrack.listType === "playlist") {
-        setPrevList(tracksBefore);
-        setNextList(tracksAfter);
-      }
-
-      if (selectedTrack.listType === "nextList") {
-        const newprevList = [...prevList];
-        const newnextList = [...nextList];
-        newprevList.push(currentTrack);
-        newprevList.push(...tracksBefore);
-        newnextList.splice(0, i + 1);
-        setPrevList(newprevList);
-        setNextList(newnextList);
-      }
+      setPrevList(tracksBefore);
+      setNextList(tracksAfter);
     }
   }
 
@@ -89,15 +104,15 @@ export const Tracklist = ({ tracks }) => {
     return (
       currentTrack &&
       currentTrack.id === track.id &&
-      track.listType === "playlist" &&
-      currentTrack.listType != "queue"
+      !track.addedViaQueue &&
+      !currentTrack.addedViaQueue
     );
   }
 
   function addToQueue(track) {
     const newQueueList = [...queueList];
     const newTrack = Object.assign({}, track);
-    newTrack.listType = "queue";
+    newTrack.addedViaQueue = true;
     setQueueList(newQueueList.concat(newTrack));
     toast.success("Added to queue");
   }
@@ -146,27 +161,26 @@ export const Tracklist = ({ tracks }) => {
 
   const TrackItem = ({ track, i }) => {
     const liClasses = cn({
-      "text-secondary flex gap-8 p-8 -mx-8 rounded-lg cursor-default transition group": true,
-      "hover:bg-primary-5 focus:bg-primary-10": track.audioFile
+      "flex gap-8 px-8 -mx-8 h-64 rounded-lg cursor-default transition group": true,
+      "text-secondary hover:bg-primary-5 focus:bg-primary-10": track.audioFile,
+      "text-secondary-50": !track.audioFile
     });
 
     return (
       <li className={liClasses} tabIndex={0} key={i}>
         <div className="flex-1 flex items-center gap-8">
           <PlayPauseButton track={track} i={i} />
-          <div
-            className={`text-xl md:text-2xl flex items-center gap-8 ${
-              highlightTrack(track) ? "text-accent" : ""
-            } ${track.audioFile ? "" : "text-primary"}`}
-          >
-            {track.title}
-          </div>
+          <TrackTitle
+            highlightTrack={highlightTrack(track)}
+            showCollectionInfo={showCollectionInfo}
+            track={track}
+          />
         </div>
         <div id="actions" className="flex items-center gap-2">
           {track.audioFile && (
             <>
               <TrackDuration audioFile={track.audioFile} />
-              {track.listType === "playlist" && (
+              {queueable ? (
                 <Button
                   circle
                   className="opacity-0 group-hover:opacity-100"
@@ -177,8 +191,7 @@ export const Tracklist = ({ tracks }) => {
                 >
                   <Icon name="Plus" />
                 </Button>
-              )}
-              {track.listType === "queue" && (
+              ) : (
                 <Button
                   circle
                   className="opacity-0 group-hover:opacity-100"

@@ -128,7 +128,7 @@ export const Player = () => {
   }
 
   function skipNext() {
-    if (currentTrack && currentTrack.listType === "playlist") {
+    if (currentTrack && !currentTrack.addedViaQueue) {
       addToPrevList(currentTrack);
     }
     if (queueList.length) {
