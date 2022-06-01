@@ -111,13 +111,12 @@ const ContentSection = ({ title, content }) => (
 export default function Song({ albums, episodes, song }) {
   const { lyrics, notation, slug, songType, title } = song;
   const relatedAlbums = getRelatedAlbums(slug, albums);
-  console.log(relatedAlbums);
   console.log(normalizeSongTracks(slug, relatedAlbums));
 
   return (
     <>
       <PageHeader title={title} center breadcrumbs={BREADCRUMBS}>
-        {songType !== "cover" && (
+        {songType === "cover" && (
           <div className="inline-block px-8 bg-primary-5 rounded-full font-sans font-medium text-sm uppercase tracking-wide mt-24 mx-auto">
             Cover Song
           </div>
