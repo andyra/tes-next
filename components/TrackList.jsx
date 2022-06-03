@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import toast from "react-hot-toast";
 import cn from "classnames";
 import { usePlayerContext } from "../context/PlayerContext";
-import Button from "../components/Button";
+import Button, { getButtonClasses } from "../components/Button";
 import CoverArt from "../components/CoverArt";
 import Icon from "../components/Icon";
 import Tooltip from "../components/Tooltip";
@@ -52,6 +53,89 @@ const TrackTitle = ({ highlightTrack, showCollectionInfo, track }) => (
   </div>
 );
 
+const TrackMenuItem = ({ href, icon, large, title, ...props }) => {
+  const classes = cn({
+    "flex items-center px-8 hover:bg-primary-5 transition": true,
+    "flex-col justify-center gap-4 h-72": large,
+    "gap-12 h-40 rounded-lg w-full": !large,
+  });
+
+  return (
+    <DropdownMenu.Item className="flex-1 hover:outline-0">
+      {href ? (
+        <Link href={href} {...props}>
+          <a className={classes}>
+            <Icon name={icon} />
+            {title}
+          </a>
+        </Link>
+      ) : (
+        <button className={classes} {...props}>
+          <Icon name={icon} />
+          {title}
+        </button>
+      )}
+    </DropdownMenu.Item>
+  );
+};
+
+const TrackMenu = ({ addToQueue, track }) => {
+  const overflowMenuClasses = cn(
+    getButtonClasses({
+      variant: "ghost",
+      circle: true,
+    }),
+    "opacity-0 group-hover:opacity-100"
+  );
+
+  const contentClasses = cn(
+    "w-256 bg-ground border-2 border-primary-10 rounded-lg",
+    "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
+  );
+
+  return (
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger className={overflowMenuClasses}>
+        <Icon name="Overflow" />
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content className={contentClasses}>
+        <DropdownMenu.Group className="p-8">
+          {track.uri && (
+            <TrackMenuItem
+              title="Go to Song"
+              href={`/${track.uri}`}
+              icon="Moon"
+            />
+          )}
+          <TrackMenuItem
+            title="Go to Album"
+            href={`/${track.collection.uri}`}
+            icon="Music"
+          />
+          <TrackMenuItem
+            title="Add to Queue"
+            onClick={() => {
+              addToQueue(track);
+            }}
+            icon="Plus"
+            type="button"
+          />
+          {track.audioFile && (
+            <TrackMenuItem
+              title="Download"
+              href={track.audioFile}
+              icon="Download"
+              download
+            />
+          )}
+        </DropdownMenu.Group>
+        <DropdownMenu.Separator />
+        <DropdownMenu.Arrow />
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
+  );
+};
+
 export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   const {
     currentTrack,
@@ -63,7 +147,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     setIsPlaying,
     setNextList,
     setPrevList,
-    setQueueList
+    setQueueList,
   } = usePlayerContext();
 
   function togglePlay() {
@@ -86,10 +170,10 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   // Shorten or add to queue listTypes
   function updateList(selectedTrack, i) {
     // Filter out tracks with no audioFile
-    const tracksBefore = [...tracks].splice(0, i).filter(track => {
+    const tracksBefore = [...tracks].splice(0, i).filter((track) => {
       return track.audioFile;
     });
-    const tracksAfter = [...tracks].splice(i + 1).filter(track => {
+    const tracksAfter = [...tracks].splice(i + 1).filter((track) => {
       return track.audioFile;
     });
 
@@ -128,14 +212,15 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     const active = highlightTrack(track) && isPlaying;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
-      "opacity-0 group-hover:opacity-100": !active
+      "opacity-0 group-hover:opacity-100": !active,
     });
 
     return (
       <div className="flex items-center justify-center relative h-32 w-32 flex-shrink-0">
         <span
-          className={`text-primary-50 ${track.audioFile &&
-            "group-hover:opacity-0"}`}
+          className={`text-primary-50 ${
+            track.audioFile && "group-hover:opacity-0"
+          }`}
         >
           {track.position}
         </span>
@@ -164,7 +249,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     const liClasses = cn({
       "flex gap-8 px-8 -mx-8 h-64 rounded-lg cursor-default transition group": true,
       "text-secondary hover:bg-primary-5 focus:bg-primary-10": track.audioFile,
-      "text-secondary-50": !track.audioFile
+      "text-secondary-50": !track.audioFile,
     });
 
     return (
@@ -181,31 +266,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
           {track.audioFile && (
             <>
               <TrackDuration audioFile={track.audioFile} />
-              <DropdownMenu.Root>
-                <DropdownMenu.Trigger asChild>
-                  <Button
-                    circle
-                    className="opacity-0 group-hover:opacity-100"
-                    variant="ghost"
-                  >
-                    <Icon name="Overflow" />
-                  </Button>
-                </DropdownMenu.Trigger>
-                <DropdownMenu.Content className="border-2 border-accent rounded-lg p-16">
-                  <DropdownMenu.Group>
-                    <DropdownMenu.Item>Song</DropdownMenu.Item>
-                    <DropdownMenu.Item>Album</DropdownMenu.Item>
-                    <DropdownMenu.Item>Artist</DropdownMenu.Item>
-                  </DropdownMenu.Group>
-                  <DropdownMenu.Group>
-                    <DropdownMenu.Item>Add To Queue</DropdownMenu.Item>
-                    <DropdownMenu.Item>Download</DropdownMenu.Item>
-                    <DropdownMenu.Item>Artist</DropdownMenu.Item>
-                  </DropdownMenu.Group>
-                  <DropdownMenu.Separator />
-                  <DropdownMenu.Arrow />
-                </DropdownMenu.Content>
-              </DropdownMenu.Root>
+              <TrackMenu track={track} addToQueue={addToQueue} />
               {queueable ? (
                 <Button
                   circle

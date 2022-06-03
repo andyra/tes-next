@@ -20,17 +20,17 @@ function normalizeAlbumTracks(album) {
       addedBy: null,
       artist: {
         slug: album.artist.length ? album.artist[0].slug : null,
-        title: album.artist.length ? album.artist[0].title : null
+        title: album.artist.length ? album.artist[0].title : null,
       },
       audioFile: track.audioFile.length ? track.audioFile[0].url : null,
       collection: {
         coverArt: album.albumCoverArt,
         slug: album.slug,
         title: album.title,
-        entryType: "album"
+        uri: album.uri,
+        entryType: "album",
       },
       dateAdded: null,
-      // listType: "playlist",
       id: `album-${album.id}-${i}`,
       position: i,
       slug: track.song && track.song.length ? track.song[0].slug : null,
@@ -39,7 +39,8 @@ function normalizeAlbumTracks(album) {
           ? track.song[0].title
           : track.description && track.description.length
           ? track.description
-          : null
+          : null,
+      uri: track.song && track.song.length ? track.song[0].uri : null,
     });
     i++;
   }
@@ -50,7 +51,8 @@ function normalizeAlbumTracks(album) {
 // ----------------------------------------------------------------------------
 
 export default function Album({ album }) {
-  const { albumCoverArt, albumTracklist, artist, releaseDate, title } = album;
+  const { albumCoverArt, albumTracklist, artist, releaseDate, title, uri } =
+    album;
 
   return (
     <>
@@ -74,16 +76,16 @@ export default function Album({ album }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("albums")
+    query: querySlugs("albums"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   };
 }
 
@@ -99,6 +101,7 @@ export async function getStaticProps(context) {
           id
           slug
           title
+          uri
           ... on albums_default_Entry {
             albumCoverArt { url }
             albumType
@@ -112,6 +115,7 @@ export async function getStaticProps(context) {
                 song {
                   slug
                   title
+                  uri
                 }
                 audioFile { url }
               }
@@ -123,14 +127,14 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
 
   return {
     props: {
       album: data.entry,
       navSection: "Music",
-      PageTitle: data.entry.title
-    }
+      PageTitle: data.entry.title,
+    },
   };
 }
