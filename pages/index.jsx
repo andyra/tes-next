@@ -68,7 +68,6 @@ const PlayerButton = ({ children, title }) => (
 // ----------------------------------------------------------------------------
 
 export default function Home({ albums, episodes }) {
-  console.log(albums);
   return (
     <>
       <header className="text-center space-y-16">
@@ -103,7 +102,7 @@ export default function Home({ albums, episodes }) {
       <section>
         <h2 className="text-2xl text-center mb-16">Latest Releases</h2>
         <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 -mx-8 relative">
-          {albums.map(album => (
+          {albums.map((album) => (
             <CollectionItem
               coverArt={album.albumCoverArt}
               key={album.slug}
@@ -136,7 +135,7 @@ export default function Home({ albums, episodes }) {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
-    query: QUERY_LATEST_COLLECTIONS
+    query: QUERY_LATEST_COLLECTIONS,
   });
 
   const feed = await generateFeed(data.episodes);
@@ -146,7 +145,7 @@ export async function getStaticProps(context) {
     props: {
       albums: data.albums,
       episodes: data.episodes,
-      spacing: true
-    }
+      spacing: true,
+    },
   };
 }

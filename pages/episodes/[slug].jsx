@@ -31,7 +31,6 @@ function normalizeEpisodeTracks(episode) {
         coverArt: episode.episodeCoverArt,
       },
       dateAdded: null,
-      // listType: "playlist",
       id: `episode-${episode.id}-${i}`,
       position: i,
       slug: track.song && track.song.length ? track.song[0].slug : null,
@@ -53,7 +52,6 @@ function normalizeEpisodeTracks(episode) {
 
 export default function Episode({ episode }) {
   const { episodeCoverArt, releaseDate, title } = episode;
-  console.log(episode);
 
   return (
     <>

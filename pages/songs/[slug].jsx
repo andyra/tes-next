@@ -12,47 +12,69 @@ function matchingTrack(track, slug) {
   return track.song && track.song[0].slug === slug;
 }
 
-function getRelatedAlbums(slug, albums) {
-  const relatedAlbums = albums.filter(function(album) {
+function getRelatedCollections(slug, collections) {
+  const relatedCollections = collections.filter(function (collection) {
+    let filteredTracklist = [];
+
     // Remove all the tracks that don't match this song
-    const filteredTracklist = album.albumTracklist.filter(function(track) {
-      return matchingTrack(track, slug);
-    });
+    if (collection.albumTracklist) {
+      filteredTracklist = collection.albumTracklist.filter(function (track) {
+        return matchingTrack(track, slug);
+      });
+    }
+
+    if (collection.episodeTracklist) {
+      filteredTracklist = collection.episodeTracklist.filter(function (track) {
+        return matchingTrack(track, slug);
+      });
+    }
 
     return filteredTracklist.length > 0;
   });
 
-  return relatedAlbums;
+  return relatedCollections;
 }
 
-function normalizeSongTracks(slug, albums) {
+function normalizeSongTracks(slug, collections) {
   const newTracks = [];
   let i = 1;
 
-  for (let album of albums) {
-    for (let track of album.albumTracklist) {
+  for (let collection of collections) {
+    const collectionTracklist = collection.albumTracklist
+      ? collection.albumTracklist
+      : collection.episodeTracklist;
+
+    for (let track of collectionTracklist) {
       if (matchingTrack(track, slug)) {
         newTracks.push({
           addedBy: null,
           artist: {
             slug:
-              album.artist && album.artist.length ? album.artist[0].slug : null,
+              collection.artist && collection.artist.length
+                ? collection.artist[0].slug
+                : null,
             title:
-              album.artist && album.artist.length ? album.artist[0].title : null
+              collection.artist && collection.artist.length
+                ? collection.artist[0].title
+                : null,
           },
           audioFile:
             track.audioFile && track.audioFile.length
               ? track.audioFile[0].url
               : null,
           collection: {
-            coverArt: album.albumCoverArt,
-            slug: album.slug,
-            title: album.title,
-            entryType: "album"
+            entryType: collection.entryType,
+            slug: collection.slug,
+            title: collection.title,
+            uri: collection.uri,
+            coverArt: collection.albumCoverArt
+              ? collection.albumCoverArt
+              : collection.episodeCoverArt
+              ? collection.episodeCoverArt
+              : null,
           },
           dateAdded: null,
-          // listType: "playlist",
-          id: `album-${album.id}-${i}`,
+          id: `${collection.entryType}-${collection.slug}-${i}`,
           position: i,
           slug: track.song && track.song.length ? track.song[0].slug : null,
           title:
@@ -60,7 +82,7 @@ function normalizeSongTracks(slug, albums) {
               ? track.song[0].title
               : track.description && track.description.length
               ? track.description
-              : null
+              : null,
         });
         i++;
       }
@@ -95,10 +117,10 @@ const ContentSection = ({ title, className, content }) => (
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Song({ albums, episodes, song }) {
+export default function Song({ collections, song }) {
   const { lyrics, notation, slug, songType, title } = song;
-  const relatedAlbums = getRelatedAlbums(slug, albums);
-  const normalizedTracks = normalizeSongTracks(slug, relatedAlbums);
+  const relatedCollections = getRelatedCollections(slug, collections);
+  const normalizedTracks = normalizeSongTracks(slug, relatedCollections);
 
   return (
     <>
@@ -137,16 +159,16 @@ export default function Song({ albums, episodes, song }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("songs")
+    query: querySlugs("songs"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   };
 }
 
@@ -167,9 +189,10 @@ export async function getStaticProps(context) {
             songType
           }
         }
-        albums: entries(section: "albums") {
-          title
+        collections: entries(section: ["albums", "episodes"]) {
           slug
+          title
+          uri
           ... on albums_default_Entry {
             albumCoverArt { url }
             releaseDate
@@ -183,10 +206,6 @@ export async function getStaticProps(context) {
               }
             }
           }
-        }
-        episodes: entries(section: "episodes") {
-          title
-          slug
           ... on episodes_default_Entry {
             episodeCoverArt { url }
             releaseDate
@@ -202,7 +221,7 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
 
   return {
@@ -210,9 +229,8 @@ export async function getStaticProps(context) {
       navSection: "Music",
       PageTitle: data.entry.title,
       song: data.entry,
-      albums: data.albums,
-      episodes: data.episodes,
-      spacing: true
-    }
+      collections: data.collections,
+      spacing: true,
+    },
   };
 }

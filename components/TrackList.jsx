@@ -93,8 +93,6 @@ const TrackMenu = ({ addToQueue, track }) => {
     "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
   );
 
-  console.log(track);
-
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger className={overflowMenuClasses}>
