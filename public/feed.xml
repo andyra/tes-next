@@ -12,8 +12,8 @@
         <language>en</language>
         <atom:link href="https://tes.fm/feed" rel="self" type="application/rss+xml" />
         <description>This Evening's Show is a radio broadcast transmitting from an abandoned monorail station outside Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade of bizarre characters, historic factoids, surreal comedy, improvised news, interviews, and original music</description>
-        <lastBuildDate>Fri, 08 Apr 2022 07:00:00 GMT</lastBuildDate>
-        <pubDate>Fri, 08 Apr 2022 07:00:00 GMT</pubDate>
+        <lastBuildDate>Fri, 10 Jun 2022 07:00:00 GMT</lastBuildDate>
+        <pubDate>Fri, 10 Jun 2022 07:00:00 GMT</pubDate>
         <copyright>All rights reserved</copyright>
         <webMaster>tes.thiseveningsshow@gmail.com (Andy Smith)</webMaster>
         <itunes:subtitle>This Evening's Show is a radio broadcast transmitting from an</itunes:subtitle>
@@ -33,15 +33,15 @@
         </image>
         
     <item>
-      <title>Test Episode A</title>
-      <link>https://tes.fm/episodes/test-episode-a</link>
-      <guid>https://tes.fm/episodes/test-episode-a</guid>
-      <pubDate>Fri, 08 Apr 2022 07:00:00 GMT</pubDate>
-      <itunes:summary>Duis hendrerit eget est non tempus. Aenean elit augue, finibus sed lacus non, sodales malesuada tortor. Aenean a nisi quis nunc euismod mattis. Etiam ut dolor ligula. Suspendisse lectus eros, pretium ut quam nec, sodales vehicula leo. Phasellus condimentum orci vitae est tempus, ut dignissim enim gravida. Nunc varius fermentum tortor. Maecenas fringilla auctor lobortis. Nam et varius nibh. Phasellus cursus eu ex et sagittis.</itunes:summary>
-      <itunes:subtitle>Duis hendrerit eget est non tempus. Aenean elit augue, finibus</itunes:subtitle>
-      <description>Duis hendrerit eget est non tempus. Aenean elit augue, finibus sed lacus non, sodales malesuada tortor. Aenean a nisi quis nunc euismod mattis. Etiam ut dolor ligula. Suspendisse lectus eros, pretium ut quam nec, sodales vehicula leo. Phasellus condimentum orci vitae est tempus, ut dignissim enim gravida. Nunc varius fermentum tortor. Maecenas fringilla auctor lobortis. Nam et varius nibh. Phasellus cursus eu ex et sagittis.</description>
+      <title>Test Episode B</title>
+      <link>https://tes.fm/episodes/test-episode-b</link>
+      <guid>https://tes.fm/episodes/test-episode-b</guid>
+      <pubDate>Fri, 10 Jun 2022 07:00:00 GMT</pubDate>
+      <itunes:summary>null</itunes:summary>
+      <itunes:subtitle></itunes:subtitle>
+      <description>null</description>
       <enclosure
-        url="https://dts.podtrac.com/redirect.mp3/https://tesfm.fra1.digitaloceanspaces.com/episodes/test-episode-a/AHS-fight-song.m4a"
+        url="https://dts.podtrac.com/redirect.mp3/"
         type="audio/mpeg"
         length="1024"
       />

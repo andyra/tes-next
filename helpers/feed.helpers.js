@@ -10,10 +10,7 @@ const CATEGORY = "Comedy";
 const OWNER = "Andy Smith";
 
 function truncateDescription(str) {
-  return str
-    .split(" ")
-    .splice(0, 10)
-    .join(" ");
+  return str.split(" ").splice(0, 10).join(" ");
 }
 
 export async function generateFeedItem(episode) {
@@ -23,7 +20,7 @@ export async function generateFeedItem(episode) {
     episodeCoverArt,
     releaseDate,
     slug,
-    title
+    title,
   } = episode;
   const buildDate = new Date(releaseDate).toUTCString();
 
@@ -34,10 +31,14 @@ export async function generateFeedItem(episode) {
       <guid>${BASE_URL}episodes/${slug}</guid>
       <pubDate>${buildDate}</pubDate>
       <itunes:summary>${description}</itunes:summary>
-      <itunes:subtitle>${truncateDescription(description)}</itunes:subtitle>
+      <itunes:subtitle>${
+        description ? truncateDescription(description) : ""
+      }</itunes:subtitle>
       <description>${description}</description>
       <enclosure
-        url="https://dts.podtrac.com/redirect.mp3/${episodeAudio[0].url}"
+        url="https://dts.podtrac.com/redirect.mp3/${
+          episodeAudio.length ? episodeAudio[0].url : ""
+        }"
         type="audio/mpeg"
         length="1024"
       />
