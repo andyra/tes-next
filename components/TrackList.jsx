@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import toast from "react-hot-toast";
 import cn from "classnames";
 import { usePlayerContext } from "../context/PlayerContext";
@@ -180,6 +181,31 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
           {track.audioFile && (
             <>
               <TrackDuration audioFile={track.audioFile} />
+              <DropdownMenu.Root>
+                <DropdownMenu.Trigger asChild>
+                  <Button
+                    circle
+                    className="opacity-0 group-hover:opacity-100"
+                    variant="ghost"
+                  >
+                    <Icon name="Overflow" />
+                  </Button>
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content className="border-2 border-accent rounded-lg p-16">
+                  <DropdownMenu.Group>
+                    <DropdownMenu.Item>Song</DropdownMenu.Item>
+                    <DropdownMenu.Item>Album</DropdownMenu.Item>
+                    <DropdownMenu.Item>Artist</DropdownMenu.Item>
+                  </DropdownMenu.Group>
+                  <DropdownMenu.Group>
+                    <DropdownMenu.Item>Add To Queue</DropdownMenu.Item>
+                    <DropdownMenu.Item>Download</DropdownMenu.Item>
+                    <DropdownMenu.Item>Artist</DropdownMenu.Item>
+                  </DropdownMenu.Group>
+                  <DropdownMenu.Separator />
+                  <DropdownMenu.Arrow />
+                </DropdownMenu.Content>
+              </DropdownMenu.Root>
               {queueable ? (
                 <Button
                   circle
