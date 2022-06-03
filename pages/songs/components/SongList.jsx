@@ -30,7 +30,7 @@ const SongItem = ({ filters, i, song }) => {
         <Link href={`/songs/${encodeURIComponent(slug)}`}>
           <a className="flex break-inside-avoid-column gap-16 text-xl py-20 border-t-2 border-primary-25 border-dotted hover:border-accent hover:text-accent hover:border-solid transition group">
             <span className="opacity-25">{i + 1}</span>
-            {title} {title}
+            {title}
           </a>
         </Link>
       </li>
