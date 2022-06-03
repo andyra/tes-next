@@ -40,9 +40,8 @@ export default function Episodes() {
           </footer>
         </div>
       </section>
-      <hr />
+      <hr className="border border-primary-10" />
       <section>
-        <h2 className="font-medium text-2xl text-center">Episodes</h2>
         <ClientOnly>
           <EpisodeList />
         </ClientOnly>
@@ -58,7 +57,7 @@ export async function getStaticProps() {
   return {
     props: {
       PageTitle: "Episodes",
-      spacing: true
-    }
+      spacing: true,
+    },
   };
 }

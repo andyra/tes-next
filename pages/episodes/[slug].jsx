@@ -24,7 +24,7 @@ function normalizeEpisodeTracks(episode) {
       },
       audioFile: track.audioFile.length ? track.audioFile[0].url : null,
       collection: {
-        sectionHandle: {episode.sectionHandle},
+        sectionHandle: episode.sectionHandle,
         slug: episode.slug,
         title: episode.title,
         uri: episode.uri,
