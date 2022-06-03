@@ -20,14 +20,15 @@ function normalizeEpisodeTracks(episode) {
       addedBy: null,
       artist: {
         slug: "/episodes",
-        title: "This Evening's Show"
+        title: "This Evening's Show",
       },
       audioFile: track.audioFile.length ? track.audioFile[0].url : null,
       collection: {
-        coverArt: episode.episodeCoverArt,
+        entryType: "episode",
         slug: episode.slug,
         title: episode.title,
-        entryType: "episode"
+        uri: episode.uri,
+        coverArt: episode.episodeCoverArt,
       },
       dateAdded: null,
       // listType: "playlist",
@@ -39,7 +40,8 @@ function normalizeEpisodeTracks(episode) {
           ? track.song[0].title
           : track.description && track.description.length
           ? track.description
-          : null
+          : null,
+      uri: track.song && track.song.length ? track.song[0].uri : null,
     });
     i++;
   }
@@ -51,16 +53,17 @@ function normalizeEpisodeTracks(episode) {
 
 export default function Episode({ episode }) {
   const { episodeCoverArt, releaseDate, title } = episode;
+  console.log(episode);
 
   return (
     <>
       <CollectionHeader
         title={title}
-        coverArt={albumCoverArt}
+        coverArt={episodeCoverArt}
         back={{ href: "/episodes", title: "Episodes" }}
       >
         <div>
-          <NiceDate date={releaseDate} format="year" /> • Duration
+          <NiceDate date={releaseDate} /> • Duration
         </div>
       </CollectionHeader>
       <Tracklist tracks={normalizeEpisodeTracks(episode)} />
@@ -73,16 +76,16 @@ export default function Episode({ episode }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("episodes")
+    query: querySlugs("episodes"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   };
 }
 
@@ -96,6 +99,7 @@ export async function getStaticProps(context) {
       query Entry {
         entry(section: "episodes", slug: "${params.slug}") {
           title
+          uri
           ... on episodes_default_Entry {
             companionAlbum {
               slug
@@ -112,6 +116,7 @@ export async function getStaticProps(context) {
                 song {
                   slug
                   title
+                  uri
                 }
                 audioFile { url }
               }
@@ -120,17 +125,18 @@ export async function getStaticProps(context) {
                 audioFile { url }
               }
             }
+            releaseDate
           }
         }
       }
-    `
+    `,
   });
 
   return {
     props: {
       episode: data.entry,
       navSection: "Episodes",
-      PageTitle: data.entry.title
-    }
+      PageTitle: data.entry.title,
+    },
   };
 }

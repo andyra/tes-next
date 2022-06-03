@@ -63,8 +63,8 @@ const TrackMenuItem = ({ href, icon, large, title, ...props }) => {
   return (
     <DropdownMenu.Item className="flex-1 hover:outline-0">
       {href ? (
-        <Link href={href} {...props}>
-          <a className={classes}>
+        <Link href={href}>
+          <a className={classes} {...props}>
             <Icon name={icon} />
             {title}
           </a>
@@ -93,6 +93,8 @@ const TrackMenu = ({ addToQueue, track }) => {
     "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
   );
 
+  console.log(track);
+
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger className={overflowMenuClasses}>
@@ -102,18 +104,18 @@ const TrackMenu = ({ addToQueue, track }) => {
         <DropdownMenu.Group className="p-8">
           {track.uri && (
             <TrackMenuItem
-              title="Go to Song"
+              title="Go to song"
               href={`/${track.uri}`}
               icon="Moon"
             />
           )}
           <TrackMenuItem
-            title="Go to Album"
+            title={`Go to ${track.collection.entryType}`}
             href={`/${track.collection.uri}`}
-            icon="Music"
+            icon={track.collection.entryType === "episode" ? "Mic" : "Music"}
           />
           <TrackMenuItem
-            title="Add to Queue"
+            title="Add to queue"
             onClick={() => {
               addToQueue(track);
             }}
@@ -125,7 +127,10 @@ const TrackMenu = ({ addToQueue, track }) => {
               title="Download"
               href={track.audioFile}
               icon="Download"
-              download
+              download={track.title}
+              target="_blank"
+              noopener
+              noreferrer
             />
           )}
         </DropdownMenu.Group>
