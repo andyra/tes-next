@@ -28,7 +28,7 @@ function normalizeAlbumTracks(album) {
         slug: album.slug,
         title: album.title,
         uri: album.uri,
-        entryType: "album",
+        sectionHandle: {album.sectionHandle},
       },
       dateAdded: null,
       id: `album-${album.id}-${i}`,
@@ -99,6 +99,7 @@ export async function getStaticProps(context) {
       query Entry {
         entry(section: "albums", slug: "${params.slug}") {
           id
+          sectionHandle
           slug
           title
           uri

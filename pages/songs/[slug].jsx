@@ -63,7 +63,7 @@ function normalizeSongTracks(slug, collections) {
               ? track.audioFile[0].url
               : null,
           collection: {
-            entryType: collection.entryType,
+            sectionHandle: collection.sectionHandle,
             slug: collection.slug,
             title: collection.title,
             uri: collection.uri,
@@ -74,7 +74,7 @@ function normalizeSongTracks(slug, collections) {
               : null,
           },
           dateAdded: null,
-          id: `${collection.entryType}-${collection.slug}-${i}`,
+          id: `${collection.sectionHandle}-${collection.slug}-${i}`,
           position: i,
           slug: track.song && track.song.length ? track.song[0].slug : null,
           title:
@@ -190,6 +190,7 @@ export async function getStaticProps(context) {
           }
         }
         collections: entries(section: ["albums", "episodes"]) {
+          sectionHandle
           slug
           title
           uri

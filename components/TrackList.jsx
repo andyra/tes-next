@@ -27,6 +27,16 @@ const TrackDuration = ({ audioFile }) => {
   );
 };
 
+function caseSectionHandle(sectionHandle) {
+  const capitalized =
+    sectionHandle.charAt(0).toUpperCase() + sectionHandle.slice(1);
+  const lastLetter = capitalized.charAt(capitalized.length - 1);
+  if (lastLetter === "s") {
+    return capitalized.slice(0, -1);
+  }
+  return capitalized;
+}
+
 const TrackTitle = ({ highlightTrack, showCollectionInfo, track }) => (
   <div
     className={`text-xl md:text-2xl flex items-center gap-8 ${
@@ -102,18 +112,20 @@ const TrackMenu = ({ addToQueue, track }) => {
         <DropdownMenu.Group className="p-8">
           {track.uri && (
             <TrackMenuItem
-              title="Go to song"
+              title="Go to Song"
               href={`/${track.uri}`}
               icon="Moon"
             />
           )}
           <TrackMenuItem
-            title={`Go to ${track.collection.entryType}`}
+            title={`Go to ${caseSectionHandle(track.collection.sectionHandle)}`}
             href={`/${track.collection.uri}`}
-            icon={track.collection.entryType === "episode" ? "Mic" : "Music"}
+            icon={
+              track.collection.sectionHandle === "episodes" ? "Mic" : "Music"
+            }
           />
           <TrackMenuItem
-            title="Add to queue"
+            title="Add to Queue"
             onClick={() => {
               addToQueue(track);
             }}

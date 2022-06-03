@@ -24,7 +24,7 @@ function normalizeEpisodeTracks(episode) {
       },
       audioFile: track.audioFile.length ? track.audioFile[0].url : null,
       collection: {
-        entryType: "episode",
+        sectionHandle: {episode.sectionHandle},
         slug: episode.slug,
         title: episode.title,
         uri: episode.uri,
@@ -96,6 +96,7 @@ export async function getStaticProps(context) {
     query: gql`
       query Entry {
         entry(section: "episodes", slug: "${params.slug}") {
+          sectionHandle
           title
           uri
           ... on episodes_default_Entry {
