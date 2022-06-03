@@ -28,7 +28,7 @@ function normalizeAlbumTracks(album) {
         slug: album.slug,
         title: album.title,
         uri: album.uri,
-        sectionHandle: {album.sectionHandle},
+        sectionHandle: album.sectionHandle,
       },
       dateAdded: null,
       id: `album-${album.id}-${i}`,
