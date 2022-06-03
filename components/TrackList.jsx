@@ -89,7 +89,7 @@ const TrackMenuItem = ({ href, icon, large, title, ...props }) => {
   );
 };
 
-const TrackMenu = ({ addToQueue, track }) => {
+const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
   const overflowMenuClasses = cn(
     getButtonClasses({
       variant: "ghost",
@@ -124,14 +124,25 @@ const TrackMenu = ({ addToQueue, track }) => {
               track.collection.sectionHandle === "episodes" ? "Mic" : "Music"
             }
           />
-          <TrackMenuItem
-            title="Add to Queue"
-            onClick={() => {
-              addToQueue(track);
-            }}
-            icon="Plus"
-            type="button"
-          />
+          {queueable ? (
+            <TrackMenuItem
+              title="Add to Queue"
+              onClick={() => {
+                addToQueue(track);
+              }}
+              icon="Plus"
+              type="button"
+            />
+          ) : (
+            <TrackMenuItem
+              title="Remove from Queue"
+              onClick={() => {
+                removeFromQueue(track, i);
+              }}
+              icon="X"
+              type="button"
+            />
+          )}
           {track.audioFile && (
             <TrackMenuItem
               title="Download"
@@ -262,8 +273,8 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
 
   const TrackItem = ({ track, i }) => {
     const liClasses = cn({
-      "flex gap-8 px-8 -mx-8 h-64 rounded-lg cursor-default transition group": true,
-      "text-secondary hover:bg-primary-5 focus:bg-primary-10": track.audioFile,
+      "flex gap-8 px-8 -mx-8 h-64 rounded-lg hover:bg-primary-5 focus:bg-primary-10 cursor-default transition group": true,
+      "text-secondary": track.audioFile,
       "text-secondary-50": !track.audioFile,
     });
 
@@ -278,35 +289,20 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
           />
         </div>
         <div id="actions" className="flex items-center gap-2">
-          {track.audioFile && (
-            <>
-              <TrackDuration audioFile={track.audioFile} />
-              <TrackMenu track={track} addToQueue={addToQueue} />
-              {queueable ? (
-                <Button
-                  circle
-                  className="opacity-0 group-hover:opacity-100"
-                  variant="ghost"
-                  onClick={() => {
-                    addToQueue(track);
-                  }}
-                >
-                  <Icon name="Plus" />
-                </Button>
-              ) : (
-                <Button
-                  circle
-                  className="opacity-0 group-hover:opacity-100"
-                  variant="ghost"
-                  onClick={() => {
-                    removeFromQueue(track, i);
-                  }}
-                >
-                  <Icon name="X" />
-                </Button>
-              )}
-            </>
+          {track.audioFile ? (
+            <TrackDuration audioFile={track.audioFile} />
+          ) : (
+            <span className="text-sm text-primary-25 opacity-0 group-hover:opacity-100 transition">
+              No audio
+            </span>
           )}
+          <TrackMenu
+            track={track}
+            addToQueue={addToQueue}
+            removeFromQueue={removeFromQueue}
+            queueable={queueable}
+            i={i}
+          />
         </div>
       </li>
     );
