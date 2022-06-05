@@ -67,7 +67,7 @@ export function getTrackSlug(track) {
   return track.song && track.song.length ? track.song[0].slug : null;
 }
 
-export function getTrackLink(track) {
+export function getTrackUri(track) {
   return track.song && track.song.length ? track.song[0].uri : null;
 }
 
@@ -80,11 +80,17 @@ export function getCollectionCoverArtUrl(collection) {
 }
 
 export function getTrackTitle(track) {
-  return track.song && track.song.length
-    ? track.song[0].title
-    : track.description && track.description.length
-    ? track.description
+  const { song, description } = track;
+  return song && song.length
+    ? song[0].title
+    : description && description.length
+    ? description
     : null;
+}
+
+export function getSongInfo(track, field) {
+  const { song } = track;
+  return song && song.length && song[0][field] ? song[0][field] : null;
 }
 
 export function normalizeTrack(collection, track, i) {
@@ -104,9 +110,12 @@ export function normalizeTrack(collection, track, i) {
     },
     dateAdded: null,
     id: `${collection.sectionHandle}-${collection.slug}-${i}`,
+    lyrics: getSongInfo(track, "lyrics"),
+    notation: getSongInfo(track, "notation"),
     position: i,
     slug: getTrackSlug(track),
-    title: getTrackTitle(track)
+    title: getTrackTitle(track),
+    uri: getTrackUri(track)
   };
 }
 

@@ -1,36 +1,13 @@
 import { useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
+import Link from "next/link";
+import Badge from "../components/Badge";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Input from "../components/Input";
 import PageHeader, { PageTitle } from "../components/PageHeader";
 import { getCollectionType, normalizeTrack, shuffle } from "../helpers/";
-
-// Functions
-// ----------------------------------------------------------------------------
-
-function isSongHasAudio(track) {
-  return track.song && track.song.length && track.audioFile.length;
-}
-
-function normalizeSetlistTracks(collections) {
-  const newTracks = [];
-  let i = 1;
-
-  for (let collection of collections) {
-    const collectionType = getCollectionType(collection);
-    const tracklist = collection[`${collectionType}Tracklist`];
-
-    for (let track of tracklist) {
-      if (isSongHasAudio(track)) {
-        newTracks.push(normalizeTrack(collection, track, i));
-        i++;
-      }
-    }
-  }
-  return newTracks;
-}
 
 // Components
 // ----------------------------------------------------------------------------
@@ -40,20 +17,38 @@ const LABEL_CLASSES =
 
 const Computor = ({
   bleedCount,
-  collections,
   setBleedCount,
-  setSetlistTracks,
+  setSetlistItems,
   setSongCount,
   setStrategyCount,
   songCount,
+  songs,
   strategyCount
 }) => {
-  const normalizedTracks = normalizeSetlistTracks(collections);
+  // Creates an array of tracks to include bleeds/strategies on (i.e. [0, 9, 2])
+  function getTrackExtras(songCount, count, lastItem) {
+    const maxTracks = lastItem ? songCount : songCount - 1;
+
+    if (songCount && count) {
+      const shuffledTrackIndexes = shuffle([...Array(maxTracks).keys()]);
+      return shuffledTrackIndexes.splice(0, count);
+    }
+
+    return [];
+  }
 
   function handleCompute() {
-    const shuffledTracks = shuffle(normalizedTracks);
-    const tracks = shuffledTracks.splice(0, songCount);
-    setSetlistTracks(tracks);
+    const shuffledSongs = shuffle(songs);
+    const mySongs = shuffledSongs.splice(0, songCount);
+    const bleeds = getTrackExtras(songCount, bleedCount);
+    const strategies = getTrackExtras(songCount, strategyCount, true);
+    const items = mySongs.map((song, i) => ({
+      song: song,
+      bleed: bleeds.indexOf(i) >= 0,
+      strategy: strategies.indexOf(i) >= 0
+    }));
+
+    setSetlistItems(items);
   }
 
   return (
@@ -114,78 +109,72 @@ const Computor = ({
   );
 };
 
-const SetlistItem = ({ track, bleed, strategy }) => {
-  // get random strategy
-  return (
-    <li className="relative py-8">
-      <div className="text-3xl font-medium">{track.title}</div>
-      {strategy && <div className="opacity-50">{strategy}</div>}
-      {bleed && (
-        <span className="h-24 px-8 border border-accent-25 text-accent text-sm rounded-full inline-flex gap-4 items-center justify-center transform translate-y-1/3">
-          <Icon name="ArrowDown" />
-          Bleed
-        </span>
-      )}
-    </li>
-  );
-};
-
-// Creates an array of tracks to include bleeds/strategies on (i.e. [0, 9, 2])
-function getDoodads(songCount, count) {
-  if (songCount && count) {
-    const shuffledTrackIndexes = shuffle([...Array(songCount).keys()]);
-    const itemsForTracks = shuffledTrackIndexes.splice(0, count);
-    return itemsForTracks;
-  }
-
-  return [];
-}
-
-const SetlistItems = ({ songCount, bleedCount, strategyCount, tracks }) => {
-  const bleedsForTracks = getDoodads(songCount, bleedCount);
-  const strategiesForTracks = getDoodads(songCount, strategyCount);
-
-  return (
+const SetlistItems = ({ items }) =>
+  items.length ? (
     <ol className="list-decimal">
-      {tracks.map((track, i) => (
-        <SetlistItem
-          track={track}
-          bleed={bleedsForTracks.indexOf(i) >= 0}
-          strategy={strategiesForTracks.indexOf(i) >= 0}
-          key={i}
-        />
+      {items.map((item, i) => (
+        <li className="relative" key={i}>
+          {console.log(item)}
+          <Link href={item.song.uri}>
+            <a
+              className="flex items-center gap-8 hover:bg-primary-5 py-8 px-16 rounded-lg group"
+              noopener
+              noreferrer
+              target="_blank"
+            >
+              <div className="flex-1">
+                <div className="text-3xl font-medium">{item.song.title}</div>
+                {item.strategy && (
+                  <div className="opacity-50">"{item.strategy}"</div>
+                )}
+                {item.bleed && (
+                  <span className="h-24 px-8 border border-accent-25 text-accent text-sm rounded-full inline-flex gap-4 items-center justify-center transform translate-y-1/3">
+                    <Icon name="ArrowDown" />
+                    Bleed
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center gap-4">
+                {item.song.lyrics && (
+                  <Badge className="text-sm text-primary-50 opacity-0 group-hover:opacity-100 transition">
+                    Lyrics
+                  </Badge>
+                )}
+                {item.song.notation && (
+                  <Badge className="text-sm text-primary-50 opacity-0 group-hover:opacity-100 transition">
+                    Notation
+                  </Badge>
+                )}
+              </div>
+            </a>
+          </Link>
+        </li>
       ))}
     </ol>
-  );
-};
+  ) : null;
 
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Setlist({ collections }) {
+export default function Setlist({ songs }) {
   const [songCount, setSongCount] = useState(0);
   const [bleedCount, setBleedCount] = useState(0);
   const [strategyCount, setStrategyCount] = useState(0);
-  const [setlistTracks, setSetlistTracks] = useState([]);
+  const [setlistItems, setSetlistItems] = useState([]);
 
   return (
     <>
       <Computor
         bleedCount={bleedCount}
-        collections={collections}
+        songs={songs}
         setBleedCount={setBleedCount}
-        setSetlistTracks={setSetlistTracks}
+        setSetlistItems={setSetlistItems}
         setSongCount={setSongCount}
         setStrategyCount={setStrategyCount}
         songCount={songCount}
         strategyCount={strategyCount}
       />
-      <SetlistItems
-        bleedCount={bleedCount}
-        songCount={songCount}
-        strategyCount={strategyCount}
-        tracks={setlistTracks}
-      />
+      <SetlistItems items={setlistItems} />
     </>
   );
 }
@@ -198,48 +187,13 @@ export async function getStaticProps(context) {
   const { data } = await client.query({
     query: gql`
       query Entry {
-        collections: entries(section: ["albums", "episodes"]) {
-          sectionHandle
-          slug
+        entries(section: "songs") {
           title
           uri
-          ... on albums_default_Entry {
-            albumCoverArt {
-              url
-            }
-            albumTracklist {
-              ... on albumTracklist_song_BlockType {
-                song {
-                  slug
-                  title
-                }
-                audioFile {
-                  url
-                }
-              }
-            }
-            artist {
-              slug
-              title
-            }
-            releaseDate
-          }
-          ... on episodes_default_Entry {
-            episodeCoverArt {
-              url
-            }
-            releaseDate
-            episodeTracklist {
-              ... on episodeTracklist_song_BlockType {
-                song {
-                  slug
-                  title
-                }
-                audioFile {
-                  url
-                }
-              }
-            }
+          ... on songs_default_Entry {
+            lyrics
+            notation
+            songType
           }
         }
       }
@@ -249,7 +203,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       PageTitle: "Setlist Computor",
-      collections: data.collections,
+      songs: data.entries,
       spacing: true
     }
   };
