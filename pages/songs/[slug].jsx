@@ -11,7 +11,8 @@ import {
   getTrackSlug,
   getTrackTitle,
   getTrackType,
-  querySlugs
+  querySlugs,
+  normalizeTrack
 } from "../../helpers/";
 
 // Functions
@@ -54,30 +55,7 @@ function normalizeSongTracks(slug, collections) {
 
     for (let track of tracklist) {
       if (matchingTrack(track, slug)) {
-        newTracks.push({
-          addedBy: null,
-          artist: {
-            slug: getArtistInfo(collection, "slug"),
-            title: getArtistInfo(collection, "title")
-          },
-          audioFile: getTrackAudioFileUrl(track),
-          collection: {
-            sectionHandle: collection.sectionHandle,
-            slug: collection.slug,
-            title: collection.title,
-            uri: collection.uri,
-            coverArt: collection.albumCoverArt
-              ? collection.albumCoverArt
-              : collection.episodeCoverArt
-              ? collection.episodeCoverArt
-              : null
-          },
-          dateAdded: null,
-          id: `${collection.sectionHandle}-${collection.slug}-${i}`,
-          position: i,
-          slug: getTrackSlug(track),
-          title: getTrackTitle(track)
-        });
+        newTracks.push(normalizeTrack(collection, track, i));
         i++;
       }
     }

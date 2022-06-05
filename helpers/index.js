@@ -91,7 +91,6 @@ export function normalizeCollectionTracks(collection, condition = true) {
   const collectionType = getCollectionType(collection);
   const newTracks = [];
   let i = 1;
-  console.log(collection);
 
   for (let track of collection[`${collectionType}Tracklist`]) {
     if (condition) {
@@ -120,4 +119,27 @@ export function normalizeCollectionTracks(collection, condition = true) {
     }
   }
   return newTracks;
+}
+
+export function normalizeTrack(collection, track, i) {
+  return {
+    addedBy: null,
+    artist: {
+      slug: getArtistInfo(collection, "slug"),
+      title: getArtistInfo(collection, "title")
+    },
+    audioFile: getTrackAudioFileUrl(track),
+    collection: {
+      sectionHandle: collection.sectionHandle,
+      slug: collection.slug,
+      title: collection.title,
+      uri: collection.uri,
+      coverArt: getCollectionCoverArtUrl(collection)
+    },
+    dateAdded: null,
+    id: `${collection.sectionHandle}-${collection.slug}-${i}`,
+    position: i,
+    slug: getTrackSlug(track),
+    title: getTrackTitle(track)
+  };
 }

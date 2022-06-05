@@ -23,11 +23,11 @@ export const CoverArt = ({
     [className]: className
   });
 
-  return url.length > 0 ? (
+  return url ? (
     <figure className={coverArtClasses}>
       <Image
         alt={`${title} cover art`}
-        src={url[0].url}
+        src={url}
         width={width}
         height={height}
         layout="responsive"

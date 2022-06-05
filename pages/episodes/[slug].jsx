@@ -18,11 +18,7 @@ export default function Episode({ episode }) {
 
   return (
     <>
-      <CollectionHeader
-        title={title}
-        coverArt={episodeCoverArt}
-        back={{ href: "/episodes", title: "Episodes" }}
-      >
+      <CollectionHeader collection={episode}>
         <div>
           <NiceDate date={releaseDate} /> • Duration
         </div>

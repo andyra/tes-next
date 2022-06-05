@@ -17,6 +17,7 @@ const QUERY_ALBUMS = gql`
     entries(section: "albums") {
       slug
       title
+      uri
       ... on albums_default_Entry {
         releaseDate
         artist {
@@ -43,18 +44,7 @@ export const AlbumItem = ({ album, filters }) => {
     filters.albumType === "all" || filters.albumType === albumType;
   const visible = artistMatches && albumTypeMatches;
 
-  return (
-    visible && (
-      <CollectionItem
-        coverArt={albumCoverArt}
-        key={slug}
-        releaseDate={releaseDate}
-        slug={slug}
-        title={title}
-        type="albums"
-      />
-    )
-  );
+  return visible && <CollectionItem collection={album} />;
 };
 
 export const AlbumList = ({ filters }) => {

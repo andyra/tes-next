@@ -17,6 +17,7 @@ const QUERY_EPISODES = gql`
     entries(section: "episodes") {
       slug
       title
+      uri
       ... on episodes_default_Entry {
         releaseDate
         episodeCoverArt {
@@ -33,16 +34,7 @@ const QUERY_EPISODES = gql`
 const EpisodeItem = ({ episode }) => {
   const { episodeCoverArt, releaseDate, slug, title } = episode;
 
-  return (
-    <CollectionItem
-      coverArt={episodeCoverArt}
-      key={slug}
-      releaseDate={releaseDate}
-      slug={slug}
-      title={title}
-      type="episodes"
-    />
-  );
+  return <CollectionItem collection={episode} />;
 };
 
 export const EpisodeList = () => {

@@ -24,11 +24,7 @@ export default function Album({ album }) {
 
   return (
     <>
-      <CollectionHeader
-        title={title}
-        coverArt={albumCoverArt}
-        back={{ href: "/albums", title: "Albums" }}
-      >
+      <CollectionHeader collection={album}>
         <div>
           {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
           {albumTracklist.length} Tracks • Duration
