@@ -3,7 +3,16 @@ import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import PageHeader from "../../components/PageHeader";
 import Tracklist from "../../components/Tracklist";
-import { querySlugs } from "../../helpers";
+import {
+  getArtistInfo,
+  getCollectionCoverArtUrl,
+  getCollectionType,
+  getTrackAudioFileUrl,
+  getTrackSlug,
+  getTrackTitle,
+  getTrackType,
+  querySlugs
+} from "../../helpers/";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -13,18 +22,18 @@ function matchingTrack(track, slug) {
 }
 
 function getRelatedCollections(slug, collections) {
-  const relatedCollections = collections.filter(function (collection) {
+  const relatedCollections = collections.filter(function(collection) {
     let filteredTracklist = [];
 
     // Remove all the tracks that don't match this song
     if (collection.albumTracklist) {
-      filteredTracklist = collection.albumTracklist.filter(function (track) {
+      filteredTracklist = collection.albumTracklist.filter(function(track) {
         return matchingTrack(track, slug);
       });
     }
 
     if (collection.episodeTracklist) {
-      filteredTracklist = collection.episodeTracklist.filter(function (track) {
+      filteredTracklist = collection.episodeTracklist.filter(function(track) {
         return matchingTrack(track, slug);
       });
     }
@@ -40,28 +49,18 @@ function normalizeSongTracks(slug, collections) {
   let i = 1;
 
   for (let collection of collections) {
-    const collectionTracklist = collection.albumTracklist
-      ? collection.albumTracklist
-      : collection.episodeTracklist;
+    const collectionType = getCollectionType(collection);
+    const tracklist = collection[`${collectionType}Tracklist`];
 
-    for (let track of collectionTracklist) {
+    for (let track of tracklist) {
       if (matchingTrack(track, slug)) {
         newTracks.push({
           addedBy: null,
           artist: {
-            slug:
-              collection.artist && collection.artist.length
-                ? collection.artist[0].slug
-                : null,
-            title:
-              collection.artist && collection.artist.length
-                ? collection.artist[0].title
-                : null,
+            slug: getArtistInfo(collection, "slug"),
+            title: getArtistInfo(collection, "title")
           },
-          audioFile:
-            track.audioFile && track.audioFile.length
-              ? track.audioFile[0].url
-              : null,
+          audioFile: getTrackAudioFileUrl(track),
           collection: {
             sectionHandle: collection.sectionHandle,
             slug: collection.slug,
@@ -71,18 +70,13 @@ function normalizeSongTracks(slug, collections) {
               ? collection.albumCoverArt
               : collection.episodeCoverArt
               ? collection.episodeCoverArt
-              : null,
+              : null
           },
           dateAdded: null,
           id: `${collection.sectionHandle}-${collection.slug}-${i}`,
           position: i,
-          slug: track.song && track.song.length ? track.song[0].slug : null,
-          title:
-            track.song && track.song.length
-              ? track.song[0].title
-              : track.description && track.description.length
-              ? track.description
-              : null,
+          slug: getTrackSlug(track),
+          title: getTrackTitle(track)
         });
         i++;
       }
@@ -159,16 +153,16 @@ export default function Song({ collections, song }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("songs"),
+    query: querySlugs("songs")
   });
 
-  const paths = data.entries.map((entry) => ({
-    params: { slug: entry.slug },
+  const paths = data.entries.map(entry => ({
+    params: { slug: entry.slug }
   }));
 
   return {
     paths,
-    fallback: false,
+    fallback: false
   };
 }
 
@@ -222,7 +216,7 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `,
+    `
   });
 
   return {
@@ -231,7 +225,7 @@ export async function getStaticProps(context) {
       PageTitle: data.entry.title,
       song: data.entry,
       collections: data.collections,
-      spacing: true,
-    },
+      spacing: true
+    }
   };
 }

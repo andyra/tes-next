@@ -10,7 +10,7 @@ export const CoverArt = ({
   ...props
 }) => {
   const coverArtClasses = cn({
-    "overflow-hidden": true,
+    "bg-accent overflow-hidden": true,
     "rounded-lg": !className,
     [className]: className
   });

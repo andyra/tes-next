@@ -32,3 +32,92 @@ export function querySlugs(section) {
     }
   `;
 }
+
+// Turns the Craft sectionHandle into something more usable
+// ex: "albums_default_Entry" → "album"
+export function getCollectionType(collection, plural = false) {
+  const sectionHandle = collection.__typename.replace("_default_Entry", "");
+  const singular = sectionHandle.slice(0, -1);
+  return plural ? sectionHandle : singular;
+}
+
+// Turns the Craft Matrix blocktype into something more usable
+// ex: "albumTracklist_song_BlockType" → "song"
+export function getTrackType(track) {
+  const typeName = track.__typename;
+  return typeName.substring(
+    typeName.indexOf("_") + 1,
+    typeName.lastIndexOf("_")
+  );
+}
+
+export function getArtistInfo(collection, prop) {
+  return collection.artist && collection.artist.length
+    ? collection.artist[0][prop]
+    : null;
+}
+
+export function getTrackAudioFileUrl(track) {
+  return track.audioFile && track.audioFile.length
+    ? track.audioFile[0].url
+    : null;
+}
+
+export function getTrackSlug(track) {
+  return track.song && track.song.length ? track.song[0].slug : null;
+}
+
+export function getTrackLink(track) {
+  return track.song && track.song.length ? track.song[0].uri : null;
+}
+
+export function getCollectionCoverArtUrl(collection) {
+  const collectionType = getCollectionType(collection);
+  return collection[`${collectionType}CoverArt`] &&
+    collection[`${collectionType}CoverArt`].length
+    ? collection[`${collectionType}CoverArt`][0].url
+    : null;
+}
+
+export function getTrackTitle(track) {
+  return track.song && track.song.length
+    ? track.song[0].title
+    : track.description && track.description.length
+    ? track.description
+    : null;
+}
+
+export function normalizeCollectionTracks(collection, condition = true) {
+  const collectionType = getCollectionType(collection);
+  const newTracks = [];
+  let i = 1;
+  console.log(collection);
+
+  for (let track of collection[`${collectionType}Tracklist`]) {
+    if (condition) {
+      newTracks.push({
+        addedBy: null,
+        artist: {
+          slug: getArtistInfo(collection, "slug"),
+          title: getArtistInfo(collection, "title")
+        },
+        audioFile: getTrackAudioFileUrl(track),
+        collection: {
+          sectionHandle: collection.sectionHandle,
+          slug: collection.slug,
+          title: collection.title,
+          uri: collection.uri,
+          coverArt: collection[`${collectionType}CoverArt`]
+        },
+        dateAdded: null,
+        id: `${collectionType}-${collection.slug}-${i}`,
+        position: i,
+        slug: getTrackSlug(track),
+        title: getTrackTitle(track),
+        uri: getTrackLink(track)
+      });
+      i++;
+    }
+  }
+  return newTracks;
+}

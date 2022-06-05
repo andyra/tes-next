@@ -19,7 +19,7 @@ export const CollectionHeader = ({ back, children, coverArt, title }) => (
     )}
     <div className="flex flex-col lg:flex-row lg:items-end gap-24">
       <CoverArt
-        className="mx-auto md:mx-0 w-256 h-256"
+        className="rounded-lg mx-auto md:mx-0 w-256"
         height={256}
         title={title}
         url={coverArt}

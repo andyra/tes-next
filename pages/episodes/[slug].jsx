@@ -7,51 +7,14 @@ import NiceDate from "../../components/NiceDate";
 import PageHeader, { PageTitle } from "../../components/PageHeader";
 import Tracklist from "../../components/Tracklist";
 import { EPISODE } from "../../constants";
-import { querySlugs } from "../../helpers";
-
-// Functions
-// ----------------------------------------------------------------------------
-
-function normalizeEpisodeTracks(episode) {
-  const newTracks = [];
-  let i = 1;
-  for (let track of episode.episodeTracklist) {
-    newTracks.push({
-      addedBy: null,
-      artist: {
-        slug: "/episodes",
-        title: "This Evening's Show",
-      },
-      audioFile: track.audioFile.length ? track.audioFile[0].url : null,
-      collection: {
-        sectionHandle: episode.sectionHandle,
-        slug: episode.slug,
-        title: episode.title,
-        uri: episode.uri,
-        coverArt: episode.episodeCoverArt,
-      },
-      dateAdded: null,
-      id: `episode-${episode.id}-${i}`,
-      position: i,
-      slug: track.song && track.song.length ? track.song[0].slug : null,
-      title:
-        track.song && track.song.length
-          ? track.song[0].title
-          : track.description && track.description.length
-          ? track.description
-          : null,
-      uri: track.song && track.song.length ? track.song[0].uri : null,
-    });
-    i++;
-  }
-  return newTracks;
-}
+import { normalizeCollectionTracks, querySlugs } from "../../helpers";
 
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Episode({ episode }) {
   const { episodeCoverArt, releaseDate, title } = episode;
+  const normalizedTracks = normalizeCollectionTracks(episode);
 
   return (
     <>
@@ -64,7 +27,7 @@ export default function Episode({ episode }) {
           <NiceDate date={releaseDate} /> • Duration
         </div>
       </CollectionHeader>
-      <Tracklist tracks={normalizeEpisodeTracks(episode)} />
+      <Tracklist tracks={normalizedTracks} />
     </>
   );
 }
@@ -74,16 +37,16 @@ export default function Episode({ episode }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("episodes"),
+    query: querySlugs("episodes")
   });
 
-  const paths = data.entries.map((entry) => ({
-    params: { slug: entry.slug },
+  const paths = data.entries.map(entry => ({
+    params: { slug: entry.slug }
   }));
 
   return {
     paths,
-    fallback: false,
+    fallback: false
   };
 }
 
@@ -128,14 +91,14 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `,
+    `
   });
 
   return {
     props: {
       episode: data.entry,
       navSection: "Episodes",
-      PageTitle: data.entry.title,
-    },
+      PageTitle: data.entry.title
+    }
   };
 }
