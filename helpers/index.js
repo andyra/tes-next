@@ -87,40 +87,6 @@ export function getTrackTitle(track) {
     : null;
 }
 
-export function normalizeCollectionTracks(collection, condition = true) {
-  const collectionType = getCollectionType(collection);
-  const newTracks = [];
-  let i = 1;
-
-  for (let track of collection[`${collectionType}Tracklist`]) {
-    if (condition) {
-      newTracks.push({
-        addedBy: null,
-        artist: {
-          slug: getArtistInfo(collection, "slug"),
-          title: getArtistInfo(collection, "title")
-        },
-        audioFile: getTrackAudioFileUrl(track),
-        collection: {
-          sectionHandle: collection.sectionHandle,
-          slug: collection.slug,
-          title: collection.title,
-          uri: collection.uri,
-          coverArt: collection[`${collectionType}CoverArt`]
-        },
-        dateAdded: null,
-        id: `${collectionType}-${collection.slug}-${i}`,
-        position: i,
-        slug: getTrackSlug(track),
-        title: getTrackTitle(track),
-        uri: getTrackLink(track)
-      });
-      i++;
-    }
-  }
-  return newTracks;
-}
-
 export function normalizeTrack(collection, track, i) {
   return {
     addedBy: null,
@@ -142,4 +108,36 @@ export function normalizeTrack(collection, track, i) {
     slug: getTrackSlug(track),
     title: getTrackTitle(track)
   };
+}
+
+export function normalizeCollectionTracks(collection, condition = true) {
+  const collectionType = getCollectionType(collection);
+  const newTracks = [];
+  let i = 1;
+
+  for (let track of collection[`${collectionType}Tracklist`]) {
+    if (condition) {
+      newTracks.push(normalizeTrack(collection, track, i));
+      i++;
+    }
+  }
+  return newTracks;
+}
+
+// https://bost.ocks.org/mike/shuffle/
+export function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex]
+    ];
+  }
+
+  return array;
 }
