@@ -32,7 +32,7 @@ function getExtras(songCount, count, skipLastItem = true) {
 // ----------------------------------------------------------------------------
 
 const LABEL_CLASSES =
-  "inline-block px-8 text-primary-50 bg-ground absolute z-10 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-sm";
+  "inline-block px-8 font-mono tracking-wider text-sm text-primary-75 uppercase bg-ground absolute z-10 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2";
 
 const Computor = ({
   bleedCount,
@@ -59,13 +59,12 @@ const Computor = ({
   }
 
   return (
-    <section className="p-16 rounded-lg border-2 border-primary-10 text-center">
-      <h1 className="font-funky text-4xl mb-16">Setlist Computor</h1>
-      <form className="flex items-center gap-16">
+    <section className="text-center">
+      <div className="flex items-center gap-16">
         <Input
           className="flex-1"
           defaultValue={songCount}
-          inputClassName="text-center"
+          inputClassName="font-medium text-3xl text-center h-64"
           label="Songs"
           labelClassName={LABEL_CLASSES}
           min={0}
@@ -78,7 +77,7 @@ const Computor = ({
         <Input
           className="flex-1"
           defaultValue={bleedCount}
-          inputClassName="text-center"
+          inputClassName="font-medium text-3xl text-center h-64"
           label="Bleeds"
           labelClassName={LABEL_CLASSES}
           max={songCount - 1}
@@ -92,7 +91,7 @@ const Computor = ({
         <Input
           className="flex-1"
           defaultValue={strategyCount}
-          inputClassName="text-center"
+          inputClassName="font-medium text-3xl text-center h-64"
           label="Strategies"
           labelClassName={LABEL_CLASSES}
           max={songCount}
@@ -103,15 +102,18 @@ const Computor = ({
           }}
           type="number"
         />
-        <Button
-          type="button"
-          onClick={() => {
-            handleCompute();
-          }}
-        >
-          Compute
-        </Button>
-      </form>
+      </div>
+      <Button
+        className="mx-auto mt-24"
+        onClick={() => {
+          handleCompute();
+        }}
+        size="lg"
+        type="button"
+        variant="glass"
+      >
+        Compute
+      </Button>
     </section>
   );
 };
@@ -131,7 +133,7 @@ const SetlistItem = ({ item, i }) => {
           <span className="flex items-center justify-center w-32 h-32 text-lg font-medium text-primary-50 text-center border-2 bg-ground border-primary-50 rounded-full relative">
             {i + 1}
           </span>
-          <div className="flex-1 text-5xl">{song.title}</div>
+          <div className="text-secondary flex-1 text-5xl">{song.title}</div>
           <div className="flex items-center gap-4">
             {song.lyrics && (
               <Badge className="text-sm text-primary-50 opacity-0 group-hover:opacity-100 transition">
@@ -145,7 +147,9 @@ const SetlistItem = ({ item, i }) => {
             )}
           </div>
         </div>
-        {strategy && <div className="ml-40 opacity-50">"Strategy here"</div>}
+        {strategy && (
+          <div className="ml-40 text-xl text-primary-50">"Strategy here"</div>
+        )}
       </Accordion.Trigger>
       <Accordion.Content className="ml-48">
         <div className="lg:grid lg:grid-cols-2 gap-16 rounded-lg p-16 border border-primary-10">
@@ -204,6 +208,7 @@ export default function Setlist({ songs }) {
 
   return (
     <>
+      <PageHeader title="Setlist Computor" center />
       <Computor
         bleedCount={bleedCount}
         songs={songs}
@@ -214,6 +219,7 @@ export default function Setlist({ songs }) {
         songCount={songCount}
         strategyCount={strategyCount}
       />
+      <hr className="border-t-2 border-primary-10" />
       <SetlistItems items={setlistItems} />
     </>
   );
