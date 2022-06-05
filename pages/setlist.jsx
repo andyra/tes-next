@@ -151,8 +151,8 @@ const SetlistItem = ({ item, i }) => {
           <div className="ml-40 text-xl text-primary-50">"Strategy here"</div>
         )}
       </Accordion.Trigger>
-      <Accordion.Content className="ml-48">
-        <div className="lg:grid lg:grid-cols-2 gap-16 rounded-lg p-16 border border-primary-10">
+      <Accordion.Content className="ml-64">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 mt-8 mb-24">
           {song.lyrics && (
             <div>
               <h3
