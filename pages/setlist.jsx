@@ -61,10 +61,12 @@ const Computor = ({
       <h1 className="font-funky text-4xl mb-16">Setlist Computor</h1>
       <form className="flex items-center gap-16">
         <Input
+          className="flex-1"
           defaultValue={songCount}
           inputClassName="text-center"
           label="Songs"
           labelClassName={LABEL_CLASSES}
+          min={0}
           name="songs"
           onChange={e => {
             setSongCount(parseInt(e.target.value));
@@ -72,11 +74,13 @@ const Computor = ({
           type="number"
         />
         <Input
+          className="flex-1"
           defaultValue={bleedCount}
           inputClassName="text-center"
           label="Bleeds"
           labelClassName={LABEL_CLASSES}
           max={songCount}
+          min={0}
           name="bleeds"
           onChange={e => {
             setBleedCount(parseInt(e.target.value));
@@ -84,11 +88,13 @@ const Computor = ({
           type="number"
         />
         <Input
+          className="flex-1"
           defaultValue={strategyCount}
           inputClassName="text-center"
           label="Strategies"
           labelClassName={LABEL_CLASSES}
           max={songCount}
+          min={0}
           name="strategies"
           onChange={e => {
             setStrategyCount(parseInt(e.target.value));
