@@ -77,6 +77,7 @@ export const PlayerControls = ({
           className={randomClasses}
           disabled={playerIsEmpty}
           onClick={toggleRandom}
+          size="sm"
           variant="ghost"
         >
           <Icon name="Shuffle" />
@@ -86,6 +87,7 @@ export const PlayerControls = ({
           className={extraButtonClasses}
           disabled={playerIsEmpty}
           onClick={skipBack}
+          size="sm"
           variant="ghost"
         >
           <Icon name="SkipPrev" />
@@ -95,7 +97,6 @@ export const PlayerControls = ({
           circle
           disabled={playerIsEmpty}
           onClick={togglePlay}
-          size="lg"
           variant="ghost"
         >
           <Icon name={isPlaying ? "Pause" : "Play"} />
@@ -105,6 +106,7 @@ export const PlayerControls = ({
           className={extraButtonClasses}
           disabled={playerIsEmpty}
           onClick={skipNext}
+          size="sm"
           variant="ghost"
         >
           <Icon name="SkipNext" />
@@ -114,6 +116,7 @@ export const PlayerControls = ({
           className={loopClasses}
           disabled={playerIsEmpty}
           onClick={toggleLoop}
+          size="sm"
           variant="ghost"
         >
           <Icon name="Loop" />

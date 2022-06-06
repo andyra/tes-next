@@ -66,7 +66,7 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
 
   return (
     <section className={containerClasses}>
-      <Menu trigger={<Button iconRight="ChevronDown">Filters</Button>}>
+      <Menu trigger={<Button iconRight="ChevronDown" size="sm">Filters</Button>}>
         {filterGroups.map(filterGroup => (
           <Fragment key={filterGroup.label}>
             <MenuHeading>{filterGroup.label}</MenuHeading>

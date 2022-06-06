@@ -16,7 +16,7 @@ export const ThemeSwitcher = () => {
   return (
     <Menu
       trigger={
-        <Button circle size="lg" variant="glass">
+        <Button circle variant="glass">
           <Icon name="Overflow" />
         </Button>
       }

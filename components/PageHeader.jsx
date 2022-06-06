@@ -24,10 +24,11 @@ export const PageHeader = ({
       <div className={`flex-1${center ? " text-center" : ""}`}>
         {back && (
           <Button
-            variant="ghost"
-            iconLeft="ChevronLeft"
-            href={back.href}
             className="-ml-16"
+            href={back.href}
+            iconLeft="ChevronLeft"
+            size="sm"
+            variant="ghost"
           >
             {back.title}
           </Button>

@@ -39,7 +39,7 @@ export const MenuHeading = ({ children }) => (
   </header>
 );
 
-export const MenuDivider = () => <hr className="mx-12 my-8" />;
+export const MenuDivider = () => <hr className="mx-12 my-8 border-t-primary-10" />;
 
 // Base
 // ----------------------------------------------------------------------------

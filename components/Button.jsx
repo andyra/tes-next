@@ -4,16 +4,21 @@ import cn from "classnames";
 import Icon from "./Icon";
 
 const SIZES = {
+  sm: {
+    height: "h-32",
+    width: "w-32",
+    padding: "px-16",
+  },
   base: {
-    h: "h-32 text-lg",
-    w: "w-32",
-    p: "px-12"
+    height: "h-48 text-lg",
+    width: "w-48",
+    padding: "px-24",
   },
   lg: {
-    h: "h-40 text-xl",
-    w: "w-40",
-    p: "px-24"
-  }
+    height: "h-64 text-2xl",
+    width: "w-64",
+    padding: "px-32",
+  },
 };
 
 export function getButtonClasses({
@@ -22,18 +27,18 @@ export function getButtonClasses({
   className,
   disabled,
   size = "base",
-  variant = "border"
+  variant = "outline"
 } = {}) {
   return cn({
-    "inline-flex items-center justify-center gap-4 rounded-full hover:bg-primary-10 transition": true,
-    "border border-primary-10": variant === "border",
+    "inline-flex items-center justify-center gap-4 rounded-full transition": true,
+    "border-2 border-primary-10 hover:border-current": variant === "outline",
     "bg-primary-5 hover:bg-primary-10 focus:bg-primary-10": variant === "glass",
     "hover:bg-primary-5 focus:bg-primary-5": variant === "ghost",
     "opacity-50 pointer-events-none": disabled,
     "bg-primary hover:bg-primary-75 focus:bg-primary-75 text-ground": active,
-    [SIZES[size].h]: true,
-    [SIZES[size].p]: !circle,
-    [SIZES[size].w]: circle,
+    [SIZES[size].height]: true,
+    [SIZES[size].padding]: !circle,
+    [SIZES[size].width]: circle,
     [className]: className
   });
 }

@@ -91,7 +91,7 @@ const Search = () => {
     <>
       <Popover.Root>
         <Popover.Trigger
-          className="flex items-center gap-4 px-12 w-320 h-40 rounded-full bg-primary-5 text-primary-50 cursor-text"
+          className="flex items-center gap-4 px-12 w-320 h-48 rounded-full bg-primary-5 text-primary-50 cursor-text"
           onClick={() => {
             clearResults();
           }}
@@ -104,7 +104,7 @@ const Search = () => {
           sideOffset={8}
         >
           <Input
-            className="w-full md:w-320 bg-ground -mt-[66px] mb-24"
+            className="w-full md:w-320 bg-ground -mt-[74px] mb-24"
             hideLabel
             icon="Search"
             isLoading={isSearching}

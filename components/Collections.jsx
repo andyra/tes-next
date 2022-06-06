@@ -13,10 +13,11 @@ export const CollectionHeader = ({ children, collection }) => {
   return (
     <header className="mb-16 mb:mb-48">
       <Button
-        href={`/${collectionType}`}
-        variant="ghost"
-        iconLeft="ChevronLeft"
         className="-ml-16 mb-12"
+        href={`/${collectionType}`}
+        iconLeft="ChevronLeft"
+        size="sm"
+        variant="ghost"
       >
         {collectionType}
       </Button>

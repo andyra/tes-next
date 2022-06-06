@@ -69,7 +69,7 @@ const NewPlaylistForm = ({ closeModal }) => {
       {error && (
         <div className="text-red-500">Mutation error! {error.message}</div>
       )}
-      <Button type="submit">{loading ? "Creating…" : "Create Playlist"}</Button>
+      <Button size="sm" type="submit">{loading ? "Creating…" : "Create Playlist"}</Button>
     </form>
   );
 };
@@ -87,7 +87,7 @@ export const NewPlaylistButton = ({ fullSize }) => {
 
   return (
     <>
-      <Button circle={!fullSize} onClick={openModal}>
+      <Button circle={!fullSize} onClick={openModal} size="sm">
         <Icon name="Plus" />
         {fullSize && "New"}
       </Button>

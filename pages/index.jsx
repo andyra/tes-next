@@ -98,9 +98,9 @@ const PlayCollectionButton = ({ collection }) => {
   // Needs much of the stuff from Tracklist; possible to share code here?
 
   return (
-    <button className="flex items-center justify-center h-64 w-64 rounded-full border-2 border-primary-10 hover:border-accent hover:text-accent">
+    <Button circle size="lg" className="hover:text-accent">
       <Icon name="Play" />
-    </button>
+    </Button>
   );
 };
 

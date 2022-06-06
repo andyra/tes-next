@@ -58,6 +58,7 @@ export const Queue = ({ queueIsOpen, setQueueIsOpen }) => {
         onClick={() => {
           handleClear();
         }}
+        size="sm"
       >
         Clear Queue
       </Button>

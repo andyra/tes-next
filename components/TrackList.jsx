@@ -27,31 +27,34 @@ const TrackDuration = ({ audioFile }) => {
   );
 };
 
-const TrackTitle = ({ highlightTrack, showCollectionInfo, track }) => (
-  <div
-    className={`text-xl md:text-2xl flex items-center gap-8 ${
-      highlightTrack ? "text-accent" : ""
-    }`}
-  >
-    {showCollectionInfo ? (
-      <>
-        <CoverArt
-          className="w-48 h-48 flex-shrink-0 rounded"
-          height={48}
-          title={track.collection.title}
-          url={track.collection.coverArt}
-          width={48}
-        />
-        <div>
-          <div>{track.title}</div>
-          <div className="text-sm">{track.collection.title}</div>
-        </div>
-      </>
-    ) : (
-      track.title
-    )}
-  </div>
-);
+const TrackTitle = ({ trackIsSelected, showCollectionInfo, track }) => {
+  const classes = cn({
+    "text-xl md:text-2xl flex items-center gap-8": true,
+    "text-accent": trackIsSelected
+  });
+
+  return (
+    <div className={classes}>
+      {showCollectionInfo ? (
+        <>
+          <CoverArt
+            className="w-48 h-48 flex-shrink-0 rounded"
+            height={48}
+            title={track.collection.title}
+            url={track.collection.coverArt}
+            width={48}
+          />
+          <div>
+            <div>{track.title}</div>
+            <div className="text-sm">{track.collection.title}</div>
+          </div>
+        </>
+      ) : (
+        track.title
+      )}
+    </div>
+  );
+}
 
 const TrackMenuItem = ({ href, icon, large, title, ...props }) => {
   const classes = cn({
@@ -204,7 +207,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     }
   }
 
-  function highlightTrack(track) {
+  function trackIsSelected(track) {
     return (
       currentTrack &&
       currentTrack.id === track.id &&
@@ -228,7 +231,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   }
 
   const PlayPauseButton = ({ track, i }) => {
-    const active = highlightTrack(track) && isPlaying;
+    const active = trackIsSelected(track) && isPlaying;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
       "opacity-0 group-hover:opacity-100": !active
@@ -247,14 +250,15 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
             active={active}
             className={buttonClasses}
             circle
-            variant="ghost"
             onClick={() => {
               selectTrack(track, i);
             }}
+            size="sm"
+            variant="ghost"
           >
             <Icon
               name={
-                highlightTrack(track) ? (isPlaying ? "Pause" : "Play") : "Play"
+                trackIsSelected(track) ? (isPlaying ? "Pause" : "Play") : "Play"
               }
             />
           </Button>
@@ -275,7 +279,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
         <div className="flex-1 flex items-center gap-8">
           <PlayPauseButton track={track} i={i} />
           <TrackTitle
-            highlightTrack={highlightTrack(track)}
+            trackIsSelected={trackIsSelected(track)}
             showCollectionInfo={showCollectionInfo}
             track={track}
           />

@@ -24,16 +24,16 @@ export default function Episodes() {
           <footer className="mt-24">
             <p className="font-medium">Subscribe to the podcast</p>
             <div className="flex items-center gap-2">
-              <Button size="lg" circle variant="ghost">
+              <Button circle variant="ghost">
                 <Icon name="Rss" />
               </Button>
-              <Button size="lg" circle variant="ghost">
+              <Button circle variant="ghost">
                 <Icon name="ApplePodcasts" />
               </Button>
-              <Button size="lg" circle variant="ghost">
+              <Button circle variant="ghost">
                 <Icon name="Spotify" />
               </Button>
-              <Button size="lg" circle variant="ghost">
+              <Button circle variant="ghost">
                 <Icon name="GooglePodcasts" />
               </Button>
             </div>

@@ -28,6 +28,7 @@ export const ExtraControls = ({
           setIsFullscreen(false);
           setQueueIsOpen(!queueIsOpen);
         }}
+        size="sm"
         aria-controls="queue"
         aria-expanded={!queueIsOpen}
         aria-label="Show Queue"
@@ -41,6 +42,7 @@ export const ExtraControls = ({
           setQueueIsOpen(false);
           setIsFullscreen(!isFullscreen);
         }}
+        size="sm"
         aria-controls="full-screen"
         aria-expanded={!isFullscreen}
         aria-label="Full Screen"
