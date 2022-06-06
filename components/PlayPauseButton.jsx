@@ -3,7 +3,6 @@ import Button from "./Button"
 import Icon from "./Icon"
 
 // Pass in a track play it in the player
-
 const PlayPauseButton = ({ className, size = "sm", track, tracklist, variant, i }) => {
   const {
     currentTrack,
@@ -33,6 +32,7 @@ const PlayPauseButton = ({ className, size = "sm", track, tracklist, variant, i 
     } else {
       setCurrentTrack(track);
       setIsPlaying(true);
+
       if (tracklist && tracklist.length) {
         updateList(track, i);
       }

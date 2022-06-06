@@ -61,11 +61,17 @@ const QUERY_LATEST_COLLECTIONS = gql`
   }
 `;
 
-// Functions
-// ----------------------------------------------------------------------------
-
 // Components
 // ----------------------------------------------------------------------------
+
+const PlayCollectionButton = ({ collection }) => {
+  const isEpisode = getCollectionType(collection) === "episode";
+  const normalizedTracks = normalizeCollectionTracks(collection, isEpisode);
+
+  return (
+    <PlayPauseButton track={normalizedTracks[0]} size="lg" />
+  );
+};
 
 const PlayerSection = ({ children, collection, title }) => {
   return (
@@ -78,33 +84,6 @@ const PlayerSection = ({ children, collection, title }) => {
         </div>
       </div>
     </div>
-  );
-};
-
-// These should be able to accept an array of collections, normalize them, and
-// send to currentTrack context
-// Episode: turn episodeAudio into a track
-// Random: similar to setlist computor
-
-// Tracklist is a bunch of tracks extracted from a collection. This is saying
-// "Just play the collection from the top" For albums, that means playing the
-// tracklist. For episodes, that means playing the main audio file.
-
-// This should just be a large play button; you can wrap whatever around it.
-
-const PlayCollectionButton = ({ collection }) => {
-  const isEpisode = getCollectionType(collection) === "episode";
-  const normalizedTracks = normalizeCollectionTracks(collection, isEpisode);
-
-  // setCurrentTrack
-  // trackIsSelected
-
-  function handleClick() {
-    console.log(normalizedTracks)
-  }
-
-  return (
-    <PlayPauseButton track={normalizedTracks[0]} size="lg" />
   );
 };
 
