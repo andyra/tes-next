@@ -5,6 +5,7 @@ import client from "../apollo-client";
 import styled from "styled-components";
 import AnimatedLetter from "../components/AnimatedLetter";
 import Button from "../components/Button";
+import PlayPauseButton from "../components/PlayPauseButton";
 import Icon from "../components/Icon";
 import { CollectionItem } from "../components/Collections";
 import { generateFeed } from "../helpers/feed.helpers";
@@ -95,12 +96,15 @@ const PlayCollectionButton = ({ collection }) => {
   const isEpisode = getCollectionType(collection) === "episode";
   const normalizedTracks = normalizeCollectionTracks(collection, isEpisode);
 
-  // Needs much of the stuff from Tracklist; possible to share code here?
+  // setCurrentTrack
+  // trackIsSelected
+
+  function handleClick() {
+    console.log(normalizedTracks)
+  }
 
   return (
-    <Button circle size="lg" className="hover:text-accent">
-      <Icon name="Play" />
-    </Button>
+    <PlayPauseButton track={normalizedTracks[0]} size="lg" />
   );
 };
 

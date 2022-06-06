@@ -9,7 +9,7 @@ import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Input from "../components/Input";
 import PageHeader, { PageTitle } from "../components/PageHeader";
-import { getCollectionType, normalizeTrack, shuffle } from "../helpers/";
+import { normalizeTrack, shuffle } from "../helpers/";
 
 // Functions
 // ----------------------------------------------------------------------------

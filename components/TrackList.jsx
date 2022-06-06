@@ -8,6 +8,7 @@ import Button, { getButtonClasses } from "../components/Button";
 import CoverArt from "../components/CoverArt";
 import Icon from "../components/Icon";
 import Tooltip from "../components/Tooltip";
+import PlayPauseButton from "../components/PlayPauseButton";
 import { getCollectionType, formatTime } from "../helpers";
 
 // UGH. Can't seem to get the duration. I can SEE the duration in the log
@@ -113,7 +114,7 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
                 {" "}
                 Go to{" "}
                 <span className="capitalize">
-                  {getCollectionType(collection)}
+                  {collection.sectionHandle}
                 </span>
               </>
             }
@@ -162,50 +163,9 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   const {
     currentTrack,
     isPlaying,
-    nextList,
-    prevList,
     queueList,
-    setCurrentTrack,
-    setIsPlaying,
-    setNextList,
-    setPrevList,
     setQueueList
   } = usePlayerContext();
-
-  function togglePlay() {
-    setIsPlaying(!isPlaying);
-  }
-
-  function selectTrack(track, i) {
-    const selectedTrackIsCurrent =
-      currentTrack && currentTrack.id === track.id && !track.addedViaQueue;
-
-    if (selectedTrackIsCurrent) {
-      togglePlay();
-    } else {
-      setCurrentTrack(track);
-      setIsPlaying(true);
-      updateList(track, i);
-    }
-  }
-
-  // Shorten or add to queue listTypes
-  function updateList(selectedTrack, i) {
-    // Filter out tracks with no audioFile
-    const tracksBefore = [...tracks].splice(0, i).filter(track => {
-      return track.audioFile;
-    });
-    const tracksAfter = [...tracks].splice(i + 1).filter(track => {
-      return track.audioFile;
-    });
-
-    if (selectedTrack.addedViaQueue) {
-      setQueueList(tracksAfter);
-    } else {
-      setPrevList(tracksBefore);
-      setNextList(tracksAfter);
-    }
-  }
 
   function trackIsSelected(track) {
     return (
@@ -230,8 +190,8 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     setQueueList(newQueueList);
   }
 
-  const PlayPauseButton = ({ track, i }) => {
-    const active = trackIsSelected(track) && isPlaying;
+  const TrackIndexButton = ({ track, i }) => {
+    const active = trackIsSelected(currentTrack, track) && isPlaying;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
       "opacity-0 group-hover:opacity-100": !active
@@ -246,22 +206,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
           {track.position}
         </span>
         {track.audioFile && (
-          <Button
-            active={active}
-            className={buttonClasses}
-            circle
-            onClick={() => {
-              selectTrack(track, i);
-            }}
-            size="sm"
-            variant="ghost"
-          >
-            <Icon
-              name={
-                trackIsSelected(track) ? (isPlaying ? "Pause" : "Play") : "Play"
-              }
-            />
-          </Button>
+          <PlayPauseButton track={track} className={buttonClasses} tracklist={tracks} variant="ghost" />
         )}
       </div>
     );
@@ -277,7 +222,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     return (
       <li className={liClasses} tabIndex={0} key={i}>
         <div className="flex-1 flex items-center gap-8">
-          <PlayPauseButton track={track} i={i} />
+          <TrackIndexButton track={track} i={i} />
           <TrackTitle
             trackIsSelected={trackIsSelected(track)}
             showCollectionInfo={showCollectionInfo}
