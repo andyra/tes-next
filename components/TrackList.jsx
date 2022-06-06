@@ -8,7 +8,7 @@ import Button, { getButtonClasses } from "../components/Button";
 import CoverArt from "../components/CoverArt";
 import Icon from "../components/Icon";
 import Tooltip from "../components/Tooltip";
-import { formatTime } from "../helpers";
+import { getCollectionType, formatTime } from "../helpers";
 
 // UGH. Can't seem to get the duration. I can SEE the duration in the log
 // inside audioRef.current, but I can't output it separately.
@@ -26,16 +26,6 @@ const TrackDuration = ({ audioFile }) => {
     <time className="text-sm text-primary-50 mr-8 hidden md:block">0:00</time>
   );
 };
-
-function caseSectionHandle(sectionHandle) {
-  const capitalized =
-    sectionHandle.charAt(0).toUpperCase() + sectionHandle.slice(1);
-  const lastLetter = capitalized.charAt(capitalized.length - 1);
-  if (lastLetter === "s") {
-    return capitalized.slice(0, -1);
-  }
-  return capitalized;
-}
 
 const TrackTitle = ({ highlightTrack, showCollectionInfo, track }) => (
   <div
@@ -67,7 +57,7 @@ const TrackMenuItem = ({ href, icon, large, title, ...props }) => {
   const classes = cn({
     "flex items-center px-8 hover:bg-primary-5 transition": true,
     "flex-col justify-center gap-4 h-72": large,
-    "gap-12 h-40 rounded-lg w-full": !large,
+    "gap-12 h-40 rounded-lg w-full": !large
   });
 
   return (
@@ -90,10 +80,11 @@ const TrackMenuItem = ({ href, icon, large, title, ...props }) => {
 };
 
 const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
+  const { audioFile, collection, title, uri } = track;
   const overflowMenuClasses = cn(
     getButtonClasses({
       variant: "ghost",
-      circle: true,
+      circle: true
     }),
     "opacity-0 group-hover:opacity-100"
   );
@@ -110,19 +101,21 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className={contentClasses}>
         <DropdownMenu.Group className="p-8">
-          {track.uri && (
-            <TrackMenuItem
-              title="Go to Song"
-              href={`/${track.uri}`}
-              icon="Moon"
-            />
+          {uri && (
+            <TrackMenuItem title="Go to Song" href={`/${uri}`} icon="Moon" />
           )}
           <TrackMenuItem
-            title={`Go to ${caseSectionHandle(track.collection.sectionHandle)}`}
-            href={`/${track.collection.uri}`}
-            icon={
-              track.collection.sectionHandle === "episodes" ? "Mic" : "Music"
+            title={
+              <>
+                {" "}
+                Go to{" "}
+                <span className="capitalize">
+                  {getCollectionType(collection)}
+                </span>
+              </>
             }
+            href={`/${collection.uri}`}
+            icon={collection.sectionHandle === "episodes" ? "Mic" : "Music"}
           />
           {queueable ? (
             <TrackMenuItem
@@ -143,12 +136,12 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
               type="button"
             />
           )}
-          {track.audioFile && (
+          {audioFile && (
             <TrackMenuItem
               title="Download"
-              href={track.audioFile}
+              href={audioFile}
               icon="Download"
-              download={track.title}
+              download={title}
               target="_blank"
               noopener
               noreferrer
@@ -173,7 +166,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     setIsPlaying,
     setNextList,
     setPrevList,
-    setQueueList,
+    setQueueList
   } = usePlayerContext();
 
   function togglePlay() {
@@ -196,10 +189,10 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   // Shorten or add to queue listTypes
   function updateList(selectedTrack, i) {
     // Filter out tracks with no audioFile
-    const tracksBefore = [...tracks].splice(0, i).filter((track) => {
+    const tracksBefore = [...tracks].splice(0, i).filter(track => {
       return track.audioFile;
     });
-    const tracksAfter = [...tracks].splice(i + 1).filter((track) => {
+    const tracksAfter = [...tracks].splice(i + 1).filter(track => {
       return track.audioFile;
     });
 
@@ -238,15 +231,14 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     const active = highlightTrack(track) && isPlaying;
     const buttonClasses = cn({
       "absolute top-0 left-0": true,
-      "opacity-0 group-hover:opacity-100": !active,
+      "opacity-0 group-hover:opacity-100": !active
     });
 
     return (
       <div className="flex items-center justify-center relative h-32 w-32 flex-shrink-0">
         <span
-          className={`text-primary-50 ${
-            track.audioFile && "group-hover:opacity-0"
-          }`}
+          className={`text-primary-50 ${track.audioFile &&
+            "group-hover:opacity-0"}`}
         >
           {track.position}
         </span>
@@ -275,7 +267,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     const liClasses = cn({
       "flex gap-8 px-8 -mx-8 h-64 rounded-lg hover:bg-primary-5 focus:bg-primary-10 cursor-default transition group": true,
       "text-secondary": track.audioFile,
-      "text-secondary-50": !track.audioFile,
+      "text-secondary-50": !track.audioFile
     });
 
     return (
