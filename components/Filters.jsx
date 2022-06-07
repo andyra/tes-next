@@ -42,7 +42,7 @@ const FilterOption = ({ group, label, value, filters, setFilters }) => {
 
   return (
     <MenuItem
-      className={active ? "text-accent" : ""}
+      className={`capitalize ${active ? "text-accent" : ""}`}
       onClick={() => {
         handleClick(value);
       }}
@@ -54,10 +54,6 @@ const FilterOption = ({ group, label, value, filters, setFilters }) => {
 };
 
 export const Filters = ({ className, filterGroups, filters, setFilters }) => {
-  const containerClasses = cn({
-    [className]: className
-  });
-
   const triggerClasses = cn({
     [getButtonClasses({ size: "sm" })]: true,
     "flex items-center gap-8 h-32 px-12 border border-primary-10 rounded-full": true,
@@ -67,7 +63,7 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
   });
 
   return (
-    <section className={containerClasses}>
+    <section className={className}>
       <Menu
         trigger={
           <>

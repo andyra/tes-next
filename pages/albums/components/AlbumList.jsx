@@ -8,6 +8,7 @@ import {
 } from "../../../components/Collections";
 import Empty from "../../../components/Empty";
 import NiceDate from "../../../components/NiceDate";
+import { getArtistInfo } from "../../../helpers/";
 
 // Queries
 // ----------------------------------------------------------------------------
@@ -38,8 +39,10 @@ const QUERY_ALBUMS = gql`
 
 export const AlbumItem = ({ album, filters }) => {
   const { albumType, artist, slug, title, albumCoverArt, releaseDate } = album;
+  const artistSlug = getArtistInfo(album, "slug");
+
   const artistMatches =
-    filters.artist === "all" || filters.artist === artist[0].slug;
+    filters.artist === "all" || filters.artist === artistSlug;
   const albumTypeMatches =
     filters.albumType === "all" || filters.albumType === albumType;
   const visible = artistMatches && albumTypeMatches;

@@ -64,6 +64,10 @@ export function slugify(str) {
     .replace(/^-+|-+$/g, "");
 }
 
+export function camelCaseToWords(str) {
+  return str.replace(/([A-Z])/g, " $1").trim();
+}
+
 // Get Info
 // ----------------------------------------------------------------------------
 

@@ -6,7 +6,7 @@ import AlbumList from "./components/AlbumList";
 import ClientOnly from "../../components/ClientOnly";
 import Filters, { getDefaultFilters } from "../../components/Filters";
 import MusicTabs from "../../components/MusicTabs";
-import { getArtistInfo } from "../../helpers/";
+import { camelCaseToWords, getArtistInfo } from "../../helpers/";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -19,16 +19,20 @@ function normalizeAlbumFilters(filterGroups) {
     const artistTitle = getArtistInfo(album, "title");
 
     if (!artistOptions.some(option => option.value === artistSlug)) {
-      artistOptions.push({
-        value: artistSlug,
-        label: artistTitle
-      });
+      if (artistSlug) {
+        artistOptions.push({
+          value: artistSlug,
+          label: artistTitle
+        });
+      }
     }
     if (!albumTypeOptions.some(option => option.value === album.albumType)) {
-      albumTypeOptions.push({
-        value: album.albumType,
-        label: album.albumType
-      });
+      if (album.albumType) {
+        albumTypeOptions.push({
+          value: album.albumType,
+          label: camelCaseToWords(album.albumType)
+        });
+      }
     }
   }
 

@@ -76,7 +76,7 @@ export const CollectionItem = ({ children, collection }) => {
   return (
     <li className="h-full">
       <Link href={uri}>
-        <a className="block hover:bg-accent hover:text-ground rounded p-8 h-full transition">
+        <a className="block hover:ring-2 hover:ring-accent rounded p-8 h-full transition group">
           <CoverArt
             height={256}
             title={title}
