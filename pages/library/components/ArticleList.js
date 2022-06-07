@@ -1,23 +1,21 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 
-// Queries
-// ----------------------------------------------------------------------------
-
-const QUERY_ARTICLES = gql`
-  query Entries {
-    entries(section: "wiki", relatedToCategories: [{ id: "${id}" }]) {
-      slug
-      title
-    }
-  }
-`;
-
 // Components
 // ----------------------------------------------------------------------------
 
 export const ArticleList = ({ id }) => {
-  const { data, loading, error } = useQuery(QUERY_ARTICLES);
+  console.log(id);
+  const { data, loading, error } = useQuery(
+    gql`
+      query Entries {
+        entries(section: "wiki", relatedToCategories: [{ id: "${id}" }]) {
+          slug
+          title
+        }
+      }
+    `
+  );
 
   if (loading) {
     return <mark>Loading...</mark>;

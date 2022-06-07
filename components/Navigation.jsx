@@ -107,6 +107,7 @@ export const Navigation = ({ navSection }) => {
             navSection={navSection}
             hide="mobile"
           />
+          <NavLink title="Contact" href="/contact" icon="Phone" hide="mobile" />
           <Menu
             side="top"
             trigger={
@@ -135,7 +136,6 @@ export const Navigation = ({ navSection }) => {
             icon="Music"
             navSection={navSection}
           />
-          <NavLink title="Contact" href="/contact" icon="Phone" hide="mobile" />
         </div>
       </nav>
     </>
