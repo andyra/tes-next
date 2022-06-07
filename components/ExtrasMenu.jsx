@@ -23,20 +23,20 @@ export const ExtrasMenu = () => {
       })}
     >
       <MenuHeading>Theme</MenuHeading>
-      <MenuItem iconLeft="Gear" onClick={() => setTheme("system")}>
+      <MenuItem icon="Gear" onClick={() => setTheme("system")}>
         System
       </MenuItem>
-      <MenuItem iconLeft="Sun" onClick={() => setTheme("light")}>
+      <MenuItem icon="Sun" onClick={() => setTheme("light")}>
         Light
       </MenuItem>
-      <MenuItem iconLeft="Moon" onClick={() => setTheme("dark")}>
+      <MenuItem icon="Moon" onClick={() => setTheme("dark")}>
         Dark
       </MenuItem>
       <MenuDivider />
-      <MenuItem iconLeft="Video" href="/videos">
+      <MenuItem icon="Video" href="/videos">
         Videos
       </MenuItem>
-      <MenuItem iconLeft="Music" href="/setlist">
+      <MenuItem icon="Music" href="/setlist">
         Setlist Computor
       </MenuItem>
     </Menu>

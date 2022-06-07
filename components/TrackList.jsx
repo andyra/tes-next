@@ -8,6 +8,7 @@ import { usePlayerContext } from "../context/PlayerContext";
 import Button, { getButtonClasses } from "../components/Button";
 import CoverArt from "../components/CoverArt";
 import Icon from "../components/Icon";
+import { Menu, MenuItem } from "../components/Menu";
 import Tooltip from "../components/Tooltip";
 import PlayPauseButton from "../components/PlayPauseButton";
 import { getCollectionType, formatTime } from "../helpers";
@@ -15,38 +16,14 @@ import { getCollectionType, formatTime } from "../helpers";
 // Overflow Menu
 // ----------------------------------------------------------------------------
 
-const TrackMenuItem = ({ href, icon, large, title, ...props }) => {
-  const classes = cn({
-    "flex items-center px-8 hover:bg-primary-5 transition": true,
-    "flex-col justify-center gap-4 h-72": large,
-    "gap-12 h-40 rounded-lg w-full": !large
-  });
-
-  return (
-    <DropdownMenu.Item className="flex-1 hover:outline-0">
-      {href ? (
-        <Link href={href}>
-          <a className={classes} {...props}>
-            <Icon name={icon} />
-            {title}
-          </a>
-        </Link>
-      ) : (
-        <button className={classes} {...props}>
-          <Icon name={icon} />
-          {title}
-        </button>
-      )}
-    </DropdownMenu.Item>
-  );
-};
-
 const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
   const { audioFile, collection, title, uri } = track;
+  console.log(collection);
   const overflowMenuClasses = cn(
     getButtonClasses({
       variant: "ghost",
-      circle: true
+      circle: true,
+      size: "sm"
     }),
     "opacity-0 group-hover:opacity-100"
   );
@@ -57,61 +34,53 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
   );
 
   return (
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger className={overflowMenuClasses}>
-        <Icon name="Overflow" />
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Content className={contentClasses}>
-        <DropdownMenu.Group className="p-8">
-          {uri && (
-            <TrackMenuItem title="Go to Song" href={`/${uri}`} icon="Moon" />
-          )}
-          <TrackMenuItem
-            title={
-              <>
-                {" "}
-                Go to{" "}
-                <span className="capitalize">{collection.sectionHandle}</span>
-              </>
-            }
-            href={`/${collection.uri}`}
-            icon={collection.sectionHandle === "episodes" ? "Mic" : "Music"}
-          />
-          {queueable ? (
-            <TrackMenuItem
-              title="Add to Queue"
-              onClick={() => {
-                addToQueue(track);
-              }}
-              icon="Plus"
-              type="button"
-            />
-          ) : (
-            <TrackMenuItem
-              title="Remove from Queue"
-              onClick={() => {
-                removeFromQueue(track, i);
-              }}
-              icon="X"
-              type="button"
-            />
-          )}
-          {audioFile && (
-            <TrackMenuItem
-              title="Download"
-              href={audioFile}
-              icon="Download"
-              download={title}
-              target="_blank"
-              noopener
-              noreferrer
-            />
-          )}
-        </DropdownMenu.Group>
-        <DropdownMenu.Separator />
-        <DropdownMenu.Arrow />
-      </DropdownMenu.Content>
-    </DropdownMenu.Root>
+    <Menu
+      trigger={<Icon name="Overflow" />}
+      triggerClassName={overflowMenuClasses}
+    >
+      {uri && (
+        <MenuItem href={`/${uri}`} icon="Moon">
+          Go to Song
+        </MenuItem>
+      )}
+      <MenuItem
+        href={`/${collection.uri}`}
+        icon={collection.sectionHandle === "episodes" ? "Mic" : "Music"}
+      >
+        Go to <span className="capitalize">{collection.sectionHandle}</span>
+      </MenuItem>
+      {queueable ? (
+        <MenuItem
+          icon="Plus"
+          onClick={() => {
+            addToQueue(track);
+          }}
+        >
+          Add to Queue
+        </MenuItem>
+      ) : (
+        <MenuItem
+          icon="X"
+          onClick={() => {
+            removeFromQueue(track, i);
+          }}
+        >
+          Remove from Queue
+        </MenuItem>
+      )}
+      {audioFile && (
+        <MenuItem
+          download={title}
+          href={audioFile}
+          icon="Download"
+          noopener
+          noreferrer
+          target="_blank"
+        >
+          Download
+        </MenuItem>
+      )}
+    </Menu>
   );
 };
 

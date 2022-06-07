@@ -7,16 +7,7 @@ import Tooltip from "./Tooltip";
 // Menu Item
 // ----------------------------------------------------------------------------
 
-export const MenuItem = ({
-  children,
-  className,
-  href,
-  iconLeft,
-  iconRight,
-  tooltipContent,
-  tooltipSide,
-  ...props
-}) => {
+export const MenuItem = ({ children, className, href, icon, ...props }) => {
   const itemClasses = cn({
     "flex items-center gap-8 h-32 px-12 w-full rounded-full hover:bg-primary-5 transition": true,
     [className]: className
@@ -24,15 +15,13 @@ export const MenuItem = ({
 
   return href ? (
     <a href={href} className={itemClasses} {...props}>
-      {iconLeft && <Icon name={iconLeft} className="opacity-50" />}
+      {icon && <Icon name={icon} className="opacity-50" />}
       {children}
-      {iconRight && <Icon name={iconRight} className="opacity-50 ml-auto" />}
     </a>
   ) : (
-    <button className={itemClasses} {...props}>
-      {iconLeft && <Icon name={iconLeft} className="opacity-50" />}
+    <button className={itemClasses} {...props} type="button">
+      {icon && <Icon name={icon} className="opacity-50" />}
       {children}
-      {iconRight && <Icon name={iconRight} className="opacity-50 ml-auto" />}
     </button>
   );
 };
@@ -40,8 +29,7 @@ export const MenuItem = ({
 MenuItem.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string,
-  iconLeft: PropTypes.string,
-  iconRight: PropTypes.string
+  icon: PropTypes.string
 };
 
 // Menu Heading
