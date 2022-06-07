@@ -7,14 +7,14 @@ import NiceDate from "../../components/NiceDate";
 import PageHeader, { PageTitle } from "../../components/PageHeader";
 import Tracklist from "../../components/Tracklist";
 import { EPISODE } from "../../constants";
-import { normalizeCollectionTracks, querySlugs } from "../../helpers";
+import { normalizeTracklist, querySlugs } from "../../helpers";
 
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Episode({ episode }) {
   const { episodeCoverArt, releaseDate, title } = episode;
-  const normalizedTracks = normalizeCollectionTracks(episode);
+  const normalizedTracks = normalizeTracklist({ collection: episode });
 
   return (
     <>

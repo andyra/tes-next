@@ -11,8 +11,9 @@ import { CollectionItem } from "../components/Collections";
 import { generateFeed } from "../helpers/feed.helpers";
 import {
   getCollectionType,
-  normalizeCollectionTracks,
-  normalizeEpisode
+  normalizeCollections,
+  normalizeFullEpisode,
+  normalizeTracklist
 } from "../helpers";
 const fs = require("fs");
 
@@ -21,7 +22,7 @@ const fs = require("fs");
 
 const QUERY_LATEST_COLLECTIONS = gql`
   query Entries {
-    albums: entries(section: "albums", limit: 3, orderBy: "dateCreated DESC") {
+    albums: entries(section: "albums", orderBy: "postDate DESC") {
       sectionHandle
       slug
       title
@@ -33,6 +34,24 @@ const QUERY_LATEST_COLLECTIONS = gql`
         }
         albumCoverArt {
           url
+        }
+        albumTracklist {
+          ... on albumTracklist_song_BlockType {
+            song {
+              slug
+              title
+              uri
+            }
+            audioFile {
+              url
+            }
+          }
+          ... on albumTracklist_segment_BlockType {
+            description
+            audioFile {
+              url
+            }
+          }
         }
         albumType
         releaseDate
@@ -61,12 +80,16 @@ const QUERY_LATEST_COLLECTIONS = gql`
   }
 `;
 
-// Components
+// Play Sections
 // ----------------------------------------------------------------------------
 
 const PlayCollectionButton = ({ collection }) => {
   const isEpisode = getCollectionType(collection) === "episode";
-  const normalizedTracks = normalizeCollectionTracks(collection, isEpisode);
+  const normalizedTracks = isEpisode
+    ? normalizeFullEpisode(collection)
+    : normalizeTracklist({
+        collection: collection
+      });
 
   return <PlayPauseButton track={normalizedTracks[0]} size="lg" />;
 };
@@ -85,11 +108,19 @@ const PlayerSection = ({ children, collection, title }) => {
   );
 };
 
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Home({ albums, episodes }) {
   const latestEpisode = episodes.length ? episodes[0] : null;
+  const latestAlbums = albums.slice(0, 3);
+  const playableTracks = normalizeCollections({
+    collections: albums,
+    playableOnly: true
+  });
+
+  console.log("==============");
+  console.log(playableTracks);
 
   return (
     <>
@@ -125,7 +156,7 @@ export default function Home({ albums, episodes }) {
       <section>
         <h2 className="text-2xl text-center mb-16">Latest Releases</h2>
         <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 -mx-8 relative">
-          {albums.map(album => (
+          {latestAlbums.map(album => (
             <CollectionItem collection={album} />
           ))}
           <li className="p-8">

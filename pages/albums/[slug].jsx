@@ -6,7 +6,7 @@ import { CollectionHeader } from "../../components/Collections";
 import NiceDate from "../../components/NiceDate";
 import PageHeader from "../../components/PageHeader";
 import Tracklist from "../../components/Tracklist";
-import { normalizeCollectionTracks, querySlugs } from "../../helpers";
+import { normalizeTracklist, querySlugs } from "../../helpers";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -20,7 +20,9 @@ export default function Album({ album }) {
     title,
     uri
   } = album;
-  const normalizedTracks = normalizeCollectionTracks(album);
+  const normalizedTracks = normalizeTracklist({
+    collection: album
+  });
 
   return (
     <>

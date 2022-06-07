@@ -122,11 +122,45 @@ export function getTrackUri(track) {
   return track.song && track.song.length ? track.song[0].uri : null;
 }
 
-// Normalize Tracks for the Player
+// Normalize Craft Entries
+// Gets data in a regular format for use in Player, Tracklists, etc.
 // ----------------------------------------------------------------------------
 
-// Pass in a track (from and album or episode), and turn it into a playable
-// object
+// Pass in an episode object and get back a playable track
+
+export function normalizeFullEpisode(episode) {
+  const audioFileUrl = getEpisodeAudioFileUrl(episode);
+  if (audioFileUrl) {
+    return {
+      addedBy: null,
+      artist: {
+        slug: null,
+        title: null
+      },
+      audioFile: audioFileUrl,
+      collection: {
+        sectionHandle: episode.sectionHandle,
+        slug: episode.slug,
+        title: episode.title,
+        uri: episode.uri,
+        coverArt: getCollectionCoverArtUrl(episode)
+      },
+      dateAdded: null,
+      id: `${episode.sectionHandle}-${episode.slug}`,
+      lyrics: null,
+      notation: null,
+      position: null,
+      slug: episode.slug,
+      title: episode.title,
+      uri: episode.uri
+    };
+  }
+  console.error("Episode doesn't have an audio file for the full episode");
+  return null;
+}
+
+// Pass in a track from a collection's tracklist and get back an object that
+// can be represented anywhere on the site.
 export function normalizeTrack(collection, track, i) {
   return {
     addedBy: null,
@@ -153,48 +187,39 @@ export function normalizeTrack(collection, track, i) {
   };
 }
 
-export function normalizeEpisode(episode) {
-  return {
-    addedBy: null,
-    artist: {
-      slug: null,
-      title: null
-    },
-    audioFile: getEpisodeAudioFileUrl(episode),
-    collection: {
-      sectionHandle: episode.sectionHandle,
-      slug: episode.slug,
-      title: episode.title,
-      uri: episode.uri,
-      coverArt: getCollectionCoverArtUrl(episode)
-    },
-    dateAdded: null,
-    id: `${episode.sectionHandle}-${episode.slug}`,
-    lyrics: null,
-    notation: null,
-    position: null,
-    slug: episode.slug,
-    title: episode.title,
-    uri: episode.uri
-  };
-}
-
-// Pass in a collection (album or episode) and get back an array of playable
-// tracks from the collection's tracklist. If you enable fromEpisodeAudio, it
-// instead returns the full audio from a podcast episode instead of the
-// tracklist
-export function normalizeCollectionTracks(collection, fromEpisodeAudio) {
+// Pass in a tracklist from a collection and get back an array of normalized
+// tracks. Pass in `playableOnly` if you only want tracks with audio
+export function normalizeTracklist({ collection, playableOnly } = {}) {
   const collectionType = getCollectionType(collection);
-  const newTracks = [];
+  const normalizedTracks = [];
   let i = 1;
 
-  if (fromEpisodeAudio) {
-    newTracks.push(normalizeEpisode(collection));
-  } else {
-    for (let track of collection[`${collectionType}Tracklist`]) {
-      newTracks.push(normalizeTrack(collection, track, i));
-      i++;
+  for (let track of collection[`${collectionType}Tracklist`]) {
+    normalizedTracks.push(normalizeTrack(collection, track, i));
+    i++;
+  }
+
+  if (playableOnly) {
+    return normalizedTracks.filter(function(track) {
+      return track.audioFile;
+    });
+  }
+
+  return normalizedTracks;
+}
+
+export function normalizeCollections({ collections, playableOnly } = {}) {
+  let normalizedTracks = [];
+
+  for (let collection of collections) {
+    const tracks = normalizeTracklist({
+      collection: collection,
+      playableOnly: playableOnly
+    });
+    for (let track of tracks) {
+      normalizedTracks.push(track);
     }
   }
-  return newTracks;
+
+  return normalizedTracks;
 }

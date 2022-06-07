@@ -134,8 +134,6 @@ const TrackDuration = ({ audioFile }) => {
 
   // useEffect(() => {
   //   audioRef.current = new Audio(audioFile);
-  //   console.log(audioRef);
-  //   console.log(audioRef.current.duration);
   // }, [duration]);
 
   return (
