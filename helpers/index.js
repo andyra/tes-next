@@ -36,6 +36,7 @@ export function querySlugs(section) {
   `;
 }
 
+// Pass in an array and get it back all mixed-up
 // https://bost.ocks.org/mike/shuffle/
 export function shuffle(array) {
   let currentIndex = array.length,

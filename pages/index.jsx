@@ -13,7 +13,8 @@ import {
   getCollectionType,
   normalizeCollections,
   normalizeFullEpisode,
-  normalizeTracklist
+  normalizeTracklist,
+  shuffle
 } from "../helpers";
 const fs = require("fs");
 
@@ -83,10 +84,14 @@ const QUERY_LATEST_COLLECTIONS = gql`
 // Play Sections
 // ----------------------------------------------------------------------------
 
-const PlayerSection = ({ children }) => {
+const PlayerSection = ({ children, playPauseButton, title }) => {
   return (
-    <div className="text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2 border-primary-10">
-      <div className="flex items-center justify-center gap-16">{children}</div>
+    <div className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2 border-primary-10">
+      {playPauseButton}
+      <div>
+        {title}
+        {children}
+      </div>
     </div>
   );
 };
@@ -98,10 +103,12 @@ export default function Home({ albums, episodes }) {
   const latestEpisode = episodes.length ? episodes[0] : null;
   const latestAlbums = albums.slice(0, 3);
   const normalizedFullEpisode = normalizeFullEpisode(latestEpisode);
-  const playableTracks = normalizeCollections({
-    collections: albums,
-    playableOnly: true
-  });
+  const shuffledPlayableTracks = shuffle(
+    normalizeCollections({
+      collections: albums,
+      playableOnly: true
+    })
+  );
 
   return (
     <>
@@ -121,21 +128,22 @@ export default function Home({ albums, episodes }) {
       </header>
 
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-24">
-        <PlayerSection>
-          <PlayPauseButton track={normalizedFullEpisode} size="lg" />
-          <div>
-            Play Latest Episode
-            <div className="flex items-center gap-8 text-sm mt-12">
-              <figure className="h-40 w-40 rounded bg-primary-10" />
-              <div>
-                Episode Title
-                <br />
-                Release Date
-              </div>
-            </div>
-          </div>
-        </PlayerSection>
-        {/*<PlayerSection title="Listen to the Radio" collections={albums} />*/}
+        <PlayerSection
+          playPauseButton={
+            <PlayPauseButton track={normalizedFullEpisode} size="lg" />
+          }
+          title="Play Latest Episode"
+        />
+        <PlayerSection
+          playPauseButton={
+            <PlayPauseButton
+              track={shuffledPlayableTracks[0]}
+              tracklist={shuffledPlayableTracks}
+              size="lg"
+            />
+          }
+          title="Listen to the Radio"
+        />
       </section>
 
       <section>
