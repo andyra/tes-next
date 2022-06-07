@@ -75,6 +75,7 @@ export async function getStaticProps() {
     props: {
       filterGroups: data.entries,
       maxWidth: "max-w-none",
+      navSection: "Music",
       PageTitle: "Songs"
     }
   };

@@ -11,7 +11,7 @@ const ArticlesWrapper = ({ children }) => (
 );
 
 const ArticleItemClasses =
-  "block text-xl py-20 border-t-2 border-primary-25 border-dotted hover:border-accent hover:text-accent hover:border-solid transition group";
+  "block text-xl py-20 border-t-2 border-primary-25 border-dotted hover:border-accent hover:text-accent transition group";
 
 export const ArticleItemWrapper = ({ children }) => (
   <li className={ArticleItemClasses}>{children}</li>

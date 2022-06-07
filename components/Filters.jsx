@@ -4,7 +4,7 @@ import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Button, { getButtonClasses } from "./Button";
 import Icon from "./Icon";
-import { Menu, MenuItem, MenuHeading } from "./Menu";
+import { Menu, MenuDivider, MenuItem, MenuHeading } from "./Menu";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -48,7 +48,7 @@ const FilterOption = ({ group, label, value, filters, setFilters }) => {
       }}
     >
       {label}
-      <Icon name="Check" className={active ? "" : "opacity-0"} />
+      <Icon name="Check" className={`ml-auto ${active ? "" : "opacity-0"}`} />
     </MenuItem>
   );
 };
@@ -73,7 +73,7 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
         }
         triggerClassName={triggerClasses}
       >
-        {filterGroups.map(filterGroup => (
+        {filterGroups.map((filterGroup, i) => (
           <Fragment key={filterGroup.label}>
             <MenuHeading>{filterGroup.label}</MenuHeading>
             <FilterOption
@@ -94,6 +94,7 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
                 value={option.value}
               />
             ))}
+            {i + 1 < filterGroups.length && <MenuDivider />}
           </Fragment>
         ))}
       </Menu>

@@ -18,7 +18,7 @@ export const MenuItem = ({
   ...props
 }) => {
   const itemClasses = cn({
-    "flex items-center gap-8 h-32 px-12 w-full rounded hover:bg-primary-5 transition": true,
+    "flex items-center gap-8 h-32 px-12 w-full rounded-full hover:bg-primary-5 transition": true,
     [className]: className
   });
 
@@ -26,13 +26,13 @@ export const MenuItem = ({
     <a href={href} className={itemClasses} {...props}>
       {iconLeft && <Icon name={iconLeft} className="opacity-50" />}
       {children}
-      {iconRight && <Icon name={iconRight} className="opacity-50" />}
+      {iconRight && <Icon name={iconRight} className="opacity-50 ml-auto" />}
     </a>
   ) : (
     <button className={itemClasses} {...props}>
       {iconLeft && <Icon name={iconLeft} className="opacity-50" />}
       {children}
-      {iconRight && <Icon name={iconRight} className="opacity-50" />}
+      {iconRight && <Icon name={iconRight} className="opacity-50 ml-auto" />}
     </button>
   );
 };
