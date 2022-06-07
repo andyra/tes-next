@@ -55,7 +55,7 @@ const FilterOption = ({ group, label, value, filters, setFilters }) => {
 
 export const Filters = ({ className, filterGroups, filters, setFilters }) => {
   const triggerClasses = cn({
-    [getButtonClasses({ size: "sm" })]: true,
+    [getButtonClasses()]: true,
     "flex items-center gap-8 h-32 px-12 border border-primary-10 rounded-full": true,
     "bg-accent-5 hover:bg-accent-10 border-accent-25 text-accent": isFiltering(
       filters

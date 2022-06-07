@@ -65,7 +65,6 @@ export async function getStaticProps(context) {
       query Entry {
         entry(section: "albums", slug: "${params.slug}") {
           id
-          sectionHandle
           slug
           title
           uri

@@ -29,16 +29,16 @@ export default function Episodes() {
             news, interviews, and original music.
           </p>
           <footer className="flex flex-wrap items-center justify-center sm:justify-start gap-8">
-            <Button size="sm" variant="glass" iconLeft="Rss">
+            <Button variant="glass" iconLeft="Rss">
               RSS
             </Button>
-            <Button size="sm" variant="glass" iconLeft="ApplePodcasts">
+            <Button variant="glass" iconLeft="ApplePodcasts">
               Apple Podcasts
             </Button>
-            <Button size="sm" variant="glass" iconLeft="Spotify">
+            <Button variant="glass" iconLeft="Spotify">
               Spotify
             </Button>
-            <Button size="sm" variant="glass" iconLeft="GooglePodcasts">
+            <Button variant="glass" iconLeft="GooglePodcasts">
               Google Podcasts
             </Button>
           </footer>

@@ -55,7 +55,6 @@ export async function getStaticProps(context) {
     query: gql`
       query Entry {
         entry(section: "episodes", slug: "${params.slug}") {
-          sectionHandle
           title
           uri
           ... on episodes_default_Entry {

@@ -6,7 +6,7 @@ import Icon from "./Icon";
 // Pass in a track play it in the player
 const PlayPauseButton = ({
   className,
-  size = "sm",
+  size = "base",
   track,
   tracklist,
   variant,

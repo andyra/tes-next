@@ -32,7 +32,6 @@ export const ExtraControls = ({
           className={getButtonClasses({
             circle: true,
             disabled: playerIsEmpty,
-            size: "sm",
             variant: "ghost"
           })}
           disabled={playerIsEmpty}

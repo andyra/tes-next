@@ -22,8 +22,7 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
   const overflowMenuClasses = cn(
     getButtonClasses({
       variant: "ghost",
-      circle: true,
-      size: "sm"
+      circle: true
     }),
     "opacity-0 group-hover:opacity-100"
   );
@@ -45,9 +44,9 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
       )}
       <MenuItem
         href={`/${collection.uri}`}
-        icon={collection.sectionHandle === "episodes" ? "Mic" : "Music"}
+        icon={collection.type === "episode" ? "Mic" : "Music"}
       >
-        Go to <span className="capitalize">{collection.sectionHandle}</span>
+        Go to <span className="capitalize">{collection.type}</span>
       </MenuItem>
       {queueable ? (
         <MenuItem
@@ -178,7 +177,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     });
 
     return (
-      <div className="flex items-center justify-center relative h-32 w-32 flex-shrink-0">
+      <div className="flex items-center justify-center relative h-40 w-40 flex-shrink-0">
         <span
           className={`text-primary-50 ${track.audioFile &&
             "group-hover:opacity-0"}`}
@@ -218,7 +217,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
           {track.audioFile ? (
             <TrackDuration audioFile={track.audioFile} />
           ) : (
-            <span className="text-sm text-primary-25 opacity-0 group-hover:opacity-100 transition">
+            <span className="text-sm text-primary-25 opacity-0 group-hover:opacity-100 transition mr-4">
               No audio
             </span>
           )}

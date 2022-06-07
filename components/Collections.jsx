@@ -17,7 +17,7 @@ export const CollectionHeader = ({ children, collection }) => {
   return (
     <header className="mb-16 mb:mb-48">
       <Button
-        className="-ml-16 mb-12"
+        className="-ml-16 mb-12 capitalize"
         href={`/${collectionType}`}
         iconLeft="ChevronLeft"
         size="sm"

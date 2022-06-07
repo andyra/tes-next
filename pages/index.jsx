@@ -24,7 +24,6 @@ const fs = require("fs");
 const QUERY_LATEST_COLLECTIONS = gql`
   query Entries {
     albums: entries(section: "albums", orderBy: "postDate DESC") {
-      sectionHandle
       slug
       title
       uri
@@ -63,7 +62,6 @@ const QUERY_LATEST_COLLECTIONS = gql`
       limit: 1
       orderBy: "dateCreated DESC"
     ) {
-      sectionHandle
       slug
       title
       uri

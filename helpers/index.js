@@ -88,9 +88,9 @@ export function getCollectionCoverArtUrl(collection) {
 // Turns the Craft sectionHandle into something more usable
 // ex: "albums_default_Entry" → "album"
 export function getCollectionType(collection, plural = false) {
-  const sectionHandle = collection.__typename.replace("_default_Entry", "");
-  const singular = sectionHandle.slice(0, -1);
-  return plural ? sectionHandle : singular;
+  const collectionType = collection.__typename.replace("_default_Entry", "");
+  const singular = collectionType.slice(0, -1);
+  return plural ? collectionType : singular;
 }
 
 export function getEpisodeAudioFileUrl(episode) {
@@ -153,7 +153,7 @@ export function normalizeFullEpisode(episode) {
       },
       audioFile: audioFileUrl,
       collection: {
-        sectionHandle: episode.sectionHandle,
+        type: getCollectionType(episode),
         slug: episode.slug,
         title: episode.title,
         uri: episode.uri,
@@ -184,7 +184,7 @@ export function normalizeTrack(collection, track, i) {
     },
     audioFile: getTrackAudioFileUrl(track),
     collection: {
-      sectionHandle: collection.sectionHandle,
+      type: getCollectionType(collection),
       slug: collection.slug,
       title: collection.title,
       uri: collection.uri,

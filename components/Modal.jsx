@@ -38,7 +38,6 @@ export const Modal = ({ children, isOpen, closeModal, title }) => (
           circle
           iconLeft="X"
           onClick={closeModal}
-          size="sm"
         />
       </Transition.Child>
     </Dialog>

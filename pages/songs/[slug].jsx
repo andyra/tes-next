@@ -162,7 +162,6 @@ export async function getStaticProps(context) {
           }
         }
         collections: entries(section: ["albums", "episodes"]) {
-          sectionHandle
           slug
           title
           uri

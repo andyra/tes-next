@@ -11,11 +11,16 @@ export const BUTTON_SIZES = {
     padding: "px-16"
   },
   base: {
+    height: "h-40 text-lg",
+    width: "w-40",
+    padding: "px-20"
+  },
+  lg: {
     height: "h-48 text-lg",
     width: "w-48",
     padding: "px-24"
   },
-  lg: {
+  xl: {
     height: "h-64 text-2xl",
     width: "w-64",
     padding: "px-32"
