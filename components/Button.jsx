@@ -6,7 +6,7 @@ import Icon, { ICON_NAMES } from "./Icon";
 
 export const BUTTON_SIZES = {
   sm: {
-    height: "h-32",
+    height: "h-32 text-base",
     width: "w-32",
     padding: "px-16"
   },
@@ -37,7 +37,7 @@ export function getButtonClasses({
   variant = "outline"
 } = {}) {
   return cn({
-    "inline-flex items-center justify-center gap-4 rounded-full transition": true,
+    "inline-flex items-center justify-center gap-4 rounded-full whitespace-nowrap text-ellipsis overflow-hidden transition": true,
     [BUTTON_VARIANTS[variant]]: true,
     "opacity-50 pointer-events-none": disabled,
     "bg-primary hover:bg-primary-75 focus:bg-primary-75 text-ground": active,

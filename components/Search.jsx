@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { gql, useLazyQuery } from "@apollo/client";
+import * as Dialog from "@radix-ui/react-dialog";
 import * as Popover from "@radix-ui/react-popover";
 import { Transition } from "@headlessui/react";
 import cn from "classnames";
+import { getButtonClasses } from "./Button";
 import ClientOnly from "./ClientOnly";
 import Empty from "./Empty";
 import Icon from "./Icon";
@@ -91,13 +93,12 @@ const Search = () => {
     <>
       <Popover.Root>
         <Popover.Trigger
-          className="flex items-center gap-4 px-12 w-320 h-48 rounded-full bg-primary-5 text-primary-50 cursor-text"
+          className={getButtonClasses({ circle: true, variant: "glass" })}
           onClick={() => {
             clearResults();
           }}
         >
-          <Icon name="Search" className="text-primary-50" />
-          Search for…
+          <Icon name="Search" />
         </Popover.Trigger>
         <Popover.Content
           className="bg-ground p-16 rounded-lg border-2 border-primary-25"

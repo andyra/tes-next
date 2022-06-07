@@ -17,7 +17,7 @@ export default function Library({ articles }) {
   return (
     <>
       <PageHeader title="Library" center />
-      <p className="text-2xl md:text-4xl md:text-center max-w-screen-lg mx-auto">
+      <p className="text-3xl lg:text-4xl lg:text-center">
         The Grand Library of all things Akabius. Learn about, for instance,{" "}
         {randomArticles.map((article, i) => (
           <Fragment key={article.slug}>
@@ -56,7 +56,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      maxWidth: "max-w-full",
       PageTitle: "Library",
       articles: data.entries,
       spacing: true

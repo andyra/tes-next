@@ -15,16 +15,18 @@ export default function Category({ category }) {
 
   return (
     <>
-      <PageHeader title={title} />
-      {children.length ? (
+      <PageHeader
+        title={title}
+        center
+        back={{ title: "Library", href: "/library" }}
+      />
+      {children.length > 0 && (
         <ClientOnly>
           <CategoryList parentId={id} />
         </ClientOnly>
-      ) : (
-        ""
       )}
       <ClientOnly>
-        <ArticleList id={id} />
+        <ArticleList id={id} divider={children.length} />
       </ClientOnly>
     </>
   );
@@ -75,7 +77,9 @@ export async function getStaticProps(context) {
     props: {
       category: data.category,
       PageTitle: data.category.title,
-      navSection: "Wiki"
+      maxWidth: "max-w-full",
+      navSection: "Wiki",
+      spacing: true
     }
   };
 }

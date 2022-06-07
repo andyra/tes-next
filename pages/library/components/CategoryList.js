@@ -8,7 +8,7 @@ const CategoryItem = ({ children, slug }) => {
   return (
     <li>
       <Link href={`/library/category/${encodeURIComponent(slug)}`}>
-        <a className="text-xl md:text-2xl text-secondary block p-16 md:p-24 h-full border border-secondary-10 hover:border-accent hover:text-accent">
+        <a className="text-xl md:text-2xl text-secondary block p-12 md:p-20 h-full border border-secondary-10 hover:border-accent hover:text-accent">
           {children}
         </a>
       </Link>
