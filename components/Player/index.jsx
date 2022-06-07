@@ -8,7 +8,6 @@ import CurrentTrack from "./CurrentTrack";
 import ExtraControls from "./ExtraControls";
 import MediaQuery, { BREAKPOINTS } from "../MediaQuery";
 import PlayerControls from "./PlayerControls";
-import Queue from "../Queue";
 
 // TODO: articles
 // https://codesandbox.io/s/5wwj02qy7k?file=/src/index.js
@@ -41,7 +40,6 @@ export const Player = () => {
   } = usePlayerContext();
 
   // State
-  const [queueIsOpen, setQueueIsOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLooped, setIsLooped] = useState(false);
   const [isRandom, setIsRandom] = useState(false);
@@ -61,7 +59,7 @@ export const Player = () => {
   const isMobile = useMediaQuery(BREAKPOINTS.mobile);
   const playerClasses = cn({
     "flex items-center gap-8 bg-ground rounded-lg md:col-span-2 md:mx-0": true,
-    "p-8 rounded-lg relative": !isFullscreen,
+    "p-8 rounded-lg": !isFullscreen,
     "absolute z-50 top-0 left-0 w-full h-full flex-col justify-end px-24 py-24 md:p-48 lg:p-96": isFullscreen
   });
 
@@ -109,7 +107,6 @@ export const Player = () => {
   useEffect(() => {
     if (playerIsEmpty) {
       setIsPlaying(false);
-      setQueueIsOpen(false);
       setIsFullscreen(false);
     }
   }, [playerIsEmpty]);
@@ -227,12 +224,9 @@ export const Player = () => {
         <ExtraControls
           isFullscreen={isFullscreen}
           playerIsEmpty={playerIsEmpty}
-          queueIsOpen={queueIsOpen}
           setIsFullscreen={setIsFullscreen}
-          setQueueIsOpen={setQueueIsOpen}
         />
       </aside>
-      <Queue queueIsOpen={queueIsOpen} setQueueIsOpen={setQueueIsOpen} />
     </>
   );
 };

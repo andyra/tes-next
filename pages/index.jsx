@@ -116,6 +116,7 @@ export default function Home({ albums, episodes }) {
         <h1>
           <AnimatedLetter src="/vhs-02.webp">TES</AnimatedLetter>
         </h1>
+
         <p className="font-mono text-sm text-center max-w-screen-sm mx-auto">
           <strong className="font-bold underline">T</strong>his{" "}
           <strong className="font-bold underline">E</strong>vening's{" "}

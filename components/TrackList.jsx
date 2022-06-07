@@ -143,7 +143,7 @@ const TrackDuration = ({ audioFile }) => {
 
 const TrackTitle = ({ trackIsSelected, showCollectionInfo, track }) => {
   const classes = cn({
-    "text-xl md:text-2xl flex items-center gap-8": true,
+    "text-xl md:text-2xl flex items-center gap-8 md:gap-16": true,
     "text-accent": trackIsSelected
   });
 
