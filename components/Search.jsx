@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { gql, useLazyQuery } from "@apollo/client";
 import * as Dialog from "@radix-ui/react-dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import * as Popover from "@radix-ui/react-popover";
-import { Transition } from "@headlessui/react";
 import cn from "classnames";
 import { getButtonClasses } from "./Button";
 import ClientOnly from "./ClientOnly";
@@ -15,12 +15,6 @@ import { useDebounce, useKeypress } from "../helpers/hooks";
 
 // TODO: Highlight term
 // TODO: Hotkey arrow down focus on results
-// TODO: Don't show noresults until results come back
-// TODO: On esacpe
-//       • Close popover
-//       • Clear input value
-//       • Blur focus on input
-// TODO: Accessibility for popover
 
 // Queries
 // ----------------------------------------------------------------------------
@@ -90,41 +84,49 @@ const Search = () => {
   }
 
   return (
-    <>
-      <Popover.Root>
-        <Popover.Trigger
-          className={getButtonClasses({ circle: true, variant: "glass" })}
-          onClick={() => {
-            clearResults();
-          }}
-        >
-          <Icon name="Search" />
-        </Popover.Trigger>
-        <Popover.Content
-          className="bg-ground p-16 rounded-lg border-2 border-primary-25"
-          sideOffset={8}
-        >
-          <Input
-            className="w-full md:w-320 bg-ground -mt-[74px] mb-24"
-            hideLabel
-            icon="Search"
-            isLoading={isSearching}
-            label="Search"
-            placeholder="Search for…"
-            rounded
-            glass
-            onChange={e => {
-              setSearchTerm(e.target.value);
-            }}
-          />
+    <Dialog.Root>
+      <Dialog.Trigger
+        className={getButtonClasses({ circle: true, variant: "glass" })}
+        onClick={() => {
+          clearResults();
+        }}
+      >
+        <Icon name="Search" />
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed top-0 right-0 bottom-0 left-0 z-20 backdrop-blur-md bg-ground/30 radix-state-open:animate-fade-in" />
+        <Dialog.Content className="m-4 fixed top-0 right-0 left-0 bottom-0 rounded-lg bg-ground z-30 p-16 border-2 border-primary-10 sm:left-auto sm:w-480 radix-state-open:animate-enter-from-right">
+          <VisuallyHidden.Root asChild>
+            <Dialog.Title>Search</Dialog.Title>
+          </VisuallyHidden.Root>
+          <header className="flex gap-8 mb-16">
+            <Input
+              className="flex-1"
+              hideLabel
+              icon="Search"
+              isLoading={isSearching}
+              label="Search"
+              placeholder="What are you looking for, exactly?"
+              rounded
+              glass
+              onChange={e => {
+                setSearchTerm(e.target.value);
+              }}
+            />
+            <Dialog.Close
+              className={getButtonClasses({ circle: true, variant: "ghost" })}
+            >
+              <Icon name="X" />
+            </Dialog.Close>
+          </header>
           {results.length ? (
-            <ul className="-mx-8 -my-8">
+            <ul className="-mx-8">
               {results.map(result => (
                 <li key={result.title}>
                   <Link href={`/${result.uri}/`}>
-                    <a className="flex items-center justify-between gap-8 h-40 px-8 rounded-lg hover:bg-primary-10 transition">
+                    <a className="flex items-center justify-between gap-8 h-40 px-8 rounded-lg hover:bg-primary-10 text-xl transition">
                       {result.title}
-                      <span className="flex items-center rounded-full border border-primary-25 px-8 h-24">
+                      <span className="flex items-center rounded-full border border-primary-25 px-8 h-24 text-sm">
                         {result.sectionHandle}
                       </span>
                     </a>
@@ -135,15 +137,15 @@ const Search = () => {
           ) : (
             <div className="text-center text-primary-50">
               {debouncedSearchTerm.length === 0
-                ? "What are you looking for, exactly?"
+                ? ""
                 : isSearching
-                ? "What are you looking for, exactly?"
+                ? ""
                 : "No results"}
             </div>
           )}
-        </Popover.Content>
-      </Popover.Root>
-    </>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 };
 

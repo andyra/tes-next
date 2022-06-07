@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { Transition } from "@headlessui/react";
 import cn from "classnames";
 import Icon from "./Icon";
 import Loader from "./Loader";
