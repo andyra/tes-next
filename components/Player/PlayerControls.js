@@ -48,7 +48,9 @@ export const PlayerControls = ({
 
   const sliderClasses = cn({
     "flex items-center w-full h-16 relative group": true,
+    "pointer-events-none": playerIsEmpty,
     "md:col-span-1 md:row-span-2": !isFullscreen,
+    "opacity-0 md:opacity-100": !isFullscreen && playerIsEmpty,
     "col-start-1 col-span-3": isFullscreen
   });
 

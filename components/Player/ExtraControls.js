@@ -11,7 +11,9 @@ import Tooltip from "../Tooltip";
 export const ExtraControls = ({
   isFullscreen,
   playerIsEmpty,
-  setIsFullscreen
+  setIsFullscreen,
+  setVisualizationEnabled,
+  visualizationEnabled
 }) => {
   const containerClasses = cn({
     "flex items-center gap-8": true,
@@ -47,21 +49,32 @@ export const ExtraControls = ({
           </section>
         </Collapsible.Content>
       </Collapsible.Root>
-
-      {/*<div className="flex items-stretch justify-center p-4 fixed top-0 right-0 bottom-88 left-0 z-20 backdrop-blur-md bg-accent-50 radix-state-open:animate-fade-in" />*/}
-      <Button
-        circle
-        disabled={playerIsEmpty}
-        onClick={() => {
-          setIsFullscreen(!isFullscreen);
-        }}
-        size="sm"
-        aria-controls="full-screen"
-        aria-expanded={!isFullscreen}
-        aria-label="Full Screen"
-      >
-        <Icon name={isFullscreen ? "ChevronDown" : "ChevronUp"} />
-      </Button>
+      <div className="flex items-center gap-4">
+        {isFullscreen && (
+          <Button
+            circle
+            onClick={() => {
+              setVisualizationEnabled(!visualizationEnabled);
+            }}
+            size="sm"
+          >
+            <Icon name={visualizationEnabled ? "EyeOff" : "Eye"} />
+          </Button>
+        )}
+        <Button
+          circle
+          disabled={playerIsEmpty}
+          onClick={() => {
+            setIsFullscreen(!isFullscreen);
+          }}
+          size="sm"
+          aria-controls="full-screen"
+          aria-expanded={!isFullscreen}
+          aria-label="Full Screen"
+        >
+          <Icon name={isFullscreen ? "ChevronDown" : "ChevronUp"} />
+        </Button>
+      </div>
     </div>
   );
 };

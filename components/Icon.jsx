@@ -14,6 +14,8 @@ import ChevronUp from "../public/icons/ChevronUp.svg";
 import Download from "../public/icons/Download.svg";
 import Edit from "../public/icons/Edit.svg";
 import Email from "../public/icons/Email.svg";
+import Eye from "../public/icons/Eye.svg";
+import EyeOff from "../public/icons/EyeOff.svg";
 import Gear from "../public/icons/Gear.svg";
 import GooglePodcasts from "../public/icons/GooglePodcasts.svg";
 import Heart from "../public/icons/Heart.svg";
@@ -60,6 +62,8 @@ export const ICON_NAMES = {
   Download: Download,
   Edit: Edit,
   Email: Email,
+  Eye: Eye,
+  EyeOff: EyeOff,
   Gear: Gear,
   GooglePodcasts: GooglePodcasts,
   Heart: Heart,
