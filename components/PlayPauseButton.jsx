@@ -87,7 +87,7 @@ const PlayPauseButton = ({
 
 PlayPauseButton.propTypes = {
   className: PropTypes.string,
-  size: PropTypes.oneOf(Object.keys(BUTTON_SIZES)).isRequired,
+  size: PropTypes.oneOf(Object.keys(BUTTON_SIZES)),
   track: PropTypes.object.isRequired,
   tracklist: PropTypes.array,
   variant: PropTypes.oneOf(Object.keys(BUTTON_VARIANTS))

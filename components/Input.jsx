@@ -3,6 +3,7 @@ import { Transition } from "@headlessui/react";
 import cn from "classnames";
 import Icon from "./Icon";
 import Loader from "./Loader";
+import { slugify } from "../helpers";
 
 export const Input = ({
   className,
@@ -14,14 +15,14 @@ export const Input = ({
   isLoading,
   label,
   labelClassName,
-  name,
   placeholder,
   ref,
   required,
   rounded,
-  type = "text",
+  type,
   ...props
 }) => {
+  const name = slugify(label);
   const wrapperClasses = cn({
     relative: true,
     "rounded-full": rounded,
@@ -89,11 +90,14 @@ Input.propTypes = {
   isLoading: PropTypes.bool,
   label: PropTypes.string.isRequired,
   labelClassName: PropTypes.string,
-  name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   rounded: PropTypes.bool,
   type: PropTypes.string.isRequired
+};
+
+Input.defaultProps = {
+  type: "text"
 };
 
 export default Input;

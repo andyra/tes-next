@@ -110,10 +110,10 @@ export const Navigation = ({ navSection }) => {
           <Menu
             side="top"
             trigger={
-              <button className="w-full h-full flex flex-col items-center justify-center md:hidden">
+              <div className="w-full h-full flex flex-col items-center justify-center md:hidden">
                 <Icon name="Overflow" />
                 <span className="text-xs opacity-50">More</span>
-              </button>
+              </div>
             }
           >
             <NavLinkPopover title="Library" href="/library" />

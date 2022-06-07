@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
-import Button from "./Button";
+import Button, { getButtonClasses } from "./Button";
 import Icon from "./Icon";
 import { Menu, MenuItem, MenuHeading } from "./Menu";
 
@@ -59,6 +59,7 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
   });
 
   const triggerClasses = cn({
+    [getButtonClasses({ size: "sm" })]: true,
     "flex items-center gap-8 h-32 px-12 border border-primary-10 rounded-full": true,
     "bg-accent-5 hover:bg-accent-10 border-accent-25 text-accent": isFiltering(
       filters
@@ -69,10 +70,12 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
     <section className={containerClasses}>
       <Menu
         trigger={
-          <Button iconRight="ChevronDown" size="sm">
+          <>
             Filters
-          </Button>
+            <Icon name="ChevronDown" />
+          </>
         }
+        triggerClassName={triggerClasses}
       >
         {filterGroups.map(filterGroup => (
           <Fragment key={filterGroup.label}>
@@ -102,10 +105,10 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
   );
 };
 
-Filter.PropTypes = {
+Filters.propTypes = {
   className: PropTypes.string,
   filterGroups: PropTypes.array.isRequired,
-  filters: PropTypes.array.isRequired,
+  filters: PropTypes.object.isRequired,
   setFilters: PropTypes.func.isRequired
 };
 

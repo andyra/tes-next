@@ -83,27 +83,10 @@ const QUERY_LATEST_COLLECTIONS = gql`
 // Play Sections
 // ----------------------------------------------------------------------------
 
-const PlayCollectionButton = ({ collection }) => {
-  const isEpisode = getCollectionType(collection) === "episode";
-  const normalizedTracks = isEpisode
-    ? normalizeFullEpisode(collection)
-    : normalizeTracklist({
-        collection: collection
-      });
-
-  return <PlayPauseButton track={normalizedTracks[0]} size="lg" />;
-};
-
-const PlayerSection = ({ children, collection, title }) => {
+const PlayerSection = ({ children }) => {
   return (
     <div className="text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2 border-primary-10">
-      <div className="flex items-center justify-center gap-16">
-        <PlayCollectionButton collection={collection} />
-        <div>
-          {title}
-          {children}
-        </div>
-      </div>
+      <div className="flex items-center justify-center gap-16">{children}</div>
     </div>
   );
 };
@@ -114,13 +97,11 @@ const PlayerSection = ({ children, collection, title }) => {
 export default function Home({ albums, episodes }) {
   const latestEpisode = episodes.length ? episodes[0] : null;
   const latestAlbums = albums.slice(0, 3);
+  const normalizedFullEpisode = normalizeFullEpisode(latestEpisode);
   const playableTracks = normalizeCollections({
     collections: albums,
     playableOnly: true
   });
-
-  console.log("==============");
-  console.log(playableTracks);
 
   return (
     <>
@@ -140,13 +121,17 @@ export default function Home({ albums, episodes }) {
       </header>
 
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-24">
-        <PlayerSection title="Play Latest Episode" collection={latestEpisode}>
-          <div className="flex items-center gap-8 text-sm mt-12">
-            <figure className="h-40 w-40 rounded bg-primary-10" />
-            <div>
-              Episode Title
-              <br />
-              Release Date
+        <PlayerSection>
+          <PlayPauseButton track={normalizedFullEpisode} size="lg" />
+          <div>
+            Play Latest Episode
+            <div className="flex items-center gap-8 text-sm mt-12">
+              <figure className="h-40 w-40 rounded bg-primary-10" />
+              <div>
+                Episode Title
+                <br />
+                Release Date
+              </div>
             </div>
           </div>
         </PlayerSection>
@@ -157,7 +142,7 @@ export default function Home({ albums, episodes }) {
         <h2 className="text-2xl text-center mb-16">Latest Releases</h2>
         <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 -mx-8 relative">
           {latestAlbums.map(album => (
-            <CollectionItem collection={album} />
+            <CollectionItem collection={album} key={album.slug} />
           ))}
           <li className="p-8">
             <Link href="/albums">

@@ -48,7 +48,7 @@ CoverArt.propTypes = {
   className: PropTypes.string,
   height: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   width: PropTypes.number.isRequired
 };
 

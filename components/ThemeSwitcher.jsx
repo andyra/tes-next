@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import Button from "./Button";
+import Icon from "./Icon";
+import Button, { getButtonClasses } from "./Button";
 import { Menu, MenuDivider, MenuHeading, MenuItem } from "./Menu";
 import Tooltip from "./Tooltip";
 
@@ -13,7 +14,13 @@ export const ThemeSwitcher = () => {
   if (!mounted) return null;
 
   return (
-    <Menu trigger={<Button circle variant="glass" iconLeft="Overflow" />}>
+    <Menu
+      trigger={<Icon name="Overflow" />}
+      triggerClassName={getButtonClasses({
+        circle: true,
+        variant: "glass"
+      })}
+    >
       <MenuHeading>Theme</MenuHeading>
       <MenuItem iconLeft="Gear" onClick={() => setTheme("system")}>
         System

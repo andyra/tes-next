@@ -48,27 +48,6 @@ export function getButtonClasses({
   });
 }
 
-export const TestButton = ({
-  active,
-  children,
-  circle,
-  className,
-  disabled,
-  size,
-  variant
-}) => {
-  const classes = getButtonClasses({
-    variant: variant,
-    disabled: disabled,
-    active: active,
-    circle: circle,
-    className: className,
-    size: size
-  });
-
-  return <button className={classes}>{children}</button>;
-};
-
 const Button = ({
   active,
   children,
@@ -78,9 +57,9 @@ const Button = ({
   href,
   iconLeft,
   iconRight,
-  size = "base",
-  type = "button",
-  variant = "outline",
+  size,
+  type,
+  variant,
   ...props
 }) => {
   const classes = getButtonClasses({
@@ -120,6 +99,12 @@ Button.propTypes = {
   size: PropTypes.oneOf(Object.keys(BUTTON_SIZES)).isRequired,
   type: PropTypes.oneOf(["button", "reset", "submit"]).isRequired,
   variant: PropTypes.oneOf(Object.keys(BUTTON_VARIANTS)).isRequired
+};
+
+Button.defaultProps = {
+  size: "base",
+  type: "button",
+  variant: "outline"
 };
 
 export default Button;

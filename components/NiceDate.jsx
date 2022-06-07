@@ -6,7 +6,7 @@ const FORMATS = {
   year: "YYYY"
 };
 
-const NiceDate = ({ className, date, format = "full" }) => (
+const NiceDate = ({ className, date, format }) => (
   <time className={className}>{Moment(date).format(FORMATS[format])}</time>
 );
 
@@ -14,6 +14,10 @@ NiceDate.propTypes = {
   className: PropTypes.string,
   date: PropTypes.string.isRequired,
   format: PropTypes.oneOf(Object.keys(FORMATS)).isRequired
+};
+
+NiceDate.defaultProps = {
+  format: "full"
 };
 
 export default NiceDate;

@@ -54,6 +54,15 @@ export function shuffle(array) {
   return array;
 }
 
+export function slugify(str) {
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 // Get Info
 // ----------------------------------------------------------------------------
 

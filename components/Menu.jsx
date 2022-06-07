@@ -60,7 +60,7 @@ export const MenuDivider = () => (
 // Menu
 // ----------------------------------------------------------------------------
 
-export const Menu = ({ children, side = "bottom", trigger, width }) => {
+export const Menu = ({ children, side, trigger, triggerClassName, width }) => {
   const contentClasses = cn(
     "bg-ground border border-primary-10 rounded-lg p-8 shadow-lg",
     "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down",
@@ -70,7 +70,9 @@ export const Menu = ({ children, side = "bottom", trigger, width }) => {
   return (
     <Popover.Root>
       <Popover.Anchor>
-        <Popover.Trigger asChild>{trigger}</Popover.Trigger>
+        <Popover.Trigger className={triggerClassName}>
+          {trigger}
+        </Popover.Trigger>
       </Popover.Anchor>
       <Popover.Content side={side} className={contentClasses} sideOffset={4}>
         {children}
@@ -82,4 +84,8 @@ export const Menu = ({ children, side = "bottom", trigger, width }) => {
 Menu.propTypes = {
   side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
   width: PropTypes.string
+};
+
+Menu.defaultProps = {
+  side: "bottom"
 };
