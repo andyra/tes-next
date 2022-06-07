@@ -1,8 +1,12 @@
+import PropTypes from "prop-types";
 import Link from "next/link";
 import cn from "classnames";
 
-const TabItem = ({ title, href, page }) => {
-  const active = page === title;
+// Tab Item
+// ----------------------------------------------------------------------------
+
+const MusicTabsItem = ({ href, pageName, title }) => {
+  const active = pageName === title;
   const classes = cn({
     "flex-1 flex items-center justify-center font-funky text-4xl md:text-6xl lg:text-8xl tracking-tight hover:text-accent rounded-full border-2 border-transparent": true,
     "text-secondary": !active,
@@ -16,13 +20,26 @@ const TabItem = ({ title, href, page }) => {
   );
 };
 
-export const MusicTabs = ({ page }) => {
+MusicTabsItem.propTypes = {
+  href: PropTypes.string.isRequired,
+  pageName: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
+};
+
+// Tabs
+// ----------------------------------------------------------------------------
+
+export const MusicTabs = ({ pageName }) => {
   return (
     <nav className="flex items-center lg:justify-center gap-24">
-      <TabItem title="Albums" href="/albums" page={page} />
-      <TabItem title="Songs" href="/songs" page={page} />
+      <MusicTabsItem title="Albums" href="/albums" pageName={pageName} />
+      <MusicTabsItem title="Songs" href="/songs" pageName={pageName} />
     </nav>
   );
+};
+
+MusicTabs.propTypes = {
+  pageName: PropTypes.string.isRequired
 };
 
 export default MusicTabs;

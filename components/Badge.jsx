@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
 import cn from "classnames";
 
-const Badge = ({ children, className, relative = true }) => {
+const Badge = ({ children, className }) => {
   const classes = cn(
     "flex items-center justify-center gap-4 px-8 rounded-full w-fit relative",
     className
@@ -11,6 +12,10 @@ const Badge = ({ children, className, relative = true }) => {
       {children}
     </span>
   );
+};
+
+Badge.propTypes = {
+  className: PropTypes.string
 };
 
 export default Badge;

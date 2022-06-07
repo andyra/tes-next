@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import cn from "classnames";
 
 export const Empty = ({ children, className }) => {
@@ -7,6 +8,10 @@ export const Empty = ({ children, className }) => {
   });
 
   return <div className={classes}>{children}</div>;
+};
+
+Empty.propTypes = {
+  className: PropTypes.string.isRequired
 };
 
 export default Empty;

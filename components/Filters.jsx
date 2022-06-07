@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import PropTypes from "prop-types";
 import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Button from "./Button";
@@ -66,7 +67,13 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
 
   return (
     <section className={containerClasses}>
-      <Menu trigger={<Button iconRight="ChevronDown" size="sm">Filters</Button>}>
+      <Menu
+        trigger={
+          <Button iconRight="ChevronDown" size="sm">
+            Filters
+          </Button>
+        }
+      >
         {filterGroups.map(filterGroup => (
           <Fragment key={filterGroup.label}>
             <MenuHeading>{filterGroup.label}</MenuHeading>
@@ -93,6 +100,13 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
       </Menu>
     </section>
   );
+};
+
+Filter.PropTypes = {
+  className: PropTypes.string,
+  filterGroups: PropTypes.array.isRequired,
+  filters: PropTypes.array.isRequired,
+  setFilters: PropTypes.func.isRequired
 };
 
 export default Filters;

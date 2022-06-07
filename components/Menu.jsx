@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Icon from "./Icon";
 
-// Components
+// Menu Item
 // ----------------------------------------------------------------------------
 
 export const MenuItem = ({
@@ -33,23 +34,38 @@ export const MenuItem = ({
   );
 };
 
+MenuItem.propTypes = {
+  className: PropTypes.string,
+  href: PropTypes.string,
+  iconLeft: PropTypes.string,
+  iconRight: PropTypes.string
+};
+
+// Menu Heading
+// ----------------------------------------------------------------------------
+
 export const MenuHeading = ({ children }) => (
   <header className="flex items-center h-32 px-12 text-sm text-primary-50">
     {children}
   </header>
 );
 
-export const MenuDivider = () => <hr className="mx-12 my-8 border-t-primary-10" />;
+// Menu Divider
+// ----------------------------------------------------------------------------
 
-// Base
+export const MenuDivider = () => (
+  <hr className="mx-12 my-8 border-t-primary-10" />
+);
+
+// Menu
 // ----------------------------------------------------------------------------
 
 export const Menu = ({ children, side = "bottom", trigger, width }) => {
-  const contentClasses = cn({
-    "bg-ground border border-primary-10 rounded-lg p-8 shadow-lg": true,
-    "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down": true,
-    [width]: width
-  });
+  const contentClasses = cn(
+    "bg-ground border border-primary-10 rounded-lg p-8 shadow-lg",
+    "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down",
+    width
+  );
 
   return (
     <Popover.Root>
@@ -61,4 +77,9 @@ export const Menu = ({ children, side = "bottom", trigger, width }) => {
       </Popover.Content>
     </Popover.Root>
   );
+};
+
+Menu.propTypes = {
+  side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+  width: PropTypes.string
 };

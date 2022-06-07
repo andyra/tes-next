@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import PropTypes from "prop-types";
 import { Dialog, Transition } from "@headlessui/react";
 import Button from "./Button";
 
@@ -43,5 +44,10 @@ export const Modal = ({ children, isOpen, closeModal, title }) => (
     </Dialog>
   </Transition>
 );
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool,
+  title: PropTypes.string
+};
 
 export default Modal;

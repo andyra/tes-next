@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
@@ -5,6 +6,9 @@ import CoverArt from "./CoverArt";
 import NiceDate from "./NiceDate";
 import { PageTitle } from "./PageHeader";
 import { getCollectionType, getCollectionCoverArtUrl } from "../helpers";
+
+// Collection Header
+// ----------------------------------------------------------------------------
 
 export const CollectionHeader = ({ children, collection }) => {
   const { title } = collection;
@@ -38,6 +42,13 @@ export const CollectionHeader = ({ children, collection }) => {
   );
 };
 
+CollectionHeader.propTypes = {
+  collection: PropTypes.object.isRequired
+};
+
+// Collection List
+// ----------------------------------------------------------------------------
+
 export const CollectionList = ({ children }) => (
   <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 -mx-8 relative">
     {children}
@@ -55,6 +66,9 @@ export const CollectionListSkeleton = () => (
     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-ground" />
   </CollectionList>
 );
+
+// Collection Item
+// ----------------------------------------------------------------------------
 
 export const CollectionItem = ({ children, collection }) => {
   const { releaseDate, title, uri } = collection;
@@ -78,4 +92,8 @@ export const CollectionItem = ({ children, collection }) => {
       </Link>
     </li>
   );
+};
+
+CollectionItem.propTypes = {
+  collection: PropTypes.object.isRequired
 };

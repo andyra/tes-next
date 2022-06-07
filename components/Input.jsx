@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Transition } from "@headlessui/react";
 import cn from "classnames";
 import Icon from "./Icon";
@@ -5,12 +6,12 @@ import Loader from "./Loader";
 
 export const Input = ({
   className,
-  hideLabel,
-  icon,
   defaultValue,
   glass,
+  hideLabel,
+  icon,
   inputClassName,
-  isLoading = false,
+  isLoading,
   label,
   labelClassName,
   name,
@@ -76,6 +77,23 @@ export const Input = ({
       </div>
     </div>
   );
+};
+
+Input.propTypes = {
+  className: PropTypes.string,
+  defaultValue: PropTypes.string,
+  glass: PropTypes.bool,
+  hideLabel: PropTypes.bool,
+  icon: PropTypes.string,
+  inputClassName: PropTypes.string,
+  isLoading: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  labelClassName: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  required: PropTypes.bool,
+  rounded: PropTypes.bool,
+  type: PropTypes.string.isRequired
 };
 
 export default Input;

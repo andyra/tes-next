@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
 export const Tooltip = ({
@@ -23,5 +24,12 @@ export const Tooltip = ({
     </TooltipPrimitive.Root>
   </TooltipPrimitive.Provider>
 );
+
+Tooltip.propTypes = {
+  asChild: PropTypes.bool,
+  content: PropTypes.string.isRequired,
+  delayDuration: PropTypes.number,
+  side: PropTypes.oneOf(Object.keys(["top", "right", "bottom", "left"]))
+};
 
 export default Tooltip;

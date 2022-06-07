@@ -40,7 +40,7 @@ export default function Songs({ filterGroups }) {
   return (
     <>
       <header className="relative mb-32 md:mb-64">
-        <MusicTabs page="Songs" />
+        <MusicTabs pageName="Songs" />
         <Filters
           className="absolute top-1/2 right-0 transform -translate-y-1/2"
           filterGroups={songFilters}

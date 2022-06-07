@@ -68,9 +68,7 @@ const PlayCollectionButton = ({ collection }) => {
   const isEpisode = getCollectionType(collection) === "episode";
   const normalizedTracks = normalizeCollectionTracks(collection, isEpisode);
 
-  return (
-    <PlayPauseButton track={normalizedTracks[0]} size="lg" />
-  );
+  return <PlayPauseButton track={normalizedTracks[0]} size="lg" />;
 };
 
 const PlayerSection = ({ children, collection, title }) => {

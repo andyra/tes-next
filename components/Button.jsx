@@ -1,24 +1,31 @@
 import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 import Link from "next/link";
 import cn from "classnames";
-import Icon from "./Icon";
+import Icon, { ICON_NAMES } from "./Icon";
 
-const SIZES = {
+export const BUTTON_SIZES = {
   sm: {
     height: "h-32",
     width: "w-32",
-    padding: "px-16",
+    padding: "px-16"
   },
   base: {
     height: "h-48 text-lg",
     width: "w-48",
-    padding: "px-24",
+    padding: "px-24"
   },
   lg: {
     height: "h-64 text-2xl",
     width: "w-64",
-    padding: "px-32",
-  },
+    padding: "px-32"
+  }
+};
+
+export const BUTTON_VARIANTS = {
+  ghost: "hover:bg-primary-5 focus:bg-primary-5",
+  glass: "bg-primary-5 hover:bg-primary-10 focus:bg-primary-10",
+  outline: "border-2 border-primary-10 hover:border-current"
 };
 
 export function getButtonClasses({
@@ -31,14 +38,12 @@ export function getButtonClasses({
 } = {}) {
   return cn({
     "inline-flex items-center justify-center gap-4 rounded-full transition": true,
-    "border-2 border-primary-10 hover:border-current": variant === "outline",
-    "bg-primary-5 hover:bg-primary-10 focus:bg-primary-10": variant === "glass",
-    "hover:bg-primary-5 focus:bg-primary-5": variant === "ghost",
+    [BUTTON_VARIANTS[variant]]: true,
     "opacity-50 pointer-events-none": disabled,
     "bg-primary hover:bg-primary-75 focus:bg-primary-75 text-ground": active,
-    [SIZES[size].height]: true,
-    [SIZES[size].padding]: !circle,
-    [SIZES[size].width]: circle,
+    [BUTTON_SIZES[size].height]: true,
+    [BUTTON_SIZES[size].padding]: !circle,
+    [BUTTON_SIZES[size].width]: circle,
     [className]: className
   });
 }
@@ -70,12 +75,12 @@ const Button = ({
   circle,
   className,
   disabled,
+  href,
   iconLeft,
   iconRight,
-  size,
+  size = "base",
   type = "button",
-  variant,
-  href,
+  variant = "outline",
   ...props
 }) => {
   const classes = getButtonClasses({
@@ -102,6 +107,19 @@ const Button = ({
       {iconRight && <Icon name={iconRight} />}
     </button>
   );
+};
+
+Button.propTypes = {
+  active: PropTypes.bool,
+  circle: PropTypes.bool,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  href: PropTypes.string,
+  iconLeft: PropTypes.oneOf(Object.keys(ICON_NAMES)),
+  iconRight: PropTypes.oneOf(Object.keys(ICON_NAMES)),
+  size: PropTypes.oneOf(Object.keys(BUTTON_SIZES)).isRequired,
+  type: PropTypes.oneOf(["button", "reset", "submit"]).isRequired,
+  variant: PropTypes.oneOf(Object.keys(BUTTON_VARIANTS)).isRequired
 };
 
 export default Button;

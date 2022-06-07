@@ -53,7 +53,7 @@ export default function Albums({ filterGroups }) {
   return (
     <>
       <header className="relative mb-64">
-        <MusicTabs page="Albums" />
+        <MusicTabs pageName="Albums" />
         <Filters
           className="absolute top-1/2 right-0 transform -translate-y-1/2"
           filterGroups={albumFilters}

@@ -1,9 +1,17 @@
+import PropTypes from "prop-types";
 import { usePlayerContext } from "../context/PlayerContext";
-import Button from "./Button"
-import Icon from "./Icon"
+import Button, { BUTTON_SIZES, BUTTON_VARIANTS } from "./Button";
+import Icon from "./Icon";
 
 // Pass in a track play it in the player
-const PlayPauseButton = ({ className, size = "sm", track, tracklist, variant, i }) => {
+const PlayPauseButton = ({
+  className,
+  size = "sm",
+  track,
+  tracklist,
+  variant,
+  i
+}) => {
   const {
     currentTrack,
     isPlaying,
@@ -11,7 +19,7 @@ const PlayPauseButton = ({ className, size = "sm", track, tracklist, variant, i 
     setIsPlaying,
     setNextList,
     setPrevList,
-    setQueueList,
+    setQueueList
   } = usePlayerContext();
 
   function trackIsSelected(track) {
@@ -28,7 +36,7 @@ const PlayPauseButton = ({ className, size = "sm", track, tracklist, variant, i 
       currentTrack && currentTrack.id === track.id && !track.addedViaQueue;
 
     if (selectedTrackIsCurrent) {
-      setIsPlaying(!isPlaying)
+      setIsPlaying(!isPlaying);
     } else {
       setCurrentTrack(track);
       setIsPlaying(true);
@@ -71,12 +79,18 @@ const PlayPauseButton = ({ className, size = "sm", track, tracklist, variant, i 
       variant={variant}
     >
       <Icon
-        name={
-          trackIsSelected(track) ? (isPlaying ? "Pause" : "Play") : "Play"
-        }
+        name={trackIsSelected(track) ? (isPlaying ? "Pause" : "Play") : "Play"}
       />
     </Button>
   );
+};
+
+PlayPauseButton.propTypes = {
+  className: PropTypes.string,
+  size: PropTypes.oneOf(Object.keys(BUTTON_SIZES)).isRequired,
+  track: PropTypes.object.isRequired,
+  tracklist: PropTypes.array,
+  variant: PropTypes.oneOf(Object.keys(BUTTON_VARIANTS))
 };
 
 export default PlayPauseButton;

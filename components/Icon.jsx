@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import cn from "classnames";
 import ApplePodcasts from "../public/icons/ApplePodcasts.svg";
 import ArrowDown from "../public/icons/ArrowDown.svg";
@@ -44,7 +45,7 @@ import Trash from "../public/icons/Trash.svg";
 import Video from "../public/icons/Video.svg";
 import X from "../public/icons/X.svg";
 
-const icons = {
+export const ICON_NAMES = {
   ApplePodcasts: ApplePodcasts,
   ArrowDown: ArrowDown,
   ArrowLeft: ArrowLeft,
@@ -92,13 +93,19 @@ const icons = {
 };
 
 export const Icon = ({ className, name, size, ...props }) => {
-  let IconComponent = icons[name];
+  let IconComponent = ICON_NAMES[name];
   const classes = cn({
     "w-em h-em": !size,
     [className]: className
   });
 
   return <IconComponent className={classes} {...props} />;
+};
+
+Icon.propTypes = {
+  className: PropTypes.string,
+  name: PropTypes.oneOf(Object.keys(ICON_NAMES)).isRequired,
+  size: PropTypes.string
 };
 
 export default Icon;

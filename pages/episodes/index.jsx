@@ -24,18 +24,10 @@ export default function Episodes() {
           <footer className="mt-24">
             <p className="font-medium">Subscribe to the podcast</p>
             <div className="flex items-center gap-2">
-              <Button circle variant="ghost">
-                <Icon name="Rss" />
-              </Button>
-              <Button circle variant="ghost">
-                <Icon name="ApplePodcasts" />
-              </Button>
-              <Button circle variant="ghost">
-                <Icon name="Spotify" />
-              </Button>
-              <Button circle variant="ghost">
-                <Icon name="GooglePodcasts" />
-              </Button>
+              <Button circle variant="ghost" iconLeft="Rss" />
+              <Button circle variant="ghost" iconLeft="ApplePodcasts" />
+              <Button circle variant="ghost" iconLeft="Spotify" />
+              <Button circle variant="ghost" iconLeft="GooglePodcasts" />
             </div>
           </footer>
         </div>
@@ -57,7 +49,7 @@ export async function getStaticProps() {
   return {
     props: {
       PageTitle: "Episodes",
-      spacing: true,
-    },
+      spacing: true
+    }
   };
 }

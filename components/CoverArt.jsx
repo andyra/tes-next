@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import cn from "classnames";
 import Image from "next/image";
 
@@ -41,6 +42,14 @@ export const CoverArt = ({
   );
 
   return <figure className={placeholderClasses}>n/a</figure>;
+};
+
+CoverArt.propTypes = {
+  className: PropTypes.string,
+  height: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired
 };
 
 export default CoverArt;

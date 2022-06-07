@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
@@ -11,51 +12,8 @@ import Tooltip from "../components/Tooltip";
 import PlayPauseButton from "../components/PlayPauseButton";
 import { getCollectionType, formatTime } from "../helpers";
 
-// UGH. Can't seem to get the duration. I can SEE the duration in the log
-// inside audioRef.current, but I can't output it separately.
-const TrackDuration = ({ audioFile }) => {
-  // const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
-  // const { duration } = audioRef.current;
-
-  // useEffect(() => {
-  //   audioRef.current = new Audio(audioFile);
-  //   console.log(audioRef);
-  //   console.log(audioRef.current.duration);
-  // }, [duration]);
-
-  return (
-    <time className="text-sm text-primary-50 mr-8 hidden md:block">0:00</time>
-  );
-};
-
-const TrackTitle = ({ trackIsSelected, showCollectionInfo, track }) => {
-  const classes = cn({
-    "text-xl md:text-2xl flex items-center gap-8": true,
-    "text-accent": trackIsSelected
-  });
-
-  return (
-    <div className={classes}>
-      {showCollectionInfo ? (
-        <>
-          <CoverArt
-            className="w-48 h-48 flex-shrink-0 rounded"
-            height={48}
-            title={track.collection.title}
-            url={track.collection.coverArt}
-            width={48}
-          />
-          <div>
-            <div>{track.title}</div>
-            <div className="text-sm">{track.collection.title}</div>
-          </div>
-        </>
-      ) : (
-        track.title
-      )}
-    </div>
-  );
-}
+// Overflow Menu
+// ----------------------------------------------------------------------------
 
 const TrackMenuItem = ({ href, icon, large, title, ...props }) => {
   const classes = cn({
@@ -113,9 +71,7 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
               <>
                 {" "}
                 Go to{" "}
-                <span className="capitalize">
-                  {collection.sectionHandle}
-                </span>
+                <span className="capitalize">{collection.sectionHandle}</span>
               </>
             }
             href={`/${collection.uri}`}
@@ -156,6 +112,63 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
         <DropdownMenu.Arrow />
       </DropdownMenu.Content>
     </DropdownMenu.Root>
+  );
+};
+
+TrackMenu.propTypes = {
+  addToQueue: PropTypes.func,
+  i: PropTypes.number.isRequired,
+  queueable: PropTypes.bool,
+  removeFromQueue: PropTypes.func,
+  track: PropTypes.object.isRequired
+};
+
+// Tracklist
+// ----------------------------------------------------------------------------
+
+// UGH. Can't seem to get the duration. I can SEE the duration in the log
+// inside audioRef.current, but I can't output it separately.
+const TrackDuration = ({ audioFile }) => {
+  // const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
+  // const { duration } = audioRef.current;
+
+  // useEffect(() => {
+  //   audioRef.current = new Audio(audioFile);
+  //   console.log(audioRef);
+  //   console.log(audioRef.current.duration);
+  // }, [duration]);
+
+  return (
+    <time className="text-sm text-primary-50 mr-8 hidden md:block">0:00</time>
+  );
+};
+
+const TrackTitle = ({ trackIsSelected, showCollectionInfo, track }) => {
+  const classes = cn({
+    "text-xl md:text-2xl flex items-center gap-8": true,
+    "text-accent": trackIsSelected
+  });
+
+  return (
+    <div className={classes}>
+      {showCollectionInfo ? (
+        <>
+          <CoverArt
+            className="w-48 h-48 flex-shrink-0 rounded"
+            height={48}
+            title={track.collection.title}
+            url={track.collection.coverArt}
+            width={48}
+          />
+          <div>
+            <div>{track.title}</div>
+            <div className="text-sm">{track.collection.title}</div>
+          </div>
+        </>
+      ) : (
+        track.title
+      )}
+    </div>
   );
 };
 
@@ -206,7 +219,12 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
           {track.position}
         </span>
         {track.audioFile && (
-          <PlayPauseButton track={track} className={buttonClasses} tracklist={tracks} variant="ghost" />
+          <PlayPauseButton
+            track={track}
+            className={buttonClasses}
+            tracklist={tracks}
+            variant="ghost"
+          />
         )}
       </div>
     );
@@ -256,6 +274,12 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
       ))}
     </ul>
   );
+};
+
+Tracklist.propTypes = {
+  queueable: PropTypes.bool,
+  showCollectionInfo: PropTypes.bool,
+  tracks: PropTypes.array.isRequired
 };
 
 export default Tracklist;

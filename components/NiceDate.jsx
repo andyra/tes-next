@@ -1,19 +1,19 @@
+import PropTypes from "prop-types";
 import Moment from "moment";
 
-export const NiceDate = ({ className, date, format = "full" }) => {
-  if (!date) {
-    console.error("Invalid date for NiceDate");
-    return false;
-  }
+const FORMATS = {
+  full: "MMM D, YYYY",
+  year: "YYYY"
+};
 
-  const FORMATS = {
-    full: "MMM D, YYYY",
-    year: "YYYY"
-  };
+const NiceDate = ({ className, date, format = "full" }) => (
+  <time className={className}>{Moment(date).format(FORMATS[format])}</time>
+);
 
-  return (
-    <time className={className}>{Moment(date).format(FORMATS[format])}</time>
-  );
+NiceDate.propTypes = {
+  className: PropTypes.string,
+  date: PropTypes.string.isRequired,
+  format: PropTypes.oneOf(Object.keys(FORMATS)).isRequired
 };
 
 export default NiceDate;
