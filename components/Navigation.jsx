@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import cn from "classnames";
-import AnimatedLetter from "./AnimatedLetter";
 import Button from "./Button";
 import Icon from "./Icon";
-import { Menu } from "./Menu";
 
 export const NavLink = ({
   className,
@@ -49,24 +47,6 @@ export const NavLink = ({
   );
 };
 
-const NavLinkPopover = ({ href, title }) => (
-  <Link href={href}>
-    <a className="flex p-8 rounded-lg hover:bg-primary-5">{title}</a>
-  </Link>
-);
-
-const Footer = () => {
-  const max = 2022;
-  const min = 1930;
-  const randomYear = Math.floor(Math.random() * (max - min + 1) + min);
-
-  return (
-    <footer className="mt-auto text-xs tracking-wide opacity-50 hidden md:block">
-      &copy; {randomYear} T.E.S.
-    </footer>
-  );
-};
-
 export const Navigation = ({ navSection }) => {
   const navClasses = cn({
     "row-start-3 flex items-stretch": true,
@@ -87,7 +67,6 @@ export const Navigation = ({ navSection }) => {
         </Link>
         <div className="grid grid-cols-5 w-full md:block">
           <NavLink title="Home" href="/" icon="Home" hide="desktop" />
-          <NavLink title="Search" href="/" icon="Search" hide="desktop" />
           <NavLink
             title="Music"
             href="/albums"
@@ -105,23 +84,8 @@ export const Navigation = ({ navSection }) => {
             href="/library"
             icon="Book"
             navSection={navSection}
-            hide="mobile"
           />
-          <NavLink title="Contact" href="/contact" icon="Phone" hide="mobile" />
-          <Menu
-            side="top"
-            trigger={
-              <div className="w-full h-full flex flex-col items-center justify-center md:hidden">
-                <Icon name="Overflow" />
-                <span className="text-xs opacity-50">More</span>
-              </div>
-            }
-          >
-            <NavLinkPopover title="Library" href="/library" />
-            <NavLinkPopover title="Videos" href="/videos" />
-            <NavLinkPopover title="Setlist Computor" href="/setlist" />
-            <NavLinkPopover title="Contact" href="contact" />
-          </Menu>
+          <NavLink title="Contact" href="/contact" icon="Phone" />
           <NavLink
             className="hidden"
             title="Videos"

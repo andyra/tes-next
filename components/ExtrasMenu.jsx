@@ -5,7 +5,7 @@ import Button, { getButtonClasses } from "./Button";
 import { Menu, MenuDivider, MenuHeading, MenuItem } from "./Menu";
 import Tooltip from "./Tooltip";
 
-export const ThemeSwitcher = () => {
+export const ExtrasMenu = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -15,6 +15,7 @@ export const ThemeSwitcher = () => {
 
   return (
     <Menu
+      tooltipContent="Menu"
       trigger={<Icon name="Overflow" />}
       triggerClassName={getButtonClasses({
         circle: true,
@@ -42,4 +43,4 @@ export const ThemeSwitcher = () => {
   );
 };
 
-export default ThemeSwitcher;
+export default ExtrasMenu;

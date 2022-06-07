@@ -1,10 +1,12 @@
 import Search from "./Search";
-import ThemeSwitcher from "./ThemeSwitcher";
+import ExtrasMenu from "./ExtrasMenu";
 
 const Toolbar = () => (
-  <section className="flex items-center justify-end gap-8 sticky top-0 z-10 bg-gradient-to-b from-ground p-8">
-    <Search />
-    <ThemeSwitcher />
+  <section className="flex justify-end sticky top-0 z-10 bg-gradient-to-b from-ground p-8">
+    <div className="flex items-center gap-8 bg-ground rounded-full">
+      <Search />
+      <ExtrasMenu />
+    </div>
   </section>
 );
 

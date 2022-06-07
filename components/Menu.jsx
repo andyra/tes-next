@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Icon from "./Icon";
+import Tooltip from "./Tooltip";
 
 // Menu Item
 // ----------------------------------------------------------------------------
@@ -12,6 +13,8 @@ export const MenuItem = ({
   href,
   iconLeft,
   iconRight,
+  tooltipContent,
+  tooltipSide,
   ...props
 }) => {
   const itemClasses = cn({
@@ -60,7 +63,15 @@ export const MenuDivider = () => (
 // Menu
 // ----------------------------------------------------------------------------
 
-export const Menu = ({ children, side, trigger, triggerClassName, width }) => {
+export const Menu = ({
+  children,
+  side,
+  tooltipContent,
+  tooltipSide,
+  trigger,
+  triggerClassName,
+  width
+}) => {
   const contentClasses = cn(
     "bg-ground border border-primary-10 rounded-lg p-8 shadow-lg",
     "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down",
@@ -70,9 +81,17 @@ export const Menu = ({ children, side, trigger, triggerClassName, width }) => {
   return (
     <Popover.Root>
       <Popover.Anchor>
-        <Popover.Trigger className={triggerClassName}>
-          {trigger}
-        </Popover.Trigger>
+        {tooltipContent ? (
+          <Tooltip content={tooltipContent} side={tooltipSide}>
+            <Popover.Trigger className={triggerClassName}>
+              {trigger}
+            </Popover.Trigger>
+          </Tooltip>
+        ) : (
+          <Popover.Trigger className={triggerClassName}>
+            {trigger}
+          </Popover.Trigger>
+        )}
       </Popover.Anchor>
       <Popover.Content side={side} className={contentClasses} sideOffset={4}>
         {children}
@@ -83,6 +102,8 @@ export const Menu = ({ children, side, trigger, triggerClassName, width }) => {
 
 Menu.propTypes = {
   side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+  tooltipContent: PropTypes.string,
+  tooltipSide: PropTypes.oneOf(["top", "right", "bottom", "left"]),
   width: PropTypes.string
 };
 

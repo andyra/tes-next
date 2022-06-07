@@ -3,7 +3,6 @@ import Link from "next/link";
 import { gql, useLazyQuery } from "@apollo/client";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import { getButtonClasses } from "./Button";
 import ClientOnly from "./ClientOnly";
@@ -11,6 +10,7 @@ import Empty from "./Empty";
 import Icon from "./Icon";
 import Input from "./Input";
 import Loader from "./Loader";
+import Tooltip from "./Tooltip";
 import { useDebounce, useKeypress } from "../helpers/hooks";
 
 // TODO: Highlight term
@@ -83,19 +83,26 @@ const Search = () => {
     setResults([]);
   }
 
+  const contentClasses = cn(
+    "fixed top-0 right-0 left-0 bottom-0 sm:left-auto sm:w-480 z-30",
+    "m-4 p-16 rounded-lg bg-ground border-2 border-primary-10 radix-state-open:animate-enter-from-right"
+  );
+
   return (
     <Dialog.Root>
-      <Dialog.Trigger
-        className={getButtonClasses({ circle: true, variant: "glass" })}
-        onClick={() => {
-          clearResults();
-        }}
-      >
-        <Icon name="Search" />
-      </Dialog.Trigger>
+      <Tooltip side="bottom" content="Search">
+        <Dialog.Trigger
+          className={getButtonClasses({ circle: true, variant: "glass" })}
+          onClick={() => {
+            clearResults();
+          }}
+        >
+          <Icon name="Search" />
+        </Dialog.Trigger>
+      </Tooltip>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed top-0 right-0 bottom-0 left-0 z-20 backdrop-blur-md bg-ground/30 radix-state-open:animate-fade-in" />
-        <Dialog.Content className="m-4 fixed top-0 right-0 left-0 bottom-0 rounded-lg bg-ground z-30 p-16 border-2 border-primary-10 sm:left-auto sm:w-480 radix-state-open:animate-enter-from-right">
+        <Dialog.Content className={contentClasses}>
           <VisuallyHidden.Root asChild>
             <Dialog.Title>Search</Dialog.Title>
           </VisuallyHidden.Root>
