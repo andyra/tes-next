@@ -130,16 +130,21 @@ export default function Home({ albums, episodes }) {
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-24">
         <PlayerSection
           playPauseButton={
-            <PlayPauseButton track={normalizedFullEpisode} size="lg" />
+            <PlayPauseButton
+              className="hover:text-accent"
+              size="lg"
+              track={normalizedFullEpisode}
+            />
           }
           title="Play Latest Episode"
         />
         <PlayerSection
           playPauseButton={
             <PlayPauseButton
+              className="hover:text-accent"
+              size="lg"
               track={shuffledPlayableTracks[0]}
               tracklist={shuffledPlayableTracks}
-              size="lg"
             />
           }
           title="Listen to the Radio"
