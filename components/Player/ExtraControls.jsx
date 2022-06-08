@@ -11,14 +11,12 @@ import Tooltip from "../Tooltip";
 export const ExtraControls = ({
   isFullscreen,
   playerIsEmpty,
-  setIsFullscreen,
-  setVisualizationEnabled,
-  visualizationEnabled
+  setIsFullscreen
 }) => {
   const containerClasses = cn({
     "flex items-center gap-8": true,
     "hidden md:flex flex-1 justify-end": !isFullscreen,
-    "justify-between w-full": isFullscreen
+    "justify-between w-full mix-blend-overlay": isFullscreen
   });
 
   const queueOverlayClasses = cn(
@@ -49,32 +47,19 @@ export const ExtraControls = ({
           </section>
         </Collapsible.Content>
       </Collapsible.Root>
-      <div className="flex items-center gap-4">
-        {isFullscreen && (
-          <Button
-            circle
-            onClick={() => {
-              setVisualizationEnabled(!visualizationEnabled);
-            }}
-            size="sm"
-          >
-            <Icon name={visualizationEnabled ? "EyeOff" : "Eye"} />
-          </Button>
-        )}
-        <Button
-          circle
-          disabled={playerIsEmpty}
-          onClick={() => {
-            setIsFullscreen(!isFullscreen);
-          }}
-          size="sm"
-          aria-controls="full-screen"
-          aria-expanded={!isFullscreen}
-          aria-label="Full Screen"
-        >
-          <Icon name={isFullscreen ? "ChevronDown" : "ChevronUp"} />
-        </Button>
-      </div>
+      <Button
+        circle
+        disabled={playerIsEmpty}
+        onClick={() => {
+          setIsFullscreen(!isFullscreen);
+        }}
+        size="sm"
+        aria-controls="full-screen"
+        aria-expanded={!isFullscreen}
+        aria-label="Full Screen"
+      >
+        <Icon name={isFullscreen ? "ChevronDown" : "ChevronUp"} />
+      </Button>
     </div>
   );
 };

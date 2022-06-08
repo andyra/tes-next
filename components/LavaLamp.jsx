@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 
 // Via https://towardsdatascience.com/fun-with-html-canvas-lets-make-lava-lamp-plasma-e4b0d89fe778
-const Visualization = () => {
+const LavaLamp = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -253,10 +253,10 @@ const Visualization = () => {
         TEXT
       </canvas>
       <div
-        className={`pointer-events-none opacity-30 bg-[url('/asphalt-light.png')] ${fullSizeClass}`}
+        className={`opacity-30 bg-[url('/asphalt-light.png')] ${fullSizeClass}`}
       />
     </div>
   );
 };
 
-export default Visualization;
+export default LavaLamp;

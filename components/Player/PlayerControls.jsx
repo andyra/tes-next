@@ -23,7 +23,7 @@ export const PlayerControls = ({
   const playerControlClasses = cn({
     "flex flex-col gap-4": true,
     "md:w-1/3": !isFullscreen,
-    "w-full transition duration-300": isFullscreen
+    "w-full transition duration-300 mix-blend-overlay": isFullscreen
   });
 
   const extraButtonClasses = cn({

@@ -6,6 +6,7 @@ import cn from "classnames";
 import { usePlayerContext } from "../../context/PlayerContext";
 import CurrentTrack from "./CurrentTrack";
 import ExtraControls from "./ExtraControls";
+import Visualization from "./Visualization";
 import MediaQuery, { BREAKPOINTS } from "../MediaQuery";
 import PlayerControls from "./PlayerControls";
 
@@ -24,23 +25,6 @@ import PlayerControls from "./PlayerControls";
 // seeking: set state isPlaying to false
 // seeked: set state isPlaying to true
 // ratechange: set state rate
-
-const Visualization = () => {
-  return (
-    <section className="absolute top-0 left-0 right-0 bottom-0 -z-10 bg-accent">
-      {/*<YoutubeBackground
-        videoId="TW733Ut5zE0"
-        className="w-full h-full"
-        nocookie={true}
-        playerOptions={{ controls: 0, disablekb: 1, modestbranding: 1 }}
-        // onReady={func}
-        // onEnd={func}
-        // onPlaybackRateChange={func}
-        // onPlaybackQualityChange={func}
-      />*/}
-    </section>
-  );
-};
 
 export const Player = () => {
   const {
@@ -61,7 +45,6 @@ export const Player = () => {
   const [isLooped, setIsLooped] = useState(false);
   const [isRandom, setIsRandom] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const [visualizationEnabled, setVisualizationEnabled] = useState(false);
 
   // Refs
   // https://letsbuildui.dev/articles/building-an-audio-player-with-react-hooks
@@ -217,9 +200,7 @@ export const Player = () => {
   return (
     <>
       <aside className={playerClasses}>
-        {visualizationEnabled && (
-          <Visualization visible={visualizationEnabled} />
-        )}
+        {isFullscreen && <Visualization visible={isFullscreen} />}
         <CurrentTrack
           isFullscreen={isFullscreen}
           isMobile={isMobile}
@@ -246,8 +227,6 @@ export const Player = () => {
           isFullscreen={isFullscreen}
           playerIsEmpty={playerIsEmpty}
           setIsFullscreen={setIsFullscreen}
-          visualizationEnabled={visualizationEnabled}
-          setVisualizationEnabled={setVisualizationEnabled}
         />
       </aside>
     </>
