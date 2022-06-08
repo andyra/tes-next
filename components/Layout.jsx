@@ -36,26 +36,8 @@ const Container = ({ children, maxWidth, spacing }) => {
 
 export default function Layout({ children, ...props }) {
   const { currentTrack, nextList, prevList, queueList } = usePlayerContext();
-
   const playerIsEmpty =
     !currentTrack && prevList.length + nextList.length + queueList.length === 0;
-
-  // const tokens = [
-  //   "grid",
-  //   "h-full",
-  //   "overflow-hidden",
-  //   "text-primary",
-  //   "grid",
-  //   "grid-cols-1",
-  //   "grid-rows-[1fr,64px,48px]",
-  //   "md:grid-cols-[224px,1fr]",
-  //   "md:grid-rows-[1fr,80px]",
-  //   "gap-4",
-  //   "p-4",
-  //   "bg-ground-dark"
-  // ];
-
-  // console.log(tokens);
 
   const nextClasses = cn({
     "h-full overflow-hidden text-primary p-4 bg-ground-dark": true,
@@ -75,7 +57,7 @@ export default function Layout({ children, ...props }) {
           {props.PageTitle ? `${props.PageTitle} • TES` : "This Evening's Show"}
         </title>
       </Head>
-      <Navigation navSection={props.navSection} />
+      <Navigation navSection={props.navSection} playerIsEmpty={playerIsEmpty} />
       <Main>
         <Toaster />
         <Toolbar />
