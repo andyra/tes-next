@@ -32,7 +32,7 @@ function getExtras(songCount, count, skipLastItem = true) {
 // ----------------------------------------------------------------------------
 
 const LABEL_CLASSES =
-  "inline-block px-8 font-mono tracking-wider text-sm text-primary-75 uppercase bg-ground absolute z-10 top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2";
+  "inline-block px-8 font-mono tracking-wider text-sm text-primary-75 uppercase bg-ground absolute z-10 top-0 left-1/2 -translate-y-1/2 -translate-x-1/2";
 
 const Computor = ({
   bleedCount,
@@ -126,7 +126,7 @@ const SetlistItem = ({ item, i }) => {
   return (
     <Accordion.Item className="relative" value={song.title}>
       {bleed && (
-        <div className="w-2 border-l-2 border-primary-50 border-dashed absolute top-32 -bottom-32 left-32 rounded-full flex items-center justify-center transform -translate-x-1/2" />
+        <div className="w-2 border-l-2 border-primary-50 border-dashed absolute top-32 -bottom-32 left-32 rounded-full flex items-center justify-center -translate-x-1/2" />
       )}
       <Accordion.Trigger className={classes}>
         <div className="flex items-center gap-16">

@@ -66,11 +66,11 @@ export const Input = ({
         {icon && (
           <Icon
             name={icon}
-            className="absolute top-1/2 left-12 transform -translate-y-1/2 text-primary-50"
+            className="absolute top-1/2 left-12 -translate-y-1/2 text-primary-50"
           />
         )}
         {isLoading && (
-          <div className="absolute top-1/2 right-8 transform -translate-y-1/2 flex items-center">
+          <div className="absolute top-1/2 right-8 -translate-y-1/2 flex items-center">
             <Loader className="h-20 w-20 opacity-50" />
           </div>
         )}

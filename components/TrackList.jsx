@@ -120,14 +120,14 @@ const TrackTitle = ({ trackIsSelected, showCollectionInfo, track }) => {
       {showCollectionInfo ? (
         <>
           <CoverArt
-            className="w-48 h-48 flex-shrink-0 rounded"
+            className="w-40 h-40 md:w-48 md:h-48 flex-shrink-0 rounded"
             height={48}
             title={track.collection.title}
             url={track.collection.coverArt}
             width={48}
           />
           <div>
-            <div>{track.title}</div>
+            <div className="font-medium">{track.title}</div>
             <div className="text-sm">{track.collection.title}</div>
           </div>
         </>
@@ -169,44 +169,38 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     setQueueList(newQueueList);
   }
 
-  const TrackIndexButton = ({ track, i }) => {
-    const active = trackIsSelected(currentTrack, track) && isPlaying;
-    const buttonClasses = cn({
-      "absolute top-0 left-0": true,
-      "opacity-0 group-hover:opacity-100": !active
-    });
-
-    return (
-      <div className="flex items-center justify-center relative h-40 w-40 flex-shrink-0">
-        <span
-          className={`text-primary-50 ${track.audioFile &&
-            "group-hover:opacity-0"}`}
-        >
-          {track.position}
-        </span>
-        {track.audioFile && (
-          <PlayPauseButton
-            track={track}
-            className={buttonClasses}
-            tracklist={tracks}
-            variant="ghost"
-          />
-        )}
-      </div>
-    );
-  };
-
   const TrackItem = ({ track, i }) => {
+    const active = trackIsSelected(currentTrack, track) && isPlaying;
+
     const liClasses = cn({
-      "flex gap-8 px-8 -mx-8 h-64 rounded-lg hover:bg-primary-5 focus:bg-primary-10 cursor-default transition group": true,
+      "flex items-center gap-8 px-8 -mx-8 h-64 rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
+      "cursor-default transition relative group": true,
       "text-secondary": track.audioFile,
       "text-secondary-50": !track.audioFile
     });
 
+    const indexClasses = cn({
+      "hidden md:flex items-center justify-center relative h-40 w-40 flex-shrink-0 text-primary-50": true,
+      "group-hover:opacity-0": track.audioFile
+    });
+
+    const playButtonClasses = cn({
+      "md:absolute md:top-1/2 md:left-8 md:-translate-y-1/2": true,
+      "md:opacity-0 md:group-hover:opacity-100": !active
+    });
+
     return (
       <li className={liClasses} tabIndex={0} key={i}>
-        <div className="flex-1 flex items-center gap-8">
-          <TrackIndexButton track={track} i={i} />
+        <div className="flex-1 flex items-center gap-8 relative">
+          <div className={indexClasses}>{track.position}</div>
+          {track.audioFile && (
+            <PlayPauseButton
+              track={track}
+              className={playButtonClasses}
+              tracklist={tracks}
+              variant="ghost"
+            />
+          )}
           <TrackTitle
             trackIsSelected={trackIsSelected(track)}
             showCollectionInfo={showCollectionInfo}
@@ -234,7 +228,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   };
 
   return (
-    <ul>
+    <ul className="-mx-8">
       {tracks.map((track, i) => (
         <TrackItem track={track} i={i} key={track.id} />
       ))}
