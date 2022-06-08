@@ -146,7 +146,8 @@ module.exports = {
     },
     animation: {
       loading: "bg-pulse 1s infinite",
-      spin: "spin 1s linear infinite",
+      spin: "spin 64s linear infinite",
+      "slow-spin": "spin 32s linear infinite",
       // Dropdown menu
       "scale-in": "scale-in 0.2s ease-in-out",
       "slide-down": "slide-down 0.6s cubic-bezier(0.16, 1, 0.3, 1)",

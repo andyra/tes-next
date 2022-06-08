@@ -99,7 +99,7 @@ export const ICON_NAMES = {
 export const Icon = ({ className, name, size, ...props }) => {
   let IconComponent = ICON_NAMES[name];
   const classes = cn({
-    "w-em h-em": !size,
+    "w-em h-em pointer-events-none": !size,
     [className]: className
   });
 

@@ -32,7 +32,7 @@ export const ExtraControls = ({
           className={getButtonClasses({
             circle: true,
             disabled: playerIsEmpty,
-            variant: "ghost"
+            variant: isFullscreen ? "outline" : "ghost"
           })}
           disabled={playerIsEmpty}
           onClick={() => {
@@ -50,15 +50,15 @@ export const ExtraControls = ({
       <Button
         circle
         disabled={playerIsEmpty}
+        variant={isFullscreen ? "outline" : "ghost"}
         onClick={() => {
           setIsFullscreen(!isFullscreen);
         }}
-        size="sm"
         aria-controls="full-screen"
         aria-expanded={!isFullscreen}
         aria-label="Full Screen"
       >
-        <Icon name={isFullscreen ? "ChevronDown" : "ChevronUp"} />
+        <Icon name={isFullscreen ? "X" : "ChevronUp"} />
       </Button>
     </div>
   );
