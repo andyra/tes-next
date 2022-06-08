@@ -8,11 +8,7 @@ import Tooltip from "../Tooltip";
 // Default
 // ----------------------------------------------------------------------------
 
-export const ExtraControls = ({
-  isFullscreen,
-  playerIsEmpty,
-  setIsFullscreen
-}) => {
+export const ExtraControls = ({ isFullscreen, setIsFullscreen }) => {
   const containerClasses = cn({
     "flex items-center gap-8": true,
     "hidden md:flex flex-1 justify-end": !isFullscreen,
@@ -31,10 +27,8 @@ export const ExtraControls = ({
         <Collapsible.Trigger
           className={getButtonClasses({
             circle: true,
-            disabled: playerIsEmpty,
             variant: isFullscreen ? "outline" : "ghost"
           })}
-          disabled={playerIsEmpty}
           onClick={() => {
             setIsFullscreen(false);
           }}
@@ -49,7 +43,6 @@ export const ExtraControls = ({
       </Collapsible.Root>
       <Button
         circle
-        disabled={playerIsEmpty}
         variant={isFullscreen ? "outline" : "ghost"}
         onClick={() => {
           setIsFullscreen(!isFullscreen);

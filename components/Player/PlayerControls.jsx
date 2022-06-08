@@ -13,7 +13,6 @@ export const PlayerControls = ({
   isRandom,
   handleScrub,
   handleScrubEnd,
-  playerIsEmpty,
   skipBack,
   skipNext,
   toggleLoop,
@@ -48,15 +47,12 @@ export const PlayerControls = ({
 
   const sliderClasses = cn({
     "flex items-center w-full h-16 relative group": true,
-    "pointer-events-none": playerIsEmpty,
     "md:col-span-1 md:row-span-2": !isFullscreen,
-    "opacity-0 md:opacity-100": !isFullscreen && playerIsEmpty,
     "col-start-1 col-span-3": isFullscreen
   });
 
   const timeClasses = cn({
     "font-mono min-w-40 text-xs text-primary-75 transition": true,
-    "opacity-0": playerIsEmpty,
     "hidden md:block row-span-2": !isFullscreen
   });
 
@@ -77,7 +73,6 @@ export const PlayerControls = ({
         <Button
           circle
           className={randomClasses}
-          disabled={playerIsEmpty}
           onClick={toggleRandom}
           variant="ghost"
         >
@@ -86,7 +81,6 @@ export const PlayerControls = ({
         <Button
           circle
           className={extraButtonClasses}
-          disabled={playerIsEmpty}
           onClick={skipBack}
           variant="ghost"
         >
@@ -95,7 +89,6 @@ export const PlayerControls = ({
         <Button
           active={isPlaying}
           circle
-          disabled={playerIsEmpty}
           onClick={togglePlay}
           size="lg"
           variant="ghost"
@@ -105,7 +98,6 @@ export const PlayerControls = ({
         <Button
           circle
           className={extraButtonClasses}
-          disabled={playerIsEmpty}
           onClick={skipNext}
           variant="ghost"
         >
@@ -114,7 +106,6 @@ export const PlayerControls = ({
         <Button
           circle
           className={loopClasses}
-          disabled={playerIsEmpty}
           onClick={toggleLoop}
           variant="ghost"
         >
@@ -125,7 +116,6 @@ export const PlayerControls = ({
         <time className={elapsedClasses}>{formatTime(elapsed)}</time>
         <Slider.Root
           className={sliderClasses}
-          disabled={playerIsEmpty}
           max={duration}
           min={0}
           onValueChange={e => handleScrub(e)}

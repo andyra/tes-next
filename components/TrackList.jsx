@@ -18,7 +18,6 @@ import { getCollectionType, formatTime } from "../helpers";
 
 const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
   const { audioFile, collection, title, uri } = track;
-  console.log(collection);
   const overflowMenuClasses = cn(
     getButtonClasses({
       variant: "ghost",
