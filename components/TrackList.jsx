@@ -146,6 +146,8 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   } = usePlayerContext();
 
   function trackIsSelected(track) {
+    console.log(`=====`)
+    console.log(`This: ${track.title}, Current: ${currentTrack.title}`)
     return (
       currentTrack &&
       currentTrack.id === track.id &&
@@ -184,7 +186,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     });
 
     const playButtonClasses = cn({
-      "md:absolute md:top-1/2 md:left-8 md:-translate-y-1/2": true,
+      "md:absolute md:top-1/2 md:left-0 md:-translate-y-1/2": true,
       "md:opacity-0 md:group-hover:opacity-100": !active
     });
 
