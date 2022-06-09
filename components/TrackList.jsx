@@ -145,17 +145,6 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
     setQueueList
   } = usePlayerContext();
 
-  function trackIsSelected(track) {
-    console.log(`=====`)
-    console.log(`This: ${track.title}, Current: ${currentTrack.title}`)
-    return (
-      currentTrack &&
-      currentTrack.id === track.id &&
-      !track.addedViaQueue &&
-      !currentTrack.addedViaQueue
-    );
-  }
-
   function addToQueue(track) {
     const newQueueList = [...queueList];
     const newTrack = Object.assign({}, track);
@@ -171,7 +160,8 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   }
 
   const TrackItem = ({ track, i }) => {
-    const active = trackIsSelected(currentTrack, track) && isPlaying;
+    const trackIsSelected = currentTrack && currentTrack.id === track.id && !track.addedViaQueue && !currentTrack.addedViaQueue;
+    const active = trackIsSelected && isPlaying;
 
     const liClasses = cn({
       "flex items-center gap-8 px-8 -mx-8 h-64 rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
@@ -203,7 +193,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
             />
           )}
           <TrackTitle
-            trackIsSelected={trackIsSelected(track)}
+            trackIsSelected={trackIsSelected}
             showCollectionInfo={showCollectionInfo}
             track={track}
           />
