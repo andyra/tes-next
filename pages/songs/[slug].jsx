@@ -130,13 +130,15 @@ export default function Song({ collections, song }) {
             <ul className="grid grid-cols-3">
               {leadSheets.map((leadSheet, i) => (
                 <li className="relative">
-                  <Image
-                    layout="intrinsic"
-                    src={leadSheet.url}
-                    alt={`Lead sheet for ${title}, page ${i + 1}`}
-                    height={300}
-                    width={300}
-                  />
+                  <a href={leadSheet.url} target="_blank">
+                    <Image
+                      layout="intrinsic"
+                      src={leadSheet.url}
+                      alt={`Lead sheet for ${title}, page ${i + 1}`}
+                      height={300}
+                      width={300}
+                    />
+                  </a>
                 </li>
               ))}
             </ul>

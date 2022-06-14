@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
@@ -120,11 +121,16 @@ const Computor = ({
 
 const SetlistItem = ({ item, i }) => {
   const { bleed, song, strategy } = item;
+  const hasLyrics = song.lyrics;
+  const hasLeadSheets = song.leadSheets.length > 0;
+  const disabled = !hasLyrics && !hasLeadSheets;
   const classes = cn({
-    "w-full py-12 px-16 rounded-lg hover:bg-primary-5 text-left transition group": true
+    "w-full py-12 px-16 rounded-lg text-left transition": true,
+    "hover:bg-secondary-10": !disabled
   });
+
   return (
-    <Accordion.Item className="relative" value={song.title}>
+    <Accordion.Item className="relative" value={song.title} disabled={disabled}>
       {bleed && (
         <div className="w-2 border-l-2 border-primary-50 border-dashed absolute top-32 -bottom-32 left-32 rounded-full flex items-center justify-center -translate-x-1/2" />
       )}
@@ -133,19 +139,15 @@ const SetlistItem = ({ item, i }) => {
           <span className="flex items-center justify-center w-32 h-32 text-lg font-medium text-primary-50 text-center border-2 bg-ground border-primary-50 rounded-full relative">
             {i + 1}
           </span>
-          <div className="text-secondary flex-1 text-5xl">{song.title}</div>
-          <div className="flex items-center gap-4">
-            {song.lyrics && (
-              <Badge className="text-sm text-primary-50 opacity-0 group-hover:opacity-100 transition">
-                Lyrics
-              </Badge>
-            )}
-            {song.notation && (
-              <Badge className="text-sm text-primary-50 opacity-0 group-hover:opacity-100 transition">
-                Notation
-              </Badge>
-            )}
-          </div>
+          <div className="text-secondary flex-1 text-4xl">{song.title}</div>
+          {!disabled &&
+            <Badge className="text-sm text-primary-50">
+              {hasLyrics && "Lyrics"}
+              {hasLyrics && hasLeadSheets && " & "}
+              {hasLeadSheets && "Lead Sheet"}
+              <Icon name="ChevronDown" />
+            </Badge>
+          }
         </div>
         {strategy && (
           <div className="ml-40 text-xl text-primary-50">"Strategy here"</div>
@@ -153,13 +155,9 @@ const SetlistItem = ({ item, i }) => {
       </Accordion.Trigger>
       <Accordion.Content className="ml-64">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 mt-8 mb-24">
-          {song.lyrics && (
+          {hasLyrics && (
             <div>
-              <h3
-                className={`font-semibold text-xl mb-8${
-                  song.lyrics ? "" : " text-primary-50"
-                }`}
-              >
+              <h3 className="font-semibold text-xl mb-8">
                 Lyrics
               </h3>
               <div
@@ -168,19 +166,26 @@ const SetlistItem = ({ item, i }) => {
               />
             </div>
           )}
-          {song.notation && (
+          {hasLeadSheets && (
             <div>
-              <h3
-                className={`font-semibold text-xl mb-8${
-                  song.notation ? "" : " text-primary-50"
-                }`}
-              >
-                Notation
+              <h3 className="font-semibold text-xl mb-8">
+                Lead Sheet
               </h3>
-              <div
-                className="font-mono text-sm"
-                dangerouslySetInnerHTML={{ __html: song.notation }}
-              />
+              <ul>
+                {song.leadSheets.map((leadSheet, i) => (
+                  <li className="relative">
+                    <a href={leadSheet.url} target="_blank">
+                      <Image
+                        layout="intrinsic"
+                        src={leadSheet.url}
+                        alt={`Lead sheet for ${song.title}, page ${i + 1}`}
+                        height={300}
+                        width={300}
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
@@ -237,8 +242,8 @@ export async function getStaticProps(context) {
           title
           uri
           ... on songs_default_Entry {
+            leadSheets { url }
             lyrics
-            notation
             songType
           }
         }
