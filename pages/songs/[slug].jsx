@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { gql } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";
@@ -67,7 +68,13 @@ function normalizeSongTracks(slug, collections) {
 // Components
 // ----------------------------------------------------------------------------
 
-const ContentSection = ({children, emptyMessage, enabled, htmlContent, title}) => {
+const ContentSection = ({
+  children,
+  emptyMessage = "None to speak of",
+  enabled,
+  htmlContent,
+  title
+}) => {
   const headingClasses = cn({
     "font-medium text-3xl mb-16": true,
     "text-primary-50": !enabled
@@ -79,7 +86,7 @@ const ContentSection = ({children, emptyMessage, enabled, htmlContent, title}) =
         {title}
       </h2>
       {enabled ? (
-        {children}
+        children
       ) : (
         <p className="text-lg text-primary-25">{emptyMessage}</p>
       )}
@@ -91,7 +98,7 @@ const ContentSection = ({children, emptyMessage, enabled, htmlContent, title}) =
 // ----------------------------------------------------------------------------
 
 export default function Song({ collections, song }) {
-  const { lyrics, notation, slug, songType, title } = song;
+  const { lyrics, leadSheets, slug, songType, title } = song;
   const relatedCollections = getRelatedCollections(slug, collections);
   const normalizedTracks = normalizeSongTracks(slug, relatedCollections);
 
@@ -116,11 +123,23 @@ export default function Song({ collections, song }) {
       {songType === "original" && (
         <>
           <hr className="border border-primary-10" />
-          <ContentSection title="Lyrics" enabled={lyrics} emptyMessage="None to speak of">
+          <ContentSection title="Lyrics" enabled={lyrics}>
             <div className="font-mono" dangerouslySetInnerHTML={{ __html: lyrics }} />
           </ContentSection>
-          <ContentSection title="Notation" enabled={notation} emptyMessage="None to speak of">
-            <div className="font-mono" dangerouslySetInnerHTML={{ __html: notation }} />
+          <ContentSection title="Lead Sheets" enabled={leadSheets}>
+            <ul className="grid grid-cols-3">
+              {leadSheets.map((leadSheet, i) => (
+                <li className="relative">
+                  <Image
+                    layout="intrinsic"
+                    src={leadSheet.url}
+                    alt={`Lead sheet for ${title}, page ${i + 1}`}
+                    height={300}
+                    width={300}
+                  />
+                </li>
+              ))}
+            </ul>
           </ContentSection>
         </>
       )}
@@ -159,7 +178,7 @@ export async function getStaticProps(context) {
           slug
           ... on songs_default_Entry {
             lyrics
-            notation
+            leadSheets { url }
             songType
           }
         }
