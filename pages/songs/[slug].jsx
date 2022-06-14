@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
+import cn from "classnames";
 import client from "../../apollo-client";
 import PageHeader from "../../components/PageHeader";
 import Tracklist from "../../components/Tracklist";
@@ -19,7 +20,7 @@ import {
 // ----------------------------------------------------------------------------
 
 function matchingTrack(track, slug) {
-  return track.song && track.song[0].slug === slug;
+  return track.song && track.song.length > 0 && track.song[0].slug === slug;
 }
 
 function getRelatedCollections(slug, collections) {
@@ -66,25 +67,25 @@ function normalizeSongTracks(slug, collections) {
 // Components
 // ----------------------------------------------------------------------------
 
-const ContentSection = ({ title, className, content }) => (
-  <section className={className}>
-    <h2
-      className={`font-medium text-3xl mb-16${
-        content ? "" : " text-primary-50"
-      }`}
-    >
-      {title}
-    </h2>
-    {content ? (
-      <div
-        className="font-mono"
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-    ) : (
-      <p className="text-lg text-primary-50">Nothing found in the archives.</p>
-    )}
-  </section>
-);
+const ContentSection = ({children, emptyMessage, enabled, htmlContent, title}) => {
+  const headingClasses = cn({
+    "font-medium text-3xl mb-16": true,
+    "text-primary-50": !enabled
+  });
+
+  return (
+    <section>
+      <h2 className={headingClasses}>
+        {title}
+      </h2>
+      {enabled ? (
+        {children}
+      ) : (
+        <p className="text-lg text-primary-25">{emptyMessage}</p>
+      )}
+    </section>
+  )
+}
 
 // Default
 // ----------------------------------------------------------------------------
@@ -108,18 +109,19 @@ export default function Song({ collections, song }) {
         )}
       </PageHeader>
 
-      <section>
-        <h2 className="text-xl mb-12">
-          Appears on {normalizedTracks.length} collections…
-        </h2>
+      <ContentSection title="Appears On…" enabled={normalizedTracks.length > 0} emptyMessage="Not (yet) on any collections">
         <Tracklist tracks={normalizedTracks} showCollectionInfo />
-      </section>
+      </ContentSection>
 
       {songType === "original" && (
         <>
           <hr className="border border-primary-10" />
-          <ContentSection title="Lyrics" content={lyrics} />
-          <ContentSection title="Notation" content={notation} />
+          <ContentSection title="Lyrics" enabled={lyrics} emptyMessage="None to speak of">
+            <div className="font-mono" dangerouslySetInnerHTML={{ __html: lyrics }} />
+          </ContentSection>
+          <ContentSection title="Notation" enabled={notation} emptyMessage="None to speak of">
+            <div className="font-mono" dangerouslySetInnerHTML={{ __html: notation }} />
+          </ContentSection>
         </>
       )}
     </>

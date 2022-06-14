@@ -1,5 +1,5 @@
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import toast from "react-hot-toast";
@@ -95,16 +95,19 @@ TrackMenu.propTypes = {
 
 // UGH. Can't seem to get the duration. I can SEE the duration in the log
 // inside audioRef.current, but I can't output it separately.
-const TrackDuration = ({ audioFile }) => {
-  // const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
-  // const { duration } = audioRef.current;
+const TrackDuration = ({ src }) => {
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
 
-  // useEffect(() => {
-  //   audioRef.current = new Audio(audioFile);
-  // }, [duration]);
+  useEffect(() => {
+   audioRef.current = new Audio(src);
+   audioRef.current.onloadeddata = () => {
+     setDuration(audioRef.current.duration);
+   };
+  }, []);
 
   return (
-    <time className="text-sm text-primary-50 mr-8 hidden md:block">0:00</time>
+    <time className="font-mono text-sm text-primary-50 mr-8 hidden md:block">{formatTime(duration)}</time>
   );
 };
 
@@ -200,7 +203,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
         </div>
         <div id="actions" className="flex items-center gap-2">
           {track.audioFile ? (
-            <TrackDuration audioFile={track.audioFile} />
+            <TrackDuration src={track.audioFile} />
           ) : (
             <span className="text-sm text-primary-25 opacity-0 group-hover:opacity-100 transition mr-4">
               No audio
