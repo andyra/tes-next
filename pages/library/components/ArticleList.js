@@ -34,7 +34,7 @@ export const ArticleList = ({ divider, id }) => {
   const { data, loading, error } = useQuery(
     gql`
       query Entries {
-        entries(section: "wiki", relatedToCategories: [{ id: "${id}" }]) {
+        entries(section: "library", relatedToCategories: [{ id: "${id}" }]) {
           slug
           title
         }

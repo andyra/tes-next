@@ -19,7 +19,7 @@ const CategoryItem = ({ children, slug }) => {
 export const CategoryList = ({ level = 1, parentId }) => {
   const PARENT_QUERY = gql`
     query Categories {
-      categories(group: "wiki", level: 1) {
+      categories(group: "library", level: 1) {
         slug
         title
       }
@@ -28,7 +28,7 @@ export const CategoryList = ({ level = 1, parentId }) => {
 
   const CHILD_QUERY = gql`
     query Categories {
-      categories(group: "wiki", level: 2, descendantOf: ${parentId}) {
+      categories(group: "library", level: 2, descendantOf: ${parentId}) {
         slug
         title
       }
@@ -57,7 +57,7 @@ export const CategoryList = ({ level = 1, parentId }) => {
       ))}
     </ul>
   ) : (
-    <Empty>Ain't no wiki categories</Empty>
+    <Empty>Ain't no categories</Empty>
   );
 };
 

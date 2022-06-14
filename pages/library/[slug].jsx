@@ -8,7 +8,7 @@ import { querySlugs } from "../../helpers";
 // ----------------------------------------------------------------------------
 
 export default function Article({ articleItem }) {
-  const { article, category, featuredImage, title } = article;
+  const { article, category, featuredImage, title } = articleItem;
   return (
     <>
       <PageHeader title={title} />
@@ -21,7 +21,7 @@ export default function Article({ articleItem }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("wiki")
+    query: querySlugs("library")
   });
 
   const paths = data.entries.map(entry => ({
@@ -42,9 +42,9 @@ export async function getStaticProps(context) {
   const { data } = await client.query({
     query: gql`
       query Entry {
-        entry(section: "wiki", slug: "${params.slug}") {
+        entry(section: "library", slug: "${params.slug}") {
           title
-          ... on wiki_default_Entry {
+          ... on library_default_Entry {
             article
             category {
               slug
@@ -60,7 +60,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       articleItem: data.entry,
-      navSection: "Wiki",
+      navSection: "library",
       PageTitle: data.entry.title
     }
   };

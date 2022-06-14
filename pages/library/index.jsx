@@ -46,7 +46,7 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query Entries {
-        entries(section: "wiki") {
+        entries(section: "library") {
           slug
           title
         }

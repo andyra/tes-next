@@ -39,7 +39,7 @@ export async function getStaticPaths() {
   const { data } = await client.query({
     query: gql`
       query Categories {
-        categories(group: "wiki") {
+        categories(group: "library") {
           slug
         }
       }
@@ -64,7 +64,7 @@ export async function getStaticProps(context) {
   const { data } = await client.query({
     query: gql`
       query Category {
-        category(group: "wiki", slug: "${params.slug}") {
+        category(group: "library", slug: "${params.slug}") {
           id
           children { id }
           title
@@ -78,7 +78,7 @@ export async function getStaticProps(context) {
       category: data.category,
       PageTitle: data.category.title,
       maxWidth: "max-w-full",
-      navSection: "Wiki",
+      navSection: "library",
       spacing: true
     }
   };

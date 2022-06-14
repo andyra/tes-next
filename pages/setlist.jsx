@@ -43,17 +43,19 @@ const Computor = ({
   setStrategyCount,
   songCount,
   songs,
+  strategies,
   strategyCount
 }) => {
   function handleCompute() {
-    const shuffledSongs = shuffle([...songs]);
-    const mySongs = shuffledSongs.splice(0, songCount);
-    const bleeds = getExtras(songCount, bleedCount);
-    const strategies = getExtras(songCount, strategyCount, false);
-    const items = mySongs.map((song, i) => ({
+    const shuffledSongs = shuffle([...songs]).splice(0, songCount);
+    const shuffledStrategies = shuffle([...strategies]);
+    const bleedsFor = getExtras(songCount, bleedCount);
+    const strategiesFor = getExtras(songCount, strategyCount, false);
+
+    const items = shuffledSongs.map((song, i) => ({
       song: song,
-      bleed: bleeds.indexOf(i) >= 0,
-      strategy: strategies.indexOf(i) >= 0
+      bleed: bleedsFor.indexOf(i) >= 0,
+      strategy: shuffledStrategies.shift()
     }));
 
     setSetlistItems(items);
@@ -150,7 +152,7 @@ const SetlistItem = ({ item, i }) => {
           }
         </div>
         {strategy && (
-          <div className="ml-40 text-xl text-primary-50">"Strategy here"</div>
+          <div className="ml-40 text-xl text-primary-50">"{strategy.strategy}"</div>
         )}
       </Accordion.Trigger>
       <Accordion.Content className="ml-64">
@@ -193,6 +195,7 @@ const SetlistItem = ({ item, i }) => {
     </Accordion.Item>
   );
 };
+
 const SetlistItems = ({ items }) =>
   items.length ? (
     <Accordion.Root collapsible={true}>
@@ -205,7 +208,7 @@ const SetlistItems = ({ items }) =>
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Setlist({ songs }) {
+export default function Setlist({ songs, strategies }) {
   const [songCount, setSongCount] = useState(0);
   const [bleedCount, setBleedCount] = useState(0);
   const [strategyCount, setStrategyCount] = useState(0);
@@ -222,6 +225,7 @@ export default function Setlist({ songs }) {
         setSongCount={setSongCount}
         setStrategyCount={setStrategyCount}
         songCount={songCount}
+        strategies={strategies}
         strategyCount={strategyCount}
       />
       <hr className="border-t-2 border-primary-10" />
@@ -247,6 +251,15 @@ export async function getStaticProps(context) {
             songType
           }
         }
+        setlist: entry(section: "setlistComputor") {
+          ... on setlistComputor_setlistComputor_Entry {
+            strategies {
+              ... on strategies_BlockType {
+                strategy
+              }
+            }
+          }
+        }
       }
     `
   });
@@ -255,6 +268,7 @@ export async function getStaticProps(context) {
     props: {
       PageTitle: "Setlist Computor",
       songs: data.entries,
+      strategies: data.setlist.strategies,
       spacing: true
     }
   };
