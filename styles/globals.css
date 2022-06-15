@@ -125,10 +125,27 @@
   font-weight: 700;
   src: url("/fonts/apercu-bold-subset.woff2");
 }
-@font-face {
-  font-display: swap;
-  font-family: "Apercu Mono";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/apercu-mono-subset.woff2");
+
+.chord-sheet {
+  @apply space-y-16 text-lg md:text-xl;
+}
+
+.chord-sheet .paragraph {
+  @apply space-y-16;
+}
+
+.chord-sheet .row {
+  @apply flex flex-wrap items-stretch gap-8;
+}
+
+.chord-sheet .column {
+  @apply flex flex-col justify-between;
+}
+
+.chord-sheet .chord {
+  @apply text-secondary;
+}
+
+.chord-sheet .comment {
+  @apply flex-1 font-medium text-2xl text-secondary pt-16 border-t border-primary-10;
 }

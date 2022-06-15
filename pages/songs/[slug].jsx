@@ -3,6 +3,7 @@ import Image from "next/image";
 import { gql } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";
+import LeadSheet from "../../components/LeadSheet";
 import PageHeader from "../../components/PageHeader";
 import Tracklist from "../../components/Tracklist";
 import {
@@ -98,7 +99,7 @@ const ContentSection = ({
 // ----------------------------------------------------------------------------
 
 export default function Song({ collections, song }) {
-  const { lyrics, leadSheets, slug, songType, title } = song;
+  const { leadSheet, notation, slug, songType, title } = song;
   const relatedCollections = getRelatedCollections(slug, collections);
   const normalizedTracks = normalizeSongTracks(slug, relatedCollections);
 
@@ -121,29 +122,7 @@ export default function Song({ collections, song }) {
       </ContentSection>
 
       {songType === "original" && (
-        <>
-          <hr className="border border-primary-10" />
-          <ContentSection title="Lyrics" enabled={lyrics}>
-            <div className="font-mono" dangerouslySetInnerHTML={{ __html: lyrics }} />
-          </ContentSection>
-          <ContentSection title="Lead Sheets" enabled={leadSheets}>
-            <ul className="grid grid-cols-3">
-              {leadSheets.map((leadSheet, i) => (
-                <li className="relative">
-                  <a href={leadSheet.url} target="_blank">
-                    <Image
-                      layout="intrinsic"
-                      src={leadSheet.url}
-                      alt={`Lead sheet for ${title}, page ${i + 1}`}
-                      height={300}
-                      width={300}
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </ContentSection>
-        </>
+        <LeadSheet leadSheet={leadSheet} notation={notation} title="Lead Sheet" />
       )}
     </>
   );
@@ -179,8 +158,8 @@ export async function getStaticProps(context) {
           title
           slug
           ... on songs_default_Entry {
-            lyrics
-            leadSheets { url }
+            leadSheet
+            notation { url }
             songType
           }
         }

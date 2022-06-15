@@ -9,6 +9,7 @@ import Badge from "../components/Badge";
 import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Input from "../components/Input";
+import LeadSheet from "../components/LeadSheet";
 import PageHeader, { PageTitle } from "../components/PageHeader";
 import { normalizeTrack, shuffle } from "../helpers/";
 
@@ -123,16 +124,14 @@ const Computor = ({
 
 const SetlistItem = ({ item, i }) => {
   const { bleed, song, strategy } = item;
-  const hasLyrics = song.lyrics;
-  const hasLeadSheets = song.leadSheets.length > 0;
-  const disabled = !hasLyrics && !hasLeadSheets;
+  const hasLeadSheet = song.leadSheet || song.notation.length > 0;
   const classes = cn({
     "w-full py-12 px-16 rounded-lg text-left transition": true,
-    "hover:bg-secondary-10": !disabled
+    "hover:bg-secondary-10": hasLeadSheet
   });
 
   return (
-    <Accordion.Item className="relative" value={song.title} disabled={disabled}>
+    <Accordion.Item className="relative" value={song.title} disabled={!hasLeadSheet}>
       {bleed && (
         <div className="w-2 border-l-2 border-primary-50 border-dashed absolute top-32 -bottom-32 left-32 rounded-full flex items-center justify-center -translate-x-1/2" />
       )}
@@ -141,12 +140,10 @@ const SetlistItem = ({ item, i }) => {
           <span className="flex items-center justify-center w-32 h-32 text-lg font-medium text-primary-50 text-center border-2 bg-ground border-primary-50 rounded-full relative">
             {i + 1}
           </span>
-          <div className="text-secondary flex-1 text-4xl">{song.title}</div>
-          {!disabled &&
+          <div className="flex-1 text-4xl">{song.title}</div>
+          {hasLeadSheet &&
             <Badge className="text-sm text-primary-50">
-              {hasLyrics && "Lyrics"}
-              {hasLyrics && hasLeadSheets && " & "}
-              {hasLeadSheets && "Lead Sheet"}
+              Lead Sheet
               <Icon name="ChevronDown" />
             </Badge>
           }
@@ -156,41 +153,9 @@ const SetlistItem = ({ item, i }) => {
         )}
       </Accordion.Trigger>
       <Accordion.Content className="ml-64">
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 mt-8 mb-24">
-          {hasLyrics && (
-            <div>
-              <h3 className="font-semibold text-xl mb-8">
-                Lyrics
-              </h3>
-              <div
-                className="font-mono text-sm"
-                dangerouslySetInnerHTML={{ __html: song.lyrics }}
-              />
-            </div>
-          )}
-          {hasLeadSheets && (
-            <div>
-              <h3 className="font-semibold text-xl mb-8">
-                Lead Sheet
-              </h3>
-              <ul>
-                {song.leadSheets.map((leadSheet, i) => (
-                  <li className="relative">
-                    <a href={leadSheet.url} target="_blank">
-                      <Image
-                        layout="intrinsic"
-                        src={leadSheet.url}
-                        alt={`Lead sheet for ${song.title}, page ${i + 1}`}
-                        height={300}
-                        width={300}
-                      />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
+        {hasLeadSheet && (
+          <LeadSheet leadSheet={song.leadSheet} notation={song.notation} />
+        )}
       </Accordion.Content>
     </Accordion.Item>
   );
@@ -246,8 +211,8 @@ export async function getStaticProps(context) {
           title
           uri
           ... on songs_default_Entry {
-            leadSheets { url }
-            lyrics
+            leadSheet
+            notation { url }
             songType
           }
         }

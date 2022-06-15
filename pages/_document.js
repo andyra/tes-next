@@ -53,12 +53,6 @@ class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
-          <link
-            rel="preload"
-            href="/fonts/apercu-mono-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
         </Head>
         <body className="h-full overflow-hidden font-sans antialiased">
           <Toaster />

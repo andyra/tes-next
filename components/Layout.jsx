@@ -22,7 +22,7 @@ const Main = ({ children }) => (
 
 const Container = ({ children, maxWidth, spacing }) => {
   const containerClasses = cn({
-    "mx-auto px-16 md:px-24": true,
+    "mx-auto px-16 md:px-24 pb-48 md:pb-64": true,
     [maxWidth]: maxWidth,
     "max-w-screen-lg": !maxWidth,
     "space-y-32 md:space-y-64": spacing

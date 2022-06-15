@@ -38,41 +38,30 @@ module.exports = {
       },
       transitionDuration: {
         DEFAULT: "100ms"
-      }
-    },
-    fontFamily: {
-      sans: [
-        "Apercu",
-        "system-ui",
-        "-apple-system",
-        "BlinkMacSystemFont",
-        "Roboto",
-        "'Helvetica Neue'",
-        "Arial",
-        "sans-serif"
-      ],
-      funky: [
-        "Ozik",
-        "Apercu",
-        "system-ui",
-        "-apple-system",
-        "BlinkMacSystemFont",
-        "Roboto",
-        "'Helvetica Neue'",
-        "Arial",
-        "sans-serif"
-      ],
-      mono: [
-        "Apercu Mono",
-        "ui-monospace",
-        "SFMono-Regular",
-        "Menlo",
-        "Monaco",
-        "Consolas",
-        "'Liberation Mono'",
-        "'Courier New'",
-        "monospace"
-      ]
+      },
+      fontFamily: {
+        sans: [
+          "Apercu",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Roboto",
+          "'Helvetica Neue'",
+          "Arial",
+          "sans-serif"
+        ],
+        funky: [
+          "Ozik",
+          "Apercu",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Roboto",
+          "'Helvetica Neue'",
+          "Arial",
+          "sans-serif"
+        ]
+      },
     },
     keyframes: {
       "bg-pulse": {
