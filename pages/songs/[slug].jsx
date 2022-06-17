@@ -106,7 +106,9 @@ export default function Song({ collections, song }) {
         )}
       </section>
 
-      {songType === "original" && <LeadSheet song={song} title="Lead Sheet" />}
+      {songType === "original" && leadSheet && (
+        <LeadSheet song={song} title="Lead Sheet" />
+      )}
     </>
   );
 }

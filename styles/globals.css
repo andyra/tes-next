@@ -127,15 +127,23 @@
 }
 
 .chord-sheet {
-  @apply space-y-16 text-lg md:text-xl;
+  @apply space-y-16 text-lg md:text-xl print:border-t print:mt-8;
+}
+
+.chord-sheet .comment {
+  @apply flex-1 font-medium text-2xl text-secondary pt-16 border-t border-primary-10 print:font-bold print:text-2xl print:text-black print:border-none;
+}
+
+.chord-sheet h2 {
+  @apply m-0;
 }
 
 .chord-sheet .paragraph {
-  @apply space-y-16;
+  @apply space-y-16 print:space-y-8 print:leading-snug print:text-base;
 }
 
 .chord-sheet .row {
-  @apply flex flex-wrap items-stretch gap-8;
+  @apply flex flex-wrap items-stretch gap-8 print:break-inside-avoid-page;
 }
 
 .chord-sheet .column {
@@ -143,9 +151,5 @@
 }
 
 .chord-sheet .chord {
-  @apply text-secondary;
-}
-
-.chord-sheet .comment {
-  @apply flex-1 font-medium text-2xl text-secondary pt-16 border-t border-primary-10;
+  @apply text-secondary print:text-black print:font-medium;
 }
