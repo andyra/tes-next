@@ -11,7 +11,8 @@ import Icon from "../components/Icon";
 import Input from "../components/Input";
 import LeadSheet from "../components/LeadSheet";
 import PageHeader, { PageTitle } from "../components/PageHeader";
-import { normalizeTrack, shuffle } from "../helpers/";
+import { normalizeTrack } from "../helpers/";
+import { shuffle } from "../helpers/utils";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -131,7 +132,11 @@ const SetlistItem = ({ item, i }) => {
   });
 
   return (
-    <Accordion.Item className="relative" value={song.title} disabled={!hasLeadSheet}>
+    <Accordion.Item
+      className="relative"
+      value={song.title}
+      disabled={!hasLeadSheet}
+    >
       {bleed && (
         <div className="w-2 border-l-2 border-primary-50 border-dashed absolute top-32 -bottom-32 left-32 rounded-full flex items-center justify-center -translate-x-1/2" />
       )}
@@ -141,21 +146,21 @@ const SetlistItem = ({ item, i }) => {
             {i + 1}
           </span>
           <div className="flex-1 text-4xl">{song.title}</div>
-          {hasLeadSheet &&
+          {hasLeadSheet && (
             <Badge className="text-sm text-primary-50">
               Lead Sheet
               <Icon name="ChevronDown" />
             </Badge>
-          }
+          )}
         </div>
         {strategy && (
-          <div className="ml-40 text-xl text-primary-50">"{strategy.strategy}"</div>
+          <div className="ml-40 text-xl text-primary-50">
+            "{strategy.strategy}"
+          </div>
         )}
       </Accordion.Trigger>
       <Accordion.Content className="ml-64">
-        {hasLeadSheet && (
-          <LeadSheet leadSheet={song.leadSheet} notation={song.notation} />
-        )}
+        {hasLeadSheet && <LeadSheet song={song} />}
       </Accordion.Content>
     </Accordion.Item>
   );
@@ -212,7 +217,9 @@ export async function getStaticProps(context) {
           uri
           ... on songs_default_Entry {
             leadSheet
-            notation { url }
+            notation {
+              url
+            }
             songType
           }
         }

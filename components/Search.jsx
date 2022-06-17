@@ -109,16 +109,16 @@ const Search = () => {
           <header className="flex gap-8 mb-16">
             <Input
               className="flex-1"
+              glass
               hideLabel
               icon="Search"
               isLoading={isSearching}
               label="Search"
-              placeholder="What are you looking for, exactly?"
-              rounded
-              glass
               onChange={e => {
                 setSearchTerm(e.target.value);
               }}
+              placeholder="What are you looking for, exactly?"
+              rounded
             />
             <Dialog.Close
               className={getButtonClasses({ circle: true, variant: "ghost" })}

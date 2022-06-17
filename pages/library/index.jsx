@@ -6,7 +6,7 @@ import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
 import PageHeader from "../../components/PageHeader";
 import CategoryList from "./components/CategoryList";
-import { shuffle } from "../../helpers";
+import { shuffle } from "../../helpers/utils";
 
 // Default
 // ----------------------------------------------------------------------------

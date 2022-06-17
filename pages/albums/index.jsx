@@ -6,7 +6,8 @@ import AlbumList from "./components/AlbumList";
 import ClientOnly from "../../components/ClientOnly";
 import Filters, { getDefaultFilters } from "../../components/Filters";
 import MusicTabs from "../../components/MusicTabs";
-import { camelCaseToWords, getArtistInfo } from "../../helpers/";
+import { getArtistInfo } from "../../helpers/";
+import { camelCaseToWords } from "../../helpers/utils";
 
 // Functions
 // ----------------------------------------------------------------------------

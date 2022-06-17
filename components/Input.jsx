@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import cn from "classnames";
 import Icon from "./Icon";
 import Loader from "./Loader";
-import { slugify } from "../helpers";
+import { slugify } from "../helpers/utils";
 
 export const Input = ({
   className,
@@ -35,7 +35,7 @@ export const Input = ({
   });
 
   const inputClasses = cn({
-    "block w-full h-48 bg-ground outline-none text-primary placeholder-primary-50": true,
+    "block w-full h-40 bg-ground outline-none text-primary placeholder-primary-50": true,
     "focus:border-accent focus:ring focus:ring-accent-25": true,
     "border-2 border-primary-10": !glass,
     "bg-primary-5 focus:bg-primary-5": glass,

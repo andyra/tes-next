@@ -15,12 +15,18 @@ export const PageHeader = ({
   actions,
   back,
   center,
+  className,
   children,
   subtitle,
   title
 }) => {
+  const classes = cn(
+    "flex items-center gap-8 justify-between mb-24 md:mb-64",
+    className
+  );
+
   return (
-    <header className="flex items-center gap-8 justify-between mb-24 md:mb-64">
+    <header className={classes}>
       <div className={`flex-1${center ? " text-center" : ""}`}>
         {back && (
           <Button

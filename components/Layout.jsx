@@ -15,7 +15,7 @@ import { usePlayerContext } from "../context/PlayerContext";
 // ----------------------------------------------------------------------------
 
 const Main = ({ children }) => (
-  <main className="h-full overflow-y-auto bg-ground rounded-lg">
+  <main className="h-full overflow-y-auto print:overflow-visible bg-ground rounded-lg">
     {children}
   </main>
 );
@@ -40,7 +40,7 @@ export default function Layout({ children, ...props }) {
     !currentTrack && prevList.length + nextList.length + queueList.length === 0;
 
   const nextClasses = cn({
-    "h-full overflow-hidden text-primary p-4 bg-ground-dark": true,
+    "h-full overflow-hidden print:overflow-visible text-primary p-4 bg-ground-dark": true,
     "grid grid-cols-1 md:grid-cols-[224px,1fr] gap-4": true,
     "grid-rows-[1fr,64px,48px] md:grid-rows-[1fr,80px]": !playerIsEmpty,
     "grid-rows-[1fr,48px] md:grid-rows-[1fr]": playerIsEmpty

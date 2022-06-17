@@ -13,9 +13,9 @@ import {
   getCollectionType,
   normalizeCollections,
   normalizeFullEpisode,
-  normalizeTracklist,
-  shuffle
+  normalizeTracklist
 } from "../helpers";
+import { shuffle } from "../helpers/utils";
 const fs = require("fs");
 
 // Queries

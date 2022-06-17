@@ -66,35 +66,6 @@ function normalizeSongTracks(slug, collections) {
   return newTracks;
 }
 
-// Components
-// ----------------------------------------------------------------------------
-
-const ContentSection = ({
-  children,
-  emptyMessage = "None to speak of",
-  enabled,
-  htmlContent,
-  title
-}) => {
-  const headingClasses = cn({
-    "font-medium text-3xl mb-16": true,
-    "text-primary-50": !enabled
-  });
-
-  return (
-    <section>
-      <h2 className={headingClasses}>
-        {title}
-      </h2>
-      {enabled ? (
-        children
-      ) : (
-        <p className="text-lg text-primary-25">{emptyMessage}</p>
-      )}
-    </section>
-  )
-}
-
 // Default
 // ----------------------------------------------------------------------------
 
@@ -102,11 +73,18 @@ export default function Song({ collections, song }) {
   const { leadSheet, notation, slug, songType, title } = song;
   const relatedCollections = getRelatedCollections(slug, collections);
   const normalizedTracks = normalizeSongTracks(slug, relatedCollections);
+  const hasTracks = normalizedTracks.length > 0;
+
+  const headingClasses = cn({
+    "font-medium text-3xl mb-16": true,
+    "text-primary-50": !hasTracks
+  });
 
   return (
     <>
       <PageHeader
         back={{ href: "/songs", title: "Songs" }}
+        className="print:hidden"
         subtitle="A song called"
         title={title}
       >
@@ -117,13 +95,18 @@ export default function Song({ collections, song }) {
         )}
       </PageHeader>
 
-      <ContentSection title="Appears On…" enabled={normalizedTracks.length > 0} emptyMessage="Not (yet) on any collections">
-        <Tracklist tracks={normalizedTracks} showCollectionInfo />
-      </ContentSection>
+      <section className="print:hidden">
+        <h2 className={headingClasses}>Appears On…</h2>
+        {hasTracks ? (
+          <Tracklist tracks={normalizedTracks} showCollectionInfo />
+        ) : (
+          <p className="text-lg text-primary-25">
+            Not (yet) on any collections
+          </p>
+        )}
+      </section>
 
-      {songType === "original" && (
-        <LeadSheet leadSheet={leadSheet} notation={notation} title="Lead Sheet" />
-      )}
+      {songType === "original" && <LeadSheet song={song} title="Lead Sheet" />}
     </>
   );
 }
