@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ChordSheetJS from "chordsheetjs";
 
-const LeadSheet = ({ className, song, title }) => {
+const LeadSheet = ({ className, song }) => {
   const { leadSheet, notation } = song;
   const parser = new ChordSheetJS.ChordProParser();
   const formatter = new ChordSheetJS.HtmlDivFormatter();
@@ -9,8 +9,7 @@ const LeadSheet = ({ className, song, title }) => {
   const formattedLeadSheet = formatter.format(parsedLeadSheet);
 
   return (
-    <section className="space-y-16 lg:border-2 lg:border-primary-10 lg:rounded-xl lg:p-48 lg:shadow-lg xl:p-64 break-inside-auto">
-      {title && <h2 className="font-medium text-3xl print:hidden">{title}</h2>}
+    <section className="space-y-16 lg:border-2 lg:border-primary-10 lg:rounded-xl lg:p-48 lg:shadow-lg xl:p-64 break-inside-auto lead-sheet">
       <h2 className="hidden font-bold text-xl print:block print:text-2xl print:mb-0">
         {song.title}
       </h2>
@@ -30,7 +29,7 @@ const LeadSheet = ({ className, song, title }) => {
                 target="_blank"
               >
                 <Image
-                  alt={`Lead sheet for ${title}, page ${i + 1}`}
+                  alt={`Lead sheet for ${song.title}, page ${i + 1}`}
                   height={240}
                   layout="intrinsic"
                   src={leadSheet.url}

@@ -134,8 +134,8 @@
   @apply flex-1 font-medium text-2xl text-secondary pt-16 border-t border-primary-10 print:font-bold print:text-2xl print:text-black print:border-none;
 }
 
-.chord-sheet h2 {
-  @apply m-0;
+.lead-sheet h2 {
+  @apply text-xl text-primary-50 mb-8 print:mb-0 print:text-black;
 }
 
 .chord-sheet .paragraph {

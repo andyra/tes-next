@@ -66,6 +66,33 @@ function normalizeSongTracks(slug, collections) {
   return newTracks;
 }
 
+// Components
+// ----------------------------------------------------------------------------
+
+const ContentSection = ({
+  children,
+  className,
+  emptyMessage,
+  enabled,
+  title
+}) => {
+  const headingClasses = cn({
+    "font-medium text-3xl mb-16": true,
+    "text-primary-50": !enabled
+  });
+
+  return (
+    <section className={className}>
+      <h2 className={headingClasses}>{title}</h2>
+      {enabled ? (
+        children
+      ) : (
+        <p className="text-lg text-primary-25">{emptyMessage}</p>
+      )}
+    </section>
+  );
+};
+
 // Default
 // ----------------------------------------------------------------------------
 
@@ -74,11 +101,6 @@ export default function Song({ collections, song }) {
   const relatedCollections = getRelatedCollections(slug, collections);
   const normalizedTracks = normalizeSongTracks(slug, relatedCollections);
   const hasTracks = normalizedTracks.length > 0;
-
-  const headingClasses = cn({
-    "font-medium text-3xl mb-16": true,
-    "text-primary-50": !hasTracks
-  });
 
   return (
     <>
@@ -95,20 +117,22 @@ export default function Song({ collections, song }) {
         )}
       </PageHeader>
 
-      <section className="print:hidden">
-        <h2 className={headingClasses}>Appears On…</h2>
-        {hasTracks ? (
-          <Tracklist tracks={normalizedTracks} showCollectionInfo />
-        ) : (
-          <p className="text-lg text-primary-25">
-            Not (yet) on any collections
-          </p>
-        )}
-      </section>
+      <ContentSection
+        className="print:hidden"
+        enabled={hasTracks}
+        emptyMessage="Not (yet) on any collections"
+        title="Appears On…"
+      >
+        <Tracklist tracks={normalizedTracks} showCollectionInfo />
+      </ContentSection>
 
-      {songType === "original" && leadSheet && (
-        <LeadSheet song={song} title="Lead Sheet" />
-      )}
+      <ContentSection
+        enabled={songType === "original" && leadSheet}
+        emptyMessage="Notation reamins to be written"
+        title="Lead Sheet"
+      >
+        <LeadSheet song={song} />
+      </ContentSection>
     </>
   );
 }
