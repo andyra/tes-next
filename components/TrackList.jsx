@@ -114,35 +114,6 @@ const TrackDuration = ({ src }) => {
   );
 };
 
-const TrackTitle = ({ trackIsSelected, showCollectionInfo, track }) => {
-  const classes = cn({
-    "text-xl md:text-2xl flex items-center gap-8 md:gap-16": true,
-    "text-accent": trackIsSelected
-  });
-
-  return (
-    <div className={classes}>
-      {showCollectionInfo ? (
-        <>
-          <CoverArt
-            className="w-40 h-40 md:w-48 md:h-48 flex-shrink-0 rounded"
-            height={48}
-            title={track.collection.title}
-            url={track.collection.coverArt}
-            width={48}
-          />
-          <div>
-            <div className="font-medium">{track.title}</div>
-            <div className="text-sm">{track.collection.title}</div>
-          </div>
-        </>
-      ) : (
-        track.title
-      )}
-    </div>
-  );
-};
-
 export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   const {
     currentTrack,
@@ -190,6 +161,11 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
       "md:opacity-0 md:group-hover:opacity-100": !active
     });
 
+    const titleClasses = cn({
+      "text-xl md:text-2xl flex items-center gap-8 md:gap-16 flex-1": true,
+      "text-accent": trackIsSelected
+    });
+
     return (
       <li className={liClasses} tabIndex={0} key={i}>
         <div className="flex-1 flex items-center gap-8 relative">
@@ -200,13 +176,28 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
               className={playButtonClasses}
               tracklist={tracks}
               variant="ghost"
+              i={i}
             />
           )}
-          <TrackTitle
-            trackIsSelected={trackIsSelected}
-            showCollectionInfo={showCollectionInfo}
-            track={track}
-          />
+          <div className={titleClasses}>
+            {showCollectionInfo ? (
+              <>
+                <CoverArt
+                  className="w-40 h-40 md:w-48 md:h-48 flex-shrink-0 rounded"
+                  height={48}
+                  title={track.collection.title}
+                  url={track.collection.coverArt}
+                  width={48}
+                />
+                <div>
+                  <div className="font-medium">{track.title}</div>
+                  <div className="text-sm">{track.collection.title}</div>
+                </div>
+              </>
+            ) : (
+              track.title
+            )}
+          </div>
         </div>
         <div id="actions" className="flex items-center gap-2">
           {track.audioFile ? (

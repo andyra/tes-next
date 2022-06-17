@@ -21,6 +21,7 @@ const PlayPauseButton = ({
     setPrevList,
     setQueueList
   } = usePlayerContext();
+  const active = trackIsSelected(track) && isPlaying;
 
   function trackIsSelected(track) {
     return (
@@ -64,8 +65,6 @@ const PlayPauseButton = ({
       setNextList(tracksAfter);
     }
   }
-
-  const active = trackIsSelected(track) && isPlaying;
 
   return (
     <Button

@@ -127,18 +127,23 @@ export const Player = () => {
   }
 
   function skipNext() {
+    // Add the current track to prevList
     if (currentTrack && !currentTrack.addedViaQueue) {
       addToPrevList(currentTrack);
     }
+    // If there's a Queue, move the first track in it to currentTrack
     if (queueList.length) {
       const newCurrentTrack = queueList.shift();
       setCurrentTrack(newCurrentTrack);
       setQueueList(queueList);
     } else if (nextList.length) {
+      // If there's a track in NextList, move it to currentTrack
+      // !! Wisdom: nextList includes the current track
       const newCurrentTrack = nextList.shift();
       setCurrentTrack(newCurrentTrack);
       setNextList(nextList);
     } else {
+      // If there's nothing to skip to, clear everything
       setCurrentTrack(null);
       setPrevList([]);
     }
