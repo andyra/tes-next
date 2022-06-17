@@ -11,7 +11,8 @@ import Icon from "../components/Icon";
 import { Menu, MenuItem } from "../components/Menu";
 import Tooltip from "../components/Tooltip";
 import PlayPauseButton from "../components/PlayPauseButton";
-import { getCollectionType, formatTime } from "../helpers";
+import { getCollectionType } from "../helpers";
+import { formatTime } from "../helpers/utils";
 
 // Overflow Menu
 // ----------------------------------------------------------------------------
@@ -100,14 +101,16 @@ const TrackDuration = ({ src }) => {
   const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
 
   useEffect(() => {
-   audioRef.current = new Audio(src);
-   audioRef.current.onloadeddata = () => {
-     setDuration(audioRef.current.duration);
-   };
+    audioRef.current = new Audio(src);
+    audioRef.current.onloadeddata = () => {
+      setDuration(audioRef.current.duration);
+    };
   }, []);
 
   return (
-    <time className="font-mono text-sm text-primary-50 mr-8 hidden md:block">{formatTime(duration)}</time>
+    <time className="font-mono text-sm text-primary-50 mr-8 hidden md:block">
+      {formatTime(duration)}
+    </time>
   );
 };
 
@@ -163,7 +166,11 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
   }
 
   const TrackItem = ({ track, i }) => {
-    const trackIsSelected = currentTrack && currentTrack.id === track.id && !track.addedViaQueue && !currentTrack.addedViaQueue;
+    const trackIsSelected =
+      currentTrack &&
+      currentTrack.id === track.id &&
+      !track.addedViaQueue &&
+      !currentTrack.addedViaQueue;
     const active = trackIsSelected && isPlaying;
 
     const liClasses = cn({

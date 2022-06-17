@@ -11,7 +11,7 @@ import Icon from "./Icon";
 import Input from "./Input";
 import Loader from "./Loader";
 import Tooltip from "./Tooltip";
-import { useDebounce, useKeypress } from "../helpers/hooks";
+import useDebounce from "../hooks/useDebounce";
 
 // TODO: Highlight term
 // TODO: Hotkey arrow down focus on results

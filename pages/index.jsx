@@ -8,7 +8,7 @@ import Button from "../components/Button";
 import PlayPauseButton from "../components/PlayPauseButton";
 import Icon from "../components/Icon";
 import { CollectionItem } from "../components/Collections";
-import { generateFeed } from "../helpers/feed.helpers";
+import { generateFeed } from "../helpers/feed";
 import {
   getCollectionType,
   normalizeCollections,

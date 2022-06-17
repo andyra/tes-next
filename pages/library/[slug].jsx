@@ -9,6 +9,7 @@ import { querySlugs } from "../../helpers";
 
 export default function Article({ articleItem }) {
   const { article, category, featuredImage, title } = articleItem;
+
   return (
     <>
       <PageHeader title={title} />

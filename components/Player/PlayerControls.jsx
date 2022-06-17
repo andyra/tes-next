@@ -2,7 +2,7 @@ import * as Slider from "@radix-ui/react-slider";
 import cn from "classnames";
 import Button from "../Button";
 import Icon from "../Icon";
-import { formatTime } from "../../helpers";
+import { formatTime } from "../../helpers/utils";
 
 export const PlayerControls = ({
   duration,
