@@ -72,6 +72,7 @@ export const PlayerControls = ({
         <Button
           circle
           className={randomClasses}
+          disabled
           onClick={toggleRandom}
           variant="ghost"
         >

@@ -41,7 +41,7 @@ export const Player = () => {
 
   // State
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isLooped, setIsLooped] = useState(false);
+  const [isLooped, setIsLooped] = useState(true);
   const [isRandom, setIsRandom] = useState(false);
   const [elapsed, setElapsed] = useState(0);
 
@@ -89,9 +89,6 @@ export const Player = () => {
   // Handle setup when changing tracks
   useEffect(() => {
     audioRef.current.pause();
-
-    // I think we need to check here is we're looping or not
-    console.log("currentTrack changed");
 
     if (currentTrack) {
       audioRef.current = new Audio(currentTrack.audioFile);
@@ -182,7 +179,14 @@ export const Player = () => {
 
     intervalRef.current = setInterval(() => {
       if (audioRef.current.ended) {
-        skipNext();
+        if (isLooped) {
+          setElapsed(0);
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+          audioRef.current.play();
+        } else {
+          skipNext();
+        }
       } else {
         setElapsed(audioRef.current.currentTime);
       }

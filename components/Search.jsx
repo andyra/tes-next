@@ -90,7 +90,7 @@ const Search = () => {
 
   return (
     <Dialog.Root>
-      <Tooltip side="bottom" content="Search">
+      <Tooltip content="Search" asChild>
         <Dialog.Trigger
           className={getButtonClasses({ circle: true, variant: "glass" })}
           onClick={() => {

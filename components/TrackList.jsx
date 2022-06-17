@@ -101,9 +101,11 @@ const TrackDuration = ({ src }) => {
   const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
 
   useEffect(() => {
-    audioRef.current = new Audio(src);
-    audioRef.current.onloadeddata = () => {
-      setDuration(audioRef.current.duration);
+    return () => {
+      audioRef.current = new Audio(src);
+      audioRef.current.onloadeddata = () => {
+        setDuration(audioRef.current.duration);
+      };
     };
   }, []);
 

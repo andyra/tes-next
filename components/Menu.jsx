@@ -70,7 +70,7 @@ export const Menu = ({
     <Popover.Root>
       <Popover.Anchor>
         {tooltipContent ? (
-          <Tooltip content={tooltipContent} side={tooltipSide}>
+          <Tooltip content={tooltipContent} side={tooltipSide} asChild>
             <Popover.Trigger className={triggerClassName}>
               {trigger}
             </Popover.Trigger>
