@@ -12,7 +12,6 @@ export const PlayerControls = ({
   isPlaying,
   isRandom,
   handleScrub,
-  handleScrubEnd,
   skipBack,
   skipNext,
   toggleLoop,

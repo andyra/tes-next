@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useMediaQuery } from "react-responsive";
 import cn from "classnames";
-// import YoutubeBackground from "react-youtube-background";
 import { usePlayerContext } from "../../context/PlayerContext";
 import CurrentTrack from "./CurrentTrack";
 import ExtraControls from "./ExtraControls";
@@ -90,6 +89,10 @@ export const Player = () => {
   // Handle setup when changing tracks
   useEffect(() => {
     audioRef.current.pause();
+
+    // I think we need to check here is we're looping or not
+    console.log("currentTrack changed");
+
     if (currentTrack) {
       audioRef.current = new Audio(currentTrack.audioFile);
       setElapsed(audioRef.current.currentTime);
@@ -191,12 +194,6 @@ export const Player = () => {
     clearInterval(intervalRef.current);
     audioRef.current.currentTime = value[0];
     setElapsed(audioRef.current.currentTime);
-  }
-
-  function handleScrubEnd() {
-    if (!isPlaying) {
-      setIsPlaying(true);
-    }
     startTimer();
   }
 
@@ -221,7 +218,6 @@ export const Player = () => {
           isPlaying={isPlaying}
           isRandom={isRandom}
           handleScrub={handleScrub}
-          handleScrubEnd={handleScrubEnd}
           skipBack={skipBack}
           skipNext={skipNext}
           toggleLoop={toggleLoop}
