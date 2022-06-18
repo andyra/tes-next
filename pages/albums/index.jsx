@@ -3,7 +3,9 @@ import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import cn from "classnames";
 import AlbumList from "./components/AlbumList";
+import Button from "../../components/Button";
 import ClientOnly from "../../components/ClientOnly";
+import GridListToggle from "../../components/GridListToggle";
 import Filters, { getDefaultFilters } from "../../components/Filters";
 import MusicTabs from "../../components/MusicTabs";
 import { getArtistInfo } from "../../helpers/";
@@ -57,20 +59,24 @@ function normalizeAlbumFilters(filterGroups) {
 export default function Albums({ filterGroups }) {
   const albumFilters = normalizeAlbumFilters(filterGroups);
   const [filters, setFilters] = useState(getDefaultFilters(albumFilters));
+  const [gridView, setGridView] = useState(true);
 
   return (
     <>
       <header className="relative mb-64">
         <MusicTabs pageName="Albums" />
+      </header>
+      <div className="flex items-center gap-8 justify-between mb-24">
         <Filters
-          className="absolute top-1/2 right-0 -translate-y-1/2"
+          className="mr-auto"
           filterGroups={albumFilters}
           filters={filters}
           setFilters={setFilters}
         />
-      </header>
+        <GridListToggle gridView={gridView} setGridView={setGridView} />
+      </div>
       <ClientOnly>
-        <AlbumList filters={filters} />
+        <AlbumList filters={filters} gridView={gridView} />
       </ClientOnly>
     </>
   );

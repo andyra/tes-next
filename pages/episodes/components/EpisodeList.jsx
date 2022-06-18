@@ -31,13 +31,16 @@ const QUERY_EPISODES = gql`
 // Components
 // ----------------------------------------------------------------------------
 
-const EpisodeItem = ({ episode }) => {
+const EpisodeItem = ({ episode, gridView }) => {
   const { episodeCoverArt, releaseDate, slug, title } = episode;
 
-  return <CollectionItem collection={episode} />;
+  return <CollectionItem collection={episode} gridView={gridView} />;
 };
 
-export const EpisodeList = () => {
+// Default
+// ----------------------------------------------------------------------------
+
+const EpisodeList = ({ gridView }) => {
   const { data, loading, error } = useQuery(QUERY_EPISODES);
 
   if (loading) {
@@ -50,9 +53,9 @@ export const EpisodeList = () => {
   }
 
   return data.entries ? (
-    <CollectionList>
+    <CollectionList gridView={gridView}>
       {data.entries.map(episode => (
-        <EpisodeItem episode={episode} key={episode.slug} />
+        <EpisodeItem episode={episode} key={episode.slug} gridView={gridView} />
       ))}
     </CollectionList>
   ) : (

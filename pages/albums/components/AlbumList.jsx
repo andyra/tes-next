@@ -37,7 +37,7 @@ const QUERY_ALBUMS = gql`
 // Components
 // ----------------------------------------------------------------------------
 
-export const AlbumItem = ({ album, filters }) => {
+export const AlbumItem = ({ album, filters, gridView }) => {
   const { albumType, artist, slug, title, albumCoverArt, releaseDate } = album;
   const artistSlug = getArtistInfo(album, "slug");
 
@@ -47,10 +47,13 @@ export const AlbumItem = ({ album, filters }) => {
     filters.albumType === "all" || filters.albumType === albumType;
   const visible = artistMatches && albumTypeMatches;
 
-  return visible && <CollectionItem collection={album} />;
+  return visible && <CollectionItem collection={album} gridView={gridView} />;
 };
 
-export const AlbumList = ({ filters }) => {
+// Default
+// ----------------------------------------------------------------------------
+
+const AlbumList = ({ filters, gridView }) => {
   const { data, loading, error } = useQuery(QUERY_ALBUMS);
 
   if (loading) {
@@ -63,9 +66,14 @@ export const AlbumList = ({ filters }) => {
   }
 
   return data.entries ? (
-    <CollectionList>
+    <CollectionList gridView={gridView}>
       {data.entries.map(album => (
-        <AlbumItem album={album} key={album.slug} filters={filters} />
+        <AlbumItem
+          album={album}
+          key={album.slug}
+          filters={filters}
+          gridView={gridView}
+        />
       ))}
     </CollectionList>
   ) : (

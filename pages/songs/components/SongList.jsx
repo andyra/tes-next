@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
+import cn from "classnames";
 import Empty from "../../../components/Empty";
 
 // Queries
@@ -38,8 +39,11 @@ const SongItem = ({ filters, i, song }) => {
   );
 };
 
-export const SongList = ({ filters }) => {
+export const SongList = ({ filters, gridView }) => {
   const { data, loading, error } = useQuery(QUERY_SONGS);
+  const classes = cn({
+    "sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5": gridView
+  });
 
   if (loading) {
     return <mark>Loading...</mark>;
@@ -51,7 +55,7 @@ export const SongList = ({ filters }) => {
   }
 
   return data.entries ? (
-    <ul className="sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5">
+    <ul className={classes}>
       {data.entries.map((song, i) => (
         <SongItem song={song} filters={filters} i={i} key={song.slug} />
       ))}

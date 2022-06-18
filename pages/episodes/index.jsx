@@ -1,6 +1,8 @@
+import { useState } from "react";
 import Image from "next/image";
 import ClientOnly from "../../components/ClientOnly";
 import Button from "../../components/Button";
+import GridListToggle from "../../components/GridListToggle";
 import Icon from "../../components/Icon";
 import PageHeader from "../../components/PageHeader";
 import EpisodeList from "./components/EpisodeList";
@@ -9,6 +11,8 @@ import EpisodeList from "./components/EpisodeList";
 // ----------------------------------------------------------------------------
 
 export default function Episodes() {
+  const [gridView, setGridView] = useState(true);
+
   return (
     <>
       <PageHeader title="This Evening's Show Podcast" center />
@@ -46,8 +50,11 @@ export default function Episodes() {
       </section>
       <hr className="border border-primary-10" />
       <section>
+        <div className="flex items-center gap-8 justify-end mb-24">
+          <GridListToggle gridView={gridView} setGridView={setGridView} />
+        </div>
         <ClientOnly>
-          <EpisodeList />
+          <EpisodeList gridView={gridView} />
         </ClientOnly>
       </section>
     </>

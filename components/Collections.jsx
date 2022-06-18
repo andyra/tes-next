@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
@@ -49,11 +50,14 @@ CollectionHeader.propTypes = {
 // Collection List
 // ----------------------------------------------------------------------------
 
-export const CollectionList = ({ children }) => (
-  <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 -mx-8 relative">
-    {children}
-  </ul>
-);
+export const CollectionList = ({ children, gridView }) => {
+  const classes = cn({
+    "grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 -mx-8 relative": gridView,
+    "divide-y": !gridView
+  });
+
+  return <ul className={classes}>{children}</ul>;
+};
 
 export const CollectionListSkeleton = () => (
   <CollectionList>
@@ -70,24 +74,37 @@ export const CollectionListSkeleton = () => (
 // Collection Item
 // ----------------------------------------------------------------------------
 
-export const CollectionItem = ({ children, collection }) => {
+export const CollectionItem = ({ children, collection, gridView }) => {
   const { releaseDate, title, uri } = collection;
+  const linkClasses = cn({
+    "hover:ring-2 hover:ring-accent rounded p-8 h-full transition group": true,
+    block: gridView,
+    "flex items-center gap-8": !gridView
+  });
+
+  const coverArtClasses = cn({
+    "w-full rounded-lg": gridView,
+    "h-96 w-96 rounded-lg": !gridView
+  });
 
   return (
-    <li className="h-full">
+    <li className={gridView ? "h-full" : ""}>
       <Link href={uri}>
-        <a className="block hover:ring-2 hover:ring-accent rounded p-8 h-full transition group">
+        <a className={linkClasses}>
           <CoverArt
-            height={256}
+            className={coverArtClasses}
+            height={gridView ? 256 : 96}
             title={title}
             url={getCollectionCoverArtUrl(collection)}
-            width={256}
+            width={gridView ? 256 : 96}
           />
-          <div className="text-lg font-medium leading-snug mt-8">{title}</div>
-          {releaseDate && (
-            <NiceDate date={releaseDate} className="opacity-50" />
-          )}
-          {children}
+          <div>
+            <div className="text-lg font-medium leading-snug mt-8">{title}</div>
+            {releaseDate && (
+              <NiceDate date={releaseDate} className="opacity-50" />
+            )}
+            {children}
+          </div>
         </a>
       </Link>
     </li>

@@ -8,6 +8,7 @@ import ExtraControls from "./ExtraControls";
 import Visualization from "./Visualization";
 import MediaQuery, { BREAKPOINTS } from "../MediaQuery";
 import PlayerControls from "./PlayerControls";
+import { shuffle } from "../../helpers/utils";
 
 // TODO: articles
 // https://codesandbox.io/s/5wwj02qy7k?file=/src/index.js
@@ -41,7 +42,7 @@ export const Player = () => {
 
   // State
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isLooped, setIsLooped] = useState(true);
+  const [isLooped, setIsLooped] = useState(false);
   const [isRandom, setIsRandom] = useState(false);
   const [elapsed, setElapsed] = useState(0);
 
@@ -171,6 +172,17 @@ export const Player = () => {
 
   function toggleRandom() {
     setIsRandom(!isRandom);
+    console.log(nextList);
+
+    if (isRandom) {
+      const orderedNextList = [...nextList].sort((a, b) =>
+        a.position > b.position ? 1 : -1
+      );
+      setNextList(orderedNextList);
+    } else {
+      const shuffledNextList = shuffle([...nextList]);
+      setNextList(shuffledNextList);
+    }
   }
 
   function startTimer() {

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import Button from "../../components/Button";
 import ClientOnly from "../../components/ClientOnly";
 import Filters, { getDefaultFilters } from "../../components/Filters";
+import GridListToggle from "../../components/GridListToggle";
 import MusicTabs from "../../components/MusicTabs";
 import SongList from "./components/SongList";
 
@@ -36,20 +38,24 @@ function normalizeSongFilters(filterGroups) {
 export default function Songs({ filterGroups }) {
   const songFilters = normalizeSongFilters(filterGroups);
   const [filters, setFilters] = useState(getDefaultFilters(songFilters));
+  const [gridView, setGridView] = useState(true);
 
   return (
     <>
       <header className="relative mb-32 md:mb-64">
         <MusicTabs pageName="Songs" />
+      </header>
+      <div className="flex items-center gap-8 justify-end mb-24">
         <Filters
-          className="absolute top-1/2 right-0 -translate-y-1/2"
+          className="mr-auto"
           filterGroups={songFilters}
           filters={filters}
           setFilters={setFilters}
         />
-      </header>
+        <GridListToggle gridView={gridView} setGridView={setGridView} />
+      </div>
       <ClientOnly>
-        <SongList filters={filters} />
+        <SongList filters={filters} gridView={gridView} />
       </ClientOnly>
     </>
   );
