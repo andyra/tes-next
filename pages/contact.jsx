@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 import PageHeader from "../components/PageHeader";
 import { ADDRESS, EMAIL, PHONE } from "../constants";
 
@@ -15,8 +15,7 @@ export default function Contact() {
           className="underline"
           href="http://castlesound.mysite.com/"
           target="_blank"
-          noopener
-          noreferrer
+          rel="noopener noreferrer"
         >
           Castle
         </a>{" "}
@@ -24,8 +23,7 @@ export default function Contact() {
           className="underline"
           href="http://static-21.sinclairstoryline.com/resources/media/1daced1e-52ff-4ec5-beb3-ae929cde076a-large16x9_ImportedfromLakana.jpg?1514554316874"
           target="_blank"
-          noopener
-          noreferrer
+          rel="noopener noreferrer"
         >
           Sound
         </a>{" "}
@@ -33,8 +31,7 @@ export default function Contact() {
           className="underline"
           href="https://www.youtube.com/watch?v=kTNJJ1Bomoc"
           target="_blank"
-          noopener
-          noreferrer
+          rel="noopener noreferrer"
         >
           Productions
         </a>

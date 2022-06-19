@@ -72,8 +72,7 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
           download={title}
           href={audioFile}
           icon="Download"
-          noopener
-          noreferrer
+          rel="noopener noreferrer"
           target="_blank"
         >
           Download
