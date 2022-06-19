@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
 import PageHeader from "../../components/PageHeader";

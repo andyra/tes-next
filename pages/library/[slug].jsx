@@ -8,7 +8,8 @@ import { querySlugs } from "../../helpers";
 // ----------------------------------------------------------------------------
 
 export default function Article({ articleItem }) {
-  const { article, category, featuredImage, title } = articleItem;
+  const { category, featuredImage, postContent, title } = articleItem;
+  console.log(postContent);
 
   return (
     <>
@@ -46,12 +47,19 @@ export async function getStaticProps(context) {
         entry(section: "library", slug: "${params.slug}") {
           title
           ... on library_default_Entry {
-            article
             category {
               slug
               title
             }
             featuredImage { url }
+            postContent {
+              ... on postContent_text_BlockType {
+                text
+              }
+              ... on postContent_image_BlockType {
+                image { url }
+              }
+            }
           }
         }
       }

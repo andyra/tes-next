@@ -154,7 +154,7 @@ export default function Home({ albums, episodes }) {
         <h2 className="text-2xl text-center mb-16">Latest Releases</h2>
         <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 -mx-8 relative">
           {latestAlbums.map(album => (
-            <CollectionItem collection={album} key={album.slug} />
+            <CollectionItem collection={album} key={album.slug} gridView />
           ))}
           <li className="p-8">
             <Link href="/albums">
