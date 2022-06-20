@@ -126,12 +126,15 @@
   src: url("/fonts/apercu-bold-subset.woff2");
 }
 
+/* LeadSheet
+/* ------------------------------------------------------------------------- */
+
 .chord-sheet {
   @apply space-y-16 text-lg md:text-xl print:border-t print:mt-8;
 }
 
 .chord-sheet .comment {
-  @apply flex-1 font-medium text-2xl text-secondary pt-16 border-t border-primary-10 print:font-bold print:text-2xl print:text-black print:border-none;
+  @apply flex-1 font-medium text-2xl text-secondary pt-16 border-t print:font-bold print:text-2xl print:text-black print:border-none;
 }
 
 .lead-sheet h2 {
@@ -152,4 +155,41 @@
 
 .chord-sheet .chord {
   @apply text-secondary print:text-black print:font-medium;
+}
+
+/* Library Article
+/* ------------------------------------------------------------------------- */
+
+.library-article h2 {
+  @apply font-medium text-2xl lg:text-3xl text-secondary mt-48 mb-8;
+}
+
+.library-article h3 {
+  @apply font-medium text-xl lg:text-2xl text-secondary mb-8;
+}
+
+.library-article p {
+  @apply mb-16;
+}
+
+.library-article a {
+  @apply font-medium border-b-2 hover:border-accent hover:text-accent transition;
+}
+
+.library-article li p {
+  @apply mb-0;
+}
+
+.library-article ol {
+  @apply list-decimal mb-16;
+  padding-left: 1.5em;
+}
+
+.library-article ul {
+  @apply list-disc mb-16;
+  padding-left: 1em;
+}
+
+.library-article figure {
+  @apply mb-16;
 }

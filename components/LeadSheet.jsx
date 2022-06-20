@@ -9,7 +9,7 @@ const LeadSheet = ({ className, song }) => {
   const formattedLeadSheet = formatter.format(parsedLeadSheet);
 
   return (
-    <section className="space-y-16 lg:border-2 lg:border-primary-10 lg:rounded-xl lg:p-48 lg:shadow-lg xl:p-64 break-inside-auto lead-sheet">
+    <section className="space-y-16 lg:border-2 lg:rounded-xl lg:p-48 lg:shadow-lg xl:p-64 break-inside-auto lead-sheet">
       <h2 className="hidden font-bold text-xl print:block print:text-2xl print:mb-0">
         {song.title}
       </h2>
@@ -20,7 +20,7 @@ const LeadSheet = ({ className, song }) => {
         />
       )}
       {notation && notation.length > 0 && (
-        <ul className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-16 pt-16 border-t border-primary-10 break-inside-auto">
+        <ul className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-16 pt-16 border-t break-inside-auto">
           {notation.map((leadSheet, i) => (
             <li className="relative">
               <a
@@ -30,10 +30,10 @@ const LeadSheet = ({ className, song }) => {
               >
                 <Image
                   alt={`Lead sheet for ${song.title}, page ${i + 1}`}
-                  height={240}
+                  height={leadSheet.height}
                   layout="intrinsic"
                   src={leadSheet.url}
-                  width={240}
+                  width={leadSheet.width}
                 />
               </a>
             </li>

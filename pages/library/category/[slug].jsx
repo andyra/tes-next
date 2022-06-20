@@ -78,7 +78,7 @@ export async function getStaticProps(context) {
       category: data.category,
       PageTitle: data.category.title,
       maxWidth: "max-w-full",
-      navSection: "library",
+      navSection: "Library",
       spacing: true
     }
   };

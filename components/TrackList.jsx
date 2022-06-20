@@ -28,7 +28,7 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
   );
 
   const contentClasses = cn(
-    "w-256 bg-ground border-2 border-primary-10 rounded-lg",
+    "w-256 bg-ground border-2 rounded-lg",
     "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
   );
 

@@ -85,13 +85,7 @@ export const PlayerControls = ({
         >
           <Icon name="SkipPrev" />
         </Button>
-        <Button
-          active={isPlaying}
-          circle
-          onClick={togglePlay}
-          size="lg"
-          variant="ghost"
-        >
+        <Button active={isPlaying} circle onClick={togglePlay} variant="ghost">
           <Icon name={isPlaying ? "Pause" : "Play"} />
         </Button>
         <Button

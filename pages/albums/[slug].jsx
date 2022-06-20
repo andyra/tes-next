@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
@@ -23,6 +24,10 @@ export default function Album({ album }) {
   const normalizedTracks = normalizeTracklist({
     collection: album
   });
+
+  useEffect(() => {
+    return console.log("Run this on mount");
+  }, []);
 
   return (
     <>

@@ -36,7 +36,7 @@ export const ExtraControls = ({ isFullscreen, setIsFullscreen }) => {
           <Icon name="Queue" />
         </Collapsible.Trigger>
         <Collapsible.Content className={queueOverlayClasses}>
-          <section className="w-full max-w-screen-md p-24 rounded-lg bg-ground border-2 border-primary-10 space-y-24">
+          <section className="w-full max-w-screen-md p-24 rounded-lg bg-ground border-2 space-y-24">
             <Queue />
           </section>
         </Collapsible.Content>

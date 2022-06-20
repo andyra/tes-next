@@ -168,7 +168,11 @@ export async function getStaticProps(context) {
           slug
           ... on songs_default_Entry {
             leadSheet
-            notation { url }
+            notation {
+              height
+              url
+              width
+            }
             songType
           }
         }

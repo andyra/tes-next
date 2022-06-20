@@ -13,6 +13,7 @@ import Loader from "./Loader";
 import Tooltip from "./Tooltip";
 import useDebounce from "../hooks/useDebounce";
 
+// TODO: Close when navigating to new page
 // TODO: Highlight term
 // TODO: Hotkey arrow down focus on results
 
@@ -53,6 +54,7 @@ function sortResults(results) {
 
 const Search = () => {
   // State
+  const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [results, setResults] = useState([]);
@@ -85,16 +87,22 @@ const Search = () => {
 
   const contentClasses = cn(
     "fixed top-0 right-0 left-0 bottom-0 sm:left-auto sm:w-480 z-30",
-    "m-4 p-16 rounded-lg bg-ground border-2 border-primary-10 radix-state-open:animate-enter-from-right"
+    "m-4 p-16 rounded-lg bg-ground border-2 radix-state-open:animate-enter-from-right"
   );
 
   return (
-    <Dialog.Root>
+    <Dialog.Root
+      open={isOpen}
+      onOpenChange={() => {
+        console.log("changed");
+      }}
+    >
       <Tooltip content="Search" asChild>
         <Dialog.Trigger
           className={getButtonClasses({ circle: true, variant: "glass" })}
           onClick={() => {
             clearResults();
+            setIsOpen(true);
           }}
         >
           <Icon name="Search" />
@@ -128,10 +136,15 @@ const Search = () => {
           </header>
           {results.length ? (
             <ul className="-mx-8">
-              {results.map(result => (
-                <li key={result.title}>
+              {results.map((result, i) => (
+                <li key={`${i}-${result.title}`}>
                   <Link href={`/${result.uri}/`}>
-                    <a className="flex items-center justify-between gap-8 h-40 px-8 rounded-lg hover:bg-primary-10 text-xl transition">
+                    <a
+                      className="flex items-center justify-between gap-8 h-40 px-8 rounded-lg hover:bg-primary-10 text-xl transition"
+                      onClick={() => {
+                        setIsOpen(false);
+                      }}
+                    >
                       {result.title}
                       <span className="flex items-center rounded-full border border-primary-25 px-8 h-24 text-sm">
                         {result.sectionHandle}

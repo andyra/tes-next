@@ -3,6 +3,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      borderColor: {
+        DEFAULT: "var(--primary-10)"
+      },
       colors: {
         "ground-dark": "var(--ground-dark)",
         ground: "var(--ground)",
@@ -61,7 +64,7 @@ module.exports = {
           "Arial",
           "sans-serif"
         ]
-      },
+      }
     },
     keyframes: {
       "bg-pulse": {

@@ -1,27 +1,82 @@
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import ClientOnly from "../../components/ClientOnly";
 import Empty from "../../components/Empty";
 import PageHeader from "../../components/PageHeader";
 
-// Queries
+// Functions
 // ----------------------------------------------------------------------------
 
-const VIDEOS_QUERY = gql`
-  query Entries {
-    entries(section: "videos") {
-      id
-      slug
-      title
-    }
-  }
-`;
+function getVideoData(url) {
+  fetch(`https://vimeo.com/api/oembed.json?url=${url}`)
+    .then(response => response.json())
+    .then(data => {
+      return data;
+    });
+}
 
 // Components
 // ----------------------------------------------------------------------------
 
-const SongList = () => {
-  const { data, loading, error } = useQuery(VIDEOS_QUERY);
+const VideoItem = ({ video }) => {
+  const { slug, title, vimeoId } = video;
+  const [thumbnail, setThumbnail] = useState(null);
+
+  // Get the thumbnail from Vimeo
+  useEffect(() => {
+    return fetch(
+      `https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoId}`
+    )
+      .then(response => response.json())
+      .then(data => {
+        setThumbnail({
+          src: data.thumbnail_url,
+          height: data.thumbnail_height,
+          width: data.thumbnail_width
+        });
+      });
+  }, []);
+
+  return (
+    <li className="flex items-center gap-8">
+      <Link href={`/videos/${encodeURIComponent(slug)}`}>
+        <a className="block w-full h-full text-lg p-8 rounded-lg hover:ring-2 hover:ring-accent transition">
+          {thumbnail && (
+            <>
+              <figure className="rounded-lg overflow-hidden mb-8">
+                <Image
+                  height={thumbnail.height}
+                  layout="responsive"
+                  src={thumbnail.src}
+                  width={thumbnail.width}
+                />
+              </figure>
+            </>
+          )}
+          {title}
+        </a>
+      </Link>
+    </li>
+  );
+};
+
+const VideoList = () => {
+  const { data, loading, error } = useQuery(
+    gql`
+      query Entries {
+        entries(section: "videos") {
+          id
+          slug
+          title
+          ... on videos_default_Entry {
+            vimeoId
+          }
+        }
+      }
+    `
+  );
 
   if (loading) {
     return <mark>Loading...</mark>;
@@ -33,13 +88,11 @@ const SongList = () => {
   }
 
   return data.entries ? (
-    <ul>
+    <ul className="grid grid-cols-2 lg:grid-cols-3 gap-8 -mx-8">
       {data.entries.map(video => (
-        <li className="flex items-center gap-8" key={video.slug}>
-          <Link href={`/videos/${encodeURIComponent(video.slug)}`}>
-            <a>{video.title}</a>
-          </Link>
-        </li>
+        <>
+          <VideoItem video={video} key={video.slug} />
+        </>
       ))}
     </ul>
   ) : (
@@ -55,7 +108,7 @@ export default function Videos() {
     <>
       <PageHeader title="Videos" />
       <ClientOnly>
-        <SongList />
+        <VideoList />
       </ClientOnly>
     </>
   );

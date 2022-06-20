@@ -61,7 +61,7 @@ export const Menu = ({
   width
 }) => {
   const contentClasses = cn(
-    "bg-ground border border-primary-10 rounded-lg p-8 shadow-lg",
+    "bg-ground border rounded-lg p-8 shadow-lg",
     "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down",
     width
   );

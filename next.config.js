@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["tesfm.fra1.digitaloceanspaces.com"]
+    domains: ["tesfm.fra1.digitaloceanspaces.com", "i.vimeocdn.com"]
   },
   webpack(config) {
     config.module.rules.push({

@@ -48,7 +48,7 @@ export default function Episodes() {
           </footer>
         </div>
       </section>
-      <hr className="border border-primary-10" />
+      <hr className="border" />
       <section>
         <div className="flex items-center gap-8 justify-end mb-24">
           <GridListToggle gridView={gridView} setGridView={setGridView} />

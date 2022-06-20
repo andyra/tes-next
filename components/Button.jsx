@@ -30,7 +30,7 @@ export const BUTTON_SIZES = {
 export const BUTTON_VARIANTS = {
   ghost: "hover:bg-primary-5 focus:bg-primary-5",
   glass: "bg-primary-5 hover:bg-primary-10 focus:bg-primary-10",
-  outline: "border-2 border-primary-10 hover:border-current"
+  outline: "border-2 hover:border-current"
 };
 
 export function getButtonClasses({

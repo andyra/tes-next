@@ -84,7 +84,7 @@ const QUERY_LATEST_COLLECTIONS = gql`
 
 const PlayerSection = ({ children, playPauseButton, title }) => {
   return (
-    <div className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2 border-primary-10">
+    <div className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2">
       {playPauseButton}
       <div>
         {title}
@@ -158,7 +158,7 @@ export default function Home({ albums, episodes }) {
           ))}
           <li className="p-8">
             <Link href="/albums">
-              <a className="flex items-center justify-center gap-8 aspect-square border-2 border-primary-10 hover:border-accent hover:text-accent rounded-lg transition group">
+              <a className="flex items-center justify-center gap-8 aspect-square border-2 hover:border-accent hover:text-accent rounded-lg transition group">
                 View All
                 <Icon
                   name="ArrowRight"

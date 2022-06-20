@@ -5,6 +5,21 @@ import Button, { getButtonClasses } from "./Button";
 import { Menu, MenuDivider, MenuHeading, MenuItem } from "./Menu";
 import Tooltip from "./Tooltip";
 
+const ThemeItem = ({ icon, label, setTheme, theme }) => {
+  const active = label === theme;
+
+  return (
+    <MenuItem
+      icon={icon}
+      className={`capitalize ${active ? "text-accent" : ""}`}
+      onClick={() => setTheme(label)}
+    >
+      {label}
+      <Icon name="Check" className={`ml-auto ${active ? "" : "opacity-0"}`} />
+    </MenuItem>
+  );
+};
+
 export const ExtrasMenu = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -23,15 +38,9 @@ export const ExtrasMenu = () => {
       })}
     >
       <MenuHeading>Theme</MenuHeading>
-      <MenuItem icon="Gear" onClick={() => setTheme("system")}>
-        System
-      </MenuItem>
-      <MenuItem icon="Sun" onClick={() => setTheme("light")}>
-        Light
-      </MenuItem>
-      <MenuItem icon="Moon" onClick={() => setTheme("dark")}>
-        Dark
-      </MenuItem>
+      <ThemeItem icon="Gear" label="system" setTheme={setTheme} theme={theme} />
+      <ThemeItem icon="Sun" label="light" setTheme={setTheme} theme={theme} />
+      <ThemeItem icon="Moon" label="dark" setTheme={setTheme} theme={theme} />
       <MenuDivider />
       <MenuItem icon="Video" href="/videos">
         Videos

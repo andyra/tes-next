@@ -20,8 +20,7 @@ export const NavLink = ({
     "flex-1 flex-col justify-center": navSection !== "playlists",
     "md:flex-row md:justify-start md:gap-8 md:px-12 md:-ml-12 md:hover:underline": true,
     "text-accent": active,
-    "h-48 gap-16 border-t border-primary-10 md:border-none":
-      navSection === "playlists",
+    "h-48 gap-16 border-t md:border-none": navSection === "playlists",
     "md:hidden": hide === "desktop",
     "hidden md:flex": hide === "mobile",
     [className]: className

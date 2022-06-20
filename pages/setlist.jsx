@@ -198,7 +198,7 @@ export default function Setlist({ songs, strategies }) {
         strategies={strategies}
         strategyCount={strategyCount}
       />
-      <hr className="border-t-2 border-primary-10" />
+      <hr className="border-t-2" />
       <SetlistItems items={setlistItems} />
     </>
   );
@@ -218,7 +218,9 @@ export async function getStaticProps(context) {
           ... on songs_default_Entry {
             leadSheet
             notation {
+              height
               url
+              width
             }
             songType
           }

@@ -41,7 +41,7 @@
       <itunes:subtitle></itunes:subtitle>
       <description>null</description>
       <enclosure
-        url="https://dts.podtrac.com/redirect.mp3/https://tesfm.fra1.digitaloceanspaces.com/episodes/test-episode-b/BAfter-June-4-2022.mp3"
+        url="https://dts.podtrac.com/redirect.mp3/"
         type="audio/mpeg"
         length="1024"
       />

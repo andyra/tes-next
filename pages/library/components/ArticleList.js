@@ -53,9 +53,7 @@ export const ArticleList = ({ divider, id }) => {
 
   return data ? (
     <>
-      {divider && data.entries.length > 0 && (
-        <hr className="border-t-2 border-primary-10" />
-      )}
+      {divider && data.entries.length > 0 && <hr className="border-t-2" />}
       <ArticlesWrapper>
         {data.entries.map(article => (
           <li key={article.slug}>

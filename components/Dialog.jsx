@@ -11,7 +11,7 @@ export const DialogOverlay = () => (
 
 export const DialogContent = ({ animationClass, className }) => {
   const classes = cn({
-    "rounded-lg bg-ground border-2 border-primary-10 relative z-30": true,
+    "rounded-lg bg-ground border-2 relative z-30": true,
     "p-24": !className,
     "radix-state-open:animate-slide-up-fade": !animationClass,
     [className]: className
