@@ -1,0 +1,2994 @@
+{
+  "data": [
+    {
+      "slug": "1831-rainy-season",
+      "statamicId": "cd39cd5c-bad9-48c8-9a62-55b508ef1fda",
+      "craftId": "859"
+    },
+    {
+      "slug": "1981",
+      "statamicId": "34a42865-8b2c-4edd-8472-eb0ca8930acc",
+      "craftId": "861"
+    },
+    {
+      "slug": "32nd-floor",
+      "statamicId": "052a676c-b970-4b0b-bdf9-3ea235d38445",
+      "craftId": "675"
+    },
+    {
+      "slug": "7-continents-minus-1",
+      "statamicId": "e0478c6c-3774-459e-95a3-ab8183b3c982",
+      "craftId": "863"
+    },
+    {
+      "slug": "72nd-street",
+      "statamicId": "c5cffb32-f5c1-4aed-bdab-0f252d94f26e",
+      "craftId": "815"
+    },
+    {
+      "slug": "80-year-old-kid",
+      "statamicId": "1f94094d-e5e1-4aa5-9c4d-144dd58b06a4",
+      "craftId": "865"
+    },
+    {
+      "slug": "85-egyptians",
+      "statamicId": "ac87774f-5bfc-4743-9524-ef4dcb7547e2",
+      "craftId": "659"
+    },
+    {
+      "slug": "97-beats-per-meter",
+      "statamicId": "2cfc9c29-89fc-46df-9b11-4a3495531ee2",
+      "craftId": "867"
+    },
+    {
+      "slug": "a-book-a-kid",
+      "statamicId": "dcffa97b-ab82-46ec-aa1f-427c314f9a17",
+      "craftId": "661"
+    },
+    {
+      "slug": "a-djinis-tears",
+      "statamicId": "6310bd0c-00bd-41a2-ac88-a852a8e2a656",
+      "craftId": "869"
+    },
+    {
+      "slug": "a-minor-race",
+      "statamicId": "5a3bcc7c-e9ca-4f97-ad2f-dc612892ec9a",
+      "craftId": "871"
+    },
+    {
+      "slug": "a-new-plan-for-cedric",
+      "statamicId": "67b56562-7a17-4dc7-b65d-cd67836c3a1a",
+      "craftId": "873"
+    },
+    {
+      "slug": "a-part-of-it",
+      "statamicId": "4b0cd2f1-2ded-47c9-91a9-be78cbf733a2",
+      "craftId": "703"
+    },
+    {
+      "slug": "a-place-like-cleveland",
+      "statamicId": "18c3477a-a491-4f5a-8e79-d43d65cdc5f0",
+      "craftId": "875"
+    },
+    {
+      "slug": "a-reasonable-man",
+      "statamicId": "0b3b1cef-d908-4930-b029-f6e360ef8940",
+      "craftId": "877"
+    },
+    {
+      "slug": "a-squid-chuckles",
+      "statamicId": "51c656ed-ae1a-4362-93d4-1c3a1f3f777f",
+      "craftId": "879"
+    },
+    {
+      "slug": "a-stoke-question",
+      "statamicId": "94441034-c3da-4ae3-8474-b8238b29d089",
+      "craftId": "881"
+    },
+    {
+      "slug": "a-way-back-summer-memories",
+      "statamicId": "6fe3fd78-9629-4986-9b33-c4abc19ef72b",
+      "craftId": "883"
+    },
+    {
+      "slug": "a-zoo-on-every-corner",
+      "statamicId": "de023562-d9a5-43a5-a65b-845c25e6a0cb",
+      "craftId": "885"
+    },
+    {
+      "slug": "achoo",
+      "statamicId": "8ad0a007-346a-4570-b733-b471fd94f069",
+      "craftId": "887"
+    },
+    {
+      "slug": "adios-hermanos",
+      "statamicId": "5c956614-a6d1-434b-a192-af3f2454128b",
+      "craftId": "545"
+    },
+    {
+      "slug": "adobe-elevator-music",
+      "statamicId": "9d7b1c43-b3d3-40d9-ac5b-18cdc4d13e50",
+      "craftId": "889"
+    },
+    {
+      "slug": "adobe-mall-music",
+      "statamicId": "37ee5000-e92e-43bf-8762-0a36f3c957a5",
+      "craftId": "835"
+    },
+    {
+      "slug": "adobe-skyscraper",
+      "statamicId": "c2cbd121-6999-4ebf-93d0-c010f8fdcefd",
+      "craftId": "891"
+    },
+    {
+      "slug": "adobe-sunrise",
+      "statamicId": "9283c24a-aeb0-4b9f-a8f0-eb92dc97639f",
+      "craftId": "893"
+    },
+    {
+      "slug": "age-of-the-lightning-king",
+      "statamicId": "34758859-b54f-4a76-8722-f2040aa1d9f8",
+      "craftId": "895"
+    },
+    {
+      "slug": "agree",
+      "statamicId": "ea30b275-7b94-4211-a1f6-be538cb8f9d8",
+      "craftId": "897"
+    },
+    {
+      "slug": "agyll",
+      "statamicId": "c4a96e07-cdfe-4da2-9e0c-87a31f7e0803",
+      "craftId": "663"
+    },
+    {
+      "slug": "aisle-of-enchantment",
+      "statamicId": "41ea4bbd-5582-4790-bed9-2f5dd2d19393",
+      "craftId": "899"
+    },
+    {
+      "slug": "aj-jajay",
+      "statamicId": "31a560d6-9ff9-419b-87d3-0a412c893770",
+      "craftId": "901"
+    },
+    {
+      "slug": "akabius",
+      "statamicId": "21da6691-4d4d-48f5-a8a0-b227a1236e05",
+      "craftId": "823"
+    },
+    {
+      "slug": "aladdin-at-the-niteclub",
+      "statamicId": "7d4fa9b0-bd81-40e2-95a2-7f86b83e9a76",
+      "craftId": "903"
+    },
+    {
+      "slug": "alamogordo",
+      "statamicId": "1aba2807-f3e9-42bd-a8b3-c53a618e0891",
+      "craftId": "905"
+    },
+    {
+      "slug": "alarm-clock-dan",
+      "statamicId": "aec12215-0d44-4a0b-ad9a-c135d071be21",
+      "craftId": "907"
+    },
+    {
+      "slug": "albub",
+      "statamicId": "dd469abf-ae19-49c9-a81a-57b00f7eba5f",
+      "craftId": "629"
+    },
+    {
+      "slug": "algerian-timezone",
+      "statamicId": "cafcae15-0031-4f93-a843-e0f1fcbfbf2f",
+      "craftId": "909"
+    },
+    {
+      "slug": "all-about-the-k",
+      "statamicId": "43513b1a-33c4-4ed4-8060-c7443ce8d7e3",
+      "craftId": "677"
+    },
+    {
+      "slug": "all-thy-flesh",
+      "statamicId": "897eedbd-0d66-4eda-ae67-79e6dfa1e219",
+      "craftId": "767"
+    },
+    {
+      "slug": "allergy-park",
+      "statamicId": "b8525a91-99a4-4cf3-bbfe-34be729981e5",
+      "craftId": "911"
+    },
+    {
+      "slug": "alter-call",
+      "statamicId": "16e57e17-f2eb-447c-989c-a1bb7eac6626",
+      "craftId": "913"
+    },
+    {
+      "slug": "and-its-a-good-thing",
+      "statamicId": "e8b55da2-6fb4-4305-9d1b-265269009239",
+      "craftId": "915"
+    },
+    {
+      "slug": "and-now-its-time",
+      "statamicId": "741107aa-2843-4999-a658-d0ae59e36413",
+      "craftId": "917"
+    },
+    {
+      "slug": "andy",
+      "statamicId": "206faf90-0e74-46b4-a59e-d93dee23c64f",
+      "craftId": "919"
+    },
+    {
+      "slug": "angola",
+      "statamicId": "ec843af4-9fe5-4304-a162-d27fac9c8bb7",
+      "craftId": "921"
+    },
+    {
+      "slug": "aquarium-age",
+      "statamicId": "d9da9188-ee7f-4375-b8cc-b6af7bda4843",
+      "craftId": "923"
+    },
+    {
+      "slug": "arabian-lover",
+      "statamicId": "ce5a2ffe-fcaa-41a6-87d5-557777ac1ee2",
+      "craftId": "925"
+    },
+    {
+      "slug": "arcade",
+      "statamicId": "cb6f3bcf-8211-42c1-90b7-8ff306c90a01",
+      "craftId": "927"
+    },
+    {
+      "slug": "as-if-you-didnt-know",
+      "statamicId": "7000312d-8cbd-4b3f-bdb6-1692a3410836",
+      "craftId": "929"
+    },
+    {
+      "slug": "assistant-services",
+      "statamicId": "002d921d-36bc-458b-b05c-d275312df03c",
+      "craftId": "931"
+    },
+    {
+      "slug": "astronaut",
+      "statamicId": "6e58e5fa-101b-4461-bf13-010103eb03cc",
+      "craftId": "933"
+    },
+    {
+      "slug": "at-the-police-mans-ball",
+      "statamicId": "dae9dd7e-2546-4acd-96af-fec597a14094",
+      "craftId": "935"
+    },
+    {
+      "slug": "australia",
+      "statamicId": "2a41054b-bc26-4847-b19a-b39088799a68",
+      "craftId": "937"
+    },
+    {
+      "slug": "austria",
+      "statamicId": "696eede1-a7c7-4baa-85ec-52063f569f1e",
+      "craftId": "939"
+    },
+    {
+      "slug": "awesome-outside",
+      "statamicId": "a472f915-ad14-4940-bd4f-eb43f0556990",
+      "craftId": "941"
+    },
+    {
+      "slug": "baby-youre-a-rich-man",
+      "statamicId": "152494e8-28e2-4d87-b9fb-00542c3d4781",
+      "craftId": "547"
+    },
+    {
+      "slug": "backwards-diving-into-fields-of-wheat",
+      "statamicId": "10de40c3-0bec-4d16-b2ec-9e00f00d252f",
+      "craftId": "707"
+    },
+    {
+      "slug": "backyard-bear",
+      "statamicId": "482f391c-2768-49f4-b012-d253d13c1419",
+      "craftId": "567"
+    },
+    {
+      "slug": "baldy",
+      "statamicId": "019ada4d-f291-4e97-a338-99b5edd022f0",
+      "craftId": "943"
+    },
+    {
+      "slug": "banana-republic",
+      "statamicId": "db822fda-c8d7-44ca-9a7f-15f9fb0bc7ea",
+      "craftId": "945"
+    },
+    {
+      "slug": "bananas-foster-child",
+      "statamicId": "840fd1d7-b4b7-488f-a13c-6438209c52cc",
+      "craftId": "947"
+    },
+    {
+      "slug": "barry-time",
+      "statamicId": "343d4f86-deb9-46fb-bfe2-c281c17bb1b0",
+      "craftId": "949"
+    },
+    {
+      "slug": "bartender",
+      "statamicId": "f5859021-528a-4b28-838b-17fcc94912cf",
+      "craftId": "951"
+    },
+    {
+      "slug": "baskets",
+      "statamicId": "ca16615f-9302-4593-9d11-6093b0605ae7",
+      "craftId": "615"
+    },
+    {
+      "slug": "bathtub-gin",
+      "statamicId": "22747485-d6df-4686-8f0a-3fa8d96399d1",
+      "craftId": "467"
+    },
+    {
+      "slug": "battleship-9",
+      "statamicId": "5617c7e4-bea6-456b-a98c-eb1c1ecd288e",
+      "craftId": "953"
+    },
+    {
+      "slug": "baybars",
+      "statamicId": "81a48862-e6d2-4adf-aa4c-8c60156a433d",
+      "craftId": "955"
+    },
+    {
+      "slug": "bear-suit",
+      "statamicId": "6b2c6cab-59b9-4c74-90fa-a4ffad134c9e",
+      "craftId": "959"
+    },
+    {
+      "slug": "bear-suit-love",
+      "statamicId": "aff42f0a-f6ef-48fa-b661-96511dbc3245",
+      "craftId": "957"
+    },
+    {
+      "slug": "beat-it-back",
+      "statamicId": "eabeb598-6efa-4363-8def-0cda67223737",
+      "craftId": "639"
+    },
+    {
+      "slug": "believe-in-your-thoughts",
+      "statamicId": "0f216af4-9017-4b37-be8e-43c884573c79",
+      "craftId": "679"
+    },
+    {
+      "slug": "big-horn",
+      "statamicId": "5f8de37b-f5f7-485c-aacb-c8bf99b89b5c",
+      "craftId": "961"
+    },
+    {
+      "slug": "big-thought",
+      "statamicId": "934cf2db-93b6-4872-9425-ce21b88d46c4",
+      "craftId": "963"
+    },
+    {
+      "slug": "bird-in-a-cage",
+      "statamicId": "bcac1f5e-1cb8-44de-a2cf-62df729faf91",
+      "craftId": "709"
+    },
+    {
+      "slug": "birds-in-space",
+      "statamicId": "1b322992-618d-48d1-bc3a-5332c0f3a209",
+      "craftId": "665"
+    },
+    {
+      "slug": "bishops-theme",
+      "statamicId": "c20957df-a01a-45c6-a944-0c66e608402c",
+      "craftId": "965"
+    },
+    {
+      "slug": "black-hole-bob",
+      "statamicId": "279d7cae-a265-4d22-8072-e634bc2cfd54",
+      "craftId": "573"
+    },
+    {
+      "slug": "bleached-black",
+      "statamicId": "fd3bbfb5-51f8-47b7-a055-6fd577315165",
+      "craftId": "839"
+    },
+    {
+      "slug": "blindness-vs-blindness",
+      "statamicId": "59837a38-030f-40f1-b853-c9bf10a04a5d",
+      "craftId": "819"
+    },
+    {
+      "slug": "blood-over-there",
+      "statamicId": "8316188c-f3e4-48c5-ae02-3824e862faa1",
+      "craftId": "967"
+    },
+    {
+      "slug": "bloody-murder",
+      "statamicId": "5edb8604-97b0-4935-a8b0-9ca406b26517",
+      "craftId": "969"
+    },
+    {
+      "slug": "bloody-nose",
+      "statamicId": "d89cbe66-c4fd-4b12-b4b5-c33730a04163",
+      "craftId": "971"
+    },
+    {
+      "slug": "bloody-nose-vol-ii",
+      "statamicId": "b6efcd3d-8e6c-457c-9569-bdbb72a5cc2d",
+      "craftId": "571"
+    },
+    {
+      "slug": "blow-blow-the-whistle-blow",
+      "statamicId": "58651fec-a1b6-4c29-b4e5-a9e59b00ceff",
+      "craftId": "475"
+    },
+    {
+      "slug": "blowin-in-the-wind",
+      "statamicId": "da6c73b7-92bc-40be-99d0-fd5eb93715ff",
+      "craftId": "973"
+    },
+    {
+      "slug": "blue-gold-green",
+      "statamicId": "7089af24-24c1-4322-b5df-f4209bd3db03",
+      "craftId": "477"
+    },
+    {
+      "slug": "board-game-guru",
+      "statamicId": "97f67870-0595-4257-8357-a53e3031afd0",
+      "craftId": "975"
+    },
+    {
+      "slug": "bobbys-reprise",
+      "statamicId": "b5b5f630-8f93-4072-86db-5c96cb073b26",
+      "craftId": "977"
+    },
+    {
+      "slug": "bootscrape-day",
+      "statamicId": "70a738dc-61ab-4ef6-b37b-7342809afb3a",
+      "craftId": "979"
+    },
+    {
+      "slug": "boy-named-tortoise",
+      "statamicId": "518e27e7-61b3-42bb-8e75-051775498ed9",
+      "craftId": "711"
+    },
+    {
+      "slug": "brain-paste",
+      "statamicId": "c0ee2134-5c88-4915-b47b-6f43f488fef1",
+      "craftId": "981"
+    },
+    {
+      "slug": "brave-and-free",
+      "statamicId": "0891d6ad-b009-4396-a338-86068ddcbd81",
+      "craftId": "983"
+    },
+    {
+      "slug": "bread",
+      "statamicId": "ae76a470-d879-4978-aa8f-42fa821b14ee",
+      "craftId": "985"
+    },
+    {
+      "slug": "break-your-mind",
+      "statamicId": "1edc4bff-9869-4ee2-b3a4-c923ec13388a",
+      "craftId": "825"
+    },
+    {
+      "slug": "brewed-with-attitude",
+      "statamicId": "1fb3873c-b1b0-4053-a00c-316458efa570",
+      "craftId": "987"
+    },
+    {
+      "slug": "bright-moon-tonight",
+      "statamicId": "fb122860-261f-46a1-baa2-768142beddaf",
+      "craftId": "649"
+    },
+    {
+      "slug": "broken-stranger",
+      "statamicId": "41605072-1cc4-47f0-b1b9-13af0ada52f5",
+      "craftId": "989"
+    },
+    {
+      "slug": "bug-light",
+      "statamicId": "2906b30a-dba0-4449-bc9e-3b7271e5a8e1",
+      "craftId": "991"
+    },
+    {
+      "slug": "bump-it",
+      "statamicId": "bcee47c0-8ed7-4ad7-a6cd-e032394b9679",
+      "craftId": "993"
+    },
+    {
+      "slug": "butters-turkey",
+      "statamicId": "3a5ee95f-10f2-4b8e-8081-7dc6d9756680",
+      "craftId": "605"
+    },
+    {
+      "slug": "buttons",
+      "statamicId": "97a15f9a-9bd4-460b-9127-090bccfeb824",
+      "craftId": "491"
+    },
+    {
+      "slug": "caged-duck",
+      "statamicId": "39aaf11d-37c2-4cbb-b5f1-e16447cadf32",
+      "craftId": "493"
+    },
+    {
+      "slug": "call-me",
+      "statamicId": "de42ac93-aee4-4236-8cae-d735e64bdb08",
+      "craftId": "607"
+    },
+    {
+      "slug": "camel-lights",
+      "statamicId": "de75dd21-636e-4105-9fb4-54760bf1e782",
+      "craftId": "995"
+    },
+    {
+      "slug": "canoe-building-302",
+      "statamicId": "20aef7b4-b6cc-454f-9faa-06b97530018b",
+      "craftId": "997"
+    },
+    {
+      "slug": "capestrano",
+      "statamicId": "28adf08b-6b2d-4b45-b780-a50340f4535e",
+      "craftId": "999"
+    },
+    {
+      "slug": "capture-of-the-ourang",
+      "statamicId": "675bde31-a287-42ae-9161-79ead036f263",
+      "craftId": "1001"
+    },
+    {
+      "slug": "career-day",
+      "statamicId": "a47ea992-3cd2-4569-b4f3-5c48427a4378",
+      "craftId": "841"
+    },
+    {
+      "slug": "carico",
+      "statamicId": "51bb5de8-737b-4ca2-8b70-cfa7de708d3b",
+      "craftId": "1003"
+    },
+    {
+      "slug": "carnival-go",
+      "statamicId": "fb05a93e-42e2-4be2-9a35-806120cbe806",
+      "craftId": "827"
+    },
+    {
+      "slug": "catalina-island",
+      "statamicId": "e0fa54ad-1b6e-40cc-a699-20c21f030627",
+      "craftId": "1005"
+    },
+    {
+      "slug": "centaur-goes-to-the-adobe-skyscraper",
+      "statamicId": "531b0943-8032-4806-ac2f-2ba07af7e21c",
+      "craftId": "1007"
+    },
+    {
+      "slug": "cereal",
+      "statamicId": "4cafd1ac-2324-4dc5-af84-3ca60938d5e9",
+      "craftId": "1009"
+    },
+    {
+      "slug": "cetacea-dietary-concerns",
+      "statamicId": "9a43a8e9-e925-4951-a132-bdca4d93b67f",
+      "craftId": "1011"
+    },
+    {
+      "slug": "challenger-deep",
+      "statamicId": "6e9fc480-b628-4c3a-a206-abfa05cc871d",
+      "craftId": "783"
+    },
+    {
+      "slug": "change-your-name",
+      "statamicId": "e0f9ea0c-70dd-4398-b1f5-19c42bfdefcf",
+      "craftId": "1013"
+    },
+    {
+      "slug": "charge-of-the-light-brigade-via-telefone",
+      "statamicId": "cb411200-b3a9-49f8-8357-36b12196a107",
+      "craftId": "1015"
+    },
+    {
+      "slug": "cherry-pie-vending-machine",
+      "statamicId": "d7a08864-a81f-4aae-8088-77d861a38535",
+      "craftId": "531"
+    },
+    {
+      "slug": "chopstick-soup",
+      "statamicId": "f458c4ba-e87e-4dea-bcfb-5495f43dab4d",
+      "craftId": "713"
+    },
+    {
+      "slug": "chunky-junkie",
+      "statamicId": "b303695a-f528-4712-bc9f-d2a464076f41",
+      "craftId": "1017"
+    },
+    {
+      "slug": "close-to-the-metal",
+      "statamicId": "aeac882c-ba97-4cee-9673-e9946817fb9e",
+      "craftId": "681"
+    },
+    {
+      "slug": "closest-constellation",
+      "statamicId": "8aa04aa4-43f3-4dba-a6b8-f4a41151a263",
+      "craftId": "1019"
+    },
+    {
+      "slug": "common-knowledge",
+      "statamicId": "e66e7bae-38c1-4a9a-a9e1-6c2820b01447",
+      "craftId": "587"
+    },
+    {
+      "slug": "complex-thought",
+      "statamicId": "465452b6-0dd7-44c5-a3d8-7ddbfe84edf4",
+      "craftId": "589"
+    },
+    {
+      "slug": "computer-problems-a-la-video-game",
+      "statamicId": "1843eb5c-14d7-4371-b47e-0c3853e90682",
+      "craftId": "1021"
+    },
+    {
+      "slug": "confidence-is-key",
+      "statamicId": "b5376a4c-8a9b-4b24-978c-270155433148",
+      "craftId": "617"
+    },
+    {
+      "slug": "cop-dog-killer",
+      "statamicId": "2354f922-f06b-4883-9cd7-b2cdebd67744",
+      "craftId": "1023"
+    },
+    {
+      "slug": "cosmonaut",
+      "statamicId": "a809b1e1-0209-43f7-82dd-51b19c00917d",
+      "craftId": "1025"
+    },
+    {
+      "slug": "couch-man",
+      "statamicId": "4fcd1ab5-33b9-4546-a0fc-28e0f02d733a",
+      "craftId": "1027"
+    },
+    {
+      "slug": "creature-at-my-window",
+      "statamicId": "c611b5cd-5f90-4445-89ea-f3098b1b9066",
+      "craftId": "1029"
+    },
+    {
+      "slug": "cyborg-janitor",
+      "statamicId": "8faf1130-7f50-4f7e-b2d5-fe33c92fb550",
+      "craftId": "1031"
+    },
+    {
+      "slug": "cyborg-shuffle",
+      "statamicId": "186f00e4-fcfc-438f-99ed-924dfa7d5333",
+      "craftId": "1033"
+    },
+    {
+      "slug": "daily-news",
+      "statamicId": "d517570a-76e3-4d84-9012-93b8e5a295fe",
+      "craftId": "1035"
+    },
+    {
+      "slug": "dan-djini",
+      "statamicId": "820c4e31-c950-4e4d-9a9f-327594c38a50",
+      "craftId": "1037"
+    },
+    {
+      "slug": "dangerous-thing-to-do",
+      "statamicId": "5e71e2c0-a2f9-4fe1-a915-8d8b7a514cd9",
+      "craftId": "1039"
+    },
+    {
+      "slug": "dark-continent",
+      "statamicId": "4d265596-1764-43a6-858a-0e1622ebed2b",
+      "craftId": "1041"
+    },
+    {
+      "slug": "dark-side-of-the-astronaut",
+      "statamicId": "bd7fa9ea-7d81-4d89-acf4-da3f3a2958c7",
+      "craftId": "549"
+    },
+    {
+      "slug": "date-night",
+      "statamicId": "33d094f3-744c-4659-84e7-efcf1a2b87f5",
+      "craftId": "773"
+    },
+    {
+      "slug": "daylight-fairytales",
+      "statamicId": "0f924edb-6877-4457-81ae-cc8a40d7c47d",
+      "craftId": "1043"
+    },
+    {
+      "slug": "dead-animal-collection",
+      "statamicId": "fa4652e8-95d0-4877-b338-968b20f26a2d",
+      "craftId": "667"
+    },
+    {
+      "slug": "dead-man-on-campus",
+      "statamicId": "c686467c-37f2-4942-951d-695ba1ca8259",
+      "craftId": "1045"
+    },
+    {
+      "slug": "death-in-the-future",
+      "statamicId": "d2c6e9de-01c0-4cf6-b232-4d14daecf1b4",
+      "craftId": "1047"
+    },
+    {
+      "slug": "debrishower",
+      "statamicId": "9dedd7a1-c5cd-4a57-91a1-49cbcd4269b1",
+      "craftId": "1049"
+    },
+    {
+      "slug": "deep-thought",
+      "statamicId": "b571dabb-2cd9-46ce-9cd7-99575f581036",
+      "craftId": "619"
+    },
+    {
+      "slug": "delivery",
+      "statamicId": "cae4d652-5dc9-4fd7-b4ed-c5fc913ea50e",
+      "craftId": "1051"
+    },
+    {
+      "slug": "demon-baby",
+      "statamicId": "172fa56e-a951-41cd-8d8e-f1d8fe541a06",
+      "craftId": "1053"
+    },
+    {
+      "slug": "dengue-fever",
+      "statamicId": "31b2750c-7d3a-4ac4-99bb-13edb7a2afa5",
+      "craftId": "1055"
+    },
+    {
+      "slug": "devin",
+      "statamicId": "954a9408-5c45-412c-a90f-826bccdd1d41",
+      "craftId": "1057"
+    },
+    {
+      "slug": "diagonal-planets",
+      "statamicId": "80584a08-8c82-4f41-9891-d07ee7d0ab98",
+      "craftId": "591"
+    },
+    {
+      "slug": "diddo",
+      "statamicId": "12a45749-9f2d-4c5f-b34b-8469007abf84",
+      "craftId": "1059"
+    },
+    {
+      "slug": "digital-pond",
+      "statamicId": "4e487796-b8fc-423b-8647-c33f256a832b",
+      "craftId": "683"
+    },
+    {
+      "slug": "dim-light",
+      "statamicId": "26605930-ce9b-4d50-ab17-e2df14ec8db5",
+      "craftId": "1061"
+    },
+    {
+      "slug": "dinosaur-tom",
+      "statamicId": "593855fb-ee05-4a71-add2-1575123cf5c7",
+      "craftId": "765"
+    },
+    {
+      "slug": "django-beat",
+      "statamicId": "fced2f7e-f5cb-40e6-89f8-8ac42ebc9e08",
+      "craftId": "1063"
+    },
+    {
+      "slug": "django-trot",
+      "statamicId": "cfaf7b3d-9ea1-4ec1-9ec3-90365e5badd4",
+      "craftId": "1065"
+    },
+    {
+      "slug": "do-her-in-the-gravity-tube",
+      "statamicId": "70ea34ed-ccc1-46f9-91c9-5fc8ab094418",
+      "craftId": "1067"
+    },
+    {
+      "slug": "do-the-people-hear",
+      "statamicId": "0dbdd110-c6e8-4e7d-8933-ff91e6818e73",
+      "craftId": "829"
+    },
+    {
+      "slug": "dog-kills-dog",
+      "statamicId": "33edfb7f-f998-4afb-ab94-b18014a7b640",
+      "craftId": "1069"
+    },
+    {
+      "slug": "dont-talk-about-us",
+      "statamicId": "a67c09a4-71d0-42ec-850e-d30c55cafa2d",
+      "craftId": "1071"
+    },
+    {
+      "slug": "double-exposure",
+      "statamicId": "c3832dc9-eafb-441b-a297-68061e4956b5",
+      "craftId": "1073"
+    },
+    {
+      "slug": "dr-debaughtnik",
+      "statamicId": "05476be8-2a5b-4296-ad38-62b74087a1ef",
+      "craftId": "593"
+    },
+    {
+      "slug": "dr-lognic",
+      "statamicId": "b62663cb-7aef-4d5c-a4d2-dc9c5684bcff",
+      "craftId": "1075"
+    },
+    {
+      "slug": "dr-strangelove",
+      "statamicId": "0c2a7f2e-10da-44e1-a255-7fc2e569d8c2",
+      "craftId": "1077"
+    },
+    {
+      "slug": "dr-xing",
+      "statamicId": "a216993b-d529-438e-9af1-d601e4e8670c",
+      "craftId": "1079"
+    },
+    {
+      "slug": "dr-xu",
+      "statamicId": "5b541100-db38-4f8f-a9cd-94cec26875ce",
+      "craftId": "1081"
+    },
+    {
+      "slug": "draw-yer-eyes",
+      "statamicId": "8284ef6a-92b2-420f-97da-a7d3ce1e0880",
+      "craftId": "1083"
+    },
+    {
+      "slug": "dreams-of-boomtown",
+      "statamicId": "ede9edd3-6889-464c-9320-4ab83284a205",
+      "craftId": "1085"
+    },
+    {
+      "slug": "drop",
+      "statamicId": "d635a1a6-ab22-4fed-9865-fa68d2c173cf",
+      "craftId": "1087"
+    },
+    {
+      "slug": "duck-on-the-moon",
+      "statamicId": "4860f411-80ce-4f3a-826d-cf9a74ab0c0a",
+      "craftId": "769"
+    },
+    {
+      "slug": "dui",
+      "statamicId": "644a290e-e78f-450d-99a7-7adb91c9fac3",
+      "craftId": "1089"
+    },
+    {
+      "slug": "e",
+      "statamicId": "15b3cb88-3bce-49ea-8cab-34a5b1d6d6d2",
+      "craftId": "1091"
+    },
+    {
+      "slug": "echo-cafe",
+      "statamicId": "3794faf2-ea77-4097-a4c1-79633117b7ce",
+      "craftId": "1093"
+    },
+    {
+      "slug": "eckels",
+      "statamicId": "87e27c5e-bf03-4bee-b266-da1a0f284137",
+      "craftId": "1095"
+    },
+    {
+      "slug": "eldama-ravine",
+      "statamicId": "d544f10b-c383-48a5-9f5d-35dcad3c2ed0",
+      "craftId": "1097"
+    },
+    {
+      "slug": "elevator-action",
+      "statamicId": "410c7dd0-1614-4885-8898-b9121180a08a",
+      "craftId": "789"
+    },
+    {
+      "slug": "elevator-head",
+      "statamicId": "d83e3bb7-a7c3-4740-8f88-e6947263d1b4",
+      "craftId": "1099"
+    },
+    {
+      "slug": "embossable-green",
+      "statamicId": "4527b001-46f6-4cde-bc57-9075de206a00",
+      "craftId": "1101"
+    },
+    {
+      "slug": "ensaladabot",
+      "statamicId": "a23bac92-885a-4b2d-b8da-9f8f54700735",
+      "craftId": "1103"
+    },
+    {
+      "slug": "es-cool",
+      "statamicId": "2291898c-4b2c-4edf-8101-16da608a66af",
+      "craftId": "1105"
+    },
+    {
+      "slug": "escaped-slaves",
+      "statamicId": "97dbeeaf-a93f-4f7a-acdd-6e233bb2828b",
+      "craftId": "1107"
+    },
+    {
+      "slug": "evascervate",
+      "statamicId": "0d0c21aa-eab9-4a15-98d5-9ecdddc34320",
+      "craftId": "1109"
+    },
+    {
+      "slug": "every-thursday",
+      "statamicId": "f56a02b1-047f-469d-9a7d-64fb3a7e8fc3",
+      "craftId": "609"
+    },
+    {
+      "slug": "fabenasa",
+      "statamicId": "2702a1fd-385e-47cc-b979-6fadc04fd93f",
+      "craftId": "1111"
+    },
+    {
+      "slug": "fall-o-the-leader",
+      "statamicId": "46c4e719-66a5-4e55-b4e5-af6c5853d54e",
+      "craftId": "1113"
+    },
+    {
+      "slug": "far-from-the-law",
+      "statamicId": "92789c07-819c-48ef-8345-2c91f1619284",
+      "craftId": "1115"
+    },
+    {
+      "slug": "farm-claps",
+      "statamicId": "18c8d830-0702-481a-b392-91b95c54444a",
+      "craftId": "1117"
+    },
+    {
+      "slug": "feed-a-baby",
+      "statamicId": "6a803670-f3fc-425e-bdd2-378880e5b991",
+      "craftId": "1119"
+    },
+    {
+      "slug": "fertile-crescent-telefone-company",
+      "statamicId": "a59eded9-0f39-4733-a41c-9af8ef3c62b0",
+      "craftId": "1121"
+    },
+    {
+      "slug": "finish-twarkinmoon",
+      "statamicId": "99262b5d-7f49-4e90-bcbc-77054267f46f",
+      "craftId": "715"
+    },
+    {
+      "slug": "firesword",
+      "statamicId": "e84bf720-9afb-4bf6-b43a-3c71cc349707",
+      "craftId": "1123"
+    },
+    {
+      "slug": "first-dream",
+      "statamicId": "ce821400-1287-44b3-884c-f00e5527c571",
+      "craftId": "495"
+    },
+    {
+      "slug": "fish-eggs",
+      "statamicId": "a64f9839-9110-406a-80ce-0e352bb7efa4",
+      "craftId": "1125"
+    },
+    {
+      "slug": "five-keys-of-the-mexican-summer",
+      "statamicId": "9dd7c4ee-241e-43ea-bd99-f5d7936640ac",
+      "craftId": "1127"
+    },
+    {
+      "slug": "flesh-fair",
+      "statamicId": "4332d530-5951-40db-9a81-a6f097a76250",
+      "craftId": "1129"
+    },
+    {
+      "slug": "flinger",
+      "statamicId": "3ff0b315-e320-4782-8314-505a2e95fcb6",
+      "craftId": "497"
+    },
+    {
+      "slug": "for-those-lost-at-or-away-from-sea",
+      "statamicId": "fa9a20b5-fe66-4549-a020-e5a4cb84adff",
+      "craftId": "717"
+    },
+    {
+      "slug": "foxbarn-1",
+      "statamicId": "45e70de4-fc12-42bf-bbd2-0a437559d68b",
+      "craftId": "1131"
+    },
+    {
+      "slug": "frayed-knot",
+      "statamicId": "89909571-1959-4244-abc2-fda752aa04f4",
+      "craftId": "1133"
+    },
+    {
+      "slug": "friendly-sky",
+      "statamicId": "bb477b4c-d51f-431d-9ee4-78ef7d96497d",
+      "craftId": "1135"
+    },
+    {
+      "slug": "frisbee-monster",
+      "statamicId": "2fbb8c63-a736-45ce-9018-5b28046c62de",
+      "craftId": "479"
+    },
+    {
+      "slug": "frog-with-a-man-voice",
+      "statamicId": "6dd44f0a-29eb-4953-a711-fe89353f768a",
+      "craftId": "1137"
+    },
+    {
+      "slug": "from-the-hogs-nose",
+      "statamicId": "edeca2c3-4dba-4489-bb4e-f8356ba756ba",
+      "craftId": "1139"
+    },
+    {
+      "slug": "fur-trappers-flight",
+      "statamicId": "19662685-e297-4343-b6e1-2d0930ce3c62",
+      "craftId": "1141"
+    },
+    {
+      "slug": "g",
+      "statamicId": "1f7f29fa-63ac-4194-bda7-edd5cdd58161",
+      "craftId": "1145"
+    },
+    {
+      "slug": "g-r",
+      "statamicId": "aab90e1f-d0cc-43fe-a016-172386ce57f3",
+      "craftId": "1143"
+    },
+    {
+      "slug": "gabreels-friendship-gang",
+      "statamicId": "ce8caf24-41c3-43f7-a710-2de7609bfd9c",
+      "craftId": "1147"
+    },
+    {
+      "slug": "gates-of-yon",
+      "statamicId": "72551498-6561-487f-9173-003fa5a00d2e",
+      "craftId": "775"
+    },
+    {
+      "slug": "gentry",
+      "statamicId": "8553526b-8091-43f5-8eb4-879917e6e916",
+      "craftId": "1149"
+    },
+    {
+      "slug": "ghostbeard",
+      "statamicId": "51e19713-601c-40ea-8745-f4040f0b3cd4",
+      "craftId": "1151"
+    },
+    {
+      "slug": "glu",
+      "statamicId": "c3f93835-3b9b-4a0b-b068-77fbfeea3d59",
+      "craftId": "1153"
+    },
+    {
+      "slug": "go-west",
+      "statamicId": "29a497af-b948-43fa-8c6d-02d7679b16d2",
+      "craftId": "1155"
+    },
+    {
+      "slug": "go-your-own-way",
+      "statamicId": "7f4e06a6-88de-4fdc-abfd-ed21706e8cd1",
+      "craftId": "761"
+    },
+    {
+      "slug": "go-ghost-go",
+      "statamicId": "ff503dc4-82cc-408a-ac07-0b9c3d69f873",
+      "craftId": "791"
+    },
+    {
+      "slug": "god-says-go",
+      "statamicId": "0ab1b177-ffdd-4d9d-8a3d-ab2dc6b3b528",
+      "craftId": "1157"
+    },
+    {
+      "slug": "golden-age",
+      "statamicId": "77eadd31-26f7-4b53-8ec8-714d6b9269ae",
+      "craftId": "1159"
+    },
+    {
+      "slug": "goldengate",
+      "statamicId": "7d9f3f1e-d850-4f67-ae75-39b1181c7a9e",
+      "craftId": "469"
+    },
+    {
+      "slug": "good-afternoon",
+      "statamicId": "56f4944f-52b4-4219-a5ce-ff702d4ae056",
+      "craftId": "785"
+    },
+    {
+      "slug": "good-morning-adobega",
+      "statamicId": "33816321-93d3-429f-a74e-329111ea112b",
+      "craftId": "551"
+    },
+    {
+      "slug": "gorami-chant",
+      "statamicId": "5f0c3ad5-874e-4bef-90c3-0c124fedc4c9",
+      "craftId": "1161"
+    },
+    {
+      "slug": "gorami-mountain",
+      "statamicId": "5bb325a7-989d-495e-b9c0-7c6bb39890e8",
+      "craftId": "1163"
+    },
+    {
+      "slug": "gorami-woman",
+      "statamicId": "b49958ee-3e8e-41c0-acaf-db628c2874b7",
+      "craftId": "637"
+    },
+    {
+      "slug": "gorka",
+      "statamicId": "f07ac4d0-3d5f-4a8b-ad56-e9be32789a45",
+      "craftId": "719"
+    },
+    {
+      "slug": "granddad",
+      "statamicId": "a07e83e1-18c4-4201-a290-e12ed72bad60",
+      "craftId": "1167"
+    },
+    {
+      "slug": "granddad-spa",
+      "statamicId": "4c2b211a-28e8-4d9e-9c90-44e0e0a47dd2",
+      "craftId": "1165"
+    },
+    {
+      "slug": "granddaddys-here",
+      "statamicId": "73a6a429-baab-4f80-aad8-16e5a7145911",
+      "craftId": "793"
+    },
+    {
+      "slug": "grass-master",
+      "statamicId": "a97e1999-0106-4fff-8389-0bd02f7ab24e",
+      "craftId": "507"
+    },
+    {
+      "slug": "great-blue-whale",
+      "statamicId": "3483bb72-6918-476e-9186-148b151e4603",
+      "craftId": "1169"
+    },
+    {
+      "slug": "greatness",
+      "statamicId": "5be6753a-1e47-4648-b752-3bd38fc2084e",
+      "craftId": "1171"
+    },
+    {
+      "slug": "green-stuff",
+      "statamicId": "1aba9e80-1eb2-4421-b786-f5d7750dfaaf",
+      "craftId": "1173"
+    },
+    {
+      "slug": "grottoball",
+      "statamicId": "62afbc59-2b81-4f85-ae3a-14afcd695b25",
+      "craftId": "1175"
+    },
+    {
+      "slug": "guest-trumpet-segment",
+      "statamicId": "7b53fb25-0e8e-4462-9da8-328151753047",
+      "craftId": "1177"
+    },
+    {
+      "slug": "guy-by-the-window",
+      "statamicId": "d669e0b6-a84e-4005-8077-fe6b2b4fc945",
+      "craftId": "595"
+    },
+    {
+      "slug": "guy-clark-fan-club",
+      "statamicId": "cd4ca8fc-f550-4d9a-be2b-3955f14aa62d",
+      "craftId": "821"
+    },
+    {
+      "slug": "happy-man-pants-b",
+      "statamicId": "104c6997-4f2e-4072-8e79-8a8e6f5896fa",
+      "craftId": "1179"
+    },
+    {
+      "slug": "heard-in-living-room",
+      "statamicId": "54707947-f0ab-4f22-8364-30e8b1721048",
+      "craftId": "721"
+    },
+    {
+      "slug": "heart-of-steel",
+      "statamicId": "07f6dc77-5fa8-4134-8d8b-a45642c9a1bc",
+      "craftId": "1181"
+    },
+    {
+      "slug": "heartattack",
+      "statamicId": "4d47f307-60ef-4a10-96a8-ed70cbd72d7f",
+      "craftId": "1183"
+    },
+    {
+      "slug": "heavy-rain-falls-on-burger-keen",
+      "statamicId": "e47863ea-a1b7-4aa2-9a3c-0ae468aa28d1",
+      "craftId": "1185"
+    },
+    {
+      "slug": "heigh-ho",
+      "statamicId": "3a783e93-b28c-468a-93bb-1d2fe44aa555",
+      "craftId": "1187"
+    },
+    {
+      "slug": "henri-mancinis-moon-rover",
+      "statamicId": "e27ec400-43c4-4568-96fd-9b1863695489",
+      "craftId": "1189"
+    },
+    {
+      "slug": "here-comes-the-greaseman",
+      "statamicId": "7adfe5cb-52d8-465a-bd10-43de6fa413ac",
+      "craftId": "1191"
+    },
+    {
+      "slug": "hesitating-beauty",
+      "statamicId": "43ebb73a-725a-438b-8621-94c092d40c56",
+      "craftId": "1193"
+    },
+    {
+      "slug": "hey-you-a-series-of-unfortunate-deaths",
+      "statamicId": "7699957a-6fc9-4b38-b2ad-fc2ff0b30d24",
+      "craftId": "843"
+    },
+    {
+      "slug": "hot-garbage",
+      "statamicId": "5c3568ee-2150-459c-9ddd-c049c894596b",
+      "craftId": "651"
+    },
+    {
+      "slug": "hot-street-silver-car",
+      "statamicId": "f0d5cf25-6f29-4d0e-a4b7-46d7300d6511",
+      "craftId": "1195"
+    },
+    {
+      "slug": "howard-e-bonebreak",
+      "statamicId": "cbc29768-9123-46f7-a068-cd37ed9b786a",
+      "craftId": "1197"
+    },
+    {
+      "slug": "hummingbirds",
+      "statamicId": "a248723e-cf3c-4c7b-9e29-53d26682f94b",
+      "craftId": "1199"
+    },
+    {
+      "slug": "i-am-an-historian",
+      "statamicId": "5c6be5bf-be38-410b-a454-d37fc1a361b0",
+      "craftId": "1201"
+    },
+    {
+      "slug": "i-am-your-brain",
+      "statamicId": "439a819d-c1d8-4e90-b19a-e91d9e8c4e45",
+      "craftId": "1203"
+    },
+    {
+      "slug": "i-like-it",
+      "statamicId": "2e2b7793-5b73-4fa0-80a0-8fa861afba66",
+      "craftId": "1205"
+    },
+    {
+      "slug": "i-was-born-in-adobega",
+      "statamicId": "804801f1-faf2-454e-a7ea-adcd4b8c4608",
+      "craftId": "1207"
+    },
+    {
+      "slug": "im-gonna-get-you-donna",
+      "statamicId": "bdcd41a7-1e23-4251-b052-f8d710135f0d",
+      "craftId": "723"
+    },
+    {
+      "slug": "im-going-crazy",
+      "statamicId": "15ddad53-afb1-4fd2-80a9-9f0c5843e08b",
+      "craftId": "1211"
+    },
+    {
+      "slug": "im-so-tired",
+      "statamicId": "d05a13ec-1c7a-4c4a-a9d2-a9d20e0c1c5e",
+      "craftId": "1213"
+    },
+    {
+      "slug": "immigrant-song",
+      "statamicId": "d118a74e-e2d3-449e-ba25-3d965e7fe6a6",
+      "craftId": "553"
+    },
+    {
+      "slug": "internal-oregon",
+      "statamicId": "3a789f33-6939-4799-a3f4-171226a38e6a",
+      "craftId": "1215"
+    },
+    {
+      "slug": "introducing",
+      "statamicId": "c2db8f28-5767-4f74-8b3a-baa0527bbfe3",
+      "craftId": "1217"
+    },
+    {
+      "slug": "investigate-the-yeti",
+      "statamicId": "24d1397c-b2a6-4f46-9664-ae1ecf1a9bc8",
+      "craftId": "725"
+    },
+    {
+      "slug": "ireland-or-peru",
+      "statamicId": "2bf2264c-71b8-43e6-9ae0-e296b0c51596",
+      "craftId": "1219"
+    },
+    {
+      "slug": "is-it-light",
+      "statamicId": "120580c9-2d48-46c0-a940-b1978b12ac43",
+      "craftId": "1221"
+    },
+    {
+      "slug": "it-always-doesnt-sleep",
+      "statamicId": "69c50875-eaeb-4828-8a5f-f59c55304134",
+      "craftId": "1223"
+    },
+    {
+      "slug": "it-floats",
+      "statamicId": "a7cf07f2-a897-461f-9b4f-1e4f38ac363d",
+      "craftId": "1225"
+    },
+    {
+      "slug": "its-a-leg",
+      "statamicId": "caef649a-c2ae-4a41-b5d5-3b088ca71a3c",
+      "craftId": "1227"
+    },
+    {
+      "slug": "its-a-miracle",
+      "statamicId": "457b2885-8861-487c-a26f-f3fea137d2b9",
+      "craftId": "1229"
+    },
+    {
+      "slug": "its-time-to-wake-up",
+      "statamicId": "e7ec0dea-1e91-402f-87d6-7086536da533",
+      "craftId": "1231"
+    },
+    {
+      "slug": "jamboricnic",
+      "statamicId": "e2985070-9f6c-4796-b7f5-ff31bf0dfe62",
+      "craftId": "1233"
+    },
+    {
+      "slug": "japan",
+      "statamicId": "e0dcfdcf-644a-474a-913d-b34f514fc42c",
+      "craftId": "845"
+    },
+    {
+      "slug": "jayuff",
+      "statamicId": "2e0a3579-7d4f-4615-84b6-d44f1ced6ffd",
+      "craftId": "1235"
+    },
+    {
+      "slug": "jazz-number-3",
+      "statamicId": "2a84aa63-13fe-4fe2-941b-2257d112c6c3",
+      "craftId": "1237"
+    },
+    {
+      "slug": "jeremys-theme",
+      "statamicId": "d60f0d27-38eb-4849-86a7-bb28dc6a9200",
+      "craftId": "685"
+    },
+    {
+      "slug": "jon-browne",
+      "statamicId": "833ac406-3371-495c-b0fc-1a4046222eab",
+      "craftId": "1239"
+    },
+    {
+      "slug": "josephine",
+      "statamicId": "e4252382-917f-41bd-afbe-57857dbce4ca",
+      "craftId": "1241"
+    },
+    {
+      "slug": "joyriding",
+      "statamicId": "c24f8695-dd23-4056-8ec8-b6b79052f0b4",
+      "craftId": "1243"
+    },
+    {
+      "slug": "judge-leroy",
+      "statamicId": "76dbf6e6-c6b4-4241-8256-3f9f05570355",
+      "craftId": "1245"
+    },
+    {
+      "slug": "junk-boat",
+      "statamicId": "dc8109fd-f709-46b0-9711-9967f58f38b0",
+      "craftId": "535"
+    },
+    {
+      "slug": "just-a-holiday",
+      "statamicId": "f976268b-46c3-4607-b0e0-fcc6f0751369",
+      "craftId": "481"
+    },
+    {
+      "slug": "just-say-shoe",
+      "statamicId": "b33301f4-20cf-4911-8180-bfd43d0c28ac",
+      "craftId": "1247"
+    },
+    {
+      "slug": "kc-nutty-roller",
+      "statamicId": "0ec07eee-009b-4164-a7f0-b9715dc96e68",
+      "craftId": "1249"
+    },
+    {
+      "slug": "kiddeux",
+      "statamicId": "a513ef74-d7c5-455e-981e-5c08b386006a",
+      "craftId": "1251"
+    },
+    {
+      "slug": "killed-by-dogs",
+      "statamicId": "d1e45367-6de0-4962-abe0-94dca70fa20f",
+      "craftId": "1253"
+    },
+    {
+      "slug": "killer-whale-hunting",
+      "statamicId": "dbaaf4bb-a5bd-492b-98f9-a346e2b8695c",
+      "craftId": "1255"
+    },
+    {
+      "slug": "king-james",
+      "statamicId": "2183c604-e715-486e-b8d1-dc417398f0a6",
+      "craftId": "1259"
+    },
+    {
+      "slug": "king-james-bible-study",
+      "statamicId": "d76a8a73-c00b-4187-85f2-e29d49724364",
+      "craftId": "1257"
+    },
+    {
+      "slug": "king-richard",
+      "statamicId": "151235fa-f92e-451b-91b6-f430ab1057d7",
+      "craftId": "1261"
+    },
+    {
+      "slug": "kingdom-of-plaid-skinned-children",
+      "statamicId": "45b7e604-662e-405c-b814-a6f81a3dc56e",
+      "craftId": "1263"
+    },
+    {
+      "slug": "kite-ranch",
+      "statamicId": "c10c04e6-5031-4caa-aef5-2a24edce063e",
+      "craftId": "1265"
+    },
+    {
+      "slug": "klinkingbeard",
+      "statamicId": "8697ba57-c05d-4275-a7d9-4c6511a39078",
+      "craftId": "727"
+    },
+    {
+      "slug": "koi-pond-ghost-town",
+      "statamicId": "3363e4ba-0d4c-47ab-9b45-6726f946b664",
+      "craftId": "787"
+    },
+    {
+      "slug": "kolo-kolo-bird",
+      "statamicId": "040bff72-fd4d-4051-80d5-9eb8d7683c35",
+      "craftId": "729"
+    },
+    {
+      "slug": "la-solitude-du-magicien",
+      "statamicId": "f7db41b8-5d30-4592-831c-95606bc724d7",
+      "craftId": "1267"
+    },
+    {
+      "slug": "lady-darbanville",
+      "statamicId": "04faaee7-09c1-4805-942e-b6df9f4d342b",
+      "craftId": "1269"
+    },
+    {
+      "slug": "lady-madonna",
+      "statamicId": "6c92463f-90f5-46e6-b279-36b2c87e3f90",
+      "craftId": "731"
+    },
+    {
+      "slug": "land-of-enchantment",
+      "statamicId": "cfcbb67f-1ae4-4179-a1e2-09c0789924da",
+      "craftId": "795"
+    },
+    {
+      "slug": "landline-theme",
+      "statamicId": "cc048db3-e2e8-4ab9-af09-a968380cb185",
+      "craftId": "1271"
+    },
+    {
+      "slug": "landscapes",
+      "statamicId": "e4ca0c13-3adf-40c9-8310-0b2ca9c2d042",
+      "craftId": "1273"
+    },
+    {
+      "slug": "lapin",
+      "statamicId": "4ad79579-eb34-46d9-afcf-6120511a0d8b",
+      "craftId": "1275"
+    },
+    {
+      "slug": "lava-lamp",
+      "statamicId": "b0d5cd3c-fc05-4703-b098-9192232b4eca",
+      "craftId": "1277"
+    },
+    {
+      "slug": "lawnman",
+      "statamicId": "513c5157-8e42-4595-a886-0277a8d861f0",
+      "craftId": "1279"
+    },
+    {
+      "slug": "leaving-day",
+      "statamicId": "81e61f9f-93ae-4e33-a9d2-21e368a88325",
+      "craftId": "611"
+    },
+    {
+      "slug": "library-man",
+      "statamicId": "d1706d81-4f4c-46c1-8360-ca4828942918",
+      "craftId": "1281"
+    },
+    {
+      "slug": "life-of-six",
+      "statamicId": "a1e731e4-ec5f-4d80-aa0a-948fd4028a8f",
+      "craftId": "1283"
+    },
+    {
+      "slug": "lifelong-cruise",
+      "statamicId": "2dbae9bc-44c7-417b-80ec-b74f835f350e",
+      "craftId": "797"
+    },
+    {
+      "slug": "light-touch",
+      "statamicId": "6805889d-b7d5-4903-8ff1-a90a09d8df8f",
+      "craftId": "1285"
+    },
+    {
+      "slug": "linear-galaxy",
+      "statamicId": "13159762-feb5-4c8e-a1f3-8be2629ac92e",
+      "craftId": "1287"
+    },
+    {
+      "slug": "listen-to-the-lepperor",
+      "statamicId": "48a40d6c-b0fb-4e6f-8d5a-d838e6d720cc",
+      "craftId": "1289"
+    },
+    {
+      "slug": "little-law-breaker",
+      "statamicId": "0d27074e-cd46-4a77-8dec-31a2c6e4f20b",
+      "craftId": "1291"
+    },
+    {
+      "slug": "little-soldier",
+      "statamicId": "58850887-6e5d-4edd-9feb-a60616f96ea1",
+      "craftId": "1293"
+    },
+    {
+      "slug": "living-in-an-abandoned-piano",
+      "statamicId": "c8989e2b-a46f-4689-bf44-bfd719f389ba",
+      "craftId": "733"
+    },
+    {
+      "slug": "i-wear-long-chains",
+      "statamicId": "7878729e-e2df-4b48-bf14-49059d88da2f",
+      "craftId": "1209"
+    },
+    {
+      "slug": "looney-tune",
+      "statamicId": "e6047d7a-0843-41f6-8874-ed17a691d419",
+      "craftId": "1295"
+    },
+    {
+      "slug": "lost-cruzes",
+      "statamicId": "8181b40d-e7a4-4217-9f17-702a9ea34bed",
+      "craftId": "1297"
+    },
+    {
+      "slug": "lost-in-the-jungle",
+      "statamicId": "b2297fba-baa2-4394-9179-02cfa3a18223",
+      "craftId": "1299"
+    },
+    {
+      "slug": "love-woman",
+      "statamicId": "f32a2253-360c-4c84-94b4-2f72774678e4",
+      "craftId": "1301"
+    },
+    {
+      "slug": "lumber",
+      "statamicId": "e2e68706-ee3c-46d1-bf91-1fc93613b9d5",
+      "craftId": "1303"
+    },
+    {
+      "slug": "lunattic-sidewalk",
+      "statamicId": "d0ab52c0-37ac-4b6c-8170-60f2aa5d3a28",
+      "craftId": "1305"
+    },
+    {
+      "slug": "m",
+      "statamicId": "d12fa31b-71cf-44e9-932d-6a5b09f0dbce",
+      "craftId": "749"
+    },
+    {
+      "slug": "magnet-man",
+      "statamicId": "04803c6a-c095-475a-9e9d-c1c1e0b8f12a",
+      "craftId": "555"
+    },
+    {
+      "slug": "mai-backyard",
+      "statamicId": "9d2464f9-fd4a-4ebc-8743-9f7ef7ae3317",
+      "craftId": "771"
+    },
+    {
+      "slug": "majority-rule",
+      "statamicId": "d3a65c12-eae8-446f-bc51-2559ca007d7b",
+      "craftId": "1307"
+    },
+    {
+      "slug": "mall-surfer",
+      "statamicId": "d6aab9a9-d488-42a0-8ed6-35996a74566e",
+      "craftId": "1309"
+    },
+    {
+      "slug": "mallevator",
+      "statamicId": "f2918a9c-5010-4512-b11d-f7695354d1bf",
+      "craftId": "583"
+    },
+    {
+      "slug": "mammals",
+      "statamicId": "75a75840-e505-41a3-b463-6e588e5e9026",
+      "craftId": "1311"
+    },
+    {
+      "slug": "manuel-lore",
+      "statamicId": "a27658f2-c853-4829-a9c9-7eaf105c19c7",
+      "craftId": "1313"
+    },
+    {
+      "slug": "march-of-wen",
+      "statamicId": "0958537c-34b0-48ad-ac1a-dd9d7cc37c05",
+      "craftId": "1315"
+    },
+    {
+      "slug": "mariner",
+      "statamicId": "e841be37-e1e8-4d0f-910a-8c8e50dd5d1f",
+      "craftId": "1317"
+    },
+    {
+      "slug": "mastadon-1",
+      "statamicId": "a12373b9-d4a5-40d8-af5f-10396c4371e0",
+      "craftId": "631"
+    },
+    {
+      "slug": "matt-slime",
+      "statamicId": "7a62bba2-1ab0-4265-bb2e-ec31cb0c4632",
+      "craftId": "1321"
+    },
+    {
+      "slug": "matt-slime-viniagrette",
+      "statamicId": "c4ccc44c-9b52-41dc-9da6-8ef21d58d6cc",
+      "craftId": "1319"
+    },
+    {
+      "slug": "medication",
+      "statamicId": "f64e8196-e060-4676-b549-35e4697dacf5",
+      "craftId": "483"
+    },
+    {
+      "slug": "medieval-wig-song",
+      "statamicId": "c5c76419-da3d-4e32-9dce-63f7ecb34fd1",
+      "craftId": "647"
+    },
+    {
+      "slug": "melville-was",
+      "statamicId": "dfb4bb4c-4dc7-4005-b502-17d7ebd45e92",
+      "craftId": "1323"
+    },
+    {
+      "slug": "mess-hall-rock",
+      "statamicId": "1e4b40bf-e0c9-4a70-be84-9452ddfa5088",
+      "craftId": "831"
+    },
+    {
+      "slug": "middle-age",
+      "statamicId": "26c489fa-7813-4c28-b227-32c22986b748",
+      "craftId": "1325"
+    },
+    {
+      "slug": "minimalist-cowboy-zenja",
+      "statamicId": "4d23f404-f459-46be-95af-d352fafd7669",
+      "craftId": "1327"
+    },
+    {
+      "slug": "minotaur-by-moonlight",
+      "statamicId": "b64f82b7-14fe-4724-8428-cd1d9f400f20",
+      "craftId": "1329"
+    },
+    {
+      "slug": "minotaur-quest",
+      "statamicId": "3bb5a336-0af0-47f1-a9a9-f18ae0cfe0d3",
+      "craftId": "837"
+    },
+    {
+      "slug": "miracle-drug",
+      "statamicId": "29525a32-b13b-43a1-821c-86b369673409",
+      "craftId": "799"
+    },
+    {
+      "slug": "modem-forest-ode",
+      "statamicId": "a2c7290e-c6eb-4ba6-8ba6-67bfe58f8e5f",
+      "craftId": "1331"
+    },
+    {
+      "slug": "modern-happiness",
+      "statamicId": "a7e8f2aa-da4a-4d51-a6b8-6bf2d16a9226",
+      "craftId": "1333"
+    },
+    {
+      "slug": "mole-sauce",
+      "statamicId": "f7b71e62-e7bf-4e53-8cc7-7d3733be9699",
+      "craftId": "641"
+    },
+    {
+      "slug": "moms-lament",
+      "statamicId": "7d645941-fb6a-49b2-9952-4bea637fe16a",
+      "craftId": "1335"
+    },
+    {
+      "slug": "momentum",
+      "statamicId": "69fcc72a-9de5-436e-a9e1-db072950c474",
+      "craftId": "621"
+    },
+    {
+      "slug": "monopera",
+      "statamicId": "7d69c063-09bb-4ab7-8e82-68422c8bb496",
+      "craftId": "1337"
+    },
+    {
+      "slug": "monorail-city",
+      "statamicId": "12e7352f-0534-42e3-b90c-a63917d76e45",
+      "craftId": "1341"
+    },
+    {
+      "slug": "monorail-city-days",
+      "statamicId": "5a35dd15-972e-43e7-838f-c8057a084dad",
+      "craftId": "1339"
+    },
+    {
+      "slug": "moon-base-madame",
+      "statamicId": "aa3e4183-8611-478e-bb0f-b2f97497da4d",
+      "craftId": "1343"
+    },
+    {
+      "slug": "moon-plateau",
+      "statamicId": "990fd376-b19f-4599-a74a-6fa0ea361859",
+      "craftId": "575"
+    },
+    {
+      "slug": "moon-sleuth",
+      "statamicId": "ab248f3d-81fd-4c90-8561-e83f720ee2b4",
+      "craftId": "1345"
+    },
+    {
+      "slug": "mop-stick-shimmie",
+      "statamicId": "12c552ab-14cb-4d41-85e8-fc44dafaa8cc",
+      "craftId": "1347"
+    },
+    {
+      "slug": "morning-map",
+      "statamicId": "e9347441-0fee-404a-9fb1-b5e783f80f0d",
+      "craftId": "669"
+    },
+    {
+      "slug": "morning-spa",
+      "statamicId": "7df1dd67-f12e-44f3-a8f1-6b4401bb0d53",
+      "craftId": "569"
+    },
+    {
+      "slug": "mountains-of-flesh",
+      "statamicId": "721a5f4a-9712-45d5-a729-70b67ad8e207",
+      "craftId": "1349"
+    },
+    {
+      "slug": "mouse-trap",
+      "statamicId": "3a48c81c-07f7-4da4-ab2a-7eff649c89d8",
+      "craftId": "751"
+    },
+    {
+      "slug": "mr-givens",
+      "statamicId": "900ad618-9a89-45ad-831f-a3136c99282b",
+      "craftId": "1351"
+    },
+    {
+      "slug": "mr-hotel",
+      "statamicId": "ead3c16c-4052-413e-a02a-98782c7d969b",
+      "craftId": "1353"
+    },
+    {
+      "slug": "mr-leatherbones",
+      "statamicId": "446a1e8c-88d1-48b5-b228-8a8bf7ddac96",
+      "craftId": "633"
+    },
+    {
+      "slug": "mr-skullmoon",
+      "statamicId": "1ead9ee8-fa57-4983-9c38-eaab16ae8815",
+      "craftId": "533"
+    },
+    {
+      "slug": "mr-yes-master",
+      "statamicId": "02ac392a-324b-4958-a3a1-924b0aacee8f",
+      "craftId": "1355"
+    },
+    {
+      "slug": "mummyotopsy",
+      "statamicId": "9aa24935-490c-41b6-9144-02794a5ca480",
+      "craftId": "1357"
+    },
+    {
+      "slug": "my-best-friend-the-bunny",
+      "statamicId": "18b4e4e3-ee65-4239-93ea-bf7cf4b5ca42",
+      "craftId": "521"
+    },
+    {
+      "slug": "my-lady-darbanville",
+      "statamicId": "fbe08f32-3269-4b86-b8a2-7e3618b739e9",
+      "craftId": "541"
+    },
+    {
+      "slug": "my-leg",
+      "statamicId": "e7e45c9b-67c8-42ef-9dfc-6b1cbe578ba5",
+      "craftId": "519"
+    },
+    {
+      "slug": "my-store",
+      "statamicId": "35b47416-8839-4fe5-96a2-bc18076e2e60",
+      "craftId": "1359"
+    },
+    {
+      "slug": "mynah-bird",
+      "statamicId": "eaf3894c-5424-49bc-a826-a2f0abd12925",
+      "craftId": "1361"
+    },
+    {
+      "slug": "napoleon",
+      "statamicId": "cf01863f-ce1f-4792-a263-80ed232d1513",
+      "craftId": "1363"
+    },
+    {
+      "slug": "nathan-neptune",
+      "statamicId": "df66e942-ce67-4069-a088-35fb63681c58",
+      "craftId": "1365"
+    },
+    {
+      "slug": "neon-parrot-lounge",
+      "statamicId": "353dca21-5fc8-4fe6-8fe5-22590561b829",
+      "craftId": "1367"
+    },
+    {
+      "slug": "new-quest-screen",
+      "statamicId": "85a2dffe-47c0-4a3b-bf7d-a733cdf96fa3",
+      "craftId": "1369"
+    },
+    {
+      "slug": "next-one-in-line",
+      "statamicId": "7263f2d1-367b-4d03-b78c-5e4575e5e76a",
+      "craftId": "1371"
+    },
+    {
+      "slug": "ninja-fish-soundtrack",
+      "statamicId": "754ab9b9-56bb-4722-a330-3a8fa1c566a6",
+      "craftId": "1373"
+    },
+    {
+      "slug": "no-better-way",
+      "statamicId": "bdee045e-42fa-4b38-b87d-53024687211a",
+      "craftId": "1375"
+    },
+    {
+      "slug": "no-hand",
+      "statamicId": "7cddc438-293e-4d09-80e6-d2e9f5c332b5",
+      "craftId": "1377"
+    },
+    {
+      "slug": "noahs-gardener",
+      "statamicId": "fa1f32d3-4c90-4475-8b15-89df4e99f78b",
+      "craftId": "1379"
+    },
+    {
+      "slug": "north-african-pumpkin-seed",
+      "statamicId": "d4336e70-abb8-4222-a04d-bc6e8425311a",
+      "craftId": "1381"
+    },
+    {
+      "slug": "nose-blows-joe",
+      "statamicId": "12f7fb71-a5a4-4f54-af28-6416f9262af4",
+      "craftId": "643"
+    },
+    {
+      "slug": "nostalgic-cliches",
+      "statamicId": "f104019b-ffe5-4351-958d-2fb3f6108791",
+      "craftId": "1383"
+    },
+    {
+      "slug": "not-afraid",
+      "statamicId": "170b8108-f282-45aa-9c0e-8216782018ad",
+      "craftId": "1385"
+    },
+    {
+      "slug": "novice-coast",
+      "statamicId": "f7ef9c6d-723d-49a7-acf2-458330becbb4",
+      "craftId": "1387"
+    },
+    {
+      "slug": "oasis",
+      "statamicId": "4bf07e81-891f-4463-bd96-1d18280a130d",
+      "craftId": "645"
+    },
+    {
+      "slug": "oh-my-god",
+      "statamicId": "c258c5d8-3865-4aa0-8c28-45e7c045f770",
+      "craftId": "1389"
+    },
+    {
+      "slug": "old-golem",
+      "statamicId": "1d767580-a9ec-44ce-8fd0-97ec58ba6f99",
+      "craftId": "1391"
+    },
+    {
+      "slug": "old-mans-hat",
+      "statamicId": "bd4e6c9a-63d9-42c0-8a5d-6c88bd7f9361",
+      "craftId": "847"
+    },
+    {
+      "slug": "opiums-den",
+      "statamicId": "c9bd36d1-8eb0-4e82-bafd-36084c3742a8",
+      "craftId": "1393"
+    },
+    {
+      "slug": "organ-treat",
+      "statamicId": "776e2d3b-2e46-43ff-a49a-c16d275de537",
+      "craftId": "1395"
+    },
+    {
+      "slug": "origin-story",
+      "statamicId": "2092fd33-84f0-4694-be98-f3c0a4977367",
+      "craftId": "1397"
+    },
+    {
+      "slug": "oslo",
+      "statamicId": "30ff41bb-4b71-44d6-b9a9-3583865e94dd",
+      "craftId": "1399"
+    },
+    {
+      "slug": "overboard",
+      "statamicId": "a11f37e5-e2dc-4ed1-a023-d6dc2b9cd3ff",
+      "craftId": "1401"
+    },
+    {
+      "slug": "pales-in-comparison",
+      "statamicId": "6147fce0-5437-420d-82b2-ed13e0f8b3a8",
+      "craftId": "1403"
+    },
+    {
+      "slug": "panacea-valley",
+      "statamicId": "5d67773f-7b2d-4545-a054-ea68e84df97e",
+      "craftId": "1405"
+    },
+    {
+      "slug": "panda-chutes",
+      "statamicId": "f9011a1e-64de-4179-9c01-820f20430c9d",
+      "craftId": "1407"
+    },
+    {
+      "slug": "parrot-shopping-in-south-central-america",
+      "statamicId": "636fd0d3-ea38-4382-9be3-e93be8f38e37",
+      "craftId": "735"
+    },
+    {
+      "slug": "passing-the-comet",
+      "statamicId": "984545a8-bcc9-46dd-96b0-92fb6ae753fe",
+      "craftId": "1409"
+    },
+    {
+      "slug": "pastaroni",
+      "statamicId": "5c035dbf-0103-4451-870e-2ddf5aa4dcae",
+      "craftId": "517"
+    },
+    {
+      "slug": "paste-you-with-a-devil-inside",
+      "statamicId": "2e09449f-5f2f-4c52-b234-5759a910fa55",
+      "craftId": "801"
+    },
+    {
+      "slug": "pasteroni",
+      "statamicId": "c5da3257-3784-4f21-9474-9eb85edd489b",
+      "craftId": "1411"
+    },
+    {
+      "slug": "patagonia",
+      "statamicId": "aba275c6-18eb-4d25-a491-089ad1c9001c",
+      "craftId": "1413"
+    },
+    {
+      "slug": "peaceful-palm",
+      "statamicId": "40295c04-c4f7-43f2-884e-d58d6e718af1",
+      "craftId": "1415"
+    },
+    {
+      "slug": "people-of-the-cobra",
+      "statamicId": "bacdab2a-1c0f-4da2-a15e-4a979e5a156c",
+      "craftId": "1417"
+    },
+    {
+      "slug": "perfect-mug",
+      "statamicId": "506f7b27-9274-4c56-b7a1-9abf4fcfbc50",
+      "craftId": "1419"
+    },
+    {
+      "slug": "perfectly-clear",
+      "statamicId": "a42459c9-61bd-4398-808c-c1bd3656bd27",
+      "craftId": "1421"
+    },
+    {
+      "slug": "personal-manifesto",
+      "statamicId": "f574bbeb-7b65-4b57-ac96-be5ad017cf0c",
+      "craftId": "803"
+    },
+    {
+      "slug": "pinewood-derby",
+      "statamicId": "a24809a5-a1c3-4ef6-aa36-8a281337f2ee",
+      "craftId": "1423"
+    },
+    {
+      "slug": "pink-salamander",
+      "statamicId": "5b5224ba-bb37-45f0-ac24-d20a2efb3d28",
+      "craftId": "1425"
+    },
+    {
+      "slug": "pizza-time",
+      "statamicId": "6c9b841a-0cfc-421f-b5a3-b67ed8005a01",
+      "craftId": "1427"
+    },
+    {
+      "slug": "planetarium",
+      "statamicId": "ff8d8ca6-b277-4ac1-bac7-e4080a9c6dbc",
+      "craftId": "499"
+    },
+    {
+      "slug": "playalong",
+      "statamicId": "2ec43b0e-dd8a-40a9-abb4-8a70400988f9",
+      "craftId": "485"
+    },
+    {
+      "slug": "please-feel-free",
+      "statamicId": "34c13bd3-cb41-4528-8ebf-4b02b63eb34f",
+      "craftId": "671"
+    },
+    {
+      "slug": "pool-hall",
+      "statamicId": "2f5f4778-cb59-4116-ae94-c8581cead9f6",
+      "craftId": "849"
+    },
+    {
+      "slug": "postcard-photographer",
+      "statamicId": "ba9ef084-8bc7-4d11-b4cc-afa165a38717",
+      "craftId": "1429"
+    },
+    {
+      "slug": "powerhole",
+      "statamicId": "a788904a-a648-4922-9169-e88e61a1e6b1",
+      "craftId": "501"
+    },
+    {
+      "slug": "principal-johnson",
+      "statamicId": "49d510be-eaf9-47c0-8281-3bba1f09eaf1",
+      "craftId": "1431"
+    },
+    {
+      "slug": "quasar-quaffe",
+      "statamicId": "5ea30980-9e14-45fc-932c-2efd87fc5257",
+      "craftId": "577"
+    },
+    {
+      "slug": "questionable-co",
+      "statamicId": "c4e3a0ef-e3de-4c8d-9eed-55d264cd7a0e",
+      "craftId": "737"
+    },
+    {
+      "slug": "raccoon-excercise",
+      "statamicId": "2e88c106-ea7e-4c9a-a449-1e6857d932bf",
+      "craftId": "1433"
+    },
+    {
+      "slug": "racer-rabbit",
+      "statamicId": "3f1542d3-7874-4ce9-b7e3-fa3b3dcc26df",
+      "craftId": "487"
+    },
+    {
+      "slug": "radioball",
+      "statamicId": "158597b3-b3e1-4d8c-ad7f-fecc223acb5b",
+      "craftId": "1435"
+    },
+    {
+      "slug": "radium-mouse",
+      "statamicId": "b40026d2-e7fc-433a-b22f-82333be3f527",
+      "craftId": "1437"
+    },
+    {
+      "slug": "rain-room-motel",
+      "statamicId": "5157bafb-f238-4a59-a5a3-16245ff7f9ee",
+      "craftId": "1439"
+    },
+    {
+      "slug": "rainbow-man",
+      "statamicId": "564a545a-6746-4f43-bb42-38d3399566a4",
+      "craftId": "1441"
+    },
+    {
+      "slug": "red-gold",
+      "statamicId": "29ad7888-360b-45cd-9d81-3fbcaaf9be6b",
+      "craftId": "1443"
+    },
+    {
+      "slug": "red-kite",
+      "statamicId": "f6931211-c07f-4f1e-9a40-e4e4a612abc1",
+      "craftId": "851"
+    },
+    {
+      "slug": "red-star",
+      "statamicId": "921c5cdb-2bb9-404f-a4b9-9e279b5a29c4",
+      "craftId": "687"
+    },
+    {
+      "slug": "regis-is-shrinking",
+      "statamicId": "28ed8269-2e0b-4555-9eec-ebf44c613276",
+      "craftId": "1445"
+    },
+    {
+      "slug": "reptile-things",
+      "statamicId": "d9b6abd2-beb6-4cc9-8746-36f124f78baa",
+      "craftId": "1447"
+    },
+    {
+      "slug": "rick-reception",
+      "statamicId": "b4f5b4d9-7429-437b-9e1c-8c5481042294",
+      "craftId": "1449"
+    },
+    {
+      "slug": "robotic-bird",
+      "statamicId": "3a916c9e-8723-44b7-bff0-9375b5b9cf1a",
+      "craftId": "1451"
+    },
+    {
+      "slug": "robotripping",
+      "statamicId": "769ce918-d258-4ec3-8c52-338ab4d0f18f",
+      "craftId": "653"
+    },
+    {
+      "slug": "rock-and-roll-pt-2",
+      "statamicId": "0829ca89-2078-4eb9-b0cb-019e57aa6160",
+      "craftId": "503"
+    },
+    {
+      "slug": "rockin-coffee-time",
+      "statamicId": "7550bcf4-a847-4ae3-992e-676d394f6843",
+      "craftId": "757"
+    },
+    {
+      "slug": "rogue-wind",
+      "statamicId": "7f0f93fd-cf3e-46ec-af4b-f5da565bd093",
+      "craftId": "1453"
+    },
+    {
+      "slug": "rollie-polie",
+      "statamicId": "28cc0c27-0569-4c2b-b64d-661d43ab3a99",
+      "craftId": "1455"
+    },
+    {
+      "slug": "rover-update",
+      "statamicId": "e18979ed-e33a-4a32-8c47-fee09cf00889",
+      "craftId": "689"
+    },
+    {
+      "slug": "rover-worked",
+      "statamicId": "3a9760a1-464d-496e-8ea8-cca0682bb6bf",
+      "craftId": "1457"
+    },
+    {
+      "slug": "royal-smoke-machine",
+      "statamicId": "c800aaa4-c281-4e2f-be22-c4de899fbfe3",
+      "craftId": "1459"
+    },
+    {
+      "slug": "sad-blind-shadows",
+      "statamicId": "2143a6dc-9739-436a-9fac-7ec133ac5e28",
+      "craftId": "739"
+    },
+    {
+      "slug": "satagraze-saladbar",
+      "statamicId": "7de21daf-c005-44f8-a1f6-3df148aa486c",
+      "craftId": "579"
+    },
+    {
+      "slug": "satellite-al",
+      "statamicId": "897cefae-a442-418b-a139-9ececbf972ef",
+      "craftId": "1461"
+    },
+    {
+      "slug": "scott-thomas-the-3rd",
+      "statamicId": "51cccb19-3836-4189-9dc9-bd1ec1346f43",
+      "craftId": "777"
+    },
+    {
+      "slug": "season-watch",
+      "statamicId": "f7c7a7e8-74c1-4a5f-b232-bac9494d0d5f",
+      "craftId": "1463"
+    },
+    {
+      "slug": "see-no-evil",
+      "statamicId": "05d0f945-20b3-46d9-9173-555b9f6a5201",
+      "craftId": "557"
+    },
+    {
+      "slug": "seeping-blood",
+      "statamicId": "01c94b66-fd3f-42b0-b3cc-3b6895574fb8",
+      "craftId": "1465"
+    },
+    {
+      "slug": "semi-holographic-boy",
+      "statamicId": "8ad67aa4-f333-4e72-91ed-d2e794a15e50",
+      "craftId": "811"
+    },
+    {
+      "slug": "senotaur",
+      "statamicId": "e0ab541d-78b8-49b0-8fe0-29b964ce8251",
+      "craftId": "1467"
+    },
+    {
+      "slug": "servant-boy",
+      "statamicId": "309d505b-ab63-4202-96dc-5f705a46b048",
+      "craftId": "1469"
+    },
+    {
+      "slug": "set-myself-on-fire",
+      "statamicId": "aac88723-d524-4877-803b-7030d5e6155a",
+      "craftId": "755"
+    },
+    {
+      "slug": "shadowfacimile",
+      "statamicId": "d24fa69d-9354-4fad-9727-ae38d92e26c2",
+      "craftId": "471"
+    },
+    {
+      "slug": "sharks-and-batteries",
+      "statamicId": "63814ebb-e30a-4eae-94b4-d748d13ceb5f",
+      "craftId": "853"
+    },
+    {
+      "slug": "sharleton",
+      "statamicId": "c6cc1cf3-8e57-406f-aadc-445a0452353b",
+      "craftId": "1471"
+    },
+    {
+      "slug": "shellfish",
+      "statamicId": "2bcdf7e6-acfe-466a-a7fe-6a63276ac6ac",
+      "craftId": "1473"
+    },
+    {
+      "slug": "silent-movies",
+      "statamicId": "d38ce1dd-76a3-432b-a749-4165b06f23fa",
+      "craftId": "657"
+    },
+    {
+      "slug": "sinner-song",
+      "statamicId": "0dac5766-7d68-4b15-b91d-61ecc940b58c",
+      "craftId": "741"
+    },
+    {
+      "slug": "situational-transition",
+      "statamicId": "1502aa80-9375-490c-b7c2-884819b33456",
+      "craftId": "523"
+    },
+    {
+      "slug": "skateboard-patrol",
+      "statamicId": "f0a717ef-8746-440d-93fa-ca257ed9cd50",
+      "craftId": "623"
+    },
+    {
+      "slug": "skeleton-glue",
+      "statamicId": "42489b17-a614-4586-9a1d-15ab250c8fae",
+      "craftId": "1475"
+    },
+    {
+      "slug": "slave-omelet-pie",
+      "statamicId": "dfa28305-c055-41f2-8393-b620b5a3216b",
+      "craftId": "1477"
+    },
+    {
+      "slug": "sleeping-blood",
+      "statamicId": "649d05c0-6c9d-4fd9-9958-b7e77de2f768",
+      "craftId": "1479"
+    },
+    {
+      "slug": "snaps",
+      "statamicId": "5285d58d-a2ca-4280-b31c-b4f6b97a5f20",
+      "craftId": "1481"
+    },
+    {
+      "slug": "sneaking-in-and-setting-up",
+      "statamicId": "69d5a671-1ffd-4e18-9b02-772a54926d52",
+      "craftId": "1483"
+    },
+    {
+      "slug": "sno-cone-submarine",
+      "statamicId": "d3a90cb8-e96c-4726-8f65-99727dfc39e7",
+      "craftId": "1485"
+    },
+    {
+      "slug": "snow-is-falling",
+      "statamicId": "7d167bc0-3bbf-4708-9fec-982621d608bf",
+      "craftId": "559"
+    },
+    {
+      "slug": "social-studies-hall",
+      "statamicId": "e9e4796c-3e84-42dd-a1b1-2d0b17f0699e",
+      "craftId": "1487"
+    },
+    {
+      "slug": "solar-jail",
+      "statamicId": "189155c5-f9d9-41e8-9176-efab623aabab",
+      "craftId": "691"
+    },
+    {
+      "slug": "son-valian",
+      "statamicId": "a0090001-5dbd-49bf-bd69-01762e0d1d7b",
+      "craftId": "513"
+    },
+    {
+      "slug": "soothsayer",
+      "statamicId": "d0ca69a2-77b2-416f-a39f-e47ac3ccb2b5",
+      "craftId": "1489"
+    },
+    {
+      "slug": "south-sea-swing",
+      "statamicId": "4839b74c-9888-473f-a493-9f9ce395c97c",
+      "craftId": "473"
+    },
+    {
+      "slug": "space-canoe",
+      "statamicId": "47b84ac4-5bc6-41e8-b8ec-3b31e5d427ac",
+      "craftId": "1491"
+    },
+    {
+      "slug": "space-fisherman",
+      "statamicId": "ba1c17d1-eac0-4be0-9525-07e0df628e66",
+      "craftId": "1493"
+    },
+    {
+      "slug": "spider-attack",
+      "statamicId": "c0d422fa-0b8b-41f7-99a0-d01a83065f8c",
+      "craftId": "1495"
+    },
+    {
+      "slug": "sports-tree",
+      "statamicId": "d1b89b97-129c-4804-9d93-0127b969986f",
+      "craftId": "1497"
+    },
+    {
+      "slug": "star-track",
+      "statamicId": "20b35698-aa2c-4714-8dfa-42a3a731186d",
+      "craftId": "581"
+    },
+    {
+      "slug": "starfish",
+      "statamicId": "78cc8c44-5908-42dd-a62d-c6e79ae43e98",
+      "craftId": "1499"
+    },
+    {
+      "slug": "stay",
+      "statamicId": "b1b0e287-e142-4ba6-8175-1943d997f8fe",
+      "craftId": "1501"
+    },
+    {
+      "slug": "stegosaurus-club",
+      "statamicId": "959e641c-a20b-48fa-88cb-708981700e9a",
+      "craftId": "1503"
+    },
+    {
+      "slug": "street-signs",
+      "statamicId": "a5fe7508-79ac-4bb3-83f8-3ef085f8ba2f",
+      "craftId": "855"
+    },
+    {
+      "slug": "sub-saharan-time-traveler",
+      "statamicId": "c1cf5782-8dc7-4584-ad8b-a0a921b87ceb",
+      "craftId": "1505"
+    },
+    {
+      "slug": "subway-lines",
+      "statamicId": "57d50fa7-7835-4154-987a-a14ee2d9e735",
+      "craftId": "1507"
+    },
+    {
+      "slug": "successive-successes",
+      "statamicId": "e038799b-1525-4b10-bc2b-ebedc108e71c",
+      "craftId": "1509"
+    },
+    {
+      "slug": "suckle-the-lightning",
+      "statamicId": "ee0c2084-159e-497e-b5a9-09bc2547124d",
+      "craftId": "1511"
+    },
+    {
+      "slug": "sultans-of-swing",
+      "statamicId": "4bddd466-e94b-4b82-9d96-5179c56d8c04",
+      "craftId": "807"
+    },
+    {
+      "slug": "summer-disease",
+      "statamicId": "e9ac08b0-d66f-480f-b809-c8b87e288ced",
+      "craftId": "1513"
+    },
+    {
+      "slug": "summer-ditty",
+      "statamicId": "af4a7382-b01d-4772-ae9c-f5416c684866",
+      "craftId": "1515"
+    },
+    {
+      "slug": "summer-macaw",
+      "statamicId": "24762eb1-08ae-432e-a482-3ad0f8cc6fb3",
+      "craftId": "693"
+    },
+    {
+      "slug": "summer-rain-i-am-a-manatee",
+      "statamicId": "25f153f1-b580-416c-a2c4-310b79e02781",
+      "craftId": "529"
+    },
+    {
+      "slug": "sun-god-lite",
+      "statamicId": "a18aa5b4-c5b9-4396-ba2a-e53e7771859b",
+      "craftId": "585"
+    },
+    {
+      "slug": "taco-zulu",
+      "statamicId": "255e87d4-ff08-492a-bf14-df3cae18faa8",
+      "craftId": "1519"
+    },
+    {
+      "slug": "taco-zulu-food-market",
+      "statamicId": "924b27e3-d852-464c-a076-be86682920f2",
+      "craftId": "1517"
+    },
+    {
+      "slug": "telephone-court",
+      "statamicId": "b5397d07-f0de-42a6-9778-2c1cc4dbb6bb",
+      "craftId": "597"
+    },
+    {
+      "slug": "terminathan",
+      "statamicId": "cec25465-42e5-4c19-8c2e-2819fe9aca9b",
+      "craftId": "673"
+    },
+    {
+      "slug": "thank-you-for-the-compliment",
+      "statamicId": "8224ffe2-12c9-4a83-9fe6-dbb4176b3b9a",
+      "craftId": "1521"
+    },
+    {
+      "slug": "thanksgiving",
+      "statamicId": "96fa4c77-4e82-42d1-9f07-76fe39782e6c",
+      "craftId": "1523"
+    },
+    {
+      "slug": "thats-amore",
+      "statamicId": "51cd4292-c140-419f-a252-6106695f4d2a",
+      "craftId": "1525"
+    },
+    {
+      "slug": "thats-the-trick",
+      "statamicId": "d23321e5-23ee-4a2b-b664-f4fc3bf828ed",
+      "craftId": "1527"
+    },
+    {
+      "slug": "the-ballad-of-ralph-kennidy",
+      "statamicId": "2c5955e3-808f-4f43-87c0-60978c8c8977",
+      "craftId": "1529"
+    },
+    {
+      "slug": "the-balloon-crashes",
+      "statamicId": "2ab07615-7481-49ed-b694-02b55f9178d9",
+      "craftId": "1531"
+    },
+    {
+      "slug": "the-bus",
+      "statamicId": "cafdfb6e-6d03-47de-beee-e6e441854043",
+      "craftId": "1533"
+    },
+    {
+      "slug": "the-chainer",
+      "statamicId": "b850c8ee-c4d1-4ccf-839e-276316c4abeb",
+      "craftId": "1535"
+    },
+    {
+      "slug": "the-coconuts-back",
+      "statamicId": "32a77708-982a-4214-b7ba-64508fe75a39",
+      "craftId": "1537"
+    },
+    {
+      "slug": "the-commodore",
+      "statamicId": "cdb1d4ba-cc54-4550-aa57-2733bb1621f9",
+      "craftId": "763"
+    },
+    {
+      "slug": "the-country-fair",
+      "statamicId": "b20702c6-254a-4779-a955-14dfca88db72",
+      "craftId": "1539"
+    },
+    {
+      "slug": "the-dad-show-theme",
+      "statamicId": "3cefbb27-a7ac-4478-bd24-e580fc28e5d1",
+      "craftId": "1541"
+    },
+    {
+      "slug": "the-desert-doesnt-sleep",
+      "statamicId": "8c5a3725-7628-42c0-b41c-fd20163569ac",
+      "craftId": "1543"
+    },
+    {
+      "slug": "the-devils-chewing-gum",
+      "statamicId": "31588234-52ce-477e-ba2c-7a4f9f017f1f",
+      "craftId": "813"
+    },
+    {
+      "slug": "the-distracted-scientist-sings",
+      "statamicId": "2ff4dd57-f569-4765-b939-511fdf9553a6",
+      "craftId": "857"
+    },
+    {
+      "slug": "the-doughman-of-shampoomoore-drive",
+      "statamicId": "d96f15ca-c3be-424c-857a-e90cf398eb4c",
+      "craftId": "1545"
+    },
+    {
+      "slug": "the-environment",
+      "statamicId": "873b6b68-9c03-453d-b8f0-ff16476d1f38",
+      "craftId": "613"
+    },
+    {
+      "slug": "the-exclusive-club",
+      "statamicId": "e242153f-7afe-4504-8751-b049c02dc364",
+      "craftId": "1547"
+    },
+    {
+      "slug": "the-first-age",
+      "statamicId": "3a4c2a3d-de42-4296-b86d-2d057fce10eb",
+      "craftId": "1549"
+    },
+    {
+      "slug": "the-individual",
+      "statamicId": "545fa3f9-f062-461c-9487-90cf0d7e2788",
+      "craftId": "635"
+    },
+    {
+      "slug": "the-kosa-channel",
+      "statamicId": "6e57cfb9-5ee3-4cc5-89f8-0ec188090716",
+      "craftId": "527"
+    },
+    {
+      "slug": "the-lundsford-creep",
+      "statamicId": "c834670a-7d8d-4e36-b4cf-468592a98fb8",
+      "craftId": "1551"
+    },
+    {
+      "slug": "the-man-in-the-burlap-suit",
+      "statamicId": "a856fb09-2de9-49de-8ccd-fd8d68669b09",
+      "craftId": "543"
+    },
+    {
+      "slug": "the-octopus",
+      "statamicId": "738a61bd-6cca-4217-bf6c-969b572130b5",
+      "craftId": "1553"
+    },
+    {
+      "slug": "the-prince-wants-his-pudding",
+      "statamicId": "e84730ec-5918-45be-93fd-a6f264e4daf3",
+      "craftId": "1555"
+    },
+    {
+      "slug": "the-spectrum-fantastic",
+      "statamicId": "de05ebda-db73-424e-90d3-62b47cb90db4",
+      "craftId": "1557"
+    },
+    {
+      "slug": "the-speek",
+      "statamicId": "190d1b87-1ed8-47ab-9d0f-8936e1c4f036",
+      "craftId": "599"
+    },
+    {
+      "slug": "the-thing-beneath",
+      "statamicId": "244edc8a-3df4-4eb0-90d7-b8cfec2668c1",
+      "craftId": "509"
+    },
+    {
+      "slug": "the-tingle-man-knows",
+      "statamicId": "b6554697-0ec7-494a-9508-f4ee189ddfc8",
+      "craftId": "625"
+    },
+    {
+      "slug": "the-toad-will-be-accepted",
+      "statamicId": "daa98132-1f9d-4ce7-9efb-f54cf353ac4e",
+      "craftId": "1559"
+    },
+    {
+      "slug": "the-underwater-leagues",
+      "statamicId": "c16cab1d-9e56-4926-a670-892a6291d033",
+      "craftId": "743"
+    },
+    {
+      "slug": "the-weapon",
+      "statamicId": "1e6f20b3-8f7d-4346-9e42-eb02bef51cfc",
+      "craftId": "655"
+    },
+    {
+      "slug": "then-the-giant-exploded",
+      "statamicId": "7f7176d1-67c0-4e6e-ad7c-c6c3bafb6831",
+      "craftId": "809"
+    },
+    {
+      "slug": "thera-slave",
+      "statamicId": "bcd66ac1-a605-4703-bdc5-53ed6158d196",
+      "craftId": "1561"
+    },
+    {
+      "slug": "theracane",
+      "statamicId": "2ea97f1a-0766-497b-af62-64a032ff2f5b",
+      "craftId": "1563"
+    },
+    {
+      "slug": "therplunk",
+      "statamicId": "3a8e4455-e07b-4d5d-b907-c0cdd530f755",
+      "craftId": "561"
+    },
+    {
+      "slug": "this-evenings-edition",
+      "statamicId": "556dbe9b-632e-4a35-9cd2-4c127e300097",
+      "craftId": "1565"
+    },
+    {
+      "slug": "this-evenings-show",
+      "statamicId": "89c20574-c986-41fd-8136-3269ea5a1f13",
+      "craftId": "1567"
+    },
+    {
+      "slug": "this-is-our-last-night-together",
+      "statamicId": "50ab267e-0baa-4e32-8018-739db1b68a66",
+      "craftId": "1569"
+    },
+    {
+      "slug": "those-werent-horses",
+      "statamicId": "0388af7b-c522-4818-9471-decc01df943f",
+      "craftId": "1571"
+    },
+    {
+      "slug": "three-year-apology",
+      "statamicId": "2873a4b4-148a-48e6-8321-04d563f0e9af",
+      "craftId": "745"
+    },
+    {
+      "slug": "tie-matches-trousers",
+      "statamicId": "149af35c-2de4-480e-95a1-30693bcb8148",
+      "craftId": "1573"
+    },
+    {
+      "slug": "time-to-die",
+      "statamicId": "59680fda-3212-499a-b3de-e2d59d75f3f3",
+      "craftId": "1575"
+    },
+    {
+      "slug": "time-traveler-theme",
+      "statamicId": "b0c175b6-6df7-4242-9c53-3cb907925f46",
+      "craftId": "1577"
+    },
+    {
+      "slug": "timothy-grass",
+      "statamicId": "9887b502-7f2d-4330-91ae-f0099b01ffdf",
+      "craftId": "1579"
+    },
+    {
+      "slug": "toboggan",
+      "statamicId": "787f9c4f-2e53-4b18-b640-313389d8574b",
+      "craftId": "515"
+    },
+    {
+      "slug": "tonga-trench",
+      "statamicId": "83aa35bc-9bbe-414f-bf41-340ec7f34d67",
+      "craftId": "1581"
+    },
+    {
+      "slug": "toppy-or-topei",
+      "statamicId": "679ca422-bbdd-4bce-a1e5-b52f7b6fe08a",
+      "craftId": "1583"
+    },
+    {
+      "slug": "toucan-slapstick-airplane",
+      "statamicId": "8ca10608-76ff-402d-b824-746937f470c3",
+      "craftId": "1585"
+    },
+    {
+      "slug": "tour-de-heart",
+      "statamicId": "9d23c5b1-f3ee-428e-9ac0-b328e82b5d5e",
+      "craftId": "1587"
+    },
+    {
+      "slug": "traditional-croatian-wedding-song",
+      "statamicId": "617430b4-b0ed-48f7-a6b0-7b36e8f75bcd",
+      "craftId": "705"
+    },
+    {
+      "slug": "traveller",
+      "statamicId": "4d1afc62-d826-4b5e-adb7-ec486fa34181",
+      "craftId": "695"
+    },
+    {
+      "slug": "treasure-mapper",
+      "statamicId": "d1cfd5f4-3a6b-4785-8249-83599093a776",
+      "craftId": "537"
+    },
+    {
+      "slug": "tuesday",
+      "statamicId": "9beb6c2b-447c-4105-9d38-73fe238b5e02",
+      "craftId": "1589"
+    },
+    {
+      "slug": "tune",
+      "statamicId": "0896bde0-8606-44d1-953a-f3477e12b0e5",
+      "craftId": "1591"
+    },
+    {
+      "slug": "umbrella-man",
+      "statamicId": "882612de-4c67-4786-b4e8-7147e9748c28",
+      "craftId": "1593"
+    },
+    {
+      "slug": "uncle-mike",
+      "statamicId": "4acd55d1-c263-40c8-90ef-50cbf2d8d4b9",
+      "craftId": "1595"
+    },
+    {
+      "slug": "under-the-mall",
+      "statamicId": "6b0dd139-da13-41cc-8bff-30d571e40bc5",
+      "craftId": "1597"
+    },
+    {
+      "slug": "underground-aquarium",
+      "statamicId": "e71d47bc-0e3c-411c-b8b6-ed2e0d6fe14f",
+      "craftId": "1599"
+    },
+    {
+      "slug": "underwater-adventurers",
+      "statamicId": "d53e6a64-1d36-4cf2-99d4-1fa4199c1d9d",
+      "craftId": "1601"
+    },
+    {
+      "slug": "undone-the-sweater-song",
+      "statamicId": "ef862595-22c6-4348-8c9f-e3205eb9a56c",
+      "craftId": "539"
+    },
+    {
+      "slug": "unflappable-bastard",
+      "statamicId": "518353af-033d-4840-a6a2-049e1c340d79",
+      "craftId": "1603"
+    },
+    {
+      "slug": "unicorn-hunter",
+      "statamicId": "d1593ba2-d131-4bba-85e4-e8da3e2c9d10",
+      "craftId": "1605"
+    },
+    {
+      "slug": "university-of-venus-fight-song",
+      "statamicId": "ebaa8310-256e-43f7-9763-5801b8270b51",
+      "craftId": "1607"
+    },
+    {
+      "slug": "us-and-them",
+      "statamicId": "502c6a90-069c-4a89-ab0b-5546236008d4",
+      "craftId": "563"
+    },
+    {
+      "slug": "useless-freaks",
+      "statamicId": "731313f3-d795-4a36-a769-37bc6b87ea53",
+      "craftId": "1609"
+    },
+    {
+      "slug": "vacation-on-pluto",
+      "statamicId": "463cb27a-bee8-4f46-97ba-9aa303ddea68",
+      "craftId": "1611"
+    },
+    {
+      "slug": "vacation-computer-breaks-thunderstormship",
+      "statamicId": "d775ead6-af71-4ec7-9ff6-f2c29e6df7db",
+      "craftId": "601"
+    },
+    {
+      "slug": "valentines",
+      "statamicId": "de8f38dc-f7ae-45e9-abb8-25ad23e8dada",
+      "craftId": "1613"
+    },
+    {
+      "slug": "vampire-squid",
+      "statamicId": "cbf67f0f-5567-4d8c-bc11-aa6d3fb0397d",
+      "craftId": "1615"
+    },
+    {
+      "slug": "verification-needed",
+      "statamicId": "97cb9ecc-9195-44b2-a74c-addcf01a8300",
+      "craftId": "697"
+    },
+    {
+      "slug": "videodrome",
+      "statamicId": "6bb00729-d062-4b6e-9441-89639eac6518",
+      "craftId": "1617"
+    },
+    {
+      "slug": "vlad-the-fish",
+      "statamicId": "5f11e29d-c75d-4fa0-9d96-489daf647cca",
+      "craftId": "699"
+    },
+    {
+      "slug": "volcano",
+      "statamicId": "799bd405-79c4-40d2-b626-4e2f9079e143",
+      "craftId": "1619"
+    },
+    {
+      "slug": "vulture-on-the-loose",
+      "statamicId": "92b4853a-1839-41f2-96b2-cadeea6fe185",
+      "craftId": "1621"
+    },
+    {
+      "slug": "waiting-room-music",
+      "statamicId": "eee865e4-163d-4cb0-8c6e-27caf3c2c592",
+      "craftId": "1623"
+    },
+    {
+      "slug": "wales",
+      "statamicId": "3b258887-32b4-47db-8869-c76183220c9a",
+      "craftId": "1625"
+    },
+    {
+      "slug": "washed-out-to-sea",
+      "statamicId": "2f9bf050-eb00-44a5-a46d-12f4c60eeac9",
+      "craftId": "1627"
+    },
+    {
+      "slug": "waterfall-glass-elevator",
+      "statamicId": "ebf15092-8e64-4199-928c-cd59d74a50df",
+      "craftId": "1629"
+    },
+    {
+      "slug": "waynes-world-waynes-world",
+      "statamicId": "c64bfcf6-8171-4a88-bb79-0b867c77ac19",
+      "craftId": "1631"
+    },
+    {
+      "slug": "we-have-a-cube",
+      "statamicId": "10f256b2-27a6-41ea-b24e-104863165371",
+      "craftId": "1633"
+    },
+    {
+      "slug": "weatherporn",
+      "statamicId": "42a9aa00-daf6-43f3-a4bb-99eb113fdc19",
+      "craftId": "1635"
+    },
+    {
+      "slug": "weird-people",
+      "statamicId": "83f71238-d402-4f15-b35f-5d546425929e",
+      "craftId": "1637"
+    },
+    {
+      "slug": "weird-sky-inc",
+      "statamicId": "5841e6aa-2457-4bec-9f31-f1e24ecf522e",
+      "craftId": "779"
+    },
+    {
+      "slug": "welcome-to-morning",
+      "statamicId": "9c41e549-75c5-43bf-be8d-15d7e6052b6b",
+      "craftId": "525"
+    },
+    {
+      "slug": "welcome-to-the-bank",
+      "statamicId": "30e4d9f8-b503-4fc0-9220-3c16cc581340",
+      "craftId": "603"
+    },
+    {
+      "slug": "welcome-to-the-future",
+      "statamicId": "bd4177a4-bf22-40fb-9815-1b1c0bdb0458",
+      "craftId": "1639"
+    },
+    {
+      "slug": "what-a-cool-guy",
+      "statamicId": "f83fd338-0287-414f-a9c6-99e3cb747b00",
+      "craftId": "781"
+    },
+    {
+      "slug": "what-im-doing-now",
+      "statamicId": "481be993-1469-42df-b773-d4d5c98bbd07",
+      "craftId": "747"
+    },
+    {
+      "slug": "what-is-an-idea",
+      "statamicId": "ccec273f-8f55-4746-8600-d913cbe22b60",
+      "craftId": "1641"
+    },
+    {
+      "slug": "what-youre-doing",
+      "statamicId": "26700b1f-9fde-417e-992e-8542a0ce9fe2",
+      "craftId": "505"
+    },
+    {
+      "slug": "when-a-cobra-escapes",
+      "statamicId": "054b3ce6-6660-43e9-8eed-2c74bafe7790",
+      "craftId": "1643"
+    },
+    {
+      "slug": "when-pompeii-blows",
+      "statamicId": "4c7dd279-2d28-4926-b71e-4e91136c3ba6",
+      "craftId": "1645"
+    },
+    {
+      "slug": "where-are-you",
+      "statamicId": "14be2861-2b64-4e5f-8e31-58dd8557ebda",
+      "craftId": "1647"
+    },
+    {
+      "slug": "whirley-bird",
+      "statamicId": "47032d07-20f6-4660-9997-b6489eafda71",
+      "craftId": "1649"
+    },
+    {
+      "slug": "windjammered",
+      "statamicId": "0da6065e-6b71-48bb-8090-6984d0b0f38b",
+      "craftId": "805"
+    },
+    {
+      "slug": "wish-letter",
+      "statamicId": "ec91e60e-1b3d-463d-aa5f-92073a96cb1c",
+      "craftId": "753"
+    },
+    {
+      "slug": "with-a-little-bit-of-luck",
+      "statamicId": "ed9d198c-fc4f-4110-b75e-3ab939da529d",
+      "craftId": "1651"
+    },
+    {
+      "slug": "within-you-without-you-tomorrow-never-knows",
+      "statamicId": "9167bd58-db8e-4bfb-8847-54a2669627c0",
+      "craftId": "759"
+    },
+    {
+      "slug": "wolves",
+      "statamicId": "14fc21dd-8c53-468a-92ab-20c07689dde6",
+      "craftId": "1653"
+    },
+    {
+      "slug": "wonderful-land",
+      "statamicId": "1d0c4d96-7f80-4994-bda3-1859d3e85c80",
+      "craftId": "833"
+    },
+    {
+      "slug": "working-in-the-foreign-service",
+      "statamicId": "71c65b30-8a0a-476f-aeea-67ea68cf78f7",
+      "craftId": "1655"
+    },
+    {
+      "slug": "wysteria-mysterium",
+      "statamicId": "e5b310fe-ee26-4055-a4eb-4dc0fc731922",
+      "craftId": "627"
+    },
+    {
+      "slug": "yellow-star-gorillas",
+      "statamicId": "bddede1a-f25c-4e60-b812-0b5c406a2279",
+      "craftId": "701"
+    },
+    {
+      "slug": "you-dont-do-that",
+      "statamicId": "2f67061d-4b1b-438d-bafe-c39772cf0789",
+      "craftId": "1657"
+    },
+    {
+      "slug": "you-kept-me-awake",
+      "statamicId": "cda6d2a7-6243-4ab8-a853-14d498eb3670",
+      "craftId": "565"
+    },
+    {
+      "slug": "you-might-be-dead",
+      "statamicId": "16c98be1-cc6b-4c8c-b821-0287b6c28c78",
+      "craftId": "511"
+    },
+    {
+      "slug": "your-rubber-soul",
+      "statamicId": "a68d76e8-9bce-4a08-8f32-d314a4a0a0e9",
+      "craftId": "1659"
+    },
+    {
+      "slug": "yousei-soo",
+      "statamicId": "d8226605-7fbd-4a3b-9d63-2d04000c6c33",
+      "craftId": "1661"
+    },
+    {
+      "slug": "zombie",
+      "statamicId": "5891ef98-ab7c-4ee1-9db7-447f6cd4406e",
+      "craftId": "817"
+    },
+    {
+      "slug": "zoo-church",
+      "statamicId": "db669b92-030b-4b2e-8384-0b5895dba65e",
+      "craftId": "489"
+    }
+  ]
+}
