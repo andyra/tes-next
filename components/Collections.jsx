@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
 import CoverArt from "./CoverArt";
+import LightBox from "./LightBox";
 import NiceDate from "./NiceDate";
 import { PageTitle } from "./PageHeader";
 import { getCollectionType, getCollectionCoverArtUrl } from "../helpers";
@@ -27,13 +28,25 @@ export const CollectionHeader = ({ children, collection }) => {
         {collectionType}
       </Button>
       <div className="flex flex-col lg:flex-row lg:items-end gap-24">
-        <CoverArt
-          className="rounded-lg mx-auto md:mx-0 w-256"
-          height={256}
-          title={title}
-          url={getCollectionCoverArtUrl(collection)}
-          width={256}
-        />
+        <LightBox
+          trigger={
+            <CoverArt
+              className="rounded-lg mx-auto md:mx-0 w-256"
+              height={256}
+              title={title}
+              url={getCollectionCoverArtUrl(collection)}
+              width={256}
+            />
+          }
+        >
+          <CoverArt
+            className="rounded w-1/2 mx-auto"
+            height={512}
+            title={title}
+            url={getCollectionCoverArtUrl(collection)}
+            width={512}
+          />
+        </LightBox>
         <hgroup className="flex flex-col gap-12">
           <PageTitle>{title}</PageTitle>
           {children}
@@ -52,7 +65,7 @@ CollectionHeader.propTypes = {
 
 export const CollectionList = ({ children, gridView }) => {
   const classes = cn({
-    "grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 -mx-8 relative": gridView,
+    "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 -mx-8 md:-mx-16 relative": gridView,
     "divide-y": !gridView
   });
 
@@ -77,7 +90,7 @@ export const CollectionListSkeleton = () => (
 export const CollectionItem = ({ children, collection, gridView }) => {
   const { releaseDate, title, uri } = collection;
   const linkClasses = cn({
-    "hover:ring-2 hover:ring-accent rounded p-8 h-full transition group": true,
+    "hover:ring-2 hover:ring-accent rounded-lg p-8 md:p-16 h-full transition group": true,
     block: gridView,
     "flex items-center gap-8": !gridView
   });
