@@ -11,23 +11,23 @@ import CategoryList from "../components/CategoryList";
 // ----------------------------------------------------------------------------
 
 export default function Category({ category }) {
-  const { children, id, title } = category;
+  const { children, id, parent, slug, title } = category;
+  const showFeaturedImages =
+    slug === "people" || (parent !== null && parent.slug === "people");
+
+  const backLink = parent
+    ? { title: parent.title, href: parent.slug }
+    : { title: "Library", href: "/library" };
 
   return (
     <>
-      <PageHeader
-        title={title}
-        center
-        back={{ title: "Library", href: "/library" }}
-      />
+      <PageHeader title={title} center back={backLink} />
       {children.length > 0 && (
-        <ClientOnly>
+        <section className="max-w-screen-lg mx-auto">
           <CategoryList parentId={id} />
-        </ClientOnly>
+        </section>
       )}
-      <ClientOnly>
-        <ArticleList id={id} divider={children.length} />
-      </ClientOnly>
+      <ArticleList id={id} showFeaturedImages={showFeaturedImages} />
     </>
   );
 }
@@ -67,6 +67,8 @@ export async function getStaticProps(context) {
         category(group: "library", slug: "${params.slug}") {
           id
           children { id }
+          parent { slug, title }
+          slug
           title
         }
       }

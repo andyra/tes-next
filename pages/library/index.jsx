@@ -1,40 +1,37 @@
-import { Fragment } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import ClientOnly from "../../components/ClientOnly";
+import CategoryList from "./components/CategoryList";
+import { ArticleItem } from "./components/ArticleList";
 import Empty from "../../components/Empty";
 import PageHeader from "../../components/PageHeader";
-import CategoryList from "./components/CategoryList";
 import { shuffle } from "../../helpers/utils";
 
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Library({ articles }) {
-  const randomArticles = shuffle(articles.slice(0, 3));
+export default function Library({ articles, people }) {
+  const randomArticles = shuffle([...people]).slice(0, 3);
 
   return (
     <>
       <PageHeader title="Library" center />
-      <p className="text-3xl lg:text-4xl lg:text-center">
-        The Grand Library of all things Akabius. Learn about, for instance,{" "}
-        {randomArticles.map((article, i) => (
-          <Fragment key={article.slug}>
-            <Link href={`/library/${encodeURIComponent(article.slug)}`}>
-              <a className="underline">{article.title}</a>
-            </Link>
-            {i + 2 < randomArticles.length
-              ? ", "
-              : i + 1 < randomArticles.length
-              ? " or "
-              : ""}
-          </Fragment>
-        ))}
-      </p>
-      <ClientOnly>
-        <CategoryList />
-      </ClientOnly>
+      <section className="space-y-16">
+        <p className="text-2xl lg:text-3xl lg:text-center">
+          The Grand Library of all things Akabius. Learn about, for instance:
+        </p>
+        <ul className="grid grid-cols-3 gap-16">
+          {randomArticles.map(article => (
+            <ArticleItem
+              article={article}
+              showFeaturedImages={true}
+              key={article.slug}
+            />
+          ))}
+        </ul>
+      </section>
+      <CategoryList />
     </>
   );
 }
@@ -50,6 +47,20 @@ export async function getStaticProps() {
           slug
           title
         }
+        people: entries(
+          section: "library"
+          relatedToCategories: [{ slug: "people" }]
+        ) {
+          slug
+          title
+          ... on library_default_Entry {
+            featuredImage {
+              height
+              url
+              width
+            }
+          }
+        }
       }
     `
   });
@@ -58,6 +69,7 @@ export async function getStaticProps() {
     props: {
       PageTitle: "Library",
       articles: data.entries,
+      people: data.people,
       spacing: true
     }
   };

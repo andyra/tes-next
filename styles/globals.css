@@ -137,8 +137,9 @@
   @apply flex-1 font-medium text-2xl text-secondary pt-16 border-t print:font-bold print:text-2xl print:text-black print:border-none;
 }
 
+/* Subtitle */
 .lead-sheet h2 {
-  @apply text-xl text-primary-50 mb-8 print:mb-0 print:text-black;
+  @apply text-xl text-primary-50 mb-16 print:mb-0 print:text-black;
 }
 
 .chord-sheet .paragraph {
