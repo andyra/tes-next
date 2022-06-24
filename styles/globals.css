@@ -146,6 +146,10 @@
   @apply space-y-16 print:space-y-8 print:leading-snug print:text-base;
 }
 
+.chord-sheet .verse {
+  @apply font-mono text-base leading-none;
+}
+
 .chord-sheet .row {
   @apply flex flex-wrap items-stretch gap-8 print:break-inside-avoid-page;
 }
