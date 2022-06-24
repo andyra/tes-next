@@ -9,7 +9,7 @@ import "../styles/globals.css";
 const App = ({ Component, pageProps }) => (
   <ApolloProvider client={client}>
     <PlayerContextProvider>
-      <ThemeProvider attribute="class" defaultTheme="system">
+      <ThemeProvider attribute="class" defaultTheme="dark">
         <Layout {...pageProps}>
           <Component {...pageProps} />
         </Layout>

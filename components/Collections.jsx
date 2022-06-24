@@ -90,14 +90,14 @@ export const CollectionListSkeleton = () => (
 export const CollectionItem = ({ children, collection, gridView }) => {
   const { releaseDate, title, uri } = collection;
   const linkClasses = cn({
-    "hover:ring-2 hover:ring-accent rounded-lg p-8 md:p-16 h-full transition group": true,
+    "Xhover:ring-2 Xhover:ring-accent hover:text-accent rounded-lg p-8 md:p-16 h-full transition group": true,
     block: gridView,
     "flex items-center gap-8": !gridView
   });
 
   const coverArtClasses = cn({
-    "w-full rounded-lg": gridView,
-    "h-96 w-96 rounded-lg": !gridView
+    "w-full rounded-lg transition duration-300 origin-center group-hover:-rotate-2 group-hover:shadow-lg": gridView,
+    "h-64 w-64 rounded-lg": !gridView
   });
 
   return (

@@ -64,6 +64,12 @@ module.exports = {
           "Arial",
           "sans-serif"
         ]
+      },
+      zIndex: {
+        "player-fullscreen": "40",
+        dialog: "50",
+        "dialog-content": "55",
+        grain: "100"
       }
     },
     keyframes: {

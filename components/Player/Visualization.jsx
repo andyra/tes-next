@@ -242,20 +242,11 @@ const Visualization = () => {
     requestAnimationFrame(tick);
   }, []);
 
-  const fullSizeClass = "absolute top-0 left-0 h-full w-full";
-
   return (
-    <div className={fullSizeClass}>
-      <canvas
-        ref={canvasRef}
-        className={`opacity-100 brightness-75 saturate-50 ${fullSizeClass}`}
-      >
-        TEXT
-      </canvas>
-      <div
-        className={`pointer-events-none opacity-30 bg-[url('/asphalt-light.png')] ${fullSizeClass}`}
-      />
-    </div>
+    <canvas
+      ref={canvasRef}
+      className="absolute top-0 left-0 h-full w-full brightness-75 saturate-50"
+    />
   );
 };
 

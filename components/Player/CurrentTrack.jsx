@@ -13,7 +13,7 @@ export const CurrentTrack = ({
   const currentTrackClasses = cn({
     "flex relative": true,
     "items-center gap-8 w-full md:w-1/3": !isFullscreen,
-    "flex-1 flex-col items-center justify-end text-center w-full gap-16 md:gap-48 md:mb-48 mix-blend-overlay": isFullscreen
+    "flex-1 flex-col items-center justify-end text-center w-full gap-16 md:gap-48 md:mb-48 mix-blend-overlayXXX": isFullscreen
   });
 
   const coverArtClasses = cn({

@@ -14,14 +14,20 @@ import NiceDate from "../../../components/NiceDate";
 
 const QUERY_EPISODES = gql`
   query Entries {
-    entries(section: "episodes") {
+    entries(section: "episodes", orderBy: "releaseDate DESC") {
       slug
       title
       uri
       ... on episodes_default_Entry {
         releaseDate
-        episodeCoverArt {
+        description
+        episodeAudio {
           url
+        }
+        episodeCoverArt {
+          height
+          url
+          width
         }
       }
     }

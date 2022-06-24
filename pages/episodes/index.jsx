@@ -68,7 +68,8 @@ export async function getStaticProps() {
   return {
     props: {
       PageTitle: "Episodes",
-      spacing: true
+      spacing: true,
+      maxWidth: "max-w-screen-xl"
     }
   };
 }

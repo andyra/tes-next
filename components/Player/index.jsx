@@ -61,7 +61,7 @@ export const Player = () => {
   const playerClasses = cn({
     "flex items-center gap-8 bg-ground rounded-lg md:col-span-2 md:mx-0": true,
     "p-8 rounded-lg": !isFullscreen,
-    "absolute z-50 top-0 left-0 w-full h-full flex-col justify-end px-24 py-24 md:p-48 lg:p-96": isFullscreen,
+    "absolute top-0 left-0 z-player-fullscreen w-full h-full flex-col justify-end px-24 py-24 md:p-48 lg:p-96": isFullscreen,
     hidden: playerIsEmpty
   });
 
@@ -172,7 +172,6 @@ export const Player = () => {
 
   function toggleRandom() {
     setIsRandom(!isRandom);
-    console.log(nextList);
 
     if (isRandom) {
       const orderedNextList = [...nextList].sort((a, b) =>

@@ -19,9 +19,7 @@ export default function Episode({ episode }) {
   return (
     <>
       <CollectionHeader collection={episode}>
-        <div>
-          <NiceDate date={releaseDate} /> • Duration
-        </div>
+        <NiceDate date={releaseDate} />
       </CollectionHeader>
       <Tracklist tracks={normalizedTracks} />
     </>

@@ -42,7 +42,7 @@ const CurrentTrack = ({ currentTrack }) => {
           className="h-88 w-88 rounded-lg"
           height={88}
           width={88}
-          url={currentTrack.coverArtUrl}
+          url={currentTrack.collection.coverArt}
           title={currentTrack.title}
         />
         <div className="flex-1">

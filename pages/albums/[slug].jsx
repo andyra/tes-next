@@ -25,16 +25,12 @@ export default function Album({ album }) {
     collection: album
   });
 
-  useEffect(() => {
-    return console.log("Run this on mount");
-  }, []);
-
   return (
     <>
       <CollectionHeader collection={album}>
         <div>
           {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
-          {albumTracklist.length} Tracks • Duration
+          {albumTracklist.length} Tracks
         </div>
       </CollectionHeader>
       <Tracklist tracks={normalizedTracks} />

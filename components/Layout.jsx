@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import * as Popover from "@radix-ui/react-popover";
+import styled, { keyframes } from "styled-components";
 import cn from "classnames";
 import { Toaster } from "react-hot-toast";
 import Button from "./Button";
@@ -30,6 +31,23 @@ const Container = ({ children, maxWidth, spacing }) => {
 
   return <div className={containerClasses}>{children}</div>;
 };
+
+const grain = keyframes`
+  0%, 100% { background-position: 0% 0%; }
+  20% { background-position: 50% 50%; }
+  40% { background-position: 25% 25%; }
+  60% { background-position: 75% 75%; }
+  80% { background-position: 0% 100%; }
+`;
+
+const Grain = styled.div.attrs({
+  className:
+    "fixed h-screen w-screen pointer-events-none z-grain mix-blend-difference"
+})`
+  animation: ${grain} 0.4s steps(1) infinite;
+  background-image: url(/noise-256w.png);
+  opacity: 0.2;
+`;
 
 // Default
 // ----------------------------------------------------------------------------
@@ -66,6 +84,7 @@ export default function Layout({ children, ...props }) {
         </Container>
       </Main>
       <Player />
+      <Grain />
     </>
   );
 }

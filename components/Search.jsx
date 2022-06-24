@@ -86,7 +86,7 @@ const Search = () => {
   }
 
   const contentClasses = cn(
-    "fixed top-0 right-0 left-0 bottom-0 sm:left-auto sm:w-480 z-30",
+    "fixed top-0 right-0 left-0 bottom-0 sm:left-auto sm:w-480 z-dialog-content",
     "m-4 p-16 rounded-lg bg-ground border-2 radix-state-open:animate-enter-from-right"
   );
 
@@ -109,7 +109,7 @@ const Search = () => {
         </Dialog.Trigger>
       </Tooltip>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed top-0 right-0 bottom-0 left-0 z-20 backdrop-blur-md bg-ground/30 radix-state-open:animate-fade-in" />
+        <Dialog.Overlay className="fixed top-0 right-0 bottom-0 left-0 z-dialog backdrop-blur-md bg-ground/30 radix-state-open:animate-fade-in" />
         <Dialog.Content className={contentClasses}>
           <VisuallyHidden.Root asChild>
             <Dialog.Title>Search</Dialog.Title>

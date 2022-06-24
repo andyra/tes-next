@@ -93,8 +93,6 @@ TrackMenu.propTypes = {
 // Tracklist
 // ----------------------------------------------------------------------------
 
-// UGH. Can't seem to get the duration. I can SEE the duration in the log
-// inside audioRef.current, but I can't output it separately.
 const TrackDuration = ({ src }) => {
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
@@ -192,7 +190,9 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
                 />
                 <div>
                   <div className="font-medium">{track.title}</div>
-                  <div className="text-sm">{track.collection.title}</div>
+                  <div className="text-sm text-primary-75">
+                    {track.collection.title}
+                  </div>
                 </div>
               </>
             ) : (

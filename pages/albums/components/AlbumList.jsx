@@ -15,7 +15,7 @@ import { getArtistInfo } from "../../../helpers/";
 
 const QUERY_ALBUMS = gql`
   query Entries {
-    entries(section: "albums") {
+    entries(section: "albums", orderBy: "releaseDate DESC") {
       slug
       title
       uri

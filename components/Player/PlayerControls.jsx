@@ -21,7 +21,7 @@ export const PlayerControls = ({
   const playerControlClasses = cn({
     "flex flex-col gap-4": true,
     "md:w-1/3": !isFullscreen,
-    "w-full transition duration-300 mix-blend-overlay": isFullscreen
+    "w-full transition duration-300 relative mix-blend-overlayXXX": isFullscreen
   });
 
   const extraButtonClasses = cn({
@@ -117,7 +117,7 @@ export const PlayerControls = ({
           <Slider.Track className="flex-1 h-4 bg-primary-25 rounded-full">
             <Slider.Range className="bg-primary absolute rounded-full h-4 left-0" />
           </Slider.Track>
-          <Slider.Thumb className="block h-16 w-16 rounded-full bg-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <Slider.Thumb className="block h-16 w-16 rounded-full bg-accent transition duration-150 opacity-0 group-hover:opacity-100 transition-opacity" />
         </Slider.Root>
         <time className={durationClasses}>{formatTime(duration)}</time>
       </div>
