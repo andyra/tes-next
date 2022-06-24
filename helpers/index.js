@@ -106,7 +106,7 @@ export function normalizeFullEpisode(episode) {
         coverArt: getCollectionCoverArtUrl(episode)
       },
       dateAdded: null,
-      id: `${episode.sectionHandle}-${episode.slug}`,
+      id: `${getCollectionType(episode)}-${episode.slug}`,
       leadSheet: null,
       notation: null,
       position: null,
@@ -137,7 +137,7 @@ export function normalizeTrack(collection, track, i) {
       coverArt: getCollectionCoverArtUrl(collection)
     },
     dateAdded: null,
-    id: `${collection.sectionHandle}-${collection.slug}-${i}`,
+    id: `${getCollectionType(collection)}-${collection.slug}-${i}`,
     leadSheet: getSongInfo(track, "leadSheet"),
     notation: getSongInfo(track, "notation"),
     position: i,

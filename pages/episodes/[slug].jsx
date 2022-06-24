@@ -5,22 +5,41 @@ import { CollectionHeader } from "../../components/Collections";
 import CoverArt from "../../components/CoverArt";
 import NiceDate from "../../components/NiceDate";
 import PageHeader, { PageTitle } from "../../components/PageHeader";
+import PlayPauseButton from "../../components/PlayPauseButton";
 import Tracklist from "../../components/Tracklist";
 import { EPISODE } from "../../constants";
-import { normalizeTracklist, querySlugs } from "../../helpers";
+import {
+  normalizeFullEpisode,
+  normalizeTracklist,
+  querySlugs
+} from "../../helpers";
 
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Episode({ episode }) {
-  const { episodeCoverArt, releaseDate, title } = episode;
+  const { description, episodeCoverArt, releaseDate, title } = episode;
   const normalizedTracks = normalizeTracklist({ collection: episode });
+  const normalizedFullEpisode = normalizeFullEpisode(episode);
 
   return (
     <>
       <CollectionHeader collection={episode}>
-        <NiceDate date={releaseDate} />
+        <div>
+          <NiceDate date={releaseDate} /> • [Duration]
+        </div>
       </CollectionHeader>
+      <section className="flex flex-col md:flex-row items-center gap-24 p-24 rounded-lg border-2">
+        <div className="text-center">
+          <PlayPauseButton
+            className="hover:text-accent"
+            size="xl"
+            track={normalizedFullEpisode}
+          />
+          <div className="mt-8 text-secondary-50">Listen</div>
+        </div>
+        <p className="flex-1 text-xl">{description}</p>
+      </section>
       <Tracklist tracks={normalizedTracks} />
     </>
   );
@@ -53,6 +72,7 @@ export async function getStaticProps(context) {
     query: gql`
       query Entry {
         entry(section: "episodes", slug: "${params.slug}") {
+          slug
           title
           uri
           ... on episodes_default_Entry {
@@ -90,7 +110,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       episode: data.entry,
-      navSection: "Episodes",
+      navSection: "Podcast",
       PageTitle: data.entry.title
     }
   };
