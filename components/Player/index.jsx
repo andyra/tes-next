@@ -232,6 +232,7 @@ export const Player = () => {
             onLoadError={handleOnLoadError}
             onPlayError={handleOnPlayError}
             rate={rate}
+            html5
             preload
           />
         )}
