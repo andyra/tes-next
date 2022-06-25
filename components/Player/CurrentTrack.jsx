@@ -19,7 +19,7 @@ export const CurrentTrack = ({
   const coverArtClasses = cn({
     "flex-shrink-0 bg-primary-5": true,
     "rounded w-40 h-40 md:w-64 md:h-64": !isFullscreen,
-    "w-full max-w-screen-xs mx-auto h-auto mt-auto md:w-1/2 rounded-full overflow-hidden animate-slow-spin": isFullscreen
+    "w-full max-w-screen-xs mx-auto h-auto mt-auto md:w-1/2 rounded-full overflow-hidden animate-spin-slow": isFullscreen
   });
 
   const trackInfoClasses = cn({

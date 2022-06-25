@@ -58,12 +58,11 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
     <>
       <nav className={navClasses}>
         <Link href="/">
-          <a className="font-funky text-5xl text-primary hidden md:block">
-            This
-            <br />
-            Evening's
-            <br />
-            Show
+          <a className="hidden md:block -mx-24">
+            <div className="uppercase font-funky text-9xl whitespace-nowrap flex gap-16 animate-marqueeXXX w-[929px]">
+              <span>This Evening's Show</span>
+              <span>This Evening's Show</span>
+            </div>
           </a>
         </Link>
         <div className="grid grid-cols-5 w-full md:block">

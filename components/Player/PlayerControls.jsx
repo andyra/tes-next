@@ -2,16 +2,18 @@ import * as Slider from "@radix-ui/react-slider";
 import cn from "classnames";
 import Button from "../Button";
 import Icon from "../Icon";
+import Loader from "../Loader";
 import { formatTime } from "../../helpers/utils";
 
 export const PlayerControls = ({
   duration,
   elapsed,
   isFullscreen,
+  isLoading,
   isLooped,
   isPlaying,
   isRandom,
-  handleScrub,
+  handleOnSeek,
   skipBack,
   skipNext,
   toggleLoop,
@@ -85,8 +87,22 @@ export const PlayerControls = ({
         >
           <Icon name="SkipPrev" />
         </Button>
-        <Button active={isPlaying} circle onClick={togglePlay} variant="ghost">
-          <Icon name={isPlaying ? "Pause" : "Play"} />
+        <Button
+          active={isPlaying && !isLoading}
+          circle
+          className={isLoading ? "relative" : ""}
+          onClick={togglePlay}
+          variant="ghost"
+        >
+          <Icon
+            name={isPlaying ? "Pause" : "Play"}
+            className={isLoading ? "opacity-0" : ""}
+          />
+          {isLoading && (
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <Loader />
+            </span>
+          )}
         </Button>
         <Button
           circle
@@ -111,7 +127,7 @@ export const PlayerControls = ({
           className={sliderClasses}
           max={duration}
           min={0}
-          onValueChange={e => handleScrub(e)}
+          onValueChange={e => handleOnSeek(e)}
           value={[elapsed]}
         >
           <Slider.Track className="flex-1 h-4 bg-primary-25 rounded-full">

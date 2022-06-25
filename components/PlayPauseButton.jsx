@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
+import cn from "classnames";
 import { usePlayerContext } from "../context/PlayerContext";
 import Button, { BUTTON_SIZES, BUTTON_VARIANTS } from "./Button";
 import Icon from "./Icon";
+import Loader from "./Loader";
 
 // Pass in a track play it in the player
 const PlayPauseButton = ({
@@ -14,14 +16,17 @@ const PlayPauseButton = ({
 }) => {
   const {
     currentTrack,
+    isLoading,
     isPlaying,
     setCurrentTrack,
+    setIsLoading,
     setIsPlaying,
     setNextList,
     setPrevList,
     setQueueList
   } = usePlayerContext();
   const active = trackIsSelected(track) && isPlaying;
+  const classes = cn("relative", className);
 
   function trackIsSelected(track) {
     return (
@@ -68,8 +73,9 @@ const PlayPauseButton = ({
 
   return (
     <Button
-      active={active}
-      className={className}
+      // disabling for now because it looks better in Tracklists. If you want it on, create a new pop like "showActive"
+      // active={active}
+      className={classes}
       circle
       onClick={() => {
         selectTrack(track, i);
@@ -78,8 +84,14 @@ const PlayPauseButton = ({
       variant={variant}
     >
       <Icon
+        className={isLoading ? "opacity-0" : ""}
         name={trackIsSelected(track) ? (isPlaying ? "Pause" : "Play") : "Play"}
       />
+      {isLoading && (
+        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <Loader />
+        </span>
+      )}
     </Button>
   );
 };

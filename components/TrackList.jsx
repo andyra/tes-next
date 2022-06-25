@@ -141,7 +141,6 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
       currentTrack.id === track.id &&
       !track.addedViaQueue &&
       !currentTrack.addedViaQueue;
-    const active = trackIsSelected && isPlaying;
 
     const liClasses = cn({
       "flex items-center gap-8 px-8 -mx-8 h-64 rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
@@ -152,12 +151,13 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
 
     const indexClasses = cn({
       "hidden md:flex items-center justify-center relative h-40 w-40 flex-shrink-0 text-primary-50": true,
-      "group-hover:opacity-0": track.audioFile
+      "group-hover:opacity-0": track.audioFile,
+      "opacity-0": trackIsSelected
     });
 
     const playButtonClasses = cn({
       "md:absolute md:top-1/2 md:left-0 md:-translate-y-1/2": true,
-      "md:opacity-0 md:group-hover:opacity-100": !active
+      "md:opacity-0 md:group-hover:opacity-100": !trackIsSelected
     });
 
     const titleClasses = cn({
@@ -171,11 +171,11 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
           <div className={indexClasses}>{track.position}</div>
           {track.audioFile && (
             <PlayPauseButton
-              track={track}
               className={playButtonClasses}
+              i={i}
+              track={track}
               tracklist={tracks}
               variant="ghost"
-              i={i}
             />
           )}
           <div className={titleClasses}>

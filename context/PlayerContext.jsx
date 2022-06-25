@@ -5,6 +5,7 @@ export const usePlayerContext = () => useContext(PlayerContext);
 
 export const PlayerContextProvider = ({ children }) => {
   const [currentTrack, setCurrentTrack] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [nextList, setNextList] = useState([]);
   const [prevList, setPrevList] = useState([]);
@@ -14,11 +15,13 @@ export const PlayerContextProvider = ({ children }) => {
     <PlayerContext.Provider
       value={{
         currentTrack: currentTrack,
+        isLoading: isLoading,
         isPlaying: isPlaying,
         nextList: nextList,
         prevList: prevList,
         queueList: queueList,
         setCurrentTrack: setCurrentTrack,
+        setIsLoading: setIsLoading,
         setIsPlaying: setIsPlaying,
         setNextList: setNextList,
         setPrevList: setPrevList,

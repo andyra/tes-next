@@ -78,6 +78,11 @@ module.exports = {
         "50%": { opacity: "0.10" },
         "100%": { opacity: "0.05" }
       },
+      // Logo
+      marquee: {
+        "0%": { transform: "translate3d(0, 0, 0)" },
+        "100%": { transform: "translate3d(-100%, 0, 0)" }
+      },
       // Dropdown menu
       "scale-in": {
         "0%": { opacity: 0, transform: "scale(0)" },
@@ -144,8 +149,9 @@ module.exports = {
     },
     animation: {
       loading: "bg-pulse 1s infinite",
-      spin: "spin 64s linear infinite",
-      "slow-spin": "spin 32s linear infinite",
+      marquee: "marquee 20s linear infinite",
+      spin: "spin 1s linear infinite",
+      "spin-slow": "spin 32s linear infinite",
       // Dropdown menu
       "scale-in": "scale-in 0.2s ease-in-out",
       "slide-down": "slide-down 0.6s cubic-bezier(0.16, 1, 0.3, 1)",

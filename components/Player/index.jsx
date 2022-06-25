@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import ReactHowler from "react-howler";
 import { useMediaQuery } from "react-responsive";
 import cn from "classnames";
 import { usePlayerContext } from "../../context/PlayerContext";
@@ -10,30 +11,16 @@ import MediaQuery, { BREAKPOINTS } from "../MediaQuery";
 import PlayerControls from "./PlayerControls";
 import { shuffle } from "../../helpers/utils";
 
-// TODO: articles
-// https://codesandbox.io/s/5wwj02qy7k?file=/src/index.js
-// https://codesandbox.io/s/xj4897445q?file=/src/components/Player/Audio.js
-// https://dev.to/nicomartin/how-to-create-a-progressive-audio-player-with-react-hooks-31l1
-// http://goldfirestudios.com/proj/howlerjs/sound.ogg
-
-// autoplay: false
-// controls: false
-// loop: false
-// preload: metadata
-// src: you know
-// timeupdate: set state currentTime
-// seeking: set state isPlaying to false
-// seeked: set state isPlaying to true
-// ratechange: set state rate
-
 export const Player = () => {
   const {
     currentTrack,
+    isLoading,
     isPlaying,
     nextList,
     prevList,
     queueList,
     setCurrentTrack,
+    setIsLoading,
     setIsPlaying,
     setNextList,
     setPrevList,
@@ -44,19 +31,18 @@ export const Player = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLooped, setIsLooped] = useState(false);
   const [isRandom, setIsRandom] = useState(false);
+  const [duration, setDuration] = useState(0);
   const [elapsed, setElapsed] = useState(0);
+  const [rate, setRate] = useState(1);
+  const [isSeeking, setIsSeeking] = useState(false);
 
   // Refs
-  // https://letsbuildui.dev/articles/building-an-audio-player-with-react-hooks
-  const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
+  const howlerRef = useRef(null);
   const intervalRef = useRef();
-  const isReady = useRef(false);
-  const { duration } = audioRef.current;
 
   // Config
   const playerIsEmpty =
     !currentTrack && prevList.length + nextList.length + queueList.length === 0;
-  const isDesktop = useMediaQuery(BREAKPOINTS.desktop);
   const isMobile = useMediaQuery(BREAKPOINTS.mobile);
   const playerClasses = cn({
     "flex items-center gap-8 bg-ground rounded-lg md:col-span-2 md:mx-0": true,
@@ -68,45 +54,22 @@ export const Player = () => {
   // Hooks
   // ---------------------------------------------------------------------------
 
-  // Toggle playing
-  useEffect(() => {
-    if (isPlaying) {
-      audioRef.current.play();
-      startTimer();
-    } else {
-      clearInterval(intervalRef.current);
-      audioRef.current.pause();
-    }
-  }, [isPlaying]);
-
-  // Pause and clean up on unmount
-  useEffect(() => {
-    return () => {
-      audioRef.current.pause();
-      clearInterval(intervalRef.current);
-    };
-  }, []);
-
   // Handle setup when changing tracks
   useEffect(() => {
-    audioRef.current.pause();
-
     if (currentTrack) {
-      audioRef.current = new Audio(currentTrack.audioFile);
-      setElapsed(audioRef.current.currentTime);
+      if (howlerRef.current.howler._state === "loading") {
+        setIsLoading(true);
+      }
     }
-
-    if (isReady.current) {
-      audioRef.current.play();
-      setIsPlaying(true);
-      startTimer();
-    } else {
-      // Set the isReady ref as true for the next pass
-      isReady.current = true;
-    }
+    setIsPlaying(true);
   }, [currentTrack]);
 
-  // Turn off the stereo if nothing is playing
+  // Set elapsed when isPlaying
+  useEffect(() => {
+    isPlaying ? startElapsedTimer() : clearInterval(intervalRef.current);
+  }, [isPlaying]);
+
+  // Turn off the player if there's nothing to play
   useEffect(() => {
     if (playerIsEmpty) {
       setIsPlaying(false);
@@ -114,12 +77,77 @@ export const Player = () => {
     }
   }, [playerIsEmpty]);
 
-  // Functions
-  // ---------------------------------------------------------------------------
+  // Pause and clean up on unmount
+  useEffect(() => {
+    return () => {
+      howlerRef.current.stop();
+      clearInterval(intervalRef.current);
+    };
+  }, []);
+
+  // Player functions
+  // ----------------------------------------------------------------------------
 
   function togglePlay() {
     setIsPlaying(!isPlaying);
   }
+
+  function handleOnLoad() {
+    setIsLoading(false);
+    setDuration(howlerRef.current.duration());
+  }
+
+  function handleOnEnd() {
+    clearInterval(intervalRef.current); // Clear any timers already running
+    setIsPlaying(false);
+
+    if (isLooped) {
+      // Rewind and start playing
+      howlerRef.current.seek(0);
+      setElapsed(0);
+      setIsPlaying(true);
+    } else {
+      skipNext();
+    }
+  }
+
+  function handleOnPlay() {
+    setIsLoading(false);
+  }
+
+  function handleOnSeek(value) {
+    // Clear any timers already running
+    clearInterval(intervalRef.current);
+    // The Radix Slider value is in an array, so pluck out the first value
+    howlerRef.current.seek(value[0]);
+    setElapsed(howlerRef.current.seek());
+    startElapsedTimer();
+  }
+
+  function handleRateChange() {
+    const newRate = rate === 1 ? 2 : 1;
+    howlerRef.current.rate(newRate);
+    setRate(newRate);
+  }
+
+  function handleOnLoadError() {
+    console.log("LOAD ERROR");
+  }
+
+  function handleOnPlayError() {
+    console.log("PLAY ERROR");
+  }
+
+  function startElapsedTimer() {
+    clearInterval(intervalRef.current); // Clear any timers already running
+
+    intervalRef.current = setInterval(() => {
+      setElapsed(howlerRef.current.seek());
+    }, [1000]);
+  }
+
+  // List Functions
+  // ---------------------------------------------------------------------------
 
   function addToPrevList(item) {
     const newPrevList = [...prevList];
@@ -184,40 +212,30 @@ export const Player = () => {
     }
   }
 
-  function startTimer() {
-    // Clear any timers already running
-    clearInterval(intervalRef.current);
-
-    intervalRef.current = setInterval(() => {
-      if (audioRef.current.ended) {
-        if (isLooped) {
-          setElapsed(0);
-          audioRef.current.pause();
-          audioRef.current.currentTime = 0;
-          audioRef.current.play();
-        } else {
-          skipNext();
-        }
-      } else {
-        setElapsed(audioRef.current.currentTime);
-      }
-    }, [1000]);
-  }
-
-  function handleScrub(value) {
-    // Clear any timers already running
-    clearInterval(intervalRef.current);
-    audioRef.current.currentTime = value[0];
-    setElapsed(audioRef.current.currentTime);
-    startTimer();
-  }
-
   // Render
   // ---------------------------------------------------------------------------
 
   return (
     <>
       <aside className={playerClasses}>
+        {currentTrack && (
+          <ReactHowler
+            ref={howlerRef}
+            // When the sources are swapped we'll pass a new audioSrc prop into
+            // ReactHowler which will destroy our currently playing Howler.js and
+            // initialize a new Howler.js instance
+            src={currentTrack.audioFile}
+            playing={isPlaying}
+            onLoad={handleOnLoad}
+            onEnd={handleOnEnd}
+            onPlay={handleOnPlay}
+            onSeek={handleOnSeek}
+            onLoadError={handleOnLoadError}
+            onPlayError={handleOnPlayError}
+            rate={rate}
+            preload
+          />
+        )}
         {isFullscreen && <Visualization visible={isFullscreen} />}
         <CurrentTrack
           isFullscreen={isFullscreen}
@@ -229,10 +247,11 @@ export const Player = () => {
           elapsed={elapsed}
           duration={duration}
           isFullscreen={isFullscreen}
+          isLoading={isLoading}
           isLooped={isLooped}
           isPlaying={isPlaying}
           isRandom={isRandom}
-          handleScrub={handleScrub}
+          handleOnSeek={handleOnSeek}
           skipBack={skipBack}
           skipNext={skipNext}
           toggleLoop={toggleLoop}

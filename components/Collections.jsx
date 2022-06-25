@@ -96,6 +96,7 @@ export const CollectionItem = ({ children, collection, gridView }) => {
   });
 
   const coverArtClasses = cn({
+    "border border-primary-5": true,
     "w-full rounded-lg transition duration-300 origin-center group-hover:-rotate-2 group-hover:shadow-lg": gridView,
     "h-64 w-64 rounded-lg": !gridView
   });
