@@ -1,19 +1,64 @@
 import * as Slider from "@radix-ui/react-slider";
 import cn from "classnames";
-import Button from "../Button";
+import Button, { getButtonClasses } from "../Button";
 import Icon from "../Icon";
 import Loader from "../Loader";
+import { Menu, MenuDivider, MenuHeading, MenuItem } from "../Menu";
 import { formatTime } from "../../helpers/utils";
+
+const RATES = [
+  { badge: "3", label: "Fastest", rate: 1.5 },
+  { badge: "2", label: "Faster", rate: 1.25 },
+  { badge: "1", label: "Fast", rate: 1.15 },
+  { badge: "1⨉", label: "Normal", rate: 1 },
+  { badge: "1", label: "Slow", rate: 0.9 },
+  { badge: "2", label: "Slower", rate: 0.75 },
+  { badge: "3", label: "Slowest", rate: 0.5 }
+];
+
+const Meter = ({ rate }) => {
+  function getClass(pos) {
+    return pos > rate
+      ? "bg-primary-25"
+      : pos === rate
+      ? "bg-accent"
+      : "bg-primary";
+  }
+
+  const index = RATES.findIndex(item => {
+    return item.rate === rate;
+  });
+
+  return (
+    <div className="flex items-center justify-center font-mono font-bold text-sm">
+      {rate > 1 && (
+        <>
+          <Icon name="ArrowUp" />
+          {RATES[index].badge}
+        </>
+      )}
+      {rate === 1 && <>{RATES[index].badge}</>}
+      {rate < 1 && (
+        <>
+          <Icon name="ArrowDown" />
+          {RATES[index].badge}
+        </>
+      )}
+    </div>
+  );
+};
 
 export const PlayerControls = ({
   duration,
   elapsed,
+  handleOnSeek,
+  handleRateChange,
   isFullscreen,
   isLoading,
   isLooped,
   isPlaying,
   isRandom,
-  handleOnSeek,
+  rate,
   skipBack,
   skipNext,
   toggleLoop,
@@ -71,14 +116,40 @@ export const PlayerControls = ({
   return (
     <div className={playerControlClasses}>
       <div className="flex items-center justify-center gap-2">
-        <Button
+        {/*<Button
           circle
           className={randomClasses}
           onClick={toggleRandom}
           variant="ghost"
         >
           <Icon name="Shuffle" />
-        </Button>
+        </Button>*/}
+
+        <Menu
+          tooltipContent="Playback Speed"
+          trigger={<Meter rate={rate} />}
+          triggerClassName={getButtonClasses({
+            circle: true,
+            variant: "ghost"
+          })}
+        >
+          <MenuHeading>Playback Speed</MenuHeading>
+          {RATES.map(item => (
+            <MenuItem
+              className={item.rate === rate ? "text-accent" : ""}
+              onClick={() => {
+                handleRateChange(item.rate);
+              }}
+            >
+              {item.label}
+              <Icon
+                name="Check"
+                className={`ml-auto ${item.rate === rate ? "" : "opacity-0"}`}
+              />
+            </MenuItem>
+          ))}
+        </Menu>
+
         <Button
           circle
           className={extraButtonClasses}

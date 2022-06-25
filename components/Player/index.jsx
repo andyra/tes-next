@@ -124,10 +124,9 @@ export const Player = () => {
     startElapsedTimer();
   }
 
-  function handleRateChange() {
-    const newRate = rate === 1 ? 2 : 1;
-    howlerRef.current.rate(newRate);
-    setRate(newRate);
+  function handleRateChange(value) {
+    howlerRef.current.rate(value);
+    setRate(value);
   }
 
   function handleOnLoadError() {
@@ -244,14 +243,16 @@ export const Player = () => {
           setIsFullscreen={setIsFullscreen}
         />
         <PlayerControls
-          elapsed={elapsed}
           duration={duration}
+          elapsed={elapsed}
+          handleOnSeek={handleOnSeek}
+          handleRateChange={handleRateChange}
           isFullscreen={isFullscreen}
           isLoading={isLoading}
           isLooped={isLooped}
           isPlaying={isPlaying}
           isRandom={isRandom}
-          handleOnSeek={handleOnSeek}
+          rate={rate}
           skipBack={skipBack}
           skipNext={skipNext}
           toggleLoop={toggleLoop}
