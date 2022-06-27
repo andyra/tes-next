@@ -60,11 +60,13 @@ export function getTrackSlug(track) {
 }
 
 export function getTrackTitle(track) {
-  const { song, description } = track;
+  const { song, description, songTitle } = track;
   return song && song.length
     ? song[0].title
     : description && description.length
     ? description
+    : songTitle && songTitle.length
+    ? songTitle
     : null;
 }
 
@@ -143,6 +145,7 @@ export function normalizeTrack(collection, track, i) {
     position: i,
     slug: getTrackSlug(track),
     title: getTrackTitle(track),
+    type: getTrackType(track),
     uri: getTrackUri(track)
   };
 }

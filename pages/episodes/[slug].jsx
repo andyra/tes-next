@@ -99,6 +99,12 @@ export async function getStaticProps(context) {
                 description
                 audioFile { url }
               }
+              ... on episodeTracklist_coverSong_BlockType {
+                songTitle
+                audioFile {
+                  url
+                }
+              }
             }
             releaseDate
           }

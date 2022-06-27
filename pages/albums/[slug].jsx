@@ -12,7 +12,7 @@ import { normalizeTracklist, querySlugs } from "../../helpers";
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Album({ album }) {
+export default function Album({ album, durations }) {
   const {
     albumCoverArt,
     albumTracklist,
@@ -88,6 +88,10 @@ export async function getStaticProps(context) {
               }
               ... on albumTracklist_segment_BlockType {
                 description
+                audioFile { url }
+              }
+              ... on albumTracklist_coverSong_BlockType {
+                songTitle
                 audioFile { url }
               }
             }

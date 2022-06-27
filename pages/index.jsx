@@ -52,6 +52,12 @@ const QUERY_LATEST_COLLECTIONS = gql`
               url
             }
           }
+          ... on albumTracklist_coverSong_BlockType {
+            songTitle
+            audioFile {
+              url
+            }
+          }
         }
         albumType
         releaseDate

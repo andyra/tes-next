@@ -14,6 +14,23 @@ import PlayPauseButton from "../components/PlayPauseButton";
 import { getCollectionType } from "../helpers";
 import { formatTime } from "../helpers/utils";
 
+const DurationSSR = ({ src }) => {
+  const [duration, setDuration] = useState(0);
+
+  if (typeof window === "undefined") {
+    const { getAudioDurationInSeconds } = require("get-audio-duration");
+
+    getAudioDurationInSeconds(src).then(d => {
+      console.log("<<<<<<<<<<<<<<<<<<<");
+      console.log(d);
+      setDuration(d);
+      return d;
+    });
+  }
+
+  return duration;
+};
+
 // Overflow Menu
 // ----------------------------------------------------------------------------
 
@@ -93,16 +110,15 @@ TrackMenu.propTypes = {
 // Tracklist
 // ----------------------------------------------------------------------------
 
-const TrackDuration = ({ src }) => {
+const DurationBrowser = ({ src }) => {
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
 
   useEffect(() => {
-    return () => {
-      audioRef.current = new Audio(src);
-      audioRef.current.onloadeddata = () => {
-        setDuration(audioRef.current.duration);
-      };
+    // I used to have this wrapped in a return
+    audioRef.current = new Audio(src);
+    audioRef.current.onloadeddata = () => {
+      setDuration(audioRef.current.duration);
     };
   }, []);
 
@@ -202,7 +218,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
         </div>
         <div id="actions" className="flex items-center gap-2">
           {track.audioFile ? (
-            <TrackDuration src={track.audioFile} />
+            <DurationBrowser src={track.audioFile} />
           ) : (
             <span className="text-sm text-primary-25 opacity-0 group-hover:opacity-100 transition mr-4">
               No audio

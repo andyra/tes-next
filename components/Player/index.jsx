@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import ReactHowler from "react-howler";
+import toast from "react-hot-toast";
 import { useMediaQuery } from "react-responsive";
 import cn from "classnames";
 import { usePlayerContext } from "../../context/PlayerContext";
@@ -130,11 +131,14 @@ export const Player = () => {
   }
 
   function handleOnLoadError() {
-    console.log("LOAD ERROR");
+    toast.error("Trouble loading audio file");
+    clearInterval(intervalRef.current);
+    setIsLoading(false);
+    setCurrentTrack(false);
   }
 
   function handleOnPlayError() {
-    console.log("PLAY ERROR");
+    toast.error("Trouble playing audio file");
   }
 
   function startElapsedTimer() {
