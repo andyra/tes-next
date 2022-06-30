@@ -57,7 +57,7 @@ const Computor = ({
     const items = shuffledSongs.map((song, i) => ({
       song: song,
       bleed: bleedsFor.indexOf(i) >= 0,
-      strategy: shuffledStrategies.shift()
+      strategy: strategiesFor.indexOf(i) >= 0 ? shuffledStrategies[i] : null
     }));
 
     setSetlistItems(items);
@@ -68,7 +68,7 @@ const Computor = ({
       <div className="flex items-center gap-16">
         <Input
           className="flex-1"
-          defaultValue={songCount}
+          defaultValue={`${songCount}`}
           inputClassName="font-medium text-3xl text-center h-64"
           label="Songs"
           labelClassName={LABEL_CLASSES}
@@ -81,7 +81,7 @@ const Computor = ({
         />
         <Input
           className="flex-1"
-          defaultValue={bleedCount}
+          defaultValue={`${bleedCount}`}
           inputClassName="font-medium text-3xl text-center h-64"
           label="Bleeds"
           labelClassName={LABEL_CLASSES}
@@ -95,7 +95,7 @@ const Computor = ({
         />
         <Input
           className="flex-1"
-          defaultValue={strategyCount}
+          defaultValue={`${strategyCount}`}
           inputClassName="font-medium text-3xl text-center h-64"
           label="Strategies"
           labelClassName={LABEL_CLASSES}
@@ -128,7 +128,7 @@ const SetlistItem = ({ item, i }) => {
   const hasLeadSheet = song.leadSheet || song.notation.length > 0;
   const classes = cn({
     "w-full py-12 px-16 rounded-lg text-left transition": true,
-    "hover:bg-secondary-10": hasLeadSheet
+    "hover:bg-primary-10": hasLeadSheet
   });
 
   return (
@@ -154,9 +154,7 @@ const SetlistItem = ({ item, i }) => {
           )}
         </div>
         {strategy && (
-          <div className="ml-40 text-xl text-primary-50">
-            "{strategy.strategy}"
-          </div>
+          <div className="ml-40 text-xl text-primary-50">"{strategy}"</div>
         )}
       </Accordion.Trigger>
       <Accordion.Content className="ml-64">
@@ -178,11 +176,14 @@ const SetlistItems = ({ items }) =>
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Setlist({ songs, strategies }) {
+export default function Setlist({ songs, strategyGlobal }) {
   const [songCount, setSongCount] = useState(0);
   const [bleedCount, setBleedCount] = useState(0);
   const [strategyCount, setStrategyCount] = useState(0);
   const [setlistItems, setSetlistItems] = useState([]);
+
+  // Split the text block string into an array of strings based on newlines
+  const strategies = strategyGlobal[0].strategies.split(/\r?\n/);
 
   return (
     <>
@@ -224,13 +225,9 @@ export async function getStaticProps(context) {
             }
           }
         }
-        setlist: entry(section: "setlistComputor") {
-          ... on setlistComputor_setlistComputor_Entry {
-            strategies {
-              ... on strategies_BlockType {
-                strategy
-              }
-            }
+        globalSets {
+          ... on setlistComputor_GlobalSet {
+            strategies
           }
         }
       }
@@ -241,7 +238,7 @@ export async function getStaticProps(context) {
     props: {
       PageTitle: "Setlist Computor",
       songs: data.entries,
-      strategies: data.setlist.strategies,
+      strategyGlobal: data.globalSets,
       spacing: true
     }
   };

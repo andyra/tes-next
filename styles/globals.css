@@ -134,7 +134,7 @@
 }
 
 .chord-sheet .comment {
-  @apply flex-1 font-medium text-2xl text-secondary pt-16 border-t print:font-bold print:text-2xl print:text-black print:border-none;
+  @apply flex-1 font-medium text-2xl text-secondary print:font-bold print:text-2xl print:text-black print:border-none;
 }
 
 /* Subtitle */
@@ -159,7 +159,7 @@
 }
 
 .chord-sheet .chord {
-  @apply text-secondary print:text-black print:font-medium;
+  @apply text-primary font-mono print:text-black print:font-medium;
 }
 
 /* Library Article

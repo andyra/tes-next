@@ -9,7 +9,7 @@ const LeadSheet = ({ className, song }) => {
   const formattedLeadSheet = formatter.format(parsedLeadSheet);
 
   return (
-    <section className="space-y-16 lg:border-2 lg:rounded-xl lg:p-48 lg:shadow-lg xl:p-64 break-inside-auto lead-sheet">
+    <section className="space-y-16 lg:border-2 lg:rounded-xl lg:p-48 lg:shadow-lg xl:p-48 break-inside-auto lead-sheet">
       <h2 className="hidden font-bold text-xl print:block print:text-2xl print:mb-0">
         {song.title}
       </h2>

@@ -5,7 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import cn from "classnames";
 import { getButtonClasses } from "./Button";
-import Badge from "./Badge";
+import CoverArt from "./CoverArt";
 import ClientOnly from "./ClientOnly";
 import Empty from "./Empty";
 import Icon from "./Icon";
@@ -13,6 +13,7 @@ import Input from "./Input";
 import Loader from "./Loader";
 import Tooltip from "./Tooltip";
 import useDebounce from "../hooks/useDebounce";
+import { getCollectionCoverArtUrl } from "../helpers";
 
 // TODO: Close when navigating to new page
 // TODO: Highlight term
@@ -23,11 +24,24 @@ import useDebounce from "../hooks/useDebounce";
 
 const QUERY_SEARCH = gql`
   query Entries($searchTerm: String) {
-    entries(search: $searchTerm, section: ["albums", "episodes", "library"]) {
+    entries(
+      search: $searchTerm
+      section: ["albums", "episodes", "songs", "library"]
+    ) {
       title
       slug
       uri
       sectionHandle
+      ... on albums_default_Entry {
+        albumCoverArt {
+          url
+        }
+      }
+      ... on episodes_default_Entry {
+        episodeCoverArt {
+          url
+        }
+      }
     }
   }
 `;
@@ -63,6 +77,28 @@ function groupBy(arr, property) {
 // Components
 // ----------------------------------------------------------------------------
 
+const SearchImage = ({ item }) => {
+  const ICONS = {
+    songs: "Note",
+    library: "Book"
+  };
+
+  return item.albumCoverArt || item.episodeCoverArt ? (
+    <CoverArt
+      className="h-40 w-40 rounded"
+      url={getCollectionCoverArtUrl(item)}
+      height={100}
+      width={100}
+      layout="responsive"
+      alt={item.title}
+    />
+  ) : (
+    <figure className="h-40 w-40 rounded-full bg-primary-5 flex items-center justify-center">
+      <Icon name={ICONS[item.sectionHandle]} />
+    </figure>
+  );
+};
+
 const Search = () => {
   // State
   const [isOpen, setIsOpen] = useState(false);
@@ -82,7 +118,6 @@ const Search = () => {
           setIsSearching(false);
           // const sortedResults = sortResults(results.data.entries);
           const groupedResults = groupBy(results.data.entries, "sectionHandle");
-          console.log(groupedResults);
           setResults(groupedResults);
         }
       );
@@ -108,12 +143,7 @@ const Search = () => {
   );
 
   return (
-    <Dialog.Root
-      open={isOpen}
-      onOpenChange={() => {
-        console.log("changed");
-      }}
-    >
+    <Dialog.Root open={isOpen}>
       <Tooltip content="Search" asChild>
         <Dialog.Trigger
           className={getButtonClasses({ circle: true, variant: "glass" })}
@@ -136,7 +166,7 @@ const Search = () => {
           <VisuallyHidden.Root asChild>
             <Dialog.Title>Search</Dialog.Title>
           </VisuallyHidden.Root>
-          <header className="flex gap-8 sticky -top-24 z-10 bg-ground pt-24 px-24 -mt-24 -mx-24">
+          <header className="flex gap-16 sticky -top-24 z-10 bg-ground pt-24 px-24 -mt-24 -mx-24">
             <Input
               className="flex-1"
               glass
@@ -171,11 +201,12 @@ const Search = () => {
                       <li key={`${i}-${result.title}`}>
                         <Link href={`/${result.uri}/`}>
                           <a
-                            className="block px-8 py-8 rounded-lg hover:bg-primary-10 text-xl text-primary transition"
+                            className="flex items-center gap-16 px-8 py-8 rounded-lg hover:bg-primary-10 text-xl text-primary transition"
                             onClick={() => {
                               setIsOpen(false);
                             }}
                           >
+                            <SearchImage item={result} />
                             {result.title}
                           </a>
                         </Link>
@@ -185,12 +216,10 @@ const Search = () => {
                 </li>
               ))}
             </ul>
-          ) : debouncedSearchTerm.length === 0 ? (
-            ""
-          ) : isSearching ? (
-            ""
+          ) : debouncedSearchTerm.length && !isSearching ? (
+            <div className="text-center text-primary-50 mt-24">No results</div>
           ) : (
-            <div className="text-center text-primary-50">No results</div>
+            ""
           )}
         </Dialog.Content>
       </Dialog.Portal>
