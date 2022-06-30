@@ -35,7 +35,7 @@ export const Input = ({
   });
 
   const inputClasses = cn({
-    "block w-full h-40 bg-ground outline-none text-primary placeholder-primary-50": true,
+    "block w-full h-40 outline-none text-primary placeholder-primary-50": true,
     "focus:border-accent focus:ring focus:ring-accent-25": true,
     "border-2": !glass,
     "bg-primary-5 focus:bg-primary-5": glass,

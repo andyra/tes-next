@@ -78,12 +78,10 @@ module.exports = {
         "50%": { opacity: "0.10" },
         "100%": { opacity: "0.05" }
       },
-      // Logo
       marquee: {
         "0%": { transform: "translate3d(0, 0, 0)" },
         "100%": { transform: "translate3d(-100%, 0, 0)" }
       },
-      // Dropdown menu
       "scale-in": {
         "0%": { opacity: 0, transform: "scale(0)" },
         "100%": { opacity: 1, transform: "scale(1)" }
@@ -96,10 +94,9 @@ module.exports = {
         "0%": { opacity: 0, transform: "translateY(10px)" },
         "100%": { opacity: 1, transform: "translateY(0)" }
       },
-      // Tooltip
       "slide-up-fade": {
-        "0%": { opacity: 0, transform: "translateY(2px)" },
-        "100%": { opacity: 1, transform: "translateY(0)" }
+        "0%": { opacity: 0, marginTop: "16px" },
+        "100%": { opacity: 1, marginTop: "0" }
       },
       "slide-right-fade": {
         "0%": { opacity: 0, transform: "translateX(-2px)" },
@@ -113,7 +110,6 @@ module.exports = {
         "0%": { opacity: 0, transform: "translateX(2px)" },
         "100%": { opacity: 1, transform: "translateX(0)" }
       },
-      // Navigation menu
       "enter-from-right": {
         "0%": { transform: "translateX(200px)", opacity: 0 },
         "100%": { transform: "translateX(0)", opacity: 1 }

@@ -5,6 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import cn from "classnames";
 import { getButtonClasses } from "./Button";
+import Badge from "./Badge";
 import ClientOnly from "./ClientOnly";
 import Empty from "./Empty";
 import Icon from "./Icon";
@@ -22,7 +23,7 @@ import useDebounce from "../hooks/useDebounce";
 
 const QUERY_SEARCH = gql`
   query Entries($searchTerm: String) {
-    entries(search: $searchTerm) {
+    entries(search: $searchTerm, section: ["albums", "episodes", "library"]) {
       title
       slug
       uri
@@ -49,6 +50,16 @@ function sortResults(results) {
   return sortedResults.sort(compareSectionHandles);
 }
 
+function groupBy(arr, property) {
+  return arr.reduce(function(memo, x) {
+    if (!memo[x[property]]) {
+      memo[x[property]] = [];
+    }
+    memo[x[property]].push(x);
+    return memo;
+  }, {});
+}
+
 // Components
 // ----------------------------------------------------------------------------
 
@@ -69,8 +80,10 @@ const Search = () => {
       executeQuery({ variables: { searchTerm: debouncedSearchTerm } }).then(
         results => {
           setIsSearching(false);
-          const sortedResults = sortResults(results.data.entries);
-          setResults(sortedResults);
+          // const sortedResults = sortResults(results.data.entries);
+          const groupedResults = groupBy(results.data.entries, "sectionHandle");
+          console.log(groupedResults);
+          setResults(groupedResults);
         }
       );
       setIsSearching(true);
@@ -85,9 +98,13 @@ const Search = () => {
     setResults([]);
   }
 
+  const overlayClasses =
+    "fixed top-0 right-0 bottom-0 left-0 z-dialog backdrop-blur-md bg-primary-5 radix-state-open:animate-fade-in";
+
   const contentClasses = cn(
-    "fixed top-0 right-0 left-0 bottom-0 sm:left-auto sm:w-480 z-dialog-content",
-    "m-4 p-16 rounded-lg bg-ground border-2 radix-state-open:animate-enter-from-right"
+    "fixed top-[5vh] left-1/2 transform -translate-x-1/2 z-dialog-content",
+    "w-full max-w-screen-sm max-h-[90vh] overflow-y-auto",
+    "p-24 rounded-lg bg-ground border-2 radix-state-open:animate-slide-up-fade"
   );
 
   return (
@@ -109,12 +126,17 @@ const Search = () => {
         </Dialog.Trigger>
       </Tooltip>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed top-0 right-0 bottom-0 left-0 z-dialog backdrop-blur-md bg-ground/30 radix-state-open:animate-fade-in" />
-        <Dialog.Content className={contentClasses}>
+        <Dialog.Overlay className={overlayClasses} />
+        <Dialog.Content
+          className={contentClasses}
+          onEscapeKeyDown={() => {
+            setIsOpen(false);
+          }}
+        >
           <VisuallyHidden.Root asChild>
             <Dialog.Title>Search</Dialog.Title>
           </VisuallyHidden.Root>
-          <header className="flex gap-8 mb-16">
+          <header className="flex gap-8 sticky -top-24 z-10 bg-ground pt-24 px-24 -mt-24 -mx-24">
             <Input
               className="flex-1"
               glass
@@ -130,38 +152,45 @@ const Search = () => {
             />
             <Dialog.Close
               className={getButtonClasses({ circle: true, variant: "ghost" })}
+              onClick={() => {
+                setIsOpen(false);
+              }}
             >
               <Icon name="X" />
             </Dialog.Close>
           </header>
-          {results.length ? (
-            <ul className="-mx-8">
-              {results.map((result, i) => (
-                <li key={`${i}-${result.title}`}>
-                  <Link href={`/${result.uri}/`}>
-                    <a
-                      className="flex items-center justify-between gap-8 h-40 px-8 rounded-lg hover:bg-primary-10 text-xl transition"
-                      onClick={() => {
-                        setIsOpen(false);
-                      }}
-                    >
-                      {result.title}
-                      <span className="flex items-center rounded-full border border-primary-25 px-8 h-24 text-sm">
-                        {result.sectionHandle}
-                      </span>
-                    </a>
-                  </Link>
+          {Object.keys(results).length ? (
+            <ul className="flex flex-col gap-16 -mb-8 mt-24">
+              {Object.keys(results).map(category => (
+                <li>
+                  <h3 className="font-mono text-xs uppercase tracking-wider text-secondary-50 py-4 bg-ground sticky top-40">
+                    {category}
+                  </h3>
+                  <ul className="-mx-8">
+                    {results[category].map((result, i) => (
+                      <li key={`${i}-${result.title}`}>
+                        <Link href={`/${result.uri}/`}>
+                          <a
+                            className="block px-8 py-8 rounded-lg hover:bg-primary-10 text-xl text-primary transition"
+                            onClick={() => {
+                              setIsOpen(false);
+                            }}
+                          >
+                            {result.title}
+                          </a>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ))}
             </ul>
+          ) : debouncedSearchTerm.length === 0 ? (
+            ""
+          ) : isSearching ? (
+            ""
           ) : (
-            <div className="text-center text-primary-50">
-              {debouncedSearchTerm.length === 0
-                ? ""
-                : isSearching
-                ? ""
-                : "No results"}
-            </div>
+            <div className="text-center text-primary-50">No results</div>
           )}
         </Dialog.Content>
       </Dialog.Portal>
