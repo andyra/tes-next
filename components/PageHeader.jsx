@@ -4,7 +4,7 @@ import Button from "./Button";
 
 export const PageTitle = ({ children, className }) => {
   const classes = cn({
-    "flex-1 font-funky text-6xl md:text-8xl tracking-tight": true,
+    "flex-1 font-funky font-bold text-6xl md:text-8xl md:leading-[0.8]": true,
     [className]: className
   });
 
