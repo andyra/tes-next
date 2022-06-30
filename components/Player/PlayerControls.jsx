@@ -7,13 +7,15 @@ import { Menu, MenuDivider, MenuHeading, MenuItem } from "../Menu";
 import { formatTime } from "../../helpers/utils";
 
 const RATES = [
-  { badge: "3", label: "Fastest", rate: 1.5 },
-  { badge: "2", label: "Faster", rate: 1.25 },
-  { badge: "1", label: "Fast", rate: 1.15 },
+  { badge: "4", label: "+50%", rate: 1.5 },
+  { badge: "3", label: "+25%", rate: 1.25 },
+  { badge: "2", label: "+10%", rate: 1.1 },
+  { badge: "1", label: "+5%", rate: 1.05 },
   { badge: "1⨉", label: "Normal", rate: 1 },
-  { badge: "1", label: "Slow", rate: 0.9 },
-  { badge: "2", label: "Slower", rate: 0.75 },
-  { badge: "3", label: "Slowest", rate: 0.5 }
+  { badge: "1", label: "–5%", rate: 0.95 },
+  { badge: "2", label: "–10%", rate: 0.9 },
+  { badge: "3", label: "–25%", rate: 0.75 },
+  { badge: "4", label: "–50%", rate: 0.5 }
 ];
 
 const Meter = ({ rate }) => {
@@ -22,7 +24,7 @@ const Meter = ({ rate }) => {
   });
 
   return (
-    <div className="hidden md:flex items-center justify-center font-mono font-bold text-sm">
+    <div className="flex items-center justify-center font-mono font-bold text-sm">
       {rate > 1 && (
         <>
           <Icon name="ArrowUp" />
@@ -57,14 +59,28 @@ export const PlayerControls = ({
   togglePlay,
   toggleRandom
 }) => {
-  const playerControlClasses = cn({
+  const classes = cn({
     "flex flex-col gap-4": true,
     "md:w-1/3": !isFullscreen,
-    "w-full transition duration-300 relative mix-blend-overlay": isFullscreen
+    "w-full transition duration-300 relative mb-8 mix-blend-overlayXXX": isFullscreen
+  });
+
+  const controlClasses = cn({
+    "flex items-center justify-center gap-2": true,
+    "absolute z-10 left-1/2 -bottom-16 -translate-x-1/2 translate-y-full": isFullscreen
   });
 
   const extraButtonClasses = cn({
     "hidden md:flex": !isFullscreen
+  });
+
+  const rateButtonClasses = cn({
+    [extraButtonClasses]: true,
+    [getButtonClasses({
+      circle: true,
+      variant: "ghost"
+    })]: true,
+    ANDYANDY: true
   });
 
   const randomClasses = cn({
@@ -106,24 +122,12 @@ export const PlayerControls = ({
   });
 
   return (
-    <div className={playerControlClasses}>
-      <div className="flex items-center justify-center gap-2">
-        {/*<Button
-          circle
-          className={randomClasses}
-          onClick={toggleRandom}
-          variant="ghost"
-        >
-          <Icon name="Shuffle" />
-        </Button>*/}
-
+    <div className={classes}>
+      <div className={controlClasses}>
         <Menu
           tooltipContent="Playback Speed"
           trigger={<Meter rate={rate} />}
-          triggerClassName={getButtonClasses({
-            circle: true,
-            variant: "ghost"
-          })}
+          triggerClassName={rateButtonClasses}
         >
           <MenuHeading>Playback Speed</MenuHeading>
           {RATES.map((item, i) => (
@@ -142,7 +146,6 @@ export const PlayerControls = ({
             </MenuItem>
           ))}
         </Menu>
-
         <Button
           circle
           className={extraButtonClasses}

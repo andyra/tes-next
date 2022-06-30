@@ -13,23 +13,23 @@ export const CurrentTrack = ({
   const currentTrackClasses = cn({
     "flex relative": true,
     "items-center gap-8 w-full md:w-1/3": !isFullscreen,
-    "flex-1 flex-col items-center justify-end text-center w-full gap-16 md:gap-48 md:mb-48 mix-blend-overlay": isFullscreen
+    "flex-1 flex-col items-center justify-end md:text-center w-full gap-16 md:gap-48 md:mb-48": isFullscreen
   });
 
   const coverArtClasses = cn({
     "flex-shrink-0 bg-primary-5": true,
     "rounded w-40 h-40 md:w-64 md:h-64": !isFullscreen,
-    "w-full max-w-screen-xs mx-auto h-auto mt-auto md:w-1/2 rounded-full overflow-hidden animate-spin-slow": isFullscreen
+    "w-full max-w-screen-xs mx-auto my-auto md:my-0 h-auto rounded-lg md:w-1/2": isFullscreen
   });
 
   const trackInfoClasses = cn({
-    "flex gap-8 transition duration-300": true,
-    "my-auto md:my-0": isFullscreen
+    "flex gap-8 transition w-full duration-300": true,
+    "mix-blend-overlay": isFullscreen
   });
 
   const titleClasses = cn({
     "text-primary font-medium": !isFullscreen,
-    "font-funky font-bold text-6xl md:text-[6vmax] md:leading-[0.8] lg:text-[10vmax] md:mb-16": isFullscreen
+    "text-4xl font-medium mb-8 md:font-funky md:font-bold md:text-[8vmin] md:leading-[0.8] lg:text-[12vmin] md:mb-16": isFullscreen
   });
 
   const artistClasses = cn({
