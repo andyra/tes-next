@@ -8,6 +8,7 @@ import Loader from "./Loader";
 // Pass in a track play it in the player
 const PlayPauseButton = ({
   className,
+  isLoading,
   size = "base",
   track,
   tracklist,
@@ -16,10 +17,8 @@ const PlayPauseButton = ({
 }) => {
   const {
     currentTrack,
-    isLoading,
     isPlaying,
     setCurrentTrack,
-    setIsLoading,
     setIsPlaying,
     setNextList,
     setPrevList,

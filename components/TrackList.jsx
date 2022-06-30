@@ -136,6 +136,7 @@ export const Tracklist = ({
   const {
     currentTrack,
     isPlaying,
+    isLoading,
     queueList,
     setQueueList
   } = usePlayerContext();
@@ -162,7 +163,7 @@ export const Tracklist = ({
       !currentTrack.addedViaQueue;
 
     const liClasses = cn({
-      "flex items-center gap-8 px-8 py-12 -mx-8 rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
+      "flex items-center gap-8 px-8 py-4 md:py-12 -mx-8 rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
       "cursor-default transition relative group": true,
       "text-secondary": track.audioFile,
       "text-secondary-50": !track.audioFile
@@ -192,6 +193,7 @@ export const Tracklist = ({
             <PlayPauseButton
               className={playButtonClasses}
               i={i}
+              isLoading={isLoading && trackIsSelected}
               track={track}
               tracklist={tracks}
               variant="ghost"

@@ -2,7 +2,7 @@ import Button from "./Button";
 
 const GridListToggle = ({ gridView, setGridView }) => {
   return (
-    <div className="flex items-center rounded-full border-2">
+    <div className="flex items-center rounded-full border-2 hidden">
       <Button
         className="-my-2 -ml-2"
         onClick={() => {

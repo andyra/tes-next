@@ -46,10 +46,9 @@ export const Player = () => {
     !currentTrack && prevList.length + nextList.length + queueList.length === 0;
   const isMobile = useMediaQuery(BREAKPOINTS.mobile);
   const playerClasses = cn({
-    "flex items-center gap-8 bg-ground rounded-lg md:col-span-2 md:mx-0": true,
+    "flex items-center gap-8 bg-ground rounded-lg md:col-span-2 md:mx-0 relative": true,
     "p-8 rounded-lg": !isFullscreen,
-    "absolute top-0 left-0 z-player-fullscreen w-full h-full flex-col justify-end px-24 py-24 md:p-48": isFullscreen,
-    hidden: playerIsEmpty
+    "absolute top-0 left-0 z-player-fullscreen w-full h-full flex-col justify-end px-24 py-24 md:p-48": isFullscreen
   });
 
   // Hooks
@@ -81,8 +80,12 @@ export const Player = () => {
   // Pause and clean up on unmount
   useEffect(() => {
     return () => {
-      howlerRef.current.stop();
-      clearInterval(intervalRef.current);
+      if (howlerRef.current) {
+        howlerRef.current.stop();
+      }
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
   }, []);
 
@@ -257,6 +260,7 @@ export const Player = () => {
           isLooped={isLooped}
           isPlaying={isPlaying}
           isRandom={isRandom}
+          playerIsEmpty={playerIsEmpty}
           rate={rate}
           skipBack={skipBack}
           skipNext={skipNext}
@@ -266,6 +270,7 @@ export const Player = () => {
         />
         <ExtraControls
           isFullscreen={isFullscreen}
+          playerIsEmpty={playerIsEmpty}
           setIsFullscreen={setIsFullscreen}
         />
       </aside>

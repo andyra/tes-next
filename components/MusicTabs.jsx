@@ -8,7 +8,7 @@ import cn from "classnames";
 const MusicTabsItem = ({ href, pageName, title }) => {
   const active = pageName === title;
   const classes = cn({
-    "font-funky text-4xl md:text-6xl lg:text-8xl tracking-tight px-12 hover:underline rounded-full border-2 border-transparent": true,
+    "font-funky text-6xl md:text-8xl tracking-tight px-12 hover:underline rounded-full border-2 border-transparent": true,
     "text-secondary": !active,
     "underline text-accent": active
   });
@@ -31,7 +31,7 @@ MusicTabsItem.propTypes = {
 
 export const MusicTabs = ({ pageName }) => {
   return (
-    <nav className="flex items-center lg:justify-center -ml-12">
+    <nav className="flex items-center justify-center">
       <MusicTabsItem title="Albums" href="/albums" pageName={pageName} />
       <MusicTabsItem title="Songs" href="/songs" pageName={pageName} />
     </nav>

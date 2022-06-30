@@ -47,12 +47,10 @@ export const NavLink = ({
 };
 
 export const Navigation = ({ navSection, playerIsEmpty }) => {
-  const navClasses = cn({
-    "flex items-stretch print:hidden": true,
-    "bg-ground rounded-lg md:row-span-1 md:flex-col md:gap-24 md:p-24 md:overflow-y-auto md:text-secondary": true,
-    "row-start-3": !playerIsEmpty,
-    "row-start-2": playerIsEmpty
-  });
+  const navClasses = cn(
+    "flex items-stretch print:hidden",
+    "row-start-3 bg-ground rounded-lg md:row-span-1 md:flex-col md:gap-24 md:p-24 md:overflow-y-auto md:text-secondary"
+  );
 
   return (
     <>

@@ -16,7 +16,7 @@ import { usePlayerContext } from "../context/PlayerContext";
 // ----------------------------------------------------------------------------
 
 const Main = ({ children }) => (
-  <main className="h-full overflow-y-auto print:overflow-visible bg-ground rounded-lg">
+  <main className="h-full overflow-y-auto print:overflow-visible bg-ground rounded-lg relative">
     {children}
   </main>
 );
@@ -57,12 +57,10 @@ export default function Layout({ children, ...props }) {
   const playerIsEmpty =
     !currentTrack && prevList.length + nextList.length + queueList.length === 0;
 
-  const nextClasses = cn({
-    "h-full overflow-hidden print:overflow-visible text-primary p-4 bg-ground-dark": true,
-    "grid grid-cols-1 md:grid-cols-[224px,1fr] gap-4": true,
-    "grid-rows-[1fr,64px,48px] md:grid-rows-[1fr,80px]": !playerIsEmpty,
-    "grid-rows-[1fr,48px] md:grid-rows-[1fr]": playerIsEmpty
-  });
+  const nextClasses = cn(
+    "h-full overflow-hidden print:overflow-visible text-primary p-4 bg-ground-dark",
+    "grid grid-cols-1 md:grid-cols-[224px,1fr] grid-rows-[1fr,64px,56px] md:grid-rows-[1fr,80px] gap-4"
+  );
 
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses.split(" "));
@@ -82,6 +80,7 @@ export default function Layout({ children, ...props }) {
         <Container maxWidth={props.maxWidth} spacing={props.spacing}>
           {children}
         </Container>
+        <div className="sticky z-10 bottom-0 left-0 w-full h-48 bg-gradient-to-t from-ground opacity-75 pointer-events-none" />
       </Main>
       <Player />
       <Grain />

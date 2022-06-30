@@ -52,6 +52,7 @@ export const PlayerControls = ({
   isLooped,
   isPlaying,
   isRandom,
+  playerIsEmpty,
   rate,
   skipBack,
   skipNext,
@@ -78,9 +79,9 @@ export const PlayerControls = ({
     [extraButtonClasses]: true,
     [getButtonClasses({
       circle: true,
+      disabled: playerIsEmpty,
       variant: "ghost"
-    })]: true,
-    ANDYANDY: true
+    })]: true
   });
 
   const randomClasses = cn({
@@ -125,6 +126,7 @@ export const PlayerControls = ({
     <div className={classes}>
       <div className={controlClasses}>
         <Menu
+          disabled={playerIsEmpty}
           tooltipContent="Playback Speed"
           trigger={<Meter rate={rate} />}
           triggerClassName={rateButtonClasses}
@@ -149,6 +151,7 @@ export const PlayerControls = ({
         <Button
           circle
           className={extraButtonClasses}
+          disabled={playerIsEmpty}
           onClick={skipBack}
           variant="ghost"
         >
@@ -158,6 +161,7 @@ export const PlayerControls = ({
           active={isPlaying && !isLoading}
           circle
           className={isLoading ? "relative" : ""}
+          disabled={playerIsEmpty}
           onClick={togglePlay}
           variant="ghost"
         >
@@ -174,6 +178,7 @@ export const PlayerControls = ({
         <Button
           circle
           className={extraButtonClasses}
+          disabled={playerIsEmpty}
           onClick={skipNext}
           variant="ghost"
         >
@@ -182,6 +187,7 @@ export const PlayerControls = ({
         <Button
           circle
           className={loopClasses}
+          disabled={playerIsEmpty}
           onClick={toggleLoop}
           variant="ghost"
         >
