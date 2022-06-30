@@ -6,7 +6,7 @@ import client from "../apollo-client";
 import * as Accordion from "@radix-ui/react-accordion";
 import cn from "classnames";
 import Badge from "../components/Badge";
-import Button from "../components/Button";
+import Button, { getButtonClasses } from "../components/Button";
 import Icon from "../components/Icon";
 import Input from "../components/Input";
 import LeadSheet from "../components/LeadSheet";
@@ -59,7 +59,6 @@ const Computor = ({
       bleed: bleedsFor.indexOf(i) >= 0,
       strategy: strategiesFor.indexOf(i) >= 0 ? shuffledStrategies[i] : null
     }));
-
     setSetlistItems(items);
   }
 
@@ -127,8 +126,8 @@ const SetlistItem = ({ item, i }) => {
   const { bleed, song, strategy } = item;
   const hasLeadSheet = song.leadSheet || song.notation.length > 0;
   const classes = cn({
-    "w-full py-12 px-16 rounded-lg text-left transition": true,
-    "hover:bg-primary-10": hasLeadSheet
+    "w-full bg-ground py-12 px-16 rounded-lg text-left transition group sticky top-0 z-10": true,
+    "hover:bg-primary-5": true
   });
 
   return (
@@ -152,6 +151,14 @@ const SetlistItem = ({ item, i }) => {
               <Icon name="ChevronDown" />
             </Badge>
           )}
+          <Button
+            circle
+            className="opacity-0 group-hover:opacity-100 transition"
+            href={song.uri}
+            target="_blank"
+          >
+            <Icon name="ArrowRight" />
+          </Button>
         </div>
         {strategy && (
           <div className="ml-40 text-xl text-primary-50">"{strategy}"</div>

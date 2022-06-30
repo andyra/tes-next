@@ -54,7 +54,7 @@ class MyDocument extends Document {
             crossOrigin=""
           />
         </Head>
-        <body className="h-full overflow-hidden print:overflow-visible font-sans antialiased">
+        <body className="text-primary h-full overflow-hidden print:overflow-visible font-sans antialiased">
           <Toaster />
           <Main />
           <NextScript />

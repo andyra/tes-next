@@ -77,8 +77,8 @@ const Button = ({
   });
 
   return href ? (
-    <Link className={classes} href={href} {...props}>
-      <a className={classes}>
+    <Link href={href}>
+      <a className={classes} {...props}>
         {iconLeft && <Icon name={iconLeft} className="-translate-x-1/4" />}
         {children}
         {iconRight && <Icon name={iconRight} className="translate-x-1/4" />}

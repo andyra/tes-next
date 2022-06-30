@@ -18,7 +18,7 @@ export const PageHeader = ({
   className,
   children,
   font = "font-funky",
-  h1ClassName = "font-funky text-6xl md:text-8xl tracking-tight",
+  h1ClassName,
   subtitle,
   title
 }) => {
@@ -41,7 +41,7 @@ export const PageHeader = ({
             {back.title}
           </Button>
         )}
-        <h1 className={h1ClassName}>{title}</h1>
+        <PageTitle className={h1ClassName}>{title}</PageTitle>
         {children}
       </div>
       {actions && <div className="flex items-center gap-4">{actions}</div>}

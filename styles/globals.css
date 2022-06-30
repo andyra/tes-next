@@ -159,7 +159,7 @@
 }
 
 .chord-sheet .chord {
-  @apply text-primary font-mono print:text-black print:font-medium;
+  @apply text-secondary-75 font-mono print:text-black print:font-medium;
 }
 
 /* Library Article
