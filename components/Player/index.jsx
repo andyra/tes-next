@@ -125,9 +125,9 @@ export const Player = () => {
     startElapsedTimer();
   }
 
-  function handleRateChange(value) {
-    howlerRef.current.rate(value);
-    setRate(value);
+  function handleRateChange(newRate) {
+    howlerRef.current.rate(newRate);
+    setRate(newRate);
   }
 
   function handleOnLoadError() {

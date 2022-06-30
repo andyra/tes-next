@@ -40,7 +40,7 @@ export default function Episode({ episode }) {
         </div>
         <p className="flex-1 text-xl">{description}</p>
       </section>
-      <Tracklist tracks={normalizedTracks} />
+      <Tracklist tracks={normalizedTracks} showTrackType />
     </>
   );
 }
@@ -117,7 +117,8 @@ export async function getStaticProps(context) {
     props: {
       episode: data.entry,
       navSection: "Podcast",
-      PageTitle: data.entry.title
+      PageTitle: data.entry.title,
+      spacing: true
     }
   };
 }

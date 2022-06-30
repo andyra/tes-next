@@ -17,20 +17,12 @@ const RATES = [
 ];
 
 const Meter = ({ rate }) => {
-  function getClass(pos) {
-    return pos > rate
-      ? "bg-primary-25"
-      : pos === rate
-      ? "bg-accent"
-      : "bg-primary";
-  }
-
   const index = RATES.findIndex(item => {
     return item.rate === rate;
   });
 
   return (
-    <div className="flex items-center justify-center font-mono font-bold text-sm">
+    <div className="hidden md:flex items-center justify-center font-mono font-bold text-sm">
       {rate > 1 && (
         <>
           <Icon name="ArrowUp" />
@@ -68,7 +60,7 @@ export const PlayerControls = ({
   const playerControlClasses = cn({
     "flex flex-col gap-4": true,
     "md:w-1/3": !isFullscreen,
-    "w-full transition duration-300 relative mix-blend-overlayXXX": isFullscreen
+    "w-full transition duration-300 relative mix-blend-overlay": isFullscreen
   });
 
   const extraButtonClasses = cn({
@@ -134,9 +126,10 @@ export const PlayerControls = ({
           })}
         >
           <MenuHeading>Playback Speed</MenuHeading>
-          {RATES.map(item => (
+          {RATES.map((item, i) => (
             <MenuItem
               className={item.rate === rate ? "text-accent" : ""}
+              key={`${i}-${rate}`}
               onClick={() => {
                 handleRateChange(item.rate);
               }}

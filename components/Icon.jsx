@@ -25,6 +25,7 @@ import Menu from "../public/icons/Menu.svg";
 import Mic from "../public/icons/Mic.svg";
 import Moon from "../public/icons/Moon.svg";
 import Music from "../public/icons/Music.svg";
+import Note from "../public/icons/Note.svg";
 import Overflow from "../public/icons/Overflow.svg";
 import Pause from "../public/icons/Pause.svg";
 import Person from "../public/icons/Person.svg";
@@ -73,6 +74,7 @@ export const ICON_NAMES = {
   Mic: Mic,
   Moon: Moon,
   Music: Music,
+  Note: Note,
   Overflow: Overflow,
   Pause: Pause,
   Person: Person,

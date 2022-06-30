@@ -5,6 +5,7 @@ import client from "../apollo-client";
 import styled from "styled-components";
 import AnimatedLetter from "../components/AnimatedLetter";
 import Button from "../components/Button";
+import CoverArt from "../components/CoverArt";
 import PlayPauseButton from "../components/PlayPauseButton";
 import Icon from "../components/Icon";
 import { CollectionItem } from "../components/Collections";
@@ -23,7 +24,7 @@ const fs = require("fs");
 
 const QUERY_LATEST_COLLECTIONS = gql`
   query Entries {
-    albums: entries(section: "albums", orderBy: "postDate DESC") {
+    albums: entries(section: "albums", orderBy: "releaseDate DESC") {
       slug
       title
       uri
@@ -66,7 +67,7 @@ const QUERY_LATEST_COLLECTIONS = gql`
     episodes: entries(
       section: "episodes"
       limit: 1
-      orderBy: "dateCreated DESC"
+      orderBy: "releaseDate DESC"
     ) {
       slug
       title
@@ -84,21 +85,6 @@ const QUERY_LATEST_COLLECTIONS = gql`
     }
   }
 `;
-
-// Play Sections
-// ----------------------------------------------------------------------------
-
-const PlayerSection = ({ children, playPauseButton, title }) => {
-  return (
-    <div className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2">
-      {playPauseButton}
-      <div>
-        {title}
-        {children}
-      </div>
-    </div>
-  );
-};
 
 // Page
 // ----------------------------------------------------------------------------
@@ -132,48 +118,55 @@ export default function Home({ albums, episodes }) {
         </p>
       </header>
 
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-24">
-        <PlayerSection
-          playPauseButton={
+      <section className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2">
+        <PlayPauseButton
+          className="hover:text-accent"
+          size="lg"
+          track={shuffledPlayableTracks[0]}
+          tracklist={shuffledPlayableTracks}
+        />
+        <div>Listen to the Radio</div>
+      </section>
+
+      <section>
+        <header className="flex items-center gap-8 justify-between">
+          <h2 className="text-2xl text-center mb-16">Latest Releases</h2>
+          <Button href="/albums" iconRight="ArrowRight">
+            Albums
+          </Button>
+        </header>
+        <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 -mx-8 relative">
+          {latestAlbums.map(album => (
+            <CollectionItem collection={album} key={album.slug} gridView />
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <header className="flex items-center gap-8 justify-between">
+          <h2 className="text-2xl text-center mb-16">Latest Episode</h2>
+          <Button href="/episodes" iconRight="ArrowRight">
+            Episodes
+          </Button>
+        </header>
+        <div className="flex items-center gap-24">
+          <CoverArt
+            className="h-192 w-192 rounded-lg"
+            height={192}
+            width={192}
+            url={latestEpisode.episodeCoverArt[0].url}
+            title={latestEpisode.title}
+          />
+          <div className="flex-1">
+            <h3 className="font-medium text-xl mb-8">{latestEpisode.title}</h3>
+            <p className="text-primary-75">{latestEpisode.description}</p>
             <PlayPauseButton
               className="hover:text-accent"
               size="lg"
               track={normalizedFullEpisode}
             />
-          }
-          title="Play Latest Episode"
-        />
-        <PlayerSection
-          playPauseButton={
-            <PlayPauseButton
-              className="hover:text-accent"
-              size="lg"
-              track={shuffledPlayableTracks[0]}
-              tracklist={shuffledPlayableTracks}
-            />
-          }
-          title="Listen to the Radio"
-        />
-      </section>
-
-      <section>
-        <h2 className="text-2xl text-center mb-16">Latest Releases</h2>
-        <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 -mx-8 relative">
-          {latestAlbums.map(album => (
-            <CollectionItem collection={album} key={album.slug} gridView />
-          ))}
-          <li className="p-8">
-            <Link href="/albums">
-              <a className="flex items-center justify-center gap-8 aspect-square border-2 hover:border-accent hover:text-accent rounded-lg transition group">
-                View All
-                <Icon
-                  name="ArrowRight"
-                  className="transition-transform duration-300 group-hover:transform group-hover:translate-x-4"
-                />
-              </a>
-            </Link>
-          </li>
-        </ul>
+          </div>
+        </div>
       </section>
     </>
   );

@@ -13,7 +13,7 @@ export const CurrentTrack = ({
   const currentTrackClasses = cn({
     "flex relative": true,
     "items-center gap-8 w-full md:w-1/3": !isFullscreen,
-    "flex-1 flex-col items-center justify-end text-center w-full gap-16 md:gap-48 md:mb-48 mix-blend-overlayXXX": isFullscreen
+    "flex-1 flex-col items-center justify-end text-center w-full gap-16 md:gap-48 md:mb-48 mix-blend-overlay": isFullscreen
   });
 
   const coverArtClasses = cn({
@@ -28,12 +28,12 @@ export const CurrentTrack = ({
   });
 
   const titleClasses = cn({
-    "text-sm font-medium": !isFullscreen,
-    "text-3xl md:text-5xl lg:text-[6vw] font-funky md:mb-16": isFullscreen
+    "text-primary font-medium": !isFullscreen,
+    "font-funky font-bold text-6xl md:text-[6vmax] md:leading-[0.8] lg:text-[10vmax] md:mb-16": isFullscreen
   });
 
   const artistClasses = cn({
-    "text-xs text-primary-50": !isFullscreen,
+    "text-sm text-primary-50": !isFullscreen,
     "text-xl md:text-3xl font-medium": isFullscreen
   });
 
@@ -56,7 +56,7 @@ export const CurrentTrack = ({
             {currentTrack ? currentTrack.title : ""}
           </div>
           <div className={artistClasses}>
-            {currentTrack ? currentTrack.artist.title : ""}
+            {currentTrack ? currentTrack.collection.title : ""}
           </div>
         </div>
       </div>

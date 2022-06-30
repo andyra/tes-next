@@ -8,12 +8,9 @@ import Empty from "../../../components/Empty";
 
 const QUERY_SONGS = gql`
   query Entries {
-    entries(section: "songs") {
+    entries(section: "songs", orderBy: "title ASC") {
       slug
       title
-      ... on songs_default_Entry {
-        songType
-      }
     }
   }
 `;
@@ -21,25 +18,28 @@ const QUERY_SONGS = gql`
 // Components
 // ----------------------------------------------------------------------------
 
-const SongItem = ({ filters, i, song }) => {
-  const { slug, songType, title } = song;
-  const visible = filters.songType === "all" || filters.songType === songType;
+const SongItem = ({ i, gridView, song }) => {
+  const { slug, title } = song;
+
+  const classes = cn({
+    "flex items-baseline break-inside-avoid-column gap-8 border-t border-primary-25 border-dotted hover:text-accent transition group": true,
+    "text-xl py-16 hover:border-accent": gridView,
+    "py-4": !gridView
+  });
 
   return (
-    visible && (
-      <li key={slug}>
-        <Link href={`/songs/${encodeURIComponent(slug)}`}>
-          <a className="flex break-inside-avoid-column gap-16 text-xl py-20 border-t-2 border-primary-25 border-dotted hover:border-accent hover:text-accent transition group">
-            <span className="opacity-25">{i + 1}</span>
-            {title}
-          </a>
-        </Link>
-      </li>
-    )
+    <li key={slug}>
+      <Link href={`/songs/${encodeURIComponent(slug)}`}>
+        <a className={classes}>
+          <span className="font-mono text-xs opacity-25">{i + 1}</span>
+          {title}
+        </a>
+      </Link>
+    </li>
   );
 };
 
-export const SongList = ({ filters, gridView }) => {
+export const SongList = ({ gridView }) => {
   const { data, loading, error } = useQuery(QUERY_SONGS);
   const classes = cn({
     "sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5": gridView
@@ -57,7 +57,7 @@ export const SongList = ({ filters, gridView }) => {
   return data.entries ? (
     <ul className={classes}>
       {data.entries.map((song, i) => (
-        <SongItem song={song} filters={filters} i={i} key={song.slug} />
+        <SongItem song={song} i={i} key={song.slug} gridView={gridView} />
       ))}
     </ul>
   ) : (

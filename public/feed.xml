@@ -12,8 +12,8 @@
         <language>en</language>
         <atom:link href="https://tes.fm/feed" rel="self" type="application/rss+xml" />
         <description>This Evening's Show is a radio broadcast transmitting from an abandoned monorail station outside Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade of bizarre characters, historic factoids, surreal comedy, improvised news, interviews, and original music</description>
-        <lastBuildDate>Fri, 19 May 2017 00:00:00 GMT</lastBuildDate>
-        <pubDate>Fri, 19 May 2017 00:00:00 GMT</pubDate>
+        <lastBuildDate>Wed, 18 Jul 2018 00:00:00 GMT</lastBuildDate>
+        <pubDate>Wed, 18 Jul 2018 00:00:00 GMT</pubDate>
         <copyright>All rights reserved</copyright>
         <webMaster>tes.thiseveningsshow@gmail.com (Andy Smith)</webMaster>
         <itunes:subtitle>This Evening's Show is a radio broadcast transmitting from an</itunes:subtitle>
@@ -33,15 +33,15 @@
         </image>
         
     <item>
-      <title>Field Report: Wisdom to Take from Yanna Barom</title>
-      <link>https://tes.fm/episodes/field-report-wisdom-to-take-from-yanna-barom</link>
-      <guid>https://tes.fm/episodes/field-report-wisdom-to-take-from-yanna-barom</guid>
-      <pubDate>Fri, 19 May 2017 00:00:00 GMT</pubDate>
-      <itunes:summary>John Starboard and the surveyor Mr. Atol stumble across desert poet Yanna Barom while searching for the Monorail Station's "Center Stone."</itunes:summary>
-      <itunes:subtitle>John Starboard and the surveyor Mr. Atol stumble across desert</itunes:subtitle>
-      <description>John Starboard and the surveyor Mr. Atol stumble across desert poet Yanna Barom while searching for the Monorail Station's "Center Stone."</description>
+      <title>30 Party Mechanic</title>
+      <link>https://tes.fm/episodes/30-party-mechanic</link>
+      <guid>https://tes.fm/episodes/30-party-mechanic</guid>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 GMT</pubDate>
+      <itunes:summary>In this episode, meet Mike Bluebird the Party Mechanic, listen in on real-time recordings of a genuine Pirate's Mirror Talking Circle, and dive deep into the cult phenomenon of Gearheart's Challenge. Interested in a city-wide hidden microphone recording assemblage ? Want to major in Lunch in school? You bet! All this and way more, right here. CKNWR Radio Station. This Evening's Show. Begins...NOW</itunes:summary>
+      <itunes:subtitle>In this episode, meet Mike Bluebird the Party Mechanic, listen</itunes:subtitle>
+      <description>In this episode, meet Mike Bluebird the Party Mechanic, listen in on real-time recordings of a genuine Pirate's Mirror Talking Circle, and dive deep into the cult phenomenon of Gearheart's Challenge. Interested in a city-wide hidden microphone recording assemblage ? Want to major in Lunch in school? You bet! All this and way more, right here. CKNWR Radio Station. This Evening's Show. Begins...NOW</description>
       <enclosure
-        url="https://dts.podtrac.com/redirect.mp3/https://tesfm.fra1.digitaloceanspaces.com/episodes/field-report-wisdom-to-take-from-yanna-barom/Field%20Report%20Wisdom%20to%20Take%20from%20Yanna%20Barom.mp3"
+        url="https://dts.podtrac.com/redirect.mp3/https://tesfm.fra1.digitaloceanspaces.com/episodes/30-party-mechanic/30%20Party%20Mechanic.mp3"
         type="audio/mpeg"
         length="1024"
       />

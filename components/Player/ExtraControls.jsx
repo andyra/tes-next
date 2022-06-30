@@ -12,7 +12,7 @@ export const ExtraControls = ({ isFullscreen, setIsFullscreen }) => {
   const containerClasses = cn({
     "flex items-center gap-8": true,
     "hidden md:flex flex-1 justify-end": !isFullscreen,
-    "justify-between w-full relative mix-blend-overlayXXX": isFullscreen
+    "justify-between w-full relative mix-blend-overlay": isFullscreen
   });
 
   const queueOverlayClasses = cn({
@@ -28,14 +28,14 @@ export const ExtraControls = ({ isFullscreen, setIsFullscreen }) => {
       <Collapsible.Root>
         <Collapsible.Trigger
           className={getButtonClasses({
-            circle: true,
-            variant: isFullscreen ? "outline" : "ghost"
+            variant: "outline",
+            size: "sm"
           })}
         >
-          <Icon name="Queue" />
+          Queue
         </Collapsible.Trigger>
         <Collapsible.Content className={queueOverlayClasses}>
-          <section className="w-full max-w-screen-md p-24 rounded-lg bg-ground border-2 space-y-24">
+          <section className="w-full max-w-screen-md p-24 rounded-lg bg-ground border-2 space-y-24 overflow-y-scroll">
             <Queue />
           </section>
         </Collapsible.Content>

@@ -97,7 +97,7 @@ const ContentSection = ({
 // ----------------------------------------------------------------------------
 
 export default function Song({ collections, song }) {
-  const { leadSheet, notation, slug, songType, title } = song;
+  const { leadSheet, notation, slug, title } = song;
   const relatedCollections = getRelatedCollections(slug, collections);
   const normalizedTracks = normalizeSongTracks(slug, relatedCollections);
   const hasTracks = normalizedTracks.length > 0;
@@ -109,13 +109,7 @@ export default function Song({ collections, song }) {
         className="print:hidden"
         subtitle="A song called"
         title={title}
-      >
-        {songType === "cover" && (
-          <div className="inline-block px-8 bg-primary-5 rounded-full font-sans font-medium text-sm uppercase tracking-wide mt-24 mx-auto">
-            Cover Song
-          </div>
-        )}
-      </PageHeader>
+      />
 
       <ContentSection
         className="print:hidden"
@@ -127,7 +121,7 @@ export default function Song({ collections, song }) {
       </ContentSection>
 
       <ContentSection
-        enabled={songType === "original" && leadSheet}
+        enabled={leadSheet}
         emptyMessage="Notation reamins to be written"
         title="Lead Sheet"
       >
@@ -173,7 +167,6 @@ export async function getStaticProps(context) {
               url
               width
             }
-            songType
           }
         }
         collections: entries(section: ["albums", "episodes"]) {

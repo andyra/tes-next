@@ -19,11 +19,11 @@ export const CollectionHeader = ({ children, collection }) => {
   return (
     <header className="mb-16 mb:mb-48 text-center md:text-left">
       <Button
-        className="-ml-16 mb-12 capitalize hidden md:inline-flex"
+        className="mb-12 capitalize hidden md:inline-flex"
         href={`/${collectionType}`}
         iconLeft="ChevronLeft"
         size="sm"
-        variant="ghost"
+        variant="glass"
       >
         {collectionType}
       </Button>

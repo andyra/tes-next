@@ -6,8 +6,8 @@ import Tracklist from "../components/Tracklist";
 
 const Section = ({ actions, children, className, title }) => (
   <section className={className}>
-    <header className="flex items-center justify-between">
-      <h3 className="font-medium text-xl text-primary mb-8">{title}</h3>
+    <header className="flex items-center justify-between mb-8 sticky -top-24 bg-ground z-10">
+      <h3 className="font-medium text-xl text-primary">{title}</h3>
       {actions && actions}
     </header>
     {children}

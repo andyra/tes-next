@@ -222,7 +222,6 @@ export async function getStaticProps(context) {
               url
               width
             }
-            songType
           }
         }
         setlist: entry(section: "setlistComputor") {

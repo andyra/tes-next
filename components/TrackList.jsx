@@ -11,7 +11,7 @@ import Icon from "../components/Icon";
 import { Menu, MenuItem } from "../components/Menu";
 import Tooltip from "../components/Tooltip";
 import PlayPauseButton from "../components/PlayPauseButton";
-import { getCollectionType } from "../helpers";
+import { getCollectionType, getTrackType } from "../helpers";
 import { formatTime } from "../helpers/utils";
 
 const DurationSSR = ({ src }) => {
@@ -21,8 +21,6 @@ const DurationSSR = ({ src }) => {
     const { getAudioDurationInSeconds } = require("get-audio-duration");
 
     getAudioDurationInSeconds(src).then(d => {
-      console.log("<<<<<<<<<<<<<<<<<<<");
-      console.log(d);
       setDuration(d);
       return d;
     });
@@ -55,7 +53,7 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
       triggerClassName={overflowMenuClasses}
     >
       {uri && (
-        <MenuItem href={`/${uri}`} icon="Moon">
+        <MenuItem href={`/${uri}`} icon="Note">
           Go to Song
         </MenuItem>
       )}
@@ -129,7 +127,12 @@ const DurationBrowser = ({ src }) => {
   );
 };
 
-export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
+export const Tracklist = ({
+  queueable = true,
+  showCollectionInfo,
+  showTrackType,
+  tracks
+}) => {
   const {
     currentTrack,
     isPlaying,
@@ -159,14 +162,14 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
       !currentTrack.addedViaQueue;
 
     const liClasses = cn({
-      "flex items-center gap-8 px-8 -mx-8 h-64 rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
+      "flex items-center gap-8 px-8 py-12 -mx-8 rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
       "cursor-default transition relative group": true,
       "text-secondary": track.audioFile,
       "text-secondary-50": !track.audioFile
     });
 
     const indexClasses = cn({
-      "hidden md:flex items-center justify-center relative h-40 w-40 flex-shrink-0 text-primary-50": true,
+      "hidden md:flex items-center justify-center relative h-40 w-40 flex-shrink-0 font-mono text-primary-50": true,
       "group-hover:opacity-0": track.audioFile,
       "opacity-0": trackIsSelected
     });
@@ -211,6 +214,15 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
                   </div>
                 </div>
               </>
+            ) : showTrackType ? (
+              <div className="flex-1 flex items-center justify-between gap-8">
+                <div>{track.title}</div>
+                {track.type === "song" && (
+                  <div className="text-xs uppercase tracking-wide text-primary-50 px-12 rounded-full flex items-center h-24 bg-primary-5">
+                    {track.type}
+                  </div>
+                )}
+              </div>
             ) : (
               track.title
             )}
@@ -248,6 +260,7 @@ export const Tracklist = ({ queueable = true, showCollectionInfo, tracks }) => {
 Tracklist.propTypes = {
   queueable: PropTypes.bool,
   showCollectionInfo: PropTypes.bool,
+  showTrackType: PropTypes.bool,
   tracks: PropTypes.array.isRequired
 };
 

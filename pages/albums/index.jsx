@@ -66,9 +66,8 @@ export default function Albums({ filterGroups }) {
       <header className="relative mb-64">
         <MusicTabs pageName="Albums" />
       </header>
-      <div className="flex items-center gap-8 justify-between mb-24">
+      <div className="flex items-center gap-8 justify-end mb-24">
         <Filters
-          className="mr-auto"
           filterGroups={albumFilters}
           filters={filters}
           setFilters={setFilters}
