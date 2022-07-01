@@ -1,4 +1,7 @@
+import Link from "next/link";
+import Button from "../Button";
 import CoverArt from "../CoverArt";
+import Icon from "../Icon";
 import cn from "classnames";
 
 // Default
@@ -11,7 +14,7 @@ export const CurrentTrack = ({
   setIsFullscreen
 }) => {
   const currentTrackClasses = cn({
-    "flex relative": true,
+    "flex relative group": true,
     "items-center gap-8 w-full md:w-1/3": !isFullscreen,
     "flex-1 flex-col items-center justify-end md:text-center w-full gap-16 md:gap-48 md:mb-48": isFullscreen
   });
@@ -23,18 +26,23 @@ export const CurrentTrack = ({
   });
 
   const trackInfoClasses = cn({
-    "flex gap-8 transition w-full duration-300": true,
-    "mix-blend-overlay": isFullscreen
+    "flex items-center gap-8 transition duration-300": true,
+    "w-full mix-blend-overlay": isFullscreen
   });
 
   const titleClasses = cn({
     "text-primary font-medium": !isFullscreen,
-    "text-4xl font-medium mb-8 md:font-funky md:font-bold md:text-[8vmin] md:leading-[0.8] lg:text-[12vmin] md:mb-16": isFullscreen
+    "text-4xl font-medium md:font-funky md:font-bold md:text-[8vmin] md:leading-[0.8] lg:text-[12vmin] md:mb-16": isFullscreen
   });
 
-  const artistClasses = cn({
-    "text-sm text-primary-50": !isFullscreen,
-    "text-xl md:text-3xl font-medium": isFullscreen
+  const collectionClasses = cn({
+    "text-sm text-primary-50 hover:text-accent": !isFullscreen,
+    "text-xl md:text-3xl font-medium pointer-events-none": isFullscreen
+  });
+
+  const overflowClasses = cn({
+    "opacity-0 group-hover:opacity-100 transition": !isFullscreen,
+    "absolute top-0 right-0": isFullscreen
   });
 
   return (
@@ -55,10 +63,15 @@ export const CurrentTrack = ({
           <div className={titleClasses}>
             {currentTrack ? currentTrack.title : ""}
           </div>
-          <div className={artistClasses}>
-            {currentTrack ? currentTrack.collection.title : ""}
-          </div>
+          <Link href={currentTrack.collection.uri}>
+            <a className={collectionClasses}>
+              {currentTrack ? currentTrack.collection.title : ""}
+            </a>
+          </Link>
         </div>
+        <Button circle size="sm" variant="glass" className={overflowClasses}>
+          <Icon name="Overflow" />
+        </Button>
       </div>
       {isMobile && currentTrack && !isFullscreen && (
         <button
