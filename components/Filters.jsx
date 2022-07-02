@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
-import Button, { getButtonClasses } from "components/Button";
+import Button from "components/Button";
 import Icon from "components/Icon";
 import { Menu, MenuDivider, MenuItem, MenuHeading } from "components/Menu";
 
@@ -55,7 +55,6 @@ const FilterOption = ({ group, label, value, filters, setFilters }) => {
 
 export const Filters = ({ className, filterGroups, filters, setFilters }) => {
   const triggerClasses = cn({
-    [getButtonClasses()]: true,
     "bg-accent-5 hover:bg-accent-10 border-accent-25 text-accent": isFiltering(
       filters
     )
@@ -65,12 +64,10 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
     <section className={className}>
       <Menu
         trigger={
-          <>
+          <Button iconRight="ChevronDown" className={triggerClasses}>
             Filters
-            <Icon name="ChevronDown" />
-          </>
+          </Button>
         }
-        triggerClassName={triggerClasses}
       >
         {filterGroups.map((filterGroup, i) => (
           <Fragment key={filterGroup.label}>

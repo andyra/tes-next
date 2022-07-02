@@ -2,8 +2,7 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import cn from "classnames";
-import { getButtonClasses } from "components/Button";
-import Icon from "components/Icon";
+import Button from "components/Button";
 
 const Dialog = ({
   animationClass,
@@ -25,11 +24,6 @@ const Dialog = ({
     [titleClassName]: titleClassName
   });
 
-  const closeClasses = cn(
-    "absolute top-12 right-12",
-    getButtonClasses({ circle: true, variant: "ghost" })
-  );
-
   return (
     <DialogPrimitive.Root>
       <DialogPrimitive.Trigger>{trigger}</DialogPrimitive.Trigger>
@@ -39,8 +33,13 @@ const Dialog = ({
           <DialogPrimitive.Title className={titleClasses}>
             {title}
           </DialogPrimitive.Title>
-          <DialogPrimitive.Close className={closeClasses}>
-            <Icon name="X" />
+          <DialogPrimitive.Close asChild>
+            <Button
+              className="absolute top-12 right-12"
+              circle
+              iconLeft="X"
+              variant="ghost"
+            />
           </DialogPrimitive.Close>
           {children}
         </DialogPrimitive.Content>

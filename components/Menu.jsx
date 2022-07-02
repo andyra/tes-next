@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Icon from "components/Icon";
-import Tooltip from "components/Tooltip";
 
 // Menu Item
 // ----------------------------------------------------------------------------
@@ -51,15 +50,7 @@ export const MenuDivider = () => (
 // Menu
 // ----------------------------------------------------------------------------
 
-export const Menu = ({
-  children,
-  side,
-  tooltipContent,
-  tooltipSide,
-  trigger,
-  triggerClassName,
-  width
-}) => {
+export const Menu = ({ children, side, trigger, triggerClassName, width }) => {
   const contentClasses = cn(
     "bg-ground border rounded-lg p-8 shadow-lg",
     "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down",
@@ -69,17 +60,9 @@ export const Menu = ({
   return (
     <Popover.Root>
       <Popover.Anchor>
-        {tooltipContent ? (
-          <Tooltip content={tooltipContent} side={tooltipSide} asChild>
-            <Popover.Trigger className={triggerClassName}>
-              {trigger}
-            </Popover.Trigger>
-          </Tooltip>
-        ) : (
-          <Popover.Trigger className={triggerClassName}>
-            {trigger}
-          </Popover.Trigger>
-        )}
+        <Popover.Trigger className={triggerClassName}>
+          {trigger}
+        </Popover.Trigger>
       </Popover.Anchor>
       <Popover.Content side={side} className={contentClasses} sideOffset={4}>
         {children}
@@ -90,8 +73,6 @@ export const Menu = ({
 
 Menu.propTypes = {
   side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
-  tooltipContent: PropTypes.string,
-  tooltipSide: PropTypes.oneOf(["top", "right", "bottom", "left"]),
   width: PropTypes.string
 };
 

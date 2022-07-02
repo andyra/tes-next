@@ -1,9 +1,10 @@
 import * as Slider from "@radix-ui/react-slider";
 import cn from "classnames";
-import Button, { getButtonClasses } from "components/Button";
+import Button from "components/Button";
 import Icon from "components/Icon";
 import Loader from "components/Loader";
 import { Menu, MenuDivider, MenuHeading, MenuItem } from "components/Menu";
+import Tooltip from "components/Tooltip";
 import { formatTime } from "helpers/utils";
 
 const RATES = [
@@ -17,30 +18,6 @@ const RATES = [
   { badge: "3", label: "–25%", rate: 0.75 },
   { badge: "4", label: "–50%", rate: 0.5 }
 ];
-
-const Meter = ({ rate }) => {
-  const index = RATES.findIndex(item => {
-    return item.rate === rate;
-  });
-
-  return (
-    <div className="flex items-center justify-center font-mono font-bold text-sm">
-      {rate > 1 && (
-        <>
-          <Icon name="ArrowUp" />
-          {RATES[index].badge}
-        </>
-      )}
-      {rate === 1 && <>{RATES[index].badge}</>}
-      {rate < 1 && (
-        <>
-          <Icon name="ArrowDown" />
-          {RATES[index].badge}
-        </>
-      )}
-    </div>
-  );
-};
 
 export const PlayerControls = ({
   duration,
@@ -73,15 +50,6 @@ export const PlayerControls = ({
 
   const extraButtonClasses = cn({
     "hidden md:flex": !isFullscreen
-  });
-
-  const rateButtonClasses = cn({
-    [extraButtonClasses]: true,
-    [getButtonClasses({
-      circle: true,
-      disabled: playerIsEmpty,
-      variant: "ghost"
-    })]: true
   });
 
   const randomClasses = cn({
@@ -122,14 +90,39 @@ export const PlayerControls = ({
     "col-start-3 row-start-2 text-right": isFullscreen
   });
 
+  const index = RATES.findIndex(item => {
+    return item.rate === rate;
+  });
+
   return (
     <div className={classes}>
       <div className={controlClasses}>
         <Menu
           disabled={playerIsEmpty}
-          tooltipContent="Playback Speed"
-          trigger={<Meter rate={rate} />}
-          triggerClassName={rateButtonClasses}
+          trigger={
+            <Tooltip content="Playback Speed">
+              <Button
+                className={`text-sm font-medium ${extraButtonClasses}`}
+                circle
+                disabled={playerIsEmpty}
+                variant="ghost"
+              >
+                {rate > 1 && (
+                  <>
+                    <Icon name="ArrowUp" />
+                    {RATES[index].badge}
+                  </>
+                )}
+                {rate === 1 && <>{RATES[index].badge}</>}
+                {rate < 1 && (
+                  <>
+                    <Icon name="ArrowDown" />
+                    {RATES[index].badge}
+                  </>
+                )}
+              </Button>
+            </Tooltip>
+          }
         >
           <MenuHeading>Playback Speed</MenuHeading>
           {RATES.map((item, i) => (
@@ -152,11 +145,10 @@ export const PlayerControls = ({
           circle
           className={extraButtonClasses}
           disabled={playerIsEmpty}
+          iconLeft="SkipPrev"
           onClick={skipBack}
           variant="ghost"
-        >
-          <Icon name="SkipPrev" />
-        </Button>
+        />
         <Button
           active={isPlaying && !isLoading}
           circle
@@ -179,20 +171,20 @@ export const PlayerControls = ({
           circle
           className={extraButtonClasses}
           disabled={playerIsEmpty}
+          iconLeft="SkipNext"
           onClick={skipNext}
           variant="ghost"
-        >
-          <Icon name="SkipNext" />
-        </Button>
-        <Button
-          circle
-          className={loopClasses}
-          disabled={playerIsEmpty}
-          onClick={toggleLoop}
-          variant="ghost"
-        >
-          <Icon name="Loop" />
-        </Button>
+        />
+        <Tooltip content="Loop">
+          <Button
+            circle
+            className={loopClasses}
+            disabled={playerIsEmpty}
+            iconLeft="Loop"
+            onClick={toggleLoop}
+            variant="ghost"
+          />
+        </Tooltip>
       </div>
       <div className={playbackBarClasses}>
         <time className={elapsedClasses}>{formatTime(elapsed)}</time>

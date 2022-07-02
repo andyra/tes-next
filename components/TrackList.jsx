@@ -5,7 +5,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import toast from "react-hot-toast";
 import cn from "classnames";
 import { usePlayerContext } from "context/PlayerContext";
-import Button, { getButtonClasses } from "components/Button";
+import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import Icon from "components/Icon";
 import Tooltip from "components/Tooltip";

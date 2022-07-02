@@ -1,16 +1,13 @@
 import PropTypes from "prop-types";
 import cn from "classnames";
-import { getButtonClasses } from "/components/Button";
+import Button from "/components/Button";
 import Icon from "/components/Icon";
 import { Menu, MenuItem } from "components/Menu";
+import Tooltip from "/components/Tooltip";
 
 const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
   const { audioFile, collection, title, uri } = track;
   const overflowMenuClasses = cn(
-    getButtonClasses({
-      variant: "ghost",
-      circle: true
-    }),
     "opacity-0 group-hover:opacity-100 focus:opacity-100"
   );
 
@@ -21,8 +18,16 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
 
   return (
     <Menu
-      trigger={<Icon name="Overflow" />}
-      triggerClassName={overflowMenuClasses}
+      trigger={
+        <Tooltip content="Menu">
+          <Button
+            circle
+            className="opacity-0 group-hover:opacity-100 focus:opacity-100"
+            iconLeft="Overflow"
+            variant="ghost"
+          />
+        </Tooltip>
+      }
     >
       {uri && (
         <MenuItem href={`/${uri}`} icon="Note">

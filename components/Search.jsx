@@ -4,7 +4,7 @@ import { gql, useLazyQuery } from "@apollo/client";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import cn from "classnames";
-import { getButtonClasses } from "components/Button";
+import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import ClientOnly from "components/ClientOnly";
 import Empty from "components/Empty";
@@ -144,17 +144,19 @@ const Search = () => {
 
   return (
     <Dialog.Root open={isOpen}>
-      <Tooltip content="Search" asChild>
-        <Dialog.Trigger
-          className={getButtonClasses({ circle: true, variant: "glass" })}
-          onClick={() => {
-            clearResults();
-            setIsOpen(true);
-          }}
-        >
-          <Icon name="Search" />
-        </Dialog.Trigger>
-      </Tooltip>
+      <Dialog.Trigger asChild>
+        <Tooltip content="Search" asChild>
+          <Button
+            circle
+            iconLeft="Search"
+            onClick={() => {
+              clearResults();
+              setIsOpen(true);
+            }}
+            variant="glass"
+          />
+        </Tooltip>
+      </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={overlayClasses} />
         <Dialog.Content
@@ -180,13 +182,15 @@ const Search = () => {
               placeholder="What are you looking for, exactly?"
               rounded
             />
-            <Dialog.Close
-              className={getButtonClasses({ circle: true, variant: "ghost" })}
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
-              <Icon name="X" />
+            <Dialog.Close asChild>
+              <Button
+                circle
+                iconLeft="X"
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+                variant="ghost"
+              />
             </Dialog.Close>
           </header>
           {Object.keys(results).length ? (

@@ -1,6 +1,6 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
 import cn from "classnames";
-import Button, { getButtonClasses } from "components/Button";
+import Button from "components/Button";
 import Icon from "components/Icon";
 import Queue from "components/Queue";
 import Tooltip from "components/Tooltip";
@@ -30,15 +30,16 @@ export const ExtraControls = ({
   return (
     <div className={containerClasses}>
       <Collapsible.Root>
-        <Collapsible.Trigger
-          className={getButtonClasses({
-            circle: true,
-            disabled: playerIsEmpty,
-            variant: isFullscreen ? "glass" : "outline"
-          })}
-          disabled={playerIsEmpty}
-        >
-          Q
+        <Collapsible.Trigger disabled={playerIsEmpty}>
+          <Tooltip content="Queue">
+            <Button
+              circle
+              disabled={playerIsEmpty}
+              variant={isFullscreen ? "glass" : "outline"}
+            >
+              Q
+            </Button>
+          </Tooltip>
         </Collapsible.Trigger>
         <Collapsible.Content className={queueOverlayClasses}>
           <section className="w-full max-w-screen-md p-24 rounded-lg bg-ground border-2 space-y-24 overflow-y-scroll">
@@ -46,19 +47,21 @@ export const ExtraControls = ({
           </section>
         </Collapsible.Content>
       </Collapsible.Root>
-      <Button
-        circle
-        disabled={playerIsEmpty}
-        variant={isFullscreen ? "glass" : "outline"}
-        onClick={() => {
-          setIsFullscreen(!isFullscreen);
-        }}
-        aria-controls="full-screen"
-        aria-expanded={!isFullscreen}
-        aria-label="Full Screen"
-      >
-        <Icon name={isFullscreen ? "EyeOff" : "Eye"} />
-      </Button>
+      <Tooltip content={isFullscreen ? "Enable Cool Mode" : "Close"}>
+        <Button
+          circle
+          disabled={playerIsEmpty}
+          variant={isFullscreen ? "glass" : "outline"}
+          onClick={() => {
+            setIsFullscreen(!isFullscreen);
+          }}
+          aria-controls="full-screen"
+          aria-expanded={!isFullscreen}
+          aria-label="Full Screen"
+        >
+          <Icon name={isFullscreen ? "EyeOff" : "Eye"} />
+        </Button>
+      </Tooltip>
     </div>
   );
 };

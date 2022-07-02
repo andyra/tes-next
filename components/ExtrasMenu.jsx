@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Icon from "components/Icon";
-import Button, { getButtonClasses } from "components/Button";
+import Button from "components/Button";
 import { Menu, MenuDivider, MenuHeading, MenuItem } from "components/Menu";
 import Tooltip from "components/Tooltip";
 
@@ -30,12 +30,11 @@ export const ExtrasMenu = () => {
 
   return (
     <Menu
-      tooltipContent="Menu"
-      trigger={<Icon name="Overflow" />}
-      triggerClassName={getButtonClasses({
-        circle: true,
-        variant: "glass"
-      })}
+      trigger={
+        <Tooltip content="Menu">
+          <Button circle iconLeft="Overflow" variant="glass" />
+        </Tooltip>
+      }
     >
       <MenuHeading>Theme</MenuHeading>
       <ThemeItem icon="Gear" label="system" setTheme={setTheme} theme={theme} />

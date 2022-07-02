@@ -6,11 +6,12 @@ import client from "../apollo-client";
 import * as Accordion from "@radix-ui/react-accordion";
 import cn from "classnames";
 import Badge from "components/Badge";
-import Button, { getButtonClasses } from "components/Button";
+import Button from "components/Button";
 import Icon from "components/Icon";
 import Input from "components/Input";
 import LeadSheet from "components/LeadSheet";
 import PageHeader, { PageTitle } from "components/PageHeader";
+import Tooltip from "components/Tooltip";
 import { normalizeTrack } from "helpers/index";
 import { shuffle } from "helpers/utils";
 
@@ -151,14 +152,15 @@ const SetlistItem = ({ item, i }) => {
               <Icon name="ChevronDown" />
             </Badge>
           )}
-          <Button
-            circle
-            className="opacity-0 group-hover:opacity-100 transition"
-            href={song.uri}
-            target="_blank"
-          >
-            <Icon name="ArrowRight" />
-          </Button>
+          <Tooltip content="Go to song">
+            <Button
+              circle
+              className="opacity-0 group-hover:opacity-100 transition"
+              href={song.uri}
+              iconLeft="ArrowRight"
+              target="_blank"
+            />
+          </Tooltip>
         </div>
         {strategy && (
           <div className="ml-40 text-xl text-primary-50">"{strategy}"</div>
