@@ -161,7 +161,7 @@ export const Tracklist = ({
         <div id="actions" className="flex items-center gap-2">
           {track.audioFile ? (
             <ClientOnly>
-              <DurationBrowser src={track.audioFile} />
+              {/*<DurationBrowser src={track.audioFile} />*/}
             </ClientOnly>
           ) : (
             <span className="text-sm text-primary-25 opacity-0 group-hover:opacity-100 transition mr-4">
