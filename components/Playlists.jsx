@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import toast from "react-hot-toast";
-import Button from "./Button";
-import Empty from "./Empty";
-import Icon from "./Icon";
-import Modal from "./Modal";
-import { NavLink } from "./Navigation";
+import Button from "@/components/Button";
+import Empty from "@/components/Empty";
+import Icon from "@/components/Icon";
+import Modal from "@/components/Modal";
+import QueryError from "@/components/QueryError";
+import { NavLink } from "@/components/Navigation";
 import { PLAYLISTS_QUERY } from "../constants";
 
 // TODO
@@ -108,7 +109,7 @@ export const ListPlaylists = () => {
 
   if (error) {
     console.error(error);
-    return `Query error! ${error.message}`;
+    return <QueryError error={error.message} />;
   }
 
   const favorites = data.entries.filter(playlist => {

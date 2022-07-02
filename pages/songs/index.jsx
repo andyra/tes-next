@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import Button from "../../components/Button";
-import ClientOnly from "../../components/ClientOnly";
-import GridListToggle from "../../components/GridListToggle";
-import MusicTabs from "../../components/MusicTabs";
+import Button from "@/components/Button";
+import ClientOnly from "@/components/ClientOnly";
+import GridListToggle from "@/components/GridListToggle";
+import MusicTabs from "@/components/MusicTabs";
 import SongList from "./components/SongList";
 
 // Default

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import LeadSheet from "../components/LeadSheet";
-import PageHeader from "../components/PageHeader";
+import LeadSheet from "@/components/LeadSheet";
+import PageHeader from "@/components/PageHeader";
 import { ADDRESS, EMAIL, PHONE } from "../constants";
 
 const song = {

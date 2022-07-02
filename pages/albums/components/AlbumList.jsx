@@ -5,10 +5,11 @@ import {
   CollectionItem,
   CollectionList,
   CollectionListSkeleton
-} from "../../../components/Collections";
-import Empty from "../../../components/Empty";
-import NiceDate from "../../../components/NiceDate";
-import { getArtistInfo } from "../../../helpers/";
+} from "@/components/Collections";
+import Empty from "@/components/Empty";
+import NiceDate from "@/components/NiceDate";
+import QueryError from "@/components/QueryError";
+import { getArtistInfo } from "@/helpers/index";
 
 // Queries
 // ----------------------------------------------------------------------------
@@ -57,12 +58,12 @@ const AlbumList = ({ filters, gridView }) => {
   const { data, loading, error } = useQuery(QUERY_ALBUMS);
 
   if (loading) {
-    return <CollectionListSkeleton />;
+    return <CollectionListSkeleton gridView={gridView} />;
   }
 
   if (error) {
     console.error(error);
-    return `Query error! ${error.message}`;
+    return <QueryError error={error.message} />;
   }
 
   return data.entries ? (

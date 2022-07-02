@@ -1,10 +1,10 @@
 import * as Slider from "@radix-ui/react-slider";
 import cn from "classnames";
-import Button, { getButtonClasses } from "../Button";
-import Icon from "../Icon";
-import Loader from "../Loader";
-import { Menu, MenuDivider, MenuHeading, MenuItem } from "../Menu";
-import { formatTime } from "../../helpers/utils";
+import Button, { getButtonClasses } from "@/components/Button";
+import Icon from "@/components/Icon";
+import Loader from "@/components/Loader";
+import { Menu, MenuDivider, MenuHeading, MenuItem } from "@/components/Menu";
+import { formatTime } from "@/helpers/utils";
 
 const RATES = [
   { badge: "4", label: "+50%", rate: 1.5 },

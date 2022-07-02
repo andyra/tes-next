@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Image from "next/image";
-import ClientOnly from "../../components/ClientOnly";
-import Button from "../../components/Button";
-import GridListToggle from "../../components/GridListToggle";
-import Icon from "../../components/Icon";
-import PageHeader from "../../components/PageHeader";
+import ClientOnly from "@/components/ClientOnly";
+import Button from "@/components/Button";
+import GridListToggle from "@/components/GridListToggle";
+import Icon from "@/components/Icon";
+import PageHeader from "@/components/PageHeader";
 import EpisodeList from "./components/EpisodeList";
 
 // Default

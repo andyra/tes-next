@@ -1,9 +1,9 @@
 import { Fragment, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import Icon from "./Icon";
-import Button, { getButtonClasses } from "./Button";
-import { Menu, MenuDivider, MenuHeading, MenuItem } from "./Menu";
-import Tooltip from "./Tooltip";
+import Icon from "@/components/Icon";
+import Button, { getButtonClasses } from "@/components/Button";
+import { Menu, MenuDivider, MenuHeading, MenuItem } from "@/components/Menu";
+import Tooltip from "@/components/Tooltip";
 
 const ThemeItem = ({ icon, label, setTheme, theme }) => {
   const active = label === theme;

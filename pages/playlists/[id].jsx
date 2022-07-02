@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import { gql, useMutation } from "@apollo/client";
 import client from "../../apollo-client";
 import toast from "react-hot-toast";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import Modal from "../../components/Modal";
-import PageHeader from "../../components/PageHeader";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
+import Modal from "@/components/Modal";
+import PageHeader from "@/components/PageHeader";
 import { PLAYLISTS_QUERY } from "../../constants";
 
 // TODO When renaming, we somehow need to refetch the query or invalidate the

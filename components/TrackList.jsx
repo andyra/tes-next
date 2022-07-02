@@ -4,15 +4,15 @@ import Link from "next/link";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import toast from "react-hot-toast";
 import cn from "classnames";
-import { usePlayerContext } from "../context/PlayerContext";
-import Button, { getButtonClasses } from "../components/Button";
-import CoverArt from "../components/CoverArt";
-import Icon from "../components/Icon";
-import { Menu, MenuItem } from "../components/Menu";
-import Tooltip from "../components/Tooltip";
-import PlayPauseButton from "../components/PlayPauseButton";
-import { getCollectionType, getTrackType } from "../helpers";
-import { formatTime } from "../helpers/utils";
+import { usePlayerContext } from "@/context/PlayerContext";
+import Button, { getButtonClasses } from "@/components/Button";
+import CoverArt from "@/components/CoverArt";
+import Icon from "@/components/Icon";
+import { Menu, MenuItem } from "@/components/Menu";
+import Tooltip from "@/components/Tooltip";
+import PlayPauseButton from "@/components/PlayPauseButton";
+import { getCollectionType, getTrackType } from "@/helpers/index";
+import { formatTime } from "@/helpers/utils";
 
 const DurationSSR = ({ src }) => {
   const [duration, setDuration] = useState(0);

@@ -1,8 +1,8 @@
 import cn from "classnames";
-import { usePlayerContext } from "../context/PlayerContext";
-import Button from "../components/Button";
-import CoverArt from "../components/CoverArt";
-import Tracklist from "../components/Tracklist";
+import { usePlayerContext } from "@/context/PlayerContext";
+import Button from "@/components/Button";
+import CoverArt from "@/components/CoverArt";
+import Tracklist from "@/components/Tracklist";
 
 const Section = ({ actions, children, className, title }) => (
   <section className={className}>

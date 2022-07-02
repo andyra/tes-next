@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
+import QueryError from "@/components/QueryError";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -17,6 +18,19 @@ const CategoryItem = ({ children, slug }) => {
 };
 
 export const CategoryList = ({ level = 1, parentId }) => {
+  const ulClasses =
+    "grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5";
+
+  const CategoryListSkeleton = () => (
+    <ul className={ulClasses}>
+      {[...Array(16)].map((e, i) => (
+        <li className="p-12 md:p-20 h-full border border-secondary-10" key={i}>
+          <div className="h-32 w-full rounded bg-primary animate-loading" />
+        </li>
+      ))}
+    </ul>
+  );
+
   const PARENT_QUERY = gql`
     query Categories {
       categories(group: "library", level: 1) {
@@ -40,16 +54,16 @@ export const CategoryList = ({ level = 1, parentId }) => {
   );
 
   if (loading) {
-    return <mark>Loading...</mark>;
+    return <CategoryListSkeleton />;
   }
 
   if (error) {
     console.error(error);
-    return `Query error! ${error.message}`;
+    return <QueryError error={error.message} />;
   }
 
   return data.categories ? (
-    <ul className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+    <ul className={ulClasses}>
       {data.categories.map(category => (
         <CategoryItem key={category.slug} slug={category.slug}>
           {category.title}

@@ -4,13 +4,13 @@ import ReactHowler from "react-howler";
 import toast from "react-hot-toast";
 import { useMediaQuery } from "react-responsive";
 import cn from "classnames";
-import { usePlayerContext } from "../../context/PlayerContext";
-import CurrentTrack from "./CurrentTrack";
-import ExtraControls from "./ExtraControls";
-import Visualization from "./Visualization";
-import MediaQuery, { BREAKPOINTS } from "../MediaQuery";
-import PlayerControls from "./PlayerControls";
-import { shuffle } from "../../helpers/utils";
+import { usePlayerContext } from "@/context/PlayerContext";
+import CurrentTrack from "@/components/CurrentTrack";
+import ExtraControls from "@/components/ExtraControls";
+import MediaQuery, { BREAKPOINTS } from "@/components/MediaQuery";
+import PlayerControls from "@/components/PlayerControls";
+import Visualization from "@/components/Visualization";
+import { shuffle } from "@/helpers/utils";
 
 export const Player = () => {
   const {

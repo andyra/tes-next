@@ -1,12 +1,8 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import client from "../../apollo-client";
-import { getTrackType } from "../../helpers";
-import ClientOnly from "../../components/ClientOnly";
-// import { UrlChecker } from "broken-link-checker";
-
-// Functions
-// ----------------------------------------------------------------------------
+import ClientOnly from "@/components/ClientOnly";
+import { getTrackType } from "@/helpers/index";
 
 // Page
 // ----------------------------------------------------------------------------

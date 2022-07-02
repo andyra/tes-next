@@ -2,12 +2,12 @@ import PropTypes from "prop-types";
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "./Button";
-import CoverArt from "./CoverArt";
-import LightBox from "./LightBox";
-import NiceDate from "./NiceDate";
-import { PageTitle } from "./PageHeader";
-import { getCollectionType, getCollectionCoverArtUrl } from "../helpers";
+import Button from "@/components/Button";
+import CoverArt from "@/components/CoverArt";
+import LightBox from "@/components/LightBox";
+import NiceDate from "@/components/NiceDate";
+import { PageTitle } from "@/components/PageHeader";
+import { getCollectionType, getCollectionCoverArtUrl } from "@/helpers/index";
 
 // Collection Header
 // ----------------------------------------------------------------------------
@@ -72,8 +72,8 @@ export const CollectionList = ({ children, gridView }) => {
   return <ul className={classes}>{children}</ul>;
 };
 
-export const CollectionListSkeleton = () => (
-  <CollectionList>
+export const CollectionListSkeleton = ({ gridView }) => (
+  <CollectionList gridView={gridView}>
     {[...Array(8)].map((e, i) => (
       <li className="p-8" key={i}>
         <div className="w-full aspect-square rounded-lg mb-16 bg-primary animate-loading" />

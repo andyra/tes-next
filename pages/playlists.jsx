@@ -1,5 +1,5 @@
-import PageHeader from "../components/PageHeader";
-import { ListPlaylists, NewPlaylistButton } from "../components/Playlists";
+import PageHeader from "@/components/PageHeader";
+import { ListPlaylists, NewPlaylistButton } from "@/components/Playlists";
 
 // Default
 // ----------------------------------------------------------------------------

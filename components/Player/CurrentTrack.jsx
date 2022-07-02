@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Button from "../Button";
-import CoverArt from "../CoverArt";
-import Icon from "../Icon";
 import cn from "classnames";
+import Button from "@/components/Button";
+import CoverArt from "@/components/CoverArt";
+import Icon from "@/components/Icon";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -48,31 +48,36 @@ export const CurrentTrack = ({
   return (
     <div className={currentTrackClasses}>
       {currentTrack ? (
-        <CoverArt
-          className={coverArtClasses}
-          height={isFullscreen ? 256 : isMobile ? 40 : 64}
-          url={currentTrack.collection.coverArt}
-          title={`${currentTrack.collection.title} cover art`}
-          width={isFullscreen ? 256 : isMobile ? 40 : 64}
-        />
+        <>
+          <CoverArt
+            className={coverArtClasses}
+            height={isFullscreen ? 256 : isMobile ? 40 : 64}
+            url={currentTrack.collection.coverArt}
+            title={`${currentTrack.collection.title} cover art`}
+            width={isFullscreen ? 256 : isMobile ? 40 : 64}
+          />
+          <div className={trackInfoClasses}>
+            <div className="flex-1">
+              <div className={titleClasses}>{currentTrack.title}</div>
+              <Link href={currentTrack.collection.uri}>
+                <a className={collectionClasses}>
+                  {currentTrack.collection.title}
+                </a>
+              </Link>
+            </div>
+            <Button
+              circle
+              size="sm"
+              variant="glass"
+              className={overflowClasses}
+            >
+              <Icon name="Overflow" />
+            </Button>
+          </div>
+        </>
       ) : (
         <figure id="cover-art" className={coverArtClasses} />
       )}
-      <div className={trackInfoClasses}>
-        <div className="flex-1">
-          <div className={titleClasses}>
-            {currentTrack ? currentTrack.title : ""}
-          </div>
-          <Link href={currentTrack.collection.uri}>
-            <a className={collectionClasses}>
-              {currentTrack ? currentTrack.collection.title : ""}
-            </a>
-          </Link>
-        </div>
-        <Button circle size="sm" variant="glass" className={overflowClasses}>
-          <Icon name="Overflow" />
-        </Button>
-      </div>
       {isMobile && currentTrack && !isFullscreen && (
         <button
           className="absolute -top-8 right-0 -bottom-16 -left-8"

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import toast from "react-hot-toast";
-import Button from "../../components/Button";
-import ClientOnly from "../../components/ClientOnly";
-import PageHeader from "../../components/PageHeader";
+import Button from "@/components/Button";
+import ClientOnly from "@/components/ClientOnly";
+import PageHeader from "@/components/PageHeader";
 
 // Default
 // ----------------------------------------------------------------------------

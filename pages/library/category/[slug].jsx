@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import client from "../../../apollo-client";
-import ClientOnly from "../../../components/ClientOnly";
-import Empty from "../../../components/Empty";
-import PageHeader from "../../../components/PageHeader";
+import ClientOnly from "@/components/ClientOnly";
+import Empty from "@/components/Empty";
+import PageHeader from "@/components/PageHeader";
 import ArticleList from "../components/ArticleList";
 import CategoryList from "../components/CategoryList";
 

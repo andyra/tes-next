@@ -2,16 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import ClientOnly from "@/components/ClientOnly";
+import Empty from "@/components/Empty";
+import PageHeader from "@/components/PageHeader";
+import { shuffle } from "@/helpers/utils";
 import CategoryList from "./components/CategoryList";
 import { ArticleItem } from "./components/ArticleList";
-import Empty from "../../components/Empty";
-import PageHeader from "../../components/PageHeader";
-import { shuffle } from "../../helpers/utils";
 
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Library({ articles, people }) {
+export default function Library({ people }) {
   const randomArticles = shuffle([...people]).slice(0, 3);
 
   return (
@@ -21,15 +22,17 @@ export default function Library({ articles, people }) {
         <p className="text-2xl lg:text-3xl lg:text-center">
           The Grand Library of all things Akabius. Learn about, for instance:
         </p>
-        <ul className="grid grid-cols-3 gap-16">
-          {randomArticles.map(article => (
-            <ArticleItem
-              article={article}
-              showFeaturedImages={true}
-              key={article.slug}
-            />
-          ))}
-        </ul>
+        <ClientOnly>
+          <ul className="grid grid-cols-3 gap-16">
+            {randomArticles.map(article => (
+              <ArticleItem
+                article={article}
+                showFeaturedImages={true}
+                key={article.slug}
+              />
+            ))}
+          </ul>
+        </ClientOnly>
       </section>
       <CategoryList />
     </>
@@ -43,16 +46,10 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query Entries {
-        entries(section: "library") {
+        entries(section: "library", relatedToCategories: [{ slug: "people" }]) {
           slug
           title
-        }
-        people: entries(
-          section: "library"
-          relatedToCategories: [{ slug: "people" }]
-        ) {
-          slug
-          title
+          uri
           ... on library_default_Entry {
             featuredImage {
               height
@@ -68,8 +65,7 @@ export async function getStaticProps() {
   return {
     props: {
       PageTitle: "Library",
-      articles: data.entries,
-      people: data.people,
+      people: data.entries,
       spacing: true
     }
   };

@@ -2,23 +2,14 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
-import ClientOnly from "../../components/ClientOnly";
-import Empty from "../../components/Empty";
-import PageHeader from "../../components/PageHeader";
-
-// Functions
-// ----------------------------------------------------------------------------
-
-function getVideoData(url) {
-  fetch(`https://vimeo.com/api/oembed.json?url=${url}`)
-    .then(response => response.json())
-    .then(data => {
-      return data;
-    });
-}
+import Empty from "@/components/Empty";
+import QueryError from "@/components/QueryError";
+import PageHeader from "@/components/PageHeader";
 
 // Components
 // ----------------------------------------------------------------------------
+
+const ulClasses = "grid grid-cols-2 lg:grid-cols-3 gap-8 -mx-8";
 
 const VideoItem = ({ video }) => {
   const { slug, title, vimeoId } = video;
@@ -79,20 +70,28 @@ const VideoList = () => {
   );
 
   if (loading) {
-    return <mark>Loading...</mark>;
+    return (
+      <ul className={ulClasses}>
+        {[...Array(8)].map((e, i) => (
+          <li className="p-8" key={i}>
+            <div className="w-full aspect-video rounded-lg mb-16 bg-primary animate-loading" />
+            <div className="h-24 w-full rounded bg-primary animate-loading" />
+          </li>
+        ))}
+        <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-t from-ground" />
+      </ul>
+    );
   }
 
   if (error) {
     console.error(error);
-    return `Query error! ${error.message}`;
+    return <QueryError error={error.message} />;
   }
 
   return data.entries ? (
-    <ul className="grid grid-cols-2 lg:grid-cols-3 gap-8 -mx-8">
+    <ul className={ulClasses}>
       {data.entries.map(video => (
-        <>
-          <VideoItem video={video} key={video.slug} />
-        </>
+        <VideoItem video={video} key={video.slug} />
       ))}
     </ul>
   ) : (
@@ -107,9 +106,7 @@ export default function Videos() {
   return (
     <>
       <PageHeader title="Videos" />
-      <ClientOnly>
-        <VideoList />
-      </ClientOnly>
+      <VideoList />
     </>
   );
 }

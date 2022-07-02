@@ -2,9 +2,8 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import cn from "classnames";
-import { getButtonClasses } from "./Button";
-import Icon from "./Icon";
-import { Z_INDEXES } from "../constants";
+import { getButtonClasses } from "@/components/Button";
+import Icon from "@/components/Icon";
 
 const Dialog = ({
   animationClass,

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
-import Empty from "../../../components/Empty";
+import Empty from "@/components/Empty";
+import QueryError from "@/components/QueryError";
 
 // TODO: Share this code with SongList?
 
@@ -32,11 +33,11 @@ const ArticlesSkeleton = () => {
 };
 
 export const ArticleItem = ({ article, showFeaturedImages }) => {
-  const { featuredImage, slug, title } = article;
+  const { featuredImage, title, uri } = article;
 
   return (
     <li>
-      <Link href={`/library/${encodeURIComponent(slug)}`}>
+      <Link href={uri}>
         <a
           className={`${articleItemClasses}${
             showFeaturedImages ? " text-center" : ""
@@ -45,7 +46,7 @@ export const ArticleItem = ({ article, showFeaturedImages }) => {
           {title}
           {showFeaturedImages &&
             (featuredImage && featuredImage.length > 0 ? (
-              <figure className="grayscale mix-blend-multiply w-1/2 mt-8 mx-auto">
+              <figure className="grayscale mix-blend-different dark:invert w-1/2 mt-8 mx-auto">
                 <Image
                   alt={title}
                   height={featuredImage[0].height}
@@ -68,8 +69,8 @@ export const ArticleList = ({ id, showFeaturedImages }) => {
     gql`
       query Entries {
         entries(section: "library", relatedToCategories: [{ id: "${id}" }]) {
-          slug
           title
+          uri
           ... on library_default_Entry {
             featuredImage {
               height
@@ -82,13 +83,13 @@ export const ArticleList = ({ id, showFeaturedImages }) => {
     `
   );
 
-  if (loading) {
+  if (!loading) {
     return <ArticlesSkeleton />;
   }
 
   if (error) {
     console.error(error);
-    return `Query error! ${error.message}`;
+    return <QueryError error={error.message} />;
   }
 
   return data ? (

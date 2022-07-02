@@ -3,11 +3,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import { CollectionHeader } from "../../components/Collections";
-import NiceDate from "../../components/NiceDate";
-import PageHeader from "../../components/PageHeader";
-import Tracklist from "../../components/Tracklist";
-import { normalizeTracklist, querySlugs } from "../../helpers";
+import { CollectionHeader } from "@/components/Collections";
+import NiceDate from "@/components/NiceDate";
+import PageHeader from "@/components/PageHeader";
+import Tracklist from "@/components/Tracklist";
+import { normalizeTracklist, querySlugs } from "@/helpers/index";
 
 // Default
 // ----------------------------------------------------------------------------
