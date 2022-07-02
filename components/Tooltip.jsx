@@ -32,4 +32,8 @@ Tooltip.propTypes = {
   side: PropTypes.oneOf(Object.keys(["top", "right", "bottom", "left"]))
 };
 
+Tooltip.defaultProps = {
+  asChild: true
+};
+
 export default Tooltip;

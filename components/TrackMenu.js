@@ -3,7 +3,6 @@ import cn from "classnames";
 import Button from "/components/Button";
 import Icon from "/components/Icon";
 import { Menu, MenuItem } from "components/Menu";
-import Tooltip from "/components/Tooltip";
 
 const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
   const { audioFile, collection, title, uri } = track;
@@ -18,15 +17,14 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
 
   return (
     <Menu
+      tooltip="Menu"
       trigger={
-        <Tooltip content="Menu">
-          <Button
-            circle
-            className="opacity-0 group-hover:opacity-100 focus:opacity-100"
-            iconLeft="Overflow"
-            variant="ghost"
-          />
-        </Tooltip>
+        <Button
+          circle
+          className="opacity-0 group-hover:opacity-100 focus:opacity-100"
+          iconLeft="Overflow"
+          variant="ghost"
+        />
       }
     >
       {uri && (

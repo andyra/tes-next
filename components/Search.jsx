@@ -144,8 +144,8 @@ const Search = () => {
 
   return (
     <Dialog.Root open={isOpen}>
-      <Dialog.Trigger asChild>
-        <Tooltip content="Search" asChild>
+      <Tooltip content="Search" asChild>
+        <Dialog.Trigger asChild>
           <Button
             circle
             iconLeft="Search"
@@ -155,8 +155,8 @@ const Search = () => {
             }}
             variant="glass"
           />
-        </Tooltip>
-      </Dialog.Trigger>
+        </Dialog.Trigger>
+      </Tooltip>
       <Dialog.Portal>
         <Dialog.Overlay className={overlayClasses} />
         <Dialog.Content

@@ -6,9 +6,9 @@ import toast from "react-hot-toast";
 import cn from "classnames";
 import { usePlayerContext } from "context/PlayerContext";
 import Button from "components/Button";
+import ClientOnly from "components/ClientOnly";
 import CoverArt from "components/CoverArt";
 import Icon from "components/Icon";
-import Tooltip from "components/Tooltip";
 import TrackMenu from "components/TrackMenu";
 import PlayPauseButton from "components/PlayPauseButton";
 import { getCollectionType, getTrackType } from "helpers/index";
@@ -37,18 +37,10 @@ const DurationBrowser = ({ src }) => {
   const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
 
   useEffect(() => {
-    let duationThing = true;
     // I used to have this wrapped in a return
-    if (duationThing) {
-      audioRef.current = new Audio(src);
-      audioRef.current.onloadeddata = () => {
-        setDuration(audioRef.current.duration);
-      };
-    }
-
-    // Cleanup
-    return () => {
-      duationThing = false;
+    audioRef.current = new Audio(src);
+    audioRef.current.onloadeddata = () => {
+      setDuration(audioRef.current.duration);
     };
   }, []);
 
@@ -168,7 +160,9 @@ export const Tracklist = ({
         </div>
         <div id="actions" className="flex items-center gap-2">
           {track.audioFile ? (
-            <DurationBrowser src={track.audioFile} />
+            <ClientOnly>
+              <DurationBrowser src={track.audioFile} />
+            </ClientOnly>
           ) : (
             <span className="text-sm text-primary-25 opacity-0 group-hover:opacity-100 transition mr-4">
               No audio

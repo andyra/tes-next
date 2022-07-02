@@ -34,54 +34,58 @@ export const BUTTON_VARIANTS = {
   outline: "border-2 hover:border-current"
 };
 
-const Button = React.forwardRef((props, ref) => {
-  const {
-    active,
-    children,
-    circle,
-    className,
-    disabled,
-    href,
-    iconLeft,
-    iconRight,
-    size,
-    type,
-    variant
-  } = props;
+const Button = React.forwardRef(
+  (
+    {
+      active,
+      children,
+      circle,
+      className,
+      disabled,
+      href,
+      iconLeft,
+      iconRight,
+      size,
+      type,
+      variant,
+      ...props
+    },
+    ref
+  ) => {
+    const classes = cn({
+      "inline-flex items-center justify-center gap-4 rounded-full whitespace-nowrap text-ellipsis overflow-hidden transition": true,
+      [BUTTON_VARIANTS[variant]]: true,
+      "opacity-50 pointer-events-none": disabled,
+      "bg-primary hover:bg-primary-75 focus:bg-primary-75 text-ground": active,
+      [BUTTON_SIZES[size].height]: true,
+      [BUTTON_SIZES[size].padding]: !circle,
+      [BUTTON_SIZES[size].width]: circle,
+      [className]: className
+    });
 
-  const classes = cn({
-    "inline-flex items-center justify-center gap-4 rounded-full whitespace-nowrap text-ellipsis overflow-hidden transition": true,
-    [BUTTON_VARIANTS[variant]]: true,
-    "opacity-50 pointer-events-none": disabled,
-    "bg-primary hover:bg-primary-75 focus:bg-primary-75 text-ground": active,
-    [BUTTON_SIZES[size].height]: true,
-    [BUTTON_SIZES[size].padding]: !circle,
-    [BUTTON_SIZES[size].width]: circle,
-    [className]: className
-  });
-
-  return href ? (
-    <Link href={href}>
-      <a {...props} className={classes} ref={ref}>
-        {iconLeft && <Icon name={iconLeft} className="-translate-x-1/4" />}
+    return href ? (
+      <Link href={href}>
+        <a {...props} className={classes} ref={ref}>
+          {iconLeft && <Icon name={iconLeft} className="-translate-x-1/4" />}
+          {children}
+          {iconRight && <Icon name={iconRight} className="translate-x-1/4" />}
+        </a>
+      </Link>
+    ) : (
+      <button
+        {...props} // Pass in first so className isn't overwritten by spread props
+        className={classes}
+        disabled={disabled}
+        type={type}
+        ref={ref}
+      >
+        {iconLeft && <Icon name={iconLeft} />}
         {children}
-        {iconRight && <Icon name={iconRight} className="translate-x-1/4" />}
-      </a>
-    </Link>
-  ) : (
-    <button
-      {...props} // Pass in first so className isn't overwritten by spread props
-      className={classes}
-      disabled={disabled}
-      type={type}
-      ref={ref}
-    >
-      {iconLeft && <Icon name={iconLeft} />}
-      {children}
-      {iconRight && <Icon name={iconRight} />}
-    </button>
-  );
-});
+        {iconRight && <Icon name={iconRight} />}
+      </button>
+    );
+  }
+);
 
 Button.propTypes = {
   active: PropTypes.bool,

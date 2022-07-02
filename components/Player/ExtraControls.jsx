@@ -30,8 +30,8 @@ export const ExtraControls = ({
   return (
     <div className={containerClasses}>
       <Collapsible.Root>
-        <Collapsible.Trigger disabled={playerIsEmpty}>
-          <Tooltip content="Queue">
+        <Tooltip content="Queue">
+          <Collapsible.Trigger disabled={playerIsEmpty} asChild>
             <Button
               circle
               disabled={playerIsEmpty}
@@ -39,8 +39,8 @@ export const ExtraControls = ({
             >
               Q
             </Button>
-          </Tooltip>
-        </Collapsible.Trigger>
+          </Collapsible.Trigger>
+        </Tooltip>
         <Collapsible.Content className={queueOverlayClasses}>
           <section className="w-full max-w-screen-md p-24 rounded-lg bg-ground border-2 space-y-24 overflow-y-scroll">
             <Queue />

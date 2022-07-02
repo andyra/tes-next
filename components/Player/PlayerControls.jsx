@@ -99,29 +99,28 @@ export const PlayerControls = ({
       <div className={controlClasses}>
         <Menu
           disabled={playerIsEmpty}
+          tooltip="Playback Speed"
           trigger={
-            <Tooltip content="Playback Speed">
-              <Button
-                className={`text-sm font-medium ${extraButtonClasses}`}
-                circle
-                disabled={playerIsEmpty}
-                variant="ghost"
-              >
-                {rate > 1 && (
-                  <>
-                    <Icon name="ArrowUp" />
-                    {RATES[index].badge}
-                  </>
-                )}
-                {rate === 1 && <>{RATES[index].badge}</>}
-                {rate < 1 && (
-                  <>
-                    <Icon name="ArrowDown" />
-                    {RATES[index].badge}
-                  </>
-                )}
-              </Button>
-            </Tooltip>
+            <Button
+              className={`text-sm font-medium ${extraButtonClasses}`}
+              circle
+              disabled={playerIsEmpty}
+              variant="ghost"
+            >
+              {rate > 1 && (
+                <>
+                  <Icon name="ArrowUp" />
+                  {RATES[index].badge}
+                </>
+              )}
+              {rate === 1 && <>{RATES[index].badge}</>}
+              {rate < 1 && (
+                <>
+                  <Icon name="ArrowDown" />
+                  {RATES[index].badge}
+                </>
+              )}
+            </Button>
           }
         >
           <MenuHeading>Playback Speed</MenuHeading>

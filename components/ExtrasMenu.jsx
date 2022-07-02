@@ -29,13 +29,7 @@ export const ExtrasMenu = () => {
   if (!mounted) return null;
 
   return (
-    <Menu
-      trigger={
-        <Tooltip content="Menu">
-          <Button circle iconLeft="Overflow" variant="glass" />
-        </Tooltip>
-      }
-    >
+    <Menu trigger={<Button circle iconLeft="Overflow" variant="glass" />}>
       <MenuHeading>Theme</MenuHeading>
       <ThemeItem icon="Gear" label="system" setTheme={setTheme} theme={theme} />
       <ThemeItem icon="Sun" label="light" setTheme={setTheme} theme={theme} />
