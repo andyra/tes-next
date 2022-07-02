@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import cn from "classnames";
-import Button from "@/components/Button";
+import Button from "components/Button";
 
 export const PageTitle = ({ children, className }) => {
   const classes = cn({

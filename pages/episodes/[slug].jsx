@@ -1,18 +1,18 @@
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import { CollectionHeader } from "@/components/Collections";
-import CoverArt from "@/components/CoverArt";
-import NiceDate from "@/components/NiceDate";
-import PageHeader, { PageTitle } from "@/components/PageHeader";
-import PlayPauseButton from "@/components/PlayPauseButton";
-import Tracklist from "@/components/Tracklist";
+import { CollectionHeader } from "components/Collections";
+import CoverArt from "components/CoverArt";
+import NiceDate from "components/NiceDate";
+import PageHeader, { PageTitle } from "components/PageHeader";
+import PlayPauseButton from "components/PlayPauseButton";
+import Tracklist from "components/Tracklist";
 import { EPISODE } from "../../constants";
 import {
   normalizeFullEpisode,
   normalizeTracklist,
   querySlugs
-} from "@/helpers/index";
+} from "helpers/index";
 
 // Default
 // ----------------------------------------------------------------------------

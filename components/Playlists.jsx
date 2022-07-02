@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import toast from "react-hot-toast";
-import Button from "@/components/Button";
-import Empty from "@/components/Empty";
-import Icon from "@/components/Icon";
-import Modal from "@/components/Modal";
-import QueryError from "@/components/QueryError";
-import { NavLink } from "@/components/Navigation";
+import Button from "components/Button";
+import Empty from "components/Empty";
+import Icon from "components/Icon";
+import Modal from "components/Modal";
+import QueryError from "components/QueryError";
+import { NavLink } from "components/Navigation";
 import { PLAYLISTS_QUERY } from "../constants";
 
 // TODO

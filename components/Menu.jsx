@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
-import Icon from "@/components/Icon";
-import Tooltip from "@/components/Tooltip";
+import Icon from "components/Icon";
+import Tooltip from "components/Tooltip";
 
 // Menu Item
 // ----------------------------------------------------------------------------

@@ -2,14 +2,14 @@ import { useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import cn from "classnames";
-import Button from "@/components/Button";
-import ClientOnly from "@/components/ClientOnly";
-import GridListToggle from "@/components/GridListToggle";
-import Filters, { getDefaultFilters } from "@/components/Filters";
-import MusicTabs from "@/components/MusicTabs";
+import Button from "components/Button";
+import ClientOnly from "components/ClientOnly";
+import GridListToggle from "components/GridListToggle";
+import Filters, { getDefaultFilters } from "components/Filters";
+import MusicTabs from "components/MusicTabs";
 import AlbumList from "./components/AlbumList";
-import { getArtistInfo } from "@/helpers/index";
-import { camelCaseToWords } from "@/helpers/utils";
+import { getArtistInfo } from "helpers/index";
+import { camelCaseToWords } from "helpers/utils";
 
 // Functions
 // ----------------------------------------------------------------------------

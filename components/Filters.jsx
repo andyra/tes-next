@@ -2,9 +2,9 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
-import Button, { getButtonClasses } from "@/components/Button";
-import Icon from "@/components/Icon";
-import { Menu, MenuDivider, MenuItem, MenuHeading } from "@/components/Menu";
+import Button, { getButtonClasses } from "components/Button";
+import Icon from "components/Icon";
+import { Menu, MenuDivider, MenuItem, MenuHeading } from "components/Menu";
 
 // Functions
 // ----------------------------------------------------------------------------

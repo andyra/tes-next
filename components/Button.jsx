@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import cn from "classnames";
-import Icon, { ICON_NAMES } from "@/components/Icon";
+import Icon, { ICON_NAMES } from "components/Icon";
 
 export const BUTTON_SIZES = {
   sm: {

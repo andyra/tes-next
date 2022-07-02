@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
-import Empty from "@/components/Empty";
-import QueryError from "@/components/QueryError";
+import Empty from "components/Empty";
+import QueryError from "components/QueryError";
 
 // TODO: Share this code with SongList?
 

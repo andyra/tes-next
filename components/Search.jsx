@@ -4,16 +4,16 @@ import { gql, useLazyQuery } from "@apollo/client";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import cn from "classnames";
-import { getButtonClasses } from "@/components/Button";
-import CoverArt from "@/components/CoverArt";
-import ClientOnly from "@/components/ClientOnly";
-import Empty from "@/components/Empty";
-import Icon from "@/components/Icon";
-import Input from "@/components/Input";
-import Loader from "@/components/Loader";
-import Tooltip from "@/components/Tooltip";
-import useDebounce from "@/hooks/useDebounce";
-import { getCollectionCoverArtUrl } from "@/helpers/index";
+import { getButtonClasses } from "components/Button";
+import CoverArt from "components/CoverArt";
+import ClientOnly from "components/ClientOnly";
+import Empty from "components/Empty";
+import Icon from "components/Icon";
+import Input from "components/Input";
+import Loader from "components/Loader";
+import Tooltip from "components/Tooltip";
+import useDebounce from "hooks/useDebounce";
+import { getCollectionCoverArtUrl } from "helpers/index";
 
 // TODO: Close when navigating to new page
 // TODO: Highlight term

@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import PageHeader from "@/components/PageHeader";
-import { querySlugs } from "@/helpers/index";
+import PageHeader from "components/PageHeader";
+import { querySlugs } from "helpers/index";
 
 // Functions
 // ----------------------------------------------------------------------------

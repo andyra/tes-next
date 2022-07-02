@@ -3,20 +3,20 @@ import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
 import styled from "styled-components";
-import AnimatedLetter from "@/components/AnimatedLetter";
-import Button from "@/components/Button";
-import CoverArt from "@/components/CoverArt";
-import PlayPauseButton from "@/components/PlayPauseButton";
-import Icon from "@/components/Icon";
-import { CollectionItem } from "@/components/Collections";
-import { generateFeed } from "@/helpers/feed";
+import AnimatedLetter from "components/AnimatedLetter";
+import Button from "components/Button";
+import CoverArt from "components/CoverArt";
+import PlayPauseButton from "components/PlayPauseButton";
+import Icon from "components/Icon";
+import { CollectionItem } from "components/Collections";
+import { generateFeed } from "helpers/feed";
 import {
   getCollectionType,
   normalizeCollections,
   normalizeFullEpisode,
   normalizeTracklist
 } from "../helpers";
-import { shuffle } from "@/helpers/utils";
+import { shuffle } from "helpers/utils";
 const fs = require("fs");
 
 // Queries

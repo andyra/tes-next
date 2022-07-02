@@ -5,10 +5,10 @@ import {
   CollectionItem,
   CollectionList,
   CollectionListSkeleton
-} from "@/components/Collections";
-import Empty from "@/components/Empty";
-import NiceDate from "@/components/NiceDate";
-import QueryError from "@/components/QueryError";
+} from "components/Collections";
+import Empty from "components/Empty";
+import NiceDate from "components/NiceDate";
+import QueryError from "components/QueryError";
 
 // Queries
 // ----------------------------------------------------------------------------

@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import cn from "classnames";
-import { usePlayerContext } from "@/context/PlayerContext";
-import Button, { BUTTON_SIZES, BUTTON_VARIANTS } from "@/components/Button";
-import Icon from "@/components/Icon";
-import Loader from "@/components/Loader";
+import { usePlayerContext } from "context/PlayerContext";
+import Button, { BUTTON_SIZES, BUTTON_VARIANTS } from "components/Button";
+import Icon from "components/Icon";
+import Loader from "components/Loader";
 
 // Pass in a track play it in the player
 const PlayPauseButton = ({

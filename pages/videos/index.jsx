@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
-import Empty from "@/components/Empty";
-import QueryError from "@/components/QueryError";
-import PageHeader from "@/components/PageHeader";
+import Empty from "components/Empty";
+import QueryError from "components/QueryError";
+import PageHeader from "components/PageHeader";
 
 // Components
 // ----------------------------------------------------------------------------

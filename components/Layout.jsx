@@ -5,12 +5,12 @@ import * as Popover from "@radix-ui/react-popover";
 import styled, { keyframes } from "styled-components";
 import cn from "classnames";
 import { Toaster } from "react-hot-toast";
-import { usePlayerContext } from "@/context/PlayerContext";
-import Button from "./Button";
-import Input from "./Input";
-import Navigation from "./Navigation";
-import Player from "./Player";
-import Toolbar from "./Toolbar";
+import { usePlayerContext } from "context/PlayerContext";
+import Button from "components/Button";
+import Input from "components/Input";
+import Navigation from "components/Navigation";
+import Player from "components/Player";
+import Toolbar from "components/Toolbar";
 
 // Components
 // ----------------------------------------------------------------------------

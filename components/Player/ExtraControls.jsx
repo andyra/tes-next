@@ -1,9 +1,9 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
 import cn from "classnames";
-import Button, { getButtonClasses } from "@/components/Button";
-import Icon from "@/components/Icon";
-import Queue from "@/components/Queue";
-import Tooltip from "@/components/Tooltip";
+import Button, { getButtonClasses } from "components/Button";
+import Icon from "components/Icon";
+import Queue from "components/Queue";
+import Tooltip from "components/Tooltip";
 
 // Default
 // ----------------------------------------------------------------------------

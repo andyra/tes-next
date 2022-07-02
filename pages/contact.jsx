@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import PageHeader from "@/components/PageHeader";
+import PageHeader from "components/PageHeader";
 import { ADDRESS, EMAIL, PHONE } from "../constants";
 
 // Default

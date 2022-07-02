@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import cn from "classnames";
-import Icon from "@/components/Icon";
-import Loader from "@/components/Loader";
-import { slugify } from "@/helpers/utils";
+import Icon from "components/Icon";
+import Loader from "components/Loader";
+import { slugify } from "helpers/utils";
 
 export const Input = ({
   className,

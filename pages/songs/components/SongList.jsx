@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import cn from "classnames";
-import Empty from "@/components/Empty";
-import QueryError from "@/components/QueryError";
+import Empty from "components/Empty";
+import QueryError from "components/QueryError";
 
 // Queries
 // ----------------------------------------------------------------------------

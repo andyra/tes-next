@@ -5,14 +5,14 @@ import { gql } from "@apollo/client";
 import client from "../apollo-client";
 import * as Accordion from "@radix-ui/react-accordion";
 import cn from "classnames";
-import Badge from "@/components/Badge";
-import Button, { getButtonClasses } from "@/components/Button";
-import Icon from "@/components/Icon";
-import Input from "@/components/Input";
-import LeadSheet from "@/components/LeadSheet";
-import PageHeader, { PageTitle } from "@/components/PageHeader";
-import { normalizeTrack } from "@/helpers/index";
-import { shuffle } from "@/helpers/utils";
+import Badge from "components/Badge";
+import Button, { getButtonClasses } from "components/Button";
+import Icon from "components/Icon";
+import Input from "components/Input";
+import LeadSheet from "components/LeadSheet";
+import PageHeader, { PageTitle } from "components/PageHeader";
+import { normalizeTrack } from "helpers/index";
+import { shuffle } from "helpers/utils";
 
 // Functions
 // ----------------------------------------------------------------------------

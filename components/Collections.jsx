@@ -2,12 +2,12 @@ import PropTypes from "prop-types";
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "@/components/Button";
-import CoverArt from "@/components/CoverArt";
-import LightBox from "@/components/LightBox";
-import NiceDate from "@/components/NiceDate";
-import { PageTitle } from "@/components/PageHeader";
-import { getCollectionType, getCollectionCoverArtUrl } from "@/helpers/index";
+import Button from "components/Button";
+import CoverArt from "components/CoverArt";
+import LightBox from "components/LightBox";
+import NiceDate from "components/NiceDate";
+import { PageTitle } from "components/PageHeader";
+import { getCollectionType, getCollectionCoverArtUrl } from "helpers/index";
 
 // Collection Header
 // ----------------------------------------------------------------------------

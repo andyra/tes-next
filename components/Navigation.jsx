@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import cn from "classnames";
-import Button from "@/components/Button";
-import Icon from "@/components/Icon";
+import Button from "components/Button";
+import Icon from "components/Icon";
 
 export const NavLink = ({
   className,

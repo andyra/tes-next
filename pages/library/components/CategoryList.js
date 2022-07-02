@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
-import QueryError from "@/components/QueryError";
+import QueryError from "components/QueryError";
 
 // Components
 // ----------------------------------------------------------------------------

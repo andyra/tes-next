@@ -1,8 +1,8 @@
 import Link from "next/link";
 import cn from "classnames";
-import Button from "@/components/Button";
-import CoverArt from "@/components/CoverArt";
-import Icon from "@/components/Icon";
+import Button from "components/Button";
+import CoverArt from "components/CoverArt";
+import Icon from "components/Icon";
 
 // Default
 // ----------------------------------------------------------------------------

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import client from "../../apollo-client";
-import ClientOnly from "@/components/ClientOnly";
-import { getTrackType } from "@/helpers/index";
+import ClientOnly from "components/ClientOnly";
+import { getTrackType } from "helpers/index";
 
 // Page
 // ----------------------------------------------------------------------------

@@ -2,8 +2,8 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import * as Dialog from "@radix-ui/react-dialog";
 import cn from "classnames";
-import { getButtonClasses } from "@/components/Button";
-import Icon from "@/components/Icon";
+import { getButtonClasses } from "components/Button";
+import Icon from "components/Icon";
 
 const LightBox = ({ children, className, title, titleClassName, trigger }) => {
   const contentClasses = cn(

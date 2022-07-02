@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import ClientOnly from "@/components/ClientOnly";
-import Empty from "@/components/Empty";
-import PageHeader from "@/components/PageHeader";
-import { shuffle } from "@/helpers/utils";
+import ClientOnly from "components/ClientOnly";
+import Empty from "components/Empty";
+import PageHeader from "components/PageHeader";
+import { shuffle } from "helpers/utils";
 import CategoryList from "./components/CategoryList";
 import { ArticleItem } from "./components/ArticleList";
 

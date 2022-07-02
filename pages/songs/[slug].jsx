@@ -3,9 +3,9 @@ import Image from "next/image";
 import { gql } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";
-import LeadSheet from "@/components/LeadSheet";
-import PageHeader from "@/components/PageHeader";
-import Tracklist from "@/components/Tracklist";
+import LeadSheet from "components/LeadSheet";
+import PageHeader from "components/PageHeader";
+import Tracklist from "components/Tracklist";
 import {
   getArtistInfo,
   getCollectionCoverArtUrl,
@@ -16,7 +16,7 @@ import {
   getTrackType,
   querySlugs,
   normalizeTrack
-} from "@/helpers/index";
+} from "helpers/index";
 
 // Functions
 // ----------------------------------------------------------------------------

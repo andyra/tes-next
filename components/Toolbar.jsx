@@ -1,5 +1,5 @@
-import Search from "@/components/Search";
-import ExtrasMenu from "@/components/ExtrasMenu";
+import Search from "components/Search";
+import ExtrasMenu from "components/ExtrasMenu";
 
 const Toolbar = () => (
   <section className="flex justify-end sticky top-0 z-10 bg-gradient-to-b from-ground p-8 print:hidden">
