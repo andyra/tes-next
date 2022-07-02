@@ -3,6 +3,7 @@ import { usePlayerContext } from "context/PlayerContext";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import Tracklist from "components/Tracklist";
+import TrackMenu from "components/TrackMenu";
 
 const Section = ({ actions, children, className, title }) => (
   <section className={className}>
@@ -37,7 +38,7 @@ const QueueList = ({
 const CurrentTrack = ({ currentTrack }) => {
   return currentTrack ? (
     <Section title="On Deck">
-      <div className="flex items-center gap-8 md:gap-16">
+      <div className="flex items-center gap-8 md:gap-16 hover:bg-primary-5 p-8 md:px-16 -mx-8 md:-mx-16 rounded-lg group">
         <CoverArt
           className="h-88 w-88 rounded-lg"
           height={88}
@@ -49,6 +50,7 @@ const CurrentTrack = ({ currentTrack }) => {
           <div className="text-2xl text-default">{currentTrack.title}</div>
           <div className="text-sm">{currentTrack.collection.title}</div>
         </div>
+        <TrackMenu track={currentTrack} queueable={false} />
       </div>
     </Section>
   ) : (

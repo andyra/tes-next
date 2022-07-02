@@ -104,7 +104,7 @@ export function normalizeFullEpisode(episode) {
         type: getCollectionType(episode),
         slug: episode.slug,
         title: episode.title,
-        uri: episode.uri,
+        uri: `/${episode.uri}`,
         coverArt: getCollectionCoverArtUrl(episode)
       },
       dateAdded: null,
@@ -135,7 +135,7 @@ export function normalizeTrack(collection, track, i) {
       type: getCollectionType(collection),
       slug: collection.slug,
       title: collection.title,
-      uri: collection.uri,
+      uri: `/${collection.uri}`,
       coverArt: getCollectionCoverArtUrl(collection)
     },
     dateAdded: null,

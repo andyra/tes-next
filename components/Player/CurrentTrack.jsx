@@ -3,6 +3,7 @@ import cn from "classnames";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import Icon from "components/Icon";
+import TrackMenu from "components/TrackMenu";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -26,23 +27,18 @@ export const CurrentTrack = ({
   });
 
   const trackInfoClasses = cn({
-    "flex items-center gap-8 transition duration-300": true,
+    "flex-1 min-w-0 flex items-center gap-8 transition duration-300": true,
     "w-full mix-blend-overlay": isFullscreen
   });
 
   const titleClasses = cn({
-    "text-primary font-medium": !isFullscreen,
+    "text-primary font-medium truncate overflow-hidden": !isFullscreen,
     "text-4xl font-medium md:font-funky md:font-bold md:text-[8vmin] md:leading-[0.8] lg:text-[12vmin] md:mb-16": isFullscreen
   });
 
   const collectionClasses = cn({
     "text-sm text-primary-50 hover:text-accent": !isFullscreen,
     "text-xl md:text-3xl font-medium pointer-events-none": isFullscreen
-  });
-
-  const overflowClasses = cn({
-    "opacity-0 group-hover:opacity-100 transition": !isFullscreen,
-    "absolute top-0 right-0": isFullscreen
   });
 
   return (
@@ -57,22 +53,17 @@ export const CurrentTrack = ({
             width={isFullscreen ? 256 : isMobile ? 40 : 64}
           />
           <div className={trackInfoClasses}>
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <div className={titleClasses}>{currentTrack.title}</div>
-              <Link href={currentTrack.collection.uri}>
-                <a className={collectionClasses}>
-                  {currentTrack.collection.title}
-                </a>
-              </Link>
+              <div className="truncate overflow-hidden">
+                <Link href={currentTrack.collection.uri}>
+                  <a className={collectionClasses}>
+                    {currentTrack.collection.title}
+                  </a>
+                </Link>
+              </div>
             </div>
-            <Button
-              circle
-              size="sm"
-              variant="glass"
-              className={overflowClasses}
-            >
-              <Icon name="Overflow" />
-            </Button>
+            <TrackMenu track={currentTrack} queueable={false} />
           </div>
         </>
       ) : (

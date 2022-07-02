@@ -8,8 +8,8 @@ import { usePlayerContext } from "context/PlayerContext";
 import Button, { getButtonClasses } from "components/Button";
 import CoverArt from "components/CoverArt";
 import Icon from "components/Icon";
-import { Menu, MenuItem } from "components/Menu";
 import Tooltip from "components/Tooltip";
+import TrackMenu from "components/TrackMenu";
 import PlayPauseButton from "components/PlayPauseButton";
 import { getCollectionType, getTrackType } from "helpers/index";
 import { formatTime } from "helpers/utils";
@@ -29,100 +29,36 @@ const DurationSSR = ({ src }) => {
   return duration;
 };
 
-// Overflow Menu
-// ----------------------------------------------------------------------------
-
-const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
-  const { audioFile, collection, title, uri } = track;
-  const overflowMenuClasses = cn(
-    getButtonClasses({
-      variant: "ghost",
-      circle: true
-    }),
-    "opacity-0 group-hover:opacity-100"
-  );
-
-  const contentClasses = cn(
-    "w-256 bg-ground border-2 rounded-lg",
-    "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
-  );
-
-  return (
-    <Menu
-      trigger={<Icon name="Overflow" />}
-      triggerClassName={overflowMenuClasses}
-    >
-      {uri && (
-        <MenuItem href={`/${uri}`} icon="Note">
-          Go to Song
-        </MenuItem>
-      )}
-      <MenuItem
-        href={`/${collection.uri}`}
-        icon={collection.type === "episode" ? "Mic" : "Music"}
-      >
-        Go to <span className="capitalize">{collection.type}</span>
-      </MenuItem>
-      {queueable ? (
-        <MenuItem
-          icon="Plus"
-          onClick={() => {
-            addToQueue(track);
-          }}
-        >
-          Add to Queue
-        </MenuItem>
-      ) : (
-        <MenuItem
-          icon="X"
-          onClick={() => {
-            removeFromQueue(track, i);
-          }}
-        >
-          Remove from Queue
-        </MenuItem>
-      )}
-      {audioFile && (
-        <MenuItem
-          download={title}
-          href={audioFile}
-          icon="Download"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Download
-        </MenuItem>
-      )}
-    </Menu>
-  );
-};
-
-TrackMenu.propTypes = {
-  addToQueue: PropTypes.func,
-  i: PropTypes.number.isRequired,
-  queueable: PropTypes.bool,
-  removeFromQueue: PropTypes.func,
-  track: PropTypes.object.isRequired
-};
-
 // Tracklist
 // ----------------------------------------------------------------------------
 
 const DurationBrowser = ({ src }) => {
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState(false);
   const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
 
   useEffect(() => {
+    let duationThing = true;
     // I used to have this wrapped in a return
-    audioRef.current = new Audio(src);
-    audioRef.current.onloadeddata = () => {
-      setDuration(audioRef.current.duration);
+    if (duationThing) {
+      audioRef.current = new Audio(src);
+      audioRef.current.onloadeddata = () => {
+        setDuration(audioRef.current.duration);
+      };
+    }
+
+    // Cleanup
+    return () => {
+      duationThing = false;
     };
   }, []);
 
   return (
-    <time className="font-mono text-sm text-primary-50 mr-8 hidden md:block">
-      {formatTime(duration)}
+    <time
+      className={`font-mono text-sm mr-8 hidden md:block ${
+        duration ? "text-primary-50" : "text-primary animate-loading"
+      }`}
+    >
+      {duration ? formatTime(duration) : "0:00"}
     </time>
   );
 };
