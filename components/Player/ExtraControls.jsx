@@ -3,23 +3,8 @@ import cn from "classnames";
 import Button from "components/Button";
 import Icon from "components/Icon";
 import Queue from "components/Queue";
-import Queue2 from "components/Queue2";
 import Player from "components/Player";
 import Tooltip from "components/Tooltip";
-
-// Functions
-// ----------------------------------------------------------------------------
-
-function handleInteractOutside(e) {
-  e.preventDefault();
-  const el = e.target;
-  const playerClicked = e.target.closest("#player");
-  console.log(playerClicked);
-
-  if (playerClicked) {
-    e.preventDefault();
-  }
-}
 
 // Default
 // ----------------------------------------------------------------------------
@@ -27,12 +12,13 @@ function handleInteractOutside(e) {
 export const ExtraControls = ({
   isFullscreen,
   playerIsEmpty,
-  setIsFullscreen
+  setIsFullscreen,
+  setQueueList
 }) => {
   const containerClasses = cn({
-    "flex items-center gap-8": true,
-    "hidden md:flex flex-1 justify-end": !isFullscreen,
-    "justify-between w-full md:justify-end relative mix-blend-overlayXXX": isFullscreen
+    "flex items-center justify-end gap-8": true,
+    "hidden md:flex flex-1": !isFullscreen,
+    "w-full md:justify-end mix-blend-overlayXXX": isFullscreen
   });
 
   const queueOverlayClasses = cn({
@@ -45,26 +31,25 @@ export const ExtraControls = ({
 
   return (
     <div className={containerClasses}>
-      <Queue2
+      <Queue
         playerIsEmpty={playerIsEmpty}
         isFullscreen={isFullscreen}
         setIsFullscreen={setIsFullscreen}
       />
-
       <Tooltip content={isFullscreen ? "Close" : "Enable Cool Mode"}>
         <Button
+          className={isFullscreen ? "absolute top-12 right-12" : ""}
           circle
           disabled={playerIsEmpty}
-          variant={isFullscreen ? "glass" : "outline"}
+          iconLeft={isFullscreen ? "X" : "Eye"}
           onClick={() => {
             setIsFullscreen(!isFullscreen);
           }}
+          variant="outline"
           aria-controls="full-screen"
           aria-expanded={!isFullscreen}
           aria-label="Full Screen"
-        >
-          <Icon name={isFullscreen ? "EyeOff" : "Eye"} />
-        </Button>
+        />
       </Tooltip>
     </div>
   );

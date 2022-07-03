@@ -40,20 +40,23 @@ const grain = keyframes`
   80% { background-position: 0% 100%; }
 `;
 
-const Grain = styled.div.attrs({
-  className:
-    "fixed h-screen w-screen pointer-events-none z-grain mix-blend-difference"
-})`
+const Grain = styled.div`
   animation: ${grain} 0.4s steps(1) infinite;
-  background-image: url(/noise-256w.png);
-  opacity: 0.2;
+  // background-image: url(/noise-256w.png);
+  background-image: url(/grain-dark.png);
 `;
 
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Layout({ children, ...props }) {
-  const { currentTrack, nextList, prevList, queueList } = usePlayerContext();
+  const {
+    currentTrack,
+    isFullscreen,
+    nextList,
+    prevList,
+    queueList
+  } = usePlayerContext();
   const playerIsEmpty =
     !currentTrack && prevList.length + nextList.length + queueList.length === 0;
 
@@ -61,6 +64,13 @@ export default function Layout({ children, ...props }) {
     "h-full overflow-hidden print:overflow-visible text-primary p-4 bg-ground-dark",
     "grid grid-cols-1 md:grid-cols-[224px,1fr] grid-rows-[1fr,64px,56px] md:grid-rows-[1fr,80px] gap-4"
   );
+
+  const grainClasses = cn({
+    "fixed top-0 left-0 h-screen w-screen pointer-events-none z-grain": true,
+    "invert mix-blend-multiply dark:mix-blend-screen dark:invert-0": true,
+    "opacity-30": !isFullscreen,
+    "opacity-60": isFullscreen
+  });
 
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses.split(" "));
@@ -83,7 +93,7 @@ export default function Layout({ children, ...props }) {
         <div className="sticky z-10 bottom-0 left-0 w-full h-48 bg-gradient-to-t from-ground opacity-75 pointer-events-none" />
       </Main>
       <Player />
-      <Grain />
+      <Grain className={grainClasses} />
     </>
   );
 }

@@ -245,7 +245,7 @@ const Visualization = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute top-0 left-0 h-full w-full brightness-75 saturate-50"
+      className="absolute z-[-1] top-0 left-0 h-full w-full brightness-75 saturate-50"
     />
   );
 };

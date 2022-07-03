@@ -40,21 +40,22 @@ export const PlayerControls = ({
   const classes = cn({
     "flex flex-col gap-4": true,
     "md:w-1/3": !isFullscreen,
-    "w-full transition duration-300 relative mb-8 mix-blend-overlayXXX": isFullscreen
+    "w-full transition duration-300 mb-8 relative mix-blend-overlayXXX": isFullscreen
   });
 
   const controlClasses = cn({
     "flex items-center justify-center gap-2": true,
-    "absolute z-10 left-1/2 -bottom-16 -translate-x-1/2 translate-y-full": isFullscreen
+    "absolute z-10 left-1/2 -translate-x-1/2 -bottom-16 translate-y-full": isFullscreen
   });
 
   const extraButtonClasses = cn({
     "hidden md:flex": !isFullscreen
   });
 
-  const randomClasses = cn({
+  const rateClasses = cn({
     [extraButtonClasses]: true,
-    "text-accent": isRandom
+    "text-sm font-medium": true,
+    "text-accent": rate !== 1
   });
 
   const loopClasses = cn({
@@ -102,7 +103,7 @@ export const PlayerControls = ({
           tooltip="Playback Speed"
           trigger={
             <Button
-              className={`text-sm font-medium ${extraButtonClasses}`}
+              className={rateClasses}
               circle
               disabled={playerIsEmpty}
               variant="ghost"
@@ -154,7 +155,7 @@ export const PlayerControls = ({
           className={isLoading ? "relative" : ""}
           disabled={playerIsEmpty}
           onClick={togglePlay}
-          variant="ghost"
+          variant="glass"
         >
           <Icon
             name={isPlaying ? "Pause" : "Play"}

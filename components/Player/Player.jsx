@@ -15,12 +15,14 @@ import { shuffle } from "helpers/utils";
 export const Player = () => {
   const {
     currentTrack,
+    isFullscreen,
     isLoading,
     isPlaying,
     nextList,
     prevList,
     queueList,
     setCurrentTrack,
+    setIsFullscreen,
     setIsLoading,
     setIsPlaying,
     setNextList,
@@ -29,7 +31,6 @@ export const Player = () => {
   } = usePlayerContext();
 
   // State
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLooped, setIsLooped] = useState(false);
   const [isRandom, setIsRandom] = useState(false);
   const [duration, setDuration] = useState(0);

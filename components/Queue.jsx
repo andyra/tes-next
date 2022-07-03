@@ -1,13 +1,20 @@
+import * as Dialog from "@radix-ui/react-dialog";
 import cn from "classnames";
 import { usePlayerContext } from "context/PlayerContext";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
+import Icon from "components/Icon";
+import Player from "components/Player";
+import Tooltip from "components/Tooltip";
 import Tracklist from "components/Tracklist";
 import TrackMenu from "components/TrackMenu";
 
-const Section = ({ actions, children, className, title }) => (
+// Components
+// ----------------------------------------------------------------------------
+
+const QueueSection = ({ actions, children, className, title }) => (
   <section className={className}>
-    <header className="flex items-center justify-between mb-8 sticky -top-24 bg-ground z-10">
+    <header className="flex items-center justify-between py-8 px-24 -mx-24 rounded-xl sticky -top-24 bg-ground-50 backdrop-blur-md z-10">
       <h3 className="font-medium text-xl text-primary">{title}</h3>
       {actions && actions}
     </header>
@@ -15,82 +22,107 @@ const Section = ({ actions, children, className, title }) => (
   </section>
 );
 
-const QueueList = ({
-  actions,
-  queueable,
-  showCollectionInfo,
-  tracks,
-  title
-}) => {
-  return tracks.length ? (
-    <Section title={title} actions={actions}>
-      <Tracklist
-        tracks={tracks}
-        queueable={queueable}
-        showCollectionInfo={showCollectionInfo}
-      />
-    </Section>
-  ) : (
-    ""
-  );
-};
+export const Queue = ({ isFullscreen, playerIsEmpty, setIsFullscreen }) => {
+  const {
+    currentTrack,
+    nextList,
+    queueList,
+    setQueueList
+  } = usePlayerContext();
 
-const CurrentTrack = ({ currentTrack }) => {
-  return currentTrack ? (
-    <Section title="On Deck">
-      <div className="flex items-center gap-8 md:gap-16 hover:bg-primary-5 p-8 md:px-16 -mx-8 md:-mx-16 rounded-lg group">
-        <CoverArt
-          className="h-88 w-88 rounded-lg"
-          height={88}
-          width={88}
-          url={currentTrack.collection.coverArt}
-          title={currentTrack.title}
-        />
-        <div className="flex-1">
-          <div className="text-2xl text-default">{currentTrack.title}</div>
-          <div className="text-sm">{currentTrack.collection.title}</div>
-        </div>
-        <TrackMenu track={currentTrack} queueable={false} />
-      </div>
-    </Section>
-  ) : (
-    ""
-  );
-};
+  const contentClasses = cn({
+    "absolute z-dialog-content top-0 left-0 h-full w-full radix-state-open:animate-slide-up-fade": true,
+    "md:max-w-screen-sm md:top-4 md:left-1/2 md:-translate-x-1/2 md:h-auto": true,
+    "bg-ground overflow-y-scroll p-24 md:rounded-xl": true,
+    "md:bottom-88": !isFullscreen,
+    "bottom-4": isFullscreen
+  });
 
-export const Queue = () => {
-  const { currentTrack, nextList, queueList } = usePlayerContext();
-
-  const ClearQueueButton = () => {
-    function handleClear() {
-      context.setQueueList([]);
-    }
-
-    return (
-      <Button
-        className={queueList.length ? "" : "hidden"}
-        onClick={() => {
-          handleClear();
-        }}
-        size="sm"
-      >
-        Clear Queue
-      </Button>
-    );
-  };
+  const overlayClasses = cn({
+    "fixed top-0 right-0 left-0 backdrop-blur-md bg-primary-5 radix-state-open:animate-fade-in z-dialog": true,
+    "bottom-88": !isFullscreen,
+    "bottom-0": isFullscreen
+  });
 
   return (
-    <>
-      <CurrentTrack currentTrack={currentTrack} />
-      <QueueList
-        title="Queue"
-        tracks={queueList}
-        actions={<ClearQueueButton />}
-        queueable={false}
-        showCollectionInfo
-      />
-      <QueueList showCollectionInfo title="Next Up" tracks={nextList} />
-    </>
+    <Dialog.Root modal={false}>
+      <Tooltip content="Queue">
+        <Dialog.Trigger asChild>
+          <Button circle disabled={playerIsEmpty} variant="outline">
+            <Icon name="Queue" />
+          </Button>
+        </Dialog.Trigger>
+      </Tooltip>
+      <Dialog.Portal>
+        <div id="queue-overlay" className={overlayClasses} />
+        <Dialog.Content
+          onInteractOutside={e => {
+            if (e.target.id !== "queue-overlay") {
+              e.preventDefault();
+            }
+          }}
+        >
+          <div id="queue-content" className={contentClasses}>
+            <Dialog.Close asChild>
+              <Button
+                circle
+                iconLeft="X"
+                className="fixed top-12 right-12 z-dialog-content"
+              />
+            </Dialog.Close>
+            {currentTrack && (
+              <QueueSection title="On Deck">
+                <div className="flex items-center gap-8 md:gap-16 hover:bg-primary-5 p-8 md:px-16 -mx-8 md:-mx-16 rounded-lg group">
+                  <CoverArt
+                    className="h-88 w-88 rounded-lg"
+                    height={88}
+                    width={88}
+                    url={currentTrack.collection.coverArt}
+                    title={currentTrack.title}
+                  />
+                  <div className="flex-1">
+                    <div className="text-2xl text-default">
+                      {currentTrack.title}
+                    </div>
+                    <div className="text-sm">
+                      {currentTrack.collection.title}
+                    </div>
+                  </div>
+                  <TrackMenu track={currentTrack} queueable={false} />
+                </div>
+              </QueueSection>
+            )}
+            {queueList.length > 0 && (
+              <QueueSection
+                actions={
+                  <Button
+                    className={queueList.length ? "" : "hidden"}
+                    onClick={() => {
+                      setQueueList([]);
+                    }}
+                    size="sm"
+                  >
+                    Clear Queue
+                  </Button>
+                }
+                title="Queue"
+              >
+                <Tracklist
+                  tracks={queueList}
+                  queueable={false}
+                  showCollectionInfo
+                />
+              </QueueSection>
+            )}
+            {nextList.length > 0 && (
+              <QueueSection title="Next Up" className="mt-24 -mb-16">
+                <Tracklist tracks={nextList} showCollectionInfo />
+              </QueueSection>
+            )}
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 };
 
