@@ -16,12 +16,12 @@
   --primary-25: hsla(53, 16%, 77%, 0.25);
   --primary-10: hsla(53, 16%, 77%, 0.15);
   --primary-5: hsla(53, 16%, 77%, 0.1);
-  --secondary: hsl(191, 61%, 81%, 1);
-  --secondary-75: hsla(191, 61%, 81%, 0.75);
-  --secondary-50: hsla(191, 61%, 81%, 0.5);
-  --secondary-25: hsla(191, 61%, 81%, 0.25);
-  --secondary-10: hsla(191, 61%, 81%, 0.1);
-  --secondary-5: hsla(191, 61%, 81%, 0.05);
+  --secondary: hsl(191, 100%, 79%, 1);
+  --secondary-75: hsla(191, 100%, 79%, 0.75);
+  --secondary-50: hsla(191, 100%, 79%, 0.5);
+  --secondary-25: hsla(191, 100%, 79%, 0.25);
+  --secondary-10: hsla(191, 100%, 79%, 0.1);
+  --secondary-5: hsla(191, 100%, 79%, 0.05);
   --tertiary: hsl(234, 88%, 81%, 1);
   --tertiary-75: hsl(234, 88%, 81%, 0.75);
   --tertiary-50: hsl(234, 88%, 81%, 0.5);

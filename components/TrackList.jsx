@@ -93,8 +93,8 @@ export const Tracklist = ({
     const liClasses = cn({
       "flex items-center gap-8 px-8 py-4 md:py-12 -mx-8 rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
       "cursor-default transition relative group": true,
-      "text-secondary": track.audioFile,
-      "text-secondary-50": !track.audioFile
+      "text-primary": track.audioFile,
+      "text-primary-50": !track.audioFile
     });
 
     const indexClasses = cn({

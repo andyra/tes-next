@@ -43,6 +43,7 @@ const Button = React.forwardRef(
       className,
       disabled,
       href,
+      icon,
       iconLeft,
       iconRight,
       size,
@@ -66,6 +67,7 @@ const Button = React.forwardRef(
     return href ? (
       <Link href={href}>
         <a {...props} className={classes} ref={ref}>
+          {icon && <Icon name={icon} />}
           {iconLeft && <Icon name={iconLeft} className="-translate-x-1/4" />}
           {children}
           {iconRight && <Icon name={iconRight} className="translate-x-1/4" />}
@@ -79,6 +81,7 @@ const Button = React.forwardRef(
         type={type}
         ref={ref}
       >
+        {icon && <Icon name={icon} />}
         {iconLeft && <Icon name={iconLeft} />}
         {children}
         {iconRight && <Icon name={iconRight} />}
@@ -93,6 +96,7 @@ Button.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   href: PropTypes.string,
+  icon: PropTypes.oneOf(Object.keys(ICON_NAMES)),
   iconLeft: PropTypes.oneOf(Object.keys(ICON_NAMES)),
   iconRight: PropTypes.oneOf(Object.keys(ICON_NAMES)),
   size: PropTypes.oneOf(Object.keys(BUTTON_SIZES)).isRequired,

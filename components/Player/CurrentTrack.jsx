@@ -29,7 +29,7 @@ export const CurrentTrack = ({
   const trackInfoClasses = cn({
     "min-w-0 flex items-center gap-8 transition duration-300": true,
     "flex-1": !isFullscreen,
-    "w-full mix-blend-overlay": isFullscreen
+    "w-full text-white mix-blend-difference": isFullscreen
   });
 
   const titleClasses = cn({

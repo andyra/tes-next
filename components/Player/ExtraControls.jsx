@@ -41,7 +41,7 @@ export const ExtraControls = ({
           className={isFullscreen ? "absolute top-12 right-12" : ""}
           circle
           disabled={playerIsEmpty}
-          iconLeft={isFullscreen ? "X" : "Eye"}
+          icon={isFullscreen ? "X" : "Eye"}
           onClick={() => {
             setIsFullscreen(!isFullscreen);
           }}

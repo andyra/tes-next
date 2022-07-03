@@ -31,13 +31,14 @@ export const CollectionHeader = ({ children, collection }) => {
         <LightBox
           trigger={
             <CoverArt
-              className="rounded-lg mx-auto md:mx-0 w-256"
+              className="rounded-lg mx-auto md:mx-0 w-256 bg-accent"
               height={256}
               title={title}
               url={getCollectionCoverArtUrl(collection)}
               width={256}
             />
           }
+          triggerClassName="w-fit rounded-lg"
         >
           <CoverArt
             className="rounded w-1/2 mx-auto"

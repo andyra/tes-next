@@ -90,7 +90,7 @@ export const NewPlaylistButton = ({ fullSize }) => {
 
   return (
     <>
-      <Button circle={!fullSize} onClick={openModal} size="sm" iconLeft="Plus">
+      <Button circle={!fullSize} onClick={openModal} size="sm" icon="Plus">
         {fullSize && "New"}
       </Button>
       <Modal closeModal={closeModal} isOpen={modalIsOpen} title="New Playlist">

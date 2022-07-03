@@ -39,7 +39,7 @@ export const Queue = ({ isFullscreen, playerIsEmpty, setIsFullscreen }) => {
   });
 
   const overlayClasses = cn({
-    "fixed top-0 right-0 left-0 backdrop-blur-md bg-primary-5 radix-state-open:animate-fade-in z-dialog": true,
+    "fixed top-0 right-0 left-0 backdrop-blur-md bg-primary-5 z-dialog": true,
     "bottom-88": !isFullscreen,
     "bottom-0": isFullscreen
   });
@@ -66,7 +66,7 @@ export const Queue = ({ isFullscreen, playerIsEmpty, setIsFullscreen }) => {
             <Dialog.Close asChild>
               <Button
                 circle
-                iconLeft="X"
+                icon="X"
                 className="fixed top-12 right-12 z-dialog-content"
               />
             </Dialog.Close>

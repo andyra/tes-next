@@ -157,7 +157,7 @@ const SetlistItem = ({ item, i }) => {
               circle
               className="opacity-0 group-hover:opacity-100 transition"
               href={song.uri}
-              iconLeft="ArrowRight"
+              icon="ArrowRight"
               target="_blank"
             />
           </Tooltip>
