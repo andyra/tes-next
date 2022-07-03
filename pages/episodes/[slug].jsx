@@ -26,7 +26,7 @@ export default function Episode({ episode }) {
     <>
       <CollectionHeader collection={episode}>
         <div>
-          <NiceDate date={releaseDate} /> • [Duration]
+          <NiceDate date={releaseDate} />
         </div>
       </CollectionHeader>
       <section className="flex flex-col md:flex-row items-center gap-24 p-24 rounded-lg border-2">
