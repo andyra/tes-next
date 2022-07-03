@@ -13,7 +13,7 @@ const Dialog = ({
   trigger
 }) => {
   const contentClasses = cn({
-    "w-full max-w-screen-sm absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-ground rounded-lg border-2 z-dialog": true,
+    "w-full max-w-screen-sm absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-ground rounded-lg border-2 z-dialog-content": true,
     "p-24": !className,
     "radix-state-open:animate-slide-up-fade": !animationClass,
     [className]: className
@@ -28,7 +28,7 @@ const Dialog = ({
     <DialogPrimitive.Root>
       <DialogPrimitive.Trigger>{trigger}</DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="fixed top-0 right-0 bottom-0 left-0 backdrop-blur-md bg-ground/30 radix-state-open:animate-fade-in z-dialog-content" />
+        <DialogPrimitive.Overlay className="fixed top-0 right-0 bottom-0 left-0 backdrop-blur-md bg-primary-5 radix-state-open:animate-fade-in z-dialog" />
         <DialogPrimitive.Content className={contentClasses}>
           <DialogPrimitive.Title className={titleClasses}>
             {title}

@@ -27,7 +27,8 @@ export const CurrentTrack = ({
   });
 
   const trackInfoClasses = cn({
-    "flex-1 min-w-0 flex items-center gap-8 transition duration-300": true,
+    "min-w-0 flex items-center gap-8 transition duration-300": true,
+    "flex-1": !isFullscreen,
     "w-full mix-blend-overlay": isFullscreen
   });
 

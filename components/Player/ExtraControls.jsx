@@ -3,7 +3,23 @@ import cn from "classnames";
 import Button from "components/Button";
 import Icon from "components/Icon";
 import Queue from "components/Queue";
+import Queue2 from "components/Queue2";
+import Player from "components/Player";
 import Tooltip from "components/Tooltip";
+
+// Functions
+// ----------------------------------------------------------------------------
+
+function handleInteractOutside(e) {
+  e.preventDefault();
+  const el = e.target;
+  const playerClicked = e.target.closest("#player");
+  console.log(playerClicked);
+
+  if (playerClicked) {
+    e.preventDefault();
+  }
+}
 
 // Default
 // ----------------------------------------------------------------------------
@@ -29,25 +45,13 @@ export const ExtraControls = ({
 
   return (
     <div className={containerClasses}>
-      <Collapsible.Root>
-        <Tooltip content="Queue">
-          <Collapsible.Trigger disabled={playerIsEmpty} asChild>
-            <Button
-              circle
-              disabled={playerIsEmpty}
-              variant={isFullscreen ? "glass" : "outline"}
-            >
-              Q
-            </Button>
-          </Collapsible.Trigger>
-        </Tooltip>
-        <Collapsible.Content className={queueOverlayClasses}>
-          <section className="w-full max-w-screen-md p-24 rounded-lg bg-ground border-2 space-y-24 overflow-y-scroll">
-            <Queue />
-          </section>
-        </Collapsible.Content>
-      </Collapsible.Root>
-      <Tooltip content={isFullscreen ? "Enable Cool Mode" : "Close"}>
+      <Queue2
+        playerIsEmpty={playerIsEmpty}
+        isFullscreen={isFullscreen}
+        setIsFullscreen={setIsFullscreen}
+      />
+
+      <Tooltip content={isFullscreen ? "Close" : "Enable Cool Mode"}>
         <Button
           circle
           disabled={playerIsEmpty}

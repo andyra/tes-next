@@ -223,7 +223,7 @@ export const Player = () => {
 
   return (
     <>
-      <aside className={playerClasses}>
+      <aside className={playerClasses} id="player">
         {currentTrack && (
           <ReactHowler
             ref={howlerRef}
