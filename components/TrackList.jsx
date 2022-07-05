@@ -98,14 +98,14 @@ export const Tracklist = ({
     });
 
     const indexClasses = cn({
-      "hidden md:flex items-center justify-center relative h-40 w-40 flex-shrink-0 font-mono text-primary-50": true,
+      "flex items-center justify-center relative h-40 w-40 flex-shrink-0 font-mono text-primary-50": true,
       "group-hover:opacity-0": track.audioFile,
       "opacity-0": trackIsSelected
     });
 
     const playButtonClasses = cn({
-      "md:absolute md:top-1/2 md:left-0 md:-translate-y-1/2": true,
-      "md:opacity-0 md:group-hover:opacity-100": !trackIsSelected
+      "top-1/2 left-0 -translate-y-1/2": true,
+      "opacity-0 group-hover:opacity-100 focus:opacity-100": !trackIsSelected
     });
 
     const titleClasses = cn({
@@ -122,6 +122,7 @@ export const Tracklist = ({
               className={playButtonClasses}
               i={i}
               isLoading={isLoading && trackIsSelected}
+              positionClass="absolute"
               track={track}
               tracklist={tracks}
               variant="ghost"

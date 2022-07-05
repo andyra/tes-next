@@ -9,6 +9,7 @@ import Loader from "components/Loader";
 const PlayPauseButton = ({
   className,
   isLoading,
+  positionClass = "relative",
   size = "base",
   track,
   tracklist,
@@ -25,7 +26,7 @@ const PlayPauseButton = ({
     setQueueList
   } = usePlayerContext();
   const active = trackIsSelected(track) && isPlaying;
-  const classes = cn("relative", className);
+  const classes = cn(positionClass, className);
 
   function trackIsSelected(track) {
     return (

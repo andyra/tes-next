@@ -4,7 +4,14 @@ import Button from "/components/Button";
 import Icon from "/components/Icon";
 import { Menu, MenuItem } from "components/Menu";
 
-const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
+const TrackMenu = ({
+  addToQueue,
+  className,
+  i,
+  queueable,
+  removeFromQueue,
+  track
+}) => {
   const { audioFile, collection, title, uri } = track;
   const overflowMenuClasses = cn(
     "opacity-0 group-hover:opacity-100 focus:opacity-100"
@@ -27,6 +34,7 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
           variant="ghost"
         />
       }
+      triggerClassName={className}
     >
       {uri && (
         <MenuItem href={`/${uri}`} icon="Note">

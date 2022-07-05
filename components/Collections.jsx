@@ -38,7 +38,7 @@ export const CollectionHeader = ({ children, collection }) => {
               width={256}
             />
           }
-          triggerClassName="w-fit rounded-lg"
+          triggerClassName="w-fit mx-auto md:mx-0 rounded-lg"
         >
           <CoverArt
             className="rounded w-1/2 mx-auto"

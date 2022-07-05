@@ -192,17 +192,26 @@ export const Player = () => {
 
   function skipBack() {
     const newPrevList = [...prevList];
-    if (newPrevList.length) {
-      const newCurrentTrack = newPrevList.pop();
-      setPrevList(newPrevList);
-      setCurrentTrack(newCurrentTrack);
 
-      const newnextList = [...nextList];
-      newnextList.unshift(currentTrack);
-      setNextList(newnextList);
+    // Skip to the beginning of the song if we're more than 2 sec. in
+    if (elapsed > 2) {
+      clearInterval(intervalRef.current);
+      howlerRef.current.seek(0);
+      setElapsed(howlerRef.current.seek());
+      startElapsedTimer();
     } else {
-      setCurrentTrack(null);
-      setNextList([]);
+      if (newPrevList.length) {
+        const newCurrentTrack = newPrevList.pop();
+        setPrevList(newPrevList);
+        setCurrentTrack(newCurrentTrack);
+
+        const newnextList = [...nextList];
+        newnextList.unshift(currentTrack);
+        setNextList(newnextList);
+      } else {
+        setCurrentTrack(null);
+        setNextList([]);
+      }
     }
   }
 
@@ -229,26 +238,28 @@ export const Player = () => {
 
   return (
     <>
-      <aside className={playerClasses} id="player">
-        {currentTrack && (
+      {currentTrack && (
+        <div className="sr-only">
           <ReactHowler
             ref={howlerRef}
             // When the sources are swapped we'll pass a new audioSrc prop into
             // ReactHowler which will destroy our currently playing Howler.js and
             // initialize a new Howler.js instance
-            src={currentTrack.audioFile}
-            playing={isPlaying}
-            onLoad={handleOnLoad}
-            onEnd={handleOnEnd}
-            onPlay={handleOnPlay}
-            onSeek={handleOnSeek}
-            onLoadError={handleOnLoadError}
-            onPlayError={handleOnPlayError}
-            rate={rate}
             html5
+            onEnd={handleOnEnd}
+            onLoad={handleOnLoad}
+            onLoadError={handleOnLoadError}
+            onPlay={handleOnPlay}
+            onPlayError={handleOnPlayError}
+            onSeek={handleOnSeek}
+            playing={isPlaying}
             preload
+            rate={rate}
+            src={currentTrack.audioFile}
           />
-        )}
+        </div>
+      )}
+      <aside className={playerClasses} id="player">
         {isFullscreen && <Visualization visible={isFullscreen} />}
         <CurrentTrack
           isFullscreen={isFullscreen}

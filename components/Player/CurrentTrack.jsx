@@ -16,7 +16,7 @@ export const CurrentTrack = ({
 }) => {
   const currentTrackClasses = cn({
     "flex relative group": true,
-    "items-center gap-8 w-full md:w-1/3": !isFullscreen,
+    "items-center gap-8 flex-1 min-w-0 md:w-1/3": !isFullscreen,
     "flex-1 flex-col items-center justify-end md:text-center w-full gap-16 md:gap-48 md:mb-48": isFullscreen
   });
 
@@ -64,7 +64,11 @@ export const CurrentTrack = ({
                 </Link>
               </div>
             </div>
-            <TrackMenu track={currentTrack} queueable={false} />
+            <TrackMenu
+              className="hidden md:inline-flex"
+              queueable={false}
+              track={currentTrack}
+            />
           </div>
         </>
       ) : (
