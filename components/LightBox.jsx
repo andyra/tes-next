@@ -30,7 +30,7 @@ const LightBox = ({
               className="absolute top-12 right-12"
               circle
               icon="X"
-              variant="ghost"
+              label="Close lightbox"
             />
           </Dialog.Close>
         </Dialog.Content>

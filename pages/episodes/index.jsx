@@ -67,9 +67,10 @@ export default function Episodes() {
 export async function getStaticProps() {
   return {
     props: {
-      PageTitle: "Episodes",
-      spacing: true,
-      maxWidth: "max-w-screen-xl"
+      maxWidth: "max-w-screen-xl",
+      pageDescription: "Explore This Evening's Show podcast episodes",
+      pageTitle: "Episodes",
+      spacing: true
     }
   };
 }

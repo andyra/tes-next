@@ -76,6 +76,7 @@ const PlayPauseButton = ({
       // active={active}
       className={classes}
       circle
+      label={isPlaying ? "Pause" : "Play"}
       onClick={() => {
         selectTrack(track, i);
       }}

@@ -318,7 +318,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      PageTitle: "Verify Collections",
+      pageTitle: "Verify Collections",
       albums: data.albums,
       episodes: data.episodes
     }

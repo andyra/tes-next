@@ -123,7 +123,7 @@ export default function Home({ albums, episodes }) {
           className="hover:text-accent"
           size="lg"
           track={shuffledPlayableTracks[0]}
-          tracklist={shuffledPlayableTracks}
+          tracklist={shuffledPlayableTracks.slice(0, 24)}
         />
         <div>Listen to the Radio</div>
       </section>

@@ -117,7 +117,8 @@ export async function getStaticProps(context) {
     props: {
       episode: data.entry,
       navSection: "Podcast",
-      PageTitle: data.entry.title,
+      pageDescription: data.entry.description,
+      pageTitle: data.entry.title,
       spacing: true
     }
   };

@@ -80,7 +80,7 @@ export async function getStaticProps() {
   return {
     props: {
       // maxWidth: "max-w-screen-lg",
-      PageTitle: "Contact",
+      pageTitle: "Contact",
       spacing: true
     }
   };

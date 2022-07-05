@@ -42,6 +42,7 @@ export const ExtraControls = ({
           circle
           disabled={playerIsEmpty}
           icon={isFullscreen ? "X" : "Eye"}
+          label={isFullscreen ? "Disable Cool Mode" : "Enable Cool Mode"}
           onClick={() => {
             setIsFullscreen(!isFullscreen);
           }}

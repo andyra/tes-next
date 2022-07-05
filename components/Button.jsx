@@ -46,6 +46,7 @@ const Button = React.forwardRef(
       icon,
       iconLeft,
       iconRight,
+      label,
       size,
       type,
       variant,
@@ -66,7 +67,7 @@ const Button = React.forwardRef(
 
     return href ? (
       <Link href={href}>
-        <a {...props} className={classes} ref={ref}>
+        <a {...props} aria-label={label} className={classes} ref={ref}>
           {icon && <Icon name={icon} />}
           {iconLeft && <Icon name={iconLeft} className="-translate-x-1/4" />}
           {children}
@@ -76,6 +77,7 @@ const Button = React.forwardRef(
     ) : (
       <button
         {...props} // Pass in first so className isn't overwritten by spread props
+        aria-label={label}
         className={classes}
         disabled={disabled}
         type={type}

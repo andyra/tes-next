@@ -106,6 +106,7 @@ export const PlayerControls = ({
               className={rateClasses}
               circle
               disabled={playerIsEmpty}
+              label="Change playback speed"
               variant="ghost"
             >
               {rate > 1 && (
@@ -146,6 +147,7 @@ export const PlayerControls = ({
           className={extraButtonClasses}
           disabled={playerIsEmpty}
           icon="SkipPrev"
+          label="Skip Back"
           onClick={skipBack}
           variant="ghost"
         />
@@ -154,6 +156,7 @@ export const PlayerControls = ({
           circle
           className={isLoading ? "relative" : ""}
           disabled={playerIsEmpty}
+          label={isPlaying ? "Pause" : "Play"}
           onClick={togglePlay}
           variant="glass"
         >
@@ -172,6 +175,7 @@ export const PlayerControls = ({
           className={extraButtonClasses}
           disabled={playerIsEmpty}
           icon="SkipNext"
+          label="Skip Next"
           onClick={skipNext}
           variant="ghost"
         />
@@ -181,6 +185,7 @@ export const PlayerControls = ({
             className={loopClasses}
             disabled={playerIsEmpty}
             icon="Loop"
+            label="Toggle looping"
             onClick={toggleLoop}
             variant="ghost"
           />

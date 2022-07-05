@@ -8,7 +8,7 @@ export async function getStaticProps() {
   return {
     props: {
       maxWidth: "max-w-full",
-      PageTitle: "Album Data"
+      pageTitle: "Album Data"
     }
   };
 }

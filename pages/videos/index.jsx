@@ -117,7 +117,7 @@ export default function Videos() {
 export async function getStaticProps() {
   return {
     props: {
-      PageTitle: "Videos"
+      pageTitle: "Videos"
     }
   };
 }

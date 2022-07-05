@@ -11,6 +11,7 @@ import ExtraControls from "./ExtraControls";
 import PlayerControls from "./PlayerControls";
 import Visualization from "./Visualization";
 import { shuffle } from "helpers/utils";
+import useKeyPress from "hooks/useKeyPress";
 
 export const Player = () => {
   const {
@@ -89,6 +90,10 @@ export const Player = () => {
       }
     };
   }, []);
+
+  useKeyPress("Escape", () => {
+    setIsFullscreen(false);
+  });
 
   // Player functions
   // ----------------------------------------------------------------------------

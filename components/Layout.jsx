@@ -42,8 +42,7 @@ const grain = keyframes`
 
 const Grain = styled.div`
   animation: ${grain} 0.4s steps(1) infinite;
-  // background-image: url(/noise-256w.png);
-  background-image: url(/grain-dark.png);
+  background-image: url(/grain-dark.webp);
 `;
 
 // Default
@@ -72,6 +71,10 @@ export default function Layout({ children, ...props }) {
     "opacity-60": isFullscreen
   });
 
+  const title = props.pageTitle
+    ? `${props.pageTitle} • TES`
+    : "This Evening's Show";
+
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses.split(" "));
   }, []);
@@ -79,9 +82,21 @@ export default function Layout({ children, ...props }) {
   return (
     <>
       <Head>
-        <title>
-          {props.PageTitle ? `${props.PageTitle} • TES` : "This Evening's Show"}
-        </title>
+        <meta charset="utf-8" />
+        <title key="title">{title}</title>
+        <meta
+          name="description"
+          content={
+            props.pageDescription
+              ? props.pageDescription
+              : "This Evening's Show is a radio broadcast transmitting from an abandoned monorail station outside Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade of bizarre characters, historic factoids, surreal comedy, improvised news, interviews, and original music."
+          }
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content={title} />
+        <meta property="og:type" content="" />
+        <meta property="og:url" content="" />
+        <meta property="og:image" content="" />
       </Head>
       <Navigation navSection={props.navSection} playerIsEmpty={playerIsEmpty} />
       <Main>

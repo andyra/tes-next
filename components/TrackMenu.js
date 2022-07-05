@@ -23,6 +23,7 @@ const TrackMenu = ({ addToQueue, track, queueable, removeFromQueue, i }) => {
           circle
           className="opacity-0 group-hover:opacity-100 focus:opacity-100"
           icon="Overflow"
+          label="Track menu"
           variant="ghost"
         />
       }

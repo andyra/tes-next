@@ -48,9 +48,13 @@ export const Queue = ({ isFullscreen, playerIsEmpty, setIsFullscreen }) => {
     <Dialog.Root modal={false}>
       <Tooltip content="Queue">
         <Dialog.Trigger asChild>
-          <Button circle disabled={playerIsEmpty} variant="outline">
-            <Icon name="Queue" />
-          </Button>
+          <Button
+            circle
+            disabled={playerIsEmpty}
+            icon="Queue"
+            variant="outline"
+            label="Queue"
+          />
         </Dialog.Trigger>
       </Tooltip>
       <Dialog.Portal>
@@ -66,8 +70,9 @@ export const Queue = ({ isFullscreen, playerIsEmpty, setIsFullscreen }) => {
             <Dialog.Close asChild>
               <Button
                 circle
-                icon="X"
                 className="fixed top-12 right-12 z-dialog-content"
+                icon="X"
+                label="Close Queue"
               />
             </Dialog.Close>
             {currentTrack && (

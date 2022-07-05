@@ -152,12 +152,13 @@ const SetlistItem = ({ item, i }) => {
               <Icon name="ChevronDown" />
             </Badge>
           )}
-          <Tooltip content="Go to song">
+          <Tooltip content={`Go to ${song.title}`}>
             <Button
               circle
               className="opacity-0 group-hover:opacity-100 transition"
               href={song.uri}
               icon="ArrowRight"
+              label={`Go to ${song.title}`}
               target="_blank"
             />
           </Tooltip>
@@ -245,7 +246,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      PageTitle: "Setlist Computor",
+      pageTitle: "Setlist Computor",
       songs: data.entries,
       strategyGlobal: data.globalSets,
       spacing: true

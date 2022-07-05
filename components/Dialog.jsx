@@ -35,6 +35,7 @@ const Dialog = ({
           </DialogPrimitive.Title>
           <DialogPrimitive.Close asChild>
             <Button
+              label="Close dialog"
               className="absolute top-12 right-12"
               circle
               icon="X"

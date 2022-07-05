@@ -64,7 +64,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      PageTitle: "Library",
+      pageTitle: "Library",
       people: data.entries,
       spacing: true
     }

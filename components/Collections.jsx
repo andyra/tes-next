@@ -116,7 +116,7 @@ export const CollectionItem = ({ children, collection, gridView }) => {
           <div>
             <div className="text-lg font-medium leading-snug mt-8">{title}</div>
             {releaseDate && (
-              <NiceDate date={releaseDate} className="opacity-50" />
+              <NiceDate date={releaseDate} className="opacity-75" />
             )}
             {children}
           </div>

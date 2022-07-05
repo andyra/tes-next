@@ -97,15 +97,21 @@ export async function getStaticProps() {
             albumType
           }
         }
+        categories(group: "artists") {
+          title
+        }
       }
     `
   });
+
+  const artists = data.categories.map(artist => artist.title).join(", ");
 
   return {
     props: {
       filterGroups: data.entries,
       maxWidth: "max-w-full",
-      PageTitle: "Albums"
+      pageDescription: `Explore ${data.entries.length} albums by ${artists}`,
+      pageTitle: "Albums"
     }
   };
 }

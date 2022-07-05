@@ -148,6 +148,7 @@ const Search = () => {
         <Dialog.Trigger asChild>
           <Button
             circle
+            label="Search"
             icon="Search"
             onClick={() => {
               clearResults();
@@ -186,6 +187,7 @@ const Search = () => {
               <Button
                 circle
                 icon="X"
+                label="Close search"
                 onClick={() => {
                   setIsOpen(false);
                 }}

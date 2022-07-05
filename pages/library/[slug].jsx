@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import LightBox from "components/LightBox";
 import PageHeader from "components/PageHeader";
 import { querySlugs } from "helpers/index";
 
@@ -66,15 +67,28 @@ export default function Article({ article }) {
             </section>
             <aside className="w-full lg:w-320 order-2 space-y-24">
               {featuredImage && featuredImage.length > 0 && (
-                <figure className="border-2 rounded-lg overflow-hidden">
-                  <Image
-                    alt={title}
-                    height={featuredImage[0].height}
-                    layout="responsive"
-                    src={featuredImage[0].url}
-                    width={featuredImage[0].width}
-                  />
-                </figure>
+                <LightBox
+                  trigger={
+                    <Image
+                      alt={title}
+                      height={featuredImage[0].height}
+                      layout="responsive"
+                      src={featuredImage[0].url}
+                      width={featuredImage[0].width}
+                    />
+                  }
+                  triggerClassName="block w-full border-2 rounded-lg overflow-hidden"
+                >
+                  <figure className="border-2 rounded-lg overflow-hidden w-full max-w-screen-sm max-h-full">
+                    <Image
+                      alt={title}
+                      height={featuredImage[0].height}
+                      layout="responsive"
+                      src={featuredImage[0].url}
+                      width={featuredImage[0].width}
+                    />
+                  </figure>
+                </LightBox>
               )}
               {categories && categories.length > 0 && (
                 <dl className="space-y-8">
@@ -171,7 +185,7 @@ export async function getStaticProps(context) {
     props: {
       article: data.entry,
       navSection: "Library",
-      PageTitle: data.entry.title
+      pageTitle: data.entry.title
     }
   };
 }

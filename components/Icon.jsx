@@ -105,7 +105,14 @@ export const Icon = ({ className, name, size, ...props }) => {
     [className]: className
   });
 
-  return <IconComponent className={classes} {...props} />;
+  return (
+    <IconComponent
+      className={classes}
+      aria-hidden
+      focusable={false}
+      {...props}
+    />
+  );
 };
 
 Icon.propTypes = {
