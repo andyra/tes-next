@@ -11,7 +11,7 @@ import { querySlugs } from "helpers/index";
 // Functions
 // ----------------------------------------------------------------------------
 
-// Craft sends back internal links with absolute URLs; here we're making them
+// Craft sends back internal links with absolute URLs; here we make them
 // relative to root
 function replaceInternalLinks(content) {
   let step1 = content.replace("https://tes-craft.test", "");
@@ -97,7 +97,10 @@ export default function Article({ article }) {
                   </dt>
                   <dd className="flex flex-wrap gap-8 -ml-8">
                     {categories.map(category => (
-                      <Link href={`/library/category/${category.slug}`}>
+                      <Link
+                        href={`/library/category/${category.slug}`}
+                        key={category.slug}
+                      >
                         <a className="rounded-full px-8 bg-primary-5 hover:bg-primary-10">
                           {category.title}
                         </a>

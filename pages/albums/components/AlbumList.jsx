@@ -78,7 +78,7 @@ const AlbumList = ({ filters, gridView }) => {
       ))}
     </CollectionList>
   ) : (
-    <Empty>Ain't no albums</Empty>
+    <Empty>no albums</Empty>
   );
 };
 

@@ -59,11 +59,6 @@ export default function Layout({ children, ...props }) {
   const playerIsEmpty =
     !currentTrack && prevList.length + nextList.length + queueList.length === 0;
 
-  const nextClasses = cn(
-    "h-full overflow-hidden print:overflow-visible text-primary p-4 bg-ground-dark",
-    "grid grid-cols-1 md:grid-cols-[224px,1fr] grid-rows-[1fr,64px,56px] md:grid-rows-[1fr,80px] gap-4"
-  );
-
   const grainClasses = cn({
     "fixed top-0 left-0 h-screen w-screen pointer-events-none z-grain": true,
     "invert mix-blend-multiply dark:mix-blend-screen dark:invert-0": true,
@@ -76,6 +71,11 @@ export default function Layout({ children, ...props }) {
     : "This Evening's Show";
 
   useEffect(() => {
+    const nextClasses = cn(
+      "h-full overflow-hidden print:overflow-visible text-primary p-4 bg-ground-dark",
+      "grid grid-cols-1 md:grid-cols-[224px,1fr] grid-rows-[1fr,64px,56px] md:grid-rows-[1fr,80px] gap-4"
+    );
+
     document.getElementById("__next").classList.add(...nextClasses.split(" "));
   }, []);
 

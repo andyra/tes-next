@@ -92,6 +92,9 @@ const Button = React.forwardRef(
   }
 );
 
+// Required when using forwardRefs
+Button.displayName = "Button";
+
 Button.propTypes = {
   active: PropTypes.bool,
   circle: PropTypes.bool,

@@ -10,7 +10,8 @@ export default function Contact() {
   return (
     <>
       <p className="text-2xl text-center">
-        This Evening's Show is recorded from a studio in Abilene, TX, formerly{" "}
+        This Evening&apos;s Show is recorded from a studio in Abilene, TX,
+        formerly{" "}
         <a
           className="underline"
           href="http://castlesound.mysite.com/"

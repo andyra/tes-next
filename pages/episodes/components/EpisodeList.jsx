@@ -66,7 +66,7 @@ const EpisodeList = ({ gridView }) => {
       ))}
     </CollectionList>
   ) : (
-    <Empty>Ain't no episodes</Empty>
+    <Empty>No episodes</Empty>
   );
 };
 

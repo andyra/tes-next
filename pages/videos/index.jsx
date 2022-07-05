@@ -16,7 +16,7 @@ const VideoItem = ({ video }) => {
   const [thumbnail, setThumbnail] = useState(null);
 
   // Get the thumbnail from Vimeo
-  useEffect(() => {
+  useEffect(vimeoId => {
     return fetch(
       `https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoId}`
     )
@@ -38,6 +38,7 @@ const VideoItem = ({ video }) => {
             <>
               <figure className="rounded-lg overflow-hidden mb-8">
                 <Image
+                  alt={`Thumbnail for ${title}`}
                   height={thumbnail.height}
                   layout="responsive"
                   src={thumbnail.src}
@@ -95,7 +96,7 @@ const VideoList = () => {
       ))}
     </ul>
   ) : (
-    <Empty>Ain't no videos</Empty>
+    <Empty>No videos</Empty>
   );
 };
 

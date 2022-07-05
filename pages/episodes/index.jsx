@@ -26,7 +26,7 @@ export default function Episodes() {
         </figure>
         <div className="flex-1">
           <p className="text-xl mb-24">
-            <strong>This Evening's Show</strong> is a radio broadcast
+            <strong>This Evening&apos;s Show</strong> is a radio broadcast
             transmitting from an abandoned monorail station outside Adobe
             Skyscraper. Tune in as your hosts guide you through a cavalcade of
             bizarre characters, historic factoids, surreal comedy, improvised
