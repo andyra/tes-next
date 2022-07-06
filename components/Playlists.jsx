@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import Button from "components/Button";
 import Empty from "components/Empty";
 import Icon from "components/Icon";
-// import Modal from "components/Modal";
 import QueryError from "components/QueryError";
 import { NavLink } from "components/Navigation";
 import { PLAYLISTS_QUERY } from "../constants";
@@ -99,9 +98,7 @@ export const NewPlaylistButton = ({ fullSize }) => {
       >
         {fullSize && "New"}
       </Button>
-      {/*<Modal closeModal={closeModal} isOpen={modalIsOpen} title="New Playlist">*/}
       <NewPlaylistForm closeModal={closeModal} />
-      {/*</Modal>*/}
     </>
   );
 };
