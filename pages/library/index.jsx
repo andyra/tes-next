@@ -22,17 +22,15 @@ export default function Library({ people }) {
         <p className="text-2xl lg:text-3xl lg:text-center">
           The Grand Library of all things Akabius. Learn about, for instance:
         </p>
-        <ClientOnly>
-          <ul className="grid grid-cols-3 gap-16">
-            {randomArticles.map(article => (
-              <ArticleItem
-                article={article}
-                showFeaturedImages={true}
-                key={article.slug}
-              />
-            ))}
-          </ul>
-        </ClientOnly>
+        <ul className="grid grid-cols-3 gap-16">
+          {randomArticles.map(article => (
+            <ArticleItem
+              article={article}
+              showFeaturedImages={true}
+              key={article.slug}
+            />
+          ))}
+        </ul>
       </section>
       <CategoryList />
     </>

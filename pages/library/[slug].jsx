@@ -45,7 +45,6 @@ export default function Article({ article }) {
                       }}
                     />
                   )}
-                  {console.log(postContent)}
                   {item.image && item.image.length > 0 && (
                     <figure>
                       <Image
