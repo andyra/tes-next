@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import toast from "react-hot-toast";
 import cn from "classnames";
 import { usePlayerContext } from "context/PlayerContext";

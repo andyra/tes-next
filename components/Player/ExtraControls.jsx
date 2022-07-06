@@ -1,4 +1,3 @@
-import * as Collapsible from "@radix-ui/react-collapsible";
 import cn from "classnames";
 import Button from "components/Button";
 import Icon from "components/Icon";
