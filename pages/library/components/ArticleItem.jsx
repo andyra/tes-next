@@ -3,6 +3,10 @@ import Link from "next/link";
 import cn from "classnames";
 
 const ArticleItem = ({ article, showFeaturedImages }) => {
+  if (!article) {
+    return <div className="text-primary-50">Article missing</div>;
+  }
+
   const { featuredImage, title, uri } = article;
   const classes = cn({
     "block h-full text-xl px-8 py-16 border-t-2 border-primary-25 border-dotted hover:border-accent hover:text-accent hover:bg-primary-5 transition group": true,
