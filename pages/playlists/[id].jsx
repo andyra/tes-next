@@ -5,7 +5,6 @@ import client from "../../apollo-client";
 import toast from "react-hot-toast";
 import Button from "components/Button";
 import Input from "components/Input";
-import Modal from "components/Modal";
 import PageHeader from "components/PageHeader";
 import { PLAYLISTS_QUERY } from "../../constants";
 
@@ -64,29 +63,23 @@ const RenamePlaylistButton = ({ title, id, setTitle }) => {
   return (
     <>
       <Button onClick={openModal}>Rename</Button>
-      <Modal
-        closeModal={closeModal}
-        isOpen={modalIsOpen}
-        title="Rename Playlist"
-      >
-        <form className="space-y-24" onSubmit={e => handleSubmit(e)}>
-          <label htmlFor="title" className="sr-only">
-            Playlist Title
-          </label>
-          <Input
-            name="title"
-            onChange={e => setTitle(e.target.value)}
-            placeholder="Title"
-            ref={n => (input = n)}
-            type="text"
-            value={title}
-          />
-          {error && (
-            <div className="text-red-500">Mutation error! {error.message}</div>
-          )}
-          <Button type="submit">{loading ? "Saving…" : "Save"}</Button>
-        </form>
-      </Modal>
+      <form className="space-y-24" onSubmit={e => handleSubmit(e)}>
+        <label htmlFor="title" className="sr-only">
+          Playlist Title
+        </label>
+        <Input
+          name="title"
+          onChange={e => setTitle(e.target.value)}
+          placeholder="Title"
+          ref={n => (input = n)}
+          type="text"
+          value={title}
+        />
+        {error && (
+          <div className="text-red-500">Mutation error! {error.message}</div>
+        )}
+        <Button type="submit">{loading ? "Saving…" : "Save"}</Button>
+      </form>
     </>
   );
 };
