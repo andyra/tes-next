@@ -13,8 +13,9 @@ import { querySlugs } from "helpers/index";
 // Craft sends back internal links with absolute URLs; here we're making them
 // relative to root
 function replaceInternalLinks(content) {
-  let step1 = content.replace("https://tes-craft.test", "");
-  return step1.replace("https://tes.fm", "");
+  let content1 = content.replace("https://tes-craft.test", "");
+  let content2 = content1.replace("https://content.tes.fm", "");
+  return content2.replace("https://tes.fm", "");
 }
 
 // Default
