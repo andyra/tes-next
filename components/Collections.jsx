@@ -65,7 +65,7 @@ CollectionHeader.propTypes = {
 
 export const CollectionList = ({ children, gridView }) => {
   const classes = cn({
-    "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 -mx-8 md:-mx-16 relative": gridView,
+    "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 -mx-8 md:-mx-16": gridView,
     "divide-y": !gridView
   });
 

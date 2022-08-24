@@ -4,10 +4,10 @@ import client from "../../apollo-client";
 import cn from "classnames";
 import Button from "components/Button";
 import ClientOnly from "components/ClientOnly";
+import { CollectionItem, CollectionList } from "components/Collections";
 import GridListToggle from "components/GridListToggle";
 import Filters, { getDefaultFilters } from "components/Filters";
 import MusicTabs from "components/MusicTabs";
-import AlbumList from "./components/AlbumList";
 import { getArtistInfo } from "helpers/index";
 import { camelCaseToWords } from "helpers/utils";
 
@@ -53,11 +53,27 @@ function normalizeAlbumFilters(filterGroups) {
   ];
 }
 
+// Components
+// ----------------------------------------------------------------------------
+
+export const AlbumItem = ({ album, filters, gridView }) => {
+  const { albumType, artist, slug, title, albumCoverArt, releaseDate } = album;
+  const artistSlug = getArtistInfo(album, "slug");
+
+  const artistMatches =
+    filters.artist === "all" || filters.artist === artistSlug;
+  const albumTypeMatches =
+    filters.albumType === "all" || filters.albumType === albumType;
+  const visible = artistMatches && albumTypeMatches;
+
+  return visible && <CollectionItem collection={album} gridView={gridView} />;
+};
+
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Albums({ filterGroups }) {
-  const albumFilters = normalizeAlbumFilters(filterGroups);
+export default function Albums({ albums }) {
+  const albumFilters = normalizeAlbumFilters(albums);
   const [filters, setFilters] = useState(getDefaultFilters(albumFilters));
   const [gridView, setGridView] = useState(true);
 
@@ -66,7 +82,7 @@ export default function Albums({ filterGroups }) {
       <header className="relative mb-64">
         <MusicTabs pageName="Albums" />
       </header>
-      <div className="flex items-center gap-8 justify-end mb-24">
+      <div className="flex items-center gap-8 justify-end mb-24 relative z-10">
         <Filters
           filterGroups={albumFilters}
           filters={filters}
@@ -74,9 +90,16 @@ export default function Albums({ filterGroups }) {
         />
         <GridListToggle gridView={gridView} setGridView={setGridView} />
       </div>
-      <ClientOnly>
-        <AlbumList filters={filters} gridView={gridView} />
-      </ClientOnly>
+      <CollectionList gridView={gridView}>
+        {albums.map(album => (
+          <AlbumItem
+            album={album}
+            key={album.slug}
+            filters={filters}
+            gridView={gridView}
+          />
+        ))}
+      </CollectionList>
     </>
   );
 }
@@ -89,10 +112,17 @@ export async function getStaticProps() {
     query: gql`
       query Entries {
         entries(section: "albums") {
+          slug
+          title
+          uri
           ... on albums_default_Entry {
+            releaseDate
             artist {
               slug
               title
+            }
+            albumCoverArt {
+              url
             }
             albumType
           }
@@ -103,7 +133,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      filterGroups: data.entries,
+      albums: data.entries,
       maxWidth: "max-w-full",
       PageTitle: "Albums"
     }
