@@ -81,9 +81,7 @@ export default function Contact() {
 export async function getStaticProps() {
   return {
     props: {
-      // maxWidth: "max-w-screen-lg",
-      PageTitle: "Contact",
-      spacing: true
+      pageTitle: "Contact"
     }
   };
 }

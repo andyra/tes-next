@@ -134,7 +134,7 @@ export async function getStaticProps() {
     props: {
       albums: data.entries,
       maxWidth: "max-w-full",
-      PageTitle: "Albums"
+      pageTitle: "Albums"
     }
   };
 }

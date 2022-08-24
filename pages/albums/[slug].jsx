@@ -105,7 +105,7 @@ export async function getStaticProps(context) {
     props: {
       album: data.entry,
       navSection: "Music",
-      PageTitle: data.entry.title
+      pageTitle: data.entry.title
     }
   };
 }

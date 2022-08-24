@@ -79,7 +79,7 @@ export async function getStaticProps(context) {
     props: {
       videoEntry: data.entry,
       navSection: "Videos",
-      PageTitle: data.entry.title
+      pageTitle: data.entry.title
     }
   };
 }

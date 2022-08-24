@@ -187,8 +187,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       albums: data.albums,
-      episodes: data.episodes,
-      spacing: true
+      episodes: data.episodes
     }
   };
 }

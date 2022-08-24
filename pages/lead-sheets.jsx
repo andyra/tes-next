@@ -75,8 +75,7 @@ export async function getStaticProps() {
   return {
     props: {
       maxWidth: "max-w-screen-md",
-      PageTitle: "Writing Lead Sheets",
-      spacing: true
+      pageTitle: "Writing Lead Sheets"
     }
   };
 }

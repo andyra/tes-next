@@ -21,7 +21,7 @@ const Main = ({ children }) => (
   </main>
 );
 
-const Container = ({ children, maxWidth, spacing }) => {
+const Container = ({ children, maxWidth, spacing = true }) => {
   const containerClasses = cn({
     "mx-auto px-16 md:px-24 pb-48 md:pb-64": true,
     [maxWidth]: maxWidth,

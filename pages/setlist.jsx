@@ -247,10 +247,9 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      PageTitle: "Setlist Computor",
+      pageTitle: "Setlist Computor",
       songs: data.entries,
-      strategyGlobal: data.globalSets,
-      spacing: true
+      strategyGlobal: data.globalSets
     }
   };
 }

@@ -206,11 +206,10 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      navSection: "Music",
-      PageTitle: data.entry.title,
-      song: data.entry,
       collections: data.collections,
-      spacing: true
+      navSection: "Music",
+      pageTitle: data.entry.title,
+      song: data.entry
     }
   };
 }

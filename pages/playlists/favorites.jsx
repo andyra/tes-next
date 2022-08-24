@@ -22,7 +22,7 @@ export default function Favorites() {
 export async function getStaticProps() {
   return {
     props: {
-      PageTitle: "Favorites"
+      pageTitle: "Favorites"
     }
   };
 }

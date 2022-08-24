@@ -174,7 +174,7 @@ export async function getStaticProps(context) {
     props: {
       article: data.entry,
       navSection: "Library",
-      PageTitle: data.entry.title
+      pageTitle: data.entry.title
     }
   };
 }

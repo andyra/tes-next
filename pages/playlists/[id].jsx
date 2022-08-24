@@ -242,7 +242,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       playlist: data.entry,
-      PageTitle: data.entry.title
+      pageTitle: data.entry.title
     }
   };
 }
