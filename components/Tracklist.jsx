@@ -27,7 +27,7 @@ const DurationBrowser = ({ src }) => {
     audioRef.current.onloadeddata = () => {
       setDuration(audioRef.current.duration);
     };
-  }, []);
+  }, [src]);
 
   return (
     <time
