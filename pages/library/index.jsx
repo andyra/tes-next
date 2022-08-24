@@ -5,14 +5,14 @@ import client from "../../apollo-client";
 import ClientOnly from "components/ClientOnly";
 import Empty from "components/Empty";
 import PageHeader from "components/PageHeader";
+import CategoryItem from "./components/CategoryItem";
+import ArticleItem from "./components/ArticleItem";
 import { shuffle } from "helpers/utils";
-import CategoryList from "./components/CategoryList";
-import { ArticleItem } from "./components/ArticleList";
 
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Library({ people }) {
+export default function Library({ categories, people }) {
   const randomArticles = shuffle([...people]).slice(0, 3);
 
   return (
@@ -34,7 +34,13 @@ export default function Library({ people }) {
           </ul>
         </ClientOnly>
       </section>
-      <CategoryList />
+      <ul className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        {categories.map(category => (
+          <CategoryItem key={category.slug} slug={category.slug}>
+            {category.title}
+          </CategoryItem>
+        ))}
+      </ul>
     </>
   );
 }
@@ -58,12 +64,17 @@ export async function getStaticProps() {
             }
           }
         }
+        categories(group: "library", level: 1) {
+          slug
+          title
+        }
       }
     `
   });
 
   return {
     props: {
+      categories: data.categories,
       pageTitle: "Library",
       people: data.entries
     }
