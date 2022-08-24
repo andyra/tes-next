@@ -1,16 +1,26 @@
 import { useState } from "react";
+import { gql } from "@apollo/client";
+import client from "../../apollo-client";
 import Image from "next/image";
-import ClientOnly from "components/ClientOnly";
+import { CollectionItem, CollectionList } from "components/Collections";
 import Button from "components/Button";
 import GridListToggle from "components/GridListToggle";
 import Icon from "components/Icon";
 import PageHeader from "components/PageHeader";
-import EpisodeList from "./components/EpisodeList";
+
+// Components
+// ----------------------------------------------------------------------------
+
+const EpisodeItem = ({ episode, gridView }) => {
+  const { episodeCoverArt, releaseDate, slug, title } = episode;
+
+  return <CollectionItem collection={episode} gridView={gridView} />;
+};
 
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Episodes() {
+export default function Episodes({ episodes }) {
   const [gridView, setGridView] = useState(true);
 
   return (
@@ -54,9 +64,15 @@ export default function Episodes() {
         <div className="flex items-center gap-8 justify-end mb-24">
           <GridListToggle gridView={gridView} setGridView={setGridView} />
         </div>
-        <ClientOnly>
-          <EpisodeList gridView={gridView} />
-        </ClientOnly>
+        <CollectionList gridView={gridView}>
+          {episodes.map(episode => (
+            <EpisodeItem
+              episode={episode}
+              key={episode.slug}
+              gridView={gridView}
+            />
+          ))}
+        </CollectionList>
       </section>
     </>
   );
@@ -66,11 +82,36 @@ export default function Episodes() {
 // ----------------------------------------------------------------------------
 
 export async function getStaticProps() {
+  const { data } = await client.query({
+    query: gql`
+      query Entries {
+        entries(section: "episodes", orderBy: "releaseDate DESC") {
+          slug
+          title
+          uri
+          ... on episodes_default_Entry {
+            releaseDate
+            description
+            episodeAudio {
+              url
+            }
+            episodeCoverArt {
+              height
+              url
+              width
+            }
+          }
+        }
+      }
+    `
+  });
+
   return {
     props: {
+      episodes: data.entries,
+      maxWidth: "max-w-screen-xl",
       PageTitle: "Episodes",
-      spacing: true,
-      maxWidth: "max-w-screen-xl"
+      spacing: true
     }
   };
 }

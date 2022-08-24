@@ -3,7 +3,6 @@ import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import cn from "classnames";
 import Button from "components/Button";
-import ClientOnly from "components/ClientOnly";
 import { CollectionItem, CollectionList } from "components/Collections";
 import GridListToggle from "components/GridListToggle";
 import Filters, { getDefaultFilters } from "components/Filters";
