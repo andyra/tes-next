@@ -4,13 +4,13 @@ import client from "../../../apollo-client";
 import ClientOnly from "components/ClientOnly";
 import Empty from "components/Empty";
 import PageHeader from "components/PageHeader";
-import ArticleList from "../components/ArticleList";
-import CategoryList from "../components/CategoryList";
+import ArticleItem from "../components/ArticleItem";
+import CategoryItem from "../components/CategoryItem";
 
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Category({ category }) {
+export default function Category({ articles, category }) {
   const { children, id, parent, slug, title } = category;
   const showFeaturedImages =
     slug === "people" || (parent !== null && parent.slug === "people");
@@ -24,10 +24,24 @@ export default function Category({ category }) {
       <PageHeader title={title} center back={backLink} />
       {children.length > 0 && (
         <section className="max-w-screen-lg mx-auto">
-          <CategoryList parentId={id} />
+          <ul className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+            {children.map(category => (
+              <CategoryItem key={category.slug} slug={category.slug}>
+                {category.title}
+              </CategoryItem>
+            ))}
+          </ul>
         </section>
       )}
-      <ArticleList id={id} showFeaturedImages={showFeaturedImages} />
+      <ul className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-x-12 md:gap-x-24">
+        {articles.map(article => (
+          <ArticleItem
+            article={article}
+            key={article.slug}
+            showFeaturedImages={showFeaturedImages}
+          />
+        ))}
+      </ul>
     </>
   );
 }
@@ -66,10 +80,24 @@ export async function getStaticProps(context) {
       query Category {
         category(group: "library", slug: "${params.slug}") {
           id
-          children { id }
+          children { id, slug, title }
           parent { slug, title }
           slug
           title
+        }
+        entries(section: "library", relatedToCategories: [{ slug: "${
+          params.slug
+        }" }]) {
+          slug
+          title
+          uri
+          ... on library_default_Entry {
+            featuredImage {
+              height
+              url
+              width
+            }
+          }
         }
       }
     `
@@ -77,6 +105,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
+      articles: data.entries,
       category: data.category,
       pageTitle: data.category.title,
       maxWidth: "max-w-full",
