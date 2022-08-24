@@ -14,21 +14,6 @@ import PlayPauseButton from "components/PlayPauseButton";
 import { getCollectionType, getTrackType } from "helpers/index";
 import { formatTime } from "helpers/utils";
 
-const DurationSSR = ({ src }) => {
-  const [duration, setDuration] = useState(0);
-
-  if (typeof window === "undefined") {
-    const { getAudioDurationInSeconds } = require("get-audio-duration");
-
-    getAudioDurationInSeconds(src).then(d => {
-      setDuration(d);
-      return d;
-    });
-  }
-
-  return duration;
-};
-
 // Tracklist
 // ----------------------------------------------------------------------------
 
