@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://tes-craft.test/api",
+  uri: process.env.NODE_ENV.CRAFT_CMS_ENDPOINT,
   cache: new InMemoryCache()
 });
 
