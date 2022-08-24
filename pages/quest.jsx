@@ -5,20 +5,12 @@ import client from "../apollo-client";
 import CoverArt from "components/CoverArt";
 import Icon from "components/Icon";
 import Input from "components/Input";
+import Loader from "components/Loader";
 import { getCollectionCoverArtUrl } from "helpers/index";
 import { debounce } from "helpers/utils";
 
 // Queries
 // ----------------------------------------------------------------------------
-
-const STATIC_QUERY = gql`
-  query Entries {
-    entries(section: "albums", orderBy: "releaseDate DESC") {
-      slug
-      title
-    }
-  }
-`;
 
 const SEARCH_QUERY = gql`
   query Entries($searchTerm: String) {
@@ -84,11 +76,11 @@ const SearchImage = ({ item }) => {
   return item.albumCoverArt || item.episodeCoverArt ? (
     <CoverArt
       className="h-40 w-40 rounded"
-      url={getCollectionCoverArtUrl(item)}
       height={100}
-      width={100}
       layout="responsive"
-      alt={item.title}
+      title={item.title}
+      url={getCollectionCoverArtUrl(item)}
+      width={100}
     />
   ) : (
     <figure className="h-40 w-40 rounded-full bg-primary-5 flex items-center justify-center">
@@ -97,22 +89,18 @@ const SearchImage = ({ item }) => {
   );
 };
 
-const Results = ({ searchTerm, setIsSearching }) => {
-  setIsSearching(true);
-
+const Results = ({ searchTerm }) => {
   const { data, error, loading } = useQuery(SEARCH_QUERY, {
     variables: { searchTerm }
   });
 
   if (loading) {
-    return null;
+    return <Loader className="h-20 w-20 opacity-50" />;
   }
 
   if (error) {
     return `Error: ${error}`;
   }
-
-  setIsSearching(false);
 
   const groupedResults = groupBy(data?.entries, "sectionHandle");
 
@@ -168,24 +156,7 @@ export default function Quest({ entries }) {
           handleInputChange(e);
         }}
       />
-      {searchTerm.length > 0 && (
-        <Results searchTerm={searchTerm} setIsSearching={setIsSearching} />
-      )}
+      {searchTerm.length > 0 && <Results searchTerm={searchTerm} />}
     </>
   );
-}
-
-// Config
-// ----------------------------------------------------------------------------
-
-export async function getStaticProps() {
-  const { data } = await client.query({
-    query: STATIC_QUERY
-  });
-
-  return {
-    props: {
-      entries: data.entries
-    }
-  };
 }
