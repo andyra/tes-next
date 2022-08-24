@@ -20,7 +20,7 @@ const VideoEmbed = ({ id }) => {
       .then(data => {
         setEmbedHtml(data.html);
       });
-  }, []);
+  }, [id]);
 
   return <div dangerouslySetInnerHTML={{ __html: embedHtml }} />;
 };

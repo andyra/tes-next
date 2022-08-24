@@ -28,7 +28,7 @@ const VideoItem = ({ video }) => {
           width: data.thumbnail_width
         });
       });
-  }, []);
+  }, [vimeoId]);
 
   return (
     <li className="flex items-center gap-8">
@@ -38,6 +38,7 @@ const VideoItem = ({ video }) => {
             <>
               <figure className="rounded-lg overflow-hidden mb-8">
                 <Image
+                  alt={title}
                   height={thumbnail.height}
                   layout="responsive"
                   src={thumbnail.src}

@@ -64,7 +64,7 @@ export default function Layout({ children, ...props }) {
 
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses.split(" "));
-  }, []);
+  }, [nextClasses]);
 
   return (
     <>
