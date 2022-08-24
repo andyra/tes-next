@@ -196,7 +196,7 @@ const Search = () => {
           {Object.keys(results).length ? (
             <ul className="flex flex-col gap-16 -mb-8 mt-24">
               {Object.keys(results).map(category => (
-                <li>
+                <li key={category}>
                   <h3 className="font-mono text-xs uppercase tracking-wider text-secondary-50 py-4 bg-ground sticky top-40">
                     {category}
                   </h3>

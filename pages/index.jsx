@@ -109,7 +109,7 @@ export default function Home({ albums, episodes }) {
 
         <p className="font-mono text-sm text-center max-w-screen-sm mx-auto">
           <strong className="font-bold underline">T</strong>his{" "}
-          <strong className="font-bold underline">E</strong>vening's{" "}
+          <strong className="font-bold underline">E</strong>vening&apos;s{" "}
           <strong className="font-bold underline">S</strong>how is a radio
           broadcast transmitting from an abandoned monorail station outside
           Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade

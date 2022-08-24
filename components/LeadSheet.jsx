@@ -22,11 +22,12 @@ const LeadSheet = ({ className, song }) => {
       {notation && notation.length > 0 && (
         <ul className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-16 pt-16 border-t break-inside-auto">
           {notation.map((leadSheet, i) => (
-            <li className="relative">
+            <li className="relative" key={i}>
               <a
                 className="opacity-50 hover:opacity-100 transition"
                 href={leadSheet.url}
                 target="_blank"
+                rel="noreferrer"
               >
                 <Image
                   alt={`Lead sheet for ${song.title}, page ${i + 1}`}

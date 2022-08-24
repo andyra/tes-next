@@ -81,7 +81,7 @@ export const SongList = ({ gridView }) => {
       ))}
     </ul>
   ) : (
-    <Empty>Ain't no songs</Empty>
+    <Empty>Ain&apos;t no songs</Empty>
   );
 };
 

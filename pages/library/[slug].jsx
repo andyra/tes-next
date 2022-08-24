@@ -83,7 +83,10 @@ export default function Article({ article }) {
                   </dt>
                   <dd className="flex flex-wrap gap-8 -ml-8">
                     {categories.map(category => (
-                      <Link href={`/library/category/${category.slug}`}>
+                      <Link
+                        href={`/library/category/${category.slug}`}
+                        key={category.slug}
+                      >
                         <a className="rounded-full px-8 bg-primary-5 hover:bg-primary-10">
                           {category.title}
                         </a>

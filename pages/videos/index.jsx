@@ -95,7 +95,7 @@ const VideoList = () => {
       ))}
     </ul>
   ) : (
-    <Empty>Ain't no videos</Empty>
+    <Empty>Ain&apos;t no videos</Empty>
   );
 };
 

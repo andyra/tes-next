@@ -163,7 +163,9 @@ const SetlistItem = ({ item, i }) => {
           </Tooltip>
         </div>
         {strategy && (
-          <div className="ml-40 text-xl text-primary-50">"{strategy}"</div>
+          <div className="ml-40 text-xl text-primary-50">
+            &ldquo;{strategy}&rdquo;
+          </div>
         )}
       </Accordion.Trigger>
       <Accordion.Content className="ml-64">

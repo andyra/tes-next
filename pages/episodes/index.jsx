@@ -19,6 +19,7 @@ export default function Episodes() {
       <section className="flex  items-center gap-24 md:flex-row md:gap-24 xl:gap-48">
         <figure className="hidden sm:block md:hidden lg:block w-1/3 lg:w-1/4 rounded-lg self-start mx-auto md:mx-0 overflow-hidden">
           <Image
+            alt="Cover for This Evening's Show podcast"
             height={300}
             src="https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg"
             width={300}
@@ -26,7 +27,7 @@ export default function Episodes() {
         </figure>
         <div className="flex-1">
           <p className="text-xl mb-24">
-            <strong>This Evening's Show</strong> is a radio broadcast
+            <strong>This Evening&apos;s Show</strong> is a radio broadcast
             transmitting from an abandoned monorail station outside Adobe
             Skyscraper. Tune in as your hosts guide you through a cavalcade of
             bizarre characters, historic factoids, surreal comedy, improvised

@@ -103,7 +103,7 @@ export const ArticleList = ({ id, showFeaturedImages }) => {
       ))}
     </ArticlesWrapper>
   ) : (
-    <Empty>Ain't no articles</Empty>
+    <Empty>Ain&apos;t no articles</Empty>
   );
 };
 

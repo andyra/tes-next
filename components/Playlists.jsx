@@ -144,6 +144,6 @@ export const ListPlaylists = () => {
       ))}
     </ul>
   ) : (
-    <Empty>Ain't no Favorites</Empty>
+    <Empty>Ain&apos;t no Favorites</Empty>
   );
 };

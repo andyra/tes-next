@@ -106,4 +106,5 @@ Button.defaultProps = {
   variant: "outline"
 };
 
+Button.displayName = "Button";
 export default Button;

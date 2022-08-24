@@ -58,8 +58,8 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
         <Link href="/">
           <a className="hidden md:block -mx-24">
             <div className="uppercase font-funky text-9xl whitespace-nowrap flex gap-16 animate-marquee w-[929px]">
-              <span>This Evening's Show</span>
-              <span>This Evening's Show</span>
+              <span>This Evening&apos;s Show</span>
+              <span>This Evening&apos;s Show</span>
             </div>
           </a>
         </Link>

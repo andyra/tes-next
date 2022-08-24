@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
+import Empty from "components/Empty";
 import QueryError from "components/QueryError";
 
 // Components
@@ -71,7 +72,7 @@ export const CategoryList = ({ level = 1, parentId }) => {
       ))}
     </ul>
   ) : (
-    <Empty>Ain't no categories</Empty>
+    <Empty>Ain&apos;t no categories</Empty>
   );
 };
 
