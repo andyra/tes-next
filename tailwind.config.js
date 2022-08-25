@@ -66,10 +66,11 @@ module.exports = {
         ]
       },
       zIndex: {
-        "player-fullscreen": "40",
-        dialog: "50",
-        "dialog-content": "55",
-        grain: "100"
+        popover: "50",
+        "player-fullscreen": "90",
+        dialog: "100",
+        "dialog-content": "110",
+        grain: "200"
       }
     },
     keyframes: {
@@ -79,8 +80,8 @@ module.exports = {
         "100%": { opacity: "0.05" }
       },
       marquee: {
-        "0%": { transform: "translate3d(0, 0, 0)" },
-        "100%": { transform: "translate3d(-100%, 0, 0)" }
+        "0%": { transform: "translateX(0)" },
+        "100%": { transform: "translateX(-50%)" }
       },
       "scale-in": {
         "0%": { opacity: 0, transform: "scale(0)" },

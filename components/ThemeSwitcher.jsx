@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Icon from "components/Icon";
 import Button from "components/Button";
-import { Menu, MenuDivider, MenuHeading, MenuItem } from "components/Menu";
+import { Menu, MenuItem } from "components/Menu";
 import Tooltip from "components/Tooltip";
 
 const ThemeItem = ({ icon, label, setTheme, theme }) => {
@@ -20,29 +20,32 @@ const ThemeItem = ({ icon, label, setTheme, theme }) => {
   );
 };
 
-export const ExtrasMenu = () => {
+export const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, theme, setTheme } = useTheme();
 
   useEffect(() => setMounted(true), []);
 
   if (!mounted) return null;
 
   return (
-    <Menu trigger={<Button circle iconLeft="Overflow" variant="glass" />}>
-      <MenuHeading>Theme</MenuHeading>
+    <Menu
+      tooltip="Theme"
+      trigger={
+        <div className="bg-ground rounded-full">
+          <Button
+            circle
+            iconLeft={resolvedTheme === "dark" ? "Moon" : "Sun"}
+            variant="glass"
+          />
+        </div>
+      }
+    >
       <ThemeItem icon="Gear" label="system" setTheme={setTheme} theme={theme} />
       <ThemeItem icon="Sun" label="light" setTheme={setTheme} theme={theme} />
       <ThemeItem icon="Moon" label="dark" setTheme={setTheme} theme={theme} />
-      <MenuDivider />
-      <MenuItem icon="Video" href="/videos">
-        Videos
-      </MenuItem>
-      <MenuItem icon="Music" href="/setlist">
-        Setlist Computor
-      </MenuItem>
     </Menu>
   );
 };
 
-export default ExtrasMenu;
+export default ThemeSwitcher;

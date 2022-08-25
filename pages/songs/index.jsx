@@ -42,9 +42,7 @@ export default function Songs({ songs }) {
 
   return (
     <>
-      <header className="relative mb-32 md:mb-64">
-        <MusicTabs pageName="Songs" />
-      </header>
+      <MusicTabs pageName="Songs" />
       <div className="flex items-center gap-8 justify-end mb-24">
         <GridListToggle gridView={gridView} setGridView={setGridView} />
       </div>
