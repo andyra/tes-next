@@ -37,25 +37,25 @@
 }
 
 .light {
-  --ground-dark: hsla(219, 42%, 11%, 0.1);
-  --ground: hsl(20, 23%, 97%, 1);
-  --ground-75: hsla(20, 23%, 97%, 0.75);
-  --ground-50: hsla(20, 23%, 97%, 0.5);
-  --ground-25: hsla(20, 23%, 97%, 0.25);
-  --ground-10: hsla(20, 23%, 97%, 0.1);
-  --ground-5: hsla(20, 23%, 97%, 0.05);
-  --primary: hsl(219, 42%, 11%, 1);
-  --primary-75: hsla(219, 42%, 11%, 0.75);
-  --primary-50: hsla(219, 42%, 11%, 0.5);
-  --primary-25: hsla(219, 42%, 11%, 0.25);
-  --primary-10: hsla(219, 42%, 11%, 0.1);
-  --primary-5: hsla(219, 42%, 11%, 0.05);
-  --secondary: hsl(247, 59%, 41%, 1);
-  --secondary-75: hsla(247, 59%, 41%, 0.75);
-  --secondary-50: hsla(247, 59%, 41%, 0.5);
-  --secondary-25: hsla(247, 59%, 41%, 0.25);
-  --secondary-10: hsla(247, 59%, 41%, 0.1);
-  --secondary-5: hsla(247, 59%, 41%, 0.05);
+  --ground-dark: hsla(20, 5%, 85%, 1);
+  --ground: hsl(20, 10%, 90%, 1);
+  --ground-75: hsla(20, 10%, 90%, 0.75);
+  --ground-50: hsla(20, 10%, 90%, 0.5);
+  --ground-25: hsla(20, 10%, 90%, 0.25);
+  --ground-10: hsla(20, 10%, 90%, 0.1);
+  --ground-5: hsla(20, 10%, 90%, 0.05);
+  --primary: hsl(256, 59%, 36%, 1);
+  --primary-75: hsla(256, 59%, 36%, 0.75);
+  --primary-50: hsla(256, 59%, 36%, 0.5);
+  --primary-25: hsla(256, 59%, 36%, 0.25);
+  --primary-10: hsla(256, 59%, 36%, 0.1);
+  --primary-5: hsla(256, 59%, 36%, 0.05);
+  --secondary: hsl(219, 42%, 11%, 1);
+  --secondary-75: hsla(219, 42%, 11%, 0.75);
+  --secondary-50: hsla(219, 42%, 11%, 0.5);
+  --secondary-25: hsla(219, 42%, 11%, 0.25);
+  --secondary-10: hsla(219, 42%, 11%, 0.1);
+  --secondary-5: hsla(219, 42%, 11%, 0.05);
   --accent: hsla(22, 86%, 43%, 1);
   --accent-75: hsla(22, 86%, 43%, 0.75);
   --accent-50: hsla(22, 86%, 43%, 0.5);
@@ -178,7 +178,7 @@
 }
 
 .library-article a {
-  @apply font-medium border-b-2 hover:border-accent hover:text-accent transition;
+  @apply font-medium border-b-2 border-accent-25 hover:text-accent transition;
 }
 
 .library-article li p {

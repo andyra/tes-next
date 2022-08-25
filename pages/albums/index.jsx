@@ -78,9 +78,7 @@ export default function Albums({ albums }) {
 
   return (
     <>
-      <header className="relative mb-64">
-        <MusicTabs pageName="Albums" />
-      </header>
+      <MusicTabs pageName="Albums" />
       <div className="flex items-center gap-8 justify-end mb-24 relative z-10">
         <Filters
           filterGroups={albumFilters}
@@ -110,7 +108,7 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query Entries {
-        entries(section: "albums") {
+        entries(section: "albums", orderBy: "releaseDate DESC") {
           slug
           title
           uri

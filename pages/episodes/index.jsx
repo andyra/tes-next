@@ -43,7 +43,7 @@ export default function Episodes({ episodes }) {
             bizarre characters, historic factoids, surreal comedy, improvised
             news, interviews, and original music.
           </p>
-          <footer className="flex flex-wrap items-center justify-center sm:justify-start gap-8">
+          <footer className="flex flex-wrap items-center gap-8">
             <Button variant="glass" iconLeft="Rss">
               RSS
             </Button>

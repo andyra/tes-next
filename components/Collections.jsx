@@ -74,10 +74,20 @@ export const CollectionListSkeleton = ({ gridView }) => (
 // Collection Item
 // ----------------------------------------------------------------------------
 
-export const CollectionItem = ({ children, collection, gridView }) => {
+export const CollectionItem = ({
+  children,
+  className,
+  collection,
+  gridView
+}) => {
   const { releaseDate, title, uri } = collection;
+
+  const classes = cn(className, {
+    "h-full": gridView
+  });
+
   const linkClasses = cn({
-    "Xhover:ring-2 Xhover:ring-accent hover:text-accent rounded-lg p-8 md:p-16 h-full transition group": true,
+    "hover:text-accent rounded-lg p-8 md:p-16 h-full transition group": true,
     block: gridView,
     "flex items-center gap-8": !gridView
   });
@@ -89,7 +99,7 @@ export const CollectionItem = ({ children, collection, gridView }) => {
   });
 
   return (
-    <li className={gridView ? "h-full" : ""}>
+    <li className={classes}>
       <Link href={uri}>
         <a className={linkClasses}>
           <CoverArt

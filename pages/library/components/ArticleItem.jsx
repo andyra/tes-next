@@ -14,7 +14,7 @@ const ArticleItem = ({ article, showFeaturedImages }) => {
   });
   return (
     <li>
-      <Link href={uri}>
+      <Link href={`/${uri}`}>
         <a className={classes}>
           {title}
           {showFeaturedImages &&
