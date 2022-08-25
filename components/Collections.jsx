@@ -28,7 +28,7 @@ export const CollectionHeader = ({ children, collection }) => {
       </Button>
       <div className="flex flex-col lg:flex-row lg:items-end gap-24">
         <CoverArt
-          className="rounded-lg mx-auto md:mx-0 w-256"
+          className="rounded-lg mx-auto md:mx-0 w-256 flex-shrink-0"
           height={256}
           title={title}
           url={getCollectionCoverArtUrl(collection)}
@@ -36,7 +36,7 @@ export const CollectionHeader = ({ children, collection }) => {
         />
         <hgroup className="flex flex-col gap-12">
           <PageTitle>{title}</PageTitle>
-          {children}
+          <div className="text-lg">{children}</div>
         </hgroup>
       </div>
     </header>
@@ -74,10 +74,20 @@ export const CollectionListSkeleton = ({ gridView }) => (
 // Collection Item
 // ----------------------------------------------------------------------------
 
-export const CollectionItem = ({ children, collection, gridView }) => {
+export const CollectionItem = ({
+  children,
+  className,
+  collection,
+  gridView
+}) => {
   const { releaseDate, title, uri } = collection;
+
+  const classes = cn(className, {
+    "h-full": gridView
+  });
+
   const linkClasses = cn({
-    "Xhover:ring-2 Xhover:ring-accent hover:text-accent rounded-lg p-8 md:p-16 h-full transition group": true,
+    "hover:text-accent rounded-lg p-8 md:p-16 h-full transition group": true,
     block: gridView,
     "flex items-center gap-8": !gridView
   });
@@ -89,7 +99,7 @@ export const CollectionItem = ({ children, collection, gridView }) => {
   });
 
   return (
-    <li className={gridView ? "h-full" : ""}>
+    <li className={classes}>
       <Link href={uri}>
         <a className={linkClasses}>
           <CoverArt

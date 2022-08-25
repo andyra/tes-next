@@ -136,24 +136,27 @@ const Search = () => {
     "fixed top-0 right-0 bottom-0 left-0 z-dialog backdrop-blur-md bg-primary-5 radix-state-open:animate-fade-in";
 
   const contentClasses = cn(
-    "fixed top-[5vh] left-1/2 transform -translate-x-1/2 z-dialog-content",
-    "w-full max-w-screen-sm max-h-[90vh] overflow-y-auto",
-    "p-24 rounded-lg bg-ground border-2 radix-state-open:animate-slide-up-fade"
+    "fixed z-dialog-content overflow-y-auto",
+    "p-24 rounded-lg bg-ground border-2 radix-state-open:animate-slide-up-fade",
+    "top-4 right-4 bottom-4 left-4 max-h-screen",
+    "md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-screen-sm md:h-[90vh]"
   );
 
   return (
     <Dialog.Root open={isOpen}>
       <Tooltip content="Search" asChild>
         <Dialog.Trigger asChild>
-          <Button
-            circle
-            iconLeft="Search"
-            onClick={() => {
-              clearResults();
-              setIsOpen(true);
-            }}
-            variant="glass"
-          />
+          <div className="bg-ground rounded-full">
+            <Button
+              circle
+              iconLeft="Search"
+              onClick={() => {
+                clearResults();
+                setIsOpen(true);
+              }}
+              variant="glass"
+            />
+          </div>
         </Dialog.Trigger>
       </Tooltip>
       <Dialog.Portal>

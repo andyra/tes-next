@@ -19,79 +19,12 @@ import {
 import { shuffle } from "helpers/utils";
 const fs = require("fs");
 
-// Queries
-// ----------------------------------------------------------------------------
-
-const QUERY_LATEST_COLLECTIONS = gql`
-  query Entries {
-    albums: entries(section: "albums", orderBy: "releaseDate DESC") {
-      slug
-      title
-      uri
-      ... on albums_default_Entry {
-        artist {
-          slug
-          title
-        }
-        albumCoverArt {
-          url
-        }
-        albumTracklist {
-          ... on albumTracklist_song_BlockType {
-            song {
-              slug
-              title
-              uri
-            }
-            audioFile {
-              url
-            }
-          }
-          ... on albumTracklist_segment_BlockType {
-            description
-            audioFile {
-              url
-            }
-          }
-          ... on albumTracklist_coverSong_BlockType {
-            songTitle
-            audioFile {
-              url
-            }
-          }
-        }
-        albumType
-        releaseDate
-      }
-    }
-    episodes: entries(
-      section: "episodes"
-      limit: 1
-      orderBy: "releaseDate DESC"
-    ) {
-      slug
-      title
-      uri
-      ... on episodes_default_Entry {
-        description
-        episodeAudio {
-          url
-        }
-        episodeCoverArt {
-          url
-        }
-        releaseDate
-      }
-    }
-  }
-`;
-
-// Page
+// Default
 // ----------------------------------------------------------------------------
 
 export default function Home({ albums, episodes }) {
   const latestEpisode = episodes.length ? episodes[0] : null;
-  const latestAlbums = albums.slice(0, 3);
+  const latestAlbums = albums.slice(0, 4);
   const normalizedFullEpisode = normalizeFullEpisode(latestEpisode);
   const shuffledPlayableTracks = shuffle(
     normalizeCollections({
@@ -129,13 +62,14 @@ export default function Home({ albums, episodes }) {
       </section>
 
       <section>
-        <header className="flex items-center gap-8 justify-between">
-          <h2 className="text-2xl text-center mb-16">Latest Releases</h2>
+        <header className="flex items-center md:items-end gap-8 justify-between">
+          <h2 className="font-medium text-2xl text-center">Latest Releases</h2>
           <Button href="/albums" iconRight="ArrowRight">
-            Albums
+            <span className="hidden xs:block">Albums</span>
+            <span className="xs:hidden">All</span>
           </Button>
         </header>
-        <ul className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 -mx-8 relative">
+        <ul className="grid grid-cols-2 sm:grid-cols-4 -mx-8 md:-mx-16 relative">
           {latestAlbums.map(album => (
             <CollectionItem collection={album} key={album.slug} gridView />
           ))}
@@ -143,28 +77,35 @@ export default function Home({ albums, episodes }) {
       </section>
 
       <section>
-        <header className="flex items-center gap-8 justify-between">
-          <h2 className="text-2xl text-center mb-16">Latest Episode</h2>
+        <header className="flex items-center md:items-end gap-8 justify-between mb-16">
+          <h2 className="font-medium text-2xl text-center">Latest Episode</h2>
           <Button href="/episodes" iconRight="ArrowRight">
-            Episodes
+            <span className="hidden xs:block">Episodes</span>
+            <span className="xs:hidden">All</span>
           </Button>
         </header>
-        <div className="flex items-center gap-24">
-          <CoverArt
-            className="h-192 w-192 rounded-lg"
-            height={192}
-            width={192}
-            url={latestEpisode.episodeCoverArt[0].url}
-            title={latestEpisode.title}
-          />
-          <div className="flex-1">
-            <h3 className="font-medium text-xl mb-8">{latestEpisode.title}</h3>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-16 sm:gap-24">
+          <Link href={latestEpisode.uri}>
+            <a className="self-start hover:-rotate-2 hover:shadow-lg transition duration-300">
+              <CoverArt
+                className="h-192 w-192 rounded-lg"
+                height={192}
+                width={192}
+                url={latestEpisode.episodeCoverArt[0].url}
+                title={latestEpisode.title}
+              />
+            </a>
+          </Link>
+          <div className="flex-1 space-y-8">
+            <header className="flex items-center gap-8">
+              <PlayPauseButton
+                className="hover:text-accent"
+                size="lg"
+                track={normalizedFullEpisode}
+              />
+              <h3 className="font-medium text-xl">{latestEpisode.title}</h3>
+            </header>
             <p className="text-primary-75">{latestEpisode.description}</p>
-            <PlayPauseButton
-              className="hover:text-accent"
-              size="lg"
-              track={normalizedFullEpisode}
-            />
           </div>
         </div>
       </section>
@@ -178,7 +119,69 @@ export default function Home({ albums, episodes }) {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
-    query: QUERY_LATEST_COLLECTIONS
+    query: gql`
+      query Entries {
+        albums: entries(section: "albums", orderBy: "releaseDate DESC") {
+          slug
+          title
+          uri
+          ... on albums_default_Entry {
+            artist {
+              slug
+              title
+            }
+            albumCoverArt {
+              url
+            }
+            albumTracklist {
+              ... on albumTracklist_song_BlockType {
+                song {
+                  slug
+                  title
+                  uri
+                }
+                audioFile {
+                  url
+                }
+              }
+              ... on albumTracklist_segment_BlockType {
+                description
+                audioFile {
+                  url
+                }
+              }
+              ... on albumTracklist_coverSong_BlockType {
+                songTitle
+                audioFile {
+                  url
+                }
+              }
+            }
+            albumType
+            releaseDate
+          }
+        }
+        episodes: entries(
+          section: "episodes"
+          limit: 1
+          orderBy: "releaseDate DESC"
+        ) {
+          slug
+          title
+          uri
+          ... on episodes_default_Entry {
+            description
+            episodeAudio {
+              url
+            }
+            episodeCoverArt {
+              url
+            }
+            releaseDate
+          }
+        }
+      }
+    `
   });
 
   const feed = await generateFeed(data.episodes);
