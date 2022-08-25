@@ -8,6 +8,7 @@ import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import PlayPauseButton from "components/PlayPauseButton";
 import Icon from "components/Icon";
+import Visualization from "components/Player/Visualization";
 import { CollectionItem } from "components/Collections";
 import { generateFeed } from "helpers/feed";
 import {
@@ -37,7 +38,9 @@ export default function Home({ albums, episodes }) {
     <>
       <header className="text-center space-y-16">
         <h1>
-          <AnimatedLetter src="/vhs-02.webp">TES</AnimatedLetter>
+          <AnimatedLetter src="/gif/tumblr_ol5tj1hrIS1rt67t1o1_400.gifv">
+            TES
+          </AnimatedLetter>
         </h1>
 
         <p className="font-mono text-sm text-center max-w-screen-sm mx-auto">
@@ -51,14 +54,15 @@ export default function Home({ albums, episodes }) {
         </p>
       </header>
 
-      <section className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2">
+      <section className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2 overflow-hidden relative">
+        <Visualization visible={true} />
         <PlayPauseButton
           className="hover:text-accent"
           size="lg"
           track={shuffledPlayableTracks[0]}
           tracklist={shuffledPlayableTracks}
         />
-        <div>Listen to the Radio</div>
+        <div className="relative">Listen to the Radio</div>
       </section>
 
       <section>
