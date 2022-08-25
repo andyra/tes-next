@@ -28,10 +28,10 @@ export default function Album({ album, durations }) {
   return (
     <>
       <CollectionHeader collection={album}>
-        <div>
+        <>
           {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
           {albumTracklist.length} Tracks
-        </div>
+        </>
       </CollectionHeader>
       <Tracklist tracks={normalizedTracks} />
     </>

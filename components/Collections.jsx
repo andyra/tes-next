@@ -28,7 +28,7 @@ export const CollectionHeader = ({ children, collection }) => {
       </Button>
       <div className="flex flex-col lg:flex-row lg:items-end gap-24">
         <CoverArt
-          className="rounded-lg mx-auto md:mx-0 w-256"
+          className="rounded-lg mx-auto md:mx-0 w-256 flex-shrink-0"
           height={256}
           title={title}
           url={getCollectionCoverArtUrl(collection)}
@@ -36,7 +36,7 @@ export const CollectionHeader = ({ children, collection }) => {
         />
         <hgroup className="flex flex-col gap-12">
           <PageTitle>{title}</PageTitle>
-          {children}
+          <div className="text-lg">{children}</div>
         </hgroup>
       </div>
     </header>

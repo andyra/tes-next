@@ -33,7 +33,7 @@ export const CurrentTrack = ({
 
   const titleClasses = cn({
     "text-primary font-medium truncate overflow-hidden": !isFullscreen,
-    "text-4xl font-medium md:font-funky md:font-bold md:text-[8vmin] md:leading-[0.8] lg:text-[12vmin] md:mb-16": isFullscreen
+    "font-funky font-bold text-7xl uppercase leading-[0.75] md:text-[8vmin] lg:text-[12vmin] mb-16": isFullscreen
   });
 
   const collectionClasses = cn({

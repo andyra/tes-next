@@ -45,10 +45,8 @@ export const Player = () => {
   const playerIsEmpty =
     !currentTrack && prevList.length + nextList.length + queueList.length === 0;
   const isMobile = useMediaQuery(BREAKPOINTS.mobile);
-  const playerClasses = cn({
-    "flex items-center gap-8 bg-ground rounded-lg": true,
-    "h-64 md:h-80": true,
-    "p-8 rounded-lg": !isFullscreen,
+  const playerClasses = cn("flex items-center gap-8 bg-ground rounded-lg", {
+    "h-64 md:h-80 p-8 rounded-lg": !isFullscreen,
     "absolute top-0 left-0 z-player-fullscreen w-full h-full flex-col justify-end px-24 py-24 md:p-48": isFullscreen
   });
 
