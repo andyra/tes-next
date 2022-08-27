@@ -47,6 +47,7 @@ export default function Home({ albums, episodes }) {
             className="absolute top-0 left-0 w-full h-full saturate-200"
           />
           <Icon name="TesMask" className="relative z-10 block" size="w-full" />
+          <h1 className="sr-only">This Evening&apos;s Show</h1>
         </div>
         <p className="font-mono text-sm xs:text-base text-justify max-w-screen-sm mx-auto">
           <strong className="font-bold underline">T</strong>his{" "}

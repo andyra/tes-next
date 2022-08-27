@@ -34,13 +34,13 @@ const TitleMarquee = () => {
   );
 
   const innerClasses = cn(
-    "uppercase font-funky text-4xl md:text-9xl",
+    "uppercase font-funky text-4xl md:text-9xl hover:text-accent transition",
     "absolute whitespace-nowrap animate-marquee"
   );
 
   return (
     <Link href="/">
-      <a className={classes}>
+      <a className={classes} title="This Evening's Show">
         <div className="absolute z-10 w-24 h-full top-0 left-0 bg-gradient-to-r from-ground pointer-events-none md:hidden" />
         <div className={innerClasses}>
           {[...Array(4)].map(i => (

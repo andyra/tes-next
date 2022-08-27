@@ -54,7 +54,7 @@ export const MenuDivider = () => (
 export const Menu = ({
   asChild,
   children,
-  className,
+  contentClassName,
   side,
   tooltip,
   trigger,
@@ -64,6 +64,7 @@ export const Menu = ({
   const contentClasses = cn(
     "bg-ground border rounded-lg p-8 shadow-lg z-popover",
     "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down",
+    contentClassName,
     width
   );
 
