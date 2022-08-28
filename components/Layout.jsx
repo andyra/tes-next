@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import { usePlayerContext } from "context/PlayerContext";
 import Button from "components/Button";
 import Input from "components/Input";
+import MetaTags from "components/MetaTags";
 import Navigation from "components/Navigation";
 import Player from "components/Player";
 
@@ -47,13 +48,17 @@ const Grain = styled.div.attrs({
 // ----------------------------------------------------------------------------
 
 export default function Layout({ children, ...props }) {
-  const { currentTrack, nextList, prevList, queueList } = usePlayerContext();
-  const playerIsEmpty =
-    !currentTrack && prevList.length + nextList.length + queueList.length === 0;
+  const {
+    currentTrack,
+    nextList,
+    playerIsEmpty,
+    prevList,
+    queueList
+  } = usePlayerContext();
 
   const nextClasses = cn(
     "h-full overflow-hidden print:overflow-visible p-4 bg-ground-dark",
-    "font-sans text-primary antialiased",
+    "font-sans text-primary antialiased selection:text-ground selection:bg-primary",
     "flex flex-col gap-4"
   );
 
@@ -72,9 +77,7 @@ export default function Layout({ children, ...props }) {
   return (
     <>
       <Head>
-        <title>
-          {props.PageTitle ? `${props.PageTitle} • TES` : "This Evening's Show"}
-        </title>
+        <MetaTags props={props} />
       </Head>
       <div className={wrapperClasses}>
         <Navigation

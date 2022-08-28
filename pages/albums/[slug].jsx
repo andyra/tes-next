@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import { CollectionHeader } from "components/Collections";

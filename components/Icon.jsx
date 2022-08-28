@@ -47,6 +47,7 @@ import Sun from "../public/icons/Sun.svg";
 import Trash from "../public/icons/Trash.svg";
 import Video from "../public/icons/Video.svg";
 import X from "../public/icons/X.svg";
+import TesMask from "../public/icons/TesMask.svg";
 
 export const ICON_NAMES = {
   ApplePodcasts: ApplePodcasts,
@@ -95,15 +96,13 @@ export const ICON_NAMES = {
   Sun: Sun,
   Trash: Trash,
   Video: Video,
-  X: X
+  X: X,
+  TesMask: TesMask
 };
 
 export const Icon = ({ className, name, size, ...props }) => {
   let IconComponent = ICON_NAMES[name];
-  const classes = cn({
-    "w-em h-em pointer-events-none": !size,
-    [className]: className
-  });
+  const classes = cn(className, size ? size : "w-em h-em pointer-events-none");
 
   return <IconComponent className={classes} {...props} />;
 };

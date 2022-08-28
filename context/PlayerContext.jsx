@@ -10,6 +10,8 @@ export const PlayerContextProvider = ({ children }) => {
   const [nextList, setNextList] = useState([]);
   const [prevList, setPrevList] = useState([]);
   const [queueList, setQueueList] = useState([]);
+  const playerIsEmpty =
+    !currentTrack && prevList.length + nextList.length + queueList.length === 0;
 
   return (
     <PlayerContext.Provider
@@ -18,6 +20,7 @@ export const PlayerContextProvider = ({ children }) => {
         isLoading: isLoading,
         isPlaying: isPlaying,
         nextList: nextList,
+        playerIsEmpty: playerIsEmpty,
         prevList: prevList,
         queueList: queueList,
         setCurrentTrack: setCurrentTrack,

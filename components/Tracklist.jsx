@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import toast from "react-hot-toast";
 import cn from "classnames";
 import { usePlayerContext } from "context/PlayerContext";
@@ -166,11 +165,11 @@ export const Tracklist = ({
   };
 
   return (
-    <ul className="-mx-8">
+    <ol className="-mx-8">
       {tracks.map((track, i) => (
         <TrackItem track={track} i={i} key={track.id} />
       ))}
-    </ul>
+    </ol>
   );
 };
 

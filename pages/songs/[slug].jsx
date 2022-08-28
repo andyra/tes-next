@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Image from "next/image";
 import { gql } from "@apollo/client";
 import cn from "classnames";
@@ -110,6 +109,8 @@ export default function Song({ collections, song }) {
         subtitle="A song called"
         title={title}
       />
+
+      <hr className="bt-2" />
 
       <ContentSection
         className="print:hidden"

@@ -15,8 +15,8 @@ export const NavLink = ({ className, count, navSection, title, href }) => {
     "md:flex-row md:justify-start md:gap-8 md:px-12 md:-ml-12 md:hover:underline",
     "flex-col justify-center",
     "font-funky text-2xl md:text-5xl",
-    className,
-    { "text-accent": active }
+    active ? "text-accent" : "text-secondary",
+    className
   );
 
   return (
@@ -30,17 +30,17 @@ export const NavLink = ({ className, count, navSection, title, href }) => {
 
 const TitleMarquee = () => {
   const classes = cn(
-    "h-[36px] md:h-128 relative w-screen overflow-hidden -ml-8 md:-mx-24 relative"
+    "h-40 md:h-128 relative w-screen overflow-hidden -ml-8 md:-mx-24 relative"
   );
 
   const innerClasses = cn(
-    "uppercase font-funky text-4xl md:text-9xl",
-    "absolute whitespace-nowrap animate-marquee"
+    "font-editorial text-4xl md:text-9xl uppercase text-secondary hover:text-accent transition leading-none md:leading-[1.2]",
+    "absolute whitespace-nowrap animate-marquee mt-[6px] md:mt-0"
   );
 
   return (
     <Link href="/">
-      <a className={classes}>
+      <a className={classes} title="This Evening's Show">
         <div className="absolute z-10 w-24 h-full top-0 left-0 bg-gradient-to-r from-ground pointer-events-none md:hidden" />
         <div className={innerClasses}>
           {[...Array(4)].map(i => (
@@ -82,8 +82,8 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
           />
           <NavLink title="Contact" href="/contact" navSection={navSection} />
           <Menu
-            trigger={<div>&</div>}
-            triggerClassName="font-funky text-2xl md:text-5xl cursor-pointer hover:underline"
+            trigger={<div>&amp;</div>}
+            triggerClassName="font-funky text-2xl md:text-5xl cursor-pointer text-secondary hover:underline hover:text-accent"
           >
             <MenuItem href="/videos" icon="Video">
               Videos
@@ -92,7 +92,13 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
               Setlist Computor
             </MenuItem>
             <MenuDivider />
-            <MenuItem href="/">Sign In</MenuItem>
+            <MenuItem
+              href="https://content.tes.fm/admin"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Sign In
+            </MenuItem>
           </Menu>
         </ul>
 
@@ -126,7 +132,13 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
               Contact
             </MenuItem>
             <MenuDivider />
-            <MenuItem href="/">Sign In</MenuItem>
+            <MenuItem
+              href="https://content.tes.fm/admin"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Sign In
+            </MenuItem>
           </Menu>
         </div>
       </nav>

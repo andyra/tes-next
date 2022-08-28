@@ -8,6 +8,7 @@ import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import PlayPauseButton from "components/PlayPauseButton";
 import Icon from "components/Icon";
+import LavaLamp from "components/LavaLamp";
 import { CollectionItem } from "components/Collections";
 import { generateFeed } from "helpers/feed";
 import {
@@ -35,12 +36,20 @@ export default function Home({ albums, episodes }) {
 
   return (
     <>
-      <header className="text-center space-y-16">
-        <h1>
-          <AnimatedLetter src="/vhs-02.webp">TES</AnimatedLetter>
-        </h1>
-
-        <p className="font-mono text-sm text-center max-w-screen-sm mx-auto">
+      <header className="max-w-screen-sm mx-auto space-y-16">
+        <div className="overflow-hidden relative text-ground">
+          <LavaLamp
+            imgSize={512}
+            shapeA={5}
+            shapeB={1}
+            mySpeed={2}
+            colorSpeed={0.001}
+            className="absolute top-0 left-0 w-full h-full saturate-200"
+          />
+          <Icon name="TesMask" className="relative z-10 block" size="w-full" />
+          <h1 className="sr-only">This Evening&apos;s Show</h1>
+        </div>
+        <p className="font-mono text-sm xs:text-base text-justify max-w-screen-sm mx-auto">
           <strong className="font-bold underline">T</strong>his{" "}
           <strong className="font-bold underline">E</strong>vening&apos;s{" "}
           <strong className="font-bold underline">S</strong>how is a radio
@@ -49,24 +58,24 @@ export default function Home({ albums, episodes }) {
           of bizarre characters, historic factoids, surreal comedy, improvised
           news, interviews, and original music.
         </p>
+        <div className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl">
+          <PlayPauseButton
+            className="hover:text-accent"
+            size="lg"
+            track={shuffledPlayableTracks[0]}
+            tracklist={shuffledPlayableTracks}
+          />
+          <div>Listen to the Radio</div>
+        </div>
       </header>
 
-      <section className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl p-24 xs:py-32 md:py-48 rounded-xl border-2">
-        <PlayPauseButton
-          className="hover:text-accent"
-          size="lg"
-          track={shuffledPlayableTracks[0]}
-          tracklist={shuffledPlayableTracks}
-        />
-        <div>Listen to the Radio</div>
-      </section>
+      <hr className="border-t-2" />
 
       <section>
         <header className="flex items-center md:items-end gap-8 justify-between">
           <h2 className="font-medium text-2xl text-center">Latest Releases</h2>
           <Button href="/albums" iconRight="ArrowRight">
-            <span className="hidden xs:block">Albums</span>
-            <span className="xs:hidden">All</span>
+            Albums
           </Button>
         </header>
         <ul className="grid grid-cols-2 sm:grid-cols-4 -mx-8 md:-mx-16 relative">
@@ -80,8 +89,7 @@ export default function Home({ albums, episodes }) {
         <header className="flex items-center md:items-end gap-8 justify-between mb-16">
           <h2 className="font-medium text-2xl text-center">Latest Episode</h2>
           <Button href="/episodes" iconRight="ArrowRight">
-            <span className="hidden xs:block">Episodes</span>
-            <span className="xs:hidden">All</span>
+            Episodes
           </Button>
         </header>
         <div className="flex flex-col sm:flex-row sm:items-center gap-16 sm:gap-24">

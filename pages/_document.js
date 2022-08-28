@@ -13,30 +13,6 @@ class MyDocument extends Document {
         <Head>
           <link
             rel="preload"
-            href="/fonts/ozik-regular-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/ozik-medium-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/ozik-bold-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/ozik-black-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
             href="/fonts/apercu-subset.woff2"
             as="font"
             crossOrigin=""
@@ -50,6 +26,24 @@ class MyDocument extends Document {
           <link
             rel="preload"
             href="/fonts/apercu-bold-subset.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/ozik-regular-subset.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/ozik-bold-subset.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/editorial-new-light-subset.woff2"
             as="font"
             crossOrigin=""
           />

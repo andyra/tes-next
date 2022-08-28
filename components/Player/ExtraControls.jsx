@@ -47,7 +47,7 @@ export const ExtraControls = ({
           </section>
         </Collapsible.Content>
       </Collapsible.Root>
-      <Tooltip content={isFullscreen ? "Enable Cool Mode" : "Close"}>
+      <Tooltip content={isFullscreen ? "Close" : "Enable Cool Mode"}>
         <Button
           circle
           disabled={playerIsEmpty}

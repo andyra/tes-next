@@ -63,6 +63,17 @@ module.exports = {
           "'Helvetica Neue'",
           "Arial",
           "sans-serif"
+        ],
+        editorial: [
+          "Editorial New",
+          "Apercu",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Roboto",
+          "'Helvetica Neue'",
+          "Arial",
+          "sans-serif"
         ]
       },
       zIndex: {
@@ -146,7 +157,7 @@ module.exports = {
     },
     animation: {
       loading: "bg-pulse 1s infinite",
-      marquee: "marquee 20s linear infinite",
+      marquee: "marquee 24s linear infinite",
       spin: "spin 1s linear infinite",
       "spin-slow": "spin 32s linear infinite",
       // Dropdown menu
