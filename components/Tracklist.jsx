@@ -165,11 +165,11 @@ export const Tracklist = ({
   };
 
   return (
-    <ul className="-mx-8">
+    <ol className="-mx-8">
       {tracks.map((track, i) => (
         <TrackItem track={track} i={i} key={track.id} />
       ))}
-    </ul>
+    </ol>
   );
 };
 

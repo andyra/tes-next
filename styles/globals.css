@@ -16,24 +16,24 @@
   --primary-25: hsla(53, 16%, 77%, 0.25);
   --primary-10: hsla(53, 16%, 77%, 0.15);
   --primary-5: hsla(53, 16%, 77%, 0.1);
-  --secondary: hsl(191, 61%, 81%, 1);
-  --secondary-75: hsla(191, 61%, 81%, 0.75);
-  --secondary-50: hsla(191, 61%, 81%, 0.5);
-  --secondary-25: hsla(191, 61%, 81%, 0.25);
-  --secondary-10: hsla(191, 61%, 81%, 0.1);
-  --secondary-5: hsla(191, 61%, 81%, 0.05);
+  --secondary: hsl(192, 100%, 80%, 1);
+  --secondary-75: hsla(192, 100%, 80%, 0.75);
+  --secondary-50: hsla(192, 100%, 80%, 0.5);
+  --secondary-25: hsla(192, 100%, 80%, 0.25);
+  --secondary-10: hsla(192, 100%, 80%, 0.1);
+  --secondary-5: hsla(192, 100%, 80%, 0.05);
   --tertiary: hsl(234, 88%, 81%, 1);
   --tertiary-75: hsl(234, 88%, 81%, 0.75);
   --tertiary-50: hsl(234, 88%, 81%, 0.5);
   --tertiary-25: hsl(234, 88%, 81%, 0.25);
   --tertiary-10: hsl(234, 88%, 81%, 0.1);
   --tertiary-5: hsl(234, 88%, 81%, 0.05);
-  --accent: hsla(10, 100%, 60%, 1);
-  --accent-75: hsla(10, 100%, 60%, 0.75);
-  --accent-50: hsla(10, 100%, 60%, 0.5);
-  --accent-25: hsla(10, 100%, 60%, 0.25);
-  --accent-10: hsla(10, 100%, 60%, 0.1);
-  --accent-5: hsla(10, 100%, 60%, 0.05);
+  --accent: hsla(20, 100%, 60%, 1);
+  --accent-75: hsla(20, 100%, 60%, 0.75);
+  --accent-50: hsla(20, 100%, 60%, 0.5);
+  --accent-25: hsla(20, 100%, 60%, 0.25);
+  --accent-10: hsla(20, 100%, 60%, 0.1);
+  --accent-5: hsla(20, 100%, 60%, 0.05);
 }
 
 .light {
@@ -44,18 +44,18 @@
   --ground-25: hsla(20, 10%, 90%, 0.25);
   --ground-10: hsla(20, 10%, 90%, 0.1);
   --ground-5: hsla(20, 10%, 90%, 0.05);
-  --primary: hsl(256, 59%, 36%, 1);
-  --primary-75: hsla(256, 59%, 36%, 0.75);
-  --primary-50: hsla(256, 59%, 36%, 0.5);
-  --primary-25: hsla(256, 59%, 36%, 0.25);
-  --primary-10: hsla(256, 59%, 36%, 0.1);
-  --primary-5: hsla(256, 59%, 36%, 0.05);
-  --secondary: hsl(219, 42%, 11%, 1);
-  --secondary-75: hsla(219, 42%, 11%, 0.75);
-  --secondary-50: hsla(219, 42%, 11%, 0.5);
-  --secondary-25: hsla(219, 42%, 11%, 0.25);
-  --secondary-10: hsla(219, 42%, 11%, 0.1);
-  --secondary-5: hsla(219, 42%, 11%, 0.05);
+  --primary: hsl(219, 42%, 11%, 1);
+  --primary-75: hsla(219, 42%, 11%, 0.75);
+  --primary-50: hsla(219, 42%, 11%, 0.5);
+  --primary-25: hsla(219, 42%, 11%, 0.25);
+  --primary-10: hsla(219, 42%, 11%, 0.1);
+  --primary-5: hsla(219, 42%, 11%, 0.05);
+  --secondary: hsl(256, 59%, 36%, 1);
+  --secondary-75: hsla(256, 59%, 36%, 0.75);
+  --secondary-50: hsla(256, 59%, 36%, 0.5);
+  --secondary-25: hsla(256, 59%, 36%, 0.25);
+  --secondary-10: hsla(256, 59%, 36%, 0.1);
+  --secondary-5: hsla(256, 59%, 36%, 0.05);
   --accent: hsla(22, 86%, 43%, 1);
   --accent-75: hsla(22, 86%, 43%, 0.75);
   --accent-50: hsla(22, 86%, 43%, 0.5);
@@ -68,42 +68,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-display: swap;
-  font-family: "Ozik";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/ozik-regular-subset.woff2");
-}
-@font-face {
-  font-display: swap;
-  font-family: "Ozik";
-  font-style: normal;
-  font-weight: 500;
-  src: url("/fonts/ozik-medium-subset.woff2");
-}
-@font-face {
-  font-display: swap;
-  font-family: "Ozik";
-  font-style: normal;
-  font-weight: 700;
-  src: url("/fonts/ozik-bold-subset.woff2");
-}
-@font-face {
-  font-display: swap;
-  font-family: "Ozik";
-  font-style: normal;
-  font-weight: 900;
-  src: url("/fonts/ozik-black-subset.woff2");
-}
+/* Fonts
+/* ------------------------------------------------------------------------- */
 
-@font-face {
-  font-display: swap;
-  font-family: "Apercu";
-  font-style: normal;
-  font-weight: 300;
-  src: url("/fonts/apercu-light-subset.woff2");
-}
+/* font-base: regular, medium, bold */
 @font-face {
   font-display: swap;
   font-family: "Apercu";
@@ -124,6 +92,31 @@
   font-style: normal;
   font-weight: 700;
   src: url("/fonts/apercu-bold-subset.woff2");
+}
+
+/* font-funky: regular, bold */
+@font-face {
+  font-display: swap;
+  font-family: "Ozik";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/ozik-regular-subset.woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Ozik";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/ozik-bold-subset.woff2");
+}
+
+/* font-editorial: light */
+@font-face {
+  font-display: swap;
+  font-family: "Editorial New";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/editorial-new-ultralight-subset.woff2");
 }
 
 /* LeadSheet

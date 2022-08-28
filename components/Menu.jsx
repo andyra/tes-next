@@ -9,18 +9,18 @@ import Tooltip from "components/Tooltip";
 
 export const MenuItem = ({ children, className, href, icon, ...props }) => {
   const itemClasses = cn({
-    "flex items-center gap-8 h-32 px-12 w-full rounded-full hover:bg-primary-5 transition": true,
+    "flex items-center gap-8 h-40 md:h-32 px-12 w-full rounded-full hover:bg-primary-5 transition": true,
     [className]: className
   });
 
   return href ? (
     <a href={href} className={itemClasses} {...props}>
-      {icon && <Icon name={icon} className="opacity-50" />}
+      {icon && <Icon name={icon} className="opacity-50 -ml-4" />}
       {children}
     </a>
   ) : (
     <button className={itemClasses} {...props} type="button">
-      {icon && <Icon name={icon} className="opacity-50" />}
+      {icon && <Icon name={icon} className="opacity-50 -mr-4" />}
       {children}
     </button>
   );

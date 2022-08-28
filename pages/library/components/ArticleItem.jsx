@@ -9,7 +9,7 @@ const ArticleItem = ({ article, showFeaturedImages }) => {
 
   const { featuredImage, title, uri } = article;
   const classes = cn({
-    "block h-full text-xl px-8 py-16 border-t-2 border-primary-25 border-dotted hover:border-accent hover:text-accent hover:bg-primary-5 transition group": true,
+    "block h-full text-xl px-8 py-16 border-t-2 border-primary-25 border-dotted hover:border-accent hover:text-accent hover:bg-accent-5 transition group": true,
     "text-center": showFeaturedImages
   });
   return (
@@ -19,7 +19,7 @@ const ArticleItem = ({ article, showFeaturedImages }) => {
           {title}
           {showFeaturedImages &&
             (featuredImage && featuredImage.length > 0 ? (
-              <figure className="grayscale mix-blend-different dark:invert w-1/2 mt-8 mx-auto">
+              <figure className="grayscale mix-blend-different mix-blend-multiply dark:mix-blend-screen dark:invert w-1/2 mt-8 mx-auto">
                 <Image
                   alt={title}
                   height={featuredImage[0].height}

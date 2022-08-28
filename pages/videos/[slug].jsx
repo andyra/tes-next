@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import PageHeader from "components/PageHeader";

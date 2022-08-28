@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
@@ -23,7 +22,6 @@ function replaceInternalLinks(content) {
 
 export default function Article({ article }) {
   const { categories, featuredImage, postContent, title } = article;
-  const router = useRouter();
 
   return (
     <>
