@@ -63,7 +63,11 @@ export const CurrentTrack = ({
                 </Link>
               </div>
             </div>
-            <TrackMenu track={currentTrack} queueable={false} />
+            <TrackMenu
+              track={currentTrack}
+              queueable={false}
+              i={currentTrack.position}
+            />
           </div>
         </>
       ) : (

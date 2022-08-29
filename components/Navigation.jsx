@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import cn from "classnames";
@@ -44,7 +45,7 @@ const TitleMarquee = () => {
         <div className="absolute z-10 w-24 h-full top-0 left-0 bg-gradient-to-r from-ground pointer-events-none md:hidden" />
         <div className={innerClasses}>
           {[...Array(4)].map(i => (
-            <>This Evening&apos;s Show </>
+            <React.Fragment key={i}>This Evening&apos;s Show </React.Fragment>
           ))}
         </div>
         <div className="absolute z-10 w-24 h-full top-0 right-0 bg-gradient-to-l from-ground pointer-events-none md:hidden" />
