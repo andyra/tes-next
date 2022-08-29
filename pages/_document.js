@@ -48,7 +48,7 @@ class MyDocument extends Document {
             crossOrigin=""
           />
         </Head>
-        <body className="h-full overflow-hidden print:overflow-visible">
+        <body className="h-full print:overflow-visible">
           <Toaster />
           <Main />
           <NextScript />
