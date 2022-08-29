@@ -14,7 +14,11 @@ const MetaTags = ({ props }) => {
       <meta property="og:image" content={metaImage} />
       {props.metaTypes &&
         metaTypes.map(metaType => (
-          <meta property={metaType.type} content={metaType.content} />
+          <meta
+            property={metaType.type}
+            content={metaType.content}
+            key={metaType.type}
+          />
         ))}
       {props.metaDescription && (
         <meta property="og:description" content={metaDescription} />
