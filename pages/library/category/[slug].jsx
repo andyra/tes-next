@@ -106,8 +106,8 @@ export async function getStaticProps(context) {
     props: {
       articles: data.entries,
       category: data.category,
-      pageTitle: data.category.title,
       maxWidth: "max-w-full",
+      metaTitle: data.category.title,
       navSection: "Library"
     }
   };

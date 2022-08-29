@@ -79,7 +79,7 @@ export default function SignIn() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: "Sign In"
+      metaTitle: "Sign In"
     }
   };
 }

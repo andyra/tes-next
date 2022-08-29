@@ -247,7 +247,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      pageTitle: "Setlist Computor",
+      metaTitle: "Setlist Computor",
       songs: data.entries,
       strategyGlobal: data.globalSets
     }

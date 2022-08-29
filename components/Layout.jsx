@@ -8,7 +8,6 @@ import { Toaster } from "react-hot-toast";
 import { usePlayerContext } from "context/PlayerContext";
 import Button from "components/Button";
 import Input from "components/Input";
-import MetaTags from "components/MetaTags";
 import Navigation from "components/Navigation";
 import Player from "components/Player";
 
@@ -62,13 +61,13 @@ export default function Layout({ children, ...props }) {
     "flex flex-col gap-4"
   );
 
-  const wrapperClasses = cn(
-    "flex-1 flex items-stretch gap-4 overflow-hidden",
-    "flex-col md:flex-row"
-  );
+  const metaTitle = props.metaTitle
+    ? `${props.metaTitle} • TES`
+    : "This Evening's Show";
 
-  const mainClasses =
-    "flex-1 overflow-y-auto print:overflow-visible bg-ground rounded-lg";
+  const metaImage =
+    props.metaImage ||
+    "https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg";
 
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses.split(" "));
@@ -77,14 +76,28 @@ export default function Layout({ children, ...props }) {
   return (
     <>
       <Head>
-        <MetaTags props={props} />
+        <title>{metaTitle}</title>
+        <meta property="og:site_name" content="This Evening's Show" />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:image" content={metaImage} />
+        {props.metaTypes &&
+          metaTypes.map(metaType => (
+            <meta
+              property={metaType.type}
+              content={metaType.content}
+              key={metaType.type}
+            />
+          ))}
+        {props.metaDescription && (
+          <meta property="og:description" content={metaDescription} />
+        )}
       </Head>
-      <div className={wrapperClasses}>
+      <div className="flex-1 flex flex-col md:flex-row items-stretch gap-4 overflow-hidden">
         <Navigation
           navSection={props.navSection}
           playerIsEmpty={playerIsEmpty}
         />
-        <main className={mainClasses}>
+        <main className="flex-1 overflow-y-auto print:overflow-visible bg-ground rounded-lg">
           <Toaster />
           <Container maxWidth={props.maxWidth} spacing={props.spacing}>
             {children}
