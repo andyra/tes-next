@@ -37,7 +37,7 @@ export const ExtraControls = ({
               disabled={playerIsEmpty}
               variant={isFullscreen ? "glass" : "outline"}
             >
-              Q
+              <Icon name="Queue" />
             </Button>
           </Collapsible.Trigger>
         </Tooltip>
