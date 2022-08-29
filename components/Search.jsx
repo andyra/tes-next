@@ -6,6 +6,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import cn from "classnames";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
+import { DialogOverlay } from "components/Dialog";
 import Icon from "components/Icon";
 import Input from "components/Input";
 import Loader from "components/Loader";
@@ -150,8 +151,6 @@ const Search = ({ entries }) => {
     setSearchTerm(e.target.value);
   }, 500);
 
-  const overlayClasses =
-    "fixed top-0 right-0 bottom-0 left-0 z-dialog backdrop-blur-md bg-primary-5 radix-state-open:animate-fade-in";
   const contentClasses = cn(
     "fixed z-dialog-content overflow-y-auto",
     "p-24 rounded-lg bg-ground border-2 radix-state-open:animate-slide-up-fade",
@@ -177,10 +176,16 @@ const Search = ({ entries }) => {
         </Dialog.Trigger>
       </Tooltip>
       <Dialog.Portal>
-        <Dialog.Overlay className={overlayClasses} />
+        <DialogOverlay />
         <Dialog.Content
           className={contentClasses}
           onEscapeKeyDown={() => {
+            setIsOpen(false);
+          }}
+          onInteractionOutside={() => {
+            setIsOpen(false);
+          }}
+          onPointerDownOutside={() => {
             setIsOpen(false);
           }}
         >

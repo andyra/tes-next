@@ -7,7 +7,7 @@ import TrackMenu from "components/TrackMenu";
 
 const Section = ({ actions, children, className, title }) => (
   <section className={className}>
-    <header className="flex items-center justify-between mb-8 sticky -top-24 bg-ground z-10">
+    <header className="flex items-center justify-between py-8 sticky -top-24 bg-ground z-10">
       <h3 className="font-medium text-xl text-primary">{title}</h3>
       {actions && actions}
     </header>

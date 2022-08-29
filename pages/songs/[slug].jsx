@@ -101,8 +101,6 @@ export default function Song({ collections, song }) {
   const normalizedTracks = normalizeSongTracks(slug, relatedCollections);
   const hasTracks = normalizedTracks.length > 0;
 
-  console.log(normalizedTracks);
-
   return (
     <>
       <PageHeader

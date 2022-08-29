@@ -121,11 +121,13 @@ export const Tracklist = ({
                   url={track.collection.coverArt}
                   width={48}
                 />
-                <div>
+                <div className="flex flex-col">
                   <div className="font-medium">{track.title}</div>
-                  <div className="text-sm text-primary-75">
-                    {track.collection.title}
-                  </div>
+                  <Link href={track.collection.uri}>
+                    <a className="text-sm text-primary-75 hover:underline">
+                      {track.collection.title}
+                    </a>
+                  </Link>
                 </div>
               </>
             ) : showTrackType ? (
