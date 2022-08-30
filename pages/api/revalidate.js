@@ -4,44 +4,54 @@ export default async function handler(req, res) {
     return res.status(401).json({ message: "Invalid token" });
   }
 
-  // The request should contain the entry being saved.
-  // For all entries, build the slug and rebuild the index
-  // For albums and episodes, also rebuild the home page
-  // For albums, also rebuild each song page featured on the album
-
+  // https://docs.craftcms.com/api/v3/craft-base-element.html#events
   // New Entry
-  // • Rebuild index
   // Delete Entry
-  // • Rebuilt index
   // Save Entry
-  // • Rebuild slug
 
-  const { sectionId, canonicalId, isRevision, uri, slug } = req.body.sender;
-  const eventType = req.body.name;
+  const eventName = req.body.name;
+  const uri = req.body.sender.uri;
   const entryType = uri.split("/")[0];
 
+  console.log("====================");
+  console.log(`${eventName} for ${uri}`);
+
   try {
-    if (eventType === afterSave) {
+    // Edit entry
+    if (eventName === afterSave) {
+      console.log("--------------------");
+      console.log(`Rebuild slug page`);
       await res.revalidate(`/${uri}`);
     }
 
+    // Edit, New, or Delete entry
     if (entryType === "albums") {
+      console.log("--------------------");
+      console.log(`Rebuild home and albums index`);
       await res.revalidate(`/`);
       await res.revalidate(`/albums`);
       // TODO: Rebuilt specific song slugs
     }
     if (entryType === "episodes") {
+      console.log("--------------------");
+      console.log(`Rebuild home and episodes index`);
       await res.revalidate(`/`);
       await res.revalidate(`/episodes`);
     }
     if (entryType === "library") {
+      console.log("--------------------");
+      console.log(`Rebuild library index`);
       await res.revalidate(`/library`);
       // TODO Rebuild category pages
     }
     if (entryType === "songs") {
+      console.log("--------------------");
+      console.log(`Rebuild songs index`);
       await res.revalidate(`/songs`);
     }
     if (entryType === "videos") {
+      console.log("--------------------");
+      console.log(`Rebuild videos index`);
       await res.revalidate(`/videos`);
     }
 
