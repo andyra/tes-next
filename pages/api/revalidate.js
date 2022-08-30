@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
   try {
     // Edit entry
-    if (eventName === afterSave) {
+    if (eventName === "afterSave") {
       console.log("--------------------");
       console.log(`Rebuild slug page`);
       await res.revalidate(`/${uri}`);

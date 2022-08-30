@@ -176,7 +176,6 @@ export async function getStaticProps(context) {
           uri
           ... on albums_default_Entry {
             albumCoverArt { url }
-            releaseDate
             albumTracklist {
               ... on albumTracklist_song_BlockType {
                 song {
@@ -189,7 +188,6 @@ export async function getStaticProps(context) {
           }
           ... on episodes_default_Entry {
             episodeCoverArt { url }
-            releaseDate
             episodeTracklist {
               ... on episodeTracklist_song_BlockType {
                 song {
