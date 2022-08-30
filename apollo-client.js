@@ -1,12 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://content.tes.fm/api",
-  cache: new InMemoryCache()
-});
-
-const countryClient = new ApolloClient({
-  uri: "https://countries.trevorblades.com",
+  uri: "https://tes-craft.test/api",
   cache: new InMemoryCache()
 });
 
