@@ -56,5 +56,5 @@ const LightBox = React.forwardRef(
 //   );
 // };
 
-Button.displayName = "LightBox";
+LightBox.displayName = "LightBox";
 export default LightBox;
