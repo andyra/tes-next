@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import PropTypes from "prop-types";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import cn from "classnames";
 import Button from "components/Button";
@@ -13,21 +12,6 @@ export const DialogOverlay = () => {
   return <DialogPrimitive.Overlay className={classes} />;
 };
 
-export const DialogContent = ({ className, children, ...delegated }) => {
-  const classes = cn(
-    "w-full max-w-screen-sm absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-dialog-content",
-    "bg-ground rounded-lg border-2",
-    "radix-state-open:animate-slide-up-fade",
-    className
-  );
-
-  return (
-    <DialogPrimitive.Content className={classes}>
-      {children}
-    </DialogPrimitive.Content>
-  );
-};
-
 export const DialogClose = ({ className }) => (
   <DialogPrimitive.Close asChild>
     <Button
@@ -38,33 +22,3 @@ export const DialogClose = ({ className }) => (
     />
   </DialogPrimitive.Close>
 );
-
-const Dialog = ({ children, className, title, titleClassName, trigger }) => {
-  const titleClasses = cn({
-    "font-medium text-2xl mb-16": !titleClassName,
-    [titleClassName]: titleClassName
-  });
-
-  return (
-    <DialogPrimitive.Root>
-      <DialogPrimitive.Trigger>{trigger}</DialogPrimitive.Trigger>
-      <DialogPrimitive.Portal>
-        <DialogOverlay />
-        <DialogContent className={className}>
-          <DialogPrimitive.Title className={titleClasses}>
-            {title}
-          </DialogPrimitive.Title>
-          <DialogClose />
-          {children}
-        </DialogContent>
-      </DialogPrimitive.Portal>
-    </DialogPrimitive.Root>
-  );
-};
-
-DialogPrimitive.propTypes = {
-  isOpen: PropTypes.bool,
-  title: PropTypes.string
-};
-
-export default Dialog;

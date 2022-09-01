@@ -95,11 +95,11 @@ const ContentSection = ({
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Song({ collections, song }) {
+export default function Song({ song }) {
   const { leadSheet, notation, slug, title } = song;
-  const relatedCollections = getRelatedCollections(slug, collections);
-  const normalizedTracks = normalizeSongTracks(slug, relatedCollections);
-  const hasTracks = normalizedTracks.length > 0;
+  // const relatedCollections = getRelatedCollections(slug, collections);
+  // const normalizedTracks = normalizeSongTracks(slug, relatedCollections);
+  // const hasTracks = normalizedTracks.length > 0;
 
   return (
     <>
@@ -112,14 +112,14 @@ export default function Song({ collections, song }) {
 
       <hr className="bt-2" />
 
-      <ContentSection
+      {/*<ContentSection
         className="print:hidden"
         enabled={hasTracks}
         emptyMessage="Not (yet) on any collections"
         title="Appears On…"
       >
         <Tracklist tracks={normalizedTracks} showCollectionInfo />
-      </ContentSection>
+      </ContentSection>*/}
 
       <ContentSection
         enabled={leadSheet}
@@ -135,26 +135,26 @@ export default function Song({ collections, song }) {
 // Paths
 // ----------------------------------------------------------------------------
 
-// export async function getStaticPaths() {
-//   const { data } = await client.query({
-//     query: querySlugs("songs")
-//   });
+export async function getStaticPaths() {
+  const { data } = await client.query({
+    query: querySlugs("songs")
+  });
 
-//   const paths = data.entries.map(entry => ({
-//     params: { slug: entry.slug }
-//   }));
+  const paths = data.entries.map(entry => ({
+    params: { slug: entry.slug }
+  }));
 
-//   return {
-//     paths,
-//     fallback: false
-//   };
-// }
+  return {
+    paths,
+    fallback: false
+  };
+}
 
 // Config
 // ----------------------------------------------------------------------------
 
-export async function getServerSideProps(context) {
-  // export async function getStaticProps(context) {
+// export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
     query: gql`
@@ -171,42 +171,12 @@ export async function getServerSideProps(context) {
             }
           }
         }
-        collections: entries(section: ["albums", "episodes"]) {
-          slug
-          title
-          uri
-          ... on albums_default_Entry {
-            albumCoverArt { url }
-            albumTracklist {
-              ... on albumTracklist_song_BlockType {
-                song {
-                  slug
-                  title
-                }
-                audioFile { url }
-              }
-            }
-          }
-          ... on episodes_default_Entry {
-            episodeCoverArt { url }
-            episodeTracklist {
-              ... on episodeTracklist_song_BlockType {
-                song {
-                  slug
-                  title
-                }
-                audioFile { url }
-              }
-            }
-          }
-        }
       }
     `
   });
 
   return {
     props: {
-      collections: data.collections,
       navSection: "Music",
       metaTitle: data.entry.title,
       song: data.entry
