@@ -55,7 +55,9 @@ export default function WritingLeadSheets() {
 
       <section>
         <p className="font-medium text-xl mb-16">Type out this…</p>
-        <pre className="font-mono pl-16 border-l-2">{song.leadSheet}</pre>
+        <pre className="font-mono pl-16 border-l-2 max-w-full overflow-x-auto">
+          {song.leadSheet}
+        </pre>
       </section>
 
       <section>
