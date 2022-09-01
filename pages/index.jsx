@@ -49,7 +49,7 @@ export default function Home({ albums, episodes }) {
           <Icon name="TesMask" className="relative z-10 block" size="w-full" />
           <h1 className="sr-only">This Evening&apos;s Show</h1>
         </div>
-        <p className="font-mono text-sm xs:text-base text-justify max-w-screen-sm mx-auto">
+        <p className="text-base xs:text-xl md:text-2xl text-justify max-w-screen-sm mx-auto">
           <strong className="font-bold underline">T</strong>his{" "}
           <strong className="font-bold underline">E</strong>vening&apos;s{" "}
           <strong className="font-bold underline">S</strong>how is a radio
@@ -58,16 +58,16 @@ export default function Home({ albums, episodes }) {
           of bizarre characters, historic factoids, surreal comedy, improvised
           news, interviews, and original music.
         </p>
-        <div className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl">
-          <PlayPauseButton
-            className="hover:text-accent"
-            size="lg"
-            track={shuffledPlayableTracks[0]}
-            tracklist={shuffledPlayableTracks}
-          />
-          <div>Listen to the Radio</div>
-        </div>
       </header>
+      <div className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl">
+        <PlayPauseButton
+          className="hover:text-accent"
+          size="lg"
+          track={shuffledPlayableTracks[0]}
+          tracklist={shuffledPlayableTracks}
+        />
+        <div>Listen to the Radio</div>
+      </div>
 
       <hr className="border-t-2" />
 
@@ -113,7 +113,7 @@ export default function Home({ albums, episodes }) {
               />
               <h3 className="font-medium text-xl">{latestEpisode.title}</h3>
             </header>
-            <p className="text-primary-75">{latestEpisode.description}</p>
+            <p>{latestEpisode.description}</p>
           </div>
         </div>
       </section>
