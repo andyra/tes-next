@@ -160,7 +160,7 @@ const RelatedCollections = ({ songSlug }) => {
 
   return (
     <ContentSection
-      className="print:hidden dynamically-loaded"
+      className="print:hidden"
       enabled={hasTracks}
       emptyMessage="Not (yet) on any collections"
       title="Appears On…"

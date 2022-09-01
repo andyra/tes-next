@@ -17,7 +17,7 @@ export const DialogClose = ({ className }) => (
     <Button
       className={className ? className : "absolute top-12 right-12"}
       circle
-      iconLeft="X"
+      icon="X"
       variant="ghost"
     />
   </DialogPrimitive.Close>

@@ -34,11 +34,10 @@ export const ExtraControls = ({
           <Collapsible.Trigger disabled={playerIsEmpty} asChild>
             <Button
               circle
+              icon="Queue"
               disabled={playerIsEmpty}
               variant={isFullscreen ? "glass" : "outline"}
-            >
-              <Icon name="Queue" />
-            </Button>
+            />
           </Collapsible.Trigger>
         </Tooltip>
         <Collapsible.Content className={queueOverlayClasses}>
@@ -49,18 +48,17 @@ export const ExtraControls = ({
       </Collapsible.Root>
       <Tooltip content={isFullscreen ? "Close" : "Enable Cool Mode"}>
         <Button
-          circle
-          disabled={playerIsEmpty}
-          variant={isFullscreen ? "glass" : "outline"}
-          onClick={() => {
-            setIsFullscreen(!isFullscreen);
-          }}
           aria-controls="full-screen"
           aria-expanded={!isFullscreen}
           aria-label="Full Screen"
-        >
-          <Icon name={isFullscreen ? "EyeOff" : "Eye"} />
-        </Button>
+          circle
+          disabled={playerIsEmpty}
+          icon={isFullscreen ? "EyeOff" : "Eye"}
+          onClick={() => {
+            setIsFullscreen(!isFullscreen);
+          }}
+          variant={isFullscreen ? "glass" : "outline"}
+        />
       </Tooltip>
     </div>
   );
