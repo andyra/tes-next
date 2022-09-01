@@ -249,7 +249,7 @@ const LavaLamp = ({
     };
 
     requestAnimationFrame(tick);
-  }, []);
+  }, [className, imgSize, mySpeed, shapeA, shapeB, colorSpeed]);
 
   return <canvas ref={canvasRef} className={className} />;
 };

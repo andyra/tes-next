@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
-import Lightbox from "components/Lightbox";
+import LightBox from "components/LightBox";
 import NiceDate from "components/NiceDate";
 import { PageTitle } from "components/PageHeader";
 import { getCollectionType, getCollectionCoverArtUrl } from "helpers/index";
@@ -28,7 +28,7 @@ export const CollectionHeader = ({ children, collection }) => {
         {collectionType}
       </Button>
       <div className="flex flex-col lg:flex-row lg:items-end gap-24">
-        <Lightbox
+        <LightBox
           trigger={
             <CoverArt
               className="rounded-lg mx-auto md:mx-0 w-256 flex-shrink-0 hover:scale-105 hover:shadow-lg duration-300"
@@ -47,7 +47,7 @@ export const CollectionHeader = ({ children, collection }) => {
             url={getCollectionCoverArtUrl(collection)}
             width={1024}
           />
-        </Lightbox>
+        </LightBox>
         <hgroup className="flex flex-col gap-12">
           <PageTitle>{title}</PageTitle>
           <div className="text-lg">{children}</div>
