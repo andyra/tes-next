@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";
 import LeadSheet from "components/LeadSheet";
+import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import Tracklist from "components/Tracklist";
 import {
@@ -92,14 +93,88 @@ const ContentSection = ({
   );
 };
 
+const RelatedCollections = ({ songSlug }) => {
+  const { data, error, loading } = useQuery(
+    gql`
+      query Entries {
+        entries(section: ["albums", "episodes"]) {
+          slug
+          title
+          uri
+          ... on albums_default_Entry {
+            albumCoverArt {
+              url
+            }
+            albumTracklist {
+              ... on albumTracklist_song_BlockType {
+                song {
+                  slug
+                  title
+                }
+                audioFile {
+                  url
+                }
+              }
+            }
+          }
+          ... on episodes_default_Entry {
+            episodeCoverArt {
+              url
+            }
+            episodeTracklist {
+              ... on episodeTracklist_song_BlockType {
+                song {
+                  slug
+                  title
+                }
+                audioFile {
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    `
+  );
+
+  if (loading) {
+    return (
+      <ContentSection
+        className="print:hidden"
+        enabled={false}
+        emptyMessage={<Loader />}
+        title="Appears On…"
+      />
+    );
+  }
+
+  if (error) {
+    return `Error: ${error}`;
+  }
+
+  const collections = data.entries;
+  const relatedCollections = getRelatedCollections(songSlug, collections);
+  const normalizedTracks = normalizeSongTracks(songSlug, relatedCollections);
+  const hasTracks = normalizedTracks.length > 0;
+
+  return (
+    <ContentSection
+      className="print:hidden"
+      enabled={hasTracks}
+      emptyMessage="Not (yet) on any collections"
+      title="Appears On…"
+    >
+      <Tracklist tracks={normalizedTracks} showCollectionInfo />
+    </ContentSection>
+  );
+};
+
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Song({ song }) {
   const { leadSheet, notation, slug, title } = song;
-  // const relatedCollections = getRelatedCollections(slug, collections);
-  // const normalizedTracks = normalizeSongTracks(slug, relatedCollections);
-  // const hasTracks = normalizedTracks.length > 0;
 
   return (
     <>
@@ -112,14 +187,7 @@ export default function Song({ song }) {
 
       <hr className="bt-2" />
 
-      {/*<ContentSection
-        className="print:hidden"
-        enabled={hasTracks}
-        emptyMessage="Not (yet) on any collections"
-        title="Appears On…"
-      >
-        <Tracklist tracks={normalizedTracks} showCollectionInfo />
-      </ContentSection>*/}
+      <RelatedCollections songSlug={slug} />
 
       <ContentSection
         enabled={leadSheet}
@@ -153,7 +221,6 @@ export async function getStaticPaths() {
 // Config
 // ----------------------------------------------------------------------------
 
-// export async function getServerSideProps(context) {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
