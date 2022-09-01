@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import cn from "classnames";
