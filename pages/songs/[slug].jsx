@@ -135,25 +135,26 @@ export default function Song({ collections, song }) {
 // Paths
 // ----------------------------------------------------------------------------
 
-export async function getStaticPaths() {
-  const { data } = await client.query({
-    query: querySlugs("songs")
-  });
+// export async function getStaticPaths() {
+//   const { data } = await client.query({
+//     query: querySlugs("songs")
+//   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
-  }));
+//   const paths = data.entries.map(entry => ({
+//     params: { slug: entry.slug }
+//   }));
 
-  return {
-    paths,
-    fallback: false
-  };
-}
+//   return {
+//     paths,
+//     fallback: false
+//   };
+// }
 
 // Config
 // ----------------------------------------------------------------------------
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
+  // export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
     query: gql`
@@ -176,7 +177,6 @@ export async function getStaticProps(context) {
           uri
           ... on albums_default_Entry {
             albumCoverArt { url }
-            releaseDate
             albumTracklist {
               ... on albumTracklist_song_BlockType {
                 song {
@@ -189,7 +189,6 @@ export async function getStaticProps(context) {
           }
           ... on episodes_default_Entry {
             episodeCoverArt { url }
-            releaseDate
             episodeTracklist {
               ... on episodeTracklist_song_BlockType {
                 song {
@@ -209,7 +208,7 @@ export async function getStaticProps(context) {
     props: {
       collections: data.collections,
       navSection: "Music",
-      pageTitle: data.entry.title,
+      metaTitle: data.entry.title,
       song: data.entry
     }
   };

@@ -113,8 +113,8 @@ export async function getStaticProps(context) {
   return {
     props: {
       episode: data.entry,
-      navSection: "Podcast",
-      pageTitle: data.entry.title
+      metaTitle: data.entry.title,
+      navSection: "Podcast"
     }
   };
 }

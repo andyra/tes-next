@@ -73,8 +73,8 @@ export async function getStaticProps() {
   return {
     props: {
       maxWidth: "max-w-none",
+      metaTitle: "Songs",
       navSection: "Music",
-      pageTitle: "Songs",
       songs: data.entries
     }
   };

@@ -75,7 +75,7 @@ export async function getStaticProps() {
   return {
     props: {
       categories: data.categories,
-      pageTitle: "Library",
+      metaTitle: "Library",
       people: data.entries
     }
   };
