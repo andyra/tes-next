@@ -144,7 +144,7 @@ export const PlayerControls = ({
           circle
           className={extraButtonClasses}
           disabled={playerIsEmpty}
-          iconLeft="SkipPrev"
+          icon="SkipPrev"
           onClick={skipBack}
           variant="ghost"
         />
@@ -170,7 +170,7 @@ export const PlayerControls = ({
           circle
           className={extraButtonClasses}
           disabled={playerIsEmpty}
-          iconLeft="SkipNext"
+          icon="SkipNext"
           onClick={skipNext}
           variant="ghost"
         />
@@ -179,7 +179,7 @@ export const PlayerControls = ({
             circle
             className={loopClasses}
             disabled={playerIsEmpty}
-            iconLeft="Loop"
+            icon="Loop"
             onClick={toggleLoop}
             variant="ghost"
           />

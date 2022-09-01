@@ -165,7 +165,7 @@ const Search = ({ entries }) => {
           <div className="bg-ground rounded-full">
             <Button
               circle
-              iconLeft="Search"
+              icon="Search"
               variant="glass"
               onClick={() => {
                 setSearchTerm("");
@@ -207,7 +207,7 @@ const Search = ({ entries }) => {
               <Button
                 circle
                 className="-mr-8"
-                iconLeft="X"
+                icon="X"
                 onClick={() => {
                   setIsOpen(false);
                 }}

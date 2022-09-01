@@ -35,7 +35,7 @@ export const ThemeSwitcher = () => {
         <div className="bg-ground rounded-full">
           <Button
             circle
-            iconLeft={resolvedTheme === "dark" ? "Moon" : "Sun"}
+            icon={resolvedTheme === "dark" ? "Moon" : "Sun"}
             variant="glass"
           />
         </div>

@@ -111,7 +111,7 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
           <ThemeSwitcher />
           <Menu
             tooltip="Main Menu"
-            trigger={<Button circle iconLeft={"Menu"} variant="glass" />}
+            trigger={<Button circle icon={"Menu"} variant="glass" />}
             triggerClassName="md:hidden"
           >
             <MenuItem href="/albums" icon="Music" className="md:hidden">

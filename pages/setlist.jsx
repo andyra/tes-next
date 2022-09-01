@@ -123,13 +123,22 @@ const Computor = ({
   );
 };
 
+const BleedBorder = () => {
+  const classes = cn(
+    "absolute top-32 -bottom-32 left-32 -translate-x-1/2",
+    "w-2 border-l-2 border-primary-50 border-dashed rounded-full"
+  );
+
+  return <div className={classes} />;
+};
+
 const SetlistItem = ({ item, i }) => {
   const { bleed, song, strategy } = item;
   const hasLeadSheet = song.leadSheet || song.notation.length > 0;
-  const classes = cn({
-    "w-full bg-ground py-12 px-16 rounded-lg text-left transition group sticky top-0 z-10": true,
-    "hover:bg-primary-5": true
-  });
+  const classes = cn(
+    "w-full py-12 px-16 rounded-lg text-left transition group XXXsticky XXXtop-0 XXXz-10",
+    "hover:bg-primary-5"
+  );
 
   return (
     <Accordion.Item
@@ -137,9 +146,7 @@ const SetlistItem = ({ item, i }) => {
       value={song.title}
       disabled={!hasLeadSheet}
     >
-      {bleed && (
-        <div className="w-2 border-l-2 border-primary-50 border-dashed absolute top-32 -bottom-32 left-32 rounded-full flex items-center justify-center -translate-x-1/2" />
-      )}
+      {bleed && <BleedBorder />}
       <Accordion.Trigger className={classes}>
         <div className="flex items-center gap-16">
           <span className="flex items-center justify-center w-32 h-32 text-lg font-medium text-primary-50 text-center border-2 bg-ground border-primary-50 rounded-full relative">
@@ -157,7 +164,7 @@ const SetlistItem = ({ item, i }) => {
               circle
               className="opacity-0 group-hover:opacity-100 transition"
               href={song.uri}
-              iconLeft="ArrowRight"
+              icon="ArrowRight"
               target="_blank"
             />
           </Tooltip>
