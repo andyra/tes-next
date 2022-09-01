@@ -135,25 +135,26 @@ export default function Song({ collections, song }) {
 // Paths
 // ----------------------------------------------------------------------------
 
-export async function getStaticPaths() {
-  const { data } = await client.query({
-    query: querySlugs("songs")
-  });
+// export async function getStaticPaths() {
+//   const { data } = await client.query({
+//     query: querySlugs("songs")
+//   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
-  }));
+//   const paths = data.entries.map(entry => ({
+//     params: { slug: entry.slug }
+//   }));
 
-  return {
-    paths,
-    fallback: false
-  };
-}
+//   return {
+//     paths,
+//     fallback: false
+//   };
+// }
 
 // Config
 // ----------------------------------------------------------------------------
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
+  // export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
     query: gql`
