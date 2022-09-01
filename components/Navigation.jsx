@@ -44,7 +44,7 @@ const TitleMarquee = () => {
       <a className={classes} title="This Evening's Show">
         <div className="absolute z-10 w-24 h-full top-0 left-0 bg-gradient-to-r from-ground pointer-events-none md:hidden" />
         <div className={innerClasses}>
-          {[...Array(4)].map(i => (
+          {[...Array(4)].map((item, i) => (
             <React.Fragment key={i}>This Evening&apos;s Show </React.Fragment>
           ))}
         </div>
