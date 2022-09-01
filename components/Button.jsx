@@ -81,6 +81,7 @@ const Button = React.forwardRef(
         type={type}
         ref={ref}
       >
+        {icon && <Icon name={icon} />}
         {iconLeft && <Icon name={iconLeft} />}
         {children}
         {iconRight && <Icon name={iconRight} />}
