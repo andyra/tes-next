@@ -69,7 +69,8 @@ const Computor = ({
         <Input
           className="flex-1"
           defaultValue={`${songCount}`}
-          inputClassName="font-medium text-3xl text-center h-64"
+          inputClassName="font-medium text-3xl text-center"
+          height="h-64"
           label="Songs"
           labelClassName={LABEL_CLASSES}
           min={0}
@@ -82,7 +83,8 @@ const Computor = ({
         <Input
           className="flex-1"
           defaultValue={`${bleedCount}`}
-          inputClassName="font-medium text-3xl text-center h-64"
+          inputClassName="font-medium text-3xl text-center"
+          height="h-64"
           label="Bleeds"
           labelClassName={LABEL_CLASSES}
           max={songCount - 1}
@@ -96,7 +98,8 @@ const Computor = ({
         <Input
           className="flex-1"
           defaultValue={`${strategyCount}`}
-          inputClassName="font-medium text-3xl text-center h-64"
+          inputClassName="font-medium text-3xl text-center"
+          height="h-64"
           label="Strategies"
           labelClassName={LABEL_CLASSES}
           max={songCount}
