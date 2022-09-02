@@ -2,8 +2,12 @@ import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
+import cn from "classnames";
 import client from "../../apollo-client";
-import PageHeader from "components/PageHeader";
+import LightBox from "components/LightBox";
+import DotMatrix from "./components/DotMatrix";
+import Info from "./components/Info";
+import Tape from "./components/Tape";
 import { querySlugs } from "helpers/index";
 
 // Functions
@@ -12,60 +16,73 @@ import { querySlugs } from "helpers/index";
 // Craft sends back internal links with absolute URLs; here we're making them
 // relative to root
 function replaceInternalLinks(content) {
-  let content1 = content.replace("https://tes-craft.test", "");
-  let content2 = content1.replace("https://content.tes.fm", "");
-  return content2.replace("https://tes.fm", "");
+  let content1 = content.replace(/https:\/\/tes-craft.test/g, "");
+  let content2 = content1.replace(/https:\/\/content.tes.fm/g, "");
+  return content2.replace(/https:\/\/tes.fm/g, "");
 }
+
+// Components
+// ----------------------------------------------------------------------------
+
+const Header = ({ categories, id, title }) => {
+  return (
+    <header className="border-y border-secondary text-sm mb-48">
+      <div className="flex gap-12">
+        <Info label="File Under" className="flex-1">
+          {categories?.length
+            ? categories.map(category => (
+                <Link
+                  href={`/library/category/${category.slug}`}
+                  key={category.slug}
+                >
+                  <a className="underline hover:text-accent">
+                    {category.title}{" "}
+                  </a>
+                </Link>
+              ))
+            : "n/a"}
+        </Info>
+      </div>
+      <div className="flex border-t border-secondary">
+        <Info label="UTF_TITLE" className="flex-1">
+          <h1 className="text-2xl">{title}</h1>
+        </Info>
+        <Info
+          label="Filing №"
+          className="border-l border-secondary"
+          aria-hidden
+        >
+          {id}
+        </Info>
+        <Info
+          label="Lookup-ID"
+          className="border-l border-secondary"
+          aria-hidden
+        >
+          {id}
+        </Info>
+      </div>
+    </header>
+  );
+};
 
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Article({ article }) {
-  const { categories, featuredImage, postContent, title } = article;
+  const { categories, featuredImage, id, postContent, title } = article;
 
-  return (
-    <>
-      {postContent && (
-        <>
-          <PageHeader
-            back={{ href: "/library", title: "Library" }}
-            title={title}
-            h1ClassName="font-semibold text-4xl md:text-6xl tracking-tight"
-          />
-          <article className="flex flex-col lg:flex-row lg:flex-wrap items-start gap-32 lg:gap-64">
-            <section className="md:flex-1 text-lg lg:text-xl library-article">
-              {postContent.map((item, index) => (
-                <Fragment key={index}>
-                  {item.text && (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: replaceInternalLinks(item.text)
-                      }}
-                    />
-                  )}
-                  {item.image && item.image[0].url && (
-                    <figure>
-                      <Image
-                        alt={item.caption}
-                        height={item.image[0].height}
-                        layout="responsive"
-                        src={item.image[0].url}
-                        width={item.image[0].width}
-                      />
-                      {item.caption && (
-                        <figcaption
-                          className="font-mono text-xs text-primary-75"
-                          dangerouslySetInnerHTML={{ __html: item.caption }}
-                        />
-                      )}
-                    </figure>
-                  )}
-                </Fragment>
-              ))}
-            </section>
-            <aside className="w-full lg:w-320 order-2 space-y-24">
-              {featuredImage && featuredImage.length > 0 && (
-                <figure className="border-2 rounded-lg overflow-hidden">
+  return postContent ? (
+    <DotMatrix className="library-article" asChild>
+      <article>
+        <Header categories={categories} id={id} title={title} />
+        <section className="text-lg">
+          {featuredImage && featuredImage.length > 0 && (
+            <LightBox
+              triggerClassName="float-right ml-16 mb-16 w-1/3 border border-secondary rotate-2 relative shadow-md hover:shadow-xl transition duration-300"
+              trigger={
+                <figure>
+                  <Tape />
                   <Image
                     alt={title}
                     height={featuredImage[0].height}
@@ -74,40 +91,59 @@ export default function Article({ article }) {
                     width={featuredImage[0].width}
                   />
                 </figure>
+              }
+            >
+              <Image
+                alt={title}
+                height={featuredImage[0].height}
+                layout="responsive"
+                src={featuredImage[0].url}
+                width={featuredImage[0].width}
+              />
+            </LightBox>
+          )}
+          {postContent.map((item, index) => (
+            <Fragment key={index}>
+              {item.text && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: replaceInternalLinks(item.text)
+                  }}
+                />
               )}
-              {categories && categories.length > 0 && (
-                <dl className="space-y-8">
-                  <dt className="font-mono uppercase tracking-wider text-xs text-primary-50 whitespace-nowrap">
-                    File under
-                  </dt>
-                  <dd className="flex flex-wrap gap-8 -ml-8">
-                    {categories.map(category => (
-                      <Link
-                        href={`/library/category/${category.slug}`}
-                        key={category.slug}
-                      >
-                        <a className="rounded-full px-8 bg-primary-5 hover:bg-primary-10">
-                          {category.title}
-                        </a>
-                      </Link>
-                    ))}
-                  </dd>
-                </dl>
+              {item.image && item.image[0].url && (
+                <figure className="border border-secondary relative">
+                  <Tape />
+                  <Image
+                    alt={item.caption}
+                    height={item.image[0].height}
+                    layout="responsive"
+                    src={item.image[0].url}
+                    width={item.image[0].width}
+                  />
+                  {item.caption && (
+                    <figcaption
+                      className="font-mono text-xs text-secondary-75"
+                      dangerouslySetInnerHTML={{ __html: item.caption }}
+                    />
+                  )}
+                </figure>
               )}
-            </aside>
-            <footer className="w-full text-xs text-primary-50 pt-24 border-t-2 order-last">
-              All information represented here is persuant to Librari Civic
-              Information Code, scts. §12.b, §12.c, appendicies 1991/J–F, and
-              any other locations heretofore ignored or invalidated by the
-              Information Act of 1991, and is NOT subject to approval or
-              dismissal by Council member Johnson or representative staff
-              (including but not limited to interns, contractors, or other
-              unpaid employee-like persons).
-            </footer>
-          </article>
-        </>
-      )}
-    </>
+            </Fragment>
+          ))}
+        </section>
+        <footer className="w-full text-xs pt-24 border-t border-secondary uppercase tracking-wider order-last mt-[12vmax]">
+          All information represented here is persuant to Librari Civic
+          Information Code, scts. §12.b, §12.c, appendicies 1991/J–F, and any
+          other locations heretofore ignored or invalidated by the Information
+          Act of 1991, and is NOT subject to approval or dismissal by Council
+          member Johnson or representative staff (including but not limited to
+          interns, contractors, or other unpaid employee-like persons).
+        </footer>
+      </article>
+    </DotMatrix>
+  ) : (
+    <div>No content</div>
   );
 }
 
@@ -138,6 +174,7 @@ export async function getStaticProps(context) {
     query: gql`
       query Entry {
         entry(section: "library", slug: "${params.slug}") {
+          id
           title
           ... on library_default_Entry {
             categories {
@@ -172,6 +209,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       article: data.entry,
+      spacing: false,
       metaTitle: data.entry.title,
       navSection: "Library"
     }

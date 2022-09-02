@@ -105,7 +105,7 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
 
         <div
           id="mobile-menu"
-          className="flex items-center gap-8 ml-auto md:fixed md:top-12 md:right-12 md:z-10"
+          className="flex items-center gap-8 ml-auto md:fixed md:top-12 md:right-12 md:z-20"
         >
           <Search />
           <ThemeSwitcher />

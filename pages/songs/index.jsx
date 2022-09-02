@@ -11,7 +11,7 @@ import MusicTabs from "components/MusicTabs";
 // ----------------------------------------------------------------------------
 
 const SongItem = ({ i, gridView, song }) => {
-  const { slug, title } = song;
+  const { slug, title, uri } = song;
 
   const classes = cn({
     "flex items-baseline break-inside-avoid-column gap-8 border-t border-primary-25 border-dotted hover:text-accent transition group": true,
@@ -21,7 +21,7 @@ const SongItem = ({ i, gridView, song }) => {
 
   return (
     <li key={slug}>
-      <Link href={`/songs/${encodeURIComponent(slug)}`}>
+      <Link href={uri}>
         <a className={classes}>
           <span className="font-mono text-xs opacity-25">{i + 1}</span>
           {title}
@@ -65,6 +65,7 @@ export async function getStaticProps() {
         entries(section: "songs", orderBy: "title ASC") {
           slug
           title
+          uri
         }
       }
     `
