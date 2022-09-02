@@ -13,17 +13,13 @@ export default function Category({ articles, category, allCategories }) {
   const showFeaturedImage =
     slug === "people" || (parent !== null && parent.slug === "people");
 
-  const backLink = parent
-    ? { title: parent.title, href: parent.slug }
-    : { title: "Library", href: "/library" };
-
   return (
     <>
       <PageHeader title="Library" center />
       <CategoryNav
-        backLink
         categories={subCategories.length ? subCategories : allCategories}
         className="max-w-screen-lg mx-auto"
+        isSubCategory={subCategories.length > 0}
       />
       <ArticleList
         articles={articles}

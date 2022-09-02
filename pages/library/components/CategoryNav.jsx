@@ -24,7 +24,7 @@ const CategoryLink = ({ title, href, icon }) => {
   );
 };
 
-const CategoryNav = ({ backLink, categories, className }) => {
+const CategoryNav = ({ categories, className, isSubCategory }) => {
   return (
     <nav
       className={cn(
@@ -32,9 +32,9 @@ const CategoryNav = ({ backLink, categories, className }) => {
         className
       )}
     >
-      {backLink ? (
-        <CategoryLink title="Back" href="/library" icon="ArrowLeft" />
-      ) : null}
+      {isSubCategory && (
+        <CategoryLink title="Back" icon="ArrowLeft" href="/library" />
+      )}
       {categories.map(category => (
         <CategoryLink
           title={category.title}
