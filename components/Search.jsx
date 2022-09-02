@@ -162,17 +162,17 @@ const Search = ({ entries }) => {
     <Dialog.Root open={isOpen}>
       <Tooltip content="Search" asChild>
         <Dialog.Trigger asChild>
-          <div className="bg-ground rounded-full">
-            <Button
-              circle
-              icon="Search"
-              variant="glass"
-              onClick={() => {
-                setSearchTerm("");
-                setIsOpen(true);
-              }}
-            />
-          </div>
+          <Button
+            circle
+            icon="Search"
+            variant="glass"
+            onClick={() => {
+              setSearchTerm("");
+              setIsOpen(true);
+            }}
+          >
+            <div className="absolute top-0 left-0 w-full h-full rounded-full bg-ground -z-10" />
+          </Button>
         </Dialog.Trigger>
       </Tooltip>
       <Dialog.Portal>

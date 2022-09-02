@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import Icon from "components/Icon";
 import Button from "components/Button";
+import Icon from "components/Icon";
 import { Menu, MenuItem } from "components/Menu";
 import Tooltip from "components/Tooltip";
 
@@ -32,13 +32,14 @@ export const ThemeSwitcher = () => {
     <Menu
       tooltip="Theme"
       trigger={
-        <div className="bg-ground rounded-full">
-          <Button
-            circle
-            icon={resolvedTheme === "dark" ? "Moon" : "Sun"}
-            variant="glass"
-          />
-        </div>
+        <Button
+          circle
+          variant="glass"
+          icon={resolvedTheme === "dark" ? "Moon" : "Sun"}
+          className="relative"
+        >
+          <div className="absolute top-0 left-0 w-full h-full rounded-full bg-ground -z-10" />
+        </Button>
       }
     >
       <ThemeItem icon="Gear" label="system" setTheme={setTheme} theme={theme} />
