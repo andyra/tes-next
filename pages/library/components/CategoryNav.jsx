@@ -42,14 +42,15 @@ const CategoryNav = ({ backLink, categories, className, collapsible }) => {
           href={backLink.href}
         />
       )}
-      {categories.map(category => (
-        <CategoryLink
-          title={category.title}
-          href={categoryHref(category.slug)}
-          key={category.slug}
-          collapsible={collapsible}
-        />
-      ))}
+      {!!categories &&
+        categories.map(category => (
+          <CategoryLink
+            title={category.title}
+            href={categoryHref(category.slug)}
+            key={category.slug}
+            collapsible={collapsible}
+          />
+        ))}
     </nav>
   );
 };
