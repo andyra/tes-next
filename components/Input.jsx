@@ -9,6 +9,7 @@ export const Input = ({
   defaultValue,
   glass,
   hideLabel,
+  height = "h-40",
   icon,
   inputClassName,
   isLoading,
@@ -18,7 +19,7 @@ export const Input = ({
   ref,
   required,
   rounded,
-  type,
+  type = "text",
   ...props
 }) => {
   const name = slugify(label);
@@ -34,17 +35,15 @@ export const Input = ({
     [labelClassName]: labelClassName
   });
 
-  const inputClasses = cn({
-    "block w-full h-40 outline-none text-primary placeholder-primary-50": true,
-    "focus:border-accent focus:ring focus:ring-accent-25": true,
-    "bg-ground border-2": !glass,
-    "bg-primary-5 focus:bg-primary-5": glass,
-    "px-12": !icon,
-    "pl-32 pr-12": icon,
-    rounded: !rounded,
-    "rounded-full": rounded,
-    [inputClassName]: inputClassName
-  });
+  const inputClasses = cn(
+    "block w-full outline-none text-primary placeholder-primary-50",
+    "focus:border-accent focus:ring focus:ring-accent-25",
+    height,
+    glass ? "bg-primary-5 focus:bg-primary-5" : "bg-ground border-2",
+    icon ? "pl-32 pr-12" : "px-12",
+    rounded ? "rounded-full" : "rounded",
+    inputClassName
+  );
 
   return (
     <div className={wrapperClasses}>
