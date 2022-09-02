@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import cn from "classnames";
@@ -54,13 +55,13 @@ const ArticleRow = ({ article, category }) => {
       {otherCategories && (
         <div>
           {otherCategories.map(cat => (
-            <>
+            <React.Fragment key={cat.slug}>
               <Link href={categoryHref(cat.slug)}>
                 <a className="tracking-wider text-xs font-sans uppercase hover:underline">
                   {cat.title}
                 </a>
               </Link>{" "}
-            </>
+            </React.Fragment>
           ))}
         </div>
       )}
@@ -104,7 +105,11 @@ const ArticleList = ({
       </header>
       <ul className="border-t border-dotted border-secondary text-lg">
         {articles.map((article, i) => (
-          <ArticleRow article={article} category={category} />
+          <ArticleRow
+            article={article}
+            category={category}
+            key={article.slug}
+          />
         ))}
       </ul>
     </DotMatrix>
