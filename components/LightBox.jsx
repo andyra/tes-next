@@ -7,7 +7,15 @@ import { DialogClose, DialogOverlay } from "components/Dialog";
 
 const LightBox = React.forwardRef(
   (
-    { children, className, title, titleClassName, trigger, ...props },
+    {
+      children,
+      className,
+      title,
+      titleClassName,
+      trigger,
+      triggerClassName,
+      ...props
+    },
     forwardedRef
   ) => {
     const contentClasses = cn(
@@ -16,9 +24,11 @@ const LightBox = React.forwardRef(
       "radix-state-open:animate-slide-up-fade"
     );
 
+    const triggerClasses = cn("cursor-pointer", triggerClassName);
+
     return (
       <Dialog.Root>
-        <Dialog.Trigger>{trigger}</Dialog.Trigger>
+        <Dialog.Trigger className={triggerClasses}>{trigger}</Dialog.Trigger>
         <Dialog.Portal>
           <DialogOverlay />
           <Dialog.Content

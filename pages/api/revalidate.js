@@ -13,45 +13,30 @@ export default async function handler(req, res) {
   const uri = req.body.sender.uri;
   const entryType = uri.split("/")[0];
 
-  console.log("====================");
-  console.log(`${eventName} for ${uri}`);
-
   try {
     // Edit entry
     if (eventName === "afterSave") {
-      console.log("--------------------");
-      console.log(`Rebuild slug page`);
       await res.revalidate(`/${uri}`);
     }
 
     // Edit, New, or Delete entry
     if (entryType === "albums") {
-      console.log("--------------------");
-      console.log(`Rebuild home and albums index`);
       await res.revalidate(`/`);
       await res.revalidate(`/albums`);
       // TODO: Rebuilt specific song slugs
     }
     if (entryType === "episodes") {
-      console.log("--------------------");
-      console.log(`Rebuild home and episodes index`);
       await res.revalidate(`/`);
       await res.revalidate(`/episodes`);
     }
     if (entryType === "library") {
-      console.log("--------------------");
-      console.log(`Rebuild library index`);
       await res.revalidate(`/library`);
       // TODO Rebuild category pages
     }
     if (entryType === "songs") {
-      console.log("--------------------");
-      console.log(`Rebuild songs index`);
       await res.revalidate(`/songs`);
     }
     if (entryType === "videos") {
-      console.log("--------------------");
-      console.log(`Rebuild videos index`);
       await res.revalidate(`/videos`);
     }
 

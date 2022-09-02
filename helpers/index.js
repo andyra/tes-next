@@ -17,6 +17,14 @@ export function querySlugs(section) {
 // Get Info
 // ----------------------------------------------------------------------------
 
+export function articleHref(slug) {
+  return `/library/${encodeURIComponent(slug)}`;
+}
+
+export function categoryHref(slug) {
+  return `/library/category/${encodeURIComponent(slug)}`;
+}
+
 export function getArtistInfo(collection, prop) {
   return collection.artist && collection.artist.length
     ? collection.artist[0][prop]
