@@ -17,11 +17,11 @@ export default function Library({ categories, people }) {
   return (
     <>
       <PageHeader title="Library" center />
+      <p className="text-2xl lg:text-3xl text-center text-secondary">
+        The Grand Library of all things Akabius. Learn about, for instance:
+      </p>
       <CategoryNav categories={categories} />
       <section className="space-y-16">
-        <p className="text-2xl lg:text-3xl lg:text-center">
-          The Grand Library of all things Akabius. Learn about, for instance:
-        </p>
         <ClientOnly>
           <ArticleList
             articles={randomArticles}

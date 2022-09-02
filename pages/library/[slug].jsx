@@ -5,6 +5,7 @@ import { gql } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";
 import LightBox from "components/LightBox";
+import CategoryNav from "./components/CategoryNav";
 import DotMatrix from "./components/DotMatrix";
 import Info from "./components/Info";
 import Tape from "./components/Tape";
@@ -69,20 +70,37 @@ const Header = ({ categories, id, title }) => {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Article({ article }) {
+export default function Article({ allCategories, article }) {
   const { categories, featuredImage, id, postContent, title } = article;
+  const isEmpty = postContent.length === 1 && postContent[0].text === null;
 
-  return postContent ? (
-    <DotMatrix className="library-article" asChild>
-      <article>
-        <Header categories={categories} id={id} title={title} />
-        <section className="text-lg">
-          {featuredImage && featuredImage.length > 0 && (
-            <LightBox
-              triggerClassName="float-right ml-16 mb-16 w-1/3 border border-secondary rotate-2 relative shadow-md hover:shadow-xl transition duration-300"
-              trigger={
-                <figure>
-                  <Tape />
+  return (
+    <>
+      <DotMatrix className="library-article" asChild>
+        <article>
+          <Header categories={categories} id={id} title={title} />
+          {isEmpty ? (
+            <div className="bg-secondary-5 text-secondary-50 italic p-24 text-center">
+              Article redacted for further investigation
+            </div>
+          ) : (
+            <section className="text-lg">
+              {featuredImage && featuredImage.length > 0 && (
+                <LightBox
+                  triggerClassName="float-right ml-16 mb-16 w-1/3 border border-secondary rotate-2 relative shadow-md hover:shadow-xl transition duration-300"
+                  trigger={
+                    <figure>
+                      <Tape />
+                      <Image
+                        alt={title}
+                        height={featuredImage[0].height}
+                        layout="responsive"
+                        src={featuredImage[0].url}
+                        width={featuredImage[0].width}
+                      />
+                    </figure>
+                  }
+                >
                   <Image
                     alt={title}
                     height={featuredImage[0].height}
@@ -90,60 +108,50 @@ export default function Article({ article }) {
                     src={featuredImage[0].url}
                     width={featuredImage[0].width}
                   />
-                </figure>
-              }
-            >
-              <Image
-                alt={title}
-                height={featuredImage[0].height}
-                layout="responsive"
-                src={featuredImage[0].url}
-                width={featuredImage[0].width}
-              />
-            </LightBox>
-          )}
-          {postContent.map((item, index) => (
-            <Fragment key={index}>
-              {item.text && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: replaceInternalLinks(item.text)
-                  }}
-                />
+                </LightBox>
               )}
-              {item.image && item.image[0].url && (
-                <figure className="border border-secondary relative">
-                  <Tape />
-                  <Image
-                    alt={item.caption}
-                    height={item.image[0].height}
-                    layout="responsive"
-                    src={item.image[0].url}
-                    width={item.image[0].width}
-                  />
-                  {item.caption && (
-                    <figcaption
-                      className="font-mono text-xs text-secondary-75"
-                      dangerouslySetInnerHTML={{ __html: item.caption }}
+              {postContent.map((item, index) => (
+                <Fragment key={index}>
+                  {item.text && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: replaceInternalLinks(item.text)
+                      }}
                     />
                   )}
-                </figure>
-              )}
-            </Fragment>
-          ))}
-        </section>
-        <footer className="w-full text-xs pt-24 border-t border-secondary uppercase tracking-wider order-last mt-[12vmax]">
-          All information represented here is persuant to Librari Civic
-          Information Code, scts. §12.b, §12.c, appendicies 1991/J–F, and any
-          other locations heretofore ignored or invalidated by the Information
-          Act of 1991, and is NOT subject to approval or dismissal by Council
-          member Johnson or representative staff (including but not limited to
-          interns, contractors, or other unpaid employee-like persons).
-        </footer>
-      </article>
-    </DotMatrix>
-  ) : (
-    <div>No content</div>
+                  {item.image && item.image[0].url && (
+                    <figure className="border border-secondary relative">
+                      <Tape />
+                      <Image
+                        alt={item.caption}
+                        height={item.image[0].height}
+                        layout="responsive"
+                        src={item.image[0].url}
+                        width={item.image[0].width}
+                      />
+                      {item.caption && (
+                        <figcaption
+                          className="font-mono text-xs text-secondary-75"
+                          dangerouslySetInnerHTML={{ __html: item.caption }}
+                        />
+                      )}
+                    </figure>
+                  )}
+                </Fragment>
+              ))}
+            </section>
+          )}
+          <footer className="w-full text-xs pt-24 border-t border-secondary uppercase tracking-wider order-last mt-[12vmax]">
+            All information represented here is persuant to Librari Civic
+            Information Code, scts. §12.b, §12.c, appendicies 1991/J–F, and any
+            other locations heretofore ignored or invalidated by the Information
+            Act of 1991, and is NOT subject to approval or dismissal by Council
+            member Johnson or representative staff (including but not limited to
+            interns, contractors, or other unpaid employee-like persons).
+          </footer>
+        </article>
+      </DotMatrix>
+    </>
   );
 }
 
@@ -173,6 +181,10 @@ export async function getStaticProps(context) {
   const { data } = await client.query({
     query: gql`
       query Entry {
+        allCategories: categories(group: "library", level: 1) {
+          slug
+          title
+        }
         entry(section: "library", slug: "${params.slug}") {
           id
           title
@@ -208,6 +220,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
+      allCategories: data.allCategories,
       article: data.entry,
       spacing: false,
       metaTitle: data.entry.title,

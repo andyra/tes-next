@@ -20,7 +20,7 @@ const Container = ({
   spacing = "space-y-32 md:space-y-64"
 }) => {
   const containerClasses = cn(
-    "mx-auto px-16 md:px-24 py-32 md:py-64",
+    "mx-auto px-16 md:px-24 py-32 md:py-64 h-full",
     maxWidth ? maxWidth : "max-w-screen-lg",
     spacing
   );

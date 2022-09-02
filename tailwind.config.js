@@ -53,15 +53,6 @@ module.exports = {
           "Arial",
           "sans-serif"
         ],
-        serif: [
-          "GT Alpina",
-          "ui-serif",
-          "Georgia",
-          "Cambria",
-          '"Times New Roman"',
-          "Times",
-          "serif"
-        ],
         mono: [
           "GT Alpina Typewriter",
           "ui-monospace",

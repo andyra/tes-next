@@ -8,19 +8,43 @@ import CategoryNav from "../components/CategoryNav";
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Category({ articles, category, allCategories }) {
+export default function Category({
+  articles,
+  category,
+  allCategories,
+  parentCategory
+}) {
   const { children: subCategories, id, parent, slug, title } = category;
-  const showFeaturedImage =
+  const isPeopleCategory =
     slug === "people" || (parent !== null && parent.slug === "people");
+  const showFeaturedImage = isPeopleCategory;
+  const peopleCategories = parentCategory[0].children;
 
   return (
     <>
       <PageHeader title="Library" center />
-      <CategoryNav
-        categories={subCategories.length ? subCategories : allCategories}
-        className="max-w-screen-lg mx-auto"
-        isSubCategory={subCategories.length > 0}
-      />
+      {!parent ? (
+        <CategoryNav
+          backLink={{ title: "Library", href: "/library" }}
+          categories={allCategories}
+          className="max-w-screen-lg mx-auto"
+          collapsible
+        />
+      ) : null}
+      {subCategories.length ? (
+        <CategoryNav
+          categories={subCategories}
+          className="max-w-screen-lg mx-auto"
+        />
+      ) : null}
+      {isPeopleCategory ? (
+        <CategoryNav
+          backLink={{ title: "People", href: "/library/category/people" }}
+          categories={peopleCategories}
+          className="max-w-screen-lg mx-auto"
+          collapsible
+        />
+      ) : null}
       <ArticleList
         articles={articles}
         category={category}
@@ -69,6 +93,11 @@ export async function getStaticProps(context) {
           slug
           title
         }
+        parentCategory: categories(group: "library", slug: "people") {
+          slug
+          title
+          children { id, slug, title }
+        }
         allCategories: categories(group: "library", level: 1) {
           slug
           title
@@ -100,6 +129,7 @@ export async function getStaticProps(context) {
       articles: data.entries,
       category: data.category,
       allCategories: data.allCategories,
+      parentCategory: data.parentCategory,
       metaTitle: data.category.title,
       navSection: "Library"
     }
