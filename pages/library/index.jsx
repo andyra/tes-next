@@ -3,10 +3,9 @@ import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import ClientOnly from "components/ClientOnly";
-import Empty from "components/Empty";
 import PageHeader from "components/PageHeader";
-import CategoryItem from "./components/CategoryItem";
-import ArticleItem from "./components/ArticleItem";
+import ArticleList from "./components/ArticleList";
+import CategoryNav from "./components/CategoryNav";
 import { shuffle } from "helpers/utils";
 
 // Default
@@ -18,29 +17,19 @@ export default function Library({ categories, people }) {
   return (
     <>
       <PageHeader title="Library" center />
+      <p className="text-2xl lg:text-3xl text-center text-secondary">
+        The Grand Library of all things Akabius. Learn about, for instance:
+      </p>
+      <CategoryNav categories={categories} />
       <section className="space-y-16">
-        <p className="text-2xl lg:text-3xl lg:text-center">
-          The Grand Library of all things Akabius. Learn about, for instance:
-        </p>
         <ClientOnly>
-          <ul className="grid grid-cols-3 gap-16">
-            {randomArticles.map(article => (
-              <ArticleItem
-                article={article}
-                showFeaturedImages={true}
-                key={article.slug}
-              />
-            ))}
-          </ul>
+          <ArticleList
+            articles={randomArticles}
+            showFeaturedImage
+            className="grid grid-cols-3"
+          />
         </ClientOnly>
       </section>
-      <ul className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-        {categories.map(category => (
-          <CategoryItem key={category.slug} slug={category.slug}>
-            {category.title}
-          </CategoryItem>
-        ))}
-      </ul>
     </>
   );
 }
@@ -64,7 +53,7 @@ export async function getStaticProps() {
             }
           }
         }
-        categories(group: "library", level: 1) {
+        allCategories: categories(group: "library", level: 1) {
           slug
           title
         }
@@ -74,7 +63,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      categories: data.categories,
+      categories: data.allCategories,
       metaTitle: "Library",
       people: data.entries
     }

@@ -12,7 +12,7 @@ import PageHeader from "components/PageHeader";
 const ulClasses = "grid grid-cols-2 lg:grid-cols-3 gap-8 -mx-8";
 
 const VideoItem = ({ video }) => {
-  const { slug, title, vimeoId } = video;
+  const { slug, title, uri, vimeoId } = video;
   const [thumbnail, setThumbnail] = useState(null);
 
   // Get the thumbnail from Vimeo
@@ -32,7 +32,7 @@ const VideoItem = ({ video }) => {
 
   return (
     <li className="flex items-center gap-8">
-      <Link href={`/videos/${encodeURIComponent(slug)}`}>
+      <Link href={uri}>
         <a className="block w-full h-full text-lg p-8 rounded-lg hover:ring-2 hover:ring-accent transition">
           {thumbnail && (
             <>
@@ -62,6 +62,7 @@ const VideoList = () => {
           id
           slug
           title
+          uri
           ... on videos_default_Entry {
             vimeoId
           }

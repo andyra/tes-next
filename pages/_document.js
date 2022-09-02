@@ -43,6 +43,18 @@ class MyDocument extends Document {
           />
           <link
             rel="preload"
+            href="/fonts/gt-alpina-typewriter-regular-subset-subset.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/gt-alpina-typewriter-regular-italic-subset-subset.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
             href="/fonts/editorial-new-light-subset.woff2"
             as="font"
             crossOrigin=""

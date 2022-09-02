@@ -53,6 +53,17 @@ module.exports = {
           "Arial",
           "sans-serif"
         ],
+        mono: [
+          "GT Alpina Typewriter",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          '"Liberation Mono"',
+          '"Courier New"',
+          "monospace"
+        ],
         funky: [
           "Ozik",
           "Apercu",
@@ -77,6 +88,7 @@ module.exports = {
         ]
       },
       zIndex: {
+        "1": "1",
         popover: "50",
         "player-fullscreen": "90",
         dialog: "100",

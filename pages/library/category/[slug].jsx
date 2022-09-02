@@ -1,46 +1,55 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import client from "../../../apollo-client";
-import Empty from "components/Empty";
 import PageHeader from "components/PageHeader";
-import ArticleItem from "../components/ArticleItem";
-import CategoryItem from "../components/CategoryItem";
+import ArticleList from "../components/ArticleList";
+import CategoryNav from "../components/CategoryNav";
 
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Category({ articles, category }) {
-  const { children, id, parent, slug, title } = category;
-  const showFeaturedImages =
+export default function Category({
+  articles,
+  category,
+  allCategories,
+  parentCategory
+}) {
+  const { children: subCategories, id, parent, slug, title } = category;
+  const isPeopleCategory =
     slug === "people" || (parent !== null && parent.slug === "people");
-
-  const backLink = parent
-    ? { title: parent.title, href: parent.slug }
-    : { title: "Library", href: "/library" };
+  const showFeaturedImage = isPeopleCategory;
+  const peopleCategories = parentCategory[0].children;
 
   return (
     <>
-      <PageHeader title={title} center back={backLink} />
-      {children.length > 0 && (
-        <section className="max-w-screen-lg mx-auto">
-          <ul className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-            {children.map(category => (
-              <CategoryItem key={category.slug} slug={category.slug}>
-                {category.title}
-              </CategoryItem>
-            ))}
-          </ul>
-        </section>
-      )}
-      <ul className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-x-12 md:gap-x-24">
-        {articles.map(article => (
-          <ArticleItem
-            article={article}
-            key={article.slug}
-            showFeaturedImages={showFeaturedImages}
-          />
-        ))}
-      </ul>
+      <PageHeader title="Library" center />
+      {!parent ? (
+        <CategoryNav
+          backLink={{ title: "Library", href: "/library" }}
+          categories={allCategories}
+          className="max-w-screen-lg mx-auto"
+          collapsible
+        />
+      ) : null}
+      {subCategories.length ? (
+        <CategoryNav
+          categories={subCategories}
+          className="max-w-screen-lg mx-auto"
+        />
+      ) : null}
+      {isPeopleCategory ? (
+        <CategoryNav
+          backLink={{ title: "People", href: "/library/category/people" }}
+          categories={peopleCategories}
+          className="max-w-screen-lg mx-auto"
+          collapsible
+        />
+      ) : null}
+      <ArticleList
+        articles={articles}
+        category={category}
+        showFeaturedImage={showFeaturedImage}
+      />
     </>
   );
 }
@@ -84,6 +93,15 @@ export async function getStaticProps(context) {
           slug
           title
         }
+        parentCategory: categories(group: "library", slug: "people") {
+          slug
+          title
+          children { id, slug, title }
+        }
+        allCategories: categories(group: "library", level: 1) {
+          slug
+          title
+        }
         entries(section: "library", relatedToCategories: [{ slug: "${
           params.slug
         }" }]) {
@@ -91,6 +109,10 @@ export async function getStaticProps(context) {
           title
           uri
           ... on library_default_Entry {
+            categories {
+              slug
+              title
+            }
             featuredImage {
               height
               url
@@ -106,7 +128,8 @@ export async function getStaticProps(context) {
     props: {
       articles: data.entries,
       category: data.category,
-      maxWidth: "max-w-full",
+      allCategories: data.allCategories,
+      parentCategory: data.parentCategory,
       metaTitle: data.category.title,
       navSection: "Library"
     }
