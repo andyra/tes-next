@@ -37,7 +37,7 @@ const QueueList = ({
 
 const CurrentTrack = ({ currentTrack }) => {
   return currentTrack ? (
-    <Section title="On Deck">
+    <Section title="On Deck" className="-mt-8">
       <div className="flex items-center gap-8 md:gap-16 hover:bg-primary-5 p-8 md:px-16 -mx-8 md:-mx-16 rounded-lg group">
         <CoverArt
           className="h-88 w-88 rounded-lg"

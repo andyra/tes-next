@@ -75,7 +75,7 @@ export const Tracklist = ({
       !currentTrack.addedViaQueue;
 
     const liClasses = cn({
-      "flex items-center gap-8 px-8 py-4 md:py-12 -mx-8 rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
+      "flex items-center gap-8 xs:px-8 py-4 md:py-12 -mx-8 xs:rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
       "cursor-default transition relative group": true,
       "text-secondary": track.audioFile,
       "text-secondary-50": !track.audioFile
@@ -100,17 +100,19 @@ export const Tracklist = ({
     return (
       <li className={liClasses} tabIndex={0} key={i}>
         <div className="flex-1 flex items-center gap-8 relative">
-          <div className={indexClasses}>{track.position}</div>
-          {track.audioFile && (
-            <PlayPauseButton
-              className={playButtonClasses}
-              i={i}
-              isLoading={isLoading && trackIsSelected}
-              track={track}
-              tracklist={tracks}
-              variant="ghost"
-            />
-          )}
+          <div className="self-start">
+            <div className={indexClasses}>{track.position}</div>
+            {track.audioFile && (
+              <PlayPauseButton
+                className={playButtonClasses}
+                i={i}
+                isLoading={isLoading && trackIsSelected}
+                track={track}
+                tracklist={tracks}
+                variant="ghost"
+              />
+            )}
+          </div>
           <div className={titleClasses}>
             {showCollectionInfo ? (
               <>
@@ -144,7 +146,7 @@ export const Tracklist = ({
             )}
           </div>
         </div>
-        <div id="actions" className="flex items-center gap-2">
+        <div id="actions" className="self-start flex items-center gap-2">
           {track.audioFile ? (
             <ClientOnly>
               {/*<DurationBrowser src={track.audioFile} />*/}

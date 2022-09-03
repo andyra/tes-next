@@ -26,14 +26,13 @@ export default function Episode({ episode }) {
       <CollectionHeader collection={episode}>
         <NiceDate date={releaseDate} />
       </CollectionHeader>
-      <section className="flex flex-col md:flex-row items-center gap-24 p-24 rounded-lg border-2">
+      <section className="flex flex-col xs:flex-row items-center gap-16 py-16 border-y-2 xs:gap-24 xs:p-24 xs:rounded-lg xs:border-2">
         <div className="text-center">
           <PlayPauseButton
             className="hover:text-accent"
             size="xl"
             track={normalizedFullEpisode}
           />
-          <div className="mt-8 text-secondary-50">Listen</div>
         </div>
         <p className="flex-1 text-xl">{description}</p>
       </section>

@@ -41,7 +41,7 @@ export const ExtraControls = ({
           </Collapsible.Trigger>
         </Tooltip>
         <Collapsible.Content className={queueOverlayClasses}>
-          <section className="w-full max-w-screen-md p-24 rounded-lg bg-ground border-2 space-y-24 overflow-y-scroll">
+          <section className="w-full max-w-screen-md p-12 xs:p-24 rounded-lg bg-ground border-2 space-y-24 overflow-y-scroll">
             <Queue />
           </section>
         </Collapsible.Content>
