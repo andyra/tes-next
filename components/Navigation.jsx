@@ -15,7 +15,7 @@ export const NavLink = ({ className, count, navSection, title, href }) => {
     "flex items-center relative",
     "md:flex-row md:justify-start md:gap-8 md:px-12 md:-ml-12 md:hover:underline",
     "flex-col justify-center",
-    "font-funky text-2xl md:text-5xl",
+    "font-funky font-bold text-2xl md:text-5xl",
     active ? "text-accent" : "text-secondary",
     className
   );
@@ -83,8 +83,8 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
           />
           <NavLink title="Contact" href="/contact" navSection={navSection} />
           <Menu
-            trigger={<div>&amp;</div>}
-            triggerClassName="font-funky text-2xl md:text-5xl cursor-pointer text-secondary hover:underline hover:text-accent"
+            trigger={<div>&amp;&hellip;</div>}
+            triggerClassName="font-funky font-bold text-2xl md:text-5xl cursor-pointer text-secondary hover:underline"
           >
             <MenuItem href="/videos" icon="Video">
               Videos

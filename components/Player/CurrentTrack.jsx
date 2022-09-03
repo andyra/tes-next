@@ -17,19 +17,19 @@ export const CurrentTrack = ({
   const currentTrackClasses = cn({
     "flex relative group": true,
     "items-center gap-8 w-full md:w-1/3": !isFullscreen,
-    "flex-1 flex-col items-center justify-end md:text-center w-full gap-16 md:gap-48 md:mb-48": isFullscreen
+    "flex-1 flex-col items-center justify-end gap-16 w-full md:text-center md:mb-48XXX": isFullscreen
   });
 
   const coverArtClasses = cn({
-    "flex-shrink-0 bg-primary-5": true,
+    "aspect-square bg-primary-5": true,
     "rounded w-40 h-40 md:w-64 md:h-64": !isFullscreen,
-    "w-full max-w-screen-xs mx-auto my-auto md:my-0 h-auto rounded-lg md:w-1/2": isFullscreen
+    "w-full md:w-[50vmin] m-auto rounded-lg": isFullscreen
   });
 
-  const trackInfoClasses = cn({
-    "flex-1 min-w-0 flex items-center gap-8 transition duration-300": true,
-    "w-full mix-blend-overlay": isFullscreen
-  });
+  const trackInfoClasses = cn(
+    "min-w-0 flex items-center gap-8 transition duration-300",
+    isFullscreen ? "w-full mix-blend-overlay" : "flex-1"
+  );
 
   const titleClasses = cn({
     "text-primary font-medium truncate overflow-hidden": !isFullscreen,
