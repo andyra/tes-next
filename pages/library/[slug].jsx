@@ -101,13 +101,15 @@ export default function Article({ allCategories, article }) {
                     </figure>
                   }
                 >
-                  <Image
-                    alt={title}
-                    height={featuredImage[0].height}
-                    layout="responsive"
-                    src={featuredImage[0].url}
-                    width={featuredImage[0].width}
-                  />
+                  <figure className="bg-white p-[4vmin]">
+                    <Image
+                      alt={title}
+                      height={featuredImage[0].height}
+                      layout="responsive"
+                      src={featuredImage[0].url}
+                      width={featuredImage[0].width}
+                    />
+                  </figure>
                 </LightBox>
               )}
               {postContent.map((item, index) => (
