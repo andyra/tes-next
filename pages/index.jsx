@@ -3,7 +3,6 @@ import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import client from "../apollo-client";
 import styled from "styled-components";
-import AnimatedLetter from "components/AnimatedLetter";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import PlayPauseButton from "components/PlayPauseButton";
