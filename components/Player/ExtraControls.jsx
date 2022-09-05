@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogTrigger } from "components/Dialog";
 import Icon from "components/Icon";
 import Queue from "components/Queue";
 import Tooltip from "components/Tooltip";
+import useKeypress from "hooks/useKeypress";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -13,6 +14,10 @@ export const ExtraControls = ({
   playerIsEmpty,
   setIsFullscreen
 }) => {
+  useKeypress("Escape", () => {
+    setIsFullscreen(false);
+  });
+
   const containerClasses = cn({
     "flex items-center gap-8": true,
     "hidden md:flex flex-1 justify-end": !isFullscreen,
