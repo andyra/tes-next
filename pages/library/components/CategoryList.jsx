@@ -10,7 +10,7 @@ const CategoryList = ({ categories, className }) => {
           categories.map(category => (
             <li key={category.slug}>
               <Link href={categoryHref(category.slug)}>
-                <a className="block px-12 py-8 rounded-t-lg h-full border-x border-t border-secondary -ml-1 -mt-1 font-mono">
+                <a className="block px-12 py-8 rounded-t-lg h-full border-x border-t border-secondary -ml-1 -mt-1 font-serif">
                   {category.title}
                 </a>
               </Link>

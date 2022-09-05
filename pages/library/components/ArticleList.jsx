@@ -13,7 +13,7 @@ const ArticleCard = ({ article, rotate, showFeaturedImage }) => {
   return (
     <li>
       <Link href={articleHref(slug)}>
-        <a className="block h-full p-16 space-y-12 font-mono text-lg text-secondary text-center group">
+        <a className="block h-full p-16 space-y-12 font-serif text-lg text-secondary text-center group">
           <figure
             className={cn("library-image border border-secondary", rotate)}
           >
@@ -48,7 +48,7 @@ const ArticleRow = ({ article, category }) => {
   return (
     <li className="flex items-center gap-8 border-b border-dotted border-secondary">
       <Link href={articleHref(slug)}>
-        <a className="flex-1 py-12 font-mono text-secondary hover:underline decoration-wavy">
+        <a className="flex-1 py-12 font-serif text-secondary hover:underline decoration-wavy">
           {title}
         </a>
       </Link>

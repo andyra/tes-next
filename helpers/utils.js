@@ -10,7 +10,11 @@ export function formatTime(time) {
 
   const h = hours > 0 ? `${hours}:` : "";
   const m =
-    minutes > 0 ? (minutes < 10 ? `0${minutes}:` : `${minutes}:`) : "0:";
+    minutes > 0
+      ? minutes < 10 && hours > 0
+        ? `0${minutes}:`
+        : `${minutes}:`
+      : "0:";
   const s = seconds > 9 ? seconds : `0${seconds}`;
 
   return `${h}${m}${s}`;
