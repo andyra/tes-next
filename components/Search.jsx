@@ -2,11 +2,17 @@ import { useState } from "react";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import client from "../apollo-client";
-import * as Dialog from "@radix-ui/react-dialog";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import cn from "classnames";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
-import { DialogOverlay } from "components/Dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger
+} from "components/Dialog";
 import Icon from "components/Icon";
 import Input from "components/Input";
 import Loader from "components/Loader";
@@ -111,7 +117,7 @@ const Results = ({ searchTerm, setIsOpen }) => {
     <ul className="mt-8">
       {Object.keys(groupedResults).map(category => (
         <li key={category}>
-          <h3 className="font-mono text-xs uppercase tracking-wider text-primary-50 py-8 bg-ground sticky top-40">
+          <h3 className="font-medium text-xs uppercase tracking-widest text-primary py-8 bg-ground sticky top-40">
             {category}
           </h3>
           <ul className="-mx-8">
@@ -159,9 +165,9 @@ const Search = ({ entries }) => {
   );
 
   return (
-    <Dialog.Root open={isOpen}>
+    <Dialog open={isOpen}>
       <Tooltip content="Search" asChild>
-        <Dialog.Trigger asChild>
+        <DialogTrigger asChild>
           <Button
             circle
             icon="Search"
@@ -173,56 +179,109 @@ const Search = ({ entries }) => {
           >
             <div className="absolute top-0 left-0 w-full h-full rounded-full bg-ground -z-10" />
           </Button>
-        </Dialog.Trigger>
+        </DialogTrigger>
       </Tooltip>
-      <Dialog.Portal>
-        <DialogOverlay />
-        <Dialog.Content
-          className={contentClasses}
-          onEscapeKeyDown={() => {
-            setIsOpen(false);
-          }}
-          onInteractionOutside={() => {
-            setIsOpen(false);
-          }}
-          onPointerDownOutside={() => {
-            setIsOpen(false);
-          }}
-        >
-          <header className="flex gap-16 sticky -top-24 z-10 bg-ground pt-24 px-24 -mt-24 -mx-24">
-            <Input
-              className="flex-1"
-              glass
-              hideLabel
-              icon="Search"
-              isLoading={isSearching}
-              label="Search"
-              onChange={e => {
-                setSearchTerm(e.target.value);
-              }}
-              placeholder="What are you looking for, exactly?"
-              rounded
-              type="search"
-            />
-            <Dialog.Close asChild>
-              <Button
-                circle
-                className="-mr-8"
-                icon="X"
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-                variant="ghost"
-              />
-            </Dialog.Close>
-          </header>
-          {searchTerm.length > 0 && (
-            <Results searchTerm={searchTerm} setIsOpen={setIsOpen} />
-          )}
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+      <DialogContent
+        className={contentClasses}
+        onEscapeKeyDown={() => {
+          setIsOpen(false);
+        }}
+        onInteractOutside={() => {
+          setIsOpen(false);
+        }}
+        onPointerDownOutside={() => {
+          setIsOpen(false);
+        }}
+      >
+        <header className="flex gap-8 sticky -top-24 z-10 bg-ground pt-24 px-24 -mt-24 -mx-24">
+          <Input
+            className="flex-1"
+            glass
+            hideLabel
+            icon="Search"
+            isLoading={isSearching}
+            label="Search"
+            onChange={e => {
+              setSearchTerm(e.target.value);
+            }}
+            placeholder="What are you looking for?"
+            rounded
+            type="search"
+          />
+          <DialogClose className="-mr-8" />
+        </header>
+        {searchTerm.length > 0 && (
+          <Results searchTerm={searchTerm} setIsOpen={setIsOpen} />
+        )}
+      </DialogContent>
+    </Dialog>
   );
+
+  // return (
+  //   <DialogPrimitive.Root open={isOpen}>
+  //     <Tooltip content="Search" asChild>
+  //       <DialogPrimitive.Trigger asChild>
+  //         <Button
+  //           circle
+  //           icon="Search"
+  //           variant="glass"
+  //           onClick={() => {
+  //             setSearchTerm("");
+  //             setIsOpen(true);
+  //           }}
+  //         >
+  //           <div className="absolute top-0 left-0 w-full h-full rounded-full bg-ground -z-10" />
+  //         </Button>
+  //       </DialogPrimitive.Trigger>
+  //     </Tooltip>
+  //     <DialogPrimitive.Portal>
+  //       <DialogOverlay />
+  //       <DialogPrimitive.Content
+  //         className={contentClasses}
+  //         onEscapeKeyDown={() => {
+  //           setIsOpen(false);
+  //         }}
+  //         onInteractOutside={() => {
+  //           setIsOpen(false);
+  //         }}
+  //         onPointerDownOutside={() => {
+  //           setIsOpen(false);
+  //         }}
+  //       >
+  //         <header className="flex gap-16 sticky -top-24 z-10 bg-ground pt-24 px-24 -mt-24 -mx-24">
+  //           <Input
+  //             className="flex-1"
+  //             glass
+  //             hideLabel
+  //             icon="Search"
+  //             isLoading={isSearching}
+  //             label="Search"
+  //             onChange={e => {
+  //               setSearchTerm(e.target.value);
+  //             }}
+  //             placeholder="What are you looking for, exactly?"
+  //             rounded
+  //             type="search"
+  //           />
+  //           <DialogPrimitive.Close asChild>
+  //             <Button
+  //               circle
+  //               className="-mr-8"
+  //               icon="X"
+  //               onClick={() => {
+  //                 setIsOpen(false);
+  //               }}
+  //               variant="ghost"
+  //             />
+  //           </DialogPrimitive.Close>
+  //         </header>
+  //         {searchTerm.length > 0 && (
+  //           <Results searchTerm={searchTerm} setIsOpen={setIsOpen} />
+  //         )}
+  //       </DialogPrimitive.Content>
+  //     </DialogPrimitive.Portal>
+  //   </DialogPrimitive.Root>
+  // );
 };
 
 export default Search;
