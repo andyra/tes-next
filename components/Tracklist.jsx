@@ -16,25 +16,25 @@ import { formatTime } from "helpers/utils";
 // Tracklist
 // ----------------------------------------------------------------------------
 
-const DurationBrowser = ({ src }) => {
-  const [duration, setDuration] = useState(false);
+const Duration = ({ src }) => {
+  const [duration, setDuration] = useState("–");
   const audioRef = useRef(typeof Audio !== "undefined" && new Audio());
 
   useEffect(() => {
-    // I used to have this wrapped in a return
     audioRef.current = new Audio(src);
-    audioRef.current.onloadeddata = () => {
-      setDuration(audioRef.current.duration);
+    audioRef.current.onloadeddata = e => {
+      setDuration(formatTime(e.target.duration));
     };
-  }, [src]);
+  }, []);
 
   return (
     <time
-      className={`font-mono text-sm mr-8 hidden md:block ${
-        duration ? "text-primary-50" : "text-primary animate-loading"
-      }`}
+      className={cn(
+        "font-mono text-sm mr-8 hidden md:block",
+        duration ? "text-primary-50" : "opacity-0"
+      )}
     >
-      {duration ? formatTime(duration) : "0:00"}
+      {duration}
     </time>
   );
 };
@@ -150,7 +150,7 @@ export const Tracklist = ({
         <div id="actions" className="self-start flex items-center gap-2">
           {track.audioFile ? (
             <ClientOnly>
-              {/*<DurationBrowser src={track.audioFile} />*/}
+              <Duration src={track.audioFile} />
             </ClientOnly>
           ) : (
             <span className="text-sm text-primary-25 opacity-0 group-hover:opacity-100 transition mr-4">
