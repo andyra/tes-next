@@ -34,5 +34,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# PWA generated files
+public/sw.*
+public/workbox*
+
 # vercel
 .vercel
