@@ -8,7 +8,7 @@ import Button from "components/Button";
 import ClientOnly from "components/ClientOnly";
 import CoverArt from "components/CoverArt";
 import Icon from "components/Icon";
-import TrackMenu from "components/TrackMenu";
+import TrackDropdown from "components/TrackDropdown";
 import PlayPauseButton from "components/PlayPauseButton";
 import { getCollectionType, getTrackType } from "helpers/index";
 import { formatTime } from "helpers/utils";
@@ -40,10 +40,10 @@ const DurationBrowser = ({ src }) => {
 };
 
 export const Tracklist = ({
-  inDialog,
   queueable = true,
   showCollectionInfo,
   showTrackType,
+  TrackDropdownZIndex,
   tracks
 }) => {
   const {
@@ -157,13 +157,13 @@ export const Tracklist = ({
               No audio
             </span>
           )}
-          <TrackMenu
+          <TrackDropdown
             track={track}
             addToQueue={addToQueue}
             removeFromQueue={removeFromQueue}
             queueable={queueable}
             i={i}
-            inDialog={inDialog}
+            zIndex={TrackDropdownZIndex}
           />
         </div>
       </li>

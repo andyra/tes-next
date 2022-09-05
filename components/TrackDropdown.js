@@ -14,13 +14,14 @@ const Trigger = styled(Button).attrs({
   }
 `;
 
-const TrackMenu = ({
+const TrackDropdown = ({
   addToQueue,
-  inDialog,
-  track,
+  autoHide = true,
+  i,
   queueable,
   removeFromQueue,
-  i
+  track,
+  zIndex = "z-dropdown"
 }) => {
   const { audioFile, collection, title, uri } = track;
 
@@ -33,8 +34,14 @@ const TrackMenu = ({
     <DropdownMenu
       asChild
       tooltip="More…"
-      trigger={<Trigger circle icon="Overflow" variant="ghost" />}
-      zIndex={inDialog ? "z-dialog-dropdown" : "z-dropdown"}
+      trigger={
+        autoHide ? (
+          <Trigger circle icon="Overflow" variant="ghost" />
+        ) : (
+          <Button circle icon="Overflow" variant="ghost" />
+        )
+      }
+      zIndex={zIndex}
     >
       {uri && <DropdownItem title="Go to Song" href={`/${uri}`} icon="Note" />}
       <DropdownItem
@@ -79,7 +86,7 @@ const TrackMenu = ({
   );
 };
 
-TrackMenu.propTypes = {
+TrackDropdown.propTypes = {
   addToQueue: PropTypes.func,
   i: PropTypes.number.isRequired,
   queueable: PropTypes.bool,
@@ -87,4 +94,4 @@ TrackMenu.propTypes = {
   track: PropTypes.object.isRequired
 };
 
-export default TrackMenu;
+export default TrackDropdown;

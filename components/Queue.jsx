@@ -3,7 +3,7 @@ import { usePlayerContext } from "context/PlayerContext";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import Tracklist from "components/Tracklist";
-import TrackMenu from "components/TrackMenu";
+import TrackDropdown from "components/TrackDropdown";
 
 const Section = ({ actions, children, className, title }) => (
   <section className={className}>
@@ -28,7 +28,7 @@ const QueueList = ({
         tracks={tracks}
         queueable={queueable}
         showCollectionInfo={showCollectionInfo}
-        inDialog
+        TrackDropdownZIndex="z-dialog-dropdown"
       />
     </Section>
   ) : (
@@ -51,7 +51,7 @@ const CurrentTrack = ({ currentTrack }) => {
           <div className="text-2xl text-default">{currentTrack.title}</div>
           <div className="text-sm">{currentTrack.collection.title}</div>
         </div>
-        <TrackMenu track={currentTrack} queueable={false} inDialog />
+        <TrackDropdown track={currentTrack} queueable={false} inDialog />
       </div>
     </Section>
   ) : (
