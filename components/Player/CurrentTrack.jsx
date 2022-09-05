@@ -3,7 +3,7 @@ import cn from "classnames";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import Icon from "components/Icon";
-import TrackMenu from "components/TrackMenu";
+import TrackDropdown from "components/TrackDropdown";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -63,10 +63,12 @@ export const CurrentTrack = ({
                 </Link>
               </div>
             </div>
-            <TrackMenu
-              track={currentTrack}
-              queueable={false}
+            <TrackDropdown
+              autoHide={false}
               i={currentTrack.position}
+              queueable={false}
+              track={currentTrack}
+              zIndex={"z-dialog-dropdown"}
             />
           </div>
         </>
