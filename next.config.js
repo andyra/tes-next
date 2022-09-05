@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const withPWA = require("next-pwa")({
+  dest: "public"
+});
+
+module.exports = withPWA({
   reactStrictMode: true,
   images: {
     domains: ["tesfm.fra1.digitaloceanspaces.com", "i.vimeocdn.com"]
@@ -13,6 +17,4 @@ const nextConfig = {
 
     return config;
   }
-};
-
-module.exports = nextConfig;
+});

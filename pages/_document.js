@@ -19,24 +19,6 @@ class MyDocument extends Document {
           />
           <link
             rel="preload"
-            href="/fonts/apercu-medium-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/apercu-bold-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/ozik-regular-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
             href="/fonts/ozik-bold-subset.woff2"
             as="font"
             crossOrigin=""
@@ -44,18 +26,6 @@ class MyDocument extends Document {
           <link
             rel="preload"
             href="/fonts/gt-alpina-typewriter-regular-subset-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/gt-alpina-typewriter-regular-italic-subset-subset.woff2"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/editorial-new-light-subset.woff2"
             as="font"
             crossOrigin=""
           />

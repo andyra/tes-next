@@ -42,9 +42,15 @@ export default function Layout({ children, ...props }) {
     queueList
   } = usePlayerContext();
 
+  const metaUrl = "https://tes.fm";
+  const metaSiteName = "This Evening's Show";
   const metaTitle = props.metaTitle
     ? `${props.metaTitle} • TES`
     : "This Evening's Show";
+
+  const metaDescription = props.metaDescription
+    ? props.metaDescription
+    : "Music and mayhem from the abandoned monorail station";
 
   const metaImage =
     props.metaImage ||
@@ -78,26 +84,36 @@ export default function Layout({ children, ...props }) {
   return (
     <>
       <Head>
-        <title>{metaTitle}</title>
-        <meta property="og:site_name" content="This Evening's Show" />
-        <meta property="og:title" content={metaTitle} />
-        <meta property="og:image" content={metaImage} />
-        {props.metaTypes &&
-          metaTypes.map(metaType => (
-            <meta
-              property={metaType.type}
-              content={metaType.content}
-              key={metaType.type}
-            />
-          ))}
-        {props.metaDescription && (
-          <meta property="og:description" content={metaDescription} />
-        )}
-        {/* Favicons and PWA Manifest */}
+        <title key="meta-title">{metaTitle}</title>
+        <meta name="application-name" content={metaSiteName} />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content={metaSiteName} />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        <meta name="msapplication-TileColor" content="#2B5797" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="theme-color" content="#49249a" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
           href="/apple-touch-icon.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="/apple-touch-icon-ipad.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon-iphone-retina.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="167x167"
+          href="/apple-touch-icon-ipad-retina.png"
         />
         <link
           rel="icon"
@@ -111,9 +127,23 @@ export default function Layout({ children, ...props }) {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#49249a" />
+        <meta name="twitter:card" content={metaDescription} />
+        <meta name="twitter:url" content={metaUrl} />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={metaImage} />
+        <meta name="twitter:creator" content="@ThisEveningsShow" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:site_name" content={metaSiteName} />
+        <meta property="og:url" content={metaUrl} />
+        <meta property="og:image" content={metaImage} />
       </Head>
+
       <div className={wrapperClasses}>
         <Navigation
           navSection={props.navSection}
