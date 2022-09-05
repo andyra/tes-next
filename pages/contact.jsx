@@ -3,7 +3,6 @@ import Link from "next/link";
 import PageHeader from "components/PageHeader";
 import { ADDRESS, EMAIL, PHONE } from "../constants";
 import Button from "components/Button";
-// import { Dialog, DialogContent, DialogTrigger } from "components/Dialog";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -11,14 +10,7 @@ import Button from "components/Button";
 export default function Contact() {
   return (
     <>
-      {/*<Dialog>
-        <DialogTrigger asChild>
-          <Button>OPEN</Button>
-        </DialogTrigger>
-        <DialogContent>Content Here</DialogContent>
-      </Dialog>*/}
-
-      <p className="text-2xl text-center">
+      <p className="text-2xl sm:text-4xl text-center">
         This Evening&apos;s Show is recorded from a studio in Abilene, TX,
         formerly{" "}
         <a
@@ -47,34 +39,43 @@ export default function Contact() {
         </a>
         .
       </p>
-      <section className="flex items-center gap-24">
-        <div className="w-1/2 py-48 space-y-8 text-lg text-center border-y-4 border-primary">
-          <p className="text-2xl">Call-ins welcome</p>
+
+      <section className="md:w-512 mx-auto relative">
+        <div className="bg-ground p-16 xs:p-24 sm:p-48 -mx-12 md:mx-auto text-center border-4 border-primary relative z-1">
+          <p className="text-xl xs:text-2xl">Call-ins welcome</p>
           <p>
             <Link href={`tel:${PHONE}`}>
-              <a className="font-funky text-7xl">{PHONE}</a>
+              <a className="font-funky font-bold text-4xl xs:text-5xl sm:text-7xl hover:text-accent transition">
+                {PHONE}
+              </a>
             </Link>
           </p>
-          <p className="pt-24">
+          <p className="my-24 sm:my-8">
             <Link href={`mailto:${EMAIL}`}>
-              <a className="text-2xl underline">{EMAIL}</a>
+              <a className="xs:text-xl sm:text-2xl underline break-words hover:text-accent transition">
+                {EMAIL}
+              </a>
             </Link>
           </p>
           <p>
             {ADDRESS.street} • {ADDRESS.city}, {ADDRESS.state} {ADDRESS.zip}
           </p>
         </div>
-        <div className="w-1/2 text-center">
-          <Image
-            alt="Michael Henry Martin, former television great"
-            className="rounded-xl"
-            src="/mhm.jpg"
-            width={320}
-            height={244}
-          />
-        </div>
+        <div
+          className="border-4 border-primary-50 absolute top-0 left-0 w-full h-full rotate-3"
+          aria-hidden
+        />
       </section>
-      <p className="text-xs text-center mt-64">
+      <figure className="text-center">
+        <Image
+          alt="Michael Henry Martin, former television great"
+          className="rounded-xl"
+          src="/mhm.jpg"
+          width={320}
+          height={244}
+        />
+      </figure>
+      <p className="hidden text-xs text-center mt-64">
         Thank you for choosing the Fertile Crescent Telephone Co. to be your
         neighborhood land-line provider. We have been dedicated to providing{" "}
         <em>good-quality</em> service to Adobega County, Monorail City, and

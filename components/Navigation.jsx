@@ -118,7 +118,14 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
           <DropdownMenu
             asChild
             tooltip="Main Menu"
-            trigger={<Button circle icon={"Menu"} variant="glass" />}
+            trigger={
+              <Button
+                circle
+                icon="Menu"
+                variant="glass"
+                className="md:hidden"
+              />
+            }
             triggerClassName="md:hidden"
           >
             <DropdownItem
