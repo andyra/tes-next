@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
-import * as Popover from "@radix-ui/react-popover";
 import styled, { keyframes } from "styled-components";
 import cn from "classnames";
 import { Toaster } from "react-hot-toast";

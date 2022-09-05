@@ -15,7 +15,7 @@ export const DialogOverlay = () => {
 export const DialogClose = ({ className }) => (
   <DialogPrimitive.Close asChild>
     <Button
-      className={className ? className : "absolute top-12 right-12"}
+      className={className ? className : "fixed top-12 right-12 z-10"}
       circle
       aria-label="Close"
       icon="X"

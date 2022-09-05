@@ -32,7 +32,7 @@ const TrackMenu = ({
   return (
     <DropdownMenu
       asChild
-      tooltip="Menu"
+      tooltip="More…"
       trigger={<Trigger circle icon="Overflow" variant="ghost" />}
       zIndex={inDialog ? "z-dialog-dropdown" : "z-dropdown"}
     >

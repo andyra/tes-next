@@ -2,7 +2,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import client from "../apollo-client";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import cn from "classnames";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
@@ -10,7 +9,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogTitle,
   DialogTrigger
 } from "components/Dialog";
 import Icon from "components/Icon";
@@ -157,13 +155,6 @@ const Search = ({ entries }) => {
     setSearchTerm(e.target.value);
   }, 500);
 
-  const contentClasses = cn(
-    "fixed z-dialog-content overflow-y-auto",
-    "p-16 md:p-24 rounded-lg bg-ground border-2 radix-state-open:animate-slide-up-fade",
-    "top-4 right-4 bottom-4 left-4 max-h-screen",
-    "md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-screen-sm md:h-[90vh]"
-  );
-
   return (
     <Dialog open={isOpen}>
       <Tooltip content="Search" asChild>
@@ -182,7 +173,6 @@ const Search = ({ entries }) => {
         </DialogTrigger>
       </Tooltip>
       <DialogContent
-        className={contentClasses}
         onEscapeKeyDown={() => {
           setIsOpen(false);
         }}
@@ -216,72 +206,6 @@ const Search = ({ entries }) => {
       </DialogContent>
     </Dialog>
   );
-
-  // return (
-  //   <DialogPrimitive.Root open={isOpen}>
-  //     <Tooltip content="Search" asChild>
-  //       <DialogPrimitive.Trigger asChild>
-  //         <Button
-  //           circle
-  //           icon="Search"
-  //           variant="glass"
-  //           onClick={() => {
-  //             setSearchTerm("");
-  //             setIsOpen(true);
-  //           }}
-  //         >
-  //           <div className="absolute top-0 left-0 w-full h-full rounded-full bg-ground -z-10" />
-  //         </Button>
-  //       </DialogPrimitive.Trigger>
-  //     </Tooltip>
-  //     <DialogPrimitive.Portal>
-  //       <DialogOverlay />
-  //       <DialogPrimitive.Content
-  //         className={contentClasses}
-  //         onEscapeKeyDown={() => {
-  //           setIsOpen(false);
-  //         }}
-  //         onInteractOutside={() => {
-  //           setIsOpen(false);
-  //         }}
-  //         onPointerDownOutside={() => {
-  //           setIsOpen(false);
-  //         }}
-  //       >
-  //         <header className="flex gap-16 sticky -top-24 z-10 bg-ground pt-24 px-24 -mt-24 -mx-24">
-  //           <Input
-  //             className="flex-1"
-  //             glass
-  //             hideLabel
-  //             icon="Search"
-  //             isLoading={isSearching}
-  //             label="Search"
-  //             onChange={e => {
-  //               setSearchTerm(e.target.value);
-  //             }}
-  //             placeholder="What are you looking for, exactly?"
-  //             rounded
-  //             type="search"
-  //           />
-  //           <DialogPrimitive.Close asChild>
-  //             <Button
-  //               circle
-  //               className="-mr-8"
-  //               icon="X"
-  //               onClick={() => {
-  //                 setIsOpen(false);
-  //               }}
-  //               variant="ghost"
-  //             />
-  //           </DialogPrimitive.Close>
-  //         </header>
-  //         {searchTerm.length > 0 && (
-  //           <Results searchTerm={searchTerm} setIsOpen={setIsOpen} />
-  //         )}
-  //       </DialogPrimitive.Content>
-  //     </DialogPrimitive.Portal>
-  //   </DialogPrimitive.Root>
-  // );
 };
 
 export default Search;

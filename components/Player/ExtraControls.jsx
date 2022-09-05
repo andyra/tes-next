@@ -1,6 +1,6 @@
-import * as Collapsible from "@radix-ui/react-collapsible";
 import cn from "classnames";
 import Button from "components/Button";
+import { Dialog, DialogContent, DialogTrigger } from "components/Dialog";
 import Icon from "components/Icon";
 import Queue from "components/Queue";
 import Tooltip from "components/Tooltip";
@@ -29,24 +29,20 @@ export const ExtraControls = ({
 
   return (
     <div className={containerClasses}>
-      <Collapsible.Root>
-        <Tooltip content="Queue">
-          <Collapsible.Trigger disabled={playerIsEmpty} asChild>
+      <Dialog>
+        <Tooltip content="Open Queue" asChild>
+          <DialogTrigger asChild>
             <Button
               circle
               icon="Queue"
-              disabled={playerIsEmpty}
               variant={isFullscreen ? "glass" : "outline"}
             />
-          </Collapsible.Trigger>
+          </DialogTrigger>
         </Tooltip>
-        <Collapsible.Content className={queueOverlayClasses}>
-          <section className="w-full max-w-screen-md p-12 xs:p-24 rounded-lg bg-ground border-2 space-y-24 overflow-y-scroll">
-            <Queue />
-          </section>
-        </Collapsible.Content>
-      </Collapsible.Root>
-      <Tooltip content={isFullscreen ? "Close" : "Enable Cool Mode"}>
+        <DialogContent>{<Queue />}</DialogContent>
+      </Dialog>
+
+      <Tooltip content={isFullscreen ? "Stop Cool Mode" : "Start Cool Mode"}>
         <Button
           aria-controls="full-screen"
           aria-expanded={!isFullscreen}

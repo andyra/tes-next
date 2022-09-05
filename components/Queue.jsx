@@ -7,7 +7,7 @@ import TrackMenu from "components/TrackMenu";
 
 const Section = ({ actions, children, className, title }) => (
   <section className={className}>
-    <header className="flex items-center justify-between py-8 sticky -top-24 bg-ground z-10">
+    <header className="flex items-center justify-between py-8 sticky -top-24 bg-ground z-1">
       <h3 className="font-medium text-xl text-primary">{title}</h3>
       {actions && actions}
     </header>
@@ -39,7 +39,7 @@ const QueueList = ({
 const CurrentTrack = ({ currentTrack }) => {
   return currentTrack ? (
     <Section title="On Deck" className="-mt-8">
-      <div className="flex items-center gap-8 md:gap-16 hover:bg-primary-5 p-8 md:px-16 -mx-8 md:-mx-16 rounded-lg group">
+      <div className="flex items-center gap-8 md:gap-16 bg-primary-5 p-8 md:px-16 -mx-8 md:-mx-16 rounded-lg group">
         <CoverArt
           className="h-88 w-88 rounded-lg"
           height={88}
@@ -51,7 +51,7 @@ const CurrentTrack = ({ currentTrack }) => {
           <div className="text-2xl text-default">{currentTrack.title}</div>
           <div className="text-sm">{currentTrack.collection.title}</div>
         </div>
-        <TrackMenu track={currentTrack} queueable={false} />
+        <TrackMenu track={currentTrack} queueable={false} inDialog />
       </div>
     </Section>
   ) : (

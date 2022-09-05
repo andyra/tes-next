@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import PropTypes from "prop-types";
-import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Button from "components/Button";
 import Icon from "components/Icon";
