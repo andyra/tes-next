@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import Link from "next/link";
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import client from "../apollo-client";
 import styled from "styled-components";
-import AnimatedLetter from "components/AnimatedLetter";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import PlayPauseButton from "components/PlayPauseButton";
@@ -20,19 +19,107 @@ import {
 import { shuffle } from "helpers/utils";
 const fs = require("fs");
 
+// Components
+// ----------------------------------------------------------------------------
+
+const ShufflePlayer = () => {
+  // Note: Craft should be able to `orderby: "RAND()"``, but it's not working
+  const { data, error, loading } = useQuery(
+    gql`
+      query Entries {
+        entries(section: "albums") {
+          slug
+          title
+          uri
+          ... on albums_default_Entry {
+            artist {
+              slug
+              title
+            }
+            albumCoverArt {
+              url
+            }
+            albumTracklist {
+              ... on albumTracklist_song_BlockType {
+                song {
+                  slug
+                  title
+                  uri
+                }
+                audioFile {
+                  url
+                }
+              }
+              ... on albumTracklist_segment_BlockType {
+                description
+                audioFile {
+                  url
+                }
+              }
+              ... on albumTracklist_coverSong_BlockType {
+                songTitle
+                audioFile {
+                  url
+                }
+              }
+            }
+            albumType
+            releaseDate
+          }
+        }
+      }
+    `
+  );
+
+  const classes =
+    "flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl";
+
+  if (loading) {
+    return (
+      <div className={classes}>
+        <PlayPauseButton size="lg" isLoading />
+        <div>Listen to the Radio</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={classes}>
+        <PlayPauseButton size="lg" disabled />
+        <div>Listen to the Radio</div>
+        {`Error: ${error}`}
+      </div>
+    );
+  }
+
+  // Limiting to 50 songs; adding all the tracks gets sluggish when pulling up the Queue
+  const shuffledPlayableTracks = shuffle(
+    normalizeCollections({
+      collections: data.entries,
+      playableOnly: true
+    })
+  ).splice(0, 50);
+
+  return (
+    <div className={classes}>
+      <PlayPauseButton
+        className="hover:text-accent"
+        size="lg"
+        track={shuffledPlayableTracks[0]}
+        tracklist={shuffledPlayableTracks}
+      />
+      <div>Listen to the Radio</div>
+    </div>
+  );
+};
+
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Home({ albums, episodes }) {
+export default function Home({ latestAlbums, episodes }) {
   const latestEpisode = episodes.length ? episodes[0] : null;
-  const latestAlbums = albums.slice(0, 4);
   const normalizedFullEpisode = normalizeFullEpisode(latestEpisode);
-  const shuffledPlayableTracks = shuffle(
-    normalizeCollections({
-      collections: albums,
-      playableOnly: true
-    })
-  );
 
   return (
     <>
@@ -59,15 +146,8 @@ export default function Home({ albums, episodes }) {
           news, interviews, and original music.
         </p>
       </header>
-      <div className="flex items-center justify-center gap-16 text-xl xs:text-2xl sm:text-3xl">
-        <PlayPauseButton
-          className="hover:text-accent"
-          size="lg"
-          track={shuffledPlayableTracks[0]}
-          tracklist={shuffledPlayableTracks}
-        />
-        <div>Listen to the Radio</div>
-      </div>
+
+      <ShufflePlayer />
 
       <hr className="border-t-2" />
 
@@ -129,43 +209,18 @@ export async function getStaticProps(context) {
   const { data } = await client.query({
     query: gql`
       query Entries {
-        albums: entries(section: "albums", orderBy: "releaseDate DESC") {
+        albums: entries(
+          section: "albums"
+          orderBy: "releaseDate DESC"
+          limit: 4
+        ) {
           slug
           title
           uri
           ... on albums_default_Entry {
-            artist {
-              slug
-              title
-            }
             albumCoverArt {
               url
             }
-            albumTracklist {
-              ... on albumTracklist_song_BlockType {
-                song {
-                  slug
-                  title
-                  uri
-                }
-                audioFile {
-                  url
-                }
-              }
-              ... on albumTracklist_segment_BlockType {
-                description
-                audioFile {
-                  url
-                }
-              }
-              ... on albumTracklist_coverSong_BlockType {
-                songTitle
-                audioFile {
-                  url
-                }
-              }
-            }
-            albumType
             releaseDate
           }
         }
@@ -197,7 +252,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      albums: data.albums,
+      latestAlbums: data.albums,
       episodes: data.episodes
     }
   };

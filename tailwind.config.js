@@ -89,10 +89,12 @@ module.exports = {
       },
       zIndex: {
         "1": "1",
-        popover: "50",
+        tooltip: "20",
+        dropdown: "30",
         "player-fullscreen": "90",
         dialog: "100",
         "dialog-content": "110",
+        "dialog-dropdown": "130",
         grain: "200"
       }
     },

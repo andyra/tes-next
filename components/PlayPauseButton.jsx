@@ -13,7 +13,8 @@ const PlayPauseButton = ({
   track,
   tracklist,
   variant,
-  i
+  i,
+  ...props
 }) => {
   const {
     currentTrack,
@@ -72,8 +73,6 @@ const PlayPauseButton = ({
 
   return (
     <Button
-      // disabling for now because it looks better in Tracklists. If you want it on, create a new prop like "showActive"
-      // active={active}
       className={classes}
       circle
       onClick={() => {
@@ -81,6 +80,7 @@ const PlayPauseButton = ({
       }}
       size={size}
       variant={variant}
+      {...props}
     >
       <Icon
         className={isLoading ? "opacity-0" : ""}

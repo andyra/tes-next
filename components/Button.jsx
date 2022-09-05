@@ -9,22 +9,22 @@ export const BUTTON_SIZES = {
   sm: {
     height: "h-32 text-base",
     width: "w-32",
-    padding: "px-16"
+    padding: "px-12"
   },
   base: {
     height: "h-40 text-lg",
     width: "w-40",
-    padding: "px-20"
+    padding: "px-16"
   },
   lg: {
     height: "h-48 text-lg",
     width: "w-48",
-    padding: "px-24"
+    padding: "px-20"
   },
   xl: {
     height: "h-64 text-2xl",
     width: "w-64",
-    padding: "px-32"
+    padding: "px-24"
   }
 };
 
@@ -53,16 +53,18 @@ const Button = React.forwardRef(
     },
     ref
   ) => {
-    const classes = cn({
-      "inline-flex items-center justify-center gap-4 rounded-full whitespace-nowrap text-ellipsis overflow-hidden transition": true,
-      [BUTTON_VARIANTS[variant]]: true,
-      "opacity-50 pointer-events-none": disabled,
-      "bg-primary hover:bg-primary-75 focus:bg-primary-75 text-ground": active,
-      [BUTTON_SIZES[size].height]: true,
-      [BUTTON_SIZES[size].padding]: !circle,
-      [BUTTON_SIZES[size].width]: circle,
-      [className]: className
-    });
+    const classes = cn(
+      "inline-flex items-center justify-center gap-4 rounded-full whitespace-nowrap text-ellipsis overflow-hidden transition",
+      "focus:outline-none focus:ring-2 focus:ring-primary-10",
+      [BUTTON_VARIANTS[variant]],
+      [BUTTON_SIZES[size].height],
+      circle ? [BUTTON_SIZES[size].width] : [BUTTON_SIZES[size].padding],
+      className,
+      {
+        "opacity-50 pointer-events-none": disabled,
+        "bg-primary hover:bg-primary-75 focus:bg-primary-75 text-ground": active
+      }
+    );
 
     return href ? (
       <Link href={href}>

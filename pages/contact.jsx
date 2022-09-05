@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "components/PageHeader";
 import { ADDRESS, EMAIL, PHONE } from "../constants";
+import Button from "components/Button";
+// import { Dialog, DialogContent, DialogTrigger } from "components/Dialog";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -9,6 +11,13 @@ import { ADDRESS, EMAIL, PHONE } from "../constants";
 export default function Contact() {
   return (
     <>
+      {/*<Dialog>
+        <DialogTrigger asChild>
+          <Button>OPEN</Button>
+        </DialogTrigger>
+        <DialogContent>Content Here</DialogContent>
+      </Dialog>*/}
+
       <p className="text-2xl text-center">
         This Evening&apos;s Show is recorded from a studio in Abilene, TX,
         formerly{" "}

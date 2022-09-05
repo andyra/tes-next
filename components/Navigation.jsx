@@ -3,10 +3,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import cn from "classnames";
 import Button from "components/Button";
-import ThemeSwitcher from "components/ThemeSwitcher";
+import {
+  DropdownMenu,
+  DropdownDivider,
+  DropdownItem
+} from "components/DropdownMenu";
 import Icon from "components/Icon";
-import { Menu, MenuDivider, MenuItem } from "components/Menu";
 import Search from "components/Search";
+import ThemeSwitcher from "components/ThemeSwitcher";
 
 export const NavLink = ({ className, count, navSection, title, href }) => {
   const router = useRouter();
@@ -15,7 +19,7 @@ export const NavLink = ({ className, count, navSection, title, href }) => {
     "flex items-center relative",
     "md:flex-row md:justify-start md:gap-8 md:px-12 md:-ml-12 md:hover:underline",
     "flex-col justify-center",
-    "font-funky text-2xl md:text-5xl",
+    "font-funky font-bold text-2xl md:text-5xl",
     active ? "text-accent" : "text-secondary",
     className
   );
@@ -82,25 +86,27 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
             className="md:hidden"
           />
           <NavLink title="Contact" href="/contact" navSection={navSection} />
-          <Menu
-            trigger={<div>&amp;</div>}
-            triggerClassName="font-funky text-2xl md:text-5xl cursor-pointer text-secondary hover:underline hover:text-accent"
+          <DropdownMenu
+            trigger={
+              <div className="font-funky font-bold text-2xl md:text-5xl cursor-pointer text-secondary hover:underline">
+                &amp;&hellip;
+              </div>
+            }
           >
-            <MenuItem href="/videos" icon="Video">
-              Videos
-            </MenuItem>
-            <MenuItem href="/setlist" icon="Note">
-              Setlist Computor
-            </MenuItem>
-            <MenuDivider />
-            <MenuItem
+            <DropdownItem title="Videos" href="/videos" icon="Video" />
+            <DropdownItem
+              title="Setlist Computor"
+              href="/setlist"
+              icon="Note"
+            />
+            <DropdownDivider />
+            <DropdownItem
+              title="Sign In"
               href="https://content.tes.fm/admin"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              Sign In
-            </MenuItem>
-          </Menu>
+            />
+          </DropdownMenu>
         </ul>
 
         <div
@@ -109,38 +115,45 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
         >
           <Search />
           <ThemeSwitcher />
-          <Menu
+          <DropdownMenu
+            asChild
             tooltip="Main Menu"
             trigger={<Button circle icon={"Menu"} variant="glass" />}
             triggerClassName="md:hidden"
           >
-            <MenuItem href="/albums" icon="Music" className="md:hidden">
-              Music
-            </MenuItem>
-            <MenuItem href="/episodes" icon="Mic" className="md:hidden">
-              Podcast
-            </MenuItem>
-            <MenuItem href="/library" icon="Book" className="md:hidden">
-              Library
-            </MenuItem>
-            <MenuItem href="/videos" icon="Video">
-              Videos
-            </MenuItem>
-            <MenuItem href="/setlist" icon="Note">
-              Setlist Computor
-            </MenuItem>
-            <MenuItem href="/contact" icon="Phone">
-              Contact
-            </MenuItem>
-            <MenuDivider />
-            <MenuItem
+            <DropdownItem
+              title="Music"
+              href="/albums"
+              icon="Music"
+              className="md:hidden"
+            />
+            <DropdownItem
+              title="Podcast"
+              href="/episodes"
+              icon="Mic"
+              className="md:hidden"
+            />
+            <DropdownItem
+              title="Library"
+              href="/library"
+              icon="Book"
+              className="md:hidden"
+            />
+            <DropdownItem title="Videos" href="/videos" icon="Video" />
+            <DropdownItem
+              title="Setlist Computor"
+              href="/setlist"
+              icon="Note"
+            />
+            <DropdownItem title="Contact" href="/contact" icon="Phone" />
+            <DropdownDivider />
+            <DropdownItem
               href="https://content.tes.fm/admin"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              Sign In
-            </MenuItem>
-          </Menu>
+              title="Sign In"
+            />
+          </DropdownMenu>
         </div>
       </nav>
     </>

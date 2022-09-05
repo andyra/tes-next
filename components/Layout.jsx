@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
-import * as Popover from "@radix-ui/react-popover";
 import styled, { keyframes } from "styled-components";
 import cn from "classnames";
 import { Toaster } from "react-hot-toast";
@@ -14,20 +13,6 @@ import Player from "components/Player";
 // Components
 // ----------------------------------------------------------------------------
 
-const Container = ({
-  children,
-  maxWidth,
-  spacing = "space-y-32 md:space-y-64"
-}) => {
-  const containerClasses = cn(
-    "mx-auto px-16 md:px-24 py-32 md:py-64 h-full",
-    maxWidth ? maxWidth : "max-w-screen-lg",
-    spacing
-  );
-
-  return <div className={containerClasses}>{children}</div>;
-};
-
 const grain = keyframes`
   0%, 100% { background-position: 0% 0%; }
   20% { background-position: 50% 50%; }
@@ -36,7 +21,7 @@ const grain = keyframes`
   80% { background-position: 0% 100%; }
 `;
 
-const Grain = styled.div.attrs({
+const FilmGrain = styled.div.attrs({
   className:
     "fixed h-screen w-screen pointer-events-none z-grain mix-blend-difference"
 })`
@@ -57,12 +42,6 @@ export default function Layout({ children, ...props }) {
     queueList
   } = usePlayerContext();
 
-  const nextClasses = cn(
-    "h-full overflow-hidden print:overflow-visible p-4 bg-ground-dark",
-    "font-sans text-primary antialiased selection:text-ground selection:bg-primary",
-    "flex flex-col gap-4"
-  );
-
   const metaTitle = props.metaTitle
     ? `${props.metaTitle} • TES`
     : "This Evening's Show";
@@ -70,6 +49,27 @@ export default function Layout({ children, ...props }) {
   const metaImage =
     props.metaImage ||
     "https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg";
+
+  const nextClasses = cn(
+    "h-full overflow-hidden print:overflow-visible p-4 bg-ground-dark",
+    "font-sans text-primary antialiased selection:text-ground selection:bg-primary",
+    "flex flex-col gap-4"
+  );
+
+  const wrapperClasses = cn(
+    "flex-1 flex flex-col md:flex-row items-stretch gap-4 overflow-hidden"
+  );
+
+  const mainClasses = cn(
+    "flex-1 overflow-y-auto print:overflow-visible bg-ground rounded-lg",
+    "p-24 md:py-48 lg:py-64"
+  );
+
+  const containerClasses = cn(
+    "mx-auto",
+    props.maxWidth ? props.maxWidth : "max-w-screen-lg",
+    props.spacing ? props.spacing : "space-y-32 md:space-y-64"
+  );
 
   useEffect(() => {
     document.getElementById("__next").classList.add(...nextClasses.split(" "));
@@ -114,20 +114,18 @@ export default function Layout({ children, ...props }) {
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#49249a" />
       </Head>
-      <div className="flex-1 flex flex-col md:flex-row items-stretch gap-4 overflow-hidden">
+      <div className={wrapperClasses}>
         <Navigation
           navSection={props.navSection}
           playerIsEmpty={playerIsEmpty}
         />
-        <main className="flex-1 overflow-y-auto print:overflow-visible bg-ground rounded-lg">
+        <main className={mainClasses}>
           <Toaster />
-          <Container maxWidth={props.maxWidth} spacing={props.spacing}>
-            {children}
-          </Container>
+          <div className={containerClasses}>{children}</div>
         </main>
       </div>
       <Player />
-      <Grain />
+      <FilmGrain />
     </>
   );
 }

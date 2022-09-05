@@ -2,21 +2,21 @@ import { Fragment, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Button from "components/Button";
 import Icon from "components/Icon";
-import { Menu, MenuItem } from "components/Menu";
+import { DropdownMenu, DropdownItem } from "components/DropdownMenu";
 import Tooltip from "components/Tooltip";
 
-const ThemeItem = ({ icon, label, setTheme, theme }) => {
-  const active = label === theme;
+const ThemeItem = ({ icon, setTheme, theme, themeName }) => {
+  const active = themeName === theme;
 
   return (
-    <MenuItem
+    <DropdownItem
+      className="capitalize"
       icon={icon}
-      className={`capitalize ${active ? "text-accent" : ""}`}
-      onClick={() => setTheme(label)}
-    >
-      {label}
-      <Icon name="Check" className={`ml-auto ${active ? "" : "opacity-0"}`} />
-    </MenuItem>
+      onClick={() => setTheme(themeName)}
+      selectable
+      selected={active}
+      title={themeName}
+    />
   );
 };
 
@@ -29,7 +29,8 @@ export const ThemeSwitcher = () => {
   if (!mounted) return null;
 
   return (
-    <Menu
+    <DropdownMenu
+      asChild
       tooltip="Theme"
       trigger={
         <Button
@@ -42,10 +43,25 @@ export const ThemeSwitcher = () => {
         </Button>
       }
     >
-      <ThemeItem icon="Gear" label="system" setTheme={setTheme} theme={theme} />
-      <ThemeItem icon="Sun" label="light" setTheme={setTheme} theme={theme} />
-      <ThemeItem icon="Moon" label="dark" setTheme={setTheme} theme={theme} />
-    </Menu>
+      <ThemeItem
+        icon="Gear"
+        themeName="system"
+        setTheme={setTheme}
+        theme={theme}
+      />
+      <ThemeItem
+        icon="Sun"
+        themeName="light"
+        setTheme={setTheme}
+        theme={theme}
+      />
+      <ThemeItem
+        icon="Moon"
+        themeName="dark"
+        setTheme={setTheme}
+        theme={theme}
+      />
+    </DropdownMenu>
   );
 };
 
