@@ -40,6 +40,7 @@ const DurationBrowser = ({ src }) => {
 };
 
 export const Tracklist = ({
+  inDialog,
   queueable = true,
   showCollectionInfo,
   showTrackType,
@@ -162,6 +163,7 @@ export const Tracklist = ({
             removeFromQueue={removeFromQueue}
             queueable={queueable}
             i={i}
+            inDialog={inDialog}
           />
         </div>
       </li>

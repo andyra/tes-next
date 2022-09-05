@@ -28,6 +28,7 @@ const QueueList = ({
         tracks={tracks}
         queueable={queueable}
         showCollectionInfo={showCollectionInfo}
+        inDialog
       />
     </Section>
   ) : (

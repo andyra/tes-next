@@ -38,6 +38,7 @@ export const CollectionHeader = ({ children, collection }) => {
               width={256}
             />
           }
+          triggerClassName="w-fit"
         >
           <CoverArt
             layout="responsive"

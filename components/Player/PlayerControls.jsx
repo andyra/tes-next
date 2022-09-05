@@ -3,20 +3,24 @@ import cn from "classnames";
 import Button from "components/Button";
 import Icon from "components/Icon";
 import Loader from "components/Loader";
-import { Menu, MenuDivider, MenuHeading, MenuItem } from "components/Menu";
+import {
+  DropdownMenu,
+  DropdownHeading,
+  DropdownItem
+} from "components/DropdownMenu";
 import Tooltip from "components/Tooltip";
 import { formatTime } from "helpers/utils";
 
 const RATES = [
-  { badge: "4", label: "+50%", rate: 1.5 },
-  { badge: "3", label: "+25%", rate: 1.25 },
-  { badge: "2", label: "+10%", rate: 1.1 },
-  { badge: "1", label: "+5%", rate: 1.05 },
-  { badge: "1⨉", label: "Normal", rate: 1 },
-  { badge: "1", label: "–5%", rate: 0.95 },
-  { badge: "2", label: "–10%", rate: 0.9 },
-  { badge: "3", label: "–25%", rate: 0.75 },
-  { badge: "4", label: "–50%", rate: 0.5 }
+  { label: "+50%", rate: 1.5 },
+  { label: "+25%", rate: 1.25 },
+  { label: "+10%", rate: 1.1 },
+  { label: "+5%", rate: 1.05 },
+  { label: "1⨉", rate: 1 },
+  { label: "–5%", rate: 0.95 },
+  { label: "–10%", rate: 0.9 },
+  { label: "–25%", rate: 0.75 },
+  { label: "–50%", rate: 0.5 }
 ];
 
 export const PlayerControls = ({
@@ -97,49 +101,36 @@ export const PlayerControls = ({
   return (
     <div className={classes}>
       <div className={controlClasses}>
-        <Menu
+        <DropdownMenu
+          asChild
           disabled={playerIsEmpty}
           tooltip="Playback Speed"
           trigger={
             <Button
-              className={`text-sm font-medium ${extraButtonClasses}`}
+              className={`text-sm font-semibold ${extraButtonClasses}`}
               circle
               disabled={playerIsEmpty}
               variant="ghost"
             >
-              {rate > 1 && (
-                <>
-                  <Icon name="ArrowUp" />
-                  {RATES[index].badge}
-                </>
-              )}
-              {rate === 1 && <>{RATES[index].badge}</>}
-              {rate < 1 && (
-                <>
-                  <Icon name="ArrowDown" />
-                  {RATES[index].badge}
-                </>
-              )}
+              {rate > 1 && RATES[index].label}
+              {rate === 1 && RATES[index].label}
+              {rate < 1 && RATES[index].label}
             </Button>
           }
         >
-          <MenuHeading>Playback Speed</MenuHeading>
+          <DropdownHeading title="Playback Speed" />
           {RATES.map((item, i) => (
-            <MenuItem
-              className={item.rate === rate ? "text-accent" : ""}
+            <DropdownItem
+              title={item.label}
               key={`${i}-${rate}`}
               onClick={() => {
                 handleRateChange(item.rate);
               }}
-            >
-              {item.label}
-              <Icon
-                name="Check"
-                className={`ml-auto ${item.rate === rate ? "" : "opacity-0"}`}
-              />
-            </MenuItem>
+              selectable
+              selected={item.rate === rate}
+            />
           ))}
-        </Menu>
+        </DropdownMenu>
         <Button
           circle
           className={extraButtonClasses}

@@ -4,7 +4,12 @@ import * as Popover from "@radix-ui/react-popover";
 import cn from "classnames";
 import Button from "components/Button";
 import Icon from "components/Icon";
-import { Menu, MenuDivider, MenuItem, MenuHeading } from "components/Menu";
+import {
+  DropdownMenu,
+  DropdownDivider,
+  DropdownItem,
+  DropdownHeading
+} from "components/DropdownMenu";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -31,7 +36,7 @@ function isFiltering(filters) {
 // Components
 // ----------------------------------------------------------------------------
 
-const FilterOption = ({ group, label, value, filters, setFilters }) => {
+const FilterOption = ({ group, title, value, filters, setFilters }) => {
   const active = filters[group] === value;
 
   function handleClick(value) {
@@ -41,15 +46,15 @@ const FilterOption = ({ group, label, value, filters, setFilters }) => {
   }
 
   return (
-    <MenuItem
-      className={`capitalize ${active ? "text-accent" : ""}`}
+    <DropdownItem
+      className="capitalize"
+      selected={active}
+      title={title}
+      selectable
       onClick={() => {
         handleClick(value);
       }}
-    >
-      {label}
-      <Icon name="Check" className={`ml-auto ${active ? "" : "opacity-0"}`} />
-    </MenuItem>
+    />
   );
 };
 
@@ -62,7 +67,8 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
 
   return (
     <section className={className}>
-      <Menu
+      <DropdownMenu
+        asChild
         trigger={
           <Button iconRight="ChevronDown" className={triggerClasses}>
             Filters
@@ -71,10 +77,10 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
       >
         {filterGroups.map((filterGroup, i) => (
           <Fragment key={filterGroup.label}>
-            <MenuHeading>{filterGroup.label}</MenuHeading>
+            <DropdownHeading title={filterGroup.label} />
             <FilterOption
               group={filterGroup.value}
-              label="All"
+              title="All"
               value="all"
               key="all"
               filters={filters}
@@ -85,15 +91,15 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
                 filters={filters}
                 group={filterGroup.value}
                 key={option.value}
-                label={option.label}
+                title={option.label}
                 setFilters={setFilters}
                 value={option.value}
               />
             ))}
-            {i + 1 < filterGroups.length && <MenuDivider />}
+            {i + 1 < filterGroups.length && <DropdownDivider />}
           </Fragment>
         ))}
-      </Menu>
+      </DropdownMenu>
     </section>
   );
 };
