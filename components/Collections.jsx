@@ -51,7 +51,7 @@ export const CollectionHeader = ({ bgColor, children, collection }) => {
     <header className="mb-16 mb:mb-48 text-center md:text-left">
       <BgGradient bgColor={bgColor} theme={resolvedTheme} />
       <Button
-        className="mb-12 capitalize hidden md:inline-flex"
+        className="mb-12 capitalize relative"
         href={`/${collectionType}`}
         iconLeft="ChevronLeft"
         size="sm"
@@ -63,14 +63,14 @@ export const CollectionHeader = ({ bgColor, children, collection }) => {
         <LightBox
           trigger={
             <CoverArt
-              className="rounded-lg mx-auto md:mx-0 w-256 flex-shrink-0 hover:scale-105 hover:shadow-lg duration-300"
+              className="rounded-lg w-256 flex-shrink-0 hover:scale-105 hover:shadow-lg duration-300"
               height={256}
               title={title}
               url={getCollectionCoverArtUrl(collection)}
               width={256}
             />
           }
-          triggerClassName="w-fit"
+          triggerClassName="w-fit mx-auto md:mx-0"
         >
           <CoverArt
             layout="responsive"

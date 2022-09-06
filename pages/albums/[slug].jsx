@@ -32,8 +32,8 @@ export default function Album({ album, durations, coverPalette }) {
     DarkVibrant,
     DarkMuted
   } = JSON.parse(coverPalette);
-  const rgbColor = `rgb(${LightVibrant.rgb[0]}, ${LightVibrant.rgb[1]}, ${
-    LightVibrant.rgb[2]
+  const rgbColor = `rgb(${Vibrant.rgb[0]}, ${Vibrant.rgb[1]}, ${
+    Vibrant.rgb[2]
   })`;
 
   return (
