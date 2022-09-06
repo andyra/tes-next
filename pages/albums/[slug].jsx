@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import { gql } from "@apollo/client";
+import convert from "color-convert";
 import client from "../../apollo-client";
 import { CollectionHeader } from "components/Collections";
 import NiceDate from "components/NiceDate";
@@ -11,7 +12,7 @@ import { normalizeTracklist, querySlugs } from "helpers/index";
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Album({ album, durations }) {
+export default function Album({ album, durations, coverPalette }) {
   const {
     albumCoverArt,
     albumTracklist,
@@ -23,10 +24,21 @@ export default function Album({ album, durations }) {
   const normalizedTracks = normalizeTracklist({
     collection: album
   });
+  const {
+    Vibrant,
+    Muted,
+    LightVibrant,
+    LightMuted,
+    DarkVibrant,
+    DarkMuted
+  } = JSON.parse(coverPalette);
+  const rgbColor = `rgb(${LightVibrant.rgb[0]}, ${LightVibrant.rgb[1]}, ${
+    LightVibrant.rgb[2]
+  })`;
 
   return (
     <>
-      <CollectionHeader collection={album}>
+      <CollectionHeader collection={album} bgColor={rgbColor}>
         <>
           {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
           {albumTracklist.length} Tracks
@@ -100,9 +112,20 @@ export async function getStaticProps(context) {
     `
   });
 
+  var Vibrant = require("node-vibrant");
+
+  const coverArtSrc = data.entry.albumCoverArt[0].url;
+
+  const coverPalette = await Vibrant.from(coverArtSrc)
+    .getPalette()
+    .then(function(palette) {
+      return palette;
+    });
+
   return {
     props: {
       album: data.entry,
+      coverPalette: JSON.stringify(coverPalette),
       metaTitle: data.entry.title,
       navSection: "Music"
     }

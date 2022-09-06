@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
+import styled from "styled-components";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
 import LightBox from "components/LightBox";
@@ -9,15 +11,45 @@ import NiceDate from "components/NiceDate";
 import { PageTitle } from "components/PageHeader";
 import { getCollectionType, getCollectionCoverArtUrl } from "helpers/index";
 
+const ColorEl = styled.div.attrs({
+  className: "absolute top-0 left-0 w-full h-full"
+})`
+  background-color: ${props => props.bgColor};
+`;
+
+const BgGradient = ({ bgColor, theme }) => {
+  return (
+    <div
+      className={`absolute top-0 left-0 w-full h-256 flex items-end bg-white opacity-50 ${
+        theme === "light" ? "mix-blend-multiply" : "mix-blend-screen"
+      }`}
+    >
+      <ColorEl
+        bgColor={bgColor}
+        className={
+          theme === "light" ? "mix-blend-screen" : "mix-blend-multiply"
+        }
+      />
+      <div
+        className={`h-256 w-full bg-repeat-x bg-[url('/images/gradient-fade-sm.webp')]${
+          theme === "light" ? " XXXrotate-180" : ""
+        }`}
+      />
+    </div>
+  );
+};
+
 // Collection Header
 // ----------------------------------------------------------------------------
 
-export const CollectionHeader = ({ children, collection }) => {
+export const CollectionHeader = ({ bgColor, children, collection }) => {
+  const { resolvedTheme } = useTheme();
   const { title } = collection;
   const collectionType = getCollectionType(collection, true);
 
   return (
     <header className="mb-16 mb:mb-48 text-center md:text-left">
+      <BgGradient bgColor={bgColor} theme={resolvedTheme} />
       <Button
         className="mb-12 capitalize hidden md:inline-flex"
         href={`/${collectionType}`}
