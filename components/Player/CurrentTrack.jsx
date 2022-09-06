@@ -64,7 +64,7 @@ export const CurrentTrack = ({
               </div>
             </div>
             <TrackDropdown
-              autoHide={false}
+              autoHide={!isFullscreen}
               i={currentTrack.position}
               queueable={false}
               track={currentTrack}

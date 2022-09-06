@@ -123,7 +123,7 @@ const Results = ({ searchTerm, setIsOpen }) => {
               <li key={`${i}-${item.title}`}>
                 <Link href={`/${item.uri}/`}>
                   <a
-                    className="flex items-center gap-16 px-8 py-8 rounded-lg hover:bg-primary-10 text-xl text-primary transition"
+                    className="flex items-center gap-16 px-8 py-8 rounded-lg hover:bg-primary-10 text-xl text-primary focus:relative focus-visible:relative transition"
                     onClick={() => {
                       setIsOpen(false);
                     }}
@@ -156,7 +156,7 @@ const Search = ({ entries }) => {
   }, 500);
 
   return (
-    <Dialog open={isOpen}>
+    <Dialog open={isOpen} closeButton={false}>
       <Tooltip content="Search" asChild>
         <DialogTrigger asChild>
           <Button

@@ -18,7 +18,7 @@ const SignInForm = ({ title, id, setTitle }) => {
 
   const AUTH_MUTATION = gql`
     mutation Authenticate {
-      authenticate(email: "asmith.esq@gmail.com", password: "Yaeder, 1998!") {
+      authenticate(email: "", password: "") {
         jwt
         jwtExpiresAt
         refreshToken

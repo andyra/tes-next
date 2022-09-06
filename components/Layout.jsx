@@ -26,7 +26,7 @@ const FilmGrain = styled.div.attrs({
     "fixed h-screen w-screen pointer-events-none z-grain mix-blend-difference"
 })`
   animation: ${grain} 0.4s steps(1) infinite;
-  background-image: url(/noise-256w.png);
+  background-image: url(/images/noise-256w.png);
   opacity: 0.2;
 `;
 

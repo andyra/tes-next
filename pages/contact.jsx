@@ -70,7 +70,7 @@ export default function Contact() {
         <Image
           alt="Michael Henry Martin, former television great"
           className="rounded-xl"
-          src="/mhm.jpg"
+          src="/images/mhm.jpg"
           width={320}
           height={244}
         />
