@@ -8,7 +8,7 @@ import cn from "classnames";
 const MusicTabsItem = ({ href, pageName, title }) => {
   const active = pageName === title;
   const classes = cn({
-    "font-funky font-bold text-6xl md:text-8xl tracking-tight px-12 hover:underline rounded-full border-2 border-transparent": true,
+    "font-funky font-bold text-5xl xs:text-7xl sm:text-8xl tracking-tight px-12 hover:underline rounded-full border-2 border-transparent": true,
     "text-secondary": !active,
     "underline text-accent": active
   });

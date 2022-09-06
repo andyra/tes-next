@@ -93,7 +93,7 @@ export const Tracklist = ({
       "md:opacity-0 md:group-hover:opacity-100": !trackIsSelected
     });
 
-    const titleClasses = cn({
+    const infoClasses = cn({
       "text-xl md:text-2xl flex items-center gap-8 md:gap-16 flex-1": true,
       "text-accent": trackIsSelected
     });
@@ -114,7 +114,7 @@ export const Tracklist = ({
               />
             )}
           </div>
-          <div className={titleClasses}>
+          <div className={infoClasses}>
             {showCollectionInfo ? (
               <>
                 <CoverArt
