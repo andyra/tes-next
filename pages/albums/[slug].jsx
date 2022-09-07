@@ -9,6 +9,10 @@ import PageHeader from "components/PageHeader";
 import Tracklist from "components/Tracklist";
 import { normalizeTracklist, querySlugs } from "helpers/index";
 
+function rgbColor(color) {
+  return `rgb(${color.rgb[0]}, ${color.rgb[1]}, ${color.rgb[2]})`;
+}
+
 // Default
 // ----------------------------------------------------------------------------
 
@@ -32,13 +36,22 @@ export default function Album({ album, durations, coverPalette }) {
     DarkVibrant,
     DarkMuted
   } = JSON.parse(coverPalette);
-  const rgbColor = `rgb(${Vibrant.rgb[0]}, ${Vibrant.rgb[1]}, ${
-    Vibrant.rgb[2]
-  })`;
+
+  const vibrant = rgbColor(Vibrant);
+  const vibrantLight = rgbColor(LightVibrant);
+  const vibrantDark = rgbColor(DarkVibrant);
+  const muted = rgbColor(Muted);
+  const mutedLight = rgbColor(LightMuted);
+  const mutedDark = rgbColor(DarkMuted);
 
   return (
     <>
-      <CollectionHeader collection={album} bgColor={rgbColor}>
+      <CollectionHeader
+        collection={album}
+        colorA={vibrant}
+        colorB={vibrantDark}
+        bgColor={vibrantDark}
+      >
         <>
           {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
           {albumTracklist.length} Tracks

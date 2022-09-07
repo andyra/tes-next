@@ -11,45 +11,61 @@ import NiceDate from "components/NiceDate";
 import { PageTitle } from "components/PageHeader";
 import { getCollectionType, getCollectionCoverArtUrl } from "helpers/index";
 
-const ColorEl = styled.div.attrs({
-  className: "absolute top-0 left-0 w-full h-full"
-})`
-  background-color: ${props => props.bgColor};
+const ColorEl = styled.div`
+  background: linear-gradient(
+    to bottom,
+    ${props => props.colorA},
+    ${props => props.colorB}
+  );
 `;
 
-const BgGradient = ({ bgColor, theme }) => {
+const GradientMask = ({ colorA, colorB, bgColor, theme }) => {
+  const isLight = theme === "light";
+
+  const classes = cn(
+    "absolute -top-64 bottom-0 -left-full -right-full opacity-50 pointer-events-none",
+    isLight ? "mix-blend-darken" : "mix-blend-screen"
+  );
+
+  const innerClasses = cn(
+    "absolute bottom-0 left-0 w-full h-256 bg-repeat-x bg-center bg-[url('/images/gradient-fade-b.webp')]",
+    isLight ? "invert" : ""
+  );
+
   return (
-    <div
-      className={`absolute top-0 left-0 w-full h-256 flex items-end bg-white opacity-50 ${
-        theme === "light" ? "mix-blend-multiply" : "mix-blend-screen"
-      }`}
+    <ColorEl
+      colorA={colorA}
+      colorB={colorB}
+      bgColor={bgColor}
+      className={classes}
     >
-      <ColorEl
-        bgColor={bgColor}
-        className={
-          theme === "light" ? "mix-blend-screen" : "mix-blend-multiply"
-        }
-      />
-      <div
-        className={`h-256 w-full bg-repeat-x bg-[url('/images/gradient-fade-sm.webp')]${
-          theme === "light" ? " XXXrotate-180" : ""
-        }`}
-      />
-    </div>
+      <div className={innerClasses} />
+    </ColorEl>
   );
 };
 
 // Collection Header
 // ----------------------------------------------------------------------------
 
-export const CollectionHeader = ({ bgColor, children, collection }) => {
+export const CollectionHeader = ({
+  colorA,
+  colorB,
+  bgColor,
+  children,
+  collection
+}) => {
   const { resolvedTheme } = useTheme();
   const { title } = collection;
   const collectionType = getCollectionType(collection, true);
 
   return (
-    <header className="mb-16 mb:mb-48 text-center md:text-left">
-      <BgGradient bgColor={bgColor} theme={resolvedTheme} />
+    <header className="mb-16 mb:mb-48 pb-24 text-center md:text-left relative overflow-visible">
+      <GradientMask
+        theme={resolvedTheme}
+        bgColor={bgColor}
+        colorA={colorA}
+        colorB={colorB}
+      />
       <Button
         className="mb-12 capitalize relative"
         href={`/${collectionType}`}
@@ -59,7 +75,7 @@ export const CollectionHeader = ({ bgColor, children, collection }) => {
       >
         {collectionType}
       </Button>
-      <div className="flex flex-col lg:flex-row lg:items-end gap-24">
+      <div className="flex flex-col lg:flex-row lg:items-end gap-24 relative">
         <LightBox
           trigger={
             <CoverArt
