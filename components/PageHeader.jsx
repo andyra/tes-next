@@ -32,7 +32,7 @@ export const PageHeader = ({
       <div className={`flex-1${center ? " text-center" : ""}`}>
         {back && (
           <Button
-            className="inline-flex relative"
+            className="inline-flex relative hidden md:inline-flex"
             href={back.href}
             iconLeft="ChevronLeft"
             size="sm"

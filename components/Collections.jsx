@@ -11,7 +11,14 @@ import NiceDate from "components/NiceDate";
 import { PageTitle } from "components/PageHeader";
 import { getCollectionType, getCollectionCoverArtUrl } from "helpers/index";
 
-const ColorEl = styled.div`
+// Gradient Mask
+// ----------------------------------------------------------------------------
+
+function rgbColor(color) {
+  return `rgb(${color.rgb[0]}, ${color.rgb[1]}, ${color.rgb[2]})`;
+}
+
+const GradientEl = styled.div`
   background: linear-gradient(
     to bottom,
     ${props => props.colorA},
@@ -19,8 +26,23 @@ const ColorEl = styled.div`
   );
 `;
 
-const GradientMask = ({ colorA, colorB, bgColor, theme }) => {
+const GradientMask = ({ coverPalette, theme }) => {
   const isLight = theme === "light";
+  const {
+    Vibrant,
+    Muted,
+    LightVibrant,
+    LightMuted,
+    DarkVibrant,
+    DarkMuted
+  } = JSON.parse(coverPalette);
+
+  const vibrant = rgbColor(Vibrant);
+  const vibrantLight = rgbColor(LightVibrant);
+  const vibrantDark = rgbColor(DarkVibrant);
+  const muted = rgbColor(Muted);
+  const mutedLight = rgbColor(LightMuted);
+  const mutedDark = rgbColor(DarkMuted);
 
   const classes = cn(
     "absolute -top-64 bottom-0 -left-full -right-full opacity-50 pointer-events-none",
@@ -33,41 +55,25 @@ const GradientMask = ({ colorA, colorB, bgColor, theme }) => {
   );
 
   return (
-    <ColorEl
-      colorA={colorA}
-      colorB={colorB}
-      bgColor={bgColor}
-      className={classes}
-    >
+    <GradientEl colorA={vibrant} colorB={mutedDark} className={classes}>
       <div className={innerClasses} />
-    </ColorEl>
+    </GradientEl>
   );
 };
 
 // Collection Header
 // ----------------------------------------------------------------------------
 
-export const CollectionHeader = ({
-  colorA,
-  colorB,
-  bgColor,
-  children,
-  collection
-}) => {
+export const CollectionHeader = ({ coverPalette, children, collection }) => {
   const { resolvedTheme } = useTheme();
   const { title } = collection;
   const collectionType = getCollectionType(collection, true);
 
   return (
     <header className="mb-16 mb:mb-48 pb-24 text-center md:text-left relative overflow-visible">
-      <GradientMask
-        theme={resolvedTheme}
-        bgColor={bgColor}
-        colorA={colorA}
-        colorB={colorB}
-      />
+      <GradientMask coverPalette={coverPalette} theme={resolvedTheme} />
       <Button
-        className="mb-12 capitalize relative"
+        className="mb-12 capitalize relative hidden md:inline-flex"
         href={`/${collectionType}`}
         iconLeft="ChevronLeft"
         size="sm"

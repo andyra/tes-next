@@ -16,14 +16,14 @@ import {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Episode({ episode }) {
+export default function Episode({ coverPalette, episode }) {
   const { description, episodeCoverArt, releaseDate, title } = episode;
   const normalizedTracks = normalizeTracklist({ collection: episode });
   const normalizedFullEpisode = normalizeFullEpisode(episode);
 
   return (
     <>
-      <CollectionHeader collection={episode}>
+      <CollectionHeader collection={episode} coverPalette={coverPalette}>
         <NiceDate date={releaseDate} />
       </CollectionHeader>
       <section className="flex flex-col xs:flex-row items-center gap-16 py-16 border-y-2 xs:gap-24 xs:p-24 xs:rounded-lg xs:border-2">
@@ -109,8 +109,18 @@ export async function getStaticProps(context) {
     `
   });
 
+  // Extract colors from coverArt
+  var Vibrant = require("node-vibrant");
+  const coverArtSrc = data.entry.episodeCoverArt[0].url;
+  const coverPalette = await Vibrant.from(coverArtSrc)
+    .getPalette()
+    .then(function(palette) {
+      return palette;
+    });
+
   return {
     props: {
+      coverPalette: JSON.stringify(coverPalette),
       episode: data.entry,
       metaTitle: data.entry.title,
       navSection: "Podcast"

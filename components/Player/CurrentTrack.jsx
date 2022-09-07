@@ -16,7 +16,7 @@ export const CurrentTrack = ({
 }) => {
   const currentTrackClasses = cn({
     "flex relative group": true,
-    "items-center gap-8 w-full md:w-1/3": !isFullscreen,
+    "items-center gap-8 min-w-0 w-full md:w-1/3": !isFullscreen,
     "flex-1 flex-col items-center justify-end gap-16 w-full md:text-center md:mb-48XXX": isFullscreen
   });
 

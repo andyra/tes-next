@@ -9,10 +9,6 @@ import PageHeader from "components/PageHeader";
 import Tracklist from "components/Tracklist";
 import { normalizeTracklist, querySlugs } from "helpers/index";
 
-function rgbColor(color) {
-  return `rgb(${color.rgb[0]}, ${color.rgb[1]}, ${color.rgb[2]})`;
-}
-
 // Default
 // ----------------------------------------------------------------------------
 
@@ -28,30 +24,10 @@ export default function Album({ album, durations, coverPalette }) {
   const normalizedTracks = normalizeTracklist({
     collection: album
   });
-  const {
-    Vibrant,
-    Muted,
-    LightVibrant,
-    LightMuted,
-    DarkVibrant,
-    DarkMuted
-  } = JSON.parse(coverPalette);
-
-  const vibrant = rgbColor(Vibrant);
-  const vibrantLight = rgbColor(LightVibrant);
-  const vibrantDark = rgbColor(DarkVibrant);
-  const muted = rgbColor(Muted);
-  const mutedLight = rgbColor(LightMuted);
-  const mutedDark = rgbColor(DarkMuted);
 
   return (
     <>
-      <CollectionHeader
-        collection={album}
-        colorA={vibrant}
-        colorB={vibrantDark}
-        bgColor={vibrantDark}
-      >
+      <CollectionHeader collection={album} coverPalette={coverPalette}>
         <>
           {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
           {albumTracklist.length} Tracks
@@ -125,10 +101,9 @@ export async function getStaticProps(context) {
     `
   });
 
+  // Extract colors from coverArt
   var Vibrant = require("node-vibrant");
-
   const coverArtSrc = data.entry.albumCoverArt[0].url;
-
   const coverPalette = await Vibrant.from(coverArtSrc)
     .getPalette()
     .then(function(palette) {
