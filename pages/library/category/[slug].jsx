@@ -126,12 +126,12 @@ export async function getStaticProps(context) {
 
   return {
     props: {
+      allCategories: data.allCategories,
       articles: data.entries,
       category: data.category,
-      allCategories: data.allCategories,
-      parentCategory: data.parentCategory,
       metaTitle: data.category.title,
-      navSection: "Library"
+      navSection: "Library",
+      parentCategory: data.parentCategory
     }
   };
 }

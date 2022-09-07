@@ -28,7 +28,7 @@ const QueueList = ({
         tracks={tracks}
         queueable={queueable}
         showCollectionInfo={showCollectionInfo}
-        TrackDropdownZIndex="z-dialog-dropdown"
+        trackDropdownZIndex="z-dialog-dropdown"
       />
     </Section>
   ) : (
