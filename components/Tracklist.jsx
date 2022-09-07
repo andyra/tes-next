@@ -40,10 +40,11 @@ const Duration = ({ src }) => {
 };
 
 export const Tracklist = ({
+  className,
   queueable = true,
   showCollectionInfo,
   showTrackType,
-  TrackDropdownZIndex,
+  trackDropdownZIndex,
   tracks
 }) => {
   const {
@@ -75,12 +76,11 @@ export const Tracklist = ({
       !track.addedViaQueue &&
       !currentTrack.addedViaQueue;
 
-    const liClasses = cn({
-      "flex items-center gap-8 xs:px-8 py-4 md:py-12 -mx-8 xs:rounded-lg hover:bg-primary-5 focus:bg-primary-10": true,
-      "cursor-default transition relative group": true,
-      "text-secondary": track.audioFile,
-      "text-secondary-50": !track.audioFile
-    });
+    const liClasses = cn(
+      "flex items-center gap-8 xs:px-8 py-4 md:py-12 -mx-8 xs:rounded-lg hover:bg-primary-5 focus:bg-primary-10",
+      "cursor-default transition relative group",
+      track.audioFile ? "text-primary" : "text-primary-50"
+    );
 
     const indexClasses = cn({
       "hidden md:flex items-center justify-center relative h-40 w-40 flex-shrink-0 font-mono text-primary-50": true,
@@ -163,7 +163,7 @@ export const Tracklist = ({
             removeFromQueue={removeFromQueue}
             queueable={queueable}
             i={i}
-            zIndex={TrackDropdownZIndex}
+            zIndex={trackDropdownZIndex}
           />
         </div>
       </li>
@@ -171,7 +171,7 @@ export const Tracklist = ({
   };
 
   return (
-    <ol className="-mx-8">
+    <ol className={cn("-mx-8", className)}>
       {tracks.map((track, i) => (
         <TrackItem track={track} i={i} key={track.id} />
       ))}

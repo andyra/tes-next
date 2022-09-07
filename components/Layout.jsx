@@ -67,7 +67,7 @@ export default function Layout({ children, ...props }) {
   );
 
   const mainClasses = cn(
-    "flex-1 overflow-y-auto print:overflow-visible bg-ground rounded-lg",
+    "flex-1 overflow-y-auto overflow-x-hidden print:overflow-visible bg-ground rounded-lg relative",
     "p-24 md:py-48 lg:py-64"
   );
 
