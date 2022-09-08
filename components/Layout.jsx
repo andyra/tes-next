@@ -92,9 +92,9 @@ export default function Layout({ children, ...props }) {
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
-        <meta name="msapplication-TileColor" content="#2B5797" />
+        <meta name="msapplication-TileColor" content="#603cba" />
         <meta name="msapplication-tap-highlight" content="no" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#ffffff" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -127,7 +127,7 @@ export default function Layout({ children, ...props }) {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#442694" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="twitter:card" content={metaDescription} />

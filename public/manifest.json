@@ -1,9 +1,9 @@
 {
   "name": "This Evening's Show",
   "short_name": "TES",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "background_color": "#000000",
-  "display": "minimal-ui",
+  "display": "browser",
   "scope": "/",
   "start_url": "/",
   "description": "Podcast and music library for This Evening's Show",
