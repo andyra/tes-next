@@ -43,18 +43,26 @@ module.exports = {
         DEFAULT: "100ms"
       },
       fontFamily: {
-        sans: [
+        base: [
           "Apercu",
+          "ui-sans-serif",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
+          '"Segoe UI"',
           "Roboto",
-          "'Helvetica Neue'",
+          '"Helvetica Neue"',
           "Arial",
-          "sans-serif"
+          '"Noto Sans"',
+          "sans-serif",
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"'
         ],
         serif: [
           "GT Alpina Typewriter",
+          "ui-serif",
           "Georgia",
           "Cambria",
           '"Times New Roman"',
@@ -63,17 +71,6 @@ module.exports = {
         ],
         funky: [
           "Ozik",
-          "Apercu",
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Roboto",
-          "'Helvetica Neue'",
-          "Arial",
-          "sans-serif"
-        ],
-        editorial: [
-          "Editorial New",
           "Apercu",
           "system-ui",
           "-apple-system",

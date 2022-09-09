@@ -10,7 +10,7 @@ const CategoryLink = ({ collapsible, title, href, icon }) => {
 
   const classes = cn(
     "flex items-center justify-center gap-8 px-8 xs:px-12 py-8 rounded-t-lg h-full border-x border-t border-secondary",
-    "font-serif text-center leading-tight overflow-hidden break-words",
+    "font-base text-center leading-tight overflow-hidden break-words",
     active ? "bg-secondary text-ground" : "text-secondary hover:bg-secondary-5",
     collapsible && !active ? "hidden" : ""
   );

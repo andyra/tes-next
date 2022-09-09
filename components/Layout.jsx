@@ -58,7 +58,7 @@ export default function Layout({ children, ...props }) {
 
   const nextClasses = cn(
     "h-full overflow-hidden print:overflow-visible p-4 bg-ground-dark",
-    "font-sans text-primary antialiased selection:text-ground selection:bg-primary",
+    "font-base text-primary antialiased selection:text-ground selection:bg-primary",
     "flex flex-col gap-4"
   );
 

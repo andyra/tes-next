@@ -13,7 +13,7 @@ const ArticleCard = ({ article, rotate, showFeaturedImage }) => {
   return (
     <li>
       <Link href={articleHref(slug)}>
-        <a className="block h-full p-16 space-y-12 font-serif text-lg text-secondary text-center group">
+        <a className="block h-full p-16 space-y-12 font-base text-lg text-secondary text-center group">
           <figure
             className={cn("library-image border border-secondary", rotate)}
           >
@@ -27,7 +27,7 @@ const ArticleCard = ({ article, rotate, showFeaturedImage }) => {
                 width={featuredImage[0].width}
               />
             ) : (
-              <div className="flex items-center justify-center bg-ground font-sans uppercase text-xl text-secondary-25 aspect-square">
+              <div className="flex items-center justify-center bg-ground font-base uppercase text-xl text-secondary-25 aspect-square">
                 n/a
               </div>
             )}
@@ -48,7 +48,7 @@ const ArticleRow = ({ article, category }) => {
   return (
     <li className="flex items-center gap-8 border-b border-dotted border-secondary">
       <Link href={articleHref(slug)}>
-        <a className="flex-1 py-12 font-serif text-secondary hover:underline decoration-wavy">
+        <a className="flex-1 py-12 font-base text-secondary hover:underline decoration-wavy">
           {title}
         </a>
       </Link>
@@ -57,7 +57,7 @@ const ArticleRow = ({ article, category }) => {
           {otherCategories.map(cat => (
             <React.Fragment key={cat.slug}>
               <Link href={categoryHref(cat.slug)}>
-                <a className="tracking-wider text-xs font-sans uppercase hover:underline">
+                <a className="tracking-wider text-xs font-base uppercase hover:underline">
                   {cat.title}
                 </a>
               </Link>{" "}

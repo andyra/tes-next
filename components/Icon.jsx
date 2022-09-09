@@ -48,6 +48,9 @@ import Trash from "../public/icons/Trash.svg";
 import Video from "../public/icons/Video.svg";
 import X from "../public/icons/X.svg";
 import TesMask from "../public/icons/TesMask.svg";
+import MarqueeExtended from "../public/images/MarqueeExtended.svg";
+import MarqueeCondensed from "../public/images/MarqueeCondensed.svg";
+import MarqueeTypewriter from "../public/images/MarqueeTypewriter.svg";
 
 export const ICON_NAMES = {
   ApplePodcasts: ApplePodcasts,
@@ -97,7 +100,10 @@ export const ICON_NAMES = {
   Trash: Trash,
   Video: Video,
   X: X,
-  TesMask: TesMask
+  TesMask: TesMask,
+  MarqueeExtended: MarqueeExtended,
+  MarqueeCondensed: MarqueeCondensed,
+  MarqueeTypewriter: MarqueeTypewriter
 };
 
 export const Icon = ({ className, name, size, ...props }) => {

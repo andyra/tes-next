@@ -133,7 +133,7 @@ export default function Article({ allCategories, article }) {
                       />
                       {item.caption && (
                         <figcaption
-                          className="font-serif text-xs text-secondary-75"
+                          className="font-base text-xs text-secondary-75"
                           dangerouslySetInnerHTML={{ __html: item.caption }}
                         />
                       )}
