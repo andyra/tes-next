@@ -68,7 +68,7 @@ export const DropdownMenu = ({
   zIndex = "z-dropdown"
 }) => {
   const classes = cn(
-    "bg-primary rounded-lg p-8 shadow-lg",
+    "bg-primary rounded-lg p-8 shadow-lg font-base",
     "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down",
     zIndex,
     className
