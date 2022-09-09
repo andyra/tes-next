@@ -1,8 +1,8 @@
 {
   "name": "This Evening's Show",
   "short_name": "TES",
-  "theme_color": "#ffffff",
-  "background_color": "#000000",
+  "theme_color": "#141414",
+  "background_color": "#141414",
   "display": "browser",
   "scope": "/",
   "start_url": "/",
@@ -10,44 +10,54 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/icon-72.png",
+      "src": "/favicons/icon-72.png",
       "type": "image/png",
       "sizes": "72x72"
     },
     {
-      "src": "/icon-96.png",
+      "src": "/favicons/icon-96.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "/icon-128.png",
+      "src": "/favicons/icon-128.png",
       "type": "image/png",
       "sizes": "128x128"
     },
     {
-      "src": "/icon-144.png",
+      "src": "/favicons/icon-144.png",
       "type": "image/png",
       "sizes": "144x144"
     },
     {
-      "src": "/icon-152.png",
+      "src": "/favicons/icon-152.png",
       "type": "image/png",
       "sizes": "152x152"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/favicons/icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/icon-384.png",
+      "src": "/favicons/icon-384.png",
       "type": "image/png",
       "sizes": "384x384"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/favicons/icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "/favicons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }

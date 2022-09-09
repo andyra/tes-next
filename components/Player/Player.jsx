@@ -47,9 +47,9 @@ export const Player = () => {
   const playerClasses = cn(
     "flex items-center gap-8 bg-ground rounded-lg transition-all duration-300",
     {
-      "h-56 md:h-80 p-8 rounded-lg": !isFullscreen,
+      "h-56 md:h-88 p-8 rounded-lg": !isFullscreen,
       "fixed top-0 left-0 z-player-fullscreen w-full h-full flex-col justify-end px-24 py-24 md:p-48": isFullscreen,
-      "-mb-[69px] md:-mb-[85px]": playerIsEmpty
+      "-mb-[60px] md:-mb-[92px]": playerIsEmpty
     }
   );
 

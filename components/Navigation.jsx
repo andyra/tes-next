@@ -61,7 +61,7 @@ const TitleMarquee = () => {
 export const Navigation = ({ navSection, playerIsEmpty }) => {
   const classes = cn(
     "flex items-stretch bg-ground gap-16 p-8 rounded-lg print:hidden",
-    "md:w-192 md:flex-shrink-0 md:flex-col md:p-24 md:overflow-y-auto"
+    "md:w-192 md:flex-shrink-0 md:flex-col md:p-24 overflow-hidden"
   );
 
   return (
