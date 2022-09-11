@@ -61,7 +61,7 @@ module.exports = {
           '"Noto Color Emoji"'
         ],
         serif: [
-          "GT Alpina Typewriter",
+          '"GT Alpina Typewriter"',
           "ui-serif",
           "Georgia",
           "Cambria",

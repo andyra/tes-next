@@ -16,7 +16,7 @@ export const DropdownItem = ({
   ...props
 }) => {
   const classes = cn(
-    "flex items-center gap-8 h-40 md:h-32 px-12 w-full min-w-[128px] rounded-full transition",
+    "flex items-center gap-8 h-40 md:h-32 px-8 w-full min-w-[128px] rounded-full transition",
     "hover:bg-ground-5",
     selected
       ? "text-accent hover:text-accent"
@@ -50,7 +50,7 @@ export const DropdownItem = ({
 };
 
 export const DropdownHeading = ({ title }) => (
-  <header className="flex items-center h-32 px-12 text-sm text-ground-50">
+  <header className="flex items-center h-32 px-8 text-sm text-ground-50">
     {title}
   </header>
 );

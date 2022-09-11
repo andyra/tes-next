@@ -122,7 +122,7 @@ CollectionHeader.propTypes = {
 export const CollectionList = ({ children, gridView }) => {
   const classes = cn({
     "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 -mx-8 md:-mx-16": gridView,
-    "divide-y": !gridView
+    "divide-y max-w-screen-lg mx-auto": !gridView
   });
 
   return <ul className={classes}>{children}</ul>;
@@ -151,19 +151,15 @@ export const CollectionItem = ({
 }) => {
   const { releaseDate, title, uri } = collection;
 
-  const classes = cn(className, {
-    "h-full": gridView
-  });
+  const classes = cn(gridView ? "h-full" : "-mx-8", className);
 
-  const linkClasses = cn({
-    "hover:text-accent rounded-lg p-8 md:p-16 h-full transition group": true,
-    block: gridView,
-    "flex items-center gap-8": !gridView
-  });
+  const linkClasses = cn(
+    "hover:text-accent rounded-lg h-full transition group",
+    gridView ? "block p-8 md:p-16" : "flex items-center gap-8 py-8 md:py-12"
+  );
 
-  const coverArtClasses = cn({
-    "border border-primary-5": true,
-    "w-full rounded-lg transition duration-300 origin-center group-hover:-rotate-2 group-hover:shadow-lg": gridView,
+  const coverArtClasses = cn("border border-primary-5 flex-shrink-0", {
+    "w-full rounded-lg transition duration-300": gridView,
     "h-64 w-64 rounded-lg": !gridView
   });
 
@@ -179,7 +175,9 @@ export const CollectionItem = ({
             width={gridView ? 256 : 96}
           />
           <div>
-            <div className="text-lg font-medium leading-snug mt-8">{title}</div>
+            <div className="text-lg font-medium leading-snug mt-8 underline underline-offset-4 decoration-wavy decoration-transparent group-hover:decoration-accent transition">
+              {title}
+            </div>
             {releaseDate && (
               <NiceDate date={releaseDate} className="opacity-50" />
             )}

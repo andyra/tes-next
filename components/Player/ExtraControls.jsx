@@ -54,7 +54,7 @@ export const ExtraControls = ({
           aria-label="Full Screen"
           circle
           disabled={playerIsEmpty}
-          icon={isFullscreen ? "EyeOff" : "Eye"}
+          icon={isFullscreen ? "X" : "Eye"}
           onClick={() => {
             setIsFullscreen(!isFullscreen);
           }}

@@ -16,9 +16,11 @@ const DotMatrix = ({ asChild, children, className }) => {
   const Comp = asChild ? Slot : "section";
 
   return (
-    <section className={cn("flex sm:border sm:border-secondary", className)}>
+    <section
+      className={cn("flex sm:border sm:border-secondary font-serif", className)}
+    >
       <Tearaway />
-      <Comp className="flex-1 sm:p-24 lg:p-48 xl:p-64 font-base text-secondary">
+      <Comp className="flex-1 sm:p-24 lg:p-48 xl:p-64 text-secondary">
         {children}
       </Comp>
       <Tearaway className="rotate-180" />
