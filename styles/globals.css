@@ -99,34 +99,31 @@
   font-display: swap;
   font-family: "Ozik";
   font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/ozik-regular-subset.woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Ozik";
+  font-style: normal;
   font-weight: 700;
   src: url("/fonts/ozik-bold-subset.woff2");
 }
 
-/* font-serif: regular, italic */
+/* font-base: regular, italic */
 @font-face {
   font-display: swap;
   font-family: "GT Alpina Typewriter";
   font-style: normal;
   font-weight: 400;
-  src: url("/fonts/gt-alpina-typewriter-regular-subset-subset.woff2");
+  src: url("/fonts/gt-alpina-typewriter-regular-subset.woff2");
 }
-
 @font-face {
   font-display: swap;
   font-family: "GT Alpina Typewriter";
   font-style: italic;
   font-weight: 400;
-  src: url("/fonts/gt-alpina-typewriter-regular-italic-subset-subset.woff2");
-}
-
-/* font-editorial: light */
-@font-face {
-  font-display: swap;
-  font-family: "Editorial New";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/editorial-new-ultralight-subset.woff2");
+  src: url("/fonts/gt-alpina-typewriter-regular-italic-subset.woff2");
 }
 
 /* LeadSheet
@@ -186,7 +183,7 @@
 }
 
 .library-article a {
-  @apply italic underline hover:decoration-wavy;
+  @apply italic underline underline-offset-4 decoration-dotted hover:decoration-wavy;
 }
 
 .library-article li p {

@@ -25,47 +25,35 @@ function replaceInternalLinks(content) {
 // Components
 // ----------------------------------------------------------------------------
 
-const Header = ({ categories, id, title }) => {
-  return (
-    <header className="border-y border-secondary text-sm mb-48">
-      <div className="flex gap-12">
-        <Info label="File Under" className="flex-1">
-          {categories?.length
-            ? categories.map(category => (
-                <Link
-                  href={`/library/category/${category.slug}`}
-                  key={category.slug}
-                >
-                  <a className="underline hover:text-accent">
-                    {category.title}{" "}
-                  </a>
-                </Link>
-              ))
-            : "n/a"}
-        </Info>
-      </div>
-      <div className="flex border-t border-secondary">
-        <Info label="UTF_TITLE" className="flex-1">
-          <h1 className="text-2xl">{title}</h1>
-        </Info>
-        <Info
-          label="Filing №"
-          className="border-l border-secondary"
-          aria-hidden
-        >
-          {id}
-        </Info>
-        <Info
-          label="Lookup-ID"
-          className="border-l border-secondary"
-          aria-hidden
-        >
-          {id}
-        </Info>
-      </div>
-    </header>
-  );
-};
+const Header = ({ categories, id, title }) => (
+  <header className="border-y border-secondary text-sm mb-48">
+    <div className="flex gap-12">
+      <Info label="File Under" className="flex-1">
+        {categories?.length
+          ? categories.map(category => (
+              <Link
+                href={`/library/category/${category.slug}`}
+                key={category.slug}
+              >
+                <a className="underline hover:text-accent">{category.title} </a>
+              </Link>
+            ))
+          : "n/a"}
+      </Info>
+    </div>
+    <div className="flex border-t border-secondary">
+      <Info label="UTF_TITLE" className="flex-1">
+        <h1 className="text-2xl">{title}</h1>
+      </Info>
+      <Info label="Filing №" className="border-l border-secondary" aria-hidden>
+        {id}
+      </Info>
+      <Info label="Lookup-ID" className="border-l border-secondary" aria-hidden>
+        {id}
+      </Info>
+    </div>
+  </header>
+);
 
 // Default
 // ----------------------------------------------------------------------------
@@ -133,7 +121,7 @@ export default function Article({ allCategories, article }) {
                       />
                       {item.caption && (
                         <figcaption
-                          className="font-serif text-xs text-secondary-75"
+                          className="text-xs text-secondary-75"
                           dangerouslySetInnerHTML={{ __html: item.caption }}
                         />
                       )}

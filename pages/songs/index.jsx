@@ -4,7 +4,6 @@ import { gql } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";
 import Button from "components/Button";
-import GridListToggle from "components/GridListToggle";
 import MusicTabs from "components/MusicTabs";
 
 // Components
@@ -13,18 +12,19 @@ import MusicTabs from "components/MusicTabs";
 const SongItem = ({ i, gridView, song }) => {
   const { slug, title, uri } = song;
 
-  const classes = cn({
-    "flex items-baseline break-inside-avoid-column gap-8 border-t border-primary-25 border-dotted hover:text-accent transition group": true,
-    "text-xl py-16 hover:border-accent": gridView,
-    "py-4": !gridView
-  });
+  const classes = cn(
+    "flex items-baseline break-inside-avoid-column gap-8 border-t border-primary-25 border-dotted transition group",
+    gridView ? "text-xl py-16" : "text-lg py-8"
+  );
 
   return (
     <li key={slug}>
       <Link href={uri}>
         <a className={classes}>
-          <span className="font-mono text-xs opacity-25">{i + 1}</span>
-          {title}
+          <span className="font-mono text-xs text-primary-25">{i + 1}</span>
+          <span className="underline underline-offset-8 decoration-wavy decoration-transparent group-hover:text-accent group-hover:decoration-accent transition">
+            {title}
+          </span>
         </a>
       </Link>
     </li>
@@ -36,16 +36,15 @@ const SongItem = ({ i, gridView, song }) => {
 
 export default function Songs({ songs }) {
   const [gridView, setGridView] = useState(true);
-  const ulClasses = cn({
-    "sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5": gridView
-  });
+  const ulClasses = cn(
+    gridView
+      ? "sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5"
+      : "max-w-screen-lg mx-auto"
+  );
 
   return (
     <>
       <MusicTabs pageName="Songs" />
-      <div className="flex items-center gap-8 justify-end mb-24">
-        <GridListToggle gridView={gridView} setGridView={setGridView} />
-      </div>
       <ul className={ulClasses}>
         {songs.map((song, i) => (
           <SongItem song={song} i={i} key={song.slug} gridView={gridView} />

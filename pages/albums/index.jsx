@@ -79,13 +79,13 @@ export default function Albums({ albums }) {
   return (
     <>
       <MusicTabs pageName="Albums" />
-      <div className="flex items-center gap-8 justify-end mb-24 relative z-10">
+      <div className="flex items-center justify-end gap-8 relative z-10">
         <Filters
           filterGroups={albumFilters}
           filters={filters}
           setFilters={setFilters}
         />
-        <GridListToggle gridView={gridView} setGridView={setGridView} />
+        {/*<GridListToggle gridView={gridView} setGridView={setGridView} />*/}
       </div>
       <CollectionList gridView={gridView}>
         {albums.map(album => (

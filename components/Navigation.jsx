@@ -33,35 +33,31 @@ export const NavLink = ({ className, count, navSection, title, href }) => {
   );
 };
 
-const TitleMarquee = () => {
-  const classes = cn(
-    "h-40 md:h-128 relative w-screen overflow-hidden -ml-8 md:-mx-24 relative"
-  );
-
-  const innerClasses = cn(
-    "font-editorial text-4xl md:text-9xl uppercase text-secondary hover:text-accent transition leading-none md:leading-[1.2]",
-    "absolute whitespace-nowrap animate-marquee mt-[6px] md:mt-0"
-  );
-
-  return (
-    <Link href="/">
-      <a className={classes} title="This Evening's Show">
-        <div className="absolute z-10 w-24 h-full top-0 left-0 bg-gradient-to-r from-ground pointer-events-none md:hidden" />
-        <div className={innerClasses}>
-          {[...Array(4)].map((item, i) => (
-            <React.Fragment key={i}>This Evening&apos;s Show </React.Fragment>
-          ))}
-        </div>
-        <div className="absolute z-10 w-24 h-full top-0 right-0 bg-gradient-to-l from-ground pointer-events-none md:hidden" />
-      </a>
-    </Link>
-  );
-};
+const TitleMarquee = () => (
+  <Link href="/">
+    <a className="h-24 md:h-160 relative w-screen overflow-hidden -ml-8 md:-mx-24 text-primary md:text-secondary hover:text-accent relative">
+      <span
+        className="ml-16 font-funky text-9xl leading-none hidden md:block transition"
+        aria-hidden
+      >
+        TES
+      </span>
+      <div className="absolute z-10 w-24 h-full top-0 left-0 bg-gradient-to-r from-ground pointer-events-none md:hidden" />
+      <div className="flex items-center gap-12 absolute animate-marquee transition">
+        <span className="sr-only">This Evening&apos;s Show</span>
+        {[...Array(4)].map(i => (
+          <Icon name="MarqueeTypewriter" size="h-24" key={i} />
+        ))}
+      </div>
+      <div className="absolute z-10 w-24 h-full top-0 right-0 bg-gradient-to-l from-ground pointer-events-none md:hidden" />
+    </a>
+  </Link>
+);
 
 export const Navigation = ({ navSection, playerIsEmpty }) => {
   const classes = cn(
-    "flex items-stretch bg-ground gap-16 p-8 rounded-lg print:hidden",
-    "md:w-192 md:flex-shrink-0 md:flex-col md:p-24 md:overflow-y-auto"
+    "flex items-center md:items-stretch bg-ground gap-16 p-8 rounded-lg print:hidden",
+    "md:w-192 md:flex-shrink-0 md:flex-col md:p-24 overflow-hidden"
   );
 
   return (

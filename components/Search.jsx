@@ -161,6 +161,7 @@ const Search = ({ entries }) => {
         <DialogTrigger asChild>
           <Button
             circle
+            className="relative"
             icon="Search"
             variant="glass"
             onClick={() => {

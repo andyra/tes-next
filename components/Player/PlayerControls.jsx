@@ -75,7 +75,8 @@ export const PlayerControls = ({
   const sliderClasses = cn({
     "flex items-center w-full h-16 relative group": true,
     "md:col-span-1 md:row-span-2": !isFullscreen,
-    "col-start-1 col-span-3": isFullscreen
+    "col-start-1 col-span-3": isFullscreen,
+    "opacity-0": playerIsEmpty
   });
 
   const timeClasses = cn({

@@ -10,8 +10,10 @@ const CategoryLink = ({ collapsible, title, href, icon }) => {
 
   const classes = cn(
     "flex items-center justify-center gap-8 px-8 xs:px-12 py-8 rounded-t-lg h-full border-x border-t border-secondary",
-    "font-serif text-center leading-tight overflow-hidden break-words",
-    active ? "bg-secondary text-ground" : "text-secondary hover:bg-secondary-5",
+    "font-serif text-center leading-tight overflow-hidden break-words transition",
+    active
+      ? "bg-secondary text-ground"
+      : "text-secondary hover:bg-secondary hover:text-ground",
     collapsible && !active ? "hidden" : ""
   );
 
@@ -27,7 +29,7 @@ const CategoryLink = ({ collapsible, title, href, icon }) => {
 
 const CategoryNav = ({ backLink, categories, className, collapsible }) => {
   const classes = cn(
-    "border-b border-secondary",
+    "border-b border-secondary font-serif",
     "grid grid-cols-3 gap-x-4",
     "sm:flex sm:justify-center sm:flex-wrap sm:gap-x-4",
     className

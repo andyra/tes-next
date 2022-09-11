@@ -70,7 +70,7 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
         asChild
         trigger={
           <Button iconRight="ChevronDown" className={triggerClasses}>
-            Filters
+            {isFiltering(filters) ? "Filtering" : "Filter"}
           </Button>
         }
       >

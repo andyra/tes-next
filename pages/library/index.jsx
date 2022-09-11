@@ -21,7 +21,7 @@ export default function Library({ categories, people }) {
         The Grand Library of all things Akabius. Learn about, for instance:
       </p>
       <CategoryNav categories={categories} />
-      <section className="space-y-16">
+      <section className="font-serif space-y-16">
         <ClientOnly>
           <ArticleList
             articles={randomArticles}
