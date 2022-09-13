@@ -39,7 +39,7 @@ const QueueList = ({
 const CurrentTrack = ({ currentTrack }) => {
   return currentTrack ? (
     <Section title="On Deck" className="-mt-8">
-      <div className="flex items-center gap-8 md:gap-16 bg-primary-5 p-8 md:px-16 -mx-8 md:-mx-16 rounded-lg group">
+      <div className="flex items-center gap-8 md:gap-16 px-24 pb-24 -mx-24 border-b-2 group">
         <CoverArt
           className="h-88 w-88 rounded-lg"
           height={88}
@@ -51,7 +51,11 @@ const CurrentTrack = ({ currentTrack }) => {
           <div className="text-2xl text-default">{currentTrack.title}</div>
           <div className="text-sm">{currentTrack.collection.title}</div>
         </div>
-        <TrackDropdown track={currentTrack} queueable={false} inDialog />
+        <TrackDropdown
+          track={currentTrack}
+          queueable={false}
+          zIndex="z-dialog-dropdown"
+        />
       </div>
     </Section>
   ) : (

@@ -139,7 +139,7 @@ const Results = ({ searchTerm, setIsOpen }) => {
       ))}
     </ul>
   ) : (
-    "No results"
+    <div className="mt-24 text-primary-50">Can&apos;t find that thing!</div>
   );
 };
 
@@ -198,9 +198,13 @@ const Search = ({ entries }) => {
             }}
             placeholder="What are you looking for?"
             rounded
-            type="search"
           />
-          <DialogClose className="-mr-8" />
+          <DialogClose
+            className="-mr-8"
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          />
         </header>
         {searchTerm.length > 0 && (
           <Results searchTerm={searchTerm} setIsOpen={setIsOpen} />
