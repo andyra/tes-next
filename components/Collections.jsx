@@ -69,7 +69,7 @@ export const CollectionHeader = ({ coverPalette, children, collection }) => {
   const collectionType = getCollectionType(collection, true);
 
   return (
-    <header className="mb-16 mb:mb-48 pb-24 text-center md:text-left relative overflow-visible">
+    <header className="mb-16 mb:mb-48 pb-24 -mb-24 text-center md:text-left relative overflow-visible">
       <GradientMask coverPalette={coverPalette} theme={resolvedTheme} />
       <Button
         className="mb-12 capitalize relative hidden md:inline-flex"
