@@ -27,7 +27,7 @@ export const DialogClose = ({ className }) => (
 export const DialogContent = React.forwardRef(
   ({ children, closeButton = true, ...props }, forwardedRef) => {
     const classes = cn(
-      "fixed z-dialog-content overflow-y-auto",
+      "absolute z-dialog-content overflow-y-auto",
       "p-16 md:p-24 rounded-lg bg-ground border-2 border-primary-25 radix-state-open:animate-slide-up-fade",
       "top-4 right-4 bottom-4 left-4 max-h-screen",
       "md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-screen-sm md:h-[90vh]"

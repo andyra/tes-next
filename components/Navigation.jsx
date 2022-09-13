@@ -45,7 +45,7 @@ const TitleMarquee = () => (
       <div className="absolute z-10 w-24 h-full top-0 left-0 bg-gradient-to-r from-ground pointer-events-none md:hidden" />
       <div className="flex items-center gap-12 absolute animate-marquee transition">
         <span className="sr-only">This Evening&apos;s Show</span>
-        {[...Array(4)].map(i => (
+        {[...Array(4)].map((e, i) => (
           <Icon name="MarqueeTypewriter" size="h-24" key={i} />
         ))}
       </div>

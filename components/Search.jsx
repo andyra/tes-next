@@ -156,7 +156,7 @@ const Search = ({ entries }) => {
   }, 500);
 
   return (
-    <Dialog open={isOpen} closeButton={false}>
+    <Dialog open={isOpen}>
       <Tooltip content="Search" asChild>
         <DialogTrigger asChild>
           <Button
@@ -174,6 +174,7 @@ const Search = ({ entries }) => {
         </DialogTrigger>
       </Tooltip>
       <DialogContent
+        closeButton={false}
         onEscapeKeyDown={() => {
           setIsOpen(false);
         }}
