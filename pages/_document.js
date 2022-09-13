@@ -30,7 +30,7 @@ class MyDocument extends Document {
             crossOrigin=""
           />
         </Head>
-        <body className="h-full print:overflow-visible">
+        <body className="h-full font-base text-primary antialiased selection:text-ground selection:bg-primary print:overflow-visible">
           <Toaster />
           <Main />
           <NextScript />
