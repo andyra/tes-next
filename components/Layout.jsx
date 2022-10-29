@@ -94,9 +94,8 @@ export default function Layout({ children, ...props }) {
         <meta name="msapplication-config" content="/browserconfig.xml" />
         <meta name="msapplication-TileColor" content="#603cba" />
         <meta name="msapplication-tap-highlight" content="no" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#000000" />
         <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
-        {/*<link rel="alternate icon" href="/favicons/favicon.ico" />*/}
         <link
           rel="mask-icon"
           href="/favicons/safari-pinned-tab.svg"

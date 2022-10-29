@@ -135,6 +135,11 @@ export default function Home({ latestAlbums, episodes }) {
           />
           <Icon name="TesMask" className="relative z-10 block" size="w-full" />
           <h1 className="sr-only">This Evening&apos;s Show</h1>
+          <div
+            id="border"
+            className="border-4 border-ground absolute top-0 left-0 w-full h-full pointer-events-none"
+            aria-hidden
+          />
         </div>
         <p className="text-base xs:text-xl md:text-2xl text-justify max-w-screen-sm mx-auto">
           <strong className="font-bold underline">T</strong>his{" "}
@@ -173,17 +178,12 @@ export default function Home({ latestAlbums, episodes }) {
           </Button>
         </header>
         <div className="flex flex-col sm:flex-row sm:items-center gap-16 sm:gap-24">
-          <Link href={latestEpisode.uri}>
-            <a className="self-start hover:-rotate-2 hover:shadow-lg transition duration-300">
-              <CoverArt
-                className="h-192 w-192 rounded-lg"
-                height={192}
-                width={192}
-                url={latestEpisode.episodeCoverArt[0].url}
-                title={latestEpisode.title}
-              />
-            </a>
-          </Link>
+          <CollectionItem
+            className="-ml-12 w-256"
+            collection={latestEpisode}
+            gridView
+            as="div"
+          />
           <div className="flex-1 space-y-8">
             <header className="flex items-center gap-8">
               <PlayPauseButton
@@ -191,9 +191,15 @@ export default function Home({ latestAlbums, episodes }) {
                 size="lg"
                 track={normalizedFullEpisode}
               />
-              <h3 className="font-medium text-xl">{latestEpisode.title}</h3>
+              <h3 className="font-medium text-xl">
+                <Link href={latestEpisode.uri}>
+                  <a className="hover:text-accent transition">
+                    {latestEpisode.title}
+                  </a>
+                </Link>
+              </h3>
             </header>
-            <p>{latestEpisode.description}</p>
+            <p className="text-lg">{latestEpisode.description}</p>
           </div>
         </div>
       </section>

@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import cn from "classnames";
-import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import styled from "styled-components";
@@ -70,7 +69,7 @@ export const CollectionHeader = ({ coverPalette, children, collection }) => {
   const collectionType = getCollectionType(collection, true);
 
   return (
-    <header className="mb-16 mb:mb-48 pb-24 text-center md:text-left relative overflow-visible">
+    <header className="mb-16 mb:mb-48 pb-24 -mb-24 text-center md:text-left relative overflow-visible">
       <GradientMask coverPalette={coverPalette} theme={resolvedTheme} />
       <Button
         className="mb-12 capitalize relative hidden md:inline-flex"
@@ -143,7 +142,10 @@ export const CollectionListSkeleton = ({ gridView }) => (
 // Collection Item
 // ----------------------------------------------------------------------------
 
+const CollectionItemEl = styled.li``;
+
 export const CollectionItem = ({
+  as = "li",
   children,
   className,
   collection,
@@ -154,17 +156,17 @@ export const CollectionItem = ({
   const classes = cn(gridView ? "h-full" : "-mx-8", className);
 
   const linkClasses = cn(
-    "hover:text-accent rounded-lg h-full transition group",
+    "hover:bg-primary-5 rounded-lg h-full transition group",
     gridView ? "block p-8 md:p-16" : "flex items-center gap-8 py-8 md:py-12"
   );
 
   const coverArtClasses = cn("border border-primary-5 flex-shrink-0", {
-    "w-full rounded-lg transition duration-300": gridView,
+    "w-full rounded-lg transition": gridView,
     "h-64 w-64 rounded-lg": !gridView
   });
 
   return (
-    <li className={classes}>
+    <CollectionItemEl as={as} className={classes}>
       <Link href={uri}>
         <a className={linkClasses}>
           <CoverArt
@@ -175,7 +177,7 @@ export const CollectionItem = ({
             width={gridView ? 256 : 96}
           />
           <div>
-            <div className="text-lg font-medium leading-snug mt-8 underline underline-offset-4 decoration-wavy decoration-transparent group-hover:decoration-accent transition">
+            <div className="text-lg font-medium leading-snug mt-8 group-hover:text-accent transition">
               {title}
             </div>
             {releaseDate && (
@@ -185,7 +187,7 @@ export const CollectionItem = ({
           </div>
         </a>
       </Link>
-    </li>
+    </CollectionItemEl>
   );
 };
 

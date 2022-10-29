@@ -12,8 +12,8 @@ export const DialogOverlay = () => {
   return <DialogPrimitive.Overlay className={classes} />;
 };
 
-export const DialogClose = ({ className }) => (
-  <DialogPrimitive.Close asChild>
+export const DialogClose = ({ className, ...props }) => (
+  <DialogPrimitive.Close asChild {...props}>
     <Button
       className={className ? className : "fixed top-12 right-12 z-10"}
       circle
