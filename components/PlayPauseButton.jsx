@@ -48,7 +48,8 @@ const PlayPauseButton = ({
       setIsPlaying(true);
 
       if (tracklist && tracklist.length) {
-        updateList(track, i);
+        // index is undefined if playing from the Radio, so default to 0
+        updateList(track, i || 0);
       }
     }
   }
