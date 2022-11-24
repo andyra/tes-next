@@ -6,8 +6,20 @@ const DESCRIPTION =
   "This Evening's Show is a radio broadcast transmitting from an abandoned monorail station outside Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade of bizarre characters, historic factoids, surreal comedy, improvised news, interviews, and original music";
 const IMAGE_URL =
   "https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg";
-const CATEGORY = "Comedy";
 const OWNER = "Andy Smith";
+const CATEGORIES = [
+  {
+    title: "Comedy",
+    subcategories: ["Comedy Interviews", "Improv"],
+  },
+  {
+    title: "Music",
+  },
+  {
+    title: "Fiction",
+    subcategories: ["Comedy Fiction"],
+  },
+];
 
 function truncateDescription(str) {
   return str.split(" ").splice(0, 10).join(" ");
@@ -43,9 +55,7 @@ export async function generateFeedItem(episode) {
       }</itunes:subtitle>
       <description>${description}</description>
       <enclosure
-        url="https://dts.podtrac.com/redirect.mp3/${
-          episodeAudio.length ? episodeAudio[0].url : ""
-        }"
+        url="${episodeAudio.length ? episodeAudio[0].url : ""}"
         type="audio/mpeg"
         length="1024"
       />
@@ -70,7 +80,7 @@ export async function generateFeed(episodes) {
     <title>${TITLE}</title>
     <link>${BASE_URL}</link>
     <language>en</language>
-    <atom:link href="${BASE_URL}feed" rel="self" type="application/rss+xml" />
+    <atom:link href="${BASE_URL}feed.xml" rel="self" type="application/rss+xml" />
     <description>${DESCRIPTION}</description>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <pubDate>${lastBuildDate}</pubDate>
@@ -84,7 +94,15 @@ export async function generateFeed(episodes) {
       <itunes:email>${EMAIL}</itunes:email>
     </itunes:owner>
     <itunes:explicit>no</itunes:explicit>
-    <itunes:category text="${CATEGORY}" />
+    ${CATEGORIES.map((category) => {
+      return category.subcategories
+        ? `<itunes:category text="${category.title}">
+            ${category.subcategories
+              .map((subcategory) => `<itunes:category text="${subcategory}" />`)
+              .join("")}
+          </itunes:category>`
+        : `<itunes:category text="${category.title}" />`;
+    }).join("")}
     <itunes:image href="${IMAGE_URL}" />
     <image>
       <url>${IMAGE_URL}</url>
