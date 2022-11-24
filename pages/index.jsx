@@ -14,7 +14,7 @@ import {
   getCollectionType,
   normalizeCollections,
   normalizeFullEpisode,
-  normalizeTracklist
+  normalizeTracklist,
 } from "../helpers";
 import { shuffle } from "helpers/utils";
 const fs = require("fs");
@@ -97,7 +97,7 @@ const ShufflePlayer = () => {
   const shuffledPlayableTracks = shuffle(
     normalizeCollections({
       collections: data.entries,
-      playableOnly: true
+      playableOnly: true,
     })
   ).splice(0, 50);
 
@@ -164,7 +164,7 @@ export default function Home({ latestAlbums, episodes }) {
           </Button>
         </header>
         <ul className="grid grid-cols-2 sm:grid-cols-4 -mx-8 md:-mx-16 relative">
-          {latestAlbums.map(album => (
+          {latestAlbums.map((album) => (
             <CollectionItem collection={album} key={album.slug} gridView />
           ))}
         </ul>
@@ -230,11 +230,7 @@ export async function getStaticProps(context) {
             releaseDate
           }
         }
-        episodes: entries(
-          section: "episodes"
-          limit: 1
-          orderBy: "releaseDate DESC"
-        ) {
+        episodes: entries(section: "episodes", orderBy: "releaseDate DESC") {
           slug
           title
           uri
@@ -250,7 +246,7 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
 
   const feed = await generateFeed(data.episodes);
@@ -259,7 +255,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       latestAlbums: data.albums,
-      episodes: data.episodes
-    }
+      episodes: data.episodes,
+    },
   };
 }
