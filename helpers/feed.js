@@ -52,50 +52,47 @@ export async function generateFeedItem(episode) {
       <itunes:author>${TITLE}</itunes:author>
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
-    </item>
-  `;
+    </item>`;
 }
 
 export async function generateFeed(episodes) {
   const items = await Promise.all(episodes.map(generateFeedItem));
   const lastBuildDate = new Date(episodes[0].releaseDate).toUTCString();
 
-  return `
-    <rss
-      xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
-      xmlns:atom="http://www.w3.org/2005/Atom"
-      xmlns:content="http://purl.org/rss/1.0/modules/content/"
-      xmlns:dc="http://purl.org/dc/elements/1.1/"
-      version="2.0"
-    >
-      <channel>
-        <title>${TITLE}</title>
-        <link>${BASE_URL}</link>
-        <language>en</language>
-        <atom:link href="${BASE_URL}feed" rel="self" type="application/rss+xml" />
-        <description>${DESCRIPTION}</description>
-        <lastBuildDate>${lastBuildDate}</lastBuildDate>
-        <pubDate>${lastBuildDate}</pubDate>
-        <copyright>All rights reserved</copyright>
-        <webMaster>${EMAIL} (${OWNER})</webMaster>
-        <itunes:subtitle>${truncateDescription(DESCRIPTION)}</itunes:subtitle>
-        <itunes:author>${TITLE}</itunes:author>
-        <itunes:summary>${DESCRIPTION}</itunes:summary>
-        <itunes:owner>
-          <itunes:name>${OWNER}</itunes:name>
-          <itunes:email>${EMAIL}</itunes:email>
-        </itunes:owner>
-        <itunes:explicit>no</itunes:explicit>
-        <itunes:category text="${CATEGORY}" />
-        <itunes:image href="${IMAGE_URL}" />
-        <image>
-          <url>${IMAGE_URL}</url>
-          <title>${TITLE}</title>
-          <link>${BASE_URL}</link>
-        </image>
-        <itunes:new-feed-url>${BASE_URL}feed.xml</itunes:new-feed-url>
-        ${items.join("")}
-      </channel>
-    </rss>
-  `;
+  return `<rss
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="2.0"
+>
+  <channel>
+    <title>${TITLE}</title>
+    <link>${BASE_URL}</link>
+    <language>en</language>
+    <atom:link href="${BASE_URL}feed" rel="self" type="application/rss+xml" />
+    <description>${DESCRIPTION}</description>
+    <lastBuildDate>${lastBuildDate}</lastBuildDate>
+    <pubDate>${lastBuildDate}</pubDate>
+    <copyright>All rights reserved</copyright>
+    <webMaster>${EMAIL} (${OWNER})</webMaster>
+    <itunes:subtitle>${truncateDescription(DESCRIPTION)}</itunes:subtitle>
+    <itunes:author>${TITLE}</itunes:author>
+    <itunes:summary>${DESCRIPTION}</itunes:summary>
+    <itunes:owner>
+      <itunes:name>${OWNER}</itunes:name>
+      <itunes:email>${EMAIL}</itunes:email>
+    </itunes:owner>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:category text="${CATEGORY}" />
+    <itunes:image href="${IMAGE_URL}" />
+    <image>
+      <url>${IMAGE_URL}</url>
+      <title>${TITLE}</title>
+      <link>${BASE_URL}</link>
+    </image>
+    <itunes:new-feed-url>${BASE_URL}feed.xml</itunes:new-feed-url>
+    ${items.join("")}
+  </channel>
+</rss>`;
 }

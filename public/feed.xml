@@ -1,41 +1,41 @@
-
-    <rss
-      xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
-      xmlns:atom="http://www.w3.org/2005/Atom"
-      xmlns:content="http://purl.org/rss/1.0/modules/content/"
-      xmlns:dc="http://purl.org/dc/elements/1.1/"
-      version="2.0"
-    >
-      <channel>
-        <title>This Evening's Show</title>
-        <link>https://tes.fm/</link>
-        <language>en</language>
-        <atom:link href="https://tes.fm/feed" rel="self" type="application/rss+xml" />
-        <description>This Evening's Show is a radio broadcast transmitting from an abandoned monorail station outside Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade of bizarre characters, historic factoids, surreal comedy, improvised news, interviews, and original music</description>
-        <lastBuildDate>Wed, 18 Jul 2018 00:00:00 GMT</lastBuildDate>
-        <pubDate>Wed, 18 Jul 2018 00:00:00 GMT</pubDate>
-        <copyright>All rights reserved</copyright>
-        <webMaster>tes.thiseveningsshow@gmail.com (Andy Smith)</webMaster>
-        <itunes:subtitle>This Evening's Show is a radio broadcast transmitting from an</itunes:subtitle>
-        <itunes:author>This Evening's Show</itunes:author>
-        <itunes:summary>This Evening's Show is a radio broadcast transmitting from an abandoned monorail station outside Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade of bizarre characters, historic factoids, surreal comedy, improvised news, interviews, and original music</itunes:summary>
-        <itunes:owner>
-          <itunes:name>Andy Smith</itunes:name>
-          <itunes:email>tes.thiseveningsshow@gmail.com</itunes:email>
-        </itunes:owner>
-        <itunes:explicit>no</itunes:explicit>
-        <itunes:category text="Comedy" />
-        <itunes:image href="https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg" />
-        <image>
-          <url>https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg</url>
-          <title>This Evening's Show</title>
-          <link>https://tes.fm/</link>
-        </image>
-        
+<rss
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="2.0"
+>
+  <channel>
+    <title>This Evening's Show</title>
+    <link>https://tes.fm/</link>
+    <language>en</language>
+    <atom:link href="https://tes.fm/feed" rel="self" type="application/rss+xml" />
+    <description>This Evening's Show is a radio broadcast transmitting from an abandoned monorail station outside Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade of bizarre characters, historic factoids, surreal comedy, improvised news, interviews, and original music</description>
+    <lastBuildDate>Wed, 18 Jul 2018 00:00:00 GMT</lastBuildDate>
+    <pubDate>Wed, 18 Jul 2018 00:00:00 GMT</pubDate>
+    <copyright>All rights reserved</copyright>
+    <webMaster>tes.thiseveningsshow@gmail.com (Andy Smith)</webMaster>
+    <itunes:subtitle>This Evening's Show is a radio broadcast transmitting from an</itunes:subtitle>
+    <itunes:author>This Evening's Show</itunes:author>
+    <itunes:summary>This Evening's Show is a radio broadcast transmitting from an abandoned monorail station outside Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade of bizarre characters, historic factoids, surreal comedy, improvised news, interviews, and original music</itunes:summary>
+    <itunes:owner>
+      <itunes:name>Andy Smith</itunes:name>
+      <itunes:email>tes.thiseveningsshow@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:category text="Comedy" />
+    <itunes:image href="https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg" />
+    <image>
+      <url>https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg</url>
+      <title>This Evening's Show</title>
+      <link>https://tes.fm/</link>
+    </image>
+    <itunes:new-feed-url>https://tes.fm/feed.xml</itunes:new-feed-url>
+    
     <item>
       <title>30 Party Mechanic</title>
       <link>https://tes.fm/episodes/30-party-mechanic</link>
-      <guid>https://tes.fm/episodes/30-party-mechanic</guid>
+      <guid>https://thiseveningsshow.com/episodes/30-party-mechanic</guid>
       <pubDate>Wed, 18 Jul 2018 00:00:00 GMT</pubDate>
       <itunes:summary>In this episode, meet Mike Bluebird the Party Mechanic, listen in on real-time recordings of a genuine Pirate's Mirror Talking Circle, and dive deep into the cult phenomenon of Gearheart's Challenge. Interested in a city-wide hidden microphone recording assemblage ? Want to major in Lunch in school? You bet! All this and way more, right here. CKNWR Radio Station. This Evening's Show. Begins...NOW</itunes:summary>
       <itunes:subtitle>In this episode, meet Mike Bluebird the Party Mechanic, listen</itunes:subtitle>
@@ -49,11 +49,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>29 Just Bump It!</title>
       <link>https://tes.fm/episodes/29-just-bump-it</link>
-      <guid>https://tes.fm/episodes/29-just-bump-it</guid>
+      <guid>https://thiseveningsshow.com/episodes/29-just-bump-it</guid>
       <pubDate>Sat, 17 Mar 2018 00:00:00 GMT</pubDate>
       <itunes:summary>Mox Proximus and the Skateboard Patrol</itunes:summary>
       <itunes:subtitle>Mox Proximus and the Skateboard Patrol</itunes:subtitle>
@@ -67,11 +66,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>28 Jamboricnic</title>
       <link>https://tes.fm/episodes/28-jamboricnic</link>
-      <guid>https://tes.fm/episodes/28-jamboricnic</guid>
+      <guid>https://thiseveningsshow.com/episodes/28-jamboricnic</guid>
       <pubDate>Sat, 03 Feb 2018 00:00:00 GMT</pubDate>
       <itunes:summary>Meet the fan club of the city's hippest carpet salesman, Guy Clark, at his monthly Jamboricnic. Harassed by a hologram? Face your fears! What it takes to register your religion with the Religious Board, and peep in to a stolen conversation about panthercide! Plus, all the music you can handle on this week's TES!</itunes:summary>
       <itunes:subtitle>Meet the fan club of the city's hippest carpet salesman,</itunes:subtitle>
@@ -85,11 +83,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>27 Flamingo Farm</title>
       <link>https://tes.fm/episodes/27-flamingo-farm</link>
-      <guid>https://tes.fm/episodes/27-flamingo-farm</guid>
+      <guid>https://thiseveningsshow.com/episodes/27-flamingo-farm</guid>
       <pubDate>Fri, 01 Sep 2017 00:00:00 GMT</pubDate>
       <itunes:summary>This week, a demo tape from City Burger manager Sanjay Arrow, get the inside scoop directly from the Senate debate floor, a dip into the wild world of Flamingo Farming, and advice from one pirate to another. All this and, as always, more on TES.</itunes:summary>
       <itunes:subtitle>This week, a demo tape from City Burger manager Sanjay</itunes:subtitle>
@@ -103,11 +100,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>Field Report: Wisdom to Take from Yanna Barom</title>
       <link>https://tes.fm/episodes/field-report-wisdom-to-take-from-yanna-barom</link>
-      <guid>https://tes.fm/episodes/field-report-wisdom-to-take-from-yanna-barom</guid>
+      <guid>https://thiseveningsshow.com/episodes/field-report-wisdom-to-take-from-yanna-barom</guid>
       <pubDate>Fri, 19 May 2017 00:00:00 GMT</pubDate>
       <itunes:summary>John Starboard and the surveyor Mr. Atol stumble across desert poet Yanna Barom while searching for the Monorail Station's "Center Stone."</itunes:summary>
       <itunes:subtitle>John Starboard and the surveyor Mr. Atol stumble across desert</itunes:subtitle>
@@ -121,11 +117,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>26 Black MIDI</title>
       <link>https://tes.fm/episodes/26-black-midi</link>
-      <guid>https://tes.fm/episodes/26-black-midi</guid>
+      <guid>https://thiseveningsshow.com/episodes/26-black-midi</guid>
       <pubDate>Sun, 05 Mar 2017 00:00:00 GMT</pubDate>
       <itunes:summary>This week: a weirdo foray into the mayhem of Black MIDI music, plus an important message from the hit show "The Law Is the Law," hot news tech talks, and another ride on your favorite on-the-way-to-school segment, "The Bus!"</itunes:summary>
       <itunes:subtitle>This week: a weirdo foray into the mayhem of Black</itunes:subtitle>
@@ -139,11 +134,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>25 Under the Mall</title>
       <link>https://tes.fm/episodes/25-under-the-mall</link>
-      <guid>https://tes.fm/episodes/25-under-the-mall</guid>
+      <guid>https://thiseveningsshow.com/episodes/25-under-the-mall</guid>
       <pubDate>Fri, 14 Oct 2016 00:00:00 GMT</pubDate>
       <itunes:summary>This week: an audio trip down into the seedy underbelly beneath the Yakov Tinkter Mall! Witness dogs embattled in a game of chess, visit a gift shop entirely dedicated to describing itself, and hear the real Bob Robart explains the inner workings of the Bogarth Engine. And as always, a generous helping of music from way far out.</itunes:summary>
       <itunes:subtitle>This week: an audio trip down into the seedy underbelly</itunes:subtitle>
@@ -157,11 +151,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>Field Report: Skyscraper Origin Spider Monkey Air Rifle</title>
       <link>https://tes.fm/episodes/field-report-skyscraper-origin-spider-monkey-air-rifle</link>
-      <guid>https://tes.fm/episodes/field-report-skyscraper-origin-spider-monkey-air-rifle</guid>
+      <guid>https://thiseveningsshow.com/episodes/field-report-skyscraper-origin-spider-monkey-air-rifle</guid>
       <pubDate>Mon, 25 Jul 2016 00:00:00 GMT</pubDate>
       <itunes:summary>TES Short: A rogue spider monkey steals John's airgun and attacks a local land surveyor, who John encounters in the field. And don't miss the finger-licking theme song for the Adobe Skyscraper composed by a team of real blind scientists.</itunes:summary>
       <itunes:subtitle>TES Short: A rogue spider monkey steals John's airgun and</itunes:subtitle>
@@ -175,11 +168,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>24 Live from Deli-Hana Beach!</title>
       <link>https://tes.fm/episodes/24-live-from-deli-hana-beach</link>
-      <guid>https://tes.fm/episodes/24-live-from-deli-hana-beach</guid>
+      <guid>https://thiseveningsshow.com/episodes/24-live-from-deli-hana-beach</guid>
       <pubDate>Mon, 20 Jun 2016 00:00:00 GMT</pubDate>
       <itunes:summary>This week, live from Deli Hana beach on St. Tsonga Island! Visit the Tsonga Student Casino, hear the Leather Lips’ take on garbage rock, and take an audio trip to the Country Fair with the afternoon DJ. Oh, and don't forget about the preaching competition to fill the vacancy at the "St. Geronimo Church of the Outwit." All this...and...more.</itunes:summary>
       <itunes:subtitle>This week, live from Deli Hana beach on St. Tsonga</itunes:subtitle>
@@ -193,11 +185,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>Field Report: Birth of the Monkey King</title>
       <link>https://tes.fm/episodes/field-report-birth-of-the-monkey-king</link>
-      <guid>https://tes.fm/episodes/field-report-birth-of-the-monkey-king</guid>
+      <guid>https://thiseveningsshow.com/episodes/field-report-birth-of-the-monkey-king</guid>
       <pubDate>Thu, 26 May 2016 00:00:00 GMT</pubDate>
       <itunes:summary>TES Short: John goes hunting for a simian nuisance with a 4-weight tranquilizer dart.</itunes:summary>
       <itunes:subtitle>TES Short: John goes hunting for a simian nuisance with</itunes:subtitle>
@@ -211,11 +202,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>23 Minotaurs Among Us</title>
       <link>https://tes.fm/episodes/23-minotaurs-among-us</link>
-      <guid>https://tes.fm/episodes/23-minotaurs-among-us</guid>
+      <guid>https://thiseveningsshow.com/episodes/23-minotaurs-among-us</guid>
       <pubDate>Wed, 06 Apr 2016 00:00:00 GMT</pubDate>
       <itunes:summary>What's it like to be detained in the belly of a hovering police robot as it transports you to Minotaur Mountain? What advice is Aneda pedaling to her callers? What new music is Louier Mastodon listening to when he gets off his shift at the dog food factory? All this and more! Listen.</itunes:summary>
       <itunes:subtitle>What's it like to be detained in the belly of</itunes:subtitle>
@@ -229,11 +219,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>Field Report: Medieval Wig Campfire</title>
       <link>https://tes.fm/episodes/field-report-medieval-wig-campfire</link>
-      <guid>https://tes.fm/episodes/field-report-medieval-wig-campfire</guid>
+      <guid>https://thiseveningsshow.com/episodes/field-report-medieval-wig-campfire</guid>
       <pubDate>Wed, 24 Feb 2016 00:00:00 GMT</pubDate>
       <itunes:summary>TES Short: John discovers the famous jazz-rock band “Medieval Wig” partying around a campfire while on an expedition across the countryside in his GEAP.</itunes:summary>
       <itunes:subtitle>TES Short: John discovers the famous jazz-rock band “Medieval Wig”</itunes:subtitle>
@@ -247,11 +236,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>22 Planetary Timezones</title>
       <link>https://tes.fm/episodes/22-planetary-timezones</link>
-      <guid>https://tes.fm/episodes/22-planetary-timezones</guid>
+      <guid>https://thiseveningsshow.com/episodes/22-planetary-timezones</guid>
       <pubDate>Tue, 09 Feb 2016 00:00:00 GMT</pubDate>
       <itunes:summary>The mayor opens a celebratory champagne on The Bus, Alvin Jr. gets some shifty advice on "It's Personal with Aneda," and a mysterious pink fog terrorizes a small retirement community in the underfunded investigative TV show, "Twilight Time." And don't forget to keep up to date with the latest epidemic of mutant birds caused by kids throwing dog food out the window on the way to school.</itunes:summary>
       <itunes:subtitle>The mayor opens a celebratory champagne on The Bus, Alvin</itunes:subtitle>
@@ -265,11 +253,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>Field Report: Skeleton Crew</title>
       <link>https://tes.fm/episodes/field-report-skeleton-crew</link>
-      <guid>https://tes.fm/episodes/field-report-skeleton-crew</guid>
+      <guid>https://thiseveningsshow.com/episodes/field-report-skeleton-crew</guid>
       <pubDate>Tue, 02 Feb 2016 00:00:00 GMT</pubDate>
       <itunes:summary>TES Short: John calls a shifty coroner to remove a skeleton from the monorail station.</itunes:summary>
       <itunes:subtitle>TES Short: John calls a shifty coroner to remove a</itunes:subtitle>
@@ -283,11 +270,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>Field Report: Waking the Central Computer</title>
       <link>https://tes.fm/episodes/field-report-waking-the-central-computer</link>
-      <guid>https://tes.fm/episodes/field-report-waking-the-central-computer</guid>
+      <guid>https://thiseveningsshow.com/episodes/field-report-waking-the-central-computer</guid>
       <pubDate>Tue, 26 Jan 2016 00:00:00 GMT</pubDate>
       <itunes:summary>John activates Mox Leviticus, the monorail station's central computer, who delivers a valuable lesson on the land of Akabius.</itunes:summary>
       <itunes:subtitle>John activates Mox Leviticus, the monorail station's central computer, who</itunes:subtitle>
@@ -301,11 +287,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>Field Report: Gas Leak!</title>
       <link>https://tes.fm/episodes/field-report-gas-leak</link>
-      <guid>https://tes.fm/episodes/field-report-gas-leak</guid>
+      <guid>https://thiseveningsshow.com/episodes/field-report-gas-leak</guid>
       <pubDate>Tue, 19 Jan 2016 00:00:00 GMT</pubDate>
       <itunes:summary>TES Short: Mox Leviticus help John Starboard fix a gas leak in the monorail station.</itunes:summary>
       <itunes:subtitle>TES Short: Mox Leviticus help John Starboard fix a gas</itunes:subtitle>
@@ -319,11 +304,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>21 Putt-Putt for Civilians</title>
       <link>https://tes.fm/episodes/21-putt-putt-for-civilians</link>
-      <guid>https://tes.fm/episodes/21-putt-putt-for-civilians</guid>
+      <guid>https://thiseveningsshow.com/episodes/21-putt-putt-for-civilians</guid>
       <pubDate>Sat, 02 Jan 2016 00:00:00 GMT</pubDate>
       <itunes:summary>Ray Wister joins as your host through the strange world of lost radio tapes. Local citizens call in to Rover Headquarters to complain about putt-putt clowns, course landscaper ldna Buffet makes an appearance on Morning Spa, and TES has its finger on the pulse of the county's mini golf political scene.</itunes:summary>
       <itunes:subtitle>Ray Wister joins as your host through the strange world</itunes:subtitle>
@@ -337,11 +321,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>20 Season One Call-In</title>
       <link>https://tes.fm/episodes/20-season-one-call-in</link>
-      <guid>https://tes.fm/episodes/20-season-one-call-in</guid>
+      <guid>https://thiseveningsshow.com/episodes/20-season-one-call-in</guid>
       <pubDate>Thu, 16 Jul 2015 00:00:00 GMT</pubDate>
       <itunes:summary>John and Louier field phone calls with listeners’ favorite memories from TES Season One. Reminisce about the Practical Chef, Bongalo Trees, and the oddity of Tongue Blend. Find out who's been listening to This Evening‘s Show around the city of Adobe Skyscraper, and how they spend their days. It's all here to discover on This Evening’s Show’s season one finale!</itunes:summary>
       <itunes:subtitle>John and Louier field phone calls with listeners’ favorite memories</itunes:subtitle>
@@ -355,11 +338,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>19 Wines of the Pleiodon Valley</title>
       <link>https://tes.fm/episodes/19-wines-of-the-pleiodon-valley</link>
-      <guid>https://tes.fm/episodes/19-wines-of-the-pleiodon-valley</guid>
+      <guid>https://thiseveningsshow.com/episodes/19-wines-of-the-pleiodon-valley</guid>
       <pubDate>Wed, 01 Jul 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Broadcasting live from the wine region of the Pleiodon Valley, just south of the city of Adobe Skyscraper. Your hosts sample choice wines from the Seven Continents (Minus One) winery and decide which wine is fit for drinking. Also, local historian Whitney Sage suggest methods of keeping werewolves out of vineyards, plus a message from a purported werewolf, and find out about hyper-aggressive birds from an avian expert. All this and more on This Evening‘s Show!</itunes:summary>
       <itunes:subtitle>Broadcasting live from the wine region of the Pleiodon Valley,</itunes:subtitle>
@@ -373,11 +355,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>18 Tonite We Dine in Monorail City!</title>
       <link>https://tes.fm/episodes/18-tonite-we-dine-in-monorail-city</link>
-      <guid>https://tes.fm/episodes/18-tonite-we-dine-in-monorail-city</guid>
+      <guid>https://thiseveningsshow.com/episodes/18-tonite-we-dine-in-monorail-city</guid>
       <pubDate>Wed, 17 Jun 2015 00:00:00 GMT</pubDate>
       <itunes:summary>John, Louier, and Charlie ride a monorail west to Monorail City where there are hot air balloons, botanical gardens, and 14-star restaurants in the canopy of a forest! Dine with a world-renowned food critic at the famous Green Bottle restaurant, learn how colors are made, and hear music for plants.</itunes:summary>
       <itunes:subtitle>John, Louier, and Charlie ride a monorail west to Monorail</itunes:subtitle>
@@ -391,11 +372,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>17 Wonderful Land Wonderful Band</title>
       <link>https://tes.fm/episodes/17-wonderful-land-wonderful-band</link>
-      <guid>https://tes.fm/episodes/17-wonderful-land-wonderful-band</guid>
+      <guid>https://thiseveningsshow.com/episodes/17-wonderful-land-wonderful-band</guid>
       <pubDate>Wed, 03 Jun 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Meet each of the eight members of the Wonderful Land Wonderful Band and, who discuss their touring contract with the Transportation Authority. Hear the band perform songs from their vast catalogue, live from the abandoned monorail station! Also: crucial steps to building a deck, straight from the mouth of deck builder extraordinaire Gary Yaraga. All this, and more, on This Evening‘s Show!</itunes:summary>
       <itunes:subtitle>Meet each of the eight members of the Wonderful Land</itunes:subtitle>
@@ -409,11 +389,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>16 Rover Update #614</title>
       <link>https://tes.fm/episodes/16-rover-update-614</link>
-      <guid>https://tes.fm/episodes/16-rover-update-614</guid>
+      <guid>https://thiseveningsshow.com/episodes/16-rover-update-614</guid>
       <pubDate>Tue, 19 May 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Go behind the scenes at Rover Central Station for a look at what goes on before the Rovers bring you their daily broadcast. The importance of keeping your microwave clean, unplugged landlines, the desert panda, Park Rangers, and a special call from King James on the King's Golden Microphone. The Rovers are always ready to help, and are ready to disseminate information to the public.</itunes:summary>
       <itunes:subtitle>Go behind the scenes at Rover Central Station for a</itunes:subtitle>
@@ -427,11 +406,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>Field Report: Moxygen</title>
       <link>https://tes.fm/episodes/field-report-moxygen</link>
-      <guid>https://tes.fm/episodes/field-report-moxygen</guid>
+      <guid>https://thiseveningsshow.com/episodes/field-report-moxygen</guid>
       <pubDate>Tue, 12 May 2015 00:00:00 GMT</pubDate>
       <itunes:summary>TES Short: Something is wrong with the HVAC unit! Also, does Mox Proximus, the helpful computer, need oxygen to operate at peak computing power? To find out, you'll have to listen to this episode. Now!</itunes:summary>
       <itunes:subtitle>TES Short: Something is wrong with the HVAC unit! Also,</itunes:subtitle>
@@ -445,11 +423,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>15 Dangerous People on the Street (feat. Song Chamber)</title>
       <link>https://tes.fm/episodes/15-dangerous-people-on-the-street-feat-song-chamber</link>
-      <guid>https://tes.fm/episodes/15-dangerous-people-on-the-street-feat-song-chamber</guid>
+      <guid>https://thiseveningsshow.com/episodes/15-dangerous-people-on-the-street-feat-song-chamber</guid>
       <pubDate>Tue, 05 May 2015 00:00:00 GMT</pubDate>
       <itunes:summary>How to stay safe when you're out on the street (or on the sidewalk). We will learn what type of people to avoid, the difference between thuggers, muggers, and buggers, and who's (unfortunately) back in town. Tune in for a message from a retired thugger, and a firsthand account of what the notorious Funny Face is up to. Also, we visit with an expert on effects pedals. Featuring Jared Borkowski of the Song Chamber podcast, it's This Evening‘s Show!</itunes:summary>
       <itunes:subtitle>How to stay safe when you're out on the street</itunes:subtitle>
@@ -463,11 +440,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>14 Radio Pods</title>
       <link>https://tes.fm/episodes/14-radio-pods</link>
-      <guid>https://tes.fm/episodes/14-radio-pods</guid>
+      <guid>https://thiseveningsshow.com/episodes/14-radio-pods</guid>
       <pubDate>Wed, 22 Apr 2015 00:00:00 GMT</pubDate>
       <itunes:summary>This week: all about Radio Pods! Radio Pod technician DeAnna Groversfield joins to explain some of the technicalities of these broadcast chambers high up in space, and noted Hobo Marshall Gabreel describes his group's personal use of radio pods for information dissemination. Also, a kid gets trapped in a Pod while playing guitar and is rescued by a high-altitude helicopter team! Jeremy Scrine of the Scrine's Aging Institute teaches about 80-year-old-kids.</itunes:summary>
       <itunes:subtitle>This week: all about Radio Pods! Radio Pod technician DeAnna</itunes:subtitle>
@@ -481,11 +457,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>13 Morning Spa: Ralph Kennidy</title>
       <link>https://tes.fm/episodes/13-morning-spa-ralph-kennidy</link>
-      <guid>https://tes.fm/episodes/13-morning-spa-ralph-kennidy</guid>
+      <guid>https://thiseveningsshow.com/episodes/13-morning-spa-ralph-kennidy</guid>
       <pubDate>Wed, 08 Apr 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Harold Kellog and JP Spline help ease you into the morning with an episode of Morning Spa. Learn how to treat a malfunctioning Theraslave and find out about the joys of waterfall popsicles. Also, find out who’s Adobega's Most Wanted person (and whether or not they should be). Your hosts will also let you know what to look out for in the approaching day. It's all very S P A.</itunes:summary>
       <itunes:subtitle>Harold Kellog and JP Spline help ease you into the</itunes:subtitle>
@@ -499,11 +474,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>12 The Inquiwizard</title>
       <link>https://tes.fm/episodes/12-the-inquiwizard</link>
-      <guid>https://tes.fm/episodes/12-the-inquiwizard</guid>
+      <guid>https://thiseveningsshow.com/episodes/12-the-inquiwizard</guid>
       <pubDate>Tue, 31 Mar 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Local historian Brian Fabenasa explains the Inquiwizard, the one-time ruler of the Port Essoo region. Also, learn about the qualifications you must possess if you want to try-out for the local Radioball team. Find out what secrets are being housed deep in the sub-basement of the Adobe Skyscraper, and hear weirdo local phone calls.</itunes:summary>
       <itunes:subtitle>Local historian Brian Fabenasa explains the Inquiwizard, the one-time ruler</itunes:subtitle>
@@ -517,11 +491,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>11 The Bus about Buttons, P.E., and Pencils</title>
       <link>https://tes.fm/episodes/11-the-bus-about-buttons-p-e-and-pencils</link>
-      <guid>https://tes.fm/episodes/11-the-bus-about-buttons-p-e-and-pencils</guid>
+      <guid>https://thiseveningsshow.com/episodes/11-the-bus-about-buttons-p-e-and-pencils</guid>
       <pubDate>Wed, 25 Mar 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Join bus driver Don Sitso as he broadcasts live from the school bus on the way to school. This morning, he'll introduce the series “The Top 1000 Reasons to Want to go to School Today”. Listen for special announcements from Librarian Mrs. Higgenbotham, Coach Kline from P.E., and several cyborg janitors. And discover the new button incentive to limit the number of non-student passengers on the bus. Get ready for The Bus today!</itunes:summary>
       <itunes:subtitle>Join bus driver Don Sitso as he broadcasts live from</itunes:subtitle>
@@ -535,11 +508,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>10 The History of King James, or Trumpeters Take Dictation</title>
       <link>https://tes.fm/episodes/10-the-history-of-king-james-or-trumpeters-take-dictation</link>
-      <guid>https://tes.fm/episodes/10-the-history-of-king-james-or-trumpeters-take-dictation</guid>
+      <guid>https://thiseveningsshow.com/episodes/10-the-history-of-king-james-or-trumpeters-take-dictation</guid>
       <pubDate>Wed, 18 Mar 2015 00:00:00 GMT</pubDate>
       <itunes:summary>This week, all about King James! Plus, Matt Slime stops by to tell the world about the Matt Slime Deli Special. Dr. Mamoud joins to teach a mummy safety course. Sexson Ryesmit takes us through a short canoe building theory course. Also, three of the worlds best trumpeters compete for the audience's favor. It's a wonderful episode, so turn your radio dial all the way to the right, to TES!</itunes:summary>
       <itunes:subtitle>This week, all about King James! Plus, Matt Slime stops</itunes:subtitle>
@@ -553,11 +525,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>09 Morning Spa: The Toad Will Be Accepted</title>
       <link>https://tes.fm/episodes/9-morning-spa-the-toad-will-be-accepted</link>
-      <guid>https://tes.fm/episodes/9-morning-spa-the-toad-will-be-accepted</guid>
+      <guid>https://thiseveningsshow.com/episodes/9-morning-spa-the-toad-will-be-accepted</guid>
       <pubDate>Mon, 09 Mar 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Ease into your morning with an episode of Morning Spa. Join hosts Harold Kellog and J.P. Spline as they give you news, music and information in an atmosphere of Spa. Learn how the Gray and Green political parties came to an agreement about the upcoming elections, and find out about the Morning Spa poetry contest. A perfect stop on your morning map: Morning Spa.</itunes:summary>
       <itunes:subtitle>Ease into your morning with an episode of Morning Spa.</itunes:subtitle>
@@ -571,11 +542,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>08 1,000 Foot XLR</title>
       <link>https://tes.fm/episodes/8-1000-foot-xlr</link>
-      <guid>https://tes.fm/episodes/8-1000-foot-xlr</guid>
+      <guid>https://thiseveningsshow.com/episodes/8-1000-foot-xlr</guid>
       <pubDate>Mon, 02 Mar 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Join us for the annual budget fundraiser! Special guest Ray Spielberg (namer of the Spielberg Bat) helps jangle the phone lines. Also, be pleased to take a tour around the Adobe Skyscraper while Louier and Charlie try out the new extra EXTRA long microphone cables! Travel the elevator and the stairs, from the lobby to the roof, and meet all sorts of folks in-between. It's This Evening's Show!</itunes:summary>
       <itunes:subtitle>Join us for the annual budget fundraiser! Special guest Ray</itunes:subtitle>
@@ -589,11 +559,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>07 Gorami Mountain Avalanche</title>
       <link>https://tes.fm/episodes/7-gorami-mountain-avalanche</link>
-      <guid>https://tes.fm/episodes/7-gorami-mountain-avalanche</guid>
+      <guid>https://thiseveningsshow.com/episodes/7-gorami-mountain-avalanche</guid>
       <pubDate>Sat, 21 Feb 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Revisiting the devastating Gorami Mountain Avalanche of '83, which trapped hundreds of vacationers in the Gorami Mountain Ski Resort. Listen to never-before-heard secret market research audio tapes and the Gorami Mountain Band. Local celebrities Board Game Guru and Rector Kirby enjoy the musical stylings of The Cool Customers, the real-life cartoon band, from inside the resort. It's a trip back to 1983 with This Evening's Show—be ready for snow!</itunes:summary>
       <itunes:subtitle>Revisiting the devastating Gorami Mountain Avalanche of '83, which trapped</itunes:subtitle>
@@ -607,11 +576,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>Field Report: Stew for the Dintos</title>
       <link>https://tes.fm/episodes/field-report-stew-for-the-dintos</link>
-      <guid>https://tes.fm/episodes/field-report-stew-for-the-dintos</guid>
+      <guid>https://thiseveningsshow.com/episodes/field-report-stew-for-the-dintos</guid>
       <pubDate>Tue, 17 Feb 2015 00:00:00 GMT</pubDate>
       <itunes:summary>TES Short: Mox plays the radio to entertain John while he cooks a stew for the native Dinto population.</itunes:summary>
       <itunes:subtitle>TES Short: Mox plays the radio to entertain John while</itunes:subtitle>
@@ -625,11 +593,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>Field Report: The Mugician Speaks!</title>
       <link>https://tes.fm/episodes/field-report-the-mugician-speaks</link>
-      <guid>https://tes.fm/episodes/field-report-the-mugician-speaks</guid>
+      <guid>https://thiseveningsshow.com/episodes/field-report-the-mugician-speaks</guid>
       <pubDate>Sun, 15 Feb 2015 00:00:00 GMT</pubDate>
       <itunes:summary>TES Short: The fantastic transporting “Mugician” visits John as he fixes the lighting system in the Monorail Station. He really is fantastic!</itunes:summary>
       <itunes:subtitle>TES Short: The fantastic transporting “Mugician” visits John as he</itunes:subtitle>
@@ -643,11 +610,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>06 Rover Update on the Inverted Pyramid</title>
       <link>https://tes.fm/episodes/6-rover-update-on-the-inverted-pyramid</link>
-      <guid>https://tes.fm/episodes/6-rover-update-on-the-inverted-pyramid</guid>
+      <guid>https://thiseveningsshow.com/episodes/6-rover-update-on-the-inverted-pyramid</guid>
       <pubDate>Sat, 14 Feb 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Go behind the scenes at Rover Central Station for a look at what goes on before the Rovers bring you their daily broadcast. Discover how they verify (and double-verify) where trouble is in the city before anyone else knows. Enjoy a new Rover Update, complete with information over dangerous potholes, the encroachment of animals, the establishment of a new world order, and the due-diligence of maintaining one’s secure telephone landline. Also, hear an exciting Field Report and Timothy Grass safety advice!</itunes:summary>
       <itunes:subtitle>Go behind the scenes at Rover Central Station for a</itunes:subtitle>
@@ -661,11 +627,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>05 The Commodore of Lost Cruzes</title>
       <link>https://tes.fm/episodes/5-the-commodore-of-lost-cruzes</link>
-      <guid>https://tes.fm/episodes/5-the-commodore-of-lost-cruzes</guid>
+      <guid>https://thiseveningsshow.com/episodes/5-the-commodore-of-lost-cruzes</guid>
       <pubDate>Sat, 07 Feb 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Take a trip to the floating cruise ship city-state of Lost Cruzes to learn about the enigmatic comatose dictator known as The Commodore. Professor Brian Fabenasa explains the team of nurses who interpret his every thought into official decree. Listen to actual audio recording of the operating room and see firsthand how his thoughts are synthesized into discernible messages.</itunes:summary>
       <itunes:subtitle>Take a trip to the floating cruise ship city-state of</itunes:subtitle>
@@ -679,11 +644,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>04 A Survey of the Saltower Sea</title>
       <link>https://tes.fm/episodes/4-a-survey-of-the-saltower-sea</link>
-      <guid>https://tes.fm/episodes/4-a-survey-of-the-saltower-sea</guid>
+      <guid>https://thiseveningsshow.com/episodes/4-a-survey-of-the-saltower-sea</guid>
       <pubDate>Sun, 01 Feb 2015 00:00:00 GMT</pubDate>
       <itunes:summary>This week, a survey of the Saltower Sea. Teddy Edison of the Geograph Explorers describes the geological intricacies of this area, and freelance researcher Adam Firesaw enlightens us about indigenous flora and fauna. Also featuring Pop culture correspondent Xavier Badillion and Saltower resident Sal Tweeter. It’s a wonderful opportunity to learn the ins-and-outs of the great and mysterious Saltower Sea.</itunes:summary>
       <itunes:subtitle>This week, a survey of the Saltower Sea. Teddy Edison</itunes:subtitle>
@@ -697,11 +661,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>03 Jeremy Rhinolander's "Believe in Your Thoughts" #18</title>
       <link>https://tes.fm/episodes/3-jeremy-rhinolanders-believe-in-your-thoughts-18</link>
-      <guid>https://tes.fm/episodes/3-jeremy-rhinolanders-believe-in-your-thoughts-18</guid>
+      <guid>https://thiseveningsshow.com/episodes/3-jeremy-rhinolanders-believe-in-your-thoughts-18</guid>
       <pubDate>Wed, 28 Jan 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Join abstract thought enthusiast Jeremy Rhinolander as encourages you to believe in each and every thought that you have because THEY ARE REAL. He will discuss the existence of a frog with a man's voice, the misery of being defeated by the Board Game Guru, and will visit with the omnipresent pan-dimensional being known as “Frick Richards.” As usual, there will be a live swap meet on-air, musical hits from the 70's, and a special message from the President.</itunes:summary>
       <itunes:subtitle>Join abstract thought enthusiast Jeremy Rhinolander as encourages you to</itunes:subtitle>
@@ -715,11 +678,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>02 The Bus about Snails, Books and Brains</title>
       <link>https://tes.fm/episodes/2-the-bus-about-snails-books-and-brains</link>
-      <guid>https://tes.fm/episodes/2-the-bus-about-snails-books-and-brains</guid>
+      <guid>https://thiseveningsshow.com/episodes/2-the-bus-about-snails-books-and-brains</guid>
       <pubDate>Fri, 16 Jan 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Join us for an episode of The Bus, broadcast live from the bus on the way to school! The driver plays educational videos about snails and The Farmer's Plight. Stay tunes for a special Cyborg Janitor announcement about library books, plus the weather boy will let you know what the weather will be like at recess. You'll also learn about planning your day with the use of a morning map, courtesy of the Three Men With One Mind. It's time for The Bus!</itunes:summary>
       <itunes:subtitle>Join us for an episode of The Bus, broadcast live</itunes:subtitle>
@@ -733,11 +695,10 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
     <item>
       <title>01 Urban Legends of Adobega County</title>
       <link>https://tes.fm/episodes/1-urban-legends-of-adobega-county</link>
-      <guid>https://tes.fm/episodes/1-urban-legends-of-adobega-county</guid>
+      <guid>https://thiseveningsshow.com/episodes/1-urban-legends-of-adobega-county</guid>
       <pubDate>Wed, 14 Jan 2015 00:00:00 GMT</pubDate>
       <itunes:summary>Join your radio hosts as they explore the top ten scariest urban wonders of Adobega County. Dean "Couch Man" Ramos describe his interactions with a super-intelligent monkey made of leaves, while local high school bird shop builder Manuel Lore recounts his misadventures with Gert. Local historian Whitney Sage waxes on the Rainbow Man, the Goof, and Invisible Gray Max. Is it all too scary? Find out on this week's TES.</itunes:summary>
       <itunes:subtitle>Join your radio hosts as they explore the top ten</itunes:subtitle>
@@ -751,7 +712,5 @@
       <itunes:duration>00:59:59</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
-  
-      </channel>
-    </rss>
-  
+  </channel>
+</rss>
