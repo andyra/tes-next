@@ -24,11 +24,18 @@ export async function generateFeedItem(episode) {
   } = episode;
   const buildDate = new Date(releaseDate).toUTCString();
 
+  // Note: The GUID is maintained from the previous URL
+  // Make sure the original episode GUIDs are maintained and don’t change.
+  // Altering the GUID may result in duplicate episodes being shown to
+  // listeners, misrepresentation of data in Analytics, and may ultimately
+  // affect your show’s status on Apple Podcasts.
+  // https://podcasters.apple.com/support/837-change-the-rss-feed-url
+
   return `
     <item>
       <title>${title}</title>
       <link>${BASE_URL}episodes/${slug}</link>
-      <guid>${BASE_URL}episodes/${slug}</guid>
+      <guid>https://thiseveningsshow.com/episodes/${slug}</guid>
       <pubDate>${buildDate}</pubDate>
       <itunes:summary>${description}</itunes:summary>
       <itunes:subtitle>${
@@ -86,6 +93,7 @@ export async function generateFeed(episodes) {
           <title>${TITLE}</title>
           <link>${BASE_URL}</link>
         </image>
+        <itunes:new-feed-url>${BASE_URL}feed.xml</itunes:new-feed-url>
         ${items.join("")}
       </channel>
     </rss>
