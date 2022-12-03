@@ -47,7 +47,7 @@ const Computor = ({
   songCount,
   songs,
   strategies,
-  strategyCount
+  strategyCount,
 }) => {
   function handleCompute() {
     const shuffledSongs = shuffle([...songs]).splice(0, songCount);
@@ -58,7 +58,7 @@ const Computor = ({
     const items = shuffledSongs.map((song, i) => ({
       song: song,
       bleed: bleedsFor.indexOf(i) >= 0,
-      strategy: strategiesFor.indexOf(i) >= 0 ? shuffledStrategies[i] : null
+      strategy: strategiesFor.indexOf(i) >= 0 ? shuffledStrategies[i] : null,
     }));
     setSetlistItems(items);
   }
@@ -75,7 +75,7 @@ const Computor = ({
           labelClassName={LABEL_CLASSES}
           min={0}
           name="songs"
-          onChange={e => {
+          onChange={(e) => {
             setSongCount(parseInt(e.target.value));
           }}
           type="number"
@@ -90,7 +90,7 @@ const Computor = ({
           max={songCount - 1}
           min={0}
           name="bleeds"
-          onChange={e => {
+          onChange={(e) => {
             setBleedCount(parseInt(e.target.value));
           }}
           type="number"
@@ -105,7 +105,7 @@ const Computor = ({
           max={songCount}
           min={0}
           name="strategies"
-          onChange={e => {
+          onChange={(e) => {
             setStrategyCount(parseInt(e.target.value));
           }}
           type="number"
@@ -144,53 +144,53 @@ const SetlistItem = ({ item, i }) => {
   );
 
   return (
-    <Accordion.Item
-      className="relative"
-      value={song.title}
-      disabled={!hasLeadSheet}
-    >
-      {bleed && <BleedBorder />}
-      <Accordion.Trigger className={classes}>
-        <div className="flex items-center gap-16">
-          <span className="flex items-center justify-center w-32 h-32 text-lg font-medium text-primary-50 text-center border-2 bg-ground border-primary-50 rounded-full relative">
-            {i + 1}
-          </span>
-          <div className="flex-1 text-4xl">{song.title}</div>
-          {hasLeadSheet && (
-            <Badge className="text-sm text-primary-50">
-              Lead Sheet
-              <Icon name="ChevronDown" />
-            </Badge>
-          )}
-          <Tooltip content="Go to song">
-            <Button
-              circle
-              className="opacity-0 group-hover:opacity-100 transition"
-              href={song.uri}
-              icon="ArrowRight"
-              target="_blank"
-            />
-          </Tooltip>
-        </div>
-        {strategy && (
-          <div className="ml-40 text-xl text-primary-50">
-            &ldquo;{strategy}&rdquo;
+    <Accordion.Item asChild disabled={!hasLeadSheet} value={song.title}>
+      <li className="relative">
+        {bleed && <BleedBorder />}
+        <Accordion.Trigger className={classes}>
+          <div className="flex items-center gap-16">
+            <span className="flex items-center justify-center w-32 h-32 text-lg font-medium text-primary-50 text-center border-2 bg-ground border-primary-50 rounded-full relative">
+              {i + 1}
+            </span>
+            <div className="flex-1 text-4xl">{song.title}</div>
+            {hasLeadSheet && (
+              <Badge className="text-sm text-primary-50">
+                Lead Sheet
+                <Icon name="ChevronDown" />
+              </Badge>
+            )}
+            <Tooltip content="Go to song">
+              <Button
+                circle
+                className="opacity-0 group-hover:opacity-100 transition"
+                href={song.uri}
+                icon="ArrowRight"
+                target="_blank"
+              />
+            </Tooltip>
           </div>
-        )}
-      </Accordion.Trigger>
-      <Accordion.Content className="ml-64">
-        {hasLeadSheet && <LeadSheet song={song} />}
-      </Accordion.Content>
+          {strategy && (
+            <div className="ml-40 text-xl text-primary-50">
+              &ldquo;{strategy}&rdquo;
+            </div>
+          )}
+        </Accordion.Trigger>
+        <Accordion.Content className="ml-64">
+          {hasLeadSheet && <LeadSheet song={song} />}
+        </Accordion.Content>
+      </li>
     </Accordion.Item>
   );
 };
 
 const SetlistItems = ({ items }) =>
   items.length ? (
-    <Accordion.Root collapsible={true}>
-      {items.map((item, i) => (
-        <SetlistItem item={item} i={i} key={i} />
-      ))}
+    <Accordion.Root asChild collapsible={true}>
+      <ul>
+        {items.map((item, i) => (
+          <SetlistItem item={item} i={i} key={i} />
+        ))}
+      </ul>
     </Accordion.Root>
   ) : null;
 
@@ -252,14 +252,14 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
 
   return {
     props: {
       metaTitle: "Setlist Computor",
       songs: data.entries,
-      strategyGlobal: data.globalSets
-    }
+      strategyGlobal: data.globalSets,
+    },
   };
 }

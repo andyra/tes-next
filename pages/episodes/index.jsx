@@ -7,6 +7,7 @@ import Button from "components/Button";
 import GridListToggle from "components/GridListToggle";
 import Icon from "components/Icon";
 import PageHeader from "components/PageHeader";
+import { PODCAST_LINKS } from "../../constants";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -44,18 +45,17 @@ export default function Episodes({ episodes }) {
             news, interviews, and original music.
           </p>
           <footer className="flex flex-wrap items-center gap-8">
-            <Button variant="glass" iconLeft="Rss">
-              RSS
-            </Button>
-            <Button variant="glass" iconLeft="ApplePodcasts">
-              Apple Podcasts
-            </Button>
-            <Button variant="glass" iconLeft="Spotify">
-              Spotify
-            </Button>
-            <Button variant="glass" iconLeft="GooglePodcasts">
-              Google Podcasts
-            </Button>
+            {PODCAST_LINKS.map((link) => (
+              <Button
+                href={link.href}
+                iconLeft={link.icon}
+                key={link.title}
+                target="_blank"
+                variant="glass"
+              >
+                {link.title}
+              </Button>
+            ))}
           </footer>
         </div>
       </section>
@@ -65,7 +65,7 @@ export default function Episodes({ episodes }) {
           <GridListToggle gridView={gridView} setGridView={setGridView} />
         </div>
         <CollectionList gridView={gridView}>
-          {episodes.map(episode => (
+          {episodes.map((episode) => (
             <EpisodeItem
               episode={episode}
               key={episode.slug}
@@ -103,14 +103,14 @@ export async function getStaticProps() {
           }
         }
       }
-    `
+    `,
   });
 
   return {
     props: {
       episodes: data.entries,
       maxWidth: "max-w-screen-xl",
-      metaTitle: "Episodes"
-    }
+      metaTitle: "Episodes",
+    },
   };
 }
