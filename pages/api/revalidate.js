@@ -9,41 +9,41 @@ export default async function handler(req, res) {
   // Delete Entry
   // Save Entry
 
-  const eventName = req.body.name;
-  const uri = req.body.sender.uri;
-  const entryType = uri.split("/")[0];
-
-  try {
-    // Edit entry
-    if (eventName === "afterSave") {
-      await res.revalidate(`/${uri}`);
-    }
-
-    // Edit, New, or Delete entry
-    if (entryType === "albums") {
-      await res.revalidate(`/`);
-      await res.revalidate(`/albums`);
-      // TODO: Rebuilt specific song slugs
-    }
-    if (entryType === "episodes") {
-      await res.revalidate(`/`);
-      await res.revalidate(`/episodes`);
-    }
-    if (entryType === "library") {
-      await res.revalidate(`/library`);
-      // TODO Rebuild category pages
-    }
-    if (entryType === "songs") {
-      await res.revalidate(`/songs`);
-    }
-    if (entryType === "videos") {
-      await res.revalidate(`/videos`);
-    }
-
-    return res.json({ revalidated: true });
-  } catch (err) {
-    // If there was an error, Next.js will continue
-    // to show the last successfully generated page
-    return res.status(500).send("Error revalidating");
-  }
+  //   const eventName = req.body.name;
+  //   const uri = req.body.sender.uri;
+  //   const entryType = uri.split("/")[0];
+  //
+  //   try {
+  //     // Edit entry
+  //     if (eventName === "afterSave") {
+  //       await res.revalidate(`/${uri}`);
+  //     }
+  //
+  //     // Edit, New, or Delete entry
+  //     if (entryType === "albums") {
+  //       await res.revalidate(`/`);
+  //       await res.revalidate(`/albums`);
+  //       // TODO: Rebuilt specific song slugs
+  //     }
+  //     if (entryType === "episodes") {
+  //       await res.revalidate(`/`);
+  //       await res.revalidate(`/episodes`);
+  //     }
+  //     if (entryType === "library") {
+  //       await res.revalidate(`/library`);
+  //       // TODO Rebuild category pages
+  //     }
+  //     if (entryType === "songs") {
+  //       await res.revalidate(`/songs`);
+  //     }
+  //     if (entryType === "videos") {
+  //       await res.revalidate(`/videos`);
+  //     }
+  //
+  //     return res.json({ revalidated: true });
+  //   } catch (err) {
+  //     // If there was an error, Next.js will continue
+  //     // to show the last successfully generated page
+  //     return res.status(500).send("Error revalidating");
+  //   }
 }
