@@ -26,7 +26,7 @@ const App = ({ Component, pageProps }) => {
     return () => {
       <Component />;
     };
-  }, []);
+  }, [router.events]);
 
   return (
     <ApolloProvider client={client}>

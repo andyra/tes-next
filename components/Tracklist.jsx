@@ -22,10 +22,10 @@ const Duration = ({ src }) => {
 
   useEffect(() => {
     audioRef.current = new Audio(src);
-    audioRef.current.onloadeddata = e => {
+    audioRef.current.onloadeddata = (e) => {
       setDuration(formatTime(e.target.duration));
     };
-  }, []);
+  }, [src]);
 
   return (
     <time
@@ -45,15 +45,10 @@ export const Tracklist = ({
   showCollectionInfo,
   showTrackType,
   trackDropdownZIndex,
-  tracks
+  tracks,
 }) => {
-  const {
-    currentTrack,
-    isPlaying,
-    isLoading,
-    queueList,
-    setQueueList
-  } = usePlayerContext();
+  const { currentTrack, isPlaying, isLoading, queueList, setQueueList } =
+    usePlayerContext();
 
   function addToQueue(track) {
     const newQueueList = [...queueList];
@@ -85,17 +80,17 @@ export const Tracklist = ({
     const indexClasses = cn({
       "hidden md:flex items-center justify-center relative h-40 w-40 flex-shrink-0 font-mono text-primary-50": true,
       "group-hover:opacity-0": track.audioFile,
-      "opacity-0": trackIsSelected
+      "opacity-0": trackIsSelected,
     });
 
     const playButtonClasses = cn({
       "md:absolute md:top-1/2 md:left-0 md:-translate-y-1/2": true,
-      "md:opacity-0 md:group-hover:opacity-100": !trackIsSelected
+      "md:opacity-0 md:group-hover:opacity-100": !trackIsSelected,
     });
 
     const infoClasses = cn({
       "text-xl md:text-2xl flex items-center gap-8 md:gap-16 flex-1": true,
-      "text-accent": trackIsSelected
+      "text-accent": trackIsSelected,
     });
 
     return (
@@ -183,7 +178,7 @@ Tracklist.propTypes = {
   queueable: PropTypes.bool,
   showCollectionInfo: PropTypes.bool,
   showTrackType: PropTypes.bool,
-  tracks: PropTypes.array.isRequired
+  tracks: PropTypes.array.isRequired,
 };
 
 export default Tracklist;
