@@ -30,6 +30,11 @@ export default function Library({ categories, people }) {
           />
         </ClientOnly>
       </section>
+      <section className="border-t text-center pt-64">
+        <Link href="/timeline" className="font-funky text-4xl">
+          Timeline
+        </Link>
+      </section>
     </>
   );
 }
@@ -58,14 +63,14 @@ export async function getStaticProps() {
           title
         }
       }
-    `
+    `,
   });
 
   return {
     props: {
       categories: data.allCategories,
       metaTitle: "Library",
-      people: data.entries
-    }
+      people: data.entries,
+    },
   };
 }
