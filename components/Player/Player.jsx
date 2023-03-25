@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import ReactHowler from "react-howler";
 import toast from "react-hot-toast";
 import { useMediaQuery } from "react-responsive";

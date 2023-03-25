@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import cn from "classnames";
 import DotMatrix from "./DotMatrix";
@@ -12,30 +12,32 @@ const ArticleCard = ({ article, rotate, showFeaturedImage }) => {
 
   return (
     <li>
-      <Link href={articleHref(slug)}>
-        <a className="block h-full p-16 space-y-12 text-lg text-secondary text-center group">
-          <figure
-            className={cn("library-image border border-secondary", rotate)}
-          >
-            <Tape />
-            {featuredImage?.length ? (
-              <Image
-                alt={title}
-                height={featuredImage[0].height}
-                layout="responsive"
-                src={featuredImage[0].url}
-                width={featuredImage[0].width}
-              />
-            ) : (
-              <div className="flex items-center justify-center bg-ground font-base uppercase text-xl text-secondary-25 aspect-square">
-                n/a
-              </div>
-            )}
-          </figure>
-          <div className="underline underline-offset-4 decoration-wavy decoration-transparent group-hover:decoration-secondary transition">
-            {title}
-          </div>
-        </a>
+      <Link
+        href={articleHref(slug)}
+        className="block h-full p-16 space-y-12 text-lg text-secondary text-center group">
+
+        <figure
+          className={cn("library-image border border-secondary", rotate)}
+        >
+          <Tape />
+          {featuredImage?.length ? (
+            <Image
+              alt={title}
+              height={featuredImage[0].height}
+              layout="responsive"
+              src={featuredImage[0].url}
+              width={featuredImage[0].width}
+            />
+          ) : (
+            <div className="flex items-center justify-center bg-ground font-base uppercase text-xl text-secondary-25 aspect-square">
+              n/a
+            </div>
+          )}
+        </figure>
+        <div className="underline underline-offset-4 decoration-wavy decoration-transparent group-hover:decoration-secondary transition">
+          {title}
+        </div>
+
       </Link>
     </li>
   );
@@ -49,19 +51,23 @@ const ArticleRow = ({ article, category }) => {
 
   return (
     <li className="flex items-center gap-8 border-b border-dotted border-secondary">
-      <Link href={articleHref(slug)}>
-        <a className="flex-1 py-12 text-secondary underline underline-offset-4 decoration-wavy decoration-transparent hover:decoration-secondary transition">
-          {title}
-        </a>
+      <Link
+        href={articleHref(slug)}
+        className="flex-1 py-12 text-secondary underline underline-offset-4 decoration-wavy decoration-transparent hover:decoration-secondary transition">
+
+        {title}
+
       </Link>
       {!!otherCategories && (
         <div>
           {otherCategories.map(cat => (
             <React.Fragment key={cat.slug}>
-              <Link href={categoryHref(cat.slug)}>
-                <a className="tracking-wider text-xs font-base uppercase underline underline-offset-4 decoration-transparent hover:decoration-secondary transition">
-                  {cat.title}
-                </a>
+              <Link
+                href={categoryHref(cat.slug)}
+                className="tracking-wider text-xs font-base uppercase underline underline-offset-4 decoration-transparent hover:decoration-secondary transition">
+
+                {cat.title}
+
               </Link>{" "}
             </React.Fragment>
           ))}

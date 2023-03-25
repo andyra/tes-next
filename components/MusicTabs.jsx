@@ -14,8 +14,8 @@ const MusicTabsItem = ({ href, pageName, title }) => {
   });
 
   return (
-    <Link href={href}>
-      <a className={classes}>{title}</a>
+    <Link href={href} className={classes}>
+      {title}
     </Link>
   );
 };
