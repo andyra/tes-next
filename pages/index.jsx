@@ -121,90 +121,88 @@ export default function Home({ latestAlbums, episodes }) {
   const latestEpisode = episodes.length ? episodes[0] : null;
   const normalizedFullEpisode = normalizeFullEpisode(latestEpisode);
 
-  return (
-    <>
-      <header className="max-w-screen-sm mx-auto space-y-16">
-        <div className="overflow-hidden relative text-ground">
-          <LavaLamp
-            imgSize={512}
-            shapeA={5}
-            shapeB={1}
-            mySpeed={2}
-            colorSpeed={0.001}
-            className="absolute top-0 left-0 w-full h-full saturate-200"
-          />
-          <Icon name="TesMask" className="relative z-10 block" size="w-full" />
-          <h1 className="sr-only">This Evening&apos;s Show</h1>
-          <div
-            id="border"
-            className="border-4 border-ground absolute top-0 left-0 w-full h-full pointer-events-none"
-            aria-hidden
-          />
-        </div>
-        <p className="text-base xs:text-xl md:text-2xl text-justify max-w-screen-sm mx-auto">
-          <strong className="font-bold underline">T</strong>his{" "}
-          <strong className="font-bold underline">E</strong>vening&apos;s{" "}
-          <strong className="font-bold underline">S</strong>how is a radio
-          broadcast transmitting from an abandoned monorail station outside
-          Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade
-          of bizarre characters, historic factoids, surreal comedy, improvised
-          news, interviews, and original music.
-        </p>
+  return <>
+    <header className="max-w-screen-sm mx-auto space-y-16">
+      <div className="overflow-hidden relative text-ground">
+        <LavaLamp
+          imgSize={512}
+          shapeA={5}
+          shapeB={1}
+          mySpeed={2}
+          colorSpeed={0.001}
+          className="absolute top-0 left-0 w-full h-full saturate-200"
+        />
+        <Icon name="TesMask" className="relative z-10 block" size="w-full" />
+        <h1 className="sr-only">This Evening&apos;s Show</h1>
+        <div
+          id="border"
+          className="border-4 border-ground absolute top-0 left-0 w-full h-full pointer-events-none"
+          aria-hidden
+        />
+      </div>
+      <p className="text-base xs:text-xl md:text-2xl text-justify max-w-screen-sm mx-auto">
+        <strong className="font-bold underline">T</strong>his{" "}
+        <strong className="font-bold underline">E</strong>vening&apos;s{" "}
+        <strong className="font-bold underline">S</strong>how is a radio
+        broadcast transmitting from an abandoned monorail station outside
+        Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade
+        of bizarre characters, historic factoids, surreal comedy, improvised
+        news, interviews, and original music.
+      </p>
+    </header>
+
+    <ShufflePlayer />
+
+    <hr className="border-t-2" />
+
+    <section>
+      <header className="flex items-center md:items-end gap-8 justify-between">
+        <h2 className="font-medium text-2xl text-center">Latest Releases</h2>
+        <Button href="/albums" iconRight="ArrowRight">
+          Albums
+        </Button>
       </header>
+      <ul className="grid grid-cols-2 sm:grid-cols-4 -mx-8 md:-mx-16 relative">
+        {latestAlbums.map((album) => (
+          <CollectionItem collection={album} key={album.slug} gridView />
+        ))}
+      </ul>
+    </section>
 
-      <ShufflePlayer />
+    <section>
+      <header className="flex items-center md:items-end gap-8 justify-between mb-16">
+        <h2 className="font-medium text-2xl text-center">Latest Episode</h2>
+        <Button href="/episodes" iconRight="ArrowRight">
+          Episodes
+        </Button>
+      </header>
+      <div className="flex flex-col sm:flex-row sm:items-center gap-16 sm:gap-24">
+        <CollectionItem
+          className="-ml-12 w-256"
+          collection={latestEpisode}
+          gridView
+          as="div"
+        />
+        <div className="flex-1 space-y-8">
+          <header className="flex items-center gap-8">
+            <PlayPauseButton
+              className="hover:text-accent"
+              size="lg"
+              track={normalizedFullEpisode}
+            />
+            <h3 className="font-medium text-xl">
+              <Link href={latestEpisode.uri} className="hover:text-accent transition">
 
-      <hr className="border-t-2" />
+                {latestEpisode.title}
 
-      <section>
-        <header className="flex items-center md:items-end gap-8 justify-between">
-          <h2 className="font-medium text-2xl text-center">Latest Releases</h2>
-          <Button href="/albums" iconRight="ArrowRight">
-            Albums
-          </Button>
-        </header>
-        <ul className="grid grid-cols-2 sm:grid-cols-4 -mx-8 md:-mx-16 relative">
-          {latestAlbums.map((album) => (
-            <CollectionItem collection={album} key={album.slug} gridView />
-          ))}
-        </ul>
-      </section>
-
-      <section>
-        <header className="flex items-center md:items-end gap-8 justify-between mb-16">
-          <h2 className="font-medium text-2xl text-center">Latest Episode</h2>
-          <Button href="/episodes" iconRight="ArrowRight">
-            Episodes
-          </Button>
-        </header>
-        <div className="flex flex-col sm:flex-row sm:items-center gap-16 sm:gap-24">
-          <CollectionItem
-            className="-ml-12 w-256"
-            collection={latestEpisode}
-            gridView
-            as="div"
-          />
-          <div className="flex-1 space-y-8">
-            <header className="flex items-center gap-8">
-              <PlayPauseButton
-                className="hover:text-accent"
-                size="lg"
-                track={normalizedFullEpisode}
-              />
-              <h3 className="font-medium text-xl">
-                <Link href={latestEpisode.uri}>
-                  <a className="hover:text-accent transition">
-                    {latestEpisode.title}
-                  </a>
-                </Link>
-              </h3>
-            </header>
-            <p className="text-lg">{latestEpisode.description}</p>
-          </div>
+              </Link>
+            </h3>
+          </header>
+          <p className="text-lg">{latestEpisode.description}</p>
         </div>
-      </section>
-    </>
-  );
+      </div>
+    </section>
+  </>;
 }
 
 // Config

@@ -19,13 +19,13 @@ const SongItem = ({ i, gridView, song }) => {
 
   return (
     <li key={slug}>
-      <Link href={uri}>
-        <a className={classes}>
-          <span className="font-mono text-xs text-primary-25">{i + 1}</span>
-          <span className="underline underline-offset-8 decoration-wavy decoration-transparent group-hover:text-accent group-hover:decoration-accent transition">
-            {title}
-          </span>
-        </a>
+      <Link href={uri} className={classes}>
+
+        <span className="font-mono text-xs text-primary-25">{i + 1}</span>
+        <span className="underline underline-offset-8 decoration-wavy decoration-transparent group-hover:text-accent group-hover:decoration-accent transition">
+          {title}
+        </span>
+
       </Link>
     </li>
   );

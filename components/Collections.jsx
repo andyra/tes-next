@@ -167,25 +167,25 @@ export const CollectionItem = ({
 
   return (
     <CollectionItemEl as={as} className={classes}>
-      <Link href={uri}>
-        <a className={linkClasses}>
-          <CoverArt
-            className={coverArtClasses}
-            height={gridView ? 256 : 96}
-            title={title}
-            url={getCollectionCoverArtUrl(collection)}
-            width={gridView ? 256 : 96}
-          />
-          <div>
-            <div className="text-lg font-medium leading-snug mt-8 group-hover:text-accent transition">
-              {title}
-            </div>
-            {releaseDate && (
-              <NiceDate date={releaseDate} className="opacity-50" />
-            )}
-            {children}
+      <Link href={uri} className={linkClasses}>
+
+        <CoverArt
+          className={coverArtClasses}
+          height={gridView ? 256 : 96}
+          title={title}
+          url={getCollectionCoverArtUrl(collection)}
+          width={gridView ? 256 : 96}
+        />
+        <div>
+          <div className="text-lg font-medium leading-snug mt-8 group-hover:text-accent transition">
+            {title}
           </div>
-        </a>
+          {releaseDate && (
+            <NiceDate date={releaseDate} className="opacity-50" />
+          )}
+          {children}
+        </div>
+
       </Link>
     </CollectionItemEl>
   );

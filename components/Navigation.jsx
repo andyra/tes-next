@@ -26,32 +26,34 @@ export const NavLink = ({ className, count, navSection, title, href }) => {
 
   return (
     <li>
-      <Link href={href}>
-        <a className={linkClasses}>{title}</a>
+      <Link href={href} className={linkClasses}>
+        {title}
       </Link>
     </li>
   );
 };
 
 const TitleMarquee = () => (
-  <Link href="/">
-    <a className="h-24 md:h-160 relative w-screen overflow-hidden -ml-8 md:-mx-24 text-primary md:text-secondary hover:text-accent relative">
-      <span
-        className="ml-16 font-funky text-9xl leading-none hidden md:block transition"
-        aria-hidden
-      >
-        TES
-      </span>
-      <div className="absolute z-10 w-24 h-full top-0 left-0 bg-gradient-to-r from-ground pointer-events-none md:hidden" />
-      <div className="flex items-center gap-12 absolute animate-marquee transition">
-        <span className="sr-only">This Evening&apos;s Show</span>
-        {[...Array(4)].map((e, i) => (
-          <Icon name="MarqueeTypewriter" size="h-24" key={i} />
-        ))}
-      </div>
-      <div className="absolute z-10 w-24 h-full top-0 right-0 bg-gradient-to-l from-ground pointer-events-none md:hidden" />
-    </a>
-  </Link>
+  (<Link
+    href="/"
+    className="h-24 md:h-160 relative w-screen overflow-hidden -ml-8 md:-mx-24 text-primary md:text-secondary hover:text-accent relative">
+
+    <span
+      className="ml-16 font-funky text-9xl leading-none hidden md:block transition"
+      aria-hidden
+    >
+      TES
+    </span>
+    <div className="absolute z-10 w-24 h-full top-0 left-0 bg-gradient-to-r from-ground pointer-events-none md:hidden" />
+    <div className="flex items-center gap-12 absolute animate-marquee transition">
+      <span className="sr-only">This Evening&apos;s Show</span>
+      {[...Array(4)].map((e, i) => (
+        <Icon name="MarqueeTypewriter" size="h-24" key={i} />
+      ))}
+    </div>
+    <div className="absolute z-10 w-24 h-full top-0 right-0 bg-gradient-to-l from-ground pointer-events-none md:hidden" />
+
+  </Link>)
 );
 
 export const Navigation = ({ navSection, playerIsEmpty }) => {

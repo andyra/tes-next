@@ -121,16 +121,16 @@ const Results = ({ searchTerm, setIsOpen }) => {
           <ul className="-mx-8">
             {groupedResults[category].map((item, i) => (
               <li key={`${i}-${item.title}`}>
-                <Link href={`/${item.uri}/`}>
-                  <a
-                    className="flex items-center gap-16 px-8 py-8 rounded-lg hover:bg-primary-10 text-xl text-primary focus:relative focus-visible:relative transition"
-                    onClick={() => {
-                      setIsOpen(false);
-                    }}
-                  >
-                    <ResultIcon item={item} />
-                    {item.title}
-                  </a>
+                <Link
+                  href={`/${item.uri}/`}
+                  className="flex items-center gap-16 px-8 py-8 rounded-lg hover:bg-primary-10 text-xl text-primary focus:relative focus-visible:relative transition"
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}>
+
+                  <ResultIcon item={item} />
+                  {item.title}
+
                 </Link>
               </li>
             ))}

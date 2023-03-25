@@ -25,49 +25,47 @@ him what [Bb]ask him why [F][Fsus4]Couch [F]Man [Gm]knobs about
 // ----------------------------------------------------------------------------
 
 export default function WritingLeadSheets() {
-  return (
-    <>
-      <header className="space-y-16">
-        <h1 className="font-medium text-4xl">Writing Lead Sheets</h1>
-        <p className="text-xl">
-          The site uses a{" "}
-          <a
-            className="underline"
-            href="https://github.com/martijnversluis/ChordSheetJS"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            JavaScript library
-          </a>{" "}
-          to parse leadsheets using the fairly standard ChordPro syntax. Not
-          everything from the ChordPro spec is included in the library (no tabs,
-          unfortunately), but here are the basics:
-        </p>
-        <p className="text-lg text-primary-75">
-          <strong className="text-accent">Hot Tip</strong>: You can print a lead
-          sheet by going to the{" "}
-          <Link href="/songs/couch-man">
-            <a className="underline">song page</a>
-          </Link>{" "}
-          and printing from there.
-        </p>
-      </header>
+  return <>
+    <header className="space-y-16">
+      <h1 className="font-medium text-4xl">Writing Lead Sheets</h1>
+      <p className="text-xl">
+        The site uses a{" "}
+        <a
+          className="underline"
+          href="https://github.com/martijnversluis/ChordSheetJS"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          JavaScript library
+        </a>{" "}
+        to parse leadsheets using the fairly standard ChordPro syntax. Not
+        everything from the ChordPro spec is included in the library (no tabs,
+        unfortunately), but here are the basics:
+      </p>
+      <p className="text-lg text-primary-75">
+        <strong className="text-accent">Hot Tip</strong>: You can print a lead
+        sheet by going to the{" "}
+        <Link href="/songs/couch-man" className="underline">
+          song page
+        </Link>{" "}
+        and printing from there.
+      </p>
+    </header>
 
-      <section>
-        <p className="font-medium text-xl mb-16">Type out this…</p>
-        <pre className="font-mono pl-16 border-l-2 max-w-full overflow-x-auto">
-          {song.leadSheet}
-        </pre>
-      </section>
+    <section>
+      <p className="font-medium text-xl mb-16">Type out this…</p>
+      <pre className="font-mono pl-16 border-l-2 max-w-full overflow-x-auto">
+        {song.leadSheet}
+      </pre>
+    </section>
 
-      <section>
-        <p className="font-medium text-xl mb-16">
-          And it will be formatted as such…
-        </p>
-        <LeadSheet song={song} />
-      </section>
-    </>
-  );
+    <section>
+      <p className="font-medium text-xl mb-16">
+        And it will be formatted as such…
+      </p>
+      <LeadSheet song={song} />
+    </section>
+  </>;
 }
 
 // Config
