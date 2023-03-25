@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import cn from "classnames";
 import { gql, useQuery } from "@apollo/client";
 import client from "../apollo-client";
 import Filters, { getDefaultFilters } from "components/Filters";
@@ -41,10 +42,22 @@ const Event = ({ event, filters }) => {
     event.tags.filter((tag) => slugify(tag.title) === filters.timeline).length >
       0;
 
+  const lineClasses = cn(
+    "absolute top-0 bottom-0 left-4 -translate-x-1/2",
+    "w-2 bg-accent-25"
+  );
+
   return (
     visible && (
-      <li className="flex gap-8">
-        <NiceDate date={event.date} className="w-1/5" />
+      <li className="flex items-center gap-8">
+        <NiceDate
+          date={event.date}
+          className="flex items-center justify-end gap-8 w-128"
+        />
+        <div className="relative self-stretch flex items-center justify-center py-16">
+          <div className="h-8 w-8 rounded-full bg-accent" aria-hidden />
+          <div className={lineClasses} aria-hidden />
+        </div>
         <div className="flex-1">{event.description}</div>
       </li>
     )
@@ -68,7 +81,7 @@ export default function Timeline({ events }) {
         setFilters={setFilters}
       />
 
-      <ol className="list-decimal">
+      <ol className="">
         {events.map((event, index) => (
           <Event event={event} filters={filters} key={index} />
         ))}
