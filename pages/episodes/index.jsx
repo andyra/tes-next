@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { CollectionItem, CollectionList } from "components/Collections";
 import Button from "components/Button";
 import GridListToggle from "components/GridListToggle";

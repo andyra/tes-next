@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import Empty from "components/Empty";
