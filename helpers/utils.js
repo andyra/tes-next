@@ -48,7 +48,7 @@ export function shuffle(array) {
 
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex],
-      array[currentIndex]
+      array[currentIndex],
     ];
   }
 
@@ -59,7 +59,7 @@ export function shuffle(array) {
 // ----------------------------------------------------------------------------
 
 export function slugify(str) {
-  str
+  return str
     .toLowerCase()
     .trim()
     .replace(/[^\w\s-]/g, "")

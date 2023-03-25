@@ -7,7 +7,7 @@ import {
   DropdownMenu,
   DropdownDivider,
   DropdownItem,
-  DropdownHeading
+  DropdownHeading,
 } from "components/DropdownMenu";
 
 // Functions
@@ -59,9 +59,8 @@ const FilterOption = ({ group, title, value, filters, setFilters }) => {
 
 export const Filters = ({ className, filterGroups, filters, setFilters }) => {
   const triggerClasses = cn({
-    "bg-accent-5 hover:bg-accent-10 border-accent-25 text-accent": isFiltering(
-      filters
-    )
+    "bg-accent-5 hover:bg-accent-10 border-accent-25 text-accent":
+      isFiltering(filters),
   });
 
   return (
@@ -85,7 +84,7 @@ export const Filters = ({ className, filterGroups, filters, setFilters }) => {
               filters={filters}
               setFilters={setFilters}
             />
-            {filterGroup.options.map(option => (
+            {filterGroup.options.map((option) => (
               <FilterOption
                 filters={filters}
                 group={filterGroup.value}
@@ -107,7 +106,7 @@ Filters.propTypes = {
   className: PropTypes.string,
   filterGroups: PropTypes.array.isRequired,
   filters: PropTypes.object.isRequired,
-  setFilters: PropTypes.func.isRequired
+  setFilters: PropTypes.func.isRequired,
 };
 
 export default Filters;

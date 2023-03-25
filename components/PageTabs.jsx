@@ -36,7 +36,7 @@ export const PageTabs = ({ items }) => (
 );
 
 PageTabs.propTypes = {
-  pageName: PropTypes.array.isRequired,
+  items: PropTypes.array.isRequired,
 };
 
 export default PageTabs;
