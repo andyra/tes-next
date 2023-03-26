@@ -5,7 +5,7 @@ import Button from "components/Button";
 export const PageTitle = ({ children, className }) => {
   const classes = cn({
     "flex-1 font-funky font-bold text-6xl md:text-8xl md:leading-[0.8]": true,
-    [className]: className
+    [className]: className,
   });
 
   return <h1 className={classes}>{children}</h1>;
@@ -20,10 +20,10 @@ export const PageHeader = ({
   font = "font-funky",
   h1ClassName,
   subtitle,
-  title
+  title,
 }) => {
   const classes = cn(
-    "flex items-center gap-8 justify-between mb-24 md:mb-64",
+    "flex items-end gap-8 justify-between mb-24 md:mb-64",
     className
   );
 
