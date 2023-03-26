@@ -49,7 +49,7 @@ const Event = ({ event, filters }) => {
 
   return (
     visible && (
-      <li className="flex items-center gap-8">
+      <li className="flex items-center gap-8 rounded pr-8 hover:bg-primary-5 transition group">
         <NiceDate
           date={event.date}
           className="flex items-center justify-end gap-8 w-128"
@@ -58,7 +58,20 @@ const Event = ({ event, filters }) => {
           <div className="h-8 w-8 rounded-full bg-accent" aria-hidden />
           <div className={lineClasses} aria-hidden />
         </div>
-        <div className="flex-1">{event.description}</div>
+        <div className="flex-1">
+          {event.linkTo.length > 0 ? (
+            <Link className="underline" href={event.linkTo[0].uri}>
+              {event.description}
+            </Link>
+          ) : (
+            event.description
+          )}
+        </div>
+        <div className="flex items-center gap-4 opacity-0 group-hover:opacity-50 transition">
+          {event.tags.map((tag) => (
+            <span key={tag.title}>{tag.title}</span>
+          ))}
+        </div>
       </li>
     )
   );
@@ -104,6 +117,9 @@ export async function getStaticProps(context) {
               ... on timeline_event_BlockType {
                 date
                 description
+                linkTo {
+                  uri
+                }
                 tags {
                   title
                 }
