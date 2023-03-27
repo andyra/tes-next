@@ -14,11 +14,9 @@ const ArticleCard = ({ article, rotate, showFeaturedImage }) => {
     <li>
       <Link
         href={articleHref(slug)}
-        className="block h-full p-16 space-y-12 text-lg text-secondary text-center group">
-
-        <figure
-          className={cn("library-image border border-secondary", rotate)}
-        >
+        className="block h-full p-16 space-y-12 text-lg text-secondary text-center group"
+      >
+        <figure className={cn("library-image border border-secondary", rotate)}>
           <Tape />
           {featuredImage?.length ? (
             <Image
@@ -29,7 +27,7 @@ const ArticleCard = ({ article, rotate, showFeaturedImage }) => {
               width={featuredImage[0].width}
             />
           ) : (
-            <div className="flex items-center justify-center bg-ground font-base uppercase text-xl text-secondary-25 aspect-square">
+            <div className="flex items-center justify-center bg-ground font-mono uppercase text-xl text-secondary-25 aspect-square">
               n/a
             </div>
           )}
@@ -37,7 +35,6 @@ const ArticleCard = ({ article, rotate, showFeaturedImage }) => {
         <div className="underline underline-offset-4 decoration-wavy decoration-transparent group-hover:decoration-secondary transition">
           {title}
         </div>
-
       </Link>
     </li>
   );
@@ -45,7 +42,7 @@ const ArticleCard = ({ article, rotate, showFeaturedImage }) => {
 
 const ArticleRow = ({ article, category }) => {
   const { categories, slug, title, uri } = article;
-  const otherCategories = categories.filter(cat => {
+  const otherCategories = categories.filter((cat) => {
     return cat.slug !== category?.slug;
   });
 
@@ -53,21 +50,19 @@ const ArticleRow = ({ article, category }) => {
     <li className="flex items-center gap-8 border-b border-dotted border-secondary">
       <Link
         href={articleHref(slug)}
-        className="flex-1 py-12 text-secondary underline underline-offset-4 decoration-wavy decoration-transparent hover:decoration-secondary transition">
-
+        className="flex-1 py-12 text-secondary underline underline-offset-4 decoration-wavy decoration-transparent hover:decoration-secondary transition"
+      >
         {title}
-
       </Link>
       {!!otherCategories && (
         <div>
-          {otherCategories.map(cat => (
+          {otherCategories.map((cat) => (
             <React.Fragment key={cat.slug}>
               <Link
                 href={categoryHref(cat.slug)}
-                className="tracking-wider text-xs font-base uppercase underline underline-offset-4 decoration-transparent hover:decoration-secondary transition">
-
+                className="tracking-wider text-xs font-base uppercase underline underline-offset-4 decoration-transparent hover:decoration-secondary transition"
+              >
                 {cat.title}
-
               </Link>{" "}
             </React.Fragment>
           ))}
@@ -81,7 +76,7 @@ const ArticleList = ({
   articles,
   category,
   className = "grid grid-cols-3 md:grid-cols-4",
-  showFeaturedImage
+  showFeaturedImage,
 }) => {
   return showFeaturedImage ? (
     <ul className={className}>

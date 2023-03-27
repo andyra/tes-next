@@ -135,7 +135,7 @@ export default function Timeline({ events }) {
 
 export async function getStaticProps(context) {
   const { params } = context;
-  const { data } = await client.query({
+  const { data, error } = await client.query({
     query: gql`
       query Entry {
         entry(section: "timeline") {
@@ -157,6 +157,10 @@ export async function getStaticProps(context) {
       }
     `,
   });
+
+  if (error) {
+    return;
+  }
 
   return {
     props: {
