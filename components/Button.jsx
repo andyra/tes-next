@@ -73,14 +73,14 @@ const Button = React.forwardRef(
     }
 
     return href ? (
-      <Link href={href}>
-        <a {...props} className={classes} ref={ref} {...blankLinkAttrs}>
-          {icon && <Icon name={icon} />}
-          {iconLeft && <Icon name={iconLeft} className="-translate-x-1/4" />}
-          {children}
-          {iconRight && <Icon name={iconRight} className="translate-x-1/4" />}
-        </a>
-      </Link>
+      (<Link href={href} {...props} className={classes} ref={ref} {...blankLinkAttrs}>
+
+        {icon && <Icon name={icon} />}
+        {iconLeft && <Icon name={iconLeft} className="-translate-x-1/4" />}
+        {children}
+        {iconRight && <Icon name={iconRight} className="translate-x-1/4" />}
+
+      </Link>)
     ) : (
       <button
         {...props} // Pass in first so className isn't overwritten by spread props

@@ -56,10 +56,10 @@ export const CurrentTrack = ({
             <div className="flex-1 min-w-0 leading-tight xs:leading-snug">
               <div className={titleClasses}>{currentTrack.title}</div>
               <div className="truncate overflow-hidden">
-                <Link href={currentTrack.collection.uri}>
-                  <a className={collectionClasses}>
-                    {currentTrack.collection.title}
-                  </a>
+                <Link href={currentTrack.collection.uri} className={collectionClasses}>
+
+                  {currentTrack.collection.title}
+
                 </Link>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { gql } from "@apollo/client";
 import convert from "color-convert";
 import client from "../../apollo-client";

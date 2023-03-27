@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";
 import Button from "components/Button";
-import MusicTabs from "components/MusicTabs";
+import PageTabs from "components/PageTabs";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -19,13 +19,11 @@ const SongItem = ({ i, gridView, song }) => {
 
   return (
     <li key={slug}>
-      <Link href={uri}>
-        <a className={classes}>
-          <span className="font-mono text-xs text-primary-25">{i + 1}</span>
-          <span className="underline underline-offset-8 decoration-wavy decoration-transparent group-hover:text-accent group-hover:decoration-accent transition">
-            {title}
-          </span>
-        </a>
+      <Link href={uri} className={classes}>
+        <span className="font-mono text-xs text-primary-25">{i + 1}</span>
+        <span className="underline underline-offset-8 decoration-wavy decoration-transparent group-hover:text-accent group-hover:decoration-accent transition">
+          {title}
+        </span>
       </Link>
     </li>
   );
@@ -44,7 +42,12 @@ export default function Songs({ songs }) {
 
   return (
     <>
-      <MusicTabs pageName="Songs" />
+      <PageTabs
+        items={[
+          { title: "Albums", href: "/albums" },
+          { title: "Songs", href: "/songs" },
+        ]}
+      />
       <ul className={ulClasses}>
         {songs.map((song, i) => (
           <SongItem song={song} i={i} key={song.slug} gridView={gridView} />
@@ -67,7 +70,7 @@ export async function getStaticProps() {
           uri
         }
       }
-    `
+    `,
   });
 
   return {
@@ -75,7 +78,7 @@ export async function getStaticProps() {
       maxWidth: "max-w-none",
       metaTitle: "Songs",
       navSection: "Music",
-      songs: data.entries
-    }
+      songs: data.entries,
+    },
   };
 }

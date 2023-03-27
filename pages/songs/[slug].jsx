@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { gql, useQuery } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";

@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import cn from "classnames";
@@ -31,12 +31,12 @@ const Header = ({ categories, id, title }) => (
       <Info label="File Under" className="flex-1">
         {categories?.length
           ? categories.map(category => (
-              <Link
+              (<Link
                 href={`/library/category/${category.slug}`}
                 key={category.slug}
-              >
-                <a className="underline hover:text-accent">{category.title} </a>
-              </Link>
+                className="underline hover:text-accent">
+                {category.title} 
+              </Link>)
             ))
           : "n/a"}
       </Info>

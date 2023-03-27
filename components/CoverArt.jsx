@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
@@ -13,7 +13,7 @@ export const CoverArt = ({
   const coverArtClasses = cn({
     "bg-primary-10 overflow-hidden": true,
     "rounded-lg": !className,
-    [className]: className
+    [className]: className,
   });
 
   const placeholderClasses = cn({
@@ -21,7 +21,7 @@ export const CoverArt = ({
     "text-sm": width < 128,
     "text-lg": width > 128,
     "rounded-lg": !className,
-    [className]: className
+    [className]: className,
   });
 
   return url ? (
@@ -49,7 +49,7 @@ CoverArt.propTypes = {
   height: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string,
-  width: PropTypes.number.isRequired
+  width: PropTypes.number.isRequired,
 };
 
 export default CoverArt;

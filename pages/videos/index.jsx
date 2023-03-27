@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import Empty from "components/Empty";
@@ -32,23 +32,25 @@ const VideoItem = ({ video }) => {
 
   return (
     <li className="flex items-center gap-8">
-      <Link href={uri}>
-        <a className="block w-full h-full text-lg p-8 rounded-lg hover:ring-2 hover:ring-accent transition">
-          {thumbnail && (
-            <>
-              <figure className="rounded-lg overflow-hidden mb-8">
-                <Image
-                  alt={title}
-                  height={thumbnail.height}
-                  layout="responsive"
-                  src={thumbnail.src}
-                  width={thumbnail.width}
-                />
-              </figure>
-            </>
-          )}
-          {title}
-        </a>
+      <Link
+        href={uri}
+        className="block w-full h-full text-lg p-8 rounded-lg hover:ring-2 hover:ring-accent transition">
+
+        {thumbnail && (
+          <>
+            <figure className="rounded-lg overflow-hidden mb-8">
+              <Image
+                alt={title}
+                height={thumbnail.height}
+                layout="responsive"
+                src={thumbnail.src}
+                width={thumbnail.width}
+              />
+            </figure>
+          </>
+        )}
+        {title}
+
       </Link>
     </li>
   );

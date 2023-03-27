@@ -3,7 +3,8 @@ import Moment from "moment";
 
 const FORMATS = {
   full: "MMM D, YYYY",
-  year: "YYYY"
+  year: "YYYY",
+  monthYear: "MMM YYYY",
 };
 
 const NiceDate = ({ className, date, format }) => (
@@ -13,11 +14,11 @@ const NiceDate = ({ className, date, format }) => (
 NiceDate.propTypes = {
   className: PropTypes.string,
   date: PropTypes.string.isRequired,
-  format: PropTypes.oneOf(Object.keys(FORMATS)).isRequired
+  format: PropTypes.oneOf(Object.keys(FORMATS)).isRequired,
 };
 
 NiceDate.defaultProps = {
-  format: "full"
+  format: "full",
 };
 
 export default NiceDate;

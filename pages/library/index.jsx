@@ -1,9 +1,10 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import ClientOnly from "components/ClientOnly";
 import PageHeader from "components/PageHeader";
+import PageTabs from "components/PageTabs";
 import ArticleList from "./components/ArticleList";
 import CategoryNav from "./components/CategoryNav";
 import { shuffle } from "helpers/utils";
@@ -16,7 +17,12 @@ export default function Library({ categories, people }) {
 
   return (
     <>
-      <PageHeader title="Library" center />
+      <PageTabs
+        items={[
+          { title: "Library", href: "/library" },
+          { title: "Timeline", href: "/timeline" },
+        ]}
+      />
       <p className="text-2xl lg:text-3xl text-center text-secondary">
         The Grand Library of all things Akabius. Learn about, for instance:
       </p>
@@ -58,14 +64,14 @@ export async function getStaticProps() {
           title
         }
       }
-    `
+    `,
   });
 
   return {
     props: {
       categories: data.allCategories,
       metaTitle: "Library",
-      people: data.entries
-    }
+      people: data.entries,
+    },
   };
 }

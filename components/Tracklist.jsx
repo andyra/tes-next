@@ -121,10 +121,12 @@ export const Tracklist = ({
                 />
                 <div className="flex flex-col">
                   <div className="font-medium">{track.title}</div>
-                  <Link href={track.collection.uri}>
-                    <a className="text-sm text-primary-75 hover:underline">
-                      {track.collection.title}
-                    </a>
+                  <Link
+                    href={track.collection.uri}
+                    className="text-sm text-primary-75 hover:underline">
+
+                    {track.collection.title}
+
                   </Link>
                 </div>
               </>

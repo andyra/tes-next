@@ -18,12 +18,12 @@ const CategoryLink = ({ collapsible, title, href, icon }) => {
   );
 
   return (
-    <Link href={href}>
-      <a className={classes}>
-        {icon && <Icon name={icon} />}
-        {title}
-      </a>
-    </Link>
+    (<Link href={href} className={classes}>
+
+      {icon && <Icon name={icon} />}
+      {title}
+
+    </Link>)
   );
 };
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import cn from "classnames";
@@ -6,7 +7,7 @@ import Button from "components/Button";
 import { CollectionItem, CollectionList } from "components/Collections";
 import GridListToggle from "components/GridListToggle";
 import Filters, { getDefaultFilters } from "components/Filters";
-import MusicTabs from "components/MusicTabs";
+import PageTabs from "components/PageTabs";
 import { getArtistInfo } from "helpers/index";
 import { camelCaseToWords } from "helpers/utils";
 
@@ -20,19 +21,19 @@ function normalizeAlbumFilters(filterGroups) {
     const artistSlug = getArtistInfo(album, "slug");
     const artistTitle = getArtistInfo(album, "title");
 
-    if (!artistOptions.some(option => option.value === artistSlug)) {
+    if (!artistOptions.some((option) => option.value === artistSlug)) {
       if (artistSlug) {
         artistOptions.push({
           value: artistSlug,
-          label: artistTitle
+          label: artistTitle,
         });
       }
     }
-    if (!albumTypeOptions.some(option => option.value === album.albumType)) {
+    if (!albumTypeOptions.some((option) => option.value === album.albumType)) {
       if (album.albumType) {
         albumTypeOptions.push({
           value: album.albumType,
-          label: camelCaseToWords(album.albumType)
+          label: camelCaseToWords(album.albumType),
         });
       }
     }
@@ -42,13 +43,13 @@ function normalizeAlbumFilters(filterGroups) {
     {
       label: "Artist",
       value: "artist",
-      options: artistOptions
+      options: artistOptions,
     },
     {
       label: "Album Type",
       value: "albumType",
-      options: albumTypeOptions
-    }
+      options: albumTypeOptions,
+    },
   ];
 }
 
@@ -78,7 +79,12 @@ export default function Albums({ albums }) {
 
   return (
     <>
-      <MusicTabs pageName="Albums" />
+      <PageTabs
+        items={[
+          { title: "Albums", href: "/albums" },
+          { title: "Songs", href: "/songs" },
+        ]}
+      />
       <div className="flex items-center justify-end gap-8 relative z-10">
         <Filters
           filterGroups={albumFilters}
@@ -88,7 +94,7 @@ export default function Albums({ albums }) {
         {/*<GridListToggle gridView={gridView} setGridView={setGridView} />*/}
       </div>
       <CollectionList gridView={gridView}>
-        {albums.map(album => (
+        {albums.map((album) => (
           <AlbumItem
             album={album}
             key={album.slug}
@@ -97,6 +103,12 @@ export default function Albums({ albums }) {
           />
         ))}
       </CollectionList>
+      <Link
+        href="/albums/bargain-bin"
+        className="block rounded-lg border-2 border-accent-25 p-24 font-funky text-center text-5xl text-accent hover:border-accent transition"
+      >
+        Enter the Bargain Bin
+      </Link>
     </>
   );
 }
@@ -108,7 +120,11 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query Entries {
-        entries(section: "albums", orderBy: "releaseDate DESC") {
+        entries(
+          section: "albums"
+          search: "albumType:live OR studio OR episodeCompanion"
+          orderBy: "releaseDate DESC"
+        ) {
           slug
           title
           uri
@@ -125,14 +141,14 @@ export async function getStaticProps() {
           }
         }
       }
-    `
+    `,
   });
 
   return {
     props: {
       albums: data.entries,
       maxWidth: "max-w-full",
-      metaTitle: "Albums"
-    }
+      metaTitle: "Albums",
+    },
   };
 }
