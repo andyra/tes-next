@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     return res.status(401).json({ message: "Invalid token" });
   }
 
-  // https://docs.craftcms.com/api/v3/craft-base-element.html#events
+  // https://docs.craftcms.com/api/v4/craft-base-element.html#events
   // New Entry
   // Delete Entry
   // Save Entry
@@ -38,6 +38,9 @@ export default async function handler(req, res) {
     }
     if (entryType === "videos") {
       await res.revalidate(`/videos`);
+    }
+    if (entryType === "timeline") {
+      await res.revalidate(`/timeline`);
     }
 
     return res.json({ revalidated: true });
