@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import client from "../../../apollo-client";
+import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import ArticleList from "../components/ArticleList";
 import CategoryNav from "../components/CategoryNav";
@@ -12,8 +13,14 @@ export default function Category({
   articles,
   category,
   allCategories,
-  parentCategory
+  parentCategory,
 }) {
+  if (!category)
+    return (
+      <div className="flex justify-center">
+        <Loader />
+      </div>
+    );
   const { children: subCategories, id, parent, slug, title } = category;
   const isPeopleCategory =
     slug === "people" || (parent !== null && parent.slug === "people");
@@ -65,16 +72,16 @@ export async function getStaticPaths() {
           slug
         }
       }
-    `
+    `,
   });
 
-  const paths = data.categories.map(category => ({
-    params: { slug: category.slug }
+  const paths = data.categories.map((category) => ({
+    params: { slug: category.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: true,
   };
 }
 
@@ -102,9 +109,7 @@ export async function getStaticProps(context) {
           slug
           title
         }
-        entries(section: "library", relatedToCategories: [{ slug: "${
-          params.slug
-        }" }]) {
+        entries(section: "library", relatedToCategories: [{ slug: "${params.slug}" }]) {
           slug
           title
           uri
@@ -121,7 +126,7 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
 
   return {
@@ -131,7 +136,7 @@ export async function getStaticProps(context) {
       category: data.category,
       metaTitle: data.category.title,
       navSection: "Library",
-      parentCategory: data.parentCategory
-    }
+      parentCategory: data.parentCategory,
+    },
   };
 }

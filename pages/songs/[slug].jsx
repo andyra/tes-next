@@ -15,7 +15,7 @@ import {
   getTrackTitle,
   getTrackType,
   querySlugs,
-  normalizeTrack
+  normalizeTrack,
 } from "helpers/index";
 
 // Functions
@@ -26,18 +26,18 @@ function matchingTrack(track, slug) {
 }
 
 function getRelatedCollections(slug, collections) {
-  const relatedCollections = collections.filter(function(collection) {
+  const relatedCollections = collections.filter(function (collection) {
     let filteredTracklist = [];
 
     // Remove all the tracks that don't match this song
     if (collection.albumTracklist) {
-      filteredTracklist = collection.albumTracklist.filter(function(track) {
+      filteredTracklist = collection.albumTracklist.filter(function (track) {
         return matchingTrack(track, slug);
       });
     }
 
     if (collection.episodeTracklist) {
-      filteredTracklist = collection.episodeTracklist.filter(function(track) {
+      filteredTracklist = collection.episodeTracklist.filter(function (track) {
         return matchingTrack(track, slug);
       });
     }
@@ -74,11 +74,11 @@ const ContentSection = ({
   className,
   emptyMessage,
   enabled,
-  title
+  title,
 }) => {
   const headingClasses = cn({
     "font-medium text-3xl mb-16": true,
-    "text-primary-50": !enabled
+    "text-primary-50": !enabled,
   });
 
   return (
@@ -174,6 +174,13 @@ const RelatedCollections = ({ songSlug }) => {
 // ----------------------------------------------------------------------------
 
 export default function Song({ song }) {
+  if (!song)
+    return (
+      <div className="flex justify-center">
+        <Loader />
+      </div>
+    );
+
   const { leadSheet, notation, slug, title } = song;
 
   return (
@@ -205,16 +212,16 @@ export default function Song({ song }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("songs")
+    query: querySlugs("songs"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: true,
   };
 }
 
@@ -224,6 +231,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
+    fetchPolicy: "no-cache",
     query: gql`
       query Entry {
         entry(section: "songs", slug: "${params.slug}") {
@@ -239,14 +247,22 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
+
+  console.log(data);
+
+  if (!data.entry) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
       navSection: "Music",
       metaTitle: data.entry.title,
-      song: data.entry
-    }
+      song: data.entry,
+    },
   };
 }

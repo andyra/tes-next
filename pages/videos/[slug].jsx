@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import { querySlugs } from "helpers/index";
 
@@ -15,8 +16,8 @@ const VideoEmbed = ({ id }) => {
     return fetch(
       `https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}`
     )
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setEmbedHtml(data.html);
       });
   }, [id]);
@@ -28,6 +29,12 @@ const VideoEmbed = ({ id }) => {
 // ----------------------------------------------------------------------------
 
 export default function Video({ videoEntry }) {
+  if (!videoEntry)
+    return (
+      <div className="flex justify-center">
+        <Loader />
+      </div>
+    );
   const { title, vimeoId } = videoEntry;
 
   return (
@@ -43,16 +50,16 @@ export default function Video({ videoEntry }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("videos")
+    query: querySlugs("videos"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: true,
   };
 }
 
@@ -71,14 +78,14 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
 
   return {
     props: {
       videoEntry: data.entry,
       metaTitle: data.entry.title,
-      navSection: "Videos"
-    }
+      navSection: "Videos",
+    },
   };
 }

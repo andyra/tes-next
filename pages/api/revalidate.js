@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     return res.status(401).json({ message: "Invalid token" });
   }
 
-  // https://docs.craftcms.com/api/v4/craft-base-element.html#events
+  // https://docs.craftcms.com/api/v4/craft-base-element.html#public-methods
   // New Entry
   // Delete Entry
   // Save Entry
@@ -13,32 +13,47 @@ export default async function handler(req, res) {
   const uri = req.body.sender.uri;
   const entryType = uri.split("/")[0];
 
-  console.log(req.body);
+  console.log("==================================================");
+  console.log(`URL: ${uri}`);
+  console.log(`eventName: ${eventName}`);
+  console.log(`entryType: ${entryType}`);
 
   try {
-    // Edit any existing entry
-    if (eventName === "afterSave") {
+    // Create any new entry or Edit any existing entry
+    if (eventName === "afterPropagate" || eventName === "afterDelete") {
+      console.log("revalidate: /uri");
       await res.revalidate(`/${uri}`);
     }
 
     // Edit, New, or Delete entries
     if (entryType === "albums") {
+      console.log("revalidate: /");
+      console.log("revalidate: /albums");
       await res.revalidate(`/`);
       await res.revalidate(`/albums`);
       // TODO: Rebuilt specific song slugs
     }
     if (entryType === "episodes") {
+      console.log("revalidate: /");
+      console.log("revalidate: /episodes");
       await res.revalidate(`/`);
       await res.revalidate(`/episodes`);
     }
     if (entryType === "library") {
+      console.log("revalidate: /library");
       await res.revalidate(`/library`);
       // TODO Rebuild category pages
     }
     if (entryType === "songs") {
+      console.log("revalidate: /songs");
       await res.revalidate(`/songs`);
+
+      // If either the title or the slug have changed, we need to rebuild anything that might link to them :()
+      // req.body.sender.title
+      // req.body.sender.slug
     }
     if (entryType === "videos") {
+      console.log("revalidate: video");
       await res.revalidate(`/videos`);
     }
 

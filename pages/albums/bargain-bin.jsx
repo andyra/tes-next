@@ -12,7 +12,6 @@ import { camelCaseToWords } from "helpers/utils";
 // ----------------------------------------------------------------------------
 
 export default function Albums({ albums }) {
-  console.log(albums);
   return (
     <>
       <PageHeader title="Bargain Bin" />

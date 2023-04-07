@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import { CollectionHeader } from "components/Collections";
 import CoverArt from "components/CoverArt";
+import Loader from "components/Loader";
 import NiceDate from "components/NiceDate";
 import PageHeader, { PageTitle } from "components/PageHeader";
 import PlayPauseButton from "components/PlayPauseButton";
@@ -10,13 +11,20 @@ import { EPISODE } from "../../constants";
 import {
   normalizeFullEpisode,
   normalizeTracklist,
-  querySlugs
+  querySlugs,
 } from "helpers/index";
 
 // Default
 // ----------------------------------------------------------------------------
 
 export default function Episode({ coverPalette, episode }) {
+  if (!episode)
+    return (
+      <div className="flex justify-center">
+        <Loader />
+      </div>
+    );
+
   const { description, episodeCoverArt, releaseDate, title } = episode;
   const normalizedTracks = normalizeTracklist({ collection: episode });
   const normalizedFullEpisode = normalizeFullEpisode(episode);
@@ -46,16 +54,16 @@ export default function Episode({ coverPalette, episode }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("episodes")
+    query: querySlugs("episodes"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: true,
   };
 }
 
@@ -106,7 +114,7 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
 
   // Extract colors from coverArt
@@ -114,7 +122,7 @@ export async function getStaticProps(context) {
   const coverArtSrc = data.entry.episodeCoverArt[0].url;
   const coverPalette = await Vibrant.from(coverArtSrc)
     .getPalette()
-    .then(function(palette) {
+    .then(function (palette) {
       return palette;
     });
 
@@ -123,7 +131,7 @@ export async function getStaticProps(context) {
       coverPalette: JSON.stringify(coverPalette),
       episode: data.entry,
       metaTitle: data.entry.title,
-      navSection: "Podcast"
-    }
+      navSection: "Podcast",
+    },
   };
 }

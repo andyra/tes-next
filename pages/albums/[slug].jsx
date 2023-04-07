@@ -4,6 +4,7 @@ import { gql } from "@apollo/client";
 import convert from "color-convert";
 import client from "../../apollo-client";
 import { CollectionHeader } from "components/Collections";
+import Loader from "components/Loader";
 import NiceDate from "components/NiceDate";
 import PageHeader from "components/PageHeader";
 import Tracklist from "components/Tracklist";
@@ -14,6 +15,13 @@ import { DEFAULT_EPISODE_IMAGE } from "../../constants";
 // ----------------------------------------------------------------------------
 
 export default function Album({ album, durations, coverPalette }) {
+  if (!album)
+    return (
+      <div className="flex justify-center">
+        <Loader />
+      </div>
+    );
+
   const {
     albumCoverArt,
     albumTracklist,
@@ -56,7 +64,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
