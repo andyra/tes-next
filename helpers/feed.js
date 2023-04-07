@@ -1,11 +1,10 @@
-import { EMAIL } from "../constants";
+import { DEFAULT_EPISODE_IMAGE, EMAIL } from "../constants";
 
 const BASE_URL = "https://tes.fm/";
 const TITLE = "This Evening's Show";
 const DESCRIPTION =
   "This Evening's Show is a radio broadcast transmitting from an abandoned monorail station outside Adobe Skyscraper. Tune in as your hosts guide you through a cavalcade of bizarre characters, historic factoids, surreal comedy, improvised news, interviews, and original music";
-const IMAGE_URL =
-  "https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg";
+const IMAGE_URL = DEFAULT_EPISODE_IMAGE;
 const OWNER = "Andy Smith";
 const CATEGORIES = [
   {

@@ -25,6 +25,8 @@ export const PODCAST_LINKS = [
     title: "Spotify",
   },
 ];
+export const DEFAULT_EPISODE_IMAGE =
+  "https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg";
 
 // Queries
 // ----------------------------------------------------------------------------

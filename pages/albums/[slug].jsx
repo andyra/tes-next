@@ -8,6 +8,7 @@ import NiceDate from "components/NiceDate";
 import PageHeader from "components/PageHeader";
 import Tracklist from "components/Tracklist";
 import { normalizeTracklist, querySlugs } from "helpers/index";
+import { DEFAULT_EPISODE_IMAGE } from "../../constants";
 
 // Default
 // ----------------------------------------------------------------------------
@@ -16,22 +17,25 @@ export default function Album({ album, durations, coverPalette }) {
   const {
     albumCoverArt,
     albumTracklist,
+    albumType,
     artist,
     releaseDate,
     title,
-    uri
+    uri,
   } = album;
   const normalizedTracks = normalizeTracklist({
-    collection: album
+    collection: album,
   });
 
   return (
     <>
       <CollectionHeader collection={album} coverPalette={coverPalette}>
-        <>
-          {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
-          {albumTracklist.length} Tracks
-        </>
+        {albumType !== "bargainBin" && (
+          <>
+            {artist[0].title} • <NiceDate date={releaseDate} format="year" /> •{" "}
+          </>
+        )}
+        {albumTracklist.length} Tracks
       </CollectionHeader>
       <Tracklist tracks={normalizedTracks} />
     </>
@@ -43,16 +47,16 @@ export default function Album({ album, durations, coverPalette }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("albums")
+    query: querySlugs("albums"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   };
 }
 
@@ -98,15 +102,18 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
 
   // Extract colors from coverArt
   var Vibrant = require("node-vibrant");
-  const coverArtSrc = data.entry.albumCoverArt[0].url;
+  const coverArtSrc =
+    data.entry.albumType === "bargainBin"
+      ? DEFAULT_EPISODE_IMAGE
+      : data.entry.albumCoverArt[0].url;
   const coverPalette = await Vibrant.from(coverArtSrc)
     .getPalette()
-    .then(function(palette) {
+    .then(function (palette) {
       return palette;
     });
 
@@ -115,7 +122,7 @@ export async function getStaticProps(context) {
       album: data.entry,
       coverPalette: JSON.stringify(coverPalette),
       metaTitle: data.entry.title,
-      navSection: "Music"
-    }
+      navSection: "Music",
+    },
   };
 }

@@ -9,6 +9,7 @@ import Button from "components/Button";
 import Input from "components/Input";
 import Navigation from "components/Navigation";
 import Player from "components/Player";
+import { DEFAULT_EPISODE_IMAGE } from "constants";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -23,7 +24,7 @@ const grain = keyframes`
 
 const FilmGrain = styled.div.attrs({
   className:
-    "fixed h-screen w-screen pointer-events-none z-grain mix-blend-difference"
+    "fixed h-screen w-screen pointer-events-none z-grain mix-blend-difference",
 })`
   animation: ${grain} 0.4s steps(1) infinite;
   background-image: url(/images/noise-256w.png);
@@ -34,13 +35,8 @@ const FilmGrain = styled.div.attrs({
 // ----------------------------------------------------------------------------
 
 export default function Layout({ children, ...props }) {
-  const {
-    currentTrack,
-    nextList,
-    playerIsEmpty,
-    prevList,
-    queueList
-  } = usePlayerContext();
+  const { currentTrack, nextList, playerIsEmpty, prevList, queueList } =
+    usePlayerContext();
 
   const metaUrl = "https://tes.fm";
   const metaSiteName = "This Evening's Show";
@@ -52,9 +48,7 @@ export default function Layout({ children, ...props }) {
     ? props.metaDescription
     : "Music and mayhem from the abandoned monorail station";
 
-  const metaImage =
-    props.metaImage ||
-    "https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg";
+  const metaImage = props.metaImage || DEFAULT_EPISODE_IMAGE;
 
   const nextClasses = cn(
     "h-full overflow-hidden print:overflow-visible p-4 bg-ground-dark",

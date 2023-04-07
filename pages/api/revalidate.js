@@ -13,13 +13,15 @@ export default async function handler(req, res) {
   const uri = req.body.sender.uri;
   const entryType = uri.split("/")[0];
 
+  console.log(req.body);
+
   try {
-    // Edit entry
+    // Edit any existing entry
     if (eventName === "afterSave") {
       await res.revalidate(`/${uri}`);
     }
 
-    // Edit, New, or Delete entry
+    // Edit, New, or Delete entries
     if (entryType === "albums") {
       await res.revalidate(`/`);
       await res.revalidate(`/albums`);
@@ -38,9 +40,6 @@ export default async function handler(req, res) {
     }
     if (entryType === "videos") {
       await res.revalidate(`/videos`);
-    }
-    if (entryType === "timeline") {
-      await res.revalidate(`/timeline`);
     }
 
     return res.json({ revalidated: true });

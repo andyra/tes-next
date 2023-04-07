@@ -7,7 +7,7 @@ import Button from "components/Button";
 import GridListToggle from "components/GridListToggle";
 import Icon from "components/Icon";
 import PageHeader from "components/PageHeader";
-import { PODCAST_LINKS } from "../../constants";
+import { DEFAULT_EPISODE_IMAGE, PODCAST_LINKS } from "constants";
 
 // Components
 // ----------------------------------------------------------------------------
@@ -32,7 +32,7 @@ export default function Episodes({ episodes }) {
           <Image
             alt="Cover for This Evening's Show podcast"
             height={300}
-            src="https://tesfm.fra1.digitaloceanspaces.com/episodes/this-evenings-show.jpg"
+            src={DEFAULT_EPISODE_IMAGE}
             width={300}
           />
         </figure>
