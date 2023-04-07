@@ -7,7 +7,7 @@ import Button from "components/Button";
 import GridListToggle from "components/GridListToggle";
 import Icon from "components/Icon";
 import PageHeader from "components/PageHeader";
-import { DEFAULT_EPISODE_IMAGE, PODCAST_LINKS } from "constants";
+import { DEFAULT_EPISODE_IMAGE, PODCAST_LINKS } from "../../constants";
 
 // Components
 // ----------------------------------------------------------------------------

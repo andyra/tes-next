@@ -9,7 +9,7 @@ import Button from "components/Button";
 import Input from "components/Input";
 import Navigation from "components/Navigation";
 import Player from "components/Player";
-import { DEFAULT_EPISODE_IMAGE } from "constants";
+import { DEFAULT_EPISODE_IMAGE } from "../constants";
 
 // Components
 // ----------------------------------------------------------------------------
