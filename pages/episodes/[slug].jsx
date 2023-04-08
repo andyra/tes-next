@@ -1,13 +1,9 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import { CollectionHeader } from "components/Collections";
-import CoverArt from "components/CoverArt";
-import Loader from "components/Loader";
 import NiceDate from "components/NiceDate";
-import PageHeader, { PageTitle } from "components/PageHeader";
 import PlayPauseButton from "components/PlayPauseButton";
 import Tracklist from "components/Tracklist";
-import { EPISODE } from "../../constants";
 import {
   normalizeFullEpisode,
   normalizeTracklist,
@@ -18,14 +14,7 @@ import {
 // ----------------------------------------------------------------------------
 
 export default function Episode({ coverPalette, episode }) {
-  if (!episode)
-    return (
-      <div className="flex justify-center">
-        <Loader />
-      </div>
-    );
-
-  const { description, episodeCoverArt, releaseDate, title } = episode;
+  const { description, episodeCoverArt, releaseDate } = episode;
   const normalizedTracks = normalizeTracklist({ collection: episode });
   const normalizedFullEpisode = normalizeFullEpisode(episode);
 
@@ -73,6 +62,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
+    fetchPolicy: "no-cache",
     query: gql`
       query Entry {
         entry(section: "episodes", slug: "${params.slug}") {
@@ -116,6 +106,13 @@ export async function getStaticProps(context) {
       }
     `,
   });
+
+  // Return 404 if the entry has been deleted
+  if (!data.entry) {
+    return {
+      notFound: true,
+    };
+  }
 
   // Extract colors from coverArt
   var Vibrant = require("node-vibrant");

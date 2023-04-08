@@ -2,10 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import cn from "classnames";
-import Button from "components/Button";
 import { CollectionItem, CollectionList } from "components/Collections";
-import GridListToggle from "components/GridListToggle";
 import Filters, { getDefaultFilters } from "components/Filters";
 import PageTabs from "components/PageTabs";
 import { getArtistInfo } from "helpers/index";
@@ -118,6 +115,7 @@ export default function Albums({ albums }) {
 
 export async function getStaticProps() {
   const { data } = await client.query({
+    fetchPolicy: "no-cache",
     query: gql`
       query Entries {
         entries(

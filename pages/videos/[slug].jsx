@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import { querySlugs } from "helpers/index";
 
@@ -29,12 +28,6 @@ const VideoEmbed = ({ id }) => {
 // ----------------------------------------------------------------------------
 
 export default function Video({ videoEntry }) {
-  if (!videoEntry)
-    return (
-      <div className="flex justify-center">
-        <Loader />
-      </div>
-    );
   const { title, vimeoId } = videoEntry;
 
   return (
@@ -69,6 +62,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
+    fetchPolicy: "no-cache",
     query: gql`
       query Entry {
         entry(section: "videos", slug: "${params.slug}") {
@@ -80,6 +74,13 @@ export async function getStaticProps(context) {
       }
     `,
   });
+
+  // Return 404 if the entry has been deleted
+  if (!data.entry) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

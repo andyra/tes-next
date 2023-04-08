@@ -2,11 +2,8 @@ import { Fragment } from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
-import cn from "classnames";
 import client from "../../apollo-client";
 import LightBox from "components/LightBox";
-import Loader from "components/Loader";
-import CategoryNav from "./components/CategoryNav";
 import DotMatrix from "./components/DotMatrix";
 import Info from "./components/Info";
 import Tape from "./components/Tape";
@@ -61,13 +58,6 @@ const Header = ({ categories, id, title }) => (
 // ----------------------------------------------------------------------------
 
 export default function Article({ allCategories, article }) {
-  if (!article)
-    return (
-      <div className="flex justify-center">
-        <Loader />
-      </div>
-    );
-
   const { categories, featuredImage, id, postContent, title } = article;
   const isEmpty = postContent.length === 1 && postContent[0].text === null;
 
@@ -178,6 +168,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
+    fetchPolicy: "no-cache",
     query: gql`
       query Entry {
         allCategories: categories(group: "library", level: 1) {
@@ -216,6 +207,13 @@ export async function getStaticProps(context) {
       }
     `,
   });
+
+  // Return 404 if the entry has been deleted
+  if (!data.entry) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

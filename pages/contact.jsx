@@ -1,8 +1,6 @@
 import Image from "next/legacy/image";
 import Link from "next/link";
-import PageHeader from "components/PageHeader";
 import { ADDRESS, EMAIL, PHONE } from "../constants";
-import Button from "components/Button";
 
 // Default
 // ----------------------------------------------------------------------------

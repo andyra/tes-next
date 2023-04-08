@@ -1,7 +1,5 @@
-import Link from "next/link";
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import client from "../../../apollo-client";
-import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import ArticleList from "../components/ArticleList";
 import CategoryNav from "../components/CategoryNav";
@@ -15,12 +13,6 @@ export default function Category({
   allCategories,
   parentCategory,
 }) {
-  if (!category)
-    return (
-      <div className="flex justify-center">
-        <Loader />
-      </div>
-    );
   const { children: subCategories, id, parent, slug, title } = category;
   const isPeopleCategory =
     slug === "people" || (parent !== null && parent.slug === "people");

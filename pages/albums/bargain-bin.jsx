@@ -1,12 +1,7 @@
-import { useState } from "react";
-import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import cn from "classnames";
 import NiceDate from "components/NiceDate";
 import PageHeader from "components/PageHeader";
-import { getArtistInfo } from "helpers/index";
-import { camelCaseToWords } from "helpers/utils";
 
 // Default
 // ----------------------------------------------------------------------------

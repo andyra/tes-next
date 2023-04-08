@@ -1,4 +1,3 @@
-import Image from "next/legacy/image";
 import { gql, useQuery } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";
@@ -7,13 +6,7 @@ import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import Tracklist from "components/Tracklist";
 import {
-  getArtistInfo,
-  getCollectionCoverArtUrl,
   getCollectionType,
-  getTrackAudioFileUrl,
-  getTrackSlug,
-  getTrackTitle,
-  getTrackType,
   querySlugs,
   normalizeTrack,
 } from "helpers/index";
@@ -174,14 +167,7 @@ const RelatedCollections = ({ songSlug }) => {
 // ----------------------------------------------------------------------------
 
 export default function Song({ song }) {
-  if (!song)
-    return (
-      <div className="flex justify-center">
-        <Loader />
-      </div>
-    );
-
-  const { leadSheet, notation, slug, title } = song;
+  const { leadSheet, slug, title } = song;
 
   return (
     <>
@@ -250,8 +236,7 @@ export async function getStaticProps(context) {
     `,
   });
 
-  console.log(data);
-
+  // Return 404 if the entry has been deleted
   if (!data.entry) {
     return {
       notFound: true,

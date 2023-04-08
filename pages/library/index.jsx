@@ -1,9 +1,6 @@
-import Image from "next/legacy/image";
-import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import ClientOnly from "components/ClientOnly";
-import PageHeader from "components/PageHeader";
 import PageTabs from "components/PageTabs";
 import ArticleList from "./components/ArticleList";
 import CategoryNav from "./components/CategoryNav";
@@ -45,6 +42,7 @@ export default function Library({ categories, people }) {
 
 export async function getStaticProps() {
   const { data } = await client.query({
+    fetchPolicy: "no-cache",
     query: gql`
       query Entries {
         entries(section: "library", relatedToCategories: [{ slug: "people" }]) {

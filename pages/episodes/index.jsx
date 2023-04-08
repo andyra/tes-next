@@ -5,20 +5,10 @@ import Image from "next/legacy/image";
 import { CollectionItem, CollectionList } from "components/Collections";
 import Button from "components/Button";
 import GridListToggle from "components/GridListToggle";
-import Icon from "components/Icon";
 import PageHeader from "components/PageHeader";
 import { DEFAULT_EPISODE_IMAGE, PODCAST_LINKS } from "../../constants";
 
-// Components
-// ----------------------------------------------------------------------------
-
-const EpisodeItem = ({ episode, gridView }) => {
-  const { episodeCoverArt, releaseDate, slug, title } = episode;
-
-  return <CollectionItem collection={episode} gridView={gridView} />;
-};
-
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Episodes({ episodes }) {
@@ -66,11 +56,7 @@ export default function Episodes({ episodes }) {
         </div>
         <CollectionList gridView={gridView}>
           {episodes.map((episode) => (
-            <EpisodeItem
-              episode={episode}
-              key={episode.slug}
-              gridView={gridView}
-            />
+            <CollectionItem collection={episode} gridView={gridView} key={episode.slug} />
           ))}
         </CollectionList>
       </section>
@@ -83,6 +69,7 @@ export default function Episodes({ episodes }) {
 
 export async function getStaticProps() {
   const { data } = await client.query({
+    fetchPolicy: "no-cache",
     query: gql`
       query Entries {
         entries(section: "episodes", orderBy: "releaseDate DESC") {

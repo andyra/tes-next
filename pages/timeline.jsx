@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import cn from "classnames";
 import styled from "styled-components";
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import client from "../apollo-client";
 import Filters, { getDefaultFilters } from "components/Filters";
 import NiceDate from "components/NiceDate";

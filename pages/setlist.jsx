@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Image from "next/legacy/image";
-import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
 import * as Accordion from "@radix-ui/react-accordion";
@@ -10,9 +8,8 @@ import Button from "components/Button";
 import Icon from "components/Icon";
 import Input from "components/Input";
 import LeadSheet from "components/LeadSheet";
-import PageHeader, { PageTitle } from "components/PageHeader";
+import PageHeader from "components/PageHeader";
 import Tooltip from "components/Tooltip";
-import { normalizeTrack } from "helpers/index";
 import { shuffle } from "helpers/utils";
 
 // Functions
