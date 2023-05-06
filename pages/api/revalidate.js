@@ -1,60 +1,81 @@
+import { gql } from "@apollo/client";
+import client from "../../apollo-client";
+
+// https://docs.craftcms.com/api/v4/craft-base-element.html#public-methods
 export default async function handler(req, res) {
   // Check for secret to confirm this is a valid request
   if (req.query.secret !== process.env.REVALIDATE_TOKEN) {
     return res.status(401).json({ message: "Invalid token" });
   }
 
-  // https://docs.craftcms.com/api/v4/craft-base-element.html#public-methods
-  // New Entry
-  // Delete Entry
-  // Save Entry
-
   const eventName = req.body.name;
-  const uri = req.body.sender.uri;
-  const entryType = uri.split("/")[0];
+  const url = req.body.sender.ref;
+  const entryType = url.split("/")[0];
 
-  console.log("==================================================");
-  console.log(`URL: ${uri}`);
-  console.log(`eventName: ${eventName}`);
-  console.log(`entryType: ${entryType}`);
+  const hasEntryPage =
+    ["afterPropagate", "afterDelete"].includes(eventName) &&
+    !["artists", "setlistComputor", "timeline"].includes(entryType);
 
   try {
-    // Create any new entry or Edit any existing entry
-    if (eventName === "afterPropagate" || eventName === "afterDelete") {
-      console.log("revalidate: /uri");
-      await res.revalidate(`/${uri}`);
+    // All entry types: rebuild entry when creating, editing, or deleting
+    if (hasEntryPage) {
+      await res.revalidate(`/${url}`);
     }
 
-    // Edit, New, or Delete entries
     if (entryType === "albums") {
-      console.log("revalidate: /");
-      console.log("revalidate: /albums");
       await res.revalidate(`/`);
       await res.revalidate(`/albums`);
-      // TODO: Rebuilt specific song slugs
     }
+
     if (entryType === "episodes") {
-      console.log("revalidate: /");
-      console.log("revalidate: /episodes");
       await res.revalidate(`/`);
       await res.revalidate(`/episodes`);
     }
-    if (entryType === "library") {
-      console.log("revalidate: /library");
-      await res.revalidate(`/library`);
-      // TODO Rebuild category pages
-    }
-    if (entryType === "songs") {
-      console.log("revalidate: /songs");
-      await res.revalidate(`/songs`);
 
-      // If either the title or the slug have changed, we need to rebuild anything that might link to them :()
-      // req.body.sender.title
-      // req.body.sender.slug
+    if (entryType === "library") {
+      await res.revalidate(`/library`);
+
+      // Fetch and rebuild all categories
+      const { data } = await client.query({
+        query: gql`
+          query Category {
+            categories(group: "library", level: 1) {
+              slug
+              url
+            }
+          }
+        `,
+      });
+
+      if (!data.categories) {
+        throw new Error(
+          `Failed to fetch Library categories, received status ${data.error}`
+        );
+      }
+
+      for (const category of data.categories) {
+        await res.revalidate(`/${category.url}`);
+      }
     }
+
+    if (entryType === "artists") {
+      await res.revalidate(`/albums`);
+    }
+
+    if (entryType === "songs") {
+      await res.revalidate(`/songs`);
+    }
+
     if (entryType === "videos") {
-      console.log("revalidate: video");
       await res.revalidate(`/videos`);
+    }
+
+    if (entryType === "timeline") {
+      await res.revalidate(`/timeline`);
+    }
+
+    if (entryType === "setlistComputor") {
+      await res.revalidate(`/setlist`);
     }
 
     return res.json({ revalidated: true });

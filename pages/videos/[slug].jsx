@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import { querySlugs } from "helpers/index";
 
@@ -27,8 +28,9 @@ const VideoEmbed = ({ id }) => {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Video({ videoEntry }) {
-  const { title, vimeoId } = videoEntry;
+export default function Video({ video }) {
+  if (!video) return <Loader />;
+  const { title, vimeoId } = video;
 
   return (
     <>
@@ -62,7 +64,6 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
-    fetchPolicy: "no-cache",
     query: gql`
       query Entry {
         entry(section: "videos", slug: "${params.slug}") {
@@ -84,9 +85,9 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      videoEntry: data.entry,
       metaTitle: data.entry.title,
       navSection: "Videos",
+      video: data.entry,
     },
   };
 }

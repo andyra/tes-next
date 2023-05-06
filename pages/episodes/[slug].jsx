@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import { CollectionHeader } from "components/Collections";
+import Loader from "components/Loader";
 import NiceDate from "components/NiceDate";
 import PlayPauseButton from "components/PlayPauseButton";
 import Tracklist from "components/Tracklist";
@@ -10,10 +11,11 @@ import {
   querySlugs,
 } from "helpers/index";
 
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Episode({ coverPalette, episode }) {
+  if (!episode) return <Loader />;
   const { description, episodeCoverArt, releaseDate } = episode;
   const normalizedTracks = normalizeTracklist({ collection: episode });
   const normalizedFullEpisode = normalizeFullEpisode(episode);
@@ -62,7 +64,6 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
-    fetchPolicy: "no-cache",
     query: gql`
       query Entry {
         entry(section: "episodes", slug: "${params.slug}") {

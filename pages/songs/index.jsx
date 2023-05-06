@@ -61,7 +61,6 @@ export default function Songs({ songs }) {
 
 export async function getStaticProps() {
   const { data } = await client.query({
-    fetchPolicy: "no-cache",
     query: gql`
       query Entries {
         entries(section: "songs", orderBy: "title ASC") {

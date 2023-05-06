@@ -102,7 +102,7 @@ export default function Albums({ albums }) {
       </CollectionList>
       <Link
         href="/albums/bargain-bin"
-        className="block rounded-lg border-2 border-accent-25 p-24 font-funky text-center text-5xl text-accent hover:border-accent transition"
+        className="block rounded-lg border-2 border-accent-25 p-24 font-funky text-center text-5xl text-accent hover:border-accent transition hidden"
       >
         Enter the Bargain Bin
       </Link>
@@ -115,14 +115,9 @@ export default function Albums({ albums }) {
 
 export async function getStaticProps() {
   const { data } = await client.query({
-    fetchPolicy: "no-cache",
     query: gql`
       query Entries {
-        entries(
-          section: "albums"
-          search: "albumType:live OR studio OR episodeCompanion"
-          orderBy: "releaseDate DESC"
-        ) {
+        entries(section: "albums", orderBy: "releaseDate DESC") {
           slug
           title
           uri

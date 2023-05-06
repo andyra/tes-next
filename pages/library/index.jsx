@@ -42,7 +42,6 @@ export default function Library({ categories, people }) {
 
 export async function getStaticProps() {
   const { data } = await client.query({
-    fetchPolicy: "no-cache",
     query: gql`
       query Entries {
         entries(section: "library", relatedToCategories: [{ slug: "people" }]) {

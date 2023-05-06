@@ -194,14 +194,14 @@ const SetlistItems = ({ items }) =>
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Setlist({ songs, strategyGlobal }) {
+export default function Setlist({ songs, setlistStrategies }) {
   const [songCount, setSongCount] = useState(0);
   const [bleedCount, setBleedCount] = useState(0);
   const [strategyCount, setStrategyCount] = useState(0);
   const [setlistItems, setSetlistItems] = useState([]);
 
   // Split the text block string into an array of strings based on newlines
-  const strategies = strategyGlobal[0].strategies.split(/\r?\n/);
+  const strategies = setlistStrategies.split(/\r?\n/);
 
   return (
     <>
@@ -230,7 +230,7 @@ export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
     query: gql`
-      query Entry {
+      query Setlist {
         entries(section: "songs") {
           title
           uri
@@ -243,8 +243,8 @@ export async function getStaticProps(context) {
             }
           }
         }
-        globalSets {
-          ... on setlistComputor_GlobalSet {
+        entry(section: "setlistComputor") {
+          ... on setlistComputor_setlistComputor_Entry {
             strategies
           }
         }
@@ -256,7 +256,7 @@ export async function getStaticProps(context) {
     props: {
       metaTitle: "Setlist Computor",
       songs: data.entries,
-      strategyGlobal: data.globalSets,
+      setlistStrategies: data.entry.strategies,
     },
   };
 }

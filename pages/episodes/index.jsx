@@ -56,7 +56,11 @@ export default function Episodes({ episodes }) {
         </div>
         <CollectionList gridView={gridView}>
           {episodes.map((episode) => (
-            <CollectionItem collection={episode} gridView={gridView} key={episode.slug} />
+            <CollectionItem
+              collection={episode}
+              gridView={gridView}
+              key={episode.slug}
+            />
           ))}
         </CollectionList>
       </section>
@@ -69,7 +73,6 @@ export default function Episodes({ episodes }) {
 
 export async function getStaticProps() {
   const { data } = await client.query({
-    fetchPolicy: "no-cache",
     query: gql`
       query Entries {
         entries(section: "episodes", orderBy: "releaseDate DESC") {

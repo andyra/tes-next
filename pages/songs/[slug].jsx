@@ -5,11 +5,7 @@ import LeadSheet from "components/LeadSheet";
 import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import Tracklist from "components/Tracklist";
-import {
-  getCollectionType,
-  querySlugs,
-  normalizeTrack,
-} from "helpers/index";
+import { getCollectionType, querySlugs, normalizeTrack } from "helpers/index";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -163,10 +159,11 @@ const RelatedCollections = ({ songSlug }) => {
   );
 };
 
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Song({ song }) {
+  if (!song) return <Loader />;
   const { leadSheet, slug, title } = song;
 
   return (
@@ -217,7 +214,6 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
-    fetchPolicy: "no-cache",
     query: gql`
       query Entry {
         entry(section: "songs", slug: "${params.slug}") {

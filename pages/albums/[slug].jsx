@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import { CollectionHeader } from "components/Collections";
+import Loader from "components/Loader";
 import NiceDate from "components/NiceDate";
 import Tracklist from "components/Tracklist";
 import { normalizeTracklist, querySlugs } from "helpers/index";
@@ -10,12 +11,8 @@ import { DEFAULT_EPISODE_IMAGE } from "../../constants";
 // ----------------------------------------------------------------------------
 
 export default function Album({ album, durations, coverPalette }) {
-  const {
-    albumTracklist,
-    albumType,
-    artist,
-    releaseDate,
-  } = album;
+  if (!album) return <Loader />;
+  const { albumTracklist, albumType, artist, releaseDate } = album;
   const normalizedTracks = normalizeTracklist({
     collection: album,
   });
@@ -59,7 +56,6 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
-    fetchPolicy: "no-cache",
     query: gql`
       query Entry {
         entry(section: "albums", slug: "${params.slug}") {

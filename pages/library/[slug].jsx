@@ -4,6 +4,7 @@ import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import LightBox from "components/LightBox";
+import Loader from "components/Loader";
 import DotMatrix from "./components/DotMatrix";
 import Info from "./components/Info";
 import Tape from "./components/Tape";
@@ -54,10 +55,11 @@ const Header = ({ categories, id, title }) => (
   </header>
 );
 
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Article({ allCategories, article }) {
+  if (!article) return <Loader />;
   const { categories, featuredImage, id, postContent, title } = article;
   const isEmpty = postContent.length === 1 && postContent[0].text === null;
 
@@ -168,7 +170,6 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await client.query({
-    fetchPolicy: "no-cache",
     query: gql`
       query Entry {
         allCategories: categories(group: "library", level: 1) {

@@ -1,10 +1,11 @@
 import { gql } from "@apollo/client";
 import client from "../../../apollo-client";
 import PageHeader from "components/PageHeader";
+import Loader from "components/Loader";
 import ArticleList from "../components/ArticleList";
 import CategoryNav from "../components/CategoryNav";
 
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Category({
@@ -13,6 +14,7 @@ export default function Category({
   allCategories,
   parentCategory,
 }) {
+  if (!category) return <Loader />;
   const { children: subCategories, id, parent, slug, title } = category;
   const isPeopleCategory =
     slug === "people" || (parent !== null && parent.slug === "people");
@@ -120,6 +122,13 @@ export async function getStaticProps(context) {
       }
     `,
   });
+
+  // Return 404 if the entry has been deleted
+  if (!data.entry) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
