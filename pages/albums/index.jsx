@@ -2,10 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import cn from "classnames";
-import Button from "components/Button";
 import { CollectionItem, CollectionList } from "components/Collections";
-import GridListToggle from "components/GridListToggle";
 import Filters, { getDefaultFilters } from "components/Filters";
 import PageTabs from "components/PageTabs";
 import { getArtistInfo } from "helpers/index";
@@ -105,7 +102,7 @@ export default function Albums({ albums }) {
       </CollectionList>
       <Link
         href="/albums/bargain-bin"
-        className="block rounded-lg border-2 border-accent-25 p-24 font-funky text-center text-5xl text-accent hover:border-accent transition"
+        className="block rounded-lg border-2 border-accent-25 p-24 font-funky text-center text-5xl text-accent hover:border-accent transition hidden"
       >
         Enter the Bargain Bin
       </Link>
@@ -120,11 +117,7 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query Entries {
-        entries(
-          section: "albums"
-          search: "albumType:live OR studio OR episodeCompanion"
-          orderBy: "releaseDate DESC"
-        ) {
+        entries(section: "albums", orderBy: "releaseDate DESC") {
           slug
           title
           uri

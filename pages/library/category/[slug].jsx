@@ -1,19 +1,20 @@
-import Link from "next/link";
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import client from "../../../apollo-client";
 import PageHeader from "components/PageHeader";
+import Loader from "components/Loader";
 import ArticleList from "../components/ArticleList";
 import CategoryNav from "../components/CategoryNav";
 
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Category({
   articles,
   category,
   allCategories,
-  parentCategory
+  parentCategory,
 }) {
+  if (!category) return <Loader />;
   const { children: subCategories, id, parent, slug, title } = category;
   const isPeopleCategory =
     slug === "people" || (parent !== null && parent.slug === "people");
@@ -65,16 +66,16 @@ export async function getStaticPaths() {
           slug
         }
       }
-    `
+    `,
   });
 
-  const paths = data.categories.map(category => ({
-    params: { slug: category.slug }
+  const paths = data.categories.map((category) => ({
+    params: { slug: category.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: true,
   };
 }
 
@@ -102,9 +103,7 @@ export async function getStaticProps(context) {
           slug
           title
         }
-        entries(section: "library", relatedToCategories: [{ slug: "${
-          params.slug
-        }" }]) {
+        entries(section: "library", relatedToCategories: [{ slug: "${params.slug}" }]) {
           slug
           title
           uri
@@ -121,8 +120,15 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
+
+  // Return 404 if the entry has been deleted
+  if (!data.entry) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
@@ -131,7 +137,7 @@ export async function getStaticProps(context) {
       category: data.category,
       metaTitle: data.category.title,
       navSection: "Library",
-      parentCategory: data.parentCategory
-    }
+      parentCategory: data.parentCategory,
+    },
   };
 }

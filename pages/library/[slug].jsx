@@ -2,10 +2,9 @@ import { Fragment } from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
-import cn from "classnames";
 import client from "../../apollo-client";
 import LightBox from "components/LightBox";
-import CategoryNav from "./components/CategoryNav";
+import Loader from "components/Loader";
 import DotMatrix from "./components/DotMatrix";
 import Info from "./components/Info";
 import Tape from "./components/Tape";
@@ -30,13 +29,14 @@ const Header = ({ categories, id, title }) => (
     <div className="flex gap-12">
       <Info label="File Under" className="flex-1">
         {categories?.length
-          ? categories.map(category => (
-              (<Link
+          ? categories.map((category) => (
+              <Link
                 href={`/library/category/${category.slug}`}
                 key={category.slug}
-                className="underline hover:text-accent">
-                {category.title} 
-              </Link>)
+                className="underline hover:text-accent"
+              >
+                {category.title}
+              </Link>
             ))
           : "n/a"}
       </Info>
@@ -55,10 +55,11 @@ const Header = ({ categories, id, title }) => (
   </header>
 );
 
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Article({ allCategories, article }) {
+  if (!article) return <Loader />;
   const { categories, featuredImage, id, postContent, title } = article;
   const isEmpty = postContent.length === 1 && postContent[0].text === null;
 
@@ -105,7 +106,7 @@ export default function Article({ allCategories, article }) {
                   {item.text && (
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: replaceInternalLinks(item.text)
+                        __html: replaceInternalLinks(item.text),
                       }}
                     />
                   )}
@@ -150,16 +151,16 @@ export default function Article({ allCategories, article }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("library")
+    query: querySlugs("library"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: true,
   };
 }
 
@@ -205,8 +206,15 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
+
+  // Return 404 if the entry has been deleted
+  if (!data.entry) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
@@ -214,7 +222,7 @@ export async function getStaticProps(context) {
       article: data.entry,
       spacing: false,
       metaTitle: data.entry.title,
-      navSection: "Library"
-    }
+      navSection: "Library",
+    },
   };
 }

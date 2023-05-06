@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
+import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import { querySlugs } from "helpers/index";
 
@@ -15,8 +16,8 @@ const VideoEmbed = ({ id }) => {
     return fetch(
       `https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}`
     )
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setEmbedHtml(data.html);
       });
   }, [id]);
@@ -27,8 +28,9 @@ const VideoEmbed = ({ id }) => {
 // Default
 // ----------------------------------------------------------------------------
 
-export default function Video({ videoEntry }) {
-  const { title, vimeoId } = videoEntry;
+export default function Video({ video }) {
+  if (!video) return <Loader />;
+  const { title, vimeoId } = video;
 
   return (
     <>
@@ -43,16 +45,16 @@ export default function Video({ videoEntry }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("videos")
+    query: querySlugs("videos"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: true,
   };
 }
 
@@ -71,14 +73,21 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
+
+  // Return 404 if the entry has been deleted
+  if (!data.entry) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
-      videoEntry: data.entry,
       metaTitle: data.entry.title,
-      navSection: "Videos"
-    }
+      navSection: "Videos",
+      video: data.entry,
+    },
   };
 }

@@ -1,4 +1,3 @@
-import Image from "next/legacy/image";
 import { gql, useQuery } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";
@@ -6,17 +5,7 @@ import LeadSheet from "components/LeadSheet";
 import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import Tracklist from "components/Tracklist";
-import {
-  getArtistInfo,
-  getCollectionCoverArtUrl,
-  getCollectionType,
-  getTrackAudioFileUrl,
-  getTrackSlug,
-  getTrackTitle,
-  getTrackType,
-  querySlugs,
-  normalizeTrack
-} from "helpers/index";
+import { getCollectionType, querySlugs, normalizeTrack } from "helpers/index";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -26,18 +15,18 @@ function matchingTrack(track, slug) {
 }
 
 function getRelatedCollections(slug, collections) {
-  const relatedCollections = collections.filter(function(collection) {
+  const relatedCollections = collections.filter(function (collection) {
     let filteredTracklist = [];
 
     // Remove all the tracks that don't match this song
     if (collection.albumTracklist) {
-      filteredTracklist = collection.albumTracklist.filter(function(track) {
+      filteredTracklist = collection.albumTracklist.filter(function (track) {
         return matchingTrack(track, slug);
       });
     }
 
     if (collection.episodeTracklist) {
-      filteredTracklist = collection.episodeTracklist.filter(function(track) {
+      filteredTracklist = collection.episodeTracklist.filter(function (track) {
         return matchingTrack(track, slug);
       });
     }
@@ -74,11 +63,11 @@ const ContentSection = ({
   className,
   emptyMessage,
   enabled,
-  title
+  title,
 }) => {
   const headingClasses = cn({
     "font-medium text-3xl mb-16": true,
-    "text-primary-50": !enabled
+    "text-primary-50": !enabled,
   });
 
   return (
@@ -170,11 +159,12 @@ const RelatedCollections = ({ songSlug }) => {
   );
 };
 
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Song({ song }) {
-  const { leadSheet, notation, slug, title } = song;
+  if (!song) return <Loader />;
+  const { leadSheet, slug, title } = song;
 
   return (
     <>
@@ -205,16 +195,16 @@ export default function Song({ song }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("songs")
+    query: querySlugs("songs"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: true,
   };
 }
 
@@ -239,14 +229,21 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
+
+  // Return 404 if the entry has been deleted
+  if (!data.entry) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
       navSection: "Music",
       metaTitle: data.entry.title,
-      song: data.entry
-    }
+      song: data.entry,
+    },
   };
 }

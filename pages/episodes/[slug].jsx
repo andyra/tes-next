@@ -1,23 +1,22 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 import { CollectionHeader } from "components/Collections";
-import CoverArt from "components/CoverArt";
+import Loader from "components/Loader";
 import NiceDate from "components/NiceDate";
-import PageHeader, { PageTitle } from "components/PageHeader";
 import PlayPauseButton from "components/PlayPauseButton";
 import Tracklist from "components/Tracklist";
-import { EPISODE } from "../../constants";
 import {
   normalizeFullEpisode,
   normalizeTracklist,
-  querySlugs
+  querySlugs,
 } from "helpers/index";
 
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Episode({ coverPalette, episode }) {
-  const { description, episodeCoverArt, releaseDate, title } = episode;
+  if (!episode) return <Loader />;
+  const { description, episodeCoverArt, releaseDate } = episode;
   const normalizedTracks = normalizeTracklist({ collection: episode });
   const normalizedFullEpisode = normalizeFullEpisode(episode);
 
@@ -46,16 +45,16 @@ export default function Episode({ coverPalette, episode }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("episodes")
+    query: querySlugs("episodes"),
   });
 
-  const paths = data.entries.map(entry => ({
-    params: { slug: entry.slug }
+  const paths = data.entries.map((entry) => ({
+    params: { slug: entry.slug },
   }));
 
   return {
     paths,
-    fallback: false
+    fallback: true,
   };
 }
 
@@ -106,15 +105,22 @@ export async function getStaticProps(context) {
           }
         }
       }
-    `
+    `,
   });
+
+  // Return 404 if the entry has been deleted
+  if (!data.entry) {
+    return {
+      notFound: true,
+    };
+  }
 
   // Extract colors from coverArt
   var Vibrant = require("node-vibrant");
   const coverArtSrc = data.entry.episodeCoverArt[0].url;
   const coverPalette = await Vibrant.from(coverArtSrc)
     .getPalette()
-    .then(function(palette) {
+    .then(function (palette) {
       return palette;
     });
 
@@ -123,7 +129,7 @@ export async function getStaticProps(context) {
       coverPalette: JSON.stringify(coverPalette),
       episode: data.entry,
       metaTitle: data.entry.title,
-      navSection: "Podcast"
-    }
+      navSection: "Podcast",
+    },
   };
 }

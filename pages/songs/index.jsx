@@ -3,7 +3,6 @@ import Link from "next/link";
 import { gql } from "@apollo/client";
 import cn from "classnames";
 import client from "../../apollo-client";
-import Button from "components/Button";
 import PageTabs from "components/PageTabs";
 
 // Components
