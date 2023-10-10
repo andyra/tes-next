@@ -123,8 +123,8 @@ export async function getStaticProps(context) {
     `,
   });
 
-  // Return 404 if the entry has been deleted
-  if (!data.entries) {
+  // Return 404 if the category has been deleted
+  if (!data.category) {
     return {
       notFound: true,
     };
