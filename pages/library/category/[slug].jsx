@@ -124,7 +124,7 @@ export async function getStaticProps(context) {
   });
 
   // Return 404 if the entry has been deleted
-  if (!data.entry) {
+  if (!data.entries) {
     return {
       notFound: true,
     };
