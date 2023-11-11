@@ -3,7 +3,7 @@ import Link from "next/link";
 import cn from "classnames";
 import styled from "styled-components";
 import { gql } from "@apollo/client";
-import client from "../apollo-client";
+import client from "helpers/apollo-client";
 import Filters, { getDefaultFilters } from "components/Filters";
 import NiceDate from "components/NiceDate";
 import PageHeader from "components/PageHeader";

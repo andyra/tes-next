@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import client from "../../apollo-client";
+import client from "helpers/apollo-client";
 import { CollectionHeader } from "components/Collections";
 import Loader from "components/Loader";
 import NiceDate from "components/NiceDate";

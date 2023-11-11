@@ -25,7 +25,7 @@ class MyDocument extends Document {
           />
           <link
             rel="preload"
-            href="/fonts/gt-alpina-typewriter-regular-subset-subset.woff2"
+            href="/fonts/gt-alpina-typewriter-regular-subset.woff2"
             as="font"
             crossOrigin=""
           />

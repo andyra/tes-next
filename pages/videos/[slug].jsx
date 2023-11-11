@@ -1,44 +1,9 @@
 import { useEffect, useState } from "react";
 import { gql } from "@apollo/client";
-import client from "../../apollo-client";
+import client from "helpers/apollo-client";
 import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import { querySlugs } from "helpers/index";
-
-// Components
-// ----------------------------------------------------------------------------
-
-const VideoEmbed = ({ id }) => {
-  const [embedHtml, setEmbedHtml] = useState(null);
-
-  // Get the thumbnail from Vimeo
-  useEffect(() => {
-    return fetch(
-      `https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setEmbedHtml(data.html);
-      });
-  }, [id]);
-
-  return <div dangerouslySetInnerHTML={{ __html: embedHtml }} />;
-};
-
-// Default
-// ----------------------------------------------------------------------------
-
-export default function Video({ video }) {
-  if (!video) return <Loader />;
-  const { title, vimeoId } = video;
-
-  return (
-    <>
-      <PageHeader back={{ href: "/videos", title: "Videos" }} title={title} />
-      <VideoEmbed id={vimeoId} />
-    </>
-  );
-}
 
 // Paths
 // -----------------------------------------------------------------------------
@@ -90,4 +55,37 @@ export async function getStaticProps(context) {
       video: data.entry,
     },
   };
+}
+
+// Components
+// ----------------------------------------------------------------------------
+
+const VideoEmbed = ({ id }) => {
+  const [embedHtml, setEmbedHtml] = useState(null);
+
+  // Get the thumbnail from Vimeo
+  useEffect(() => {
+    fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setEmbedHtml(data.html);
+      });
+  }, [id]);
+
+  return <div dangerouslySetInnerHTML={{ __html: embedHtml }} />;
+};
+
+// Default
+// ----------------------------------------------------------------------------
+
+export default function Video({ video }) {
+  if (!video) return <Loader />;
+  const { title, vimeoId } = video;
+
+  return (
+    <>
+      <PageHeader back={{ href: "/videos", title: "Videos" }} title={title} />
+      <VideoEmbed id={vimeoId} />
+    </>
+  );
 }

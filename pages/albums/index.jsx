@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { gql } from "@apollo/client";
-import client from "../../apollo-client";
+import client from "helpers/apollo-client";
 import { CollectionItem, CollectionList } from "components/Collections";
 import Filters, { getDefaultFilters } from "components/Filters";
 import PageTabs from "components/PageTabs";

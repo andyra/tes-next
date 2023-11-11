@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { gql } from "@apollo/client";
-import client from "../apollo-client";
+import client from "helpers/apollo-client";
 import * as Accordion from "@radix-ui/react-accordion";
 import cn from "classnames";
 import Badge from "components/Badge";

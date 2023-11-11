@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import cn from "classnames";
-import client from "../../apollo-client";
+import client from "helpers/apollo-client";
 import PageTabs from "components/PageTabs";
 
 // Components

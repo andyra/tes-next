@@ -2,11 +2,37 @@ import { useEffect, useState } from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
+import client from "helpers/apollo-client";
 import Empty from "components/Empty";
 import QueryError from "components/QueryError";
 import PageHeader from "components/PageHeader";
 
-// Components
+// Config
+// ----------------------------------------------------------------------------
+
+export async function getStaticProps() {
+  return {
+    props: {
+      metaTitle: "Videos",
+    },
+  };
+}
+
+const QUERY_VIDEOS = gql`
+  query Entries {
+    entries(section: "videos") {
+      id
+      slug
+      title
+      uri
+      ... on videos_default_Entry {
+        vimeoId
+      }
+    }
+  }
+`;
+
+// Video Item
 // ----------------------------------------------------------------------------
 
 const ulClasses = "grid grid-cols-2 lg:grid-cols-3 gap-8 -mx-8";
@@ -17,15 +43,13 @@ const VideoItem = ({ video }) => {
 
   // Get the thumbnail from Vimeo
   useEffect(() => {
-    return fetch(
-      `https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoId}`
-    )
-      .then(response => response.json())
-      .then(data => {
+    fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoId}`)
+      .then((response) => response.json())
+      .then((data) => {
         setThumbnail({
           src: data.thumbnail_url,
           height: data.thumbnail_height,
-          width: data.thumbnail_width
+          width: data.thumbnail_width,
         });
       });
   }, [vimeoId]);
@@ -34,8 +58,8 @@ const VideoItem = ({ video }) => {
     <li className="flex items-center gap-8">
       <Link
         href={uri}
-        className="block w-full h-full text-lg p-8 rounded-lg hover:ring-2 hover:ring-accent transition">
-
+        className="block w-full h-full text-lg p-8 rounded-lg hover:ring-2 hover:ring-accent transition"
+      >
         {thumbnail && (
           <>
             <figure className="rounded-lg overflow-hidden mb-8">
@@ -50,28 +74,16 @@ const VideoItem = ({ video }) => {
           </>
         )}
         {title}
-
       </Link>
     </li>
   );
 };
 
+// Video List
+// -----------------------------------------------------------------------------
+
 const VideoList = () => {
-  const { data, loading, error } = useQuery(
-    gql`
-      query Entries {
-        entries(section: "videos") {
-          id
-          slug
-          title
-          uri
-          ... on videos_default_Entry {
-            vimeoId
-          }
-        }
-      }
-    `
-  );
+  const { data, loading, error } = useQuery(QUERY_VIDEOS, { client });
 
   if (loading) {
     return (
@@ -94,16 +106,16 @@ const VideoList = () => {
 
   return data.entries ? (
     <ul className={ulClasses}>
-      {data.entries.map(video => (
+      {data.entries.map((video) => (
         <VideoItem video={video} key={video.slug} />
       ))}
     </ul>
   ) : (
-    <Empty>Ain&apos;t no videos</Empty>
+    <Empty>Ain’t no videos</Empty>
   );
 };
 
-// Default
+// Page
 // ----------------------------------------------------------------------------
 
 export default function Videos() {
@@ -113,15 +125,4 @@ export default function Videos() {
       <VideoList />
     </>
   );
-}
-
-// Config
-// ----------------------------------------------------------------------------
-
-export async function getStaticProps() {
-  return {
-    props: {
-      metaTitle: "Videos"
-    }
-  };
 }

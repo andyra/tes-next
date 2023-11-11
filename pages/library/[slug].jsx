@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
-import client from "../../apollo-client";
+import client from "helpers/apollo-client";
 import LightBox from "components/LightBox";
 import Loader from "components/Loader";
 import DotMatrix from "./components/DotMatrix";

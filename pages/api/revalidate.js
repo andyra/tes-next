@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import client from "../../apollo-client";
+import client from "helpers/apollo-client";
 
 // https://docs.craftcms.com/api/v4/craft-base-element.html#public-methods
 export default async function handler(req, res) {

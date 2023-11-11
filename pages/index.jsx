@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
-import client from "../apollo-client";
+import client from "helpers/apollo-client";
 import Button from "components/Button";
 import PlayPauseButton from "components/PlayPauseButton";
 import Icon from "components/Icon";

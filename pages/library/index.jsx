@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import client from "../../apollo-client";
+import client from "helpers/apollo-client";
 import ClientOnly from "components/ClientOnly";
 import PageTabs from "components/PageTabs";
 import ArticleList from "./components/ArticleList";

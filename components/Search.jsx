@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
-import client from "../apollo-client";
+import client from "helpers/apollo-client";
 import cn from "classnames";
 import Button from "components/Button";
 import CoverArt from "components/CoverArt";
@@ -9,7 +9,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogTrigger
+  DialogTrigger,
 } from "components/Dialog";
 import Icon from "components/Icon";
 import Input from "components/Input";
@@ -37,7 +37,7 @@ function sortResults(results) {
 }
 
 function groupBy(arr, property) {
-  return arr.reduce(function(memo, x) {
+  return arr.reduce(function (memo, x) {
     if (!memo[x[property]]) {
       memo[x[property]] = [];
     }
@@ -52,7 +52,7 @@ function groupBy(arr, property) {
 const ResultIcon = ({ item }) => {
   const ICONS = {
     songs: "Note",
-    library: "Book"
+    library: "Book",
   };
 
   return item.albumCoverArt || item.episodeCoverArt ? (
@@ -97,7 +97,7 @@ const Results = ({ searchTerm, setIsOpen }) => {
       }
     `,
     {
-      variables: { searchTerm }
+      variables: { searchTerm },
     }
   );
 
@@ -113,7 +113,7 @@ const Results = ({ searchTerm, setIsOpen }) => {
 
   return Object.keys(groupedResults).length ? (
     <ul className="mt-8">
-      {Object.keys(groupedResults).map(category => (
+      {Object.keys(groupedResults).map((category) => (
         <li key={category}>
           <h3 className="font-medium text-xs uppercase tracking-widest text-primary py-8 bg-ground sticky top-40">
             {category}
@@ -126,11 +126,10 @@ const Results = ({ searchTerm, setIsOpen }) => {
                   className="flex items-center gap-16 px-8 py-8 rounded-lg hover:bg-primary-10 text-xl text-primary focus:relative focus-visible:relative transition"
                   onClick={() => {
                     setIsOpen(false);
-                  }}>
-
+                  }}
+                >
                   <ResultIcon item={item} />
                   {item.title}
-
                 </Link>
               </li>
             ))}
@@ -151,7 +150,7 @@ const Search = ({ entries }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearching, setIsSearching] = useState(false);
 
-  const handleInputChange = debounce(e => {
+  const handleInputChange = debounce((e) => {
     setSearchTerm(e.target.value);
   }, 500);
 
@@ -193,7 +192,7 @@ const Search = ({ entries }) => {
             icon="Search"
             isLoading={isSearching}
             label="Search"
-            onChange={e => {
+            onChange={(e) => {
               setSearchTerm(e.target.value);
             }}
             placeholder="What are you looking for?"

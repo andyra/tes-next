@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import cn from "classnames";
-import client from "../../apollo-client";
+import client from "helpers/apollo-client";
 import LeadSheet from "components/LeadSheet";
 import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
