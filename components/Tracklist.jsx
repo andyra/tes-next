@@ -123,10 +123,9 @@ export const Tracklist = ({
                   <div className="font-medium">{track.title}</div>
                   <Link
                     href={track.collection.uri}
-                    className="text-sm text-primary-75 hover:underline">
-
+                    className="text-sm text-primary-75 hover:underline"
+                  >
                     {track.collection.title}
-
                   </Link>
                 </div>
               </>

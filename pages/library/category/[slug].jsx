@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import client from "../../../apollo-client";
+import client from "helpers/apollo-client";
 import PageHeader from "components/PageHeader";
 import Loader from "components/Loader";
 import ArticleList from "../components/ArticleList";
