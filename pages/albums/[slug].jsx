@@ -109,21 +109,30 @@ export async function getStaticProps(context) {
   }
 
   // Extract colors from coverArt
-  var Vibrant = require("node-vibrant");
-  const coverArtSrc =
-    data.entry.albumType === "bargainBin"
-      ? DEFAULT_EPISODE_IMAGE
-      : data.entry.albumCoverArt[0].url;
-  const coverPalette = await Vibrant.from(coverArtSrc)
-    .getPalette()
-    .then(function (palette) {
-      return palette;
-    });
+  // var Vibrant = require("node-vibrant");
+  // const coverArtSrc =
+  //   data.entry.albumType === "bargainBin"
+  //     ? DEFAULT_EPISODE_IMAGE
+  //     : data.entry.albumCoverArt[0].url;
+  // const coverPalette = await Vibrant.from(coverArtSrc)
+  //   .getPalette()
+  //   .then(function (palette) {
+  //     return palette;
+  //   });
+
+  const tempCoverPalette = {
+    Vibrant: { rgb: [252, 84, 251], population: 1651 },
+    DarkVibrant: { rgb: [148, 4, 132], population: 19 },
+    LightVibrant: { rgb: [249, 100, 251], population: 36 },
+    Muted: { rgb: [95, 121, 161], population: 595 },
+    DarkMuted: { rgb: [47, 77, 106], population: 1830 },
+    LightMuted: { rgb: [205, 174, 215], population: 195 },
+  };
 
   return {
     props: {
       album: data.entry,
-      coverPalette: JSON.stringify(coverPalette),
+      coverPalette: JSON.stringify(tempCoverPalette),
       metaTitle: data.entry.title,
       navSection: "Music",
     },

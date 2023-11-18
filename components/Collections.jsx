@@ -20,21 +20,15 @@ function rgbColor(color) {
 const GradientEl = styled.div`
   background: linear-gradient(
     to bottom,
-    ${props => props.colorA},
-    ${props => props.colorB}
+    ${(props) => props.colorA},
+    ${(props) => props.colorB}
   );
 `;
 
 const GradientMask = ({ coverPalette, theme }) => {
   const isLight = theme === "light";
-  const {
-    Vibrant,
-    Muted,
-    LightVibrant,
-    LightMuted,
-    DarkVibrant,
-    DarkMuted
-  } = JSON.parse(coverPalette);
+  const { Vibrant, Muted, LightVibrant, LightMuted, DarkVibrant, DarkMuted } =
+    JSON.parse(coverPalette);
 
   const vibrant = rgbColor(Vibrant);
   const vibrantLight = rgbColor(LightVibrant);
@@ -112,7 +106,7 @@ export const CollectionHeader = ({ coverPalette, children, collection }) => {
 };
 
 CollectionHeader.propTypes = {
-  collection: PropTypes.object.isRequired
+  collection: PropTypes.object.isRequired,
 };
 
 // Collection List
@@ -120,8 +114,9 @@ CollectionHeader.propTypes = {
 
 export const CollectionList = ({ children, gridView }) => {
   const classes = cn({
-    "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 -mx-8 md:-mx-16": gridView,
-    "divide-y max-w-screen-lg mx-auto": !gridView
+    "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 -mx-8 md:-mx-16":
+      gridView,
+    "divide-y max-w-screen-lg mx-auto": !gridView,
   });
 
   return <ul className={classes}>{children}</ul>;
@@ -149,7 +144,7 @@ export const CollectionItem = ({
   children,
   className,
   collection,
-  gridView
+  gridView,
 }) => {
   const { releaseDate, title, uri } = collection;
 
@@ -162,13 +157,12 @@ export const CollectionItem = ({
 
   const coverArtClasses = cn("border border-primary-5 flex-shrink-0", {
     "w-full rounded-lg transition": gridView,
-    "h-64 w-64 rounded-lg": !gridView
+    "h-64 w-64 rounded-lg": !gridView,
   });
 
   return (
     <CollectionItemEl as={as} className={classes}>
       <Link href={uri} className={linkClasses}>
-
         <CoverArt
           className={coverArtClasses}
           height={gridView ? 256 : 96}
@@ -185,12 +179,11 @@ export const CollectionItem = ({
           )}
           {children}
         </div>
-
       </Link>
     </CollectionItemEl>
   );
 };
 
 CollectionItem.propTypes = {
-  collection: PropTypes.object.isRequired
+  collection: PropTypes.object.isRequired,
 };
