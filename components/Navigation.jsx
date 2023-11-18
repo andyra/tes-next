@@ -6,7 +6,7 @@ import Button from "components/Button";
 import {
   DropdownMenu,
   DropdownDivider,
-  DropdownItem
+  DropdownItem,
 } from "components/DropdownMenu";
 import Icon from "components/Icon";
 import Search from "components/Search";
@@ -34,10 +34,10 @@ export const NavLink = ({ className, count, navSection, title, href }) => {
 };
 
 const TitleMarquee = () => (
-  (<Link
+  <Link
     href="/"
-    className="h-24 md:h-160 relative w-screen overflow-hidden -ml-8 md:-mx-24 text-primary md:text-secondary hover:text-accent relative">
-
+    className="h-24 md:h-160 relative w-screen overflow-hidden -ml-8 md:-mx-24 text-primary md:text-secondary hover:text-accent relative"
+  >
     <span
       className="ml-16 font-funky text-9xl leading-none hidden md:block transition"
       aria-hidden
@@ -52,8 +52,7 @@ const TitleMarquee = () => (
       ))}
     </div>
     <div className="absolute z-10 w-24 h-full top-0 right-0 bg-gradient-to-l from-ground pointer-events-none md:hidden" />
-
-  </Link>)
+  </Link>
 );
 
 export const Navigation = ({ navSection, playerIsEmpty }) => {
@@ -100,7 +99,7 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
             <DropdownDivider />
             <DropdownItem
               title="Sign In"
-              href="https://content.tes.fm/admin"
+              href={`${process.env.NEXT_PUBLIC_CRAFT_URL}/admin`}
               target="_blank"
               rel="noopener noreferrer"
             />
@@ -153,7 +152,7 @@ export const Navigation = ({ navSection, playerIsEmpty }) => {
             <DropdownItem title="Contact" href="/contact" icon="Phone" />
             <DropdownDivider />
             <DropdownItem
-              href="https://content.tes.fm/admin"
+              href={`${process.env.NEXT_PUBLIC_CRAFT_URL}/admin`}
               target="_blank"
               rel="noopener noreferrer"
               title="Sign In"
