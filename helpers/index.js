@@ -1,19 +1,5 @@
 import { gql } from "@apollo/client";
 
-// Query just the slugs of a Craft entry
-// A clean way of building a GraphQL query to get a list of slugs for a section
-// ----------------------------------------------------------------------------
-
-export function querySlugs(section) {
-  return gql`
-    query Entries {
-      entries(section: "${section}") {
-        slug
-      }
-    }
-  `;
-}
-
 // Get Info
 // ----------------------------------------------------------------------------
 
@@ -105,7 +91,7 @@ export function normalizeFullEpisode(episode) {
       addedBy: null,
       artist: {
         slug: null,
-        title: null
+        title: null,
       },
       audioFile: audioFileUrl,
       collection: {
@@ -113,7 +99,7 @@ export function normalizeFullEpisode(episode) {
         slug: episode.slug,
         title: episode.title,
         uri: `/${episode.uri}`,
-        coverArt: getCollectionCoverArtUrl(episode)
+        coverArt: getCollectionCoverArtUrl(episode),
       },
       dateAdded: null,
       id: `${getCollectionType(episode)}-${episode.slug}`,
@@ -122,7 +108,7 @@ export function normalizeFullEpisode(episode) {
       position: null,
       slug: episode.slug,
       title: episode.title,
-      uri: episode.uri
+      uri: episode.uri,
     };
   }
   console.error("Episode doesn't have an audio file for the full episode");
@@ -136,7 +122,7 @@ export function normalizeTrack(collection, track, i) {
     addedBy: null,
     artist: {
       slug: getArtistInfo(collection, "slug"),
-      title: getArtistInfo(collection, "title")
+      title: getArtistInfo(collection, "title"),
     },
     audioFile: getTrackAudioFileUrl(track),
     collection: {
@@ -144,7 +130,7 @@ export function normalizeTrack(collection, track, i) {
       slug: collection.slug,
       title: collection.title,
       uri: `/${collection.uri}`,
-      coverArt: getCollectionCoverArtUrl(collection)
+      coverArt: getCollectionCoverArtUrl(collection),
     },
     dateAdded: null,
     id: `${getCollectionType(collection)}-${collection.slug}-${i}`,
@@ -154,7 +140,7 @@ export function normalizeTrack(collection, track, i) {
     slug: getTrackSlug(track),
     title: getTrackTitle(track),
     type: getTrackType(track),
-    uri: getTrackUri(track)
+    uri: getTrackUri(track),
   };
 }
 
@@ -171,7 +157,7 @@ export function normalizeTracklist({ collection, playableOnly } = {}) {
   }
 
   if (playableOnly) {
-    return normalizedTracks.filter(function(track) {
+    return normalizedTracks.filter(function (track) {
       return track.audioFile;
     });
   }
@@ -185,7 +171,7 @@ export function normalizeCollections({ collections, playableOnly } = {}) {
   for (let collection of collections) {
     const tracks = normalizeTracklist({
       collection: collection,
-      playableOnly: playableOnly
+      playableOnly: playableOnly,
     });
     for (let track of tracks) {
       normalizedTracks.push(track);

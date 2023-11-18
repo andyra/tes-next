@@ -4,7 +4,7 @@ import { CollectionHeader } from "components/Collections";
 import Loader from "components/Loader";
 import NiceDate from "components/NiceDate";
 import Tracklist from "components/Tracklist";
-import { normalizeTracklist, querySlugs } from "helpers/index";
+import { normalizeTracklist } from "helpers/index";
 import { DEFAULT_EPISODE_IMAGE } from "../../constants";
 
 // Page
@@ -37,7 +37,13 @@ export default function Album({ album, durations, coverPalette }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("albums"),
+    query: gql`
+      query Entries {
+        entries(section: "albums") {
+          slug
+        }
+      }
+    `,
   });
 
   const paths = data.entries.map((entry) => ({

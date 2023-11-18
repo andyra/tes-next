@@ -8,7 +8,6 @@ import Loader from "components/Loader";
 import DotMatrix from "./components/DotMatrix";
 import Info from "./components/Info";
 import Tape from "./components/Tape";
-import { querySlugs } from "helpers/index";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -151,7 +150,13 @@ export default function Article({ allCategories, article }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("library"),
+    query: gql`
+      query Entries {
+        entries(section: "library") {
+          slug
+        }
+      }
+    `,
   });
 
   const paths = data.entries.map((entry) => ({

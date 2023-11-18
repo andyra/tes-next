@@ -5,11 +5,7 @@ import Loader from "components/Loader";
 import NiceDate from "components/NiceDate";
 import PlayPauseButton from "components/PlayPauseButton";
 import Tracklist from "components/Tracklist";
-import {
-  normalizeFullEpisode,
-  normalizeTracklist,
-  querySlugs,
-} from "helpers/index";
+import { normalizeFullEpisode, normalizeTracklist } from "helpers/index";
 
 // Page
 // ----------------------------------------------------------------------------
@@ -45,7 +41,13 @@ export default function Episode({ coverPalette, episode }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("episodes"),
+    query: gql`
+      query Entries {
+        entries(section: "episodes") {
+          slug
+        }
+      }
+    `,
   });
 
   const paths = data.entries.map((entry) => ({

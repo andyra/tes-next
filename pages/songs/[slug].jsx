@@ -5,7 +5,7 @@ import LeadSheet from "components/LeadSheet";
 import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
 import Tracklist from "components/Tracklist";
-import { getCollectionType, querySlugs, normalizeTrack } from "helpers/index";
+import { getCollectionType, normalizeTrack } from "helpers/index";
 
 // Functions
 // ----------------------------------------------------------------------------
@@ -195,7 +195,13 @@ export default function Song({ song }) {
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("songs"),
+    query: gql`
+      query Entries {
+        entries(section: "songs") {
+          slug
+        }
+      }
+    `,
   });
 
   const paths = data.entries.map((entry) => ({

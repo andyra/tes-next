@@ -3,14 +3,19 @@ import { gql } from "@apollo/client";
 import client from "helpers/apollo-client";
 import Loader from "components/Loader";
 import PageHeader from "components/PageHeader";
-import { querySlugs } from "helpers/index";
 
 // Paths
 // -----------------------------------------------------------------------------
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: querySlugs("videos"),
+    query: gql`
+      query Entries {
+        entries(section: "videos") {
+          slug
+        }
+      }
+    `,
   });
 
   const paths = data.entries.map((entry) => ({
