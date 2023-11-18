@@ -110,7 +110,7 @@ export default function Article({ allCategories, article }) {
                       }}
                     />
                   )}
-                  {item.image && item.image[0].url && (
+                  {item.image && item.image[0]?.url && (
                     <figure className="border border-secondary relative">
                       <Tape />
                       <Image
