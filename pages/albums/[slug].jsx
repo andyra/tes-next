@@ -46,9 +46,7 @@ export async function getStaticPaths() {
     `,
   });
 
-  console.log(data);
-
-  const paths = data.entries.map((entry) => ({
+  const paths = data?.entries.map((entry) => ({
     params: { slug: entry.slug },
   }));
 
