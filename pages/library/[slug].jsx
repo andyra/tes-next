@@ -16,7 +16,7 @@ import Tape from "./components/Tape";
 // relative to root
 function replaceInternalLinks(content) {
   let content1 = content.replace(/https:\/\/tes-craft.test/g, "");
-  let content2 = content1.replace(/https:\/\/content.tes.fm/g, "");
+  let content2 = content1.replace(/https:\/\/www.office.tes.fm/g, "");
   return content2.replace(/https:\/\/tes.fm/g, "");
 }
 
